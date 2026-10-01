@@ -1,7 +1,4 @@
-<img align="left" src="appicons/gymnutshell-light-rounded.png" width="100">
-<img src="appicons/gymnutshell-dark-rounded.png" width="100">
-
-# Gym Nutshell
+# <img src="appicons/gymnutshell-tinted-rounded.png" width="72" align="middle" alt="Ícone do Gym Nutshell">&nbsp;&nbsp;Gym Nutshell
 
 _Rastreie metas de nutrição, sono, suplementos e libere conquistas._
 
