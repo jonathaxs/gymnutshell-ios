@@ -1,19 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "GymNutshell.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename" : "AppIcon.png",
+      "idiom" : "universal"
     },
     {
-      "filename" : "GymNutshell 1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "GymNutshell 2.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "AppIcon-Dark.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

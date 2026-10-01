@@ -77,7 +77,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "694791872FA5923900E26A2B"
             BuildableName = "GymNutshellWatch.app"
-            BlueprintName = "GymNutshellWatch"
             ReferencedContainer = "container:GymNutshell.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -111,7 +110,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "694797912FB2C24C00E26A2B"
             BuildableName = "GymNutshellWatchWidgetExtension.appex"
-            BlueprintName = "GymNutshellWatchWidgetExtension"
             ReferencedContainer = "container:GymNutshell.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -1,0 +1,9 @@
+{
+  "id" : "1c92c29e-bebc-4f31-b82e-3813d3be7489",
+  "targets" : [
+    {
+      "id" : "C7DD1CA5-8AFD-4947-AB67-3369BB970852",
+      "name" : "GymNutshellApp"
+    }
+  ]
+}
