@@ -13,7 +13,7 @@ Ele é grátis, sem anúncios, sem assinatura e sem cadastro.
 **Disponível na [App Store](https://apps.apple.com/us/app/gym-nutshell/id6774739305)** para iPhone, iPad, Apple Watch e Mac com Apple Silicon.
 
 ## Funcionalidades - Versão 1.0 
-_(Algumas funcionalidades estão sendo removidas e outras aprimoradas na futura Versão 1.1)_ 
+_(Algumas funcionalidades estão sendo removidas e outras aprimoradas na futura Versão 1.1. Qualquer dúvida ou sugestão entre em [contato comigo](https://jonathasmotta.com))_ 
 
 **Hoje**
 - Metas do dia com registro rápido e anel de progresso geral.
