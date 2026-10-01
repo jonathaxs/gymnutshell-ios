@@ -1,14 +1,22 @@
+<img align="left" src="appicons/gymnutshell-light-rounded.png" width="100">
+<img src="appicons/gymnutshell-dark-rounded.png" width="100">
+
 # Gym Nutshell
 
-App para marcar as metas do dia, com conquistas, temas e bônus de sequência para transformar a rotina de treino e alimentação.
+_Rastreie metas de nutrição, sono, suplementos e libere conquistas._
 
-O Gym Nutshell reúne em uma tela só: água, proteínas, carboidratos, gorduras, fibras, creatina, calorias, macronutrientes, sono e treino. O progresso de cada meta vira um nível de conquista, representado pelo emoji do tema escolhido, e fica registrado em um calendário. Dias consistentes rendem bônus semanais e mensais. 
+O Gym Nutshell nasceu da minha rotina de academia. Eu precisava lembrar de bater a meta de proteína, água, fibras e creatina, e ainda registrar cardio e sono, mas não achei nenhum app que fizesse tudo isso junto.
 
-É gratuito, sem anúncios, sem assinatura e sem cadastro.
+Durante o dia, você rastreia cada meta com sliders simples, incluindo calorias, carboidratos e gorduras, e recebe notificações durante o dia.
+
+Para deixar o app um pouco mais divertido, cada dia completo vira uma conquista temática, com sequências e um calendário do seu progresso.
+
+Ele é grátis, sem anúncios, sem assinatura e sem cadastro.
 
 **Disponível na [App Store](https://apps.apple.com/us/app/gym-nutshell/id6774739305)** para iPhone, iPad, Apple Watch e Mac com Apple Silicon.
 
-## Funcionalidades
+## Funcionalidades - Versão 1.0 
+_(Algumas funcionalidades estão sendo removidas e outras aprimoradas na futura Versão 1.1)_ 
 
 **Hoje**
 - Metas do dia com registro rápido e anel de progresso geral.
