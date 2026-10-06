@@ -183,6 +183,19 @@ struct SettingsView: View {
                     }
                 }
 
+                #if DEBUG
+                // Seção Dev, só existe em build de Debug (rodando pelo Xcode), nunca vai pro Release.
+                // Volta a flag do onboarding pra false e o app troca na hora pra WelcomeView.
+                Section(header: Text(verbatim: "Dev").foregroundStyle(accentColor.color)) {
+                    Button {
+                        UserDefaults.standard.set(false, forKey: UserProfile.didCompleteOnboardingKey)
+                    } label: {
+                        Label { Text(verbatim: "Abrir Welcome View") } icon: { Image(systemName: "hammer") }
+                            .foregroundStyle(.primary)
+                    }
+                }
+                #endif
+
             }
             .navigationTitle(String(localized: "settings.header.title", bundle: .gymNutshellCore))
             .toolbar {
