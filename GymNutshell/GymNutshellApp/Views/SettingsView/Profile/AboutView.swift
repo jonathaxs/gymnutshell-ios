@@ -51,17 +51,11 @@ struct AboutView: View {
                     .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 24, trailing: 16))
             }
 
-            // Crédito do desenvolvedor com links de contato.
-            // Feedback primeiro, depois site.
+            // Crédito do desenvolvedor com o link de feedback por e-mail.
             Section(String(localized: "settings.about.developer.header", bundle: .gymNutshellCore)) {
-                Link(destination: URL(string: "mailto:jonathasmrt@me.com")!) {
+                Link(destination: URL(string: "mailto:jonathaxs@icloud.com")!) {
                     Label(String(localized: "settings.about.feedback", bundle: .gymNutshellCore),
                           systemImage: "envelope")
-                        .foregroundStyle(accentColor)
-                }
-                Link(destination: URL(string: "https://jonathasmotta.com")!) {
-                    Label(String(localized: "settings.about.website", bundle: .gymNutshellCore),
-                          systemImage: "globe")
                         .foregroundStyle(accentColor)
                 }
             }

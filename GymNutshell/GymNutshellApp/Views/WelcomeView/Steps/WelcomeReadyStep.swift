@@ -17,10 +17,9 @@ struct WelcomeReadyStep: View {
     let accentColor: Color
     var isWide: Bool = false
 
-    private enum PermissionState { case idle, allowed, requested, denied }
 
-    @State private var notificationsState: PermissionState = .idle
-    @State private var healthState: PermissionState = .idle
+    @State private var notificationsState: PermissionCardState = .idle
+    @State private var healthState: PermissionCardState = .idle
 
     // Chaves que a tela de Ajustes > Apple Saúde já usa.
     @AppStorage("healthkit.syncSleepEnabled") private var syncSleep: Bool = false
@@ -40,23 +39,25 @@ struct WelcomeReadyStep: View {
                         )
                     }
 
-                    permissionRow(
+                    PermissionCard(
                         icon: "bell.badge.fill",
                         iconColor: .red,
                         title: String(localized: "welcome.ready.notifications.title", bundle: .gymNutshellCore),
                         desc: String(localized: "welcome.ready.notifications.desc", bundle: .gymNutshellCore),
                         state: notificationsState,
+                        accentColor: accentColor,
                         action: requestNotifications
                     )
 
                     // Aparelhos sem Apple Saúde (alguns iPads) não mostram a linha.
                     if HealthKitManager.isAvailable {
-                        permissionRow(
+                        PermissionCard(
                             icon: "heart.fill",
                             iconColor: .pink,
                             title: String(localized: "welcome.ready.health.title", bundle: .gymNutshellCore),
                             desc: String(localized: "welcome.ready.health.desc", bundle: .gymNutshellCore),
                             state: healthState,
+                            accentColor: accentColor,
                             action: requestHealth
                         )
                     }
@@ -67,7 +68,7 @@ struct WelcomeReadyStep: View {
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.vertical)
                 .frame(maxWidth: .infinity, minHeight: isWide ? geo.size.height : 0, alignment: .center)
             }
@@ -81,58 +82,6 @@ struct WelcomeReadyStep: View {
             default: break
             }
         }
-    }
-
-    // MARK: - Linha de permissão
-
-    private func permissionRow(
-        icon: String,
-        iconColor: Color,
-        title: String,
-        desc: String,
-        state: PermissionState,
-        action: @escaping () -> Void
-    ) -> some View {
-        HStack(spacing: 14) {
-            // Ícone em quadrado colorido, como nos Ajustes do sistema.
-            Image(systemName: icon)
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(.white)
-                .frame(width: 44, height: 44)
-                .background(iconColor.gradient, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-                .accessibilityHidden(true)
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.headline)
-                Text(desc)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-            Spacer(minLength: 8)
-
-            switch state {
-            case .idle:
-                Button(action: action) {
-                    Text(String(localized: "welcome.ready.allow", bundle: .gymNutshellCore))
-                        .font(.subheadline.weight(.semibold))
-                }
-                .welcomeProminentButton(accentColor, size: .regular)
-            case .allowed:
-                Label(String(localized: "welcome.ready.allowed", bundle: .gymNutshellCore), systemImage: "checkmark.circle.fill")
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.green)
-            case .requested:
-                Label(String(localized: "welcome.ready.requested", bundle: .gymNutshellCore), systemImage: "checkmark.circle")
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.secondary)
-            case .denied:
-                Text(String(localized: "welcome.ready.denied", bundle: .gymNutshellCore))
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .padding(16)
-        .welcomeCard()
     }
 
     // MARK: - Pedidos

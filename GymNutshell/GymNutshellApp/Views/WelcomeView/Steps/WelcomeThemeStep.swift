@@ -38,9 +38,9 @@ struct WelcomeThemeStep: View {
                 // Uma seção por categoria, cada uma com cabeçalho e um card agrupado de temas.
                 ForEach(AppTheme.ThemeCategory.allCases, id: \.self) { category in
                     VStack(alignment: .leading, spacing: 8) {
-                        WelcomeSectionLabel(text: category.localizedName(sex: sex))
+                        AppSectionLabel(text: category.localizedName(sex: sex))
 
-                        WelcomeGroupedCard(dividerInset: 16) {
+                        AppGroupedCard(dividerInset: 16) {
                             ForEach(AppTheme.themes(in: category), id: \.self) { theme in
                                 themeRow(theme)
                             }
@@ -54,7 +54,7 @@ struct WelcomeThemeStep: View {
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 6)
             }
-            .padding(.horizontal, WelcomeStyle.horizontalPadding)
+            .padding(.horizontal, AppStyle.horizontalPadding)
             .padding(.vertical)
         }
         .sheet(item: $infoTheme) { theme in

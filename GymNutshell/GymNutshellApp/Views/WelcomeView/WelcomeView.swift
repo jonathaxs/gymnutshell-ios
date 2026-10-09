@@ -206,7 +206,7 @@ struct WelcomeView: View {
                             .font(.body.weight(.semibold))
                             .frame(width: 24, height: 24)
                     }
-                    .welcomeCircleButton()
+                    .appCircleButton()
                     .accessibilityLabel(String(localized: "a11y.welcome.back.button",
                                                bundle: .gymNutshellCore))
                     .transition(.scale.combined(with: .opacity))
@@ -215,7 +215,7 @@ struct WelcomeView: View {
                 WelcomeProgressBar(currentStep: currentStep, activeColor: sexColor)
             }
             .frame(minHeight: 44)
-            .padding(.horizontal, WelcomeStyle.horizontalPadding)
+            .padding(.horizontal, AppStyle.horizontalPadding)
             .padding(.top, 12)
 
             // Conteúdo da etapa com transição de slide.
@@ -275,7 +275,7 @@ struct WelcomeView: View {
                     isEnabled: isCurrentStepValid,
                     action: advance
                 )
-                .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.top, 8)
                 .padding(.bottom, 16)
             }

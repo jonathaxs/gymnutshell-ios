@@ -36,17 +36,12 @@ struct WelcomeUserGoalStep: View {
 
                     // Seletor de sexo: define a coluna da tabela de metas, a cor e os emojis do app.
                     VStack(alignment: .leading, spacing: 8) {
-                        WelcomeSectionLabel(text: String(localized: "welcome.field.sex", bundle: .gymNutshellCore))
-                        HStack(spacing: 12) {
-                            sexTile("female", icon: "figure.stand.dress",
-                                    label: String(localized: "welcome.field.sex.female", bundle: .gymNutshellCore))
-                            sexTile("male", icon: "figure.stand",
-                                    label: String(localized: "welcome.field.sex.male", bundle: .gymNutshellCore))
-                        }
+                        AppSectionLabel(text: String(localized: "welcome.field.sex", bundle: .gymNutshellCore))
+                        SexPicker(sex: $sex)
                     }
 
                     VStack(alignment: .leading, spacing: 8) {
-                        WelcomeSectionLabel(text: String(localized: "welcome.field.goal", bundle: .gymNutshellCore))
+                        AppSectionLabel(text: String(localized: "welcome.field.goal", bundle: .gymNutshellCore))
                         UserGoalPickerView(selection: $userGoal)
                     }
 
@@ -56,40 +51,10 @@ struct WelcomeUserGoalStep: View {
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.vertical)
                 .frame(maxWidth: .infinity, minHeight: isWide ? geo.size.height : 0, alignment: .center)
             }
         }
-    }
-
-    // MARK: - Bloco de sexo
-
-    private func sexTile(_ value: String, icon: String, label: String) -> some View {
-        let isSelected = sex == value
-        // A cor do bloco segue a cor que o app vai usar pra esse sexo.
-        let tileColor = AppAccentColor.defaultForSex(value).color
-        return VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.system(size: 30, weight: .semibold))
-                .foregroundStyle(isSelected ? tileColor : .secondary)
-                .accessibilityHidden(true)
-            Text(label)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(isSelected ? .primary : .secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 18)
-        .welcomeCard(isSelected: isSelected, accentColor: tileColor)
-        .contentShape(RoundedRectangle(cornerRadius: WelcomeStyle.cardRadius, style: .continuous))
-        .tapButton {
-            UISelectionFeedbackGenerator().selectionChanged()
-            withAnimation(.easeInOut(duration: 0.2)) { sex = value }
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(label)
-        .accessibilityValue(isSelected
-                            ? String(localized: "a11y.selected", bundle: .gymNutshellCore)
-                            : String(localized: "a11y.not.selected", bundle: .gymNutshellCore))
     }
 }

@@ -70,7 +70,7 @@ struct WelcomeControlStyleStep: View {
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.vertical)
                 .frame(maxWidth: .infinity, minHeight: isWide ? geo.size.height : 0, alignment: .center)
             }
@@ -103,8 +103,8 @@ struct WelcomeControlStyleStep: View {
                 .accessibilityHidden(true)
         }
         .padding(18)
-        .welcomeCard(isSelected: isSelected, accentColor: accentColor)
-        .contentShape(RoundedRectangle(cornerRadius: WelcomeStyle.cardRadius, style: .continuous))
+        .appCard(isSelected: isSelected, accentColor: accentColor)
+        .contentShape(RoundedRectangle(cornerRadius: AppStyle.cardRadius, style: .continuous))
         .tapButton {
             UISelectionFeedbackGenerator().selectionChanged()
             selection = style

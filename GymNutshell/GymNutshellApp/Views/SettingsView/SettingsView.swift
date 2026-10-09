@@ -37,19 +37,19 @@ struct SettingsView: View {
                     NavigationLink {
                         ProfileSettingsView()
                     } label: {
-                        Label(String(localized: "settings.section.physicaldata", bundle: .gymNutshellCore), systemImage: "person.circle")
+                        Label { Text(String(localized: "settings.section.physicaldata", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "person.circle", color: .blue) }
                             .foregroundStyle(.primary)
                     }
                     NavigationLink {
                         UserGoalChangeView()
                     } label: {
-                        Label(String(localized: "settings.fitness.goal.edit", bundle: .gymNutshellCore), systemImage: "flame")
+                        Label { Text(String(localized: "settings.fitness.goal.edit", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "flame", color: .orange) }
                             .foregroundStyle(.primary)
                     }
                     NavigationLink {
                         TrackingGoalsSettingsView()
                     } label: {
-                        Label(String(localized: "settings.goals.edit", bundle: .gymNutshellCore), systemImage: "target")
+                        Label { Text(String(localized: "settings.goals.edit", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "target", color: .red) }
                             .foregroundStyle(.primary)
                     }
                 }
@@ -60,21 +60,21 @@ struct SettingsView: View {
                     NavigationLink {
                         ThemeSettingsView()
                     } label: {
-                        Label(String(localized: "settings.theme.title", bundle: .gymNutshellCore), systemImage: "theatermasks")
+                        Label { Text(String(localized: "settings.theme.title", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "theatermasks", color: .purple) }
                             .foregroundStyle(.primary)
                     }
                     // Cores, cor de destaque independente do sexo.
                     NavigationLink {
                         ColorSettingsView()
                     } label: {
-                        Label(String(localized: "settings.color.title", bundle: .gymNutshellCore), systemImage: "paintpalette")
+                        Label { Text(String(localized: "settings.color.title", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "paintpalette", color: .pink) }
                             .foregroundStyle(.primary)
                     }
                     // Widgets, fundo personalizado pros widgets da tela inicial.
                     NavigationLink {
                         WidgetBackgroundSettingsView()
                     } label: {
-                        Label(String(localized: "settings.edit.widgets", bundle: .gymNutshellCore), systemImage: "square.on.square")
+                        Label { Text(String(localized: "settings.edit.widgets", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "square.on.square", color: .indigo) }
                             .foregroundStyle(.primary)
                     }
 
@@ -82,7 +82,7 @@ struct SettingsView: View {
                     NavigationLink {
                         ControlStyleSettingsView()
                     } label: {
-                        Label(String(localized: "settings.preference.controlStyle", bundle: .gymNutshellCore), systemImage: "slider.horizontal.3")
+                        Label { Text(String(localized: "settings.preference.controlStyle", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "slider.horizontal.3", color: .gray) }
                             .foregroundStyle(.primary)
                     }
 
@@ -90,7 +90,7 @@ struct SettingsView: View {
                     NavigationLink {
                         MeasurementSettingsView()
                     } label: {
-                        Label(String(localized: "settings.preference.measurementSystem", bundle: .gymNutshellCore), systemImage: "ruler")
+                        Label { Text(String(localized: "settings.preference.measurementSystem", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "ruler", color: .teal) }
                             .foregroundStyle(.primary)
                     }
                 }
@@ -101,7 +101,7 @@ struct SettingsView: View {
                     NavigationLink {
                         NotificationsSettingsView()
                     } label: {
-                        Label(String(localized: "settings.preference.notifications", bundle: .gymNutshellCore), systemImage: "bell.badge")
+                        Label { Text(String(localized: "settings.preference.notifications", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "bell.badge", color: .red) }
                             .foregroundStyle(.primary)
                     }
 
@@ -109,7 +109,7 @@ struct SettingsView: View {
                     NavigationLink {
                         HealthSettingsView()
                     } label: {
-                        Label(String(localized: "settings.preference.appleHealth", bundle: .gymNutshellCore), systemImage: "heart.fill")
+                        Label { Text(String(localized: "settings.preference.appleHealth", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "heart.fill", color: .pink) }
                             .foregroundStyle(.primary)
                     }
 
@@ -117,7 +117,7 @@ struct SettingsView: View {
                     NavigationLink {
                         BackupSettingsView()
                     } label: {
-                        Label(String(localized: "settings.backup.nav.title", bundle: .gymNutshellCore), systemImage: "externaldrive")
+                        Label { Text(String(localized: "settings.backup.nav.title", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "externaldrive", color: .gray) }
                             .foregroundStyle(.primary)
                     }
 
@@ -129,7 +129,7 @@ struct SettingsView: View {
                         }
                     } label: {
                         HStack {
-                            Label(String(localized: "settings.preference.language", bundle: .gymNutshellCore), systemImage: "globe")
+                            Label { Text(String(localized: "settings.preference.language", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "globe", color: .blue) }
                                 .foregroundStyle(.primary)
                             Spacer()
                             Image(systemName: "arrow.up.forward.app")
@@ -147,31 +147,31 @@ struct SettingsView: View {
                     NavigationLink {
                         AboutView()
                     } label: {
-                        Label(String(localized: "settings.about.link", bundle: .gymNutshellCore), systemImage: "info.circle")
+                        Label { Text(String(localized: "settings.about.link", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "info.circle", color: .gray) }
                             .foregroundStyle(.primary)
                     }
                     NavigationLink {
                         AppleWatchInstructionsView()
                     } label: {
-                        Label(String(localized: "settings.preference.appleWatch", bundle: .gymNutshellCore), systemImage: "applewatch")
+                        Label { Text(String(localized: "settings.preference.appleWatch", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "applewatch", color: .green) }
                             .foregroundStyle(.primary)
                     }
                     NavigationLink {
                         ProgressRingInfoView()
                     } label: {
-                        Label(String(localized: "settings.about.progressRing", bundle: .gymNutshellCore), systemImage: "circle.dotted")
+                        Label { Text(String(localized: "settings.about.progressRing", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "circle.dotted", color: .orange) }
                             .foregroundStyle(.primary)
                     }
                     NavigationLink {
                         TierInfoView(theme: selectedTheme, sex: sex)
                     } label: {
-                        Label(String(localized: "settings.about.achievement", bundle: .gymNutshellCore), systemImage: "trophy.fill")
+                        Label { Text(String(localized: "settings.about.achievement", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "trophy.fill", color: .yellow) }
                             .foregroundStyle(.primary)
                     }
                     NavigationLink {
                         StreakBonusInfoView()
                     } label: {
-                        Label(String(localized: "settings.about.streakBonus", bundle: .gymNutshellCore), systemImage: "calendar.badge.checkmark")
+                        Label { Text(String(localized: "settings.about.streakBonus", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "calendar.badge.checkmark", color: .green) }
                             .foregroundStyle(.primary)
                     }
                 }

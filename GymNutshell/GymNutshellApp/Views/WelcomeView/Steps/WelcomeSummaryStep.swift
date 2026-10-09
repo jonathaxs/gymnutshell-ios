@@ -124,7 +124,7 @@ struct WelcomeSummaryStep: View {
                     .padding(.top, -12)
                 }
             }
-            .padding(.horizontal, WelcomeStyle.horizontalPadding)
+            .padding(.horizontal, AppStyle.horizontalPadding)
             .padding(.vertical)
         }
         // Botões − / + seguem a cor de destaque.
@@ -138,8 +138,8 @@ struct WelcomeSummaryStep: View {
         @ViewBuilder content: () -> Content
     ) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            WelcomeSectionLabel(text: category.displayName)
-            WelcomeGroupedCard {
+            AppSectionLabel(text: category.displayName)
+            AppGroupedCard {
                 content()
             }
         }

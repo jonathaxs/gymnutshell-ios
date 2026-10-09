@@ -65,8 +65,8 @@ struct UserGoalPickerView: View {
                     .accessibilityHidden(true)
             }
             .padding()
-            .welcomeCard(isSelected: isSelected, accentColor: color)
-            .contentShape(RoundedRectangle(cornerRadius: WelcomeStyle.cardRadius, style: .continuous))
+            .appCard(isSelected: isSelected, accentColor: color)
+            .contentShape(RoundedRectangle(cornerRadius: AppStyle.cardRadius, style: .continuous))
         }
         .buttonStyle(.plain)
         // Combina nome + descrição num único label; estado de seleção entra no value.

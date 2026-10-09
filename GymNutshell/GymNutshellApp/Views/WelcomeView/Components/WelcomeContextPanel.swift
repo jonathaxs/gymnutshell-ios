@@ -60,14 +60,14 @@ struct WelcomeContextPanel: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 4)
                     }
-                    .welcomeProminentButton(sexColor)
+                    .appProminentButton(sexColor)
                     Button { isPanelImporting = true } label: {
                         Text(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 4)
                     }
-                    .welcomeSecondaryButton(sexColor)
+                    .appSecondaryButton(sexColor)
                 } else {
                     WelcomeContinueButton(
                         label: continueButtonLabel,
@@ -82,7 +82,7 @@ struct WelcomeContextPanel: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 4)
                     }
-                    .welcomeSecondaryButton(.secondary)
+                    .appSecondaryButton(.secondary)
                 }
             }
             .padding(.horizontal)
@@ -137,7 +137,7 @@ struct WelcomeContinueButton: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 4)
         }
-        .welcomeProminentButton(color)
+        .appProminentButton(color)
         .disabled(!isEnabled)
     }
 }

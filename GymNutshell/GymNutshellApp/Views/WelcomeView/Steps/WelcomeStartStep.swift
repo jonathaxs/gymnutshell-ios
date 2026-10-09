@@ -54,7 +54,7 @@ struct WelcomeStartStep: View {
                         }
                         .padding(.horizontal, 8)
                     }
-                    .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                    .padding(.horizontal, AppStyle.horizontalPadding)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .center)
                 }
@@ -76,7 +76,7 @@ struct WelcomeStartStep: View {
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 4)
                         }
-                        .welcomeProminentButton(accentColor)
+                        .appProminentButton(accentColor)
 
                         Button { showRestoreSheet = true } label: {
                             Text(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
@@ -84,10 +84,10 @@ struct WelcomeStartStep: View {
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 4)
                         }
-                        .welcomeSecondaryButton(accentColor)
+                        .appSecondaryButton(accentColor)
                     }
                 }
-                .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.top, 8)
                 .padding(.bottom, 16)
             }
