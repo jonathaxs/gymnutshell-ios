@@ -81,6 +81,8 @@ struct WelcomeThemeStep: View {
                                         infoTheme = theme
                                     } label: {
                                         Image(systemName: "info.circle")
+                                        .font(.title2)
+                                        .frame(minWidth: 44, minHeight: 44)
                                     }
                                     .buttonStyle(.borderless)
                                     .tint(isSelected ? .white : accentColor)

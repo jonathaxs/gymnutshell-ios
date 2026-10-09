@@ -29,10 +29,6 @@ struct SettingsView: View {
     @State private var showNotificationHistory: Bool = false
 
     var body: some View {
-        // GeometryReader detecta a largura disponível pra forçar o split no iPhone landscape (≥700 pt).
-        // NavigationSplitView respeita horizontalSizeClass; ao sobrescrever pra .regular em telas largas
-        // o split é exibido mesmo no iPhone landscape, onde o size class nativo ainda seria .compact.
-        GeometryReader { geo in
         NavigationSplitView {
             // Sidebar: lista de seções de settings.
             List {
@@ -88,17 +84,6 @@ struct SettingsView: View {
                     } label: {
                         Label(String(localized: "settings.preference.measurementSystem", bundle: .gymNutshellCore), systemImage: "ruler")
                             .foregroundStyle(.primary)
-                    }
-
-                    // Orientação, trava o app em retrato/paisagem/ambas.
-                    // Só faz sentido no iPhone; em iPad/Mac/Vision sempre fica liberado.
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        NavigationLink {
-                            OrientationSettingsView()
-                        } label: {
-                            Label(String(localized: "settings.preference.orientation", bundle: .gymNutshellCore), systemImage: "rotate.left")
-                                .foregroundStyle(.primary)
-                        }
                     }
                 }
 
@@ -238,8 +223,7 @@ struct SettingsView: View {
                     String(localized: "settings.detail.placeholder", bundle: .gymNutshellCore),
                     systemImage: "sidebar.left"
                 )
-                // Sem isso o detail vazio aparece com fundo branco no light mode (iPad
-                // / iPhone landscape) destoando das outras páginas que usam grouped.
+                // Sem isso o detail vazio aparece com fundo branco no light mode (iPad) destoando das outras páginas que usam grouped.
                 .background(Color(.systemGroupedBackground).ignoresSafeArea())
                 .scrollContentBackground(.hidden)
             }
@@ -249,10 +233,6 @@ struct SettingsView: View {
         .tint(accentColor.color)
         // Cor de fundo igual ao systemGroupedBackground, corrige barra de status branca no iPad (light mode).
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
-        // Sobrescreve o size class horizontal pra forçar o split no iPhone landscape (≥700 pt).
-        // Em portrait o size class nativo (.compact) é mantido, NavigationSplitView colapsa normalmente.
-        .environment(\.horizontalSizeClass, geo.size.width >= 700 ? .regular : .compact)
-        } // GeometryReader
     }
 }
 
