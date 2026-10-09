@@ -987,3 +987,24 @@
 
 "a11y.welcome.goal.decrease.format" = "Decrease %@";
 "a11y.welcome.goal.increase.format" = "Increase %@";
+
+"welcome.step.control.title" = "Your controls";
+"welcome.step.control.subtitle" = "How do you prefer to log your goals every day?";
+"welcome.control.slider" = "Slide";
+"welcome.control.slider.desc" = "Drag the control to the value you want.";
+"welcome.control.stepper" = "− and + buttons";
+"welcome.control.stepper.desc" = "Tap to add or remove one step at a time.";
+"welcome.control.footer" = "You can change this later in Settings.";
+"welcome.step.ready.title" = "All set!";
+"welcome.step.ready.subtitle" = "Turn on what you like. Nothing here is required.";
+"welcome.ready.notifications.title" = "Notifications";
+"welcome.ready.notifications.desc" = "Reminders for water, achievements and bonuses.";
+"welcome.ready.health.title" = "Apple Health";
+"welcome.ready.health.desc" = "Logs your sleep and detects your workouts automatically.";
+"welcome.ready.allow" = "Allow";
+"welcome.ready.allowed" = "Allowed";
+"welcome.ready.requested" = "Requested";
+"welcome.ready.denied" = "Denied";
+"welcome.ready.footer" = "You can change all of this anytime in Settings.";
+"settings.preference.controlStyle" = "Controls";
+"settings.controlStyle.footer" = "Sets how you log goal progress on the Today screen.";

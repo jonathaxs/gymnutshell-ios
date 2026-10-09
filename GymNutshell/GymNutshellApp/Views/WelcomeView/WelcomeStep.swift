@@ -11,7 +11,9 @@ enum WelcomeStep: Int, CaseIterable {
     case start
     case goal
     case summary
+    case controlStyle
     case theme
+    case ready
 
     /// Emoji representativo da etapa, exibido no painel contextual em wide.
     var panelEmoji: String {
@@ -19,7 +21,9 @@ enum WelcomeStep: Int, CaseIterable {
         case .start:        return "👋"
         case .goal:         return "🎯"
         case .summary:      return "✅"
+        case .controlStyle: return "🎛️"
         case .theme:        return "🎭"
+        case .ready:        return "🚀"
         }
     }
 
@@ -29,7 +33,9 @@ enum WelcomeStep: Int, CaseIterable {
         case .start:        return String(localized: "welcome.step.start.title", bundle: .gymNutshellCore)
         case .goal:         return String(localized: "welcome.step.goal.title", bundle: .gymNutshellCore)
         case .summary:      return String(localized: "welcome.step.summary.title", bundle: .gymNutshellCore)
+        case .controlStyle: return String(localized: "welcome.step.control.title", bundle: .gymNutshellCore)
         case .theme:        return String(localized: "welcome.step.theme.title", bundle: .gymNutshellCore)
+        case .ready:        return String(localized: "welcome.step.ready.title", bundle: .gymNutshellCore)
         }
     }
 
@@ -37,7 +43,9 @@ enum WelcomeStep: Int, CaseIterable {
     var panelSubtitle: String? {
         switch self {
         case .summary: return String(localized: "welcome.step.summary.subtitle", bundle: .gymNutshellCore)
+        case .controlStyle: return String(localized: "welcome.step.control.subtitle", bundle: .gymNutshellCore)
         case .theme:   return String(localized: "welcome.step.theme.subtitle", bundle: .gymNutshellCore)
+        case .ready:   return String(localized: "welcome.step.ready.subtitle", bundle: .gymNutshellCore)
         default:       return nil
         }
     }

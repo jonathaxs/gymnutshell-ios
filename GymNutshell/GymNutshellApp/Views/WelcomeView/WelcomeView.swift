@@ -3,7 +3,7 @@
 //
 //  Propósito: Onboarding em múltiplas etapas que coleta o perfil do usuário e calcula as metas diárias.
 //             Dona do estado e faz a navegação entre as views de cada etapa.
-//             Etapas: início → objetivo + sexo → resumo (metas) → tema.
+//             Etapas: início → objetivo + sexo → metas → estilo de controle → tema → tudo pronto (permissões).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
 // ⌘
@@ -59,6 +59,7 @@ struct WelcomeView: View {
     @State private var name: String = ""
     @State private var sex: String = "male"
     @State private var userGoal: UserGoal = .maintenance
+    @State private var controlStyle: ControlStyle = .default
 
     // MARK: - Seleções de metas opcionais
 
@@ -85,8 +86,12 @@ struct WelcomeView: View {
                 calculatedGoals = GoalsCalculator.calculate(sex: sex, goal: userGoal)
                 currentStep = .summary
             case .summary:
+                currentStep = .controlStyle
+            case .controlStyle:
                 currentStep = .theme
             case .theme:
+                currentStep = .ready
+            case .ready:
                 finishOnboarding()
             }
         }
@@ -110,6 +115,8 @@ struct WelcomeView: View {
         defaults.set(userGoal.rawValue,     forKey: UserProfile.userGoalKey)
         // Persiste o sistema de medidas escolhido no onboarding.
         defaults.set(measurementSystem.rawValue, forKey: UserProfile.measurementSystemKey)
+        // Persiste o estilo de controle (slider ou − / +).
+        defaults.set(controlStyle.rawValue, forKey: ControlStyle.storageKey)
         // Persiste o tema de mascote escolhido no onboarding.
         defaults.set(onboardingTheme.rawValue, forKey: AppTheme.storageKey)
         // Persiste a cor de destaque padrão baseada no sexo escolhido.
@@ -126,6 +133,9 @@ struct WelcomeView: View {
 
         // Marca metas opcionais de suplementos como removidas se o usuário não incluiu.
         if !includeCreatine { RemovedItemsStore.remove("tracking.creatine") }
+
+        // Agenda as notificações com as metas já salvas (só tem efeito se a permissão foi dada).
+        NotificationManager.shared.rescheduleAllActive()
 
         // Marca o onboarding como concluído.
         defaults.set(true, forKey: UserProfile.didCompleteOnboardingKey)
@@ -212,6 +222,10 @@ struct WelcomeView: View {
                         scrolledToEnd: $summaryScrolledToEnd,
                         isWide: isWide
                     )
+                case .controlStyle:
+                    WelcomeControlStyleStep(selection: $controlStyle, accentColor: sexColor, isWide: isWide)
+                case .ready:
+                    WelcomeReadyStep(accentColor: sexColor, isWide: isWide)
                 case .theme:
                     WelcomeThemeStep(selectedTheme: $onboardingTheme, sex: sex, accentColor: sexColor, isWide: isWide)
                 }
@@ -268,7 +282,7 @@ struct WelcomeView: View {
             case .maintenance: return Color.accentColor
             case .cutting:     return .green
             }
-        case .summary, .theme:
+        case .summary, .controlStyle, .theme, .ready:
             return sexColor
         default:
             return Color.accentColor
@@ -282,12 +296,14 @@ struct WelcomeView: View {
         case .start:        return true
         case .goal:         return true
         case .summary:      return summaryScrolledToEnd
+        case .controlStyle: return true
         case .theme:        return true
+        case .ready:        return true
         }
     }
 
     private var continueButtonLabel: String {
-        currentStep == .theme
+        currentStep == .ready
             ? String(localized: "welcome.button.start", bundle: .gymNutshellCore)
             : String(localized: "welcome.button.continue", bundle: .gymNutshellCore)
     }

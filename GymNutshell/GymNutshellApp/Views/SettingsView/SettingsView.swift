@@ -78,6 +78,14 @@ struct SettingsView: View {
                             .foregroundStyle(.primary)
                     }
 
+                    // Estilo dos controles de registro (slider ou − / +).
+                    NavigationLink {
+                        ControlStyleSettingsView()
+                    } label: {
+                        Label(String(localized: "settings.preference.controlStyle", bundle: .gymNutshellCore), systemImage: "slider.horizontal.3")
+                            .foregroundStyle(.primary)
+                    }
+
                     // Sistema de medidas, abre uma página de seleção dedicada.
                     NavigationLink {
                         MeasurementSettingsView()

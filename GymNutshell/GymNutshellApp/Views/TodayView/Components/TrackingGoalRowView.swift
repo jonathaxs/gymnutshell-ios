@@ -27,6 +27,10 @@ struct TrackingGoalRowView: View {
     // ON = dia de descanso: slider é substituído por texto "Dia de descanso" e conta como meta cumprida.
     var isRestDay: Binding<Bool>? = nil
 
+    // Estilo global dos controles (slider ou − / +), escolhido na Welcome e editável em Ajustes.
+    @AppStorage(ControlStyle.storageKey) private var controlStyleRaw: String = ControlStyle.default.rawValue
+    private var controlStyle: ControlStyle { ControlStyle(rawValue: controlStyleRaw) ?? .default }
+
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
@@ -129,13 +133,17 @@ struct TrackingGoalRowView: View {
             } else if safeGoal > 0 {
                 // Slider tem seu próprio label/value. Sem hint custom: o sistema
                 // já anuncia "ajustável, deslize para cima ou para baixo".
-                Slider(
-                    value: sliderBinding,
-                    in: 0...Double(safeGoal)
-                )
-                .tint(progressTint)
-                .accessibilityLabel(A11y.sliderLabel(for: title))
-                .accessibilityValue(A11y.goalRowValue(current: value, goal: safeGoal, unit: unit))
+                if controlStyle == .stepper {
+                    stepperControl
+                } else {
+                    Slider(
+                        value: sliderBinding,
+                        in: 0...Double(safeGoal)
+                    )
+                    .tint(progressTint)
+                    .accessibilityLabel(A11y.sliderLabel(for: title))
+                    .accessibilityValue(A11y.goalRowValue(current: value, goal: safeGoal, unit: unit))
+                }
             }
         }
         .padding(14)
@@ -149,6 +157,39 @@ struct TrackingGoalRowView: View {
                 .stroke(Color.secondary.opacity(0.15), lineWidth: 1)
         }
         .accessibilityElement(children: .contain)
+    }
+
+    // MARK: - Controle − / +
+
+    /// Alternativa ao slider: botões − / + com uma barra de progresso no meio.
+    /// Cada toque anda um passo (`increment`), sempre dentro de [0, goal].
+    private var stepperControl: some View {
+        HStack(spacing: 12) {
+            Button { step(by: -safeStep) } label: {
+                Image(systemName: "minus.circle.fill").font(.title).frame(minWidth: 44, minHeight: 44)
+            }
+            .disabled(value <= 0)
+            .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), title))
+
+            ProgressView(value: clampedProgress)
+                .tint(progressTint)
+                .accessibilityHidden(true)
+
+            Button { step(by: safeStep) } label: {
+                Image(systemName: "plus.circle.fill").font(.title).frame(minWidth: 44, minHeight: 44)
+            }
+            .disabled(value >= safeGoal)
+            .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), title))
+        }
+        .buttonStyle(.borderless)
+        .tint(accentColor)
+    }
+
+    private func step(by delta: Int) {
+        let next = min(max(value + delta, 0), safeGoal)
+        guard next != value else { return }
+        UISelectionFeedbackGenerator().selectionChanged()
+        withAnimation(.easeInOut(duration: 0.12)) { value = next }
     }
 
     // Botão ON/OFF para alternar modo "dia de descanso".

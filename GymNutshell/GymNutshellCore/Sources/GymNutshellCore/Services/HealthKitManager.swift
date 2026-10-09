@@ -52,6 +52,24 @@ public final class HealthKitManager: @unchecked Sendable {
         }
     }
 
+    /// Pede de uma vez só tudo que o app usa do Apple Saúde (sono: leitura + escrita; treinos: leitura).
+    /// Usado no fim da Welcome pra mostrar uma única folha de permissão. Retorna false se o Saúde
+    /// não existe no aparelho ou se o pedido falhou; recusar não bloqueia nada.
+    public func requestOnboardingAuthorization() async -> Bool {
+        guard HKHealthStore.isHealthDataAvailable() else { return false }
+        guard let sleepType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else { return false }
+        let toShare: Set<HKSampleType> = [sleepType]
+        let toRead: Set<HKObjectType> = [sleepType, HKObjectType.workoutType()]
+        return await withCheckedContinuation { continuation in
+            healthStore.requestAuthorization(toShare: toShare, read: toRead) { success, _ in
+                continuation.resume(returning: success)
+            }
+        }
+    }
+
+    /// Indica se o Apple Saúde existe neste aparelho (iPad sem Saúde, por exemplo, retorna false).
+    public static var isAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
+
     public func requestWorkoutReadAuthorizationIfNeeded() {
         guard HKHealthStore.isHealthDataAvailable() else { return }
         let workoutType = HKObjectType.workoutType()

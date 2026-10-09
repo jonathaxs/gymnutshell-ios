@@ -1036,3 +1036,24 @@
 
 "a11y.welcome.goal.decrease.format" = "Diminuir %@";
 "a11y.welcome.goal.increase.format" = "Aumentar %@";
+
+"welcome.step.control.title" = "Seus controles";
+"welcome.step.control.subtitle" = "Como você prefere marcar suas metas no dia a dia?";
+"welcome.control.slider" = "Deslizar";
+"welcome.control.slider.desc" = "Arraste o controle até o valor desejado.";
+"welcome.control.stepper" = "Botões − e +";
+"welcome.control.stepper.desc" = "Toque para somar ou tirar um passo de cada vez.";
+"welcome.control.footer" = "Você pode mudar isso depois em Ajustes.";
+"welcome.step.ready.title" = "Tudo pronto!";
+"welcome.step.ready.subtitle" = "Ative o que quiser. Nada aqui é obrigatório.";
+"welcome.ready.notifications.title" = "Notificações";
+"welcome.ready.notifications.desc" = "Lembretes de água, conquistas e bônus.";
+"welcome.ready.health.title" = "Apple Saúde";
+"welcome.ready.health.desc" = "Registra seu sono e detecta seus treinos automaticamente.";
+"welcome.ready.allow" = "Permitir";
+"welcome.ready.allowed" = "Permitido";
+"welcome.ready.requested" = "Solicitado";
+"welcome.ready.denied" = "Negado";
+"welcome.ready.footer" = "Você pode mudar tudo isso quando quiser em Ajustes.";
+"settings.preference.controlStyle" = "Controles";
+"settings.controlStyle.footer" = "Define como você marca o progresso das metas na tela Hoje.";
