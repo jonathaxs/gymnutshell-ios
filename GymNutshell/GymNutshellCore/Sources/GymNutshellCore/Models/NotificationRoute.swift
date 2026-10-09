@@ -13,4 +13,6 @@ public enum NotificationRoute: String, Sendable {
     case today              // TodayView
     case achievementsToday  // AchievementsView no dia de hoje, filtro "dia"
     case backup             // Ajustes → Backup
+    case settingsGoals      // Ajustes → Metas (atalho da Today)
+    case settingsControls   // Ajustes → Controles (atalho da Today)
 }

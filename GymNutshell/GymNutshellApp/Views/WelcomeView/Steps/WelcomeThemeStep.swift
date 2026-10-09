@@ -31,6 +31,7 @@ struct WelcomeThemeStep: View {
                         emoji: "🎭",
                         title: String(localized: "welcome.step.theme.title", bundle: .gymNutshellCore),
                         subtitle: String(localized: "welcome.step.theme.subtitle", bundle: .gymNutshellCore),
+                        note: String(localized: "welcome.step.theme.footer", bundle: .gymNutshellCore),
                         accentColor: accentColor
                     )
                 }
@@ -48,11 +49,13 @@ struct WelcomeThemeStep: View {
                     }
                 }
 
-                // Nota de rodapé, fonte menor, estilo caption.
-                Text(String(localized: "welcome.step.theme.footer", bundle: .gymNutshellCore))
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 6)
+                // Sem cabeçalho (layout largo), o aviso fica no fim.
+                if isWide {
+                    Text(String(localized: "welcome.step.theme.footer", bundle: .gymNutshellCore))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, 6)
+                }
             }
             .padding(.horizontal, AppStyle.horizontalPadding)
             .padding(.vertical)

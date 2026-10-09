@@ -19,6 +19,8 @@ extension Notification.Name {
     public static let gaNotificationRoute      = Notification.Name("ga.notificationRoute")
     public static let gaAchievementsShowToday  = Notification.Name("ga.achievementsShowToday")
     public static let gaSettingsShowBackup     = Notification.Name("ga.settingsShowBackup")
+    public static let gaSettingsShowGoals      = Notification.Name("ga.settingsShowGoals")
+    public static let gaSettingsShowControls   = Notification.Name("ga.settingsShowControls")
 }
 
 // MARK: - NotificationManager

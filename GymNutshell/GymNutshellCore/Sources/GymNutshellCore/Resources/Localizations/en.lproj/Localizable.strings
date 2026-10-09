@@ -937,3 +937,6 @@
 "settings.controlStyle.footer" = "Sets how you log goal progress on the Today screen.";
 
 "settings.category.icon.section" = "Icon";
+
+"today.edit.goals" = "Edit goals";
+"today.edit.controls" = "Edit controls";

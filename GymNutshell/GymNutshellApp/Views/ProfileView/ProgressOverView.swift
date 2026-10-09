@@ -49,7 +49,6 @@ struct ProgressOverView: View {
     @State private var customTrackingGoals: [CustomTrackingGoal] = []
     @State private var showBonusInfoSheet = false
     @State private var showTierSheet = false
-    @State private var showNotificationHistory = false
     @State private var navPath = NavigationPath()
 
     // MARK: - Estatísticas resumidas
@@ -138,22 +137,17 @@ struct ProgressOverView: View {
                 }
                 // Em wide o cabeçalho nativo fica oculto, usamos o customizado
                 // dentro do conteúdo. Em narrow segue o comportamento padrão do iOS.
-                .toolbar(isWide ? .hidden : .visible, for: .navigationBar)
-            }
-            .navigationTitle(String(localized: "statistics.title", bundle: .gymNutshellCore))
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        showNotificationHistory = true
-                    } label: {
-                        Image(systemName: "bell")
+                .toolbar(.hidden, for: .navigationBar)
+                .safeAreaInset(edge: .top, spacing: 0) {
+                    if !isWide {
+                        AppTabHeader(title: String(localized: "statistics.title", bundle: .gymNutshellCore))
+                            .padding(.horizontal)
+                            .padding(.bottom, 8)
+                            .background(Color(.systemGroupedBackground))
                     }
-                    .accessibilityLabel(String(localized: "a11y.notification.history.bell",
-                                               bundle: .gymNutshellCore))
-                    .accessibilityHint(String(localized: "a11y.notification.history.bell.hint",
-                                              bundle: .gymNutshellCore))
                 }
             }
+            .navigationTitle(String(localized: "statistics.title", bundle: .gymNutshellCore))
         }
         .onAppear {
             removedItems = RemovedItemsStore.load()
@@ -169,34 +163,17 @@ struct ProgressOverView: View {
                 TierInfoView(theme: selectedTheme, sex: sex, isSheet: true)
             }
         }
-        .sheet(isPresented: $showNotificationHistory) {
-            NotificationHistorySheet()
-        }
     }
 
     // Cabeçalho customizado usado no wideLayout, bell + título alinhados ao
     // mesmo maxWidth (860pt) do conteúdo abaixo, pra terem o mesmo recuo lateral.
     @ViewBuilder
     private var wideTitleBar: some View {
-        HStack(spacing: 14) {
-            Button {
-                showNotificationHistory = true
-            } label: {
-                Image(systemName: "bell")
-                    .font(.title3)
-                    // Sino segue accent color, sem foregroundStyle explícito o
-                    // `.buttonStyle(.plain)` força a cor primária e o sino fica preto/branco.
-                    .foregroundStyle(accentColor)
-            }
-            .buttonStyle(.plain)
-            Text(String(localized: "statistics.title", bundle: .gymNutshellCore))
-                .font(.largeTitle.bold())
-            Spacer()
-        }
-        .padding(.horizontal)
-        .padding(.top, 12)
-        .frame(maxWidth: 860)
-        .frame(maxWidth: .infinity)
+        AppTabHeader(title: String(localized: "statistics.title", bundle: .gymNutshellCore))
+            .padding(.horizontal)
+            .padding(.top, 12)
+            .frame(maxWidth: 860)
+            .frame(maxWidth: .infinity)
     }
 
     // MARK: - Layout Narrow (iPhone portrait)

@@ -37,7 +37,6 @@ struct AchievementsView: View {
     /// - edit: sheet editável pra entradas recentes
     @State private var activeSheet: ActiveSheet?
     @State private var showBonusInfoSheet = false
-    @State private var showNotificationHistory = false
 
     private enum ActiveSheet: Identifiable {
         case view(DailyRecord)
@@ -349,22 +348,17 @@ struct AchievementsView: View {
                 // Fundo cinza por toda a viewport, sem isso, no modo wide, as
                 // margens fora do cap de 860pt ficam brancas em light mode.
                 .background(Color(.systemGroupedBackground))
-                .toolbar(isWide ? .hidden : .visible, for: .navigationBar)
-            }
-            .navigationTitle(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        showNotificationHistory = true
-                    } label: {
-                        Image(systemName: "bell")
+                .toolbar(.hidden, for: .navigationBar)
+                .safeAreaInset(edge: .top, spacing: 0) {
+                    if !isWide {
+                        AppTabHeader(title: String(localized: "achievements.header.title", bundle: .gymNutshellCore))
+                            .padding(.horizontal)
+                            .padding(.bottom, 8)
+                            .background(Color(.systemGroupedBackground))
                     }
-                    .accessibilityLabel(String(localized: "a11y.notification.history.bell",
-                                               bundle: .gymNutshellCore))
-                    .accessibilityHint(String(localized: "a11y.notification.history.bell.hint",
-                                              bundle: .gymNutshellCore))
                 }
             }
+            .navigationTitle(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
             .onAppear {
                 filterMode = FilterMode(rawValue: storedFilterMode) ?? .all
                 selectedDate = Date(timeIntervalSince1970: storedSelectedDateTimestamp)
@@ -412,36 +406,17 @@ struct AchievementsView: View {
                 StreakBonusInfoView(isSheet: true)
             }
         }
-        .sheet(isPresented: $showNotificationHistory) {
-            NotificationHistorySheet()
-        }
     }
 
     // Cabeçalho customizado usado no wideLayout, bell + título alinhados ao
     // mesmo maxWidth (860pt) do conteúdo, mesma técnica usada em StatisticsView.
     @ViewBuilder
     private var wideTitleBar: some View {
-        HStack(spacing: 14) {
-            Button {
-                showNotificationHistory = true
-            } label: {
-                Image(systemName: "bell")
-                    .font(.title3)
-                    // Sino segue accent color, sem isso o `.buttonStyle(.plain)`
-                    // força cor primária e o sino fica preto/branco.
-                    .foregroundStyle(accentColor)
-            }
-            .buttonStyle(.plain)
-            Text(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
-                .font(.largeTitle.bold())
-            Spacer()
-        }
-        .padding(.horizontal)
-        .padding(.top, 12)
-        // iPad/Mac/Vision precisam de respiro extra abaixo do título ,
-        // o calendário cola no texto sem isso. iPhone landscape já fica bom
-        // com o espaçamento natural do List inset, então não recebe o padding.
-        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 20)
+        AppTabHeader(title: String(localized: "achievements.header.title", bundle: .gymNutshellCore))
+            .padding(.horizontal)
+            .padding(.top, 12)
+            .frame(maxWidth: 860)
+            .frame(maxWidth: .infinity)
     }
 
     // MARK: - Seção de histórico (extraída pra reuso no layout wide/narrow)

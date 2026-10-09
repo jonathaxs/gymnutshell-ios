@@ -17,6 +17,8 @@ struct WelcomeStepHeader: View {
     let emoji: String
     let title: String
     var subtitle: String = ""
+    /// Aviso pequeno logo abaixo do subtítulo (ex: "pode mudar depois em Ajustes").
+    var note: String = ""
     var accentColor: Color = .accentColor
 
     var body: some View {
@@ -38,6 +40,13 @@ struct WelcomeStepHeader: View {
             if !subtitle.isEmpty {
                 Text(subtitle)
                     .font(.body)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+
+            if !note.isEmpty {
+                Text(note)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }

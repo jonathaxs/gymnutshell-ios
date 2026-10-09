@@ -110,13 +110,13 @@ struct WelcomeSummaryStep: View {
                         (Text(String(localized: "welcome.summary.subtitle.calculated.prefix", bundle: .gymNutshellCore))
                          + Text(userGoal.label).fontWeight(.semibold)
                          + Text(String(localized: "welcome.summary.subtitle.calculated.suffix", bundle: .gymNutshellCore)))
-                            .font(.caption)
+                            .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity, alignment: .center)
 
                         Text(String(localized: "welcome.summary.subtitle.customize", bundle: .gymNutshellCore))
-                            .font(.caption)
+                            .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -236,74 +236,96 @@ private struct OptionalTrackingGoalRow: View {
     @State private var buttonScale: CGFloat = 1.0
 
     var body: some View {
-        HStack {
-            // Bloco informativo (emoji + nome + badge + valor) combina num único
-            // elemento de a11y; botão Add/Remove fica FORA do combine pra ser
-            // focável separadamente (mesmo padrão do TrackingGoalRow do Today).
-            HStack(spacing: 12) {
-                Text(icon)
-                    .frame(width: 24)
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(label)
-                        .font(.subheadline)
-                    Text(String(localized: "welcome.summary.optional.badge", bundle: .gymNutshellCore))
-                        .font(.caption2.weight(.medium))
-                        .foregroundStyle(.secondary)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(Color.secondary.opacity(0.12))
-                        .clipShape(Capsule())
+        VStack(spacing: 10) {
+            HStack {
+                // Bloco informativo (emoji + nome + badge + valor) combina num único
+                // elemento de a11y; botão Add/Remove fica FORA do combine pra ser
+                // focável separadamente (mesmo padrão do TrackingGoalRow do Today).
+                HStack(spacing: 12) {
+                    Text(icon)
+                        .frame(width: 24)
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(label)
+                            .font(.subheadline)
+                        Text(String(localized: "welcome.summary.optional.badge", bundle: .gymNutshellCore))
+                            .font(.caption2.weight(.medium))
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.secondary.opacity(0.12))
+                            .clipShape(Capsule())
+                    }
+                    Spacer()
+                    Text(value)
+                        .font(isIncluded ? .subheadline.bold() : .subheadline)
+                        .foregroundStyle(.primary)
+                        .monospacedDigit()
                 }
-                Spacer()
-                Text(value)
-                    .font(isIncluded ? .subheadline.bold() : .subheadline)
-                    .foregroundStyle(.primary)
-                    .monospacedDigit()
-            }
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel(label)
-            .accessibilityValue(value)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(label)
+                .accessibilityValue(value)
 
-            // − / + só aparecem quando a meta opcional está incluída.
+                // Fora da lista: Adicionar fica ao lado do nome.
+                if !isIncluded { toggleButton }
+            }
+
+            // Na lista: segunda linha, Remover à esquerda e − / + à direita (o título não aperta).
             if isIncluded {
                 HStack(spacing: 8) {
+                    toggleButton
+                    Spacer()
                     RoundStepButton(kind: .minus, size: 46, action: onDecrease)
                         .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
                     RoundStepButton(kind: .plus, size: 46, action: onIncrease)
                         .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
                 }
             }
-
-            Button {
-                UISelectionFeedbackGenerator().selectionChanged()
-                withAnimation(.spring(response: 0.25, dampingFraction: 0.5)) {
-                    buttonScale = 1.4
-                }
-                withAnimation(.spring(response: 0.25, dampingFraction: 0.5).delay(0.12)) {
-                    buttonScale = 1.0
-                }
-                isIncluded.toggle()
-            } label: {
-                Label(isIncluded
-                      ? String(localized: "welcome.option.remove", bundle: .gymNutshellCore)
-                      : String(localized: "welcome.option.add", bundle: .gymNutshellCore),
-                      systemImage: isIncluded ? "xmark" : "plus")
-                    .font(.subheadline.weight(.semibold))
-                    .scaleEffect(buttonScale)
-            }
-            .appSecondaryButton(isIncluded ? .red : accentColor)
-            .controlSize(.regular)
-            .accessibilityLabel(String(format: String(localized: isIncluded
-                ? "a11y.welcome.optional.remove.label.format"
-                : "a11y.welcome.optional.add.label.format", bundle: .gymNutshellCore), label))
-            .accessibilityHint(String(localized: isIncluded
-                ? "a11y.welcome.optional.remove.hint"
-                : "a11y.welcome.optional.add.hint", bundle: .gymNutshellCore))
         }
         .padding(.leading, 16)
         .padding(.trailing, 12)
         .padding(.vertical, 8)
         .frame(minHeight: 60)
+    }
+
+    private var toggleButton: some View {
+        Button {
+            UISelectionFeedbackGenerator().selectionChanged()
+            withAnimation(.spring(response: 0.25, dampingFraction: 0.5)) {
+                buttonScale = 1.4
+            }
+            withAnimation(.spring(response: 0.25, dampingFraction: 0.5).delay(0.12)) {
+                buttonScale = 1.0
+            }
+            isIncluded.toggle()
+        } label: {
+            Label(isIncluded
+                  ? String(localized: "welcome.option.remove", bundle: .gymNutshellCore)
+                  : String(localized: "welcome.option.add", bundle: .gymNutshellCore),
+                  systemImage: isIncluded ? "xmark" : "plus")
+                .font(.subheadline.weight(.semibold))
+                .scaleEffect(buttonScale)
+        }
+        .modifier(OptionalToggleStyle(isIncluded: isIncluded, accentColor: accentColor))
+        .accessibilityLabel(String(format: String(localized: isIncluded
+            ? "a11y.welcome.optional.remove.label.format"
+            : "a11y.welcome.optional.add.label.format", bundle: .gymNutshellCore), label))
+        .accessibilityHint(String(localized: isIncluded
+            ? "a11y.welcome.optional.remove.hint"
+            : "a11y.welcome.optional.add.hint", bundle: .gymNutshellCore))
+    }
+}
+
+/// Adicionar = azul (principal); Remover = vermelho (secundário).
+private struct OptionalToggleStyle: ViewModifier {
+    let isIncluded: Bool
+    let accentColor: Color
+
+    func body(content: Content) -> some View {
+        if isIncluded {
+            content.appSecondaryButton(.red).controlSize(.regular)
+        } else {
+            content.appProminentButton(accentColor, size: .regular)
+        }
     }
 }

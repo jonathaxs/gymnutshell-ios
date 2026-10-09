@@ -46,7 +46,7 @@ struct WelcomeUserGoalStep: View {
                     }
 
                     Text(String(localized: "welcome.step.goal.info.editable", bundle: .gymNutshellCore))
-                        .font(.footnote)
+                        .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)

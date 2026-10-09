@@ -118,6 +118,14 @@ struct MainView: View {
                 UserDefaults.standard.set("backup", forKey: "pendingSettingsRoute")
                 selectedTab = Tab.settings
                 NotificationCenter.default.post(name: .gaSettingsShowBackup, object: nil)
+            case .settingsGoals:
+                UserDefaults.standard.set("goals", forKey: "pendingSettingsRoute")
+                selectedTab = Tab.settings
+                NotificationCenter.default.post(name: .gaSettingsShowGoals, object: nil)
+            case .settingsControls:
+                UserDefaults.standard.set("controls", forKey: "pendingSettingsRoute")
+                selectedTab = Tab.settings
+                NotificationCenter.default.post(name: .gaSettingsShowControls, object: nil)
             }
         }
     }

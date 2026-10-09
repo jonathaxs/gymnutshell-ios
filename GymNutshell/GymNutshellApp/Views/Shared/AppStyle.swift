@@ -138,6 +138,45 @@ extension View {
     }
 }
 
+// MARK: - AppTabHeader
+
+/// Cabeçalho das abas principais: título grande à esquerda e o sino do histórico de notificações à direita.
+struct AppTabHeader: View {
+
+    let title: String
+
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
+    @State private var showNotificationHistory = false
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+            Text(title)
+                .font(.largeTitle.weight(.bold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .accessibilityAddTraits(.isHeader)
+
+            Button {
+                showNotificationHistory = true
+            } label: {
+                Image(systemName: "bell.fill")
+                    .font(.title3.weight(.semibold))
+                    .foregroundStyle(accentColor)
+                    .frame(width: 44, height: 44)
+            }
+            .appCircleButton()
+            .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
+            .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
+        }
+        .sheet(isPresented: $showNotificationHistory) {
+            NotificationHistorySheet()
+        }
+    }
+}
+
 // MARK: - IconBadge
 
 /// SF Symbol branco num quadrado colorido, como nos Ajustes do sistema.
@@ -171,13 +210,22 @@ struct RoundStepButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            Image(systemName: kind == .minus ? "minus" : "plus")
-                .font(.system(size: size * 0.4, weight: .bold))
-                .foregroundStyle(color)
-                .frame(width: size, height: size)
+        let icon = Image(systemName: kind == .minus ? "minus" : "plus")
+            .font(.system(size: size * 0.4, weight: .bold))
+            .foregroundStyle(color)
+            .frame(width: size, height: size)
+        // No iOS 26+ o estilo .glass soma respiro em volta do botão; aqui o vidro vai direto
+        // no círculo, com o tamanho exato pedido.
+        return Group {
+            if #available(iOS 26.0, *) {
+                Button(action: action) { icon }
+                    .buttonStyle(.plain)
+                    .glassEffect(.regular.interactive(), in: Circle())
+            } else {
+                Button(action: action) { icon }
+                    .appCircleButton()
+            }
         }
-        .appCircleButton()
         .tint(color)
         .disabled(!isEnabled)
     }

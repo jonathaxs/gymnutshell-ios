@@ -26,7 +26,12 @@ struct SettingsView: View {
     // Usado pelo deep-link da notificação "Backup do iCloud" pra empurrar a BackupSettingsView.
     @State private var showBackup: Bool = false
 
-    @State private var showNotificationHistory: Bool = false
+    // Atalhos da Today ("Editar metas" / "Editar controles").
+    @State private var showGoals: Bool = false
+    @State private var showControls: Bool = false
+
+    // iPhone (compacto) usa o cabeçalho próprio; no iPad mantém a barra nativa da sidebar.
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
         NavigationSplitView {
@@ -191,36 +196,46 @@ struct SettingsView: View {
 
             }
             .navigationTitle(String(localized: "settings.header.title", bundle: .gymNutshellCore))
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        showNotificationHistory = true
-                    } label: {
-                        Image(systemName: "bell")
-                    }
-                    .accessibilityLabel(String(localized: "a11y.notification.history.bell",
-                                               bundle: .gymNutshellCore))
-                    .accessibilityHint(String(localized: "a11y.notification.history.bell.hint",
-                                              bundle: .gymNutshellCore))
+            .toolbar(sizeClass == .compact ? .hidden : .visible, for: .navigationBar)
+            .safeAreaInset(edge: .top, spacing: 0) {
+                if sizeClass == .compact {
+                    AppTabHeader(title: String(localized: "settings.header.title", bundle: .gymNutshellCore))
+                        .padding(.horizontal)
+                        .padding(.bottom, 8)
+                        .background(Color(.systemGroupedBackground))
                 }
-            }
-            .sheet(isPresented: $showNotificationHistory) {
-                NotificationHistorySheet()
             }
             .navigationDestination(isPresented: $showBackup) {
                 BackupSettingsView()
             }
+            .navigationDestination(isPresented: $showGoals) {
+                TrackingGoalsSettingsView()
+            }
+            .navigationDestination(isPresented: $showControls) {
+                ControlStyleSettingsView()
+            }
             .onReceive(NotificationCenter.default.publisher(for: .gaSettingsShowBackup)) { _ in
                 showBackup = true
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .gaSettingsShowGoals)) { _ in
+                showGoals = true
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .gaSettingsShowControls)) { _ in
+                showControls = true
             }
             .onAppear {
                 // TabView monta SettingsView lazy, se o deep-link chegou enquanto a view
                 // ainda não existia, lê a flag persistente e empurra agora.
-                if UserDefaults.standard.string(forKey: "pendingSettingsRoute") == "backup" {
+                if let route = UserDefaults.standard.string(forKey: "pendingSettingsRoute") {
                     UserDefaults.standard.removeObject(forKey: "pendingSettingsRoute")
                     // Pequeno delay pra garantir que a sidebar já foi renderizada antes do push.
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        showBackup = true
+                        switch route {
+                        case "backup":   showBackup = true
+                        case "goals":    showGoals = true
+                        case "controls": showControls = true
+                        default: break
+                        }
                     }
                 }
             }

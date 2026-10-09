@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayHeroView.swift
 //
 //  Propósito: Bloco hero fixo exibido no topo (retrato) ou na coluna esquerda (landscape).
-//             Contém: saudação com a data, sino do histórico de notificações e o anel de progresso.
+//             Contém: data grande, sino do histórico de notificações e o anel de progresso.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -32,7 +32,6 @@ struct TodayHeroView: View {
     // Sheets de informação do tier, do anel de progresso e do histórico de notificações.
     @State private var showTierSheet = false
     @State private var showRingSheet = false
-    @State private var showNotificationHistory = false
 
     // Percentual inteiro (0-100) calculado a partir do progresso normalizado.
     private var dailyPercentage: Int {
@@ -46,16 +45,6 @@ struct TodayHeroView: View {
         case .level2: return String(localized: "today.tier.level.2", bundle: .gymNutshellCore)
         case .level3: return String(localized: "today.tier.level.3", bundle: .gymNutshellCore)
         case .level4: return String(localized: "today.tier.level.4", bundle: .gymNutshellCore)
-        }
-    }
-
-    // Saudação baseada no horário atual.
-    private var greeting: String {
-        let hour = Calendar.current.component(.hour, from: Date())
-        switch hour {
-        case 5..<12: return String(localized: "today.greeting.morning", bundle: .gymNutshellCore)
-        case 12..<18: return String(localized: "today.greeting.afternoon", bundle: .gymNutshellCore)
-        default: return String(localized: "today.greeting.night", bundle: .gymNutshellCore)
         }
     }
 
@@ -107,54 +96,14 @@ struct TodayHeroView: View {
                     ProgressRingInfoView(isSheet: true, currentPercent: dailyPercentage)
                 }
             }
-            .sheet(isPresented: $showNotificationHistory) {
-                NotificationHistorySheet()
-            }
-    }
-
-    // MARK: - Sino
-
-    private var bellButton: some View {
-        Button {
-            showNotificationHistory = true
-        } label: {
-            Image(systemName: "bell.fill")
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(accentColor)
-                .frame(width: 44, height: 44)
-        }
-        .appCircleButton()
-        .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
-        .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
-    }
-
-    // MARK: - Saudação + data
-
-    private var greetingBlock: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(greeting)
-                .font(.largeTitle.weight(.bold))
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
-                .accessibilityAddTraits(.isHeader)
-            Text(formattedDate)
-                .font(.subheadline.weight(.medium))
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     // MARK: - Card (iPhone em retrato)
 
     private var cardContent: some View {
         VStack(spacing: 16) {
-            HStack(alignment: .center, spacing: 12) {
-                greetingBlock
-                bellButton
-            }
-            .padding(.horizontal, 4)
+            AppTabHeader(title: formattedDate)
+                .padding(.horizontal, 4)
 
             HStack(spacing: 20) {
                 TodayProgressRingView(progress: dailyProgress,
@@ -207,12 +156,9 @@ struct TodayHeroView: View {
     private var classicContent: some View {
         VStack(spacing: 12) {
 
-            // Topo: saudação grande com a data pequena embaixo e o sino do histórico no canto.
-            HStack(alignment: .center, spacing: 12) {
-                greetingBlock
-                bellButton
-            }
-            .padding(.horizontal, 4)
+            // Topo: a data em fonte grande e o sino do histórico à direita.
+            AppTabHeader(title: formattedDate)
+                .padding(.horizontal, 4)
 
             // Anel de 5 segmentos com o emoji da conquista no centro e a porcentagem abaixo.
             // Substitui o par anel + bloco de conquista lado a lado da 1.0.

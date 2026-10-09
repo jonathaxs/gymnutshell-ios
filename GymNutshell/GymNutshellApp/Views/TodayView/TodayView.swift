@@ -747,6 +747,8 @@ struct TodayView: View {
                         .frame(maxWidth: UI.contentMaxWidth)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 4)
+
+                    editShortcuts
                 }
                 .scrollBounceBehavior(.basedOnSize)
 
@@ -755,6 +757,29 @@ struct TodayView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(.horizontal)
         }
+    }
+
+    // MARK: - Atalhos pra Ajustes
+
+    /// Botões pequenos abaixo das categorias: levam a Ajustes > Metas e Ajustes > Controles.
+    private var editShortcuts: some View {
+        HStack(spacing: 10) {
+            shortcutButton(titleKey: "today.edit.goals", icon: "target", route: .settingsGoals)
+            shortcutButton(titleKey: "today.edit.controls", icon: "slider.horizontal.3", route: .settingsControls)
+        }
+        .padding(.top, 6)
+    }
+
+    private func shortcutButton(titleKey: String, icon: String, route: NotificationRoute) -> some View {
+        Button {
+            NotificationCenter.default.post(name: .gaNotificationRoute, object: nil,
+                                            userInfo: ["route": route.rawValue])
+        } label: {
+            Label(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore), systemImage: icon)
+                .font(.footnote.weight(.semibold))
+        }
+        .appSecondaryButton(todayAccentColor)
+        .controlSize(.small)
     }
 
     // MARK: - Layout largo (paisagem / iPad)

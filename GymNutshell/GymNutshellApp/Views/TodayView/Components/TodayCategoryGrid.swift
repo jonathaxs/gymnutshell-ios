@@ -33,10 +33,10 @@ struct TodayCategoryGrid: View {
     /// Bloco com o balão aberto (nil = nenhum).
     @State private var openTileId: String? = nil
 
-    private let spacing: CGFloat = 12
+    private let spacing: CGFloat = 8
     private let columns = 4
     /// Diâmetro máximo do botão; em telas estreitas ele encolhe pra caber na coluna.
-    private static let maxCircleSize: CGFloat = 80
+    private static let maxCircleSize: CGFloat = 88
 
     var body: some View {
         // Agrupa em linhas de 4. A última linha com menos itens fica centralizada (mesma largura dos outros).
@@ -62,7 +62,7 @@ struct TodayCategoryGrid: View {
     }
 
     // Altura fixa por linha pra o GeometryReader não colapsar.
-    private static let tileHeight: CGFloat = 126
+    private static let tileHeight: CGFloat = 134
 
     private func gridHeight(rows: Int) -> CGFloat {
         CGFloat(rows) * Self.tileHeight + CGFloat(max(rows - 1, 0)) * spacing

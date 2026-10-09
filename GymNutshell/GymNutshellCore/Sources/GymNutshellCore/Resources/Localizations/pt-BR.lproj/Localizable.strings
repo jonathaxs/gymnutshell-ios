@@ -987,3 +987,6 @@
 "settings.controlStyle.footer" = "Define como você marca o progresso das metas na tela Hoje.";
 
 "settings.category.icon.section" = "Ícone";
+
+"today.edit.goals" = "Editar metas";
+"today.edit.controls" = "Editar controles";
