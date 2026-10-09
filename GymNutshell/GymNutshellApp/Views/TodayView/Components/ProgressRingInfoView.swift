@@ -53,7 +53,7 @@ struct ProgressRingInfoView: View {
             // Intro + frase de progresso na mesma seção pra reduzir o espaço entre eles.
             Section {
                 // Prévia do anel com o progresso atual (ou cheio, quando aberto pelos Ajustes).
-                SegmentedProgressRing(progress: Double(currentPercent ?? 100) / 100, lineWidth: 10) {
+                SegmentedProgressRing(progress: 1, lineWidth: 10) {
                     EmptyView()
                 }
                 .frame(width: 96, height: 96)

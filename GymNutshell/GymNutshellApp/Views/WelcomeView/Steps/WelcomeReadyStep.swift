@@ -61,12 +61,6 @@ struct WelcomeReadyStep: View {
                             action: requestHealth
                         )
                     }
-
-                    Text(String(localized: "welcome.ready.footer", bundle: .gymNutshellCore))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity, alignment: .center)
                 }
                 .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.vertical)

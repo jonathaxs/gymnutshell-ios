@@ -128,7 +128,7 @@
 
 
 /* ProgressOverView.swift */
-"statistics.title" = "Progress";
+"statistics.title" = "Statistics";
 "statistics.section.tiers" = "Tier Breakdown";
 "statistics.section.bonuses" = "Streak Bonuses";
 "statistics.section.activity" = "Gym Activity";
@@ -410,7 +410,7 @@
 
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "Choose your theme";
+"welcome.step.theme.title" = "Your theme";
 "welcome.step.theme.subtitle" = "Pick the emojis that will inspire your progress.";
 "welcome.step.theme.footer" = "Your theme can be changed in app settings.";
 
@@ -424,7 +424,7 @@
 
 /* WelcomeSummaryStep.swift */
 "welcome.step.summary.title" = "Your goals";
-"welcome.step.summary.subtitle" = "Adjust with − and + and slide down to the bottom.";
+"welcome.step.summary.subtitle" = "Slide down to the bottom.";
 "welcome.summary.subtitle.customize" = "You can change these values anytime in Settings, and also create custom goals.";
 "welcome.summary.optional.badge" = "Recommended";
 "welcome.summary.subtitle.calculated.prefix" = "These are suggested values for your ";
@@ -919,7 +919,7 @@
 "welcome.step.control.subtitle" = "How do you prefer to log your goals every day?";
 "welcome.control.slider" = "Slide";
 "welcome.control.slider.desc" = "Drag the control to the value you want.";
-"welcome.control.stepper" = "− and + buttons";
+"welcome.control.stepper" = "➖ and ➕ buttons";
 "welcome.control.stepper.desc" = "Tap to add or remove one step at a time.";
 "welcome.control.footer" = "You can change this later in Settings.";
 "welcome.step.ready.title" = "All set!";

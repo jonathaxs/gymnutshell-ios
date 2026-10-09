@@ -60,7 +60,7 @@ struct SettingsView: View {
                     NavigationLink {
                         ThemeSettingsView()
                     } label: {
-                        Label { Text(String(localized: "settings.theme.title", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "theatermasks", color: .purple) }
+                        Label { Text(String(localized: "settings.theme.title", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "face.smiling", color: .purple) }
                             .foregroundStyle(.primary)
                     }
                     // Cores, cor de destaque independente do sexo.

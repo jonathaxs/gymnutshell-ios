@@ -164,7 +164,7 @@
 
 
 /* ProgressOverView.swift */
-"statistics.title" = "Progresso";
+"statistics.title" = "Estatísticas";
 "statistics.section.tiers" = "Conquistas por Níveis";
 "statistics.section.bonuses" = "Bônus de Sequência";
 "statistics.section.activity" = "Atividade nos Treinos";
@@ -447,7 +447,7 @@
 
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "Escolha o seu tema";
+"welcome.step.theme.title" = "Seu tema";
 "welcome.step.theme.subtitle" = "Escolha os emojis que irão inspirar o seu progresso.";
 "welcome.step.theme.footer" = "O tema pode ser alterado em ajustes do app.";
 
@@ -461,7 +461,7 @@
 
 /* WelcomeSummaryStep.swift */
 "welcome.step.summary.title" = "Suas metas";
-"welcome.step.summary.subtitle" = "Ajuste com − e + e deslize até o final.";
+"welcome.step.summary.subtitle" = "Deslize até o final.";
 "welcome.summary.subtitle.customize" = "Você pode mudar esses valores quando quiser em Ajustes, e também criar metas personalizadas.";
 "welcome.summary.optional.badge" = "Recomendada";
 "welcome.summary.subtitle.calculated.prefix" = "Esses valores são uma sugestão para o seu objetivo ";
@@ -969,7 +969,7 @@
 "welcome.step.control.subtitle" = "Como você prefere marcar suas metas no dia a dia?";
 "welcome.control.slider" = "Deslizar";
 "welcome.control.slider.desc" = "Arraste o controle até o valor desejado.";
-"welcome.control.stepper" = "Botões − e +";
+"welcome.control.stepper" = "Botões ➖ e ➕";
 "welcome.control.stepper.desc" = "Toque para somar ou tirar um passo de cada vez.";
 "welcome.control.footer" = "Você pode mudar isso depois em Ajustes.";
 "welcome.step.ready.title" = "Tudo pronto!";

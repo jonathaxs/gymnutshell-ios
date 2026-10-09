@@ -17,14 +17,14 @@ import SwiftData
 extension MainView {
     enum Tab {
         static let today        = 0
-        static let achievements = 1
-        static let profile      = 2
+        static let profile      = 1
+        static let achievements = 2
         static let settings     = 3
     }
 }
 
 // MARK: - Tela principal
-// Organiza as abas principais do app: Today, Achievements, Profile e Settings.
+// Organiza as abas principais do app: Today, Statistics (profile), Achievements e Settings.
 struct MainView: View {
 
     // Seleção de aba persistida, permite navegação entre abas via @AppStorage.
@@ -49,17 +49,17 @@ struct MainView: View {
                 }
                 .tag(Tab.today)
 
-            AchievementsView()
-                .tabItem {
-                    Image(systemName: "trophy.fill")
-                }
-                .tag(Tab.achievements)
-
             ProgressOverView()
                 .tabItem {
                     Image(systemName: "chart.bar.fill")
                 }
                 .tag(Tab.profile)
+
+            AchievementsView()
+                .tabItem {
+                    Image(systemName: "trophy.fill")
+                }
+                .tag(Tab.achievements)
 
             SettingsView()
                 .tabItem {
