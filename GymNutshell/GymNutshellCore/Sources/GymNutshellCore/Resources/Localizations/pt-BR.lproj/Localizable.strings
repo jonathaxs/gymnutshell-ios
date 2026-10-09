@@ -1065,3 +1065,5 @@
 "welcome.ready.footer" = "Você pode mudar tudo isso quando quiser em Ajustes.";
 "settings.preference.controlStyle" = "Controles";
 "settings.controlStyle.footer" = "Define como você marca o progresso das metas na tela Hoje.";
+
+"settings.category.icon.section" = "Ícone";

@@ -20,12 +20,14 @@ struct EditCustomGoalCategoryView: View {
 
     @State private var name: String
     @State private var supportsRestDay: Bool
+    @State private var symbolName: String
 
     init(category: CustomGoalCategory, onSave: @escaping (CustomGoalCategory) -> Void) {
         self.original = category
         self.onSave = onSave
         _name = State(initialValue: category.name)
         _supportsRestDay = State(initialValue: category.supportsRestDay)
+        _symbolName = State(initialValue: category.symbolName)
     }
 
     private var trimmedName: String {
@@ -40,6 +42,10 @@ struct EditCustomGoalCategoryView: View {
                            isOn: $supportsRestDay)
                     TextField(String(localized: "settings.addgoal.category.new.name.placeholder", bundle: .gymNutshellCore),
                               text: $name)
+                }
+
+                Section(String(localized: "settings.category.icon.section", bundle: .gymNutshellCore)) {
+                    CategorySymbolPicker(selection: $symbolName)
                 }
             }
             .frame(maxWidth: 600)
@@ -57,7 +63,8 @@ struct EditCustomGoalCategoryView: View {
                         let updated = CustomGoalCategory(
                             id: original.id,
                             name: trimmedName,
-                            supportsRestDay: supportsRestDay
+                            supportsRestDay: supportsRestDay,
+                            symbolName: symbolName
                         )
                         CustomGoalCategoriesStore.upsert(updated)
                         onSave(updated)

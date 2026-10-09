@@ -631,8 +631,7 @@ struct TodayView: View {
                 tiles.append(makeTile(
                     id: gridCellId(for: item),
                     title: category.name,
-                    // Ícone próprio das categorias do usuário chega na 2.9.
-                    symbol: "square.grid.2x2.fill",
+                    symbol: category.symbolName,
                     progresses: goals.map { customProgress($0) },
                     content: AnyView(ForEach(goals) { customRow($0) })
                 ))

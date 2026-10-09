@@ -56,6 +56,7 @@ struct AddTrackingGoalView: View {
     @State private var isCreatingNewCategory: Bool = false
     @State private var newCategoryName: String = ""
     @State private var newCategorySupportsRestDay: Bool = false
+    @State private var newCategorySymbol: String = CustomGoalCategory.defaultSymbolName
 
     // True quando o usuário digitou algo que não é emoji, significa que o teclado
     // de emoji não está habilitado no iPhone/iPad (iOS cai no teclado padrão).
@@ -163,6 +164,7 @@ struct AddTrackingGoalView: View {
                         if !isCreatingNewCategory {
                             newCategoryName = ""
                             newCategorySupportsRestDay = false
+                            newCategorySymbol = CustomGoalCategory.defaultSymbolName
                         }
                     }
                 } label: {
@@ -181,6 +183,7 @@ struct AddTrackingGoalView: View {
                            isOn: $newCategorySupportsRestDay)
                     TextField(String(localized: "settings.addgoal.category.new.name.placeholder", bundle: .gymNutshellCore),
                               text: $newCategoryName)
+                    CategorySymbolPicker(selection: $newCategorySymbol)
                 } header: {
                     Text(String(localized: "settings.addgoal.category.new.section", bundle: .gymNutshellCore))
                 } footer: {
@@ -298,7 +301,8 @@ struct AddTrackingGoalView: View {
         if isCreatingNewCategory, !trimmedNewCategoryName.isEmpty {
             let newCategory = CustomGoalCategory(
                 name: trimmedNewCategoryName,
-                supportsRestDay: newCategorySupportsRestDay
+                supportsRestDay: newCategorySupportsRestDay,
+                symbolName: newCategorySymbol
             )
             CustomGoalCategoriesStore.upsert(newCategory)
             resolvedSelection = .custom(newCategory.id)

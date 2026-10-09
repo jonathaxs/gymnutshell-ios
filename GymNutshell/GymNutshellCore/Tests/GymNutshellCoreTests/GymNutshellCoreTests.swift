@@ -100,3 +100,19 @@ import Foundation
     #expect(payload.profile.name == "Ana")
     #expect(payload.goals.calories == 2000)
 }
+
+// MARK: - Categoria personalizada (compat com a 1.0)
+
+@Test func categoriaDaV10SemIconeUsaIconePadrao() throws {
+    let json = #"{"id":"abc","name":"Alongamento","supportsRestDay":true}"#.data(using: .utf8)!
+    let c = try JSONDecoder().decode(CustomGoalCategory.self, from: json)
+    #expect(c.symbolName == CustomGoalCategory.defaultSymbolName)
+    #expect(c.supportsRestDay)
+}
+
+@Test func categoriaComIconeViajaNoJSON() throws {
+    let original = CustomGoalCategory(name: "Yoga", supportsRestDay: false, symbolName: "figure.yoga")
+    let data = try JSONEncoder().encode(original)
+    let decoded = try JSONDecoder().decode(CustomGoalCategory.self, from: data)
+    #expect(decoded.symbolName == "figure.yoga")
+}

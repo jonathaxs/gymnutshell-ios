@@ -1016,3 +1016,5 @@
 "welcome.ready.footer" = "You can change all of this anytime in Settings.";
 "settings.preference.controlStyle" = "Controls";
 "settings.controlStyle.footer" = "Sets how you log goal progress on the Today screen.";
+
+"settings.category.icon.section" = "Icon";
