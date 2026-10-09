@@ -80,17 +80,8 @@ struct LargeRing: View {
     let borderColor: Color?
 
     var body: some View {
-        ZStack {
-            if let borderColor {
-                Circle().stroke(borderColor, lineWidth: 14)
-            }
-            Circle().stroke(Color.secondary.opacity(0.2), lineWidth: 12)
-            Circle()
-                .trim(from: 0, to: CGFloat(min(progress, 1.0)))
-                .stroke(widgetRingColor(progress: progress),
-                        style: StrokeStyle(lineWidth: 12, lineCap: .round))
-                .rotationEffect(.degrees(-90))
-                .animation(.easeOut(duration: 0.3), value: progress)
+        SegmentedProgressRing(progress: progress, lineWidth: 12,
+                              animated: false, borderColor: borderColor) {
             Text(emoji).font(.system(size: 36))
         }
     }

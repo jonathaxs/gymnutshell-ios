@@ -426,8 +426,10 @@
 
 
 /* TodayView.swift, botão de data */
-"today.hero.date.a11y.label" = "Data de hoje, %@";
-"today.hero.date.a11y.hint" = "Toque para abrir o histórico de notificações.";
+"today.hero.bell.a11y.label" = "Histórico de notificações";
+"today.hero.bell.a11y.hint" = "Toque para abrir o histórico de notificações.";
+"today.hero.caption.start" = "Toque numa categoria pra começar";
+"today.hero.caption.next" = "Faltam %d%% pra %@";
 "today.greeting.morning"   = "Bom dia!";
 "today.greeting.afternoon" = "Boa tarde!";
 "today.greeting.night"     = "Boa noite!";

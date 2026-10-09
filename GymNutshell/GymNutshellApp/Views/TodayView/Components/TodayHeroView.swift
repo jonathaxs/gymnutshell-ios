@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayHeroView.swift
 //
 //  Propósito: Bloco hero fixo exibido no topo (retrato) ou na coluna esquerda (landscape).
-//             Contém: botão de data e anel de progresso com o emoji da conquista no centro.
+//             Contém: saudação com a data, sino do histórico de notificações e o anel de progresso.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -10,7 +10,7 @@
 import SwiftUI
 import GymNutshellCore
 
-/// Bloco hero da TodayView, data, nível de conquista, anel de progresso e frase do próximo nível.
+/// Bloco hero da TodayView: saudação, data, sino, anel de progresso e frase do próximo nível.
 struct TodayHeroView: View {
 
     let formattedDate: String
@@ -70,32 +70,52 @@ struct TodayHeroView: View {
         }
     }
 
+    // Frase abaixo do anel: dica no 0%, quanto falta pro próximo nível, ou o nome do nível no máximo.
+    private var ringCaption: String {
+        if dailyPercentage <= 0 {
+            return String(localized: "today.hero.caption.start", bundle: .gymNutshellCore)
+        }
+        if let next = nextLevelComponents {
+            return String(format: String(localized: "today.hero.caption.next", bundle: .gymNutshellCore),
+                          next.percent, next.name)
+        }
+        return ""
+    }
+
     var body: some View {
         VStack(spacing: 12) {
 
-            // Botão da data, abre o histórico de notificações.
-            Button {
-                showNotificationHistory = true
-            } label: {
-                Text(formattedDate)
-                    .font(.title3.weight(.semibold))
-                    .foregroundStyle(Color.primary)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 14)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .stroke(accentColor.opacity(0.33), lineWidth: 1.5)
-                    }
+            // Topo: saudação grande com a data pequena embaixo e o sino do histórico no canto.
+            HStack(alignment: .center, spacing: 12) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(greeting)
+                        .font(.largeTitle.weight(.bold))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                        .accessibilityAddTraits(.isHeader)
+                    Text(formattedDate)
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                Button {
+                    showNotificationHistory = true
+                } label: {
+                    Image(systemName: "bell.fill")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(accentColor)
+                        .frame(width: 44, height: 44)
+                        .background(accentColor.opacity(0.12), in: Circle())
+                }
+                .buttonStyle(.plain)
+                .pressScale(1.20, response: 0.25, dampingFraction: 0.50)
+                .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
+                .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
             }
-            .buttonStyle(.plain)
-            .frame(maxWidth: 330)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .pressScale(1.20, response: 0.25, dampingFraction: 0.50)
-            .accessibilityLabel(String(format: String(localized: "today.hero.date.a11y.label",
-                                                     bundle: .gymNutshellCore), formattedDate))
-            .accessibilityHint(String(localized: "today.hero.date.a11y.hint", bundle: .gymNutshellCore))
+            .padding(.horizontal, 4)
 
             // Anel de 5 segmentos com o emoji da conquista no centro e a porcentagem abaixo.
             // Substitui o par anel + bloco de conquista lado a lado da 1.0.
@@ -104,6 +124,7 @@ struct TodayHeroView: View {
                                   theme: selectedTheme,
                                   onTap: { showRingSheet = true },
                                   onEmojiTap: { showTierSheet = true },
+                                  caption: ringCaption,
                                   size: verticalLayout ? 180 : 150)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, verticalLayout ? 8 : 4)

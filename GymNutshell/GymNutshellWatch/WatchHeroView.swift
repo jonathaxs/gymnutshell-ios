@@ -3,7 +3,7 @@
 //
 //  Propósito: Hero superior do Watch app, anel de progresso médio do dia
 //             + emoji do tier + nome do tier + percentual.
-//             Cor do anel acompanha o tier (vermelho/laranja/verde/azul).
+//             Anel de 5 segmentos coloridos, igual ao iPhone.
 // ⌘
 
 import SwiftUI
@@ -15,24 +15,16 @@ struct WatchHeroView: View {
     let tier: DailyAchievement
     let sex: String
 
-    // Cor do anel acompanha o tier do dia, igual TodayProgressRingView do iPhone:
-    // <30% vermelho (just starting), <60% laranja (on your way),
-    // <100% verde (almost there), 100% azul (goal complete).
+    // Percentual no tom do segmento atual (mesmas 5 cores do anel).
     private var ringColor: Color {
-        ProgressColors.ring(for: averageProgress)
+        let colors = SegmentedProgressRing<EmptyView>.segmentColors
+        let index = min(max(Int(averageProgress * Double(colors.count)), 0), colors.count - 1)
+        return colors[index]
     }
 
     var body: some View {
         VStack(spacing: 6) {
-            ZStack {
-                Circle()
-                    .stroke(Color.secondary.opacity(0.25), lineWidth: 8)
-                Circle()
-                    .trim(from: 0, to: averageProgress)
-                    .stroke(ringColor, style: StrokeStyle(lineWidth: 8, lineCap: .round))
-                    .rotationEffect(.degrees(-90))
-                    .animation(.easeInOut, value: averageProgress)
-
+            SegmentedProgressRing(progress: averageProgress, lineWidth: 9, animated: false) {
                 Text(theme.emoji(for: tier, sex: sex))
                     .font(.system(size: 36))
             }

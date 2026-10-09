@@ -3,7 +3,7 @@
 //
 //  Propósito: Anel de progresso do bloco hero da TodayView. Usa o anel de 5 segmentos
 //             (SegmentedProgressRing) com o emoji da conquista do dia no centro.
-//             A porcentagem e o nome do nível ficam abaixo do anel.
+//             A porcentagem e uma frase (próximo nível, dica ou nome do nível) ficam abaixo do anel.
 //             Com progresso 0 o centro fica vazio; o emoji aparece no primeiro registro.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-19.
@@ -23,6 +23,9 @@ struct TodayProgressRingView: View {
     var onTap: (() -> Void)? = nil
     /// Toque no emoji do centro: abre a sheet dos níveis de conquista.
     var onEmojiTap: (() -> Void)? = nil
+
+    /// Frase abaixo da porcentagem. Vazia = mostra o nome do nível (ou nada, se não começou).
+    var caption: String = ""
 
     var size: CGFloat = 150
     var lineWidth: CGFloat = 18
@@ -95,10 +98,11 @@ struct TodayProgressRingView: View {
                     .contentTransition(.numericText())
                     .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: percentage)
 
-                Text(hasStarted ? tierName : " ")
+                Text(caption.isEmpty ? (hasStarted ? tierName : " ") : caption)
                     .font(.subheadline.weight(.medium))
                     .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.9)
             }
             .contentShape(Rectangle())

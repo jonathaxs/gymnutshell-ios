@@ -390,8 +390,10 @@
 
 
 /* TodayView.swift, date hero button */
-"today.hero.date.a11y.label" = "Today's date, %@";
-"today.hero.date.a11y.hint" = "Tap to open your notification history.";
+"today.hero.bell.a11y.label" = "Notification history";
+"today.hero.bell.a11y.hint" = "Tap to open your notification history.";
+"today.hero.caption.start" = "Tap a category to get started";
+"today.hero.caption.next" = "%d%% to go for %@";
 "today.greeting.morning"   = "Good morning!";
 "today.greeting.afternoon" = "Good afternoon!";
 "today.greeting.night"     = "Good evening!";

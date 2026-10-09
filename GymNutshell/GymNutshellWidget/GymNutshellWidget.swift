@@ -107,12 +107,6 @@ struct GymNutshellWidgetEntryView: View {
         }
     }
 
-    /// Cor do anel acompanha o progresso, mesma regra do Watch e da TodayView:
-    /// <30% vermelho, <60% laranja, <100% verde, 100% azul.
-    private var ringColor: Color {
-        ProgressColors.ring(for: entry.snapshot.progressNormalized)
-    }
-
     /// True quando o widget está usando fundo customizado (accent ou custom).
     /// Usado pra decidir se o ring precisa de borda de contraste.
     private var hasCustomBackground: Bool {
@@ -210,7 +204,6 @@ struct GymNutshellWidgetEntryView: View {
             ProgressRingView(
                 progress: entry.snapshot.progressNormalized,
                 emoji: entry.snapshot.tierEmoji,
-                accentColor: ringColor,
                 lineWidth: 10,
                 emojiSize: 28,
                 borderColor: hasCustomBackground ? textColor : nil
@@ -246,29 +239,15 @@ struct GymNutshellWidgetEntryView: View {
 private struct ProgressRingView: View {
     let progress: Double
     let emoji: String
-    let accentColor: Color
     let lineWidth: CGFloat
     let emojiSize: CGFloat
-    /// Quando não-nil, desenha um stroke mais largo nessa cor atrás do ring, criando
-    /// 1pt de borda em cada lado pra separar o ring de fundos coloridos.
+    /// Quando não-nil, desenha um contorno de 1pt nessa cor atrás do anel, pra separar
+    /// o anel de fundos coloridos.
     var borderColor: Color? = nil
 
     var body: some View {
-        ZStack {
-            if let borderColor {
-                Circle()
-                    .stroke(borderColor, lineWidth: lineWidth + 2)
-            }
-            Circle()
-                .stroke(Color.secondary.opacity(0.2), lineWidth: lineWidth)
-            Circle()
-                .trim(from: 0, to: CGFloat(min(progress, 1.0)))
-                .stroke(
-                    accentColor,
-                    style: StrokeStyle(lineWidth: lineWidth, lineCap: .round)
-                )
-                .rotationEffect(.degrees(-90))
-                .animation(.easeOut(duration: 0.3), value: progress)
+        SegmentedProgressRing(progress: progress, lineWidth: lineWidth,
+                              animated: false, borderColor: borderColor) {
             Text(emoji)
                 .font(.system(size: emojiSize))
         }

@@ -1,36 +1,59 @@
 // ⌘
-//  GymNutshell/GymNutshellApp/Views/Shared/SegmentedProgressRing.swift
+//  GymNutshell/GymNutshellCore/Sources/GymNutshellCore/UI/SegmentedProgressRing.swift
 //
 //  Propósito: Anel de progresso em 5 segmentos arredondados, no estilo do ícone do app.
 //             Sentido horário a partir do topo: vermelho → amarelo → verde → azul → roxo (20% cada).
 //             Ao completar um segmento ele faz um "pop" (escala sobe e volta).
 //             Conteúdo opcional no centro (ex: emoji da conquista).
+//             Vive no Core pra ser usado no app, no Watch e nos widgets (sem animação nem haptics lá).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
 // ⌘
 
 import SwiftUI
+#if os(iOS)
+import UIKit
+#endif
 
 /// Como cada segmento é preenchido.
-enum RingFillMode {
+public enum RingFillMode {
     /// A cor avança aos poucos dentro do segmento, sobre o trilho cinza.
     case gradual
     /// O segmento só acende (inteiro) quando os 20% dele são completados.
     case whole
 }
 
-struct SegmentedProgressRing<Center: View>: View {
+public struct SegmentedProgressRing<Center: View>: View {
 
     /// Troque aqui pra testar o outro modo de preenchimento em todo o app.
-    static var defaultFillMode: RingFillMode { .gradual }
+    public static var defaultFillMode: RingFillMode { .gradual }
 
     /// Cores fixas dos segmentos, na ordem do sentido horário.
-    static var segmentColors: [Color] { [.red, .yellow, .green, .blue, .purple] }
+    public static var segmentColors: [Color] { [.red, .yellow, .green, .blue, .purple] }
 
     let progress: Double
     var lineWidth: CGFloat = 14
     var fillMode: RingFillMode = Self.defaultFillMode
+    /// false em widgets e no Watch: sem animação de preenchimento, sem "pop" e sem haptics.
+    var animated: Bool = true
+    /// Quando não-nil, desenha um contorno de 1pt nessa cor atrás dos segmentos, pra separar
+    /// o anel de fundos coloridos (widgets com fundo customizado).
+    var borderColor: Color? = nil
     @ViewBuilder var center: Center
+
+    public init(progress: Double,
+                lineWidth: CGFloat = 14,
+                fillMode: RingFillMode = SegmentedProgressRing.defaultFillMode,
+                animated: Bool = true,
+                borderColor: Color? = nil,
+                @ViewBuilder center: () -> Center) {
+        self.progress = progress
+        self.lineWidth = lineWidth
+        self.fillMode = fillMode
+        self.animated = animated
+        self.borderColor = borderColor
+        self.center = center()
+    }
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -56,7 +79,7 @@ struct SegmentedProgressRing<Center: View>: View {
         }
     }
 
-    var body: some View {
+    public var body: some View {
         GeometryReader { geo in
             let side = min(geo.size.width, geo.size.height)
             let radius = (side - lineWidth) / 2
@@ -71,6 +94,11 @@ struct SegmentedProgressRing<Center: View>: View {
                     let mid = (start + end) / 2 * .pi / 180
 
                     ZStack {
+                        if let borderColor {
+                            RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)
+                                .stroke(borderColor,
+                                        style: StrokeStyle(lineWidth: lineWidth + 2, lineCap: .round))
+                        }
                         // Trilho cinza do segmento.
                         RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)
                             .stroke(Color.secondary.opacity(0.18),
@@ -92,9 +120,9 @@ struct SegmentedProgressRing<Center: View>: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .aspectRatio(1, contentMode: .fit)
-        .animation(reduceMotion ? nil : .easeInOut(duration: 0.45), value: clampedProgress)
+        .animation(reduceMotion || !animated ? nil : .easeInOut(duration: 0.45), value: clampedProgress)
         .onChange(of: completedCount) { old, new in
-            guard new > old, !reduceMotion else { return }
+            guard new > old, !reduceMotion, animated else { return }
             for index in old..<min(new, segmentCount) {
                 pop(index, delay: 0.35 + Double(index - old) * 0.08)
             }
@@ -105,7 +133,9 @@ struct SegmentedProgressRing<Center: View>: View {
 
     private func pop(_ index: Int, delay: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            #if os(iOS)
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            #endif
             withAnimation(.spring(response: 0.18, dampingFraction: 0.5)) {
                 popScales[index] = 1.12
             }
@@ -122,18 +152,24 @@ struct SegmentedProgressRing<Center: View>: View {
 
 /// Arco de um segmento. Ângulos em graus a partir do topo, sentido horário.
 /// `fraction` é animável pra cor avançar suavemente dentro do segmento.
-struct RingSegmentShape: Shape {
+public struct RingSegmentShape: Shape {
 
-    var startDegrees: Double
-    var endDegrees: Double
-    var fraction: Double
+    public var startDegrees: Double
+    public var endDegrees: Double
+    public var fraction: Double
 
-    var animatableData: Double {
+    public init(startDegrees: Double, endDegrees: Double, fraction: Double) {
+        self.startDegrees = startDegrees
+        self.endDegrees = endDegrees
+        self.fraction = fraction
+    }
+
+    public var animatableData: Double {
         get { fraction }
         set { fraction = newValue }
     }
 
-    func path(in rect: CGRect) -> Path {
+    public func path(in rect: CGRect) -> Path {
         guard fraction > 0.001 else { return Path() }
         let radius = min(rect.width, rect.height) / 2
         let center = CGPoint(x: rect.midX, y: rect.midY)
