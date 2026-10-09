@@ -14,11 +14,7 @@ public enum UserProfile {
 
     // MARK: - Chaves
     public static let nameKey                   = "profile.name"
-    public static let weightKey                 = "profile.weight"      // kg, salvo como Double
-    public static let heightKey                 = "profile.height"      // cm, salvo como Int
-    public static let ageKey                    = "profile.age"         // anos, salvo como Int (derivado de birthdayKey)
-    public static let birthdayKey               = "profile.birthday"    // Date.timeIntervalSince1970 (Double)
-    public static let sexKey                    = "profile.sex"         // "male" / "female" / "other"
+    public static let sexKey                    = "profile.sex"         // "male" / "female" (legado "other" vira "male")
     public static let userGoalKey               = "profile.userGoal"
     public static let favoriteExerciseKey       = "profile.favoriteExercise"
     public static let didCompleteOnboardingKey  = "profile.didCompleteOnboarding"
@@ -31,25 +27,25 @@ public enum UserProfile {
     public static let achievementsSelectedDateKey     = "achievements.selectedDate"
     public static let achievementsFilterModeKey       = "achievements.filterMode"
 
-    // MARK: - Data de nascimento
+    // MARK: - Migração da 1.0 → 1.1
 
-    /// Calcula a idade em anos a partir de uma data de nascimento, usando a data atual.
-    public static func age(from birthday: Date, now: Date = Date()) -> Int {
-        let comps = Calendar.current.dateComponents([.year], from: birthday, to: now)
-        return max(0, comps.year ?? 0)
+    /// Chaves de dados físicos que existiam na 1.0 e foram removidas na 1.1.
+    private static let legacyPhysicalKeys = [
+        "profile.weight", "profile.height", "profile.age", "profile.birthday"
+    ]
+
+    /// Sexo só pode ser "male" ou "female". Qualquer outro valor (ex: "other" da 1.0) vira "male".
+    public static func normalizedSex(_ raw: String) -> String {
+        raw == "female" ? "female" : "male"
     }
 
-    /// Lê a data de nascimento salva, se houver.
-    public static func storedBirthday() -> Date? {
-        let ti = UserDefaults.standard.double(forKey: birthdayKey)
-        guard ti > 0 else { return nil }
-        return Date(timeIntervalSince1970: ti)
-    }
-
-    /// Recalcula a idade a partir da data de nascimento salva e reescreve `ageKey`.
-    public static func refreshAgeFromBirthday() {
-        guard let birthday = storedBirthday() else { return }
-        UserDefaults.standard.set(age(from: birthday), forKey: ageKey)
+    /// Roda no launch: apaga os dados físicos antigos (a 1.1 não usa mais) e normaliza o sexo
+    /// salvo. Não mexe nas metas já definidas, quem veio da 1.0 mantém os valores que tinha.
+    public static func migrateLegacyProfile(defaults: UserDefaults = .standard) {
+        legacyPhysicalKeys.forEach { defaults.removeObject(forKey: $0) }
+        if let sex = defaults.string(forKey: sexKey), sex != normalizedSex(sex) {
+            defaults.set(normalizedSex(sex), forKey: sexKey)
+        }
     }
 }
 

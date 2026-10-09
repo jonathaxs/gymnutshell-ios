@@ -46,8 +46,7 @@ public enum AppAccentColor: String, CaseIterable, Sendable {
     public static func defaultForSex(_ sex: String) -> AppAccentColor {
         switch sex {
         case "female": return .purple
-        case "male":   return .blue
-        default:       return .yellow
+        default:       return .blue   // "male" e legado "other"/vazio seguem o visual masculino
         }
     }
 

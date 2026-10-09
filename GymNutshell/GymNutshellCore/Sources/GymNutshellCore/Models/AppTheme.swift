@@ -61,7 +61,7 @@ public enum AppTheme: String, CaseIterable, Sendable {
         }
 
         public func localizedName(sex: String) -> String {
-            guard self == .warrior, sex != "male" else { return localizedName }
+            guard self == .warrior, sex == "female" else { return localizedName }
             let femValue = NSLocalizedString("app.theme.category.warrior.fem", bundle: .gymNutshellCore, comment: "")
             return femValue != "app.theme.category.warrior.fem" ? femValue : localizedName
         }
@@ -367,7 +367,7 @@ public enum AppTheme: String, CaseIterable, Sendable {
     // MARK: - Nome localizado por nível e sexo
 
     public func name(for tier: DailyAchievement, sex: String) -> String {
-        guard sex != "male" else { return name(for: tier) }
+        guard sex == "female" else { return name(for: tier) }
 
         let masculineKey: String
         switch self {
@@ -413,7 +413,7 @@ public enum AppTheme: String, CaseIterable, Sendable {
     // MARK: - Helpers de exibição
 
     public func displayName(sex: String) -> String {
-        guard sex != "male" else { return displayName }
+        guard sex == "female" else { return displayName }
         let femKey: String
         switch self {
         case .gym:    femKey = "app.theme.gym.fem"
@@ -461,7 +461,7 @@ public enum AppTheme: String, CaseIterable, Sendable {
     }
 
     public func emoji(for tier: DailyAchievement, sex: String) -> String {
-        if sex != "male" {
+        if sex == "female" {
             switch self {
             case .gym:
                 switch tier {

@@ -29,15 +29,7 @@ struct UserGoalChangeView: View {
 
     // MARK: - Helpers
 
-    // Lê o peso corporal salvo pelo usuário; usa 70 kg como fallback se não tiver sido definido.
-    private var weightKg: Double {
-        let stored = UserDefaults.standard.double(forKey: UserProfile.weightKey)
-        return stored > 0 ? stored : 70
-    }
-
-    // Altura/idade/sexo do perfil, usados no cálculo de calorias (Mifflin-St Jeor).
-    private var heightCm: Int { UserDefaults.standard.integer(forKey: UserProfile.heightKey) }
-    private var age: Int { UserDefaults.standard.integer(forKey: UserProfile.ageKey) }
+    // Sexo do perfil: define a coluna da tabela de metas padrão.
     private var sex: String { UserDefaults.standard.string(forKey: UserProfile.sexKey) ?? "male" }
 
     private var savedGoalRaw: String {
@@ -101,7 +93,7 @@ struct UserGoalChangeView: View {
         .onChange(of: selectedGoal) { _, newGoal in
             // Recalcula e mostra a prévia só quando a seleção mudou de verdade.
             previewGoals = hasChanged
-                ? GoalsCalculator.calculate(weightKg: weightKg, heightCm: heightCm, age: age, sex: sex, goal: newGoal)
+                ? GoalsCalculator.calculate(sex: sex, goal: newGoal)
                 : nil
         }
     }

@@ -19,7 +19,7 @@ public enum DefaultGoals {
     public static let cardioIncrement: Int = 5
 
     // MARK: - Recuperação
-    public static let sleep: Int = 7
+    public static let sleep: Int = 8
 
     // MARK: - Hidratação
     public static let water: Int = 3000

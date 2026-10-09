@@ -10,7 +10,6 @@ import GymNutshellCore
 enum WelcomeStep: Int, CaseIterable {
     case start
     case goal
-    case physicalData
     case summary
     case theme
 
@@ -19,7 +18,6 @@ enum WelcomeStep: Int, CaseIterable {
         switch self {
         case .start:        return "👋"
         case .goal:         return "🎯"
-        case .physicalData: return "👤"
         case .summary:      return "✅"
         case .theme:        return "🎭"
         }
@@ -30,7 +28,6 @@ enum WelcomeStep: Int, CaseIterable {
         switch self {
         case .start:        return String(localized: "welcome.step.start.title", bundle: .gymNutshellCore)
         case .goal:         return String(localized: "welcome.step.goal.title", bundle: .gymNutshellCore)
-        case .physicalData: return String(localized: "welcome.step.physical.title", bundle: .gymNutshellCore)
         case .summary:      return String(localized: "welcome.step.summary.title", bundle: .gymNutshellCore)
         case .theme:        return String(localized: "welcome.step.theme.title", bundle: .gymNutshellCore)
         }

@@ -35,7 +35,7 @@ struct SettingsView: View {
                 // Seção Perfil, dados físicos, objetivo fitness e metas do usuário.
                 Section(header: Text(String(localized: "settings.section.edit", bundle: .gymNutshellCore)).foregroundStyle(accentColor.color)) {
                     NavigationLink {
-                        PhysicalDataSettingsView()
+                        ProfileSettingsView()
                     } label: {
                         Label(String(localized: "settings.section.physicaldata", bundle: .gymNutshellCore), systemImage: "person.circle")
                             .foregroundStyle(.primary)

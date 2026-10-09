@@ -18,7 +18,6 @@ import SwiftData
 private enum StatsDestination: Hashable {
     case goals
     case userGoal
-    case physicalData
 }
 
 // MARK: - Tela de progresso
@@ -32,11 +31,8 @@ struct ProgressOverView: View {
     @Query(sort: \DailyRecord.date, order: .forward) private var records: [DailyRecord]
     @Query private var bonuses: [StreakBonus]
 
-    // Campos do perfil necessários pra exibir dados físicos e objetivo fitness.
-    @AppStorage(UserProfile.heightKey) private var height: Int = 0
-    @AppStorage(UserProfile.ageKey) private var age: Int = 0
+    // Campos do perfil necessários pra exibir o objetivo fitness.
     @AppStorage(UserProfile.sexKey) private var sex: String = ""
-    @AppStorage(UserProfile.weightKey) private var weight: Double = 0
     @AppStorage(UserProfile.userGoalKey) private var userGoalRaw: String = ""
     @AppStorage(UserProfile.measurementSystemKey) private var measurementSystem: MeasurementSystem = .metric
     @AppStorage(AppTheme.storageKey) private var selectedTheme: AppTheme = .gym
@@ -138,7 +134,6 @@ struct ProgressOverView: View {
                     switch dest {
                     case .goals:       TrackingGoalsSettingsView()
                     case .userGoal: UserGoalChangeView()
-                    case .physicalData: PhysicalDataSettingsView()
                     }
                 }
                 // Em wide o cabeçalho nativo fica oculto, usamos o customizado
@@ -238,21 +233,6 @@ struct ProgressOverView: View {
                 userGoalCard(centered: false)
             }
 
-            if hasPhysicalData {
-                ProfilePhysicalDataView(
-                    height: height,
-                    weight: weight,
-                    age: age,
-                    sex: sex,
-                    measurementSystem: measurementSystem,
-                    accentColor: accentColor
-                )
-                .contentShape(Rectangle())
-                .onTapGesture { navPath.append(StatsDestination.physicalData) }
-                .accessibilityAddTraits(.isButton)
-                .accessibilityHint(String(localized: "a11y.stats.card.physical.hint",
-                                          bundle: .gymNutshellCore))
-            }
 
             ProfileRecentActivityView(
                 entries: last7Days,
@@ -305,21 +285,6 @@ struct ProgressOverView: View {
                 VStack(spacing: 16) {
                     bonusesCard
 
-                    if hasPhysicalData {
-                        ProfilePhysicalDataView(
-                            height: height,
-                            weight: weight,
-                            age: age,
-                            sex: sex,
-                            measurementSystem: measurementSystem,
-                            accentColor: accentColor
-                        )
-                        .contentShape(Rectangle())
-                        .onTapGesture { navPath.append(StatsDestination.physicalData) }
-                        .accessibilityAddTraits(.isButton)
-                        .accessibilityHint(String(localized: "a11y.stats.card.physical.hint",
-                                                  bundle: .gymNutshellCore))
-                    }
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -425,10 +390,6 @@ struct ProgressOverView: View {
         .accessibilityLabel(String(localized: "statistics.fitness.goal", bundle: .gymNutshellCore))
         .accessibilityValue(userGoalLabel)
         .accessibilityHint(String(localized: "a11y.stats.card.usergoal.hint", bundle: .gymNutshellCore))
-    }
-
-    private var hasPhysicalData: Bool {
-        height > 0 || weight > 0 || age > 0 || !sex.isEmpty
     }
 
     // MARK: - Navegação

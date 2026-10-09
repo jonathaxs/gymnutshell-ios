@@ -22,10 +22,11 @@ public enum BackupManager {
         let profile = BackupPayload.ProfileSnapshot(
             name:              defaults.string(forKey: UserProfile.nameKey) ?? "",
             username:          nil,
-            height:            defaults.integer(forKey: UserProfile.heightKey),
-            weight:            defaults.double(forKey: UserProfile.weightKey),
-            age:               defaults.integer(forKey: UserProfile.ageKey),
-            sex:               defaults.string(forKey: UserProfile.sexKey) ?? "",
+            // Dados físicos saíram na 1.1; segue gravando 0 pra backups continuarem legíveis na 1.0/Android.
+            height:            0,
+            weight:            0,
+            age:               0,
+            sex:               UserProfile.normalizedSex(defaults.string(forKey: UserProfile.sexKey) ?? ""),
             userGoal:          defaults.string(forKey: UserProfile.userGoalKey) ?? "",
             measurementSystem: defaults.string(forKey: UserProfile.measurementSystemKey)
         )
@@ -187,10 +188,8 @@ public enum BackupManager {
         let p = payload.profile
 
         defaults.set(p.name,        forKey: UserProfile.nameKey)
-        defaults.set(p.height,      forKey: UserProfile.heightKey)
-        defaults.set(p.weight,      forKey: UserProfile.weightKey)
-        defaults.set(p.age,         forKey: UserProfile.ageKey)
-        defaults.set(p.sex,         forKey: UserProfile.sexKey)
+        // height/weight/age de backups da 1.0 são ignorados (dados físicos não existem mais).
+        defaults.set(UserProfile.normalizedSex(p.sex), forKey: UserProfile.sexKey)
         defaults.set(p.userGoal,    forKey: UserProfile.userGoalKey)
         if let system = p.measurementSystem {
             defaults.set(system, forKey: UserProfile.measurementSystemKey)

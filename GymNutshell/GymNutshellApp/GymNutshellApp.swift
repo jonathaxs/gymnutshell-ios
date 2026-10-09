@@ -39,9 +39,8 @@ struct GymNutshellApp: App {
         // Ativa a sessão de WatchConnectivity pra sincronizar estado iPhone ↔ Watch.
         WatchConnectivityManager.shared.activate()
 
-        // Recalcula a idade a partir da data de nascimento salva. Mantém leitores que usam
-        // `UserProfile.ageKey` (ProgressOverView, BackupManager) sem precisarem conhecer birthday.
-        UserProfile.refreshAgeFromBirthday()
+        // 1.1: apaga dados físicos da 1.0 e normaliza o sexo ("other" vira "male").
+        UserProfile.migrateLegacyProfile()
 
         // Migração one-shot: chave antiga "profile.fitnessGoal" → nova "profile.userGoal".
         // Executa quando o usuário atualiza a versão; limpa a chave antiga depois de copiar.

@@ -1,8 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/WelcomeView/Steps/WelcomeUserGoalStep.swift
 //
-//  Propósito: Etapa do onboarding, permite ao usuário escolher seu objetivo de fitness
-//             (bulking, manutenção ou cutting) via cards selecionáveis.
+//  Propósito: Etapa do onboarding, permite ao usuário escolher o sexo (masculino/feminino) e o
+//             objetivo de fitness (bulking, manutenção ou cutting) via cards selecionáveis.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-10.
 // ⌘
@@ -16,6 +16,7 @@ import GymNutshellCore
 struct WelcomeUserGoalStep: View {
 
     @Binding var userGoal: UserGoal
+    @Binding var sex: String
     var isWide: Bool = false
 
     var body: some View {
@@ -28,6 +29,19 @@ struct WelcomeUserGoalStep: View {
                             emoji: "🎯",
                             title: String(localized: "welcome.step.goal.title", bundle: .gymNutshellCore)
                         )
+                    }
+
+                    // Seletor de sexo: define a coluna da tabela de metas, a cor e os emojis do app.
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(String(localized: "welcome.field.sex", bundle: .gymNutshellCore))
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        Picker(String(localized: "welcome.field.sex", bundle: .gymNutshellCore), selection: $sex) {
+                            Text(String(localized: "welcome.field.sex.female", bundle: .gymNutshellCore)).tag("female")
+                            Text(String(localized: "welcome.field.sex.male", bundle: .gymNutshellCore)).tag("male")
+                        }
+                        .pickerStyle(.segmented)
                     }
 
                     UserGoalPickerView(selection: $userGoal)

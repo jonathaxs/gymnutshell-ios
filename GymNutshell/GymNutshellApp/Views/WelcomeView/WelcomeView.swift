@@ -3,7 +3,7 @@
 //
 //  Propósito: Onboarding em múltiplas etapas que coleta o perfil do usuário e calcula as metas diárias.
 //             Dona do estado e faz a navegação entre as views de cada etapa.
-//             Etapas: início → objetivo → dados físicos (inclui nome) → tema → resumo.
+//             Etapas: início → objetivo + sexo → resumo (metas) → tema.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
 // ⌘
@@ -14,8 +14,7 @@ import SwiftData
 import UniformTypeIdentifiers
 
 /// Tela de onboarding multi-etapas mostrada só no primeiro lançamento.
-/// Coleta objetivo fitness, dados físicos e nome,
-/// depois calcula e persiste as metas diárias do usuário.
+/// Coleta objetivo fitness e sexo, depois define e persiste as metas diárias padrão do usuário.
 ///
 /// Cada etapa fica no próprio arquivo dentro de Views/WelcomeView/.
 struct WelcomeView: View {
@@ -58,13 +57,6 @@ struct WelcomeView: View {
     // MARK: - Campos em edição
 
     @State private var name: String = ""
-    @State private var weightText: String = ""        // kg (metric) ou lbs (US)
-    @State private var weightStonesText: String = "" // stones, usado no UK
-    @State private var weightStoneLbsText: String = "" // lbs restante (0–13), usado no UK
-    @State private var heightText: String = ""       // cm, usado no metric
-    @State private var heightFeetText: String = ""   // feet, usado no US ou UK
-    @State private var heightInchesText: String = "" // inches, usado no US ou UK
-    @State private var birthday: Date = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2001, month: 1, day: 1)) ?? Date()
     @State private var sex: String = "male"
     @State private var userGoal: UserGoal = .maintenance
 
@@ -80,33 +72,6 @@ struct WelcomeView: View {
     @State private var calculatedGoals: GoalsCalculator.Result? = nil
     @State private var summaryScrolledToEnd = false
 
-    // MARK: - Validações
-
-    private var isPhysicalStepValid: Bool {
-        guard UserProfile.age(from: birthday) > 0 else { return false }
-
-        switch measurementSystem {
-        case .metric:
-            guard let weight = Double(weightText), weight > 0 else { return false }
-            guard let height = Int(heightText), height > 0 else { return false }
-        case .us:
-            guard let weight = Double(weightText), weight > 0 else { return false }
-            guard let feet = Int(heightFeetText), feet > 0 else { return false }
-            let inches = Int(heightInchesText) ?? 0
-            guard inches >= 0, inches < 12 else { return false }
-        case .uk:
-            // Peso: stones >= 1; lbs restante 0–13.
-            guard let stones = Int(weightStonesText), stones >= 1 else { return false }
-            let stoneLbs = Int(weightStoneLbsText) ?? 0
-            guard stoneLbs >= 0, stoneLbs < 14 else { return false }
-            // Altura igual ao US.
-            guard let feet = Int(heightFeetText), feet > 0 else { return false }
-            let inches = Int(heightInchesText) ?? 0
-            guard inches >= 0, inches < 12 else { return false }
-        }
-        return true
-    }
-
     // MARK: - Ações
 
     private func advance() {
@@ -116,36 +81,8 @@ struct WelcomeView: View {
             case .start:
                 currentStep = .goal
             case .goal:
-                currentStep = .physicalData
-            case .physicalData:
                 summaryScrolledToEnd = false
-                // Converte peso pra kg antes de calcular, já que GoalsCalculator sempre espera kg.
-                let weightKg: Double
-                switch measurementSystem {
-                case .metric: weightKg = Double(weightText) ?? 70
-                case .us:     weightKg = UnitConverter.lbsToKg(Double(weightText) ?? 154)
-                case .uk:
-                    let st = Int(weightStonesText) ?? 11
-                    let lb = Int(weightStoneLbsText) ?? 0
-                    weightKg = UnitConverter.stoneLbsToKg(stones: st, lbs: lb)
-                }
-                // Altura em cm, mesma lógica de conversão usada em finishOnboarding.
-                let heightCm: Int
-                switch measurementSystem {
-                case .metric:
-                    heightCm = Int(heightText) ?? 170
-                case .us, .uk:
-                    let feet   = Int(heightFeetText) ?? 5
-                    let inches = Int(heightInchesText) ?? 8
-                    heightCm = UnitConverter.feetAndInchesToCm(feet: feet, inches: inches)
-                }
-                calculatedGoals = GoalsCalculator.calculate(
-                    weightKg: weightKg,
-                    heightCm: heightCm,
-                    age: UserProfile.age(from: birthday),
-                    sex: sex,
-                    goal: userGoal
-                )
+                calculatedGoals = GoalsCalculator.calculate(sex: sex, goal: userGoal)
                 currentStep = .summary
             case .summary:
                 currentStep = .theme
@@ -167,35 +104,8 @@ struct WelcomeView: View {
         let defaults = UserDefaults.standard
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        // Converte os valores exibidos pro usuário pra metric antes de salvar.
-        // O armazenamento é sempre em kg e cm, a conversão acontece só na camada de UI.
-        let weightKg: Double
-        let heightCm: Int
-
-        switch measurementSystem {
-        case .metric:
-            weightKg = Double(weightText) ?? 70
-            heightCm = Int(heightText) ?? 170
-        case .us:
-            weightKg = UnitConverter.lbsToKg(Double(weightText) ?? 154)
-            let feet   = Int(heightFeetText) ?? 5
-            let inches = Int(heightInchesText) ?? 8
-            heightCm = UnitConverter.feetAndInchesToCm(feet: feet, inches: inches)
-        case .uk:
-            let st = Int(weightStonesText) ?? 11
-            let lb = Int(weightStoneLbsText) ?? 0
-            weightKg = UnitConverter.stoneLbsToKg(stones: st, lbs: lb)
-            let feet   = Int(heightFeetText) ?? 5
-            let inches = Int(heightInchesText) ?? 8
-            heightCm = UnitConverter.feetAndInchesToCm(feet: feet, inches: inches)
-        }
-
         // Persiste os dados do perfil.
         defaults.set(trimmedName,              forKey: UserProfile.nameKey)
-        defaults.set(weightKg,                 forKey: UserProfile.weightKey)
-        defaults.set(heightCm,                 forKey: UserProfile.heightKey)
-        defaults.set(birthday.timeIntervalSince1970,   forKey: UserProfile.birthdayKey)
-        defaults.set(UserProfile.age(from: birthday),  forKey: UserProfile.ageKey)
         defaults.set(sex,                      forKey: UserProfile.sexKey)
         defaults.set(userGoal.rawValue,     forKey: UserProfile.userGoalKey)
         // Persiste o sistema de medidas escolhido no onboarding.
@@ -290,24 +200,7 @@ struct WelcomeView: View {
                         isWide: isWide
                     )
                 case .goal:
-                    WelcomeUserGoalStep(userGoal: $userGoal, isWide: isWide)
-                case .physicalData:
-                    WelcomePhysicalDataStep(
-                        measurementSystem: measurementSystem,
-                        weightText: $weightText,
-                        weightStonesText: $weightStonesText,
-                        weightStoneLbsText: $weightStoneLbsText,
-                        heightText: $heightText,
-                        heightFeetText: $heightFeetText,
-                        heightInchesText: $heightInchesText,
-                        birthday: $birthday,
-                        sex: $sex,
-                        isWide: isWide,
-                        onContinue: advance,
-                        onBack: goBack,
-                        isFormValid: isPhysicalStepValid,
-                        buttonColor: sexColor
-                    )
+                    WelcomeUserGoalStep(userGoal: $userGoal, sex: $sex, isWide: isWide)
                 case .summary:
                     WelcomeSummaryStep(
                         goals: calculatedGoals,
@@ -330,8 +223,8 @@ struct WelcomeView: View {
             ))
             .animation(.easeInOut(duration: 0.3), value: currentStep)
 
-            // Botões de rodapé, só no modo narrow e fora do physicalData (que tem botões inline).
-            if currentStep != .start && currentStep != .physicalData && !isWide {
+            // Botões de rodapé, só no modo narrow e fora da etapa inicial.
+            if currentStep != .start && !isWide {
                 VStack(spacing: 8) {
                     WelcomeContinueButton(
                         label: continueButtonLabel,
@@ -375,7 +268,7 @@ struct WelcomeView: View {
             case .maintenance: return Color.accentColor
             case .cutting:     return .green
             }
-        case .physicalData, .summary, .theme:
+        case .summary, .theme:
             return sexColor
         default:
             return Color.accentColor
@@ -388,7 +281,6 @@ struct WelcomeView: View {
         switch currentStep {
         case .start:        return true
         case .goal:         return true
-        case .physicalData: return isPhysicalStepValid
         case .summary:      return summaryScrolledToEnd
         case .theme:        return true
         }
