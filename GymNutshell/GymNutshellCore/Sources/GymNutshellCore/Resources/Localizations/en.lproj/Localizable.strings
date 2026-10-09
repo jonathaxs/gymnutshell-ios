@@ -614,7 +614,7 @@
 "settings.notifications.section.system"   = "System";
 "settings.notifications.section.goals"    = "Goals";
 "settings.notifications.authorize.button" = "Enable Notifications";
-"settings.notifications.authorize.footer" = "Tap Enable Notifications and allow in the iOS prompt to start receiving reminders. If you already denied, you can re-enable in iOS Settings.";
+"settings.notifications.authorize.footer" = "Tap Allow and allow in the iOS prompt to start receiving reminders. If you already denied, you can re-enable in iOS Settings.";
 "settings.notifications.denied.title"     = "Notifications disabled";
 "settings.notifications.denied.message"   = "You previously denied notifications. Enable them in iOS Settings to receive Gym Nutshell reminders.";
 "settings.notifications.denied.open"      = "Open Settings";

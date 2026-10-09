@@ -62,6 +62,10 @@ struct TodayCategoryGrid: View {
     // Altura fixa por linha pra o GeometryReader não colapsar.
     private static let tileHeight: CGFloat = 112
 
+    // Balão abaixo do botão (seta no topo). No iOS 26+ vale o arrowEdge; no iOS 18 o sistema ignora
+    // e abre pra cima (conferido no simulador), o que continua usável.
+    private static var popoverArrowEdge: Edge { .top }
+
     private func gridHeight(rows: Int) -> CGFloat {
         CGFloat(rows) * Self.tileHeight + CGFloat(max(rows - 1, 0)) * spacing
     }
@@ -116,7 +120,7 @@ struct TodayCategoryGrid: View {
         .popover(isPresented: Binding(
             get: { openTileId == tile.id },
             set: { if !$0 { openTileId = nil } }
-        ), attachmentAnchor: .point(.bottom), arrowEdge: .top) {
+        ), attachmentAnchor: .point(.bottom), arrowEdge: Self.popoverArrowEdge) {
             popoverContent(tile)
                 // Balão de verdade no iPhone, em vez de virar sheet.
                 .presentationCompactAdaptation(.popover)

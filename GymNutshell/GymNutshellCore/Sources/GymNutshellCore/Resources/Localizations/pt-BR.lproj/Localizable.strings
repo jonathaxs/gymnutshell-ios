@@ -664,7 +664,7 @@
 "settings.notifications.section.system"   = "Sistema";
 "settings.notifications.section.goals"    = "Metas";
 "settings.notifications.authorize.button" = "Habilitar Notificações";
-"settings.notifications.authorize.footer" = "Para receber lembretes, toque em Habilitar Notificações e permita na caixa de diálogo do iOS. Se já negou, é possível liberar em Ajustes do iOS.";
+"settings.notifications.authorize.footer" = "Para receber lembretes, toque em Permitir e permita na caixa de diálogo do iOS. Se já negou, é possível liberar em Ajustes do iOS.";
 "settings.notifications.denied.title"     = "Notificações desativadas";
 "settings.notifications.denied.message"   = "Você negou notificações anteriormente. Ative em Ajustes do iOS pra receber lembretes do Gym Nutshell.";
 "settings.notifications.denied.open"      = "Abrir Ajustes";
