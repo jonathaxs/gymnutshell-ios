@@ -26,7 +26,8 @@ struct WelcomeControlStyleStep: View {
                         WelcomeStepHeader(
                             emoji: "🎛️",
                             title: String(localized: "welcome.step.control.title", bundle: .gymNutshellCore),
-                            subtitle: String(localized: "welcome.step.control.subtitle", bundle: .gymNutshellCore)
+                            subtitle: String(localized: "welcome.step.control.subtitle", bundle: .gymNutshellCore),
+                            accentColor: accentColor
                         )
                     }
 
@@ -51,14 +52,14 @@ struct WelcomeControlStyleStep: View {
                          title: String(localized: "welcome.control.stepper", bundle: .gymNutshellCore),
                          desc: String(localized: "welcome.control.stepper.desc", bundle: .gymNutshellCore)) {
                         HStack(spacing: 12) {
-                            Image(systemName: "minus.circle.fill").font(.title)
+                            Image(systemName: "minus.circle.fill").font(.title).symbolRenderingMode(.hierarchical)
                             Capsule()
                                 .fill(Color.secondary.opacity(0.25))
                                 .frame(height: 6)
                                 .overlay(alignment: .leading) {
                                     Capsule().fill(accentColor).frame(width: 90, height: 6)
                                 }
-                            Image(systemName: "plus.circle.fill").font(.title)
+                            Image(systemName: "plus.circle.fill").font(.title).symbolRenderingMode(.hierarchical)
                         }
                         .foregroundStyle(accentColor)
                     }
@@ -69,7 +70,8 @@ struct WelcomeControlStyleStep: View {
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .padding()
+                .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                .padding(.vertical)
                 .frame(maxWidth: .infinity, minHeight: isWide ? geo.size.height : 0, alignment: .center)
             }
         }
@@ -89,7 +91,8 @@ struct WelcomeControlStyleStep: View {
                 Text(title).font(.headline)
                 Spacer()
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                    .foregroundStyle(isSelected ? accentColor : .secondary)
+                    .font(.title3)
+                    .foregroundStyle(isSelected ? accentColor : Color.secondary.opacity(0.5))
                     .accessibilityHidden(true)
             }
             Text(desc)
@@ -99,15 +102,13 @@ struct WelcomeControlStyleStep: View {
                 .padding(.vertical, 6)
                 .accessibilityHidden(true)
         }
-        .padding()
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .overlay {
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(isSelected ? accentColor : Color.clear, lineWidth: 2)
+        .padding(18)
+        .welcomeCard(isSelected: isSelected, accentColor: accentColor)
+        .contentShape(RoundedRectangle(cornerRadius: WelcomeStyle.cardRadius, style: .continuous))
+        .tapButton {
+            UISelectionFeedbackGenerator().selectionChanged()
+            selection = style
         }
-        .contentShape(RoundedRectangle(cornerRadius: 16))
-        .tapButton { selection = style }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(title)
         .accessibilityValue(isSelected

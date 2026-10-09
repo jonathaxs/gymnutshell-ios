@@ -479,6 +479,7 @@
 "welcome.field.height.inches.placeholder" = "8";
 "welcome.field.birthday" = "Date of birth";
 "welcome.field.sex" = "Sex";
+"welcome.field.goal" = "Goal";
 "welcome.field.sex.male" = "Male";
 "welcome.field.sex.female" = "Female";
 "welcome.field.sex.other" = "Do not inform";
@@ -498,6 +499,9 @@
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Hello!";
 "welcome.step.start.intro" = "Gym Nutshell is a daily companion in your gym routine.\n\nTrack your nutrition, hydration, sleep, workouts, and other goals throughout the day.\n\nFollow your steps on the achievements and progress screen.";
+"welcome.start.feature.companion" = "A daily companion for your gym routine.";
+"welcome.start.feature.track" = "Track nutrition, hydration, sleep, workouts and other goals throughout the day.";
+"welcome.start.feature.progress" = "Follow your progress on the achievements and progress screens.";
 "welcome.step.start.subtitle" = "Let's go!\nStart now or restore from a backup.";
 "welcome.start.new" = "Start now";
 "welcome.start.restore" = "Restore backup";

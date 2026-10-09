@@ -58,20 +58,16 @@ struct WelcomeContextPanel: View {
                         Text(String(localized: "welcome.start.new", bundle: .gymNutshellCore))
                             .font(.headline)
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(sexColor)
-                            .foregroundStyle(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            .padding(.vertical, 4)
                     }
+                    .welcomeProminentButton(sexColor)
                     Button { isPanelImporting = true } label: {
                         Text(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
                             .font(.headline)
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(sexColor.opacity(0.15))
-                            .foregroundStyle(sexColor)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            .padding(.vertical, 4)
                     }
+                    .welcomeSecondaryButton(sexColor)
                 } else {
                     WelcomeContinueButton(
                         label: continueButtonLabel,
@@ -84,10 +80,9 @@ struct WelcomeContextPanel: View {
                         Text(String(localized: "welcome.button.back", bundle: .gymNutshellCore))
                             .font(.headline)
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .foregroundStyle(.secondary)
+                            .padding(.vertical, 4)
                     }
-                    .buttonStyle(.plain)
+                    .welcomeSecondaryButton(.secondary)
                 }
             }
             .padding(.horizontal)
@@ -140,13 +135,10 @@ struct WelcomeContinueButton: View {
             Text(label)
                 .font(.headline)
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(color)
-                .foregroundStyle(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .padding(.vertical, 4)
         }
+        .welcomeProminentButton(color)
         .disabled(!isEnabled)
-        .opacity(isEnabled ? 1.0 : 0.5)
     }
 }
 
@@ -163,11 +155,14 @@ struct WelcomeProgressBar: View {
         HStack(spacing: 6) {
             ForEach(0..<total, id: \.self) { index in
                 Capsule()
-                    .fill(index < current ? activeColor : Color.secondary.opacity(0.3))
-                    .frame(height: 4)
-                    .animation(.easeInOut(duration: 0.3), value: currentStep)
+                    .fill(index < current ? activeColor : Color.secondary.opacity(0.25))
+                    // A etapa atual fica um pouco mais longa, como nos indicadores do sistema.
+                    .frame(maxWidth: index == current - 1 ? .infinity : nil)
+                    .frame(width: index == current - 1 ? nil : 22, height: 6)
+                    .animation(.spring(response: 0.4, dampingFraction: 0.8), value: currentStep)
             }
         }
+        .frame(maxWidth: .infinity)
         // Capsules são puramente visuais, colapsa tudo num único elemento
         // de a11y que anuncia "Passo X de Y".
         .accessibilityElement(children: .ignore)

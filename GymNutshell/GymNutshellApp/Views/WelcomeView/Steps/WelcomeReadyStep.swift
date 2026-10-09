@@ -35,12 +35,14 @@ struct WelcomeReadyStep: View {
                         WelcomeStepHeader(
                             emoji: "🚀",
                             title: String(localized: "welcome.step.ready.title", bundle: .gymNutshellCore),
-                            subtitle: String(localized: "welcome.step.ready.subtitle", bundle: .gymNutshellCore)
+                            subtitle: String(localized: "welcome.step.ready.subtitle", bundle: .gymNutshellCore),
+                            accentColor: accentColor
                         )
                     }
 
                     permissionRow(
                         icon: "bell.badge.fill",
+                        iconColor: .red,
                         title: String(localized: "welcome.ready.notifications.title", bundle: .gymNutshellCore),
                         desc: String(localized: "welcome.ready.notifications.desc", bundle: .gymNutshellCore),
                         state: notificationsState,
@@ -51,6 +53,7 @@ struct WelcomeReadyStep: View {
                     if HealthKitManager.isAvailable {
                         permissionRow(
                             icon: "heart.fill",
+                            iconColor: .pink,
                             title: String(localized: "welcome.ready.health.title", bundle: .gymNutshellCore),
                             desc: String(localized: "welcome.ready.health.desc", bundle: .gymNutshellCore),
                             state: healthState,
@@ -64,7 +67,8 @@ struct WelcomeReadyStep: View {
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .padding()
+                .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                .padding(.vertical)
                 .frame(maxWidth: .infinity, minHeight: isWide ? geo.size.height : 0, alignment: .center)
             }
         }
@@ -83,16 +87,19 @@ struct WelcomeReadyStep: View {
 
     private func permissionRow(
         icon: String,
+        iconColor: Color,
         title: String,
         desc: String,
         state: PermissionState,
         action: @escaping () -> Void
     ) -> some View {
         HStack(spacing: 14) {
+            // Ícone em quadrado colorido, como nos Ajustes do sistema.
             Image(systemName: icon)
-                .font(.title2)
-                .foregroundStyle(accentColor)
-                .frame(width: 34)
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(.white)
+                .frame(width: 44, height: 44)
+                .background(iconColor.gradient, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
@@ -105,9 +112,11 @@ struct WelcomeReadyStep: View {
 
             switch state {
             case .idle:
-                Button(String(localized: "welcome.ready.allow", bundle: .gymNutshellCore), action: action)
-                    .buttonStyle(.borderedProminent)
-                    .tint(accentColor)
+                Button(action: action) {
+                    Text(String(localized: "welcome.ready.allow", bundle: .gymNutshellCore))
+                        .font(.subheadline.weight(.semibold))
+                }
+                .welcomeProminentButton(accentColor, size: .regular)
             case .allowed:
                 Label(String(localized: "welcome.ready.allowed", bundle: .gymNutshellCore), systemImage: "checkmark.circle.fill")
                     .font(.subheadline.weight(.medium))
@@ -122,9 +131,8 @@ struct WelcomeReadyStep: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .padding()
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .padding(16)
+        .welcomeCard()
     }
 
     // MARK: - Pedidos

@@ -42,6 +42,7 @@ enum WelcomeStep: Int, CaseIterable {
     /// Subtítulo opcional pra manter paridade com o cabeçalho narrow.
     var panelSubtitle: String? {
         switch self {
+        case .goal:    return String(localized: "welcome.step.goal.info.choose", bundle: .gymNutshellCore)
         case .summary: return String(localized: "welcome.step.summary.subtitle", bundle: .gymNutshellCore)
         case .controlStyle: return String(localized: "welcome.step.control.subtitle", bundle: .gymNutshellCore)
         case .theme:   return String(localized: "welcome.step.theme.subtitle", bundle: .gymNutshellCore)

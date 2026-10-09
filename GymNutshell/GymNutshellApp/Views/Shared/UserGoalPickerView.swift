@@ -29,33 +29,44 @@ struct UserGoalPickerView: View {
     private func goalCard(_ goal: UserGoal) -> some View {
         let isSelected = selection == goal
 
+        let color = goalColor(goal)
+
         return Button {
+            UISelectionFeedbackGenerator().selectionChanged()
             withAnimation(.easeInOut(duration: 0.15)) {
                 selection = goal
             }
         } label: {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 14) {
+                // Ícone do objetivo num quadrado arredondado com a cor do objetivo.
+                Image(systemName: goalIcon(goal))
+                    .font(.body.weight(.bold))
+                    .foregroundStyle(.white)
+                    .frame(width: 36, height: 36)
+                    .background(color, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: 2) {
                     Text(goal.label)
                         .font(.headline)
-                        .foregroundStyle(isSelected ? .white : .primary)
+                        .foregroundStyle(.primary)
 
                     Text(goalDescription(goal))
-                        .font(.caption)
-                        .foregroundStyle(isSelected ? .white.opacity(0.8) : .secondary)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
-                Spacer()
+                Spacer(minLength: 8)
 
-                if isSelected {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.white)
-                        .accessibilityHidden(true)
-                }
+                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                    .font(.title3)
+                    .foregroundStyle(isSelected ? color : Color.secondary.opacity(0.5))
+                    .accessibilityHidden(true)
             }
             .padding()
-            .background(isSelected ? goalColor(goal) : Color(.secondarySystemGroupedBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .welcomeCard(isSelected: isSelected, accentColor: color)
+            .contentShape(RoundedRectangle(cornerRadius: WelcomeStyle.cardRadius, style: .continuous))
         }
         .buttonStyle(.plain)
         // Combina nome + descrição num único label; estado de seleção entra no value.
@@ -73,6 +84,14 @@ struct UserGoalPickerView: View {
         case .bulking:     return .orange
         case .maintenance: return .accentColor
         case .cutting:     return .green
+        }
+    }
+
+    private func goalIcon(_ goal: UserGoal) -> String {
+        switch goal {
+        case .bulking:     return "arrow.up.right"
+        case .maintenance: return "equal"
+        case .cutting:     return "arrow.down.right"
         }
     }
 

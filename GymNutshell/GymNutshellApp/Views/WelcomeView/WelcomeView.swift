@@ -173,7 +173,21 @@ struct WelcomeView: View {
                     .frame(maxWidth: .infinity)
             }
         }
-        .background(Color(.systemGroupedBackground).ignoresSafeArea())
+        .background { welcomeBackground }
+    }
+
+    // Fundo agrupado com um brilho suave da cor de destaque no topo.
+    private var welcomeBackground: some View {
+        ZStack(alignment: .top) {
+            Color(.systemGroupedBackground)
+            LinearGradient(
+                colors: [sexColor.opacity(0.22), sexColor.opacity(0)],
+                startPoint: .top,
+                endPoint: .center
+            )
+        }
+        .animation(.easeInOut(duration: 0.4), value: sex)
+        .ignoresSafeArea()
     }
 
     // MARK: - Conteúdo da etapa (progress bar + step + botões opcionais)
@@ -183,22 +197,26 @@ struct WelcomeView: View {
         VStack(spacing: 0) {
 
             // Botão de voltar e barra de progresso no topo.
-            HStack(spacing: 12) {
-                // Botão de voltar, escondido na primeira etapa e no modo wide (botões ficam no painel).
+            HStack(spacing: 14) {
+                // Botão de voltar redondo de vidro, escondido na primeira etapa e no modo wide
+                // (no wide os botões ficam no painel).
                 if currentStep != .start && !isWide {
                     Button(action: goBack) {
                         Image(systemName: "chevron.left")
                             .font(.body.weight(.semibold))
+                            .frame(width: 24, height: 24)
                     }
-                    .buttonStyle(.plain)
+                    .welcomeCircleButton()
                     .accessibilityLabel(String(localized: "a11y.welcome.back.button",
                                                bundle: .gymNutshellCore))
+                    .transition(.scale.combined(with: .opacity))
                 }
 
                 WelcomeProgressBar(currentStep: currentStep, activeColor: sexColor)
             }
-            .padding(.horizontal)
-            .padding(.top, 20)
+            .frame(minHeight: 44)
+            .padding(.horizontal, WelcomeStyle.horizontalPadding)
+            .padding(.top, 12)
 
             // Conteúdo da etapa com transição de slide.
             Group {
@@ -207,10 +225,11 @@ struct WelcomeView: View {
                     WelcomeStartStep(
                         onRestore: onComplete,
                         onNewProfile: advance,
+                        accentColor: sexColor,
                         isWide: isWide
                     )
                 case .goal:
-                    WelcomeUserGoalStep(userGoal: $userGoal, sex: $sex, isWide: isWide)
+                    WelcomeUserGoalStep(userGoal: $userGoal, sex: $sex, accentColor: sexColor, isWide: isWide)
                 case .summary:
                     WelcomeSummaryStep(
                         goals: $calculatedGoals,
@@ -231,33 +250,34 @@ struct WelcomeView: View {
                 }
             }
             .frame(maxHeight: .infinity)
+            // Esmaece o conteúdo nas bordas, em vez de cortar seco no topo e acima do botão.
+            .mask {
+                VStack(spacing: 0) {
+                    LinearGradient(colors: [.black.opacity(0), .black], startPoint: .top, endPoint: .bottom)
+                        .frame(height: 16)
+                    Color.black
+                    LinearGradient(colors: [.black, .black.opacity(0)], startPoint: .top, endPoint: .bottom)
+                        .frame(height: 28)
+                }
+            }
             .transition(.asymmetric(
                 insertion: .move(edge: isGoingForward ? .trailing : .leading),
                 removal: .move(edge: isGoingForward ? .leading : .trailing)
             ))
             .animation(.easeInOut(duration: 0.3), value: currentStep)
 
-            // Botões de rodapé, só no modo narrow e fora da etapa inicial.
+            // Botão de rodapé, só no modo narrow e fora da etapa inicial.
+            // O voltar fica no botão redondo do topo.
             if currentStep != .start && !isWide {
-                VStack(spacing: 8) {
-                    WelcomeContinueButton(
-                        label: continueButtonLabel,
-                        color: continueButtonColor,
-                        isEnabled: isCurrentStepValid,
-                        action: advance
-                    )
-
-                    Button(action: goBack) {
-                        Text(String(localized: "welcome.button.back", bundle: .gymNutshellCore))
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .foregroundStyle(.secondary)
-                    }
-                    .buttonStyle(.plain)
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 32)
+                WelcomeContinueButton(
+                    label: continueButtonLabel,
+                    color: continueButtonColor,
+                    isEnabled: isCurrentStepValid,
+                    action: advance
+                )
+                .padding(.horizontal, WelcomeStyle.horizontalPadding)
+                .padding(.top, 8)
+                .padding(.bottom, 16)
             }
         }
         // O VStack externo ignora a safe area do teclado: os botões ficam fixos na base,

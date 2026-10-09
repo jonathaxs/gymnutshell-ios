@@ -40,7 +40,8 @@ struct WelcomeSummaryStep: View {
                     WelcomeStepHeader(
                         emoji: "✅",
                         title: String(localized: "welcome.step.summary.title", bundle: .gymNutshellCore),
-                        subtitle: String(localized: "welcome.step.summary.subtitle", bundle: .gymNutshellCore)
+                        subtitle: String(localized: "welcome.step.summary.subtitle", bundle: .gymNutshellCore),
+                        accentColor: accentColor
                     )
                 }
 
@@ -120,11 +121,14 @@ struct WelcomeSummaryStep: View {
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .padding(.top, -10)
+                    .padding(.top, -12)
                 }
             }
-            .padding()
+            .padding(.horizontal, WelcomeStyle.horizontalPadding)
+            .padding(.vertical)
         }
+        // Botões − / + seguem a cor de destaque.
+        .tint(accentColor)
     }
 
     // MARK: - Seção de categoria (não colapsável no onboarding)
@@ -133,13 +137,11 @@ struct WelcomeSummaryStep: View {
         _ category: GoalCategory,
         @ViewBuilder content: () -> Content
     ) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(category.displayName)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
-                .padding(.horizontal, 4)
-
-            content()
+        VStack(alignment: .leading, spacing: 8) {
+            WelcomeSectionLabel(text: category.displayName)
+            WelcomeGroupedCard {
+                content()
+            }
         }
     }
 
@@ -166,10 +168,13 @@ struct WelcomeSummaryStep: View {
         let value = goals?[keyPath: keyPath] ?? 0
         return HStack(spacing: 12) {
             Text(icon)
+                .frame(width: 24)
                 .accessibilityHidden(true)
             Text(label)
                 .font(.subheadline)
-            Spacer()
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+            Spacer(minLength: 4)
             GoalStepper(
                 valueText: format(value),
                 label: label,
@@ -179,9 +184,9 @@ struct WelcomeSummaryStep: View {
                 onIncrease: { adjust(keyPath, by: step, range: range) }
             )
         }
-        .padding()
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .padding(.leading, 16)
+        .padding(.trailing, 8)
+        .frame(minHeight: 52)
     }
 
 }
@@ -202,6 +207,7 @@ private struct GoalStepper: View {
             Button(action: onDecrease) {
                 Image(systemName: "minus.circle.fill")
                     .font(.title2)
+                    .symbolRenderingMode(.hierarchical)
                     .frame(minWidth: 40, minHeight: 44)
             }
             .disabled(!canDecrease)
@@ -210,6 +216,8 @@ private struct GoalStepper: View {
             Text(valueText)
                 .font(.subheadline.bold())
                 .monospacedDigit()
+                .lineLimit(1)
+                .fixedSize()
                 .frame(minWidth: 64)
                 .accessibilityLabel(label)
                 .accessibilityValue(valueText)
@@ -217,6 +225,7 @@ private struct GoalStepper: View {
             Button(action: onIncrease) {
                 Image(systemName: "plus.circle.fill")
                     .font(.title2)
+                    .symbolRenderingMode(.hierarchical)
                     .frame(minWidth: 40, minHeight: 44)
             }
             .disabled(!canIncrease)
@@ -245,8 +254,9 @@ private struct OptionalTrackingGoalRow: View {
             // Bloco informativo (emoji + nome + badge + valor) combina num único
             // elemento de a11y; botão Add/Remove fica FORA do combine pra ser
             // focável separadamente (mesmo padrão do TrackingGoalRow do Today).
-            HStack {
+            HStack(spacing: 12) {
                 Text(icon)
+                    .frame(width: 24)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(label)
@@ -273,11 +283,11 @@ private struct OptionalTrackingGoalRow: View {
             if isIncluded {
                 HStack(spacing: 0) {
                     Button(action: onDecrease) {
-                        Image(systemName: "minus.circle.fill").font(.title2).frame(minWidth: 40, minHeight: 44)
+                        Image(systemName: "minus.circle.fill").font(.title2).symbolRenderingMode(.hierarchical).frame(minWidth: 40, minHeight: 44)
                     }
                     .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
                     Button(action: onIncrease) {
-                        Image(systemName: "plus.circle.fill").font(.title2).frame(minWidth: 40, minHeight: 44)
+                        Image(systemName: "plus.circle.fill").font(.title2).symbolRenderingMode(.hierarchical).frame(minWidth: 40, minHeight: 44)
                     }
                     .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
                 }
@@ -309,8 +319,9 @@ private struct OptionalTrackingGoalRow: View {
                 ? "a11y.welcome.optional.remove.hint"
                 : "a11y.welcome.optional.add.hint", bundle: .gymNutshellCore))
         }
-        .padding()
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .padding(.leading, 16)
+        .padding(.trailing, 12)
+        .padding(.vertical, 8)
+        .frame(minHeight: 52)
     }
 }
