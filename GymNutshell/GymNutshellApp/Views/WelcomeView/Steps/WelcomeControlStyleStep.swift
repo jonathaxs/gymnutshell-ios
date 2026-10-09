@@ -34,34 +34,13 @@ struct WelcomeControlStyleStep: View {
                     card(.slider,
                          title: String(localized: "welcome.control.slider", bundle: .gymNutshellCore),
                          desc: String(localized: "welcome.control.slider.desc", bundle: .gymNutshellCore)) {
-                        // Prévia estática, não interativa.
-                        Capsule()
-                            .fill(Color.secondary.opacity(0.25))
-                            .frame(height: 6)
-                            .overlay(alignment: .leading) {
-                                Capsule().fill(accentColor).frame(width: 90, height: 6)
-                            }
-                            .overlay(alignment: .leading) {
-                                Circle().fill(.white).frame(width: 24, height: 24)
-                                    .shadow(radius: 2, y: 1)
-                                    .offset(x: 78)
-                            }
+                        SliderPreview(color: accentColor)
                     }
 
                     card(.stepper,
                          title: String(localized: "welcome.control.stepper", bundle: .gymNutshellCore),
                          desc: String(localized: "welcome.control.stepper.desc", bundle: .gymNutshellCore)) {
-                        HStack(spacing: 12) {
-                            Image(systemName: "minus.circle.fill").font(.title).symbolRenderingMode(.hierarchical)
-                            Capsule()
-                                .fill(Color.secondary.opacity(0.25))
-                                .frame(height: 6)
-                                .overlay(alignment: .leading) {
-                                    Capsule().fill(accentColor).frame(width: 90, height: 6)
-                                }
-                            Image(systemName: "plus.circle.fill").font(.title).symbolRenderingMode(.hierarchical)
-                        }
-                        .foregroundStyle(accentColor)
+                        StepperPreview(color: accentColor)
                     }
 
                     Text(String(localized: "welcome.control.footer", bundle: .gymNutshellCore))
@@ -114,5 +93,49 @@ struct WelcomeControlStyleStep: View {
         .accessibilityValue(isSelected
                             ? String(localized: "a11y.selected", bundle: .gymNutshellCore)
                             : String(localized: "a11y.not.selected", bundle: .gymNutshellCore))
+    }
+}
+
+// MARK: - Prévia do controle − / +
+
+/// Barra à esquerda e os dois botões juntos à direita, como na Today. Estática, sem toque.
+struct StepperPreview: View {
+
+    let color: Color
+
+    var body: some View {
+        HStack(spacing: 14) {
+            Capsule()
+                .fill(Color.secondary.opacity(0.25))
+                .frame(height: 6)
+                .overlay(alignment: .leading) {
+                    Capsule().fill(color).frame(width: 90, height: 6)
+                }
+            HStack(spacing: 8) {
+                RoundStepButton(kind: .minus, size: 44, color: color) {}
+                RoundStepButton(kind: .plus, size: 44, color: color) {}
+            }
+            .allowsHitTesting(false)
+        }
+    }
+}
+
+/// Prévia estática do slider (sem toque).
+struct SliderPreview: View {
+
+    let color: Color
+
+    var body: some View {
+        Capsule()
+            .fill(Color.secondary.opacity(0.25))
+            .frame(height: 6)
+            .overlay(alignment: .leading) {
+                Capsule().fill(color).frame(width: 90, height: 6)
+            }
+            .overlay(alignment: .leading) {
+                Circle().fill(.white).frame(width: 24, height: 24)
+                    .shadow(radius: 2, y: 1)
+                    .offset(x: 78)
+            }
     }
 }

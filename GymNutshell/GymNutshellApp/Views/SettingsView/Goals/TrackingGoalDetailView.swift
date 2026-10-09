@@ -43,25 +43,19 @@ struct TrackingGoalDetailView: View {
     var body: some View {
         Form {
             Section {
-                Stepper(value: $value, in: currentIncrement...99999, step: currentIncrement) {
-                    HStack {
-                        Text(String(localized: "settings.goaldetail.stepper", bundle: .gymNutshellCore))
-                        Spacer()
-                        Text("\(value) \(unit)")
-                            .font(.body.monospacedDigit())
-                            .foregroundStyle(.secondary)
-                    }
-                }
+                stepRow(title: String(localized: "settings.goaldetail.stepper", bundle: .gymNutshellCore),
+                        valueText: "\(value) \(unit)",
+                        canDecrease: value - currentIncrement >= currentIncrement,
+                        canIncrease: value + currentIncrement <= 99999,
+                        onDecrease: { value -= currentIncrement },
+                        onIncrease: { value += currentIncrement })
 
-                Stepper(value: $currentIncrement, in: 1...99999, step: 1) {
-                    HStack {
-                        Text(String(localized: "settings.goaldetail.increment.stepper", bundle: .gymNutshellCore))
-                        Spacer()
-                        Text("\(currentIncrement) \(unit)")
-                            .font(.body.monospacedDigit())
-                            .foregroundStyle(.secondary)
-                    }
-                }
+                stepRow(title: String(localized: "settings.goaldetail.increment.stepper", bundle: .gymNutshellCore),
+                        valueText: "\(currentIncrement) \(unit)",
+                        canDecrease: currentIncrement > 1,
+                        canIncrease: currentIncrement < 99999,
+                        onDecrease: { currentIncrement -= 1 },
+                        onIncrease: { currentIncrement += 1 })
             } footer: {
                 Text(String(localized: "settings.goaldetail.footer", bundle: .gymNutshellCore))
                 + Text("\n")
@@ -86,6 +80,27 @@ struct TrackingGoalDetailView: View {
         .onAppear {
             load()
         }
+    }
+
+    // MARK: - Linha com − / +
+
+    private func stepRow(title: String, valueText: String, canDecrease: Bool, canIncrease: Bool,
+                         onDecrease: @escaping () -> Void, onIncrease: @escaping () -> Void) -> some View {
+        HStack(spacing: 8) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                Text(valueText)
+                    .font(.subheadline.monospacedDigit())
+                    .foregroundStyle(.secondary)
+            }
+            .accessibilityElement(children: .combine)
+            Spacer(minLength: 8)
+            RoundStepButton(kind: .minus, size: 46, isEnabled: canDecrease, action: onDecrease)
+                .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), title))
+            RoundStepButton(kind: .plus, size: 46, isEnabled: canIncrease, action: onIncrease)
+                .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), title))
+        }
+        .buttonStyle(.borderless)
     }
 
     // MARK: - Carregar / Salvar

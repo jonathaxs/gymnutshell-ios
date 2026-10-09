@@ -23,6 +23,9 @@ struct NotificationsSettingsView: View {
     @State private var authStatus: UNAuthorizationStatus = .notDetermined
     @State private var showDeniedAlert = false
 
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
     private var isAuthorized: Bool {
         authStatus == .authorized || authStatus == .provisional
     }
@@ -32,9 +35,18 @@ struct NotificationsSettingsView: View {
             // MARK: Autorização
             if !isAuthorized {
                 Section {
-                    Button(String(localized: "settings.notifications.authorize.button", bundle: .gymNutshellCore)) {
-                        requestAuthorization()
-                    }
+                    // Negado: o botão Permitir cai no alerta que leva aos Ajustes do iOS.
+                    PermissionCard(
+                        icon: "bell.badge.fill",
+                        iconColor: .red,
+                        title: String(localized: "welcome.ready.notifications.title", bundle: .gymNutshellCore),
+                        desc: String(localized: "welcome.ready.notifications.desc", bundle: .gymNutshellCore),
+                        state: .idle,
+                        accentColor: accentColor,
+                        action: requestAuthorization
+                    )
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
                 } footer: {
                     Text(String(localized: "settings.notifications.authorize.footer", bundle: .gymNutshellCore))
                 }

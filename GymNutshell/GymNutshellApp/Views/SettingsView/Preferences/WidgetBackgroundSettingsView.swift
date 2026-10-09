@@ -31,45 +31,40 @@ struct WidgetBackgroundSettingsView: View {
     private static let defaultPickedColor: Color = Color(red: 0.0, green: 0.478, blue: 1.0)
 
     var body: some View {
-        Form {
-            Section {
-                Picker(String(localized: "widgetBackground.mode.label", bundle: .gymNutshellCore), selection: $mode) {
-                    Text(String(localized: "widgetBackground.mode.system", bundle: .gymNutshellCore)).tag(WidgetBackgroundMode.system)
-                    Text(String(localized: "widgetBackground.mode.accent", bundle: .gymNutshellCore)).tag(WidgetBackgroundMode.accent)
-                    Text(String(localized: "widgetBackground.mode.custom", bundle: .gymNutshellCore)).tag(WidgetBackgroundMode.custom)
-                }
-                .pickerStyle(.segmented)
-                .labelsHidden()
-            } footer: {
-                Text(footerText(for: mode))
-            }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
 
-            if mode == .custom {
-                Section {
-                    ColorPicker(
-                        String(localized: "widgetBackground.picker", bundle: .gymNutshellCore),
-                        selection: $pickedColor,
-                        supportsOpacity: false
-                    )
-                }
-            }
-
-            if mode != .system {
-                Section(String(localized: "widgetBackground.preview", bundle: .gymNutshellCore)) {
+                // Prévia com o anel real, no tamanho pequeno e médio.
+                VStack(alignment: .leading, spacing: 8) {
+                    AppSectionLabel(text: String(localized: "widgetBackground.preview", bundle: .gymNutshellCore))
                     HStack(spacing: 16) {
-                        previewTile(size: 90)
-                        previewTile(size: 90, wide: true)
+                        previewTile(size: 110)
+                        previewTile(size: 110, wide: true)
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 8)
-                    .listRowBackground(Color.clear)
-                    // Previews puramente visuais, ocultos do VoiceOver pra evitar
-                    // ruído ("imagem, imagem" enquanto o usuário ajusta as opções).
+                    // Previews puramente visuais, ocultos do VoiceOver.
                     .accessibilityHidden(true)
                 }
+
+                VStack(alignment: .leading, spacing: 12) {
+                    AppSectionLabel(text: String(localized: "widgetBackground.mode.label", bundle: .gymNutshellCore))
+                    optionCard(.system, title: String(localized: "widgetBackground.mode.system", bundle: .gymNutshellCore))
+                    optionCard(.accent, title: String(localized: "widgetBackground.mode.accent", bundle: .gymNutshellCore))
+                    optionCard(.custom, title: String(localized: "widgetBackground.mode.custom", bundle: .gymNutshellCore)) {
+                        ColorPicker(
+                            String(localized: "widgetBackground.picker", bundle: .gymNutshellCore),
+                            selection: $pickedColor,
+                            supportsOpacity: false
+                        )
+                    }
+                }
             }
+            .padding(.horizontal, AppStyle.horizontalPadding)
+            .padding(.vertical)
+            .frame(maxWidth: 600)
+            .frame(maxWidth: .infinity)
         }
-        .scrollContentBackground(.hidden)
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle(String(localized: "widgetBackground.title", bundle: .gymNutshellCore))
         .navigationBarTitleDisplayMode(.inline)
@@ -106,17 +101,73 @@ struct WidgetBackgroundSettingsView: View {
         }
     }
 
+    // MARK: - Card de opção
+
+    private func optionCard<Extra: View>(
+        _ value: WidgetBackgroundMode,
+        title: String,
+        @ViewBuilder extra: () -> Extra = { EmptyView() }
+    ) -> some View {
+        let isSelected = mode == value
+        return VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text(title).font(.headline)
+                Spacer()
+                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                    .font(.title3)
+                    .foregroundStyle(isSelected ? accentColor : Color.secondary.opacity(0.5))
+                    .accessibilityHidden(true)
+            }
+            Text(footerText(for: value))
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            if value == .custom && isSelected {
+                extra()
+            }
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .appCard(isSelected: isSelected, accentColor: accentColor)
+        .contentShape(RoundedRectangle(cornerRadius: AppStyle.cardRadius, style: .continuous))
+        .tapButton {
+            UISelectionFeedbackGenerator().selectionChanged()
+            mode = value
+        }
+        .accessibilityElement(children: value == .custom && isSelected ? .contain : .combine)
+        .accessibilityLabel(title)
+        .accessibilityValue(isSelected
+                            ? String(localized: "a11y.selected", bundle: .gymNutshellCore)
+                            : String(localized: "a11y.not.selected", bundle: .gymNutshellCore))
+    }
+
     // MARK: - Preview tile
 
     @ViewBuilder
     private func previewTile(size: CGFloat, wide: Bool = false) -> some View {
         let width: CGFloat = wide ? size * 2.1 : size
+        let isSystem = mode == .system
         let sourceColor: Color = mode == .accent ? accentColor : pickedColor
-        RoundedRectangle(cornerRadius: 22, style: .continuous)
-            .fill(WidgetBackground.gradient(from: sourceColor))
+        let textColor: Color = isSystem ? .primary : .white
+        RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .fill(isSystem
+                  ? AnyShapeStyle(Color(.secondarySystemGroupedBackground))
+                  : AnyShapeStyle(WidgetBackground.gradient(from: sourceColor)))
             .frame(width: width, height: size)
+            .overlay {
+                HStack(spacing: 12) {
+                    SegmentedProgressRing(progress: 0.62, lineWidth: size * 0.09, animated: false) {
+                        Text("💪").font(.system(size: size * 0.26))
+                    }
+                    .frame(width: size * 0.62, height: size * 0.62)
+                    if wide {
+                        Text("62%")
+                            .font(.system(size: size * 0.3, weight: .bold, design: .rounded))
+                            .foregroundStyle(textColor)
+                    }
+                }
+            }
             .overlay(
-                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .stroke(Color.primary.opacity(0.08), lineWidth: 0.5)
             )
     }

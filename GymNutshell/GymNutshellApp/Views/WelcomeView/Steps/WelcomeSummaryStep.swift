@@ -186,7 +186,7 @@ struct WelcomeSummaryStep: View {
         }
         .padding(.leading, 16)
         .padding(.trailing, 8)
-        .frame(minHeight: 52)
+        .frame(minHeight: 60)
     }
 
 }
@@ -203,35 +203,21 @@ private struct GoalStepper: View {
     let onIncrease: () -> Void
 
     var body: some View {
-        HStack(spacing: 0) {
-            Button(action: onDecrease) {
-                Image(systemName: "minus.circle.fill")
-                    .font(.title2)
-                    .symbolRenderingMode(.hierarchical)
-                    .frame(minWidth: 40, minHeight: 44)
-            }
-            .disabled(!canDecrease)
-            .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
-
+        HStack(spacing: 8) {
             Text(valueText)
                 .font(.subheadline.bold())
                 .monospacedDigit()
                 .lineLimit(1)
                 .fixedSize()
-                .frame(minWidth: 64)
+                .padding(.trailing, 4)
                 .accessibilityLabel(label)
                 .accessibilityValue(valueText)
 
-            Button(action: onIncrease) {
-                Image(systemName: "plus.circle.fill")
-                    .font(.title2)
-                    .symbolRenderingMode(.hierarchical)
-                    .frame(minWidth: 40, minHeight: 44)
-            }
-            .disabled(!canIncrease)
-            .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
+            RoundStepButton(kind: .minus, size: 46, isEnabled: canDecrease, action: onDecrease)
+                .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
+            RoundStepButton(kind: .plus, size: 46, isEnabled: canIncrease, action: onIncrease)
+                .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
         }
-        .buttonStyle(.borderless)
     }
 }
 
@@ -281,17 +267,12 @@ private struct OptionalTrackingGoalRow: View {
 
             // − / + só aparecem quando a meta opcional está incluída.
             if isIncluded {
-                HStack(spacing: 0) {
-                    Button(action: onDecrease) {
-                        Image(systemName: "minus.circle.fill").font(.title2).symbolRenderingMode(.hierarchical).frame(minWidth: 40, minHeight: 44)
-                    }
-                    .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
-                    Button(action: onIncrease) {
-                        Image(systemName: "plus.circle.fill").font(.title2).symbolRenderingMode(.hierarchical).frame(minWidth: 40, minHeight: 44)
-                    }
-                    .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
+                HStack(spacing: 8) {
+                    RoundStepButton(kind: .minus, size: 46, action: onDecrease)
+                        .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
+                    RoundStepButton(kind: .plus, size: 46, action: onIncrease)
+                        .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
                 }
-                .buttonStyle(.borderless)
             }
 
             Button {
@@ -304,14 +285,15 @@ private struct OptionalTrackingGoalRow: View {
                 }
                 isIncluded.toggle()
             } label: {
-                Text(isIncluded
-                     ? String(localized: "welcome.option.remove", bundle: .gymNutshellCore)
-                     : String(localized: "welcome.option.add", bundle: .gymNutshellCore))
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(isIncluded ? .red : accentColor)
+                Label(isIncluded
+                      ? String(localized: "welcome.option.remove", bundle: .gymNutshellCore)
+                      : String(localized: "welcome.option.add", bundle: .gymNutshellCore),
+                      systemImage: isIncluded ? "xmark" : "plus")
+                    .font(.subheadline.weight(.semibold))
                     .scaleEffect(buttonScale)
             }
-            .buttonStyle(.plain)
+            .appSecondaryButton(isIncluded ? .red : accentColor)
+            .controlSize(.regular)
             .accessibilityLabel(String(format: String(localized: isIncluded
                 ? "a11y.welcome.optional.remove.label.format"
                 : "a11y.welcome.optional.add.label.format", bundle: .gymNutshellCore), label))
@@ -322,6 +304,6 @@ private struct OptionalTrackingGoalRow: View {
         .padding(.leading, 16)
         .padding(.trailing, 12)
         .padding(.vertical, 8)
-        .frame(minHeight: 52)
+        .frame(minHeight: 60)
     }
 }

@@ -20,25 +20,48 @@ struct ProfileSettingsView: View {
     @AppStorage(UserProfile.favoriteExerciseKey) private var favoriteExerciseRaw: String = FavoriteExercise.unknown.rawValue
 
     var body: some View {
-        Form {
-            Section(String(localized: "settings.profile.section.personal", bundle: .gymNutshellCore)) {
-                LabeledContent(String(localized: "settings.profile.name", bundle: .gymNutshellCore)) {
-                    TextField(String(localized: "settings.profile.name.placeholder", bundle: .gymNutshellCore), text: $name)
-                        .multilineTextAlignment(.trailing)
-                        .submitLabel(.done)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+
+                // Sexo: define a coluna da tabela de metas, a cor e os emojis do app.
+                VStack(alignment: .leading, spacing: 8) {
+                    AppSectionLabel(text: String(localized: "welcome.field.sex", bundle: .gymNutshellCore))
+                    SexPicker(sex: $sex)
                 }
-                Picker(String(localized: "settings.profile.sex", bundle: .gymNutshellCore), selection: $sex) {
-                    Text(String(localized: "profile.sex.male", bundle: .gymNutshellCore)).tag("male")
-                    Text(String(localized: "profile.sex.female", bundle: .gymNutshellCore)).tag("female")
-                }
-                Picker(String(localized: "settings.profile.favoriteExercise", bundle: .gymNutshellCore),
-                       selection: $favoriteExerciseRaw) {
-                    ForEach(FavoriteExercise.allCases) { exercise in
-                        Text(exercise.label).tag(exercise.rawValue)
+
+                // Campos opcionais: nome e exercício favorito.
+                VStack(alignment: .leading, spacing: 8) {
+                    AppSectionLabel(text: String(localized: "settings.profile.section.optional", bundle: .gymNutshellCore))
+                    AppGroupedCard(dividerInset: 16) {
+                        LabeledContent(String(localized: "settings.profile.name", bundle: .gymNutshellCore)) {
+                            TextField(String(localized: "settings.profile.name.placeholder", bundle: .gymNutshellCore), text: $name)
+                                .multilineTextAlignment(.trailing)
+                                .submitLabel(.done)
+                        }
+                        .padding(.horizontal, 16)
+                        .frame(minHeight: 52)
+
+                        HStack {
+                            Text(String(localized: "settings.profile.favoriteExercise", bundle: .gymNutshellCore))
+                            Spacer()
+                            Picker("", selection: $favoriteExerciseRaw) {
+                                ForEach(FavoriteExercise.allCases) { exercise in
+                                    Text(exercise.label).tag(exercise.rawValue)
+                                }
+                            }
+                            .labelsHidden()
+                        }
+                        .padding(.horizontal, 16)
+                        .frame(minHeight: 52)
                     }
                 }
             }
+            .padding(.horizontal, AppStyle.horizontalPadding)
+            .padding(.vertical)
+            .frame(maxWidth: 600)
+            .frame(maxWidth: .infinity)
         }
+        .background(Color(.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle(String(localized: "settings.section.physicaldata", bundle: .gymNutshellCore))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {

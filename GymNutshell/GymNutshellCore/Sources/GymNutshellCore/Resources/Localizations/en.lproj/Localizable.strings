@@ -238,6 +238,7 @@
 
 /* ProfileSettingsView.swift */
 "settings.profile.section.personal" = "Personal";
+"settings.profile.section.optional" = "Optional";
 "settings.profile.name" = "Name";
 "settings.profile.name.placeholder" = "Your name";
 "settings.profile.favoriteExercise" = "Favorite exercise";

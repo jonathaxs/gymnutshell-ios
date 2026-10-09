@@ -161,28 +161,26 @@ struct TrackingGoalRowView: View {
 
     // MARK: - Controle − / +
 
-    /// Alternativa ao slider: botões − / + com uma barra de progresso no meio.
+    /// Alternativa ao slider: barra de progresso à esquerda e os botões − / + juntos à direita.
     /// Cada toque anda um passo (`increment`), sempre dentro de [0, goal].
     private var stepperControl: some View {
-        HStack(spacing: 12) {
-            Button { step(by: -safeStep) } label: {
-                Image(systemName: "minus.circle.fill").font(.title).frame(minWidth: 44, minHeight: 44)
-            }
-            .disabled(value <= 0)
-            .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), title))
-
+        HStack(spacing: 14) {
             ProgressView(value: clampedProgress)
                 .tint(progressTint)
                 .accessibilityHidden(true)
 
-            Button { step(by: safeStep) } label: {
-                Image(systemName: "plus.circle.fill").font(.title).frame(minWidth: 44, minHeight: 44)
+            HStack(spacing: 8) {
+                RoundStepButton(kind: .minus, size: 48, color: accentColor, isEnabled: value > 0) {
+                    step(by: -safeStep)
+                }
+                .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), title))
+
+                RoundStepButton(kind: .plus, size: 48, color: accentColor, isEnabled: value < safeGoal) {
+                    step(by: safeStep)
+                }
+                .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), title))
             }
-            .disabled(value >= safeGoal)
-            .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), title))
         }
-        .buttonStyle(.borderless)
-        .tint(accentColor)
     }
 
     private func step(by delta: Int) {
