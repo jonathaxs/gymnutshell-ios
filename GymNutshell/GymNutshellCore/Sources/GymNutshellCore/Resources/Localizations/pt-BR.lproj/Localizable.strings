@@ -697,12 +697,13 @@
 
 
 /* ProgressRingInfoView.swift */
-"ring.info.intro"             = "O anel apresenta a média de quantos % você completou das suas metas.";
-"ring.info.section.colors"    = "Cores do anel";
+"ring.info.intro"             = "O anel apresenta a média de quantos % você completou das suas metas. Cada segmento colorido vale 20%.";
+"ring.info.section.colors"    = "Segmentos do anel";
 "ring.info.color.red"         = "Começando";
 "ring.info.color.orange"      = "No caminho";
 "ring.info.color.green"       = "Muito bem";
 "ring.info.color.cyan"        = "Quase lá";
+"ring.info.color.purple"      = "Reta final";
 "ring.info.color.blue"        = "Meta concluída";
 "ring.info.level.label"       = "Nível ";
 "info.next.prefix"            = "Restam ";

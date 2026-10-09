@@ -12,7 +12,7 @@ import SwiftUI
 import GymNutshellCore
 
 /// Exibe uma explicação sobre o anel de progresso diário:
-/// o que ele representa, como a porcentagem é calculada e o que cada cor significa.
+/// o que ele representa, como a porcentagem é calculada e o que cada segmento significa.
 struct ProgressRingInfoView: View {
 
     var isSheet: Bool = false
@@ -24,25 +24,27 @@ struct ProgressRingInfoView: View {
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
-    // Próximo nível de cor do anel a alcançar, com nome, cor e distância em pontos percentuais.
-    // nil quando o anel já está em 100% (nível máximo).
+    // Próximo segmento do anel a alcançar, com nome, cor e distância em pontos percentuais.
+    // nil quando o anel já está em 100% (completo).
     private var ringNextLevel: (percent: Int, name: String, color: Color, level: Int)? {
         guard let p = currentPercent, p < 100 else { return nil }
-        if p < 33 { return (33 - p,  String(localized: "ring.info.color.orange", bundle: .gymNutshellCore), .orange, 2) }
-        if p < 66 { return (66 - p,  String(localized: "ring.info.color.green", bundle: .gymNutshellCore),  .green,  3) }
-        if p < 90 { return (90 - p,  String(localized: "ring.info.color.cyan", bundle: .gymNutshellCore),   .cyan,   4) }
-        return            (100 - p, String(localized: "ring.info.color.blue", bundle: .gymNutshellCore),   .blue,   5)
+        if p < 20 { return (20 - p,  String(localized: "ring.info.color.orange", bundle: .gymNutshellCore), .yellow, 2) }
+        if p < 40 { return (40 - p,  String(localized: "ring.info.color.green", bundle: .gymNutshellCore),  .green,  3) }
+        if p < 60 { return (60 - p,  String(localized: "ring.info.color.cyan", bundle: .gymNutshellCore),   .blue,   4) }
+        if p < 80 { return (80 - p,  String(localized: "ring.info.color.purple", bundle: .gymNutshellCore), .purple, 5) }
+        return            (100 - p, String(localized: "ring.info.color.blue", bundle: .gymNutshellCore),   .purple, 6)
     }
 
-    // Cores do anel em ordem crescente de progresso.
+    // Segmentos do anel na ordem do sentido horário, 20% cada (mesmas cores do SegmentedProgressRing).
     private var ringColors: [(label: String, color: Color, range: String)] {
         let suffix = String(localized: "tier.info.range.suffix", bundle: .gymNutshellCore)
+        let colors = SegmentedProgressRing<EmptyView>.segmentColors
         return [
-            (String(localized: "ring.info.color.red", bundle: .gymNutshellCore),    .red,    "0 – 32%" + suffix),
-            (String(localized: "ring.info.color.orange", bundle: .gymNutshellCore), .orange, "33 – 65%" + suffix),
-            (String(localized: "ring.info.color.green", bundle: .gymNutshellCore),  .green,  "66 – 89%" + suffix),
-            (String(localized: "ring.info.color.cyan", bundle: .gymNutshellCore),   .cyan,   "90 – 99%" + suffix),
-            (String(localized: "ring.info.color.blue", bundle: .gymNutshellCore),   .blue,   "100%" + suffix)
+            (String(localized: "ring.info.color.red", bundle: .gymNutshellCore),    colors[0], "0 – 20%" + suffix),
+            (String(localized: "ring.info.color.orange", bundle: .gymNutshellCore), colors[1], "21 – 40%" + suffix),
+            (String(localized: "ring.info.color.green", bundle: .gymNutshellCore),  colors[2], "41 – 60%" + suffix),
+            (String(localized: "ring.info.color.cyan", bundle: .gymNutshellCore),   colors[3], "61 – 80%" + suffix),
+            (String(localized: "ring.info.color.purple", bundle: .gymNutshellCore), colors[4], "81 – 100%" + suffix)
         ]
     }
 
@@ -50,6 +52,15 @@ struct ProgressRingInfoView: View {
         List {
             // Intro + frase de progresso na mesma seção pra reduzir o espaço entre eles.
             Section {
+                // Prévia do anel com o progresso atual (ou cheio, quando aberto pelos Ajustes).
+                SegmentedProgressRing(progress: Double(currentPercent ?? 100) / 100, lineWidth: 10) {
+                    EmptyView()
+                }
+                .frame(width: 96, height: 96)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 4)
+                .accessibilityHidden(true)
+
                 Text(String(localized: "ring.info.intro", bundle: .gymNutshellCore))
                     .font(.body)
                     .foregroundStyle(.secondary)

@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayHeroView.swift
 //
 //  Propósito: Bloco hero fixo exibido no topo (retrato) ou na coluna esquerda (landscape).
-//             Contém: botão de data, nível de conquista + anel de progresso, frase do próximo nível.
+//             Contém: botão de data e anel de progresso com o emoji da conquista no centro.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -17,8 +17,7 @@ struct TodayHeroView: View {
     let dailyAchievement: DailyAchievement
     let dailyProgress: Double
     let selectedTheme: AppTheme
-    /// Quando true, conquista e progresso ficam empilhados verticalmente em vez de lado a lado.
-    /// Usado apenas no iPad, onde sobra altura suficiente pra esse formato.
+    /// Quando true (iPad, sobra altura), o anel fica maior.
     var verticalLayout: Bool = false
 
     // Sexo do usuário, usado pra nomes de tier com gênero correto.
@@ -98,39 +97,16 @@ struct TodayHeroView: View {
                                                      bundle: .gymNutshellCore), formattedDate))
             .accessibilityHint(String(localized: "today.hero.date.a11y.hint", bundle: .gymNutshellCore))
 
-            // Nível de conquista e anel de progresso, lado a lado no iPhone,
-            // empilhados verticalmente no iPad pra aproveitar a altura extra.
-            // Em ambos os layouts (vertical e horizontal) o texto "Progresso" agora
-            // vive DENTRO do TodayProgressRingView via parâmetro `headerText`. Isso
-            // garante (a) que ele escale junto no press e (b) que VoiceOver leia
-            // anel + label como um único elemento.
-            let progressHeader = String(localized: "today.ring.label.progresso",
-                                        bundle: .gymNutshellCore)
-
-            if verticalLayout {
-                VStack(spacing: 24) {
-                    TodayProgressRingView(progress: dailyProgress,
-                                          onTap: { showRingSheet = true },
-                                          headerText: progressHeader)
-                    DailyTierView(achievement: dailyAchievement, theme: selectedTheme,
-                                  onTap: { showTierSheet = true })
-                }
-                .padding(.vertical, 8)
-            } else {
-                // Modo horizontal (iPhone / iPad janela pequena): progresso à esquerda,
-                // conquista à direita.
-                HStack(spacing: 0) {
-                    TodayProgressRingView(progress: dailyProgress,
-                                          onTap: { showRingSheet = true },
-                                          headerText: progressHeader)
-                        .frame(maxWidth: .infinity)
-
-                    DailyTierView(achievement: dailyAchievement, theme: selectedTheme,
-                                  onTap: { showTierSheet = true })
-                        .frame(maxWidth: .infinity)
-                }
-                .padding(.vertical, 4)
-            }
+            // Anel de 5 segmentos com o emoji da conquista no centro e a porcentagem abaixo.
+            // Substitui o par anel + bloco de conquista lado a lado da 1.0.
+            TodayProgressRingView(progress: dailyProgress,
+                                  achievement: dailyAchievement,
+                                  theme: selectedTheme,
+                                  onTap: { showRingSheet = true },
+                                  onEmojiTap: { showTierSheet = true },
+                                  size: verticalLayout ? 180 : 150)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, verticalLayout ? 8 : 4)
 
         }
         .sheet(isPresented: $showTierSheet) {

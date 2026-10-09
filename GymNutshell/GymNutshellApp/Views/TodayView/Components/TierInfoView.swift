@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TierInfoView.swift
 //
 //  Propósito: View informativa sobre o sistema de níveis de conquista.
-//             Exibida como sheet quando o usuário toca no DailyTierView e
+//             Exibida como sheet quando o usuário toca no emoji do centro do anel e
 //             também acessível em Configurações > Sobre > Conquista.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-04-15.

@@ -648,12 +648,13 @@
 
 
 /* ProgressRingInfoView.swift */
-"ring.info.intro"             = "The ring shows the average percentage of your goals that you have completed.";
-"ring.info.section.colors"    = "Ring colors";
+"ring.info.intro"             = "The ring shows the average percentage of your goals that you have completed. Each colored segment is worth 20%.";
+"ring.info.section.colors"    = "Ring segments";
 "ring.info.color.red"         = "Just starting";
 "ring.info.color.orange"      = "On your way";
 "ring.info.color.green"       = "Doing great";
 "ring.info.color.cyan"        = "Almost there";
+"ring.info.color.purple"      = "Final stretch";
 "ring.info.color.blue"        = "Goal complete";
 "ring.info.level.label"       = "Level ";
 "info.next.prefix"            = "Remaining ";
