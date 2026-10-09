@@ -185,7 +185,7 @@ struct WelcomeSummaryStep: View {
             )
         }
         .padding(.leading, 16)
-        .padding(.trailing, 8)
+        .padding(.trailing, 12)
         .frame(minHeight: 60)
     }
 

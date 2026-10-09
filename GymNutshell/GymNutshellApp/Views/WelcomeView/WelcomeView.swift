@@ -206,7 +206,7 @@ struct WelcomeView: View {
                             .font(.body.weight(.semibold))
                             .frame(width: 24, height: 24)
                     }
-                    .appCircleButton()
+                    .appCircleButton(fallbackPadding: 8)
                     .accessibilityLabel(String(localized: "a11y.welcome.back.button",
                                                bundle: .gymNutshellCore))
                     .transition(.scale.combined(with: .opacity))

@@ -122,17 +122,18 @@ extension View {
         }
     }
 
-    /// Botão redondo de vidro (ex: voltar no topo).
+    /// Botão redondo de vidro (ex: voltar no topo). O tamanho vem do conteúdo; `fallbackPadding`
+    /// só vale antes do iOS 26, onde o botão é um círculo sólido sem o respiro do vidro.
     @ViewBuilder
-    func appCircleButton() -> some View {
+    func appCircleButton(fallbackPadding: CGFloat = 0) -> some View {
         if #available(iOS 26.0, *) {
             self.buttonStyle(.glass)
                 .buttonBorderShape(.circle)
                 .tint(.primary)
         } else {
-            self.buttonStyle(.bordered)
-                .buttonBorderShape(.circle)
-                .tint(.primary)
+            self.buttonStyle(.plain)
+                .padding(fallbackPadding)
+                .background(Circle().fill(Color(.tertiarySystemFill)))
         }
     }
 }
