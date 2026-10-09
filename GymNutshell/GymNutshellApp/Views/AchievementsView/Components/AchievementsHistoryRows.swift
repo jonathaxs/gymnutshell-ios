@@ -13,6 +13,9 @@ import GymNutshellCore
 /// tappável e cabe num único elemento de VoiceOver; o botão de editar fica
 /// fora pra ser focado separadamente.
 struct HistoryDailyRow: View {
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
     let record: DailyRecord
     let tierName: String
     let tierEmoji: String
@@ -23,9 +26,7 @@ struct HistoryDailyRow: View {
     var body: some View {
         HStack(spacing: 16) {
             HStack(spacing: 16) {
-                Text(tierEmoji)
-                    .font(.largeTitle)
-                    .accessibilityHidden(true)
+                EmojiBadge(emoji: tierEmoji, color: accentColor)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(tierName)
@@ -43,8 +44,8 @@ struct HistoryDailyRow: View {
 
                 Spacer()
 
-                Text("\(record.points) \(String(localized: "achievements.points.total", bundle: .gymNutshellCore))")
-                    .font(.subheadline.bold())
+                PointsCapsule(text: "\(record.points) \(String(localized: "achievements.points.total", bundle: .gymNutshellCore))",
+                              color: accentColor)
             }
             .contentShape(Rectangle())
             .tapButton(perform: onTap)
@@ -59,11 +60,12 @@ struct HistoryDailyRow: View {
             // Botão de edição, visível só pra registros dentro da janela editável.
             if canEdit {
                 Button(action: onEdit) {
-                    Image(systemName: "square.and.pencil")
-                        .font(.system(size: 18, weight: .regular))
+                    Image(systemName: "pencil")
+                        .font(.system(size: 15, weight: .semibold))
+                        .frame(width: 30, height: 30)
                 }
-                .buttonStyle(.borderless)
-                .pressScale(1.20, response: 0.25, dampingFraction: 0.50)
+                .appCircleButton()
+                .controlSize(.small)
                 .accessibilityLabel(String(localized: "a11y.record.edit.label", bundle: .gymNutshellCore))
                 .accessibilityHint(String(localized: "a11y.record.edit.hint", bundle: .gymNutshellCore))
             }
@@ -75,6 +77,9 @@ struct HistoryDailyRow: View {
 /// Linha da lista que representa um `StreakBonus`. O "+" no total diferencia
 /// pontos de bônus dos pontos diários.
 struct HistoryBonusRow: View {
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
     let bonus: StreakBonus
     let onTap: () -> Void
 
@@ -82,9 +87,7 @@ struct HistoryBonusRow: View {
         let bTitle = bonus.displayTitle
         let bDesc  = bonus.displayDescription
         HStack(spacing: 16) {
-            Text(bonus.displayEmoji)
-                .font(.largeTitle)
-                .accessibilityHidden(true)
+            EmojiBadge(emoji: bonus.displayEmoji, color: accentColor)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(bTitle)
@@ -101,9 +104,8 @@ struct HistoryBonusRow: View {
 
             Spacer()
 
-            Text("+\(bonus.bonusPoints) \(String(localized: "achievements.points.total", bundle: .gymNutshellCore))")
-                .font(.subheadline.bold())
-                .foregroundStyle(Color.accentColor)
+            PointsCapsule(text: "+\(bonus.bonusPoints) \(String(localized: "achievements.points.total", bundle: .gymNutshellCore))",
+                          color: accentColor)
         }
         .padding(.vertical, 8)
         .contentShape(Rectangle())
@@ -113,5 +115,36 @@ struct HistoryBonusRow: View {
                                                  bundle: .gymNutshellCore),
                                    bTitle, bDesc, bonus.bonusPoints))
         .accessibilityHint(String(localized: "a11y.record.bonus.hint", bundle: .gymNutshellCore))
+    }
+}
+
+// MARK: - Peças visuais
+
+/// Emoji do nível dentro de um círculo suave na cor de destaque.
+private struct EmojiBadge: View {
+    let emoji: String
+    let color: Color
+
+    var body: some View {
+        Text(emoji)
+            .font(.title)
+            .frame(width: 52, height: 52)
+            .background(color.opacity(0.12), in: Circle())
+            .accessibilityHidden(true)
+    }
+}
+
+/// Pontos do dia ou do bônus numa cápsula.
+private struct PointsCapsule: View {
+    let text: String
+    let color: Color
+
+    var body: some View {
+        Text(text)
+            .font(.subheadline.weight(.bold).monospacedDigit())
+            .foregroundStyle(color)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+            .background(color.opacity(0.12), in: Capsule())
     }
 }

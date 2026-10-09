@@ -173,6 +173,7 @@ struct RoundStepButton: View {
         Button(action: action) {
             Image(systemName: kind == .minus ? "minus" : "plus")
                 .font(.system(size: size * 0.4, weight: .bold))
+                .foregroundStyle(color)
                 .frame(width: size, height: size)
         }
         .appCircleButton()

@@ -565,6 +565,7 @@
 /* ColorSettingsView.swift */
 "settings.color.title"    = "Colors";
 "settings.color.subtitle" = "Accent color used throughout the app";
+"settings.color.preview" = "Preview";
 
 
 /* TierInfoView.swift / ProgressRingInfoView.swift, links in Settings > About */

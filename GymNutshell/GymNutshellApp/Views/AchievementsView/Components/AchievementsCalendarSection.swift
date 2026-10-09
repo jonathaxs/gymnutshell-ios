@@ -36,10 +36,10 @@ struct AchievementsCalendarSection: View {
                 } label: {
                     Image(systemName: "chevron.left")
                         .font(.system(size: 14, weight: .semibold))
-                        .padding(8)
-                        .background(.ultraThinMaterial, in: Circle())
+                        .frame(width: 28, height: 28)
                 }
-                .buttonStyle(.plain)
+                .appCircleButton()
+                .controlSize(.small)
                 .accessibilityLabel(String(localized: "a11y.month.previous", bundle: .gymNutshellCore))
 
                 Text(visibleMonthTitle)
@@ -51,10 +51,10 @@ struct AchievementsCalendarSection: View {
                 } label: {
                     Image(systemName: "chevron.right")
                         .font(.system(size: 14, weight: .semibold))
-                        .padding(8)
-                        .background(.ultraThinMaterial, in: Circle())
+                        .frame(width: 28, height: 28)
                 }
-                .buttonStyle(.plain)
+                .appCircleButton()
+                .controlSize(.small)
                 .accessibilityLabel(String(localized: "a11y.month.next", bundle: .gymNutshellCore))
             }
 
@@ -67,6 +67,7 @@ struct AchievementsCalendarSection: View {
             .frame(maxWidth: 400)
             .frame(maxWidth: .infinity, alignment: .center)
         }
-        .padding(.vertical, 4)
+        .padding(16)
+        .appCard()
     }
 }

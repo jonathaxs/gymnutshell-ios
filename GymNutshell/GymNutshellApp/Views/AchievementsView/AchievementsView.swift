@@ -245,8 +245,12 @@ struct AchievementsView: View {
                     .tag(FilterMode.all)
             }
             .pickerStyle(.segmented)
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
 
             if filterMode == .day {
+                // Calendário num card próprio (o card já traz fundo e cantos).
                 AchievementsCalendarSection(
                     visibleMonthTitle: visibleMonthTitle,
                     visibleMonthDate: visibleMonthDate,
@@ -255,6 +259,9 @@ struct AchievementsView: View {
                     tierNameByDay: tierNameByDay,
                     onChangeMonth: { changeMonth(by: $0) }
                 )
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
+                .listRowInsets(EdgeInsets())
             }
         }
     }

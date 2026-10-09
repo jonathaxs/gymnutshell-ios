@@ -615,6 +615,7 @@
 /* ColorSettingsView.swift */
 "settings.color.title"    = "Cores";
 "settings.color.subtitle" = "Cor de destaque usada em todo o app";
+"settings.color.preview" = "Prévia";
 
 
 /* TierInfoView.swift / ProgressRingInfoView.swift / StreakBonusInfoView.swift, links em Settings > Sobre */
