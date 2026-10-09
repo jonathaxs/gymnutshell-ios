@@ -58,6 +58,17 @@ public enum GoalsProvider {
         stored(key: "tracking.creatine", fallback: DefaultGoals.creatine)
     }
 
+    // MARK: - Todas as metas
+
+    /// Metas atuais do usuário (ou o padrão, onde nada foi definido), no formato do `GoalsCalculator`.
+    public static var current: GoalsCalculator.Result {
+        GoalsCalculator.Result(
+            calories: calories, water: water, protein: protein, carbs: carbs,
+            goodFat: goodFat, fiber: fiber, sleep: sleep, creatine: creatine,
+            workout: workout, cardio: cardio
+        )
+    }
+
     // MARK: - Salvar
     public static func save(_ result: GoalsCalculator.Result) {
         let defaults = UserDefaults.standard

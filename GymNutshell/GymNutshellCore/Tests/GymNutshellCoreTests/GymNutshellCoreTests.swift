@@ -53,6 +53,68 @@ import Foundation
     }
 }
 
+// MARK: - Recálculo proporcional ao trocar de objetivo
+
+@Test func recalculoDaTabelaCasaComATabela() {
+    // Partindo exatamente dos valores de manutenção, o resultado é a linha do novo objetivo.
+    for sex in ["male", "female"] {
+        let base = GoalsCalculator.calculate(sex: sex, goal: .maintenance)
+        for goal in [UserGoal.bulking, .cutting] {
+            let r = GoalsCalculator.rescale(current: base, sex: sex, from: .maintenance, to: goal)
+            let t = GoalsCalculator.calculate(sex: sex, goal: goal)
+            #expect(r.calories == t.calories)
+            #expect(r.protein == t.protein)
+            #expect(r.carbs == t.carbs)
+            #expect(r.goodFat == t.goodFat)
+            #expect(r.fiber == t.fiber)
+        }
+    }
+}
+
+@Test func recalculoRespeitaValorPersonalizado() {
+    var mine = GoalsCalculator.calculate(sex: "male", goal: .maintenance)
+    mine.calories = 3000   // personalizado, acima da tabela
+    let r = GoalsCalculator.rescale(current: mine, sex: "male", from: .maintenance, to: .bulking)
+    // 3000 * 3050 / 2650 = 3452 -> 3450 (passo de 50)
+    #expect(r.calories == 3450)
+}
+
+@Test func recalculoNaoMexeEmAguaSonoTreinoCardioCreatina() {
+    var mine = GoalsCalculator.calculate(sex: "female", goal: .maintenance)
+    mine.water = 3500; mine.sleep = 9; mine.creatine = 5; mine.workout = 90; mine.cardio = 30
+    let r = GoalsCalculator.rescale(current: mine, sex: "female", from: .maintenance, to: .cutting)
+    #expect(r.water == 3500)
+    #expect(r.sleep == 9)
+    #expect(r.creatine == 5)
+    #expect(r.workout == 90)
+    #expect(r.cardio == 30)
+}
+
+@Test func recalculoIdaEVoltaDevolveOValor() {
+    for sex in ["male", "female"] {
+        let base = GoalsCalculator.calculate(sex: sex, goal: .maintenance)
+        for goal in [UserGoal.bulking, .cutting] {
+            let there = GoalsCalculator.rescale(current: base, sex: sex, from: .maintenance, to: goal)
+            let back = GoalsCalculator.rescale(current: there, sex: sex, from: goal, to: .maintenance)
+            #expect(back == base)
+        }
+    }
+}
+
+@Test func recalculoMesmoObjetivoNaoMuda() {
+    let base = GoalsCalculator.calculate(sex: "male", goal: .cutting)
+    #expect(GoalsCalculator.rescale(current: base, sex: "male", from: .cutting, to: .cutting) == base)
+}
+
+@Test func recalculoLimitaAosRanges() {
+    var mine = GoalsCalculator.calculate(sex: "male", goal: .maintenance)
+    mine.calories = 10000
+    mine.protein = 10
+    let r = GoalsCalculator.rescale(current: mine, sex: "male", from: .maintenance, to: .bulking)
+    #expect(r.calories == 10000)
+    #expect(r.protein == 10)
+}
+
 // MARK: - Migração do perfil da 1.0
 
 @Test func migracaoRemoveDadosFisicosENormalizaSexo() {

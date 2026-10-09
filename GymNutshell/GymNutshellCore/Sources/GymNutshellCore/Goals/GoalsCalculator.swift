@@ -105,4 +105,31 @@ public enum GoalsCalculator {
             cardio: DefaultGoals.cardio
         )
     }
+
+    // MARK: - Recálculo proporcional
+
+    /// Reescala as metas atuais do usuário ao trocar de objetivo. Cada meta (calorias, proteína, carbo,
+    /// gordura boa e fibra) é multiplicada por `tabela(sexo, novo) / tabela(sexo, antigo)`, então o que o
+    /// usuário personalizou continua proporcional. Arredonda ao passo da Welcome e respeita os mesmos
+    /// limites. Água, sono, treino, cardio e creatina não mudam.
+    public static func rescale(current: Result, sex: String, from oldGoal: UserGoal, to newGoal: UserGoal) -> Result {
+        let table = UserProfile.normalizedSex(sex) == "female" ? female : male
+        let old = table[oldGoal] ?? table[.maintenance]!
+        let new = table[newGoal] ?? table[.maintenance]!
+
+        func scaled(_ value: Int, _ from: Int, _ to: Int, step: Int, range: ClosedRange<Int>) -> Int {
+            guard from > 0 else { return value }
+            let raw = Double(value) * Double(to) / Double(from)
+            let rounded = Int((raw / Double(step)).rounded()) * step
+            return min(max(rounded, range.lowerBound), range.upperBound)
+        }
+
+        var result = current
+        result.calories = scaled(current.calories, old.calories, new.calories, step: 50, range: 500...10000)
+        result.protein = scaled(current.protein, old.protein, new.protein, step: 5, range: 10...500)
+        result.carbs = scaled(current.carbs, old.carbs, new.carbs, step: 10, range: 10...1000)
+        result.goodFat = scaled(current.goodFat, old.goodFat, new.goodFat, step: 5, range: 5...300)
+        result.fiber = scaled(current.fiber, old.fiber, new.fiber, step: 1, range: 5...100)
+        return result
+    }
 }

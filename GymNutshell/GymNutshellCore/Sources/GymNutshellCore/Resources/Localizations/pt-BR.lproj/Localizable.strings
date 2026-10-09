@@ -267,9 +267,10 @@
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Objetivo";
 "settings.goalchange.section.pick" = "Escolha seu objetivo";
-"settings.goalchange.section.pick.footer" = "Alterar seu objetivo recalcula as metas padrões do app com base nos seus dados físicos e seu novo objetivo escolhido.";
-"settings.goalchange.section.preview" = "Metas recalculadas";
-"settings.goalchange.save" = "Salvar";
+"settings.goalchange.section.pick.footer" = "Ao recalcular, calorias, proteína, carboidratos, gordura boa e fibra mudam na proporção do novo objetivo, a partir dos seus valores atuais. Água, sono, treino, cardio e creatina não mudam.";
+"settings.goalchange.section.preview" = "Suas metas";
+"settings.goalchange.save.recalc" = "Salvar e recalcular";
+"settings.goalchange.save.keep" = "Salvar sem recalcular";
 
 
 /* ProfileSettingsView.swift */

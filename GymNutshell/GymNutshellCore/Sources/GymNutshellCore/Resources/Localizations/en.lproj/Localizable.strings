@@ -231,9 +231,10 @@
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Goal";
 "settings.goalchange.section.pick" = "Choose your goal";
-"settings.goalchange.section.pick.footer" = "Changing your goal recalculates the app's default goals based on your physical data and your chosen new goal.";
-"settings.goalchange.section.preview" = "Recalculated goals";
-"settings.goalchange.save" = "Save";
+"settings.goalchange.section.pick.footer" = "When recalculating, calories, protein, carbs, good fat and fiber change in proportion to the new goal, starting from your current values. Water, sleep, workout, cardio and creatine stay the same.";
+"settings.goalchange.section.preview" = "Your goals";
+"settings.goalchange.save.recalc" = "Save and recalculate";
+"settings.goalchange.save.keep" = "Save without recalculating";
 
 
 /* ProfileSettingsView.swift */
