@@ -21,16 +21,16 @@ public enum GoalsCalculator {
 
     /// Guarda todas as metas diárias de um perfil.
     public struct Result: Sendable, Equatable {
-        public let calories: Int   // kcal
-        public let water: Int      // ml
-        public let protein: Int    // g
-        public let carbs: Int      // g
-        public let goodFat: Int    // g
-        public let fiber: Int      // g
-        public let sleep: Int      // h (fixo)
-        public let creatine: Int   // g (fixo)
-        public let workout: Int    // min (fixo = DefaultGoals.workout)
-        public let cardio: Int     // min (fixo = DefaultGoals.cardio)
+        public var calories: Int   // kcal
+        public var water: Int      // ml
+        public var protein: Int    // g
+        public var carbs: Int      // g
+        public var goodFat: Int    // g
+        public var fiber: Int      // g
+        public var sleep: Int      // h (fixo)
+        public var creatine: Int   // g (fixo)
+        public var workout: Int    // min (fixo = DefaultGoals.workout)
+        public var cardio: Int     // min (fixo = DefaultGoals.cardio)
 
         public init(
             calories: Int,

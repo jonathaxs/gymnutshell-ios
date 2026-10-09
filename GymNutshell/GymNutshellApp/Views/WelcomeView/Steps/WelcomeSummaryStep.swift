@@ -1,8 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/WelcomeView/Steps/WelcomeSummaryStep.swift
 //
-//  Propósito: Etapa final do onboarding, exibe as metas diárias calculadas organizadas por categoria
-//             e permite ao usuário adicionar opcionalmente Gordura e Creatina antes de concluir.
+//  Propósito: Etapa do onboarding, exibe as metas diárias padrão organizadas por categoria, com
+//             botões − / + pra ajustar cada valor, e permite adicionar opcionalmente Gordura e Creatina.
 //             Os parágrafos informativos aparecem no fim, depois das metas opcionais.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-10.
@@ -15,7 +15,7 @@ import GymNutshellCore
 /// Fixas aparecem como linhas informativas; opcionais têm botão Adicionar/Remover.
 struct WelcomeSummaryStep: View {
 
-    let goals: GoalsCalculator.Result?
+    @Binding var goals: GoalsCalculator.Result?
     let measurementSystem: MeasurementSystem
     let userGoal: UserGoal
     let accentColor: Color
@@ -48,39 +48,43 @@ struct WelcomeSummaryStep: View {
 
                     // MARK: Essencial
                     summaryCategory(GoalCategory.essencial) {
-                        summaryRow(icon: "💤", label: String(localized: "today.metric.sleep", bundle: .gymNutshellCore),
-                                   value: "\(goals.sleep)h")
-                        summaryRow(icon: "💧", label: String(localized: "today.metric.water", bundle: .gymNutshellCore),
-                                   value: measurementSystem == .us
-                                       ? "\(Int(UnitConverter.mlToFlOz(Double(goals.water)).rounded())) fl oz"
-                                       : "\(goals.water) ml")
+                        adjustableRow(icon: "💤", label: String(localized: "today.metric.sleep", bundle: .gymNutshellCore),
+                                      keyPath: \.sleep, step: 1, range: 1...16) { "\($0)h" }
+                        adjustableRow(icon: "💧", label: String(localized: "today.metric.water", bundle: .gymNutshellCore),
+                                      keyPath: \.water, step: 250, range: 250...10000) {
+                            measurementSystem == .us
+                                ? "\(Int(UnitConverter.mlToFlOz(Double($0)).rounded())) fl oz"
+                                : "\($0) ml"
+                        }
                     }
 
                     // MARK: Nutrição
                     summaryCategory(GoalCategory.nutricao) {
-                        summaryRow(icon: "🔥", label: String(localized: "today.metric.calories", bundle: .gymNutshellCore),
-                                   value: "\(goals.calories) kcal")
-                        summaryRow(icon: "🍗", label: String(localized: "today.metric.protein", bundle: .gymNutshellCore),
-                                   value: "\(goals.protein)g")
-                        summaryRow(icon: "🌾", label: String(localized: "today.metric.fiber", bundle: .gymNutshellCore),
-                                   value: "\(goals.fiber)g")
-                        summaryRow(icon: "🍞", label: String(localized: "today.metric.carbs", bundle: .gymNutshellCore),
-                                   value: "\(goals.carbs)g")
+                        adjustableRow(icon: "🔥", label: String(localized: "today.metric.calories", bundle: .gymNutshellCore),
+                                      keyPath: \.calories, step: 50, range: 500...10000) { "\($0) kcal" }
+                        adjustableRow(icon: "🍗", label: String(localized: "today.metric.protein", bundle: .gymNutshellCore),
+                                      keyPath: \.protein, step: 5, range: 10...500) { "\($0)g" }
+                        adjustableRow(icon: "🌾", label: String(localized: "today.metric.fiber", bundle: .gymNutshellCore),
+                                      keyPath: \.fiber, step: 1, range: 5...100) { "\($0)g" }
+                        adjustableRow(icon: "🍞", label: String(localized: "today.metric.carbs", bundle: .gymNutshellCore),
+                                      keyPath: \.carbs, step: 10, range: 10...1000) { "\($0)g" }
                         OptionalTrackingGoalRow(
                             icon: "🧈",
                             label: String(localized: "today.metric.fats", bundle: .gymNutshellCore),
                             value: "\(goals.goodFat)g",
                             accentColor: accentColor,
-                            isIncluded: $includeFats
+                            isIncluded: $includeFats,
+                            onDecrease: { adjust(\.goodFat, by: -5, range: 5...300) },
+                            onIncrease: { adjust(\.goodFat, by: 5, range: 5...300) }
                         )
                     }
 
                     // MARK: Treino
                     summaryCategory(GoalCategory.treino) {
-                        summaryRow(icon: "🏋️", label: String(localized: "today.goals.workout", bundle: .gymNutshellCore),
-                                   value: "\(goals.workout) min")
-                        summaryRow(icon: "🏃", label: String(localized: "today.goals.cardio", bundle: .gymNutshellCore),
-                                   value: "\(goals.cardio) min")
+                        adjustableRow(icon: "🏋️", label: String(localized: "today.goals.workout", bundle: .gymNutshellCore),
+                                      keyPath: \.workout, step: 15, range: 5...300) { "\($0) min" }
+                        adjustableRow(icon: "🏃", label: String(localized: "today.goals.cardio", bundle: .gymNutshellCore),
+                                      keyPath: \.cardio, step: 5, range: 5...180) { "\($0) min" }
                     }
 
                     // MARK: Suplemento
@@ -90,7 +94,9 @@ struct WelcomeSummaryStep: View {
                             label: String(localized: "today.goals.creatine", bundle: .gymNutshellCore),
                             value: "\(goals.creatine)g",
                             accentColor: accentColor,
-                            isIncluded: $includeCreatine
+                            isIncluded: $includeCreatine,
+                            onDecrease: { adjust(\.creatine, by: -1, range: 1...20) },
+                            onIncrease: { adjust(\.creatine, by: 1, range: 1...20) }
                         )
                     }
 
@@ -137,24 +143,86 @@ struct WelcomeSummaryStep: View {
         }
     }
 
-    // MARK: - Linha de meta fixa (obrigatória)
+    // MARK: - Ajuste de valor
 
-    private func summaryRow(icon: String, label: String, value: String) -> some View {
-        HStack {
+    /// Soma `delta` ao campo da meta, respeitando os limites.
+    private func adjust(_ keyPath: WritableKeyPath<GoalsCalculator.Result, Int>, by delta: Int, range: ClosedRange<Int>) {
+        guard var current = goals else { return }
+        current[keyPath: keyPath] = min(max(current[keyPath: keyPath] + delta, range.lowerBound), range.upperBound)
+        goals = current
+        UISelectionFeedbackGenerator().selectionChanged()
+    }
+
+    // MARK: - Linha de meta ajustável com − / +
+
+    private func adjustableRow(
+        icon: String,
+        label: String,
+        keyPath: WritableKeyPath<GoalsCalculator.Result, Int>,
+        step: Int,
+        range: ClosedRange<Int>,
+        format: (Int) -> String
+    ) -> some View {
+        let value = goals?[keyPath: keyPath] ?? 0
+        return HStack(spacing: 12) {
             Text(icon)
                 .accessibilityHidden(true)
             Text(label)
                 .font(.subheadline)
             Spacer()
-            Text(value)
-                .font(.subheadline.bold())
+            GoalStepper(
+                valueText: format(value),
+                label: label,
+                canDecrease: value - step >= range.lowerBound,
+                canIncrease: value + step <= range.upperBound,
+                onDecrease: { adjust(keyPath, by: -step, range: range) },
+                onIncrease: { adjust(keyPath, by: step, range: range) }
+            )
         }
         .padding()
         .background(Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(label)
-        .accessibilityValue(value)
+    }
+
+}
+
+// MARK: - Controle − / + de uma meta
+
+private struct GoalStepper: View {
+
+    let valueText: String
+    let label: String
+    let canDecrease: Bool
+    let canIncrease: Bool
+    let onDecrease: () -> Void
+    let onIncrease: () -> Void
+
+    var body: some View {
+        HStack(spacing: 0) {
+            Button(action: onDecrease) {
+                Image(systemName: "minus.circle.fill")
+                    .font(.title2)
+                    .frame(minWidth: 40, minHeight: 44)
+            }
+            .disabled(!canDecrease)
+            .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
+
+            Text(valueText)
+                .font(.subheadline.bold())
+                .monospacedDigit()
+                .frame(minWidth: 64)
+                .accessibilityLabel(label)
+                .accessibilityValue(valueText)
+
+            Button(action: onIncrease) {
+                Image(systemName: "plus.circle.fill")
+                    .font(.title2)
+                    .frame(minWidth: 40, minHeight: 44)
+            }
+            .disabled(!canIncrease)
+            .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
+        }
+        .buttonStyle(.borderless)
     }
 }
 
@@ -167,6 +235,8 @@ private struct OptionalTrackingGoalRow: View {
     let value: String
     let accentColor: Color
     @Binding var isIncluded: Bool
+    let onDecrease: () -> Void
+    let onIncrease: () -> Void
 
     @State private var buttonScale: CGFloat = 1.0
 
@@ -193,10 +263,26 @@ private struct OptionalTrackingGoalRow: View {
                 Text(value)
                     .font(isIncluded ? .subheadline.bold() : .subheadline)
                     .foregroundStyle(.primary)
+                    .monospacedDigit()
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel(label)
             .accessibilityValue(value)
+
+            // − / + só aparecem quando a meta opcional está incluída.
+            if isIncluded {
+                HStack(spacing: 0) {
+                    Button(action: onDecrease) {
+                        Image(systemName: "minus.circle.fill").font(.title2).frame(minWidth: 40, minHeight: 44)
+                    }
+                    .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
+                    Button(action: onIncrease) {
+                        Image(systemName: "plus.circle.fill").font(.title2).frame(minWidth: 40, minHeight: 44)
+                    }
+                    .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
+                }
+                .buttonStyle(.borderless)
+            }
 
             Button {
                 UISelectionFeedbackGenerator().selectionChanged()

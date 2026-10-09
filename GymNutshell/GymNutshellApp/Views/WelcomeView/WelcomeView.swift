@@ -203,7 +203,7 @@ struct WelcomeView: View {
                     WelcomeUserGoalStep(userGoal: $userGoal, sex: $sex, isWide: isWide)
                 case .summary:
                     WelcomeSummaryStep(
-                        goals: calculatedGoals,
+                        goals: $calculatedGoals,
                         measurementSystem: measurementSystem,
                         userGoal: userGoal,
                         accentColor: sexColor,

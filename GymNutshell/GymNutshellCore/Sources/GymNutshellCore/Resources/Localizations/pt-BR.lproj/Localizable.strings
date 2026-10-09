@@ -522,10 +522,10 @@
 
 /* WelcomeSummaryStep.swift */
 "welcome.step.summary.title" = "Suas metas";
-"welcome.step.summary.subtitle" = "Deslize até o final.";
-"welcome.summary.subtitle.customize" = "Em ajustes do app você pode alterar os valores dessas metas e adicionar novas metas personalizadas.";
+"welcome.step.summary.subtitle" = "Ajuste com − e + e deslize até o final.";
+"welcome.summary.subtitle.customize" = "Você pode mudar esses valores quando quiser em Ajustes, e também criar metas personalizadas.";
 "welcome.summary.optional.badge" = "Recomendada";
-"welcome.summary.subtitle.calculated.prefix" = "Esses valores foram calculados de acordo com os seus dados físicos e o seu objetivo ";
+"welcome.summary.subtitle.calculated.prefix" = "Esses valores são uma sugestão para o seu objetivo ";
 "welcome.summary.subtitle.calculated.suffix" = ".";
 "welcome.option.add" = "Adicionar";
 "welcome.option.remove" = "Remover";
@@ -1033,3 +1033,6 @@
 "a11y.widget.calendar.month.format" = "%@";
 
 /* Watch widget, corner e inline já falam pelo texto natural */
+
+"a11y.welcome.goal.decrease.format" = "Diminuir %@";
+"a11y.welcome.goal.increase.format" = "Aumentar %@";

@@ -486,10 +486,10 @@
 
 /* WelcomeSummaryStep.swift */
 "welcome.step.summary.title" = "Your goals";
-"welcome.step.summary.subtitle" = "Slide down to the bottom.";
-"welcome.summary.subtitle.customize" = "In app settings you can adjust these goal values and add custom goals.";
+"welcome.step.summary.subtitle" = "Adjust with − and + and slide down to the bottom.";
+"welcome.summary.subtitle.customize" = "You can change these values anytime in Settings, and also create custom goals.";
 "welcome.summary.optional.badge" = "Recommended";
-"welcome.summary.subtitle.calculated.prefix" = "These values were calculated based on your physical data and your goal ";
+"welcome.summary.subtitle.calculated.prefix" = "These are suggested values for your ";
 "welcome.summary.subtitle.calculated.suffix" = " goal.";
 "welcome.option.add" = "Add";
 "welcome.option.remove" = "Remove";
@@ -984,3 +984,6 @@
 "a11y.widget.calendar.month.format" = "%@";
 
 /* Watch widget, corner and inline don't need extra labels (text already speaks) */
+
+"a11y.welcome.goal.decrease.format" = "Decrease %@";
+"a11y.welcome.goal.increase.format" = "Increase %@";
