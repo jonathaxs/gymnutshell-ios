@@ -19,6 +19,8 @@ struct TodayHeroView: View {
     let selectedTheme: AppTheme
     /// Quando true (iPad, sobra altura), o anel fica maior.
     var verticalLayout: Bool = false
+    /// iPhone em retrato: saudação em cima e um card com o anel à esquerda e a % com a frase à direita.
+    var cardStyle: Bool = false
 
     // Sexo do usuário, usado pra nomes de tier com gênero correto.
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
@@ -82,38 +84,133 @@ struct TodayHeroView: View {
         return ""
     }
 
+    // Frase ao lado do anel (card): a dica / quanto falta; no nível máximo, o nome do nível.
+    private var cardCaption: String {
+        ringCaption.isEmpty ? selectedTheme.name(for: dailyAchievement, sex: sex) : ringCaption
+    }
+
     var body: some View {
+        content
+            .sheet(isPresented: $showTierSheet) {
+                NavigationStack {
+                    TierInfoView(
+                        theme: selectedTheme, sex: sex, isSheet: true,
+                        nextLevelPercent: nextLevelComponents?.percent,
+                        nextLevelName: nextLevelComponents?.name ?? "",
+                        nextLevelNumber: nextLevelComponents?.level,
+                        isAtMaxLevel: dailyPercentage >= 90
+                    )
+                }
+            }
+            .sheet(isPresented: $showRingSheet) {
+                NavigationStack {
+                    ProgressRingInfoView(isSheet: true, currentPercent: dailyPercentage)
+                }
+            }
+            .sheet(isPresented: $showNotificationHistory) {
+                NotificationHistorySheet()
+            }
+    }
+
+    // MARK: - Sino
+
+    private var bellButton: some View {
+        Button {
+            showNotificationHistory = true
+        } label: {
+            Image(systemName: "bell.fill")
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(accentColor)
+                .frame(width: 44, height: 44)
+        }
+        .appCircleButton()
+        .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
+        .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
+    }
+
+    // MARK: - Saudação + data
+
+    private var greetingBlock: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(greeting)
+                .font(.largeTitle.weight(.bold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .accessibilityAddTraits(.isHeader)
+            Text(formattedDate)
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    // MARK: - Card (iPhone em retrato)
+
+    private var cardContent: some View {
+        VStack(spacing: 16) {
+            HStack(alignment: .center, spacing: 12) {
+                greetingBlock
+                bellButton
+            }
+            .padding(.horizontal, 4)
+
+            HStack(spacing: 20) {
+                TodayProgressRingView(progress: dailyProgress,
+                                      achievement: dailyAchievement,
+                                      theme: selectedTheme,
+                                      onTap: { showRingSheet = true },
+                                      onEmojiTap: { showTierSheet = true },
+                                      size: 124,
+                                      lineWidth: 14,
+                                      showsLabels: false)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("\(dailyPercentage)%")
+                        .font(.system(size: 46, weight: .bold, design: .rounded).monospacedDigit())
+                        .contentTransition(.numericText())
+                        .minimumScaleFactor(0.7)
+                        .lineLimit(1)
+                    Text(cardCaption)
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(3)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
+                .onTapGesture { showRingSheet = true }
+                // Porcentagem + frase num único elemento de VoiceOver.
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(String(localized: "today.ring.a11y.label", bundle: .gymNutshellCore))
+                .accessibilityValue(String(format: String(localized: "today.ring.a11y.value",
+                                                          bundle: .gymNutshellCore), dailyPercentage))
+                .accessibilityHint(String(localized: "today.ring.a11y.hint", bundle: .gymNutshellCore))
+            }
+            .padding(18)
+            .frame(maxWidth: .infinity)
+            .appCard()
+        }
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        if cardStyle {
+            cardContent
+        } else {
+            classicContent
+        }
+    }
+
+    private var classicContent: some View {
         VStack(spacing: 12) {
 
             // Topo: saudação grande com a data pequena embaixo e o sino do histórico no canto.
             HStack(alignment: .center, spacing: 12) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(greeting)
-                        .font(.largeTitle.weight(.bold))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
-                        .accessibilityAddTraits(.isHeader)
-                    Text(formattedDate)
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.8)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                Button {
-                    showNotificationHistory = true
-                } label: {
-                    Image(systemName: "bell.fill")
-                        .font(.title3.weight(.semibold))
-                        .foregroundStyle(accentColor)
-                        .frame(width: 44, height: 44)
-                        .background(accentColor.opacity(0.12), in: Circle())
-                }
-                .buttonStyle(.plain)
-                .pressScale(1.20, response: 0.25, dampingFraction: 0.50)
-                .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
-                .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
+                greetingBlock
+                bellButton
             }
             .padding(.horizontal, 4)
 
@@ -129,25 +226,6 @@ struct TodayHeroView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, verticalLayout ? 8 : 4)
 
-        }
-        .sheet(isPresented: $showTierSheet) {
-            NavigationStack {
-                TierInfoView(
-                    theme: selectedTheme, sex: sex, isSheet: true,
-                    nextLevelPercent: nextLevelComponents?.percent,
-                    nextLevelName: nextLevelComponents?.name ?? "",
-                    nextLevelNumber: nextLevelComponents?.level,
-                    isAtMaxLevel: dailyPercentage >= 90
-                )
-            }
-        }
-        .sheet(isPresented: $showRingSheet) {
-            NavigationStack {
-                ProgressRingInfoView(isSheet: true, currentPercent: dailyPercentage)
-            }
-        }
-        .sheet(isPresented: $showNotificationHistory) {
-            NotificationHistorySheet()
         }
     }
 }

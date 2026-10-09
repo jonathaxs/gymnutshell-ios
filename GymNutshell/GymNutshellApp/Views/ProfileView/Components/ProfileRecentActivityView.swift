@@ -24,15 +24,9 @@ struct ProfileRecentActivityView: View {
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(String(localized: "profile.recent.section", bundle: .gymNutshellCore))
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
-                .padding(.horizontal, 4)
-                .accessibilityAddTraits(.isHeader)
-
+        ProgressSection(title: String(localized: "profile.recent.section", bundle: .gymNutshellCore)) {
             // Células dos sete dias, tocar navega pra aquele dia na AchievementsView.
-            HStack(spacing: 6) {
+            HStack(spacing: 4) {
                 ForEach(entries, id: \.date) { entry in
                     Button {
                         onDayTap(entry.date)
@@ -46,10 +40,10 @@ struct ProfileRecentActivityView: View {
                                               bundle: .gymNutshellCore))
                 }
             }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 14)
+            .appCard()
         }
-        .padding()
-        .background(Color(.secondarySystemGroupedBackground))
-        .cornerRadius(16)
     }
 
     // Constrói o label de VoiceOver de cada dia: data por extenso + nome do tier
@@ -83,10 +77,10 @@ struct ProfileRecentActivityView: View {
                     .fill(hasRecord
                           ? accentColor.opacity(0.15)
                           : Color(.tertiarySystemBackground))
-                    .frame(width: 36, height: 36)
+                    .frame(width: 38, height: 38)
                     .overlay {
                         if isToday {
-                            Circle().stroke(accentColor, lineWidth: 1.5)
+                            Circle().stroke(accentColor, lineWidth: 2)
                         }
                     }
                 Text(entry.record.map { selectedTheme.emoji(for: DailyAchievement.from(emoji: $0.achievementEmoji)) } ?? "·")

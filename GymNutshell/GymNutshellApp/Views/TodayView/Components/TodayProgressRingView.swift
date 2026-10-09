@@ -29,6 +29,8 @@ struct TodayProgressRingView: View {
 
     var size: CGFloat = 150
     var lineWidth: CGFloat = 18
+    /// false = só o anel (a porcentagem e a frase ficam por conta de quem usa, ex: card do hero).
+    var showsLabels: Bool = true
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -91,29 +93,31 @@ struct TodayProgressRingView: View {
             .onTapGesture { onTap?() }
             .accessibilityElement(children: .contain)
 
-            // Porcentagem fora do anel + nome do nível atual.
-            VStack(spacing: 2) {
-                Text("\(percentage)%")
-                    .font(.title2.weight(.bold).monospacedDigit())
-                    .contentTransition(.numericText())
-                    .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: percentage)
+            if showsLabels {
+                // Porcentagem fora do anel + nome do nível atual.
+                VStack(spacing: 2) {
+                    Text("\(percentage)%")
+                        .font(.title2.weight(.bold).monospacedDigit())
+                        .contentTransition(.numericText())
+                        .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: percentage)
 
-                Text(caption.isEmpty ? (hasStarted ? tierName : " ") : caption)
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.9)
+                    Text(caption.isEmpty ? (hasStarted ? tierName : " ") : caption)
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.9)
+                }
+                .contentShape(Rectangle())
+                .onTapGesture { onTap?() }
+                // Anel + porcentagem num único elemento de VoiceOver (o emoji fica separado, acima).
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(String(localized: "today.ring.a11y.label", bundle: .gymNutshellCore))
+                .accessibilityValue(String(format: String(localized: "today.ring.a11y.value",
+                                                          bundle: .gymNutshellCore), percentage))
+                .accessibilityHint(String(localized: "today.ring.a11y.hint", bundle: .gymNutshellCore))
             }
-            .contentShape(Rectangle())
-            .onTapGesture { onTap?() }
-            // Anel + porcentagem num único elemento de VoiceOver (o emoji fica separado, acima).
-            .accessibilityElement(children: .ignore)
-            .accessibilityAddTraits(.isButton)
-            .accessibilityLabel(String(localized: "today.ring.a11y.label", bundle: .gymNutshellCore))
-            .accessibilityValue(String(format: String(localized: "today.ring.a11y.value",
-                                                      bundle: .gymNutshellCore), percentage))
-            .accessibilityHint(String(localized: "today.ring.a11y.hint", bundle: .gymNutshellCore))
         }
     }
 }

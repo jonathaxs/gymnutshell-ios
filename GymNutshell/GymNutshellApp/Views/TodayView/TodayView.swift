@@ -438,7 +438,7 @@ struct TodayView: View {
 
     // MARK: - Bloco hero
 
-    private func heroBlock(vertical: Bool) -> some View {
+    private func heroBlock(vertical: Bool, card: Bool = false) -> some View {
         // O modo vertical (progresso em cima, conquista embaixo) só faz sentido quando
         // sobra altura, controlado pelo chamador via tamanho real da janela, não pelo
         // idiom do dispositivo. Assim, iPad em modo "janela pequena" (iOS 26 multi-window)
@@ -448,7 +448,8 @@ struct TodayView: View {
             dailyAchievement: dailyAchievement,
             dailyProgress: dailyProgress,
             selectedTheme: selectedTheme,
-            verticalLayout: vertical
+            verticalLayout: vertical,
+            cardStyle: card
         )
     }
 
@@ -733,7 +734,7 @@ struct TodayView: View {
                 Spacer().frame(height: topInset)
 
                 VStack(spacing: UI.heroInnerSpacing) {
-                    heroBlock(vertical: false)
+                    heroBlock(vertical: false, card: true)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
 

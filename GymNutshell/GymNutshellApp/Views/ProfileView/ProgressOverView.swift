@@ -3,7 +3,7 @@
 //
 //  Propósito: Tela de progresso, mostra dados de desempenho derivados dos registros diários
 //             e dos bônus de sequência. Seções: estatísticas de resumo, distribuição por nível,
-//             bônus de sequência, atividade, últimos 7 dias, metas ativas e dados físicos.
+//             bônus de sequência, atividade, objetivo e metas ativas, e últimos 7 dias.
 //             Tocar num dia em "Últimos 7 dias" leva pra aquela data na AchievementsView.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-04-07.
@@ -203,42 +203,13 @@ struct ProgressOverView: View {
 
     @ViewBuilder
     private var narrowLayout: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 24) {
             statsSummaryRow
-
-            tiersCard
-                .contentShape(Rectangle())
-                .onTapGesture { showTierSheet = true }
-                .accessibilityAddTraits(.isButton)
-                .accessibilityHint(String(localized: "a11y.stats.card.tiers.hint",
-                                          bundle: .gymNutshellCore))
-
-            bonusesCard
-
-            activityCard
-                .contentShape(Rectangle())
-                .onTapGesture { openAchievementsList() }
-                .accessibilityAddTraits(.isButton)
-                .accessibilityHint(String(localized: "a11y.stats.card.activity.hint",
-                                          bundle: .gymNutshellCore))
-
-            goalsCard
-                .contentShape(Rectangle())
-                .onTapGesture { navPath.append(StatsDestination.goals) }
-                .accessibilityAddTraits(.isButton)
-                .accessibilityHint(String(localized: "a11y.stats.card.goals.hint",
-                                          bundle: .gymNutshellCore))
-
-            if !userGoalRaw.isEmpty {
-                userGoalCard(centered: false)
-            }
-
-
-            ProfileRecentActivityView(
-                entries: last7Days,
-                selectedTheme: selectedTheme,
-                onDayTap: jumpToAchievements(date:)
-            )
+            tiersSection
+            bonusesSection
+            activitySection
+            goalsSection
+            recentSection
         }
         .padding()
     }
@@ -247,149 +218,132 @@ struct ProgressOverView: View {
 
     @ViewBuilder
     private var wideLayout: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 24) {
             // Resumo de pontos, ocupa a largura toda.
             statsSummaryRow
 
             // Dois VStacks alinhados ao topo formam o grid de 2 colunas.
-            // Col esquerda: Conquistas → Atividade → Metas Ativas
-            // Col direita:  Bônus de Sequência → Dados Físicos
+            // Col esquerda: Níveis → Atividade → Metas
+            // Col direita:  Bônus de Sequência
             HStack(alignment: .top, spacing: 16) {
-
-                // Coluna esquerda
-                VStack(spacing: 16) {
-                    tiersCard
-                        .contentShape(Rectangle())
-                        .onTapGesture { showTierSheet = true }
-                        .accessibilityAddTraits(.isButton)
-                        .accessibilityHint(String(localized: "a11y.stats.card.tiers.hint",
-                                                  bundle: .gymNutshellCore))
-
-                    activityCard
-                        .contentShape(Rectangle())
-                        .onTapGesture { openAchievementsList() }
-                        .accessibilityAddTraits(.isButton)
-                        .accessibilityHint(String(localized: "a11y.stats.card.activity.hint",
-                                                  bundle: .gymNutshellCore))
-
-                    goalsCard
-                        .contentShape(Rectangle())
-                        .onTapGesture { navPath.append(StatsDestination.goals) }
-                        .accessibilityAddTraits(.isButton)
-                        .accessibilityHint(String(localized: "a11y.stats.card.goals.hint",
-                                                  bundle: .gymNutshellCore))
+                VStack(spacing: 24) {
+                    tiersSection
+                    activitySection
+                    goalsSection
                 }
                 .frame(maxWidth: .infinity)
 
-                // Coluna direita
-                VStack(spacing: 16) {
-                    bonusesCard
-
+                VStack(spacing: 24) {
+                    bonusesSection
                 }
                 .frame(maxWidth: .infinity)
-            }
-
-            // Objetivo fitness, largura toda, centralizado, abaixo das duas colunas.
-            if !userGoalRaw.isEmpty {
-                userGoalCard(centered: true)
             }
 
             // Últimos 7 dias, ocupa a largura toda, abaixo das duas colunas.
-            ProfileRecentActivityView(
-                entries: last7Days,
-                selectedTheme: selectedTheme,
-                onDayTap: jumpToAchievements(date:)
-            )
+            recentSection
         }
         .padding()
         .frame(maxWidth: 860)
         .frame(maxWidth: .infinity)
     }
 
-    // MARK: - Cards reutilizáveis
+    // MARK: - Seções
 
     private var statsSummaryRow: some View {
         ProfileStatsRow(
             totalDays: totalDays,
             totalPoints: totalPoints,
             bonusCount: bonuses.count,
+            accentColor: accentColor,
             onDaysTap: { jumpToAchievements(date: Date()) },
             onBonusTap: { showBonusInfoSheet = true }
         )
     }
 
-    private var tiersCard: some View {
-        StatisticsCard(title: String(localized: "statistics.section.tiers", bundle: .gymNutshellCore),
-                       accentColor: accentColor) {
-            TierRow(emoji: selectedTheme.emoji(for: .level1, sex: sex), label: selectedTheme.name(for: .level1, sex: sex), days: level1Days)
-            AccentDivider(accentColor: accentColor)
-            TierRow(emoji: selectedTheme.emoji(for: .level2, sex: sex), label: selectedTheme.name(for: .level2, sex: sex), days: level2Days)
-            AccentDivider(accentColor: accentColor)
-            TierRow(emoji: selectedTheme.emoji(for: .level3, sex: sex), label: selectedTheme.name(for: .level3, sex: sex), days: level3Days)
-            AccentDivider(accentColor: accentColor)
-            TierRow(emoji: selectedTheme.emoji(for: .level4, sex: sex), label: selectedTheme.name(for: .level4, sex: sex), days: level4Days)
-        }
-    }
-
-    private var bonusesCard: some View {
-        StatisticsCard(title: String(localized: "statistics.section.bonuses", bundle: .gymNutshellCore),
-                       accentColor: accentColor) {
-            BonusRow(label: String(localized: "statistics.bonus.weekly.level3", bundle: .gymNutshellCore),
-                     count: weeklyStrongCount) { showBonusInfoSheet = true }
-            AccentDivider(accentColor: accentColor)
-            BonusRow(label: String(localized: "statistics.bonus.weekly.level4", bundle: .gymNutshellCore),
-                     count: weeklyExpertCount) { showBonusInfoSheet = true }
-            AccentDivider(accentColor: accentColor)
-            BonusRow(label: String(localized: "statistics.bonus.monthly.level3", bundle: .gymNutshellCore),
-                     count: monthlyStrongCount) { showBonusInfoSheet = true }
-            AccentDivider(accentColor: accentColor)
-            BonusRow(label: String(localized: "statistics.bonus.monthly.level4", bundle: .gymNutshellCore),
-                     count: monthlyExpertCount) { showBonusInfoSheet = true }
-        }
-    }
-
-    private var activityCard: some View {
-        StatisticsCard(title: String(localized: "statistics.section.activity", bundle: .gymNutshellCore),
-                       accentColor: accentColor) {
-            ActivityRow(emoji: "🏋️", label: String(localized: "statistics.activity.workout", bundle: .gymNutshellCore), days: workoutDays)
-            AccentDivider(accentColor: accentColor)
-            ActivityRow(emoji: "🏃", label: String(localized: "statistics.activity.cardio", bundle: .gymNutshellCore), days: cardioDays)
-        }
-    }
-
-    private var goalsCard: some View {
-        StatisticsCard(title: String(localized: "statistics.section.goals", bundle: .gymNutshellCore),
-                       accentColor: accentColor) {
-            GoalsRow(label: String(localized: "statistics.goals.active.label", bundle: .gymNutshellCore),
-                     count: activeTrackingCount)
-        }
-    }
-
-    @ViewBuilder
-    private func userGoalCard(centered: Bool) -> some View {
-        StatisticsCard(title: String(localized: "statistics.fitness.goal", bundle: .gymNutshellCore),
-                       accentColor: accentColor,
-                       centered: centered) {
-            if centered {
-                Text(userGoalLabel)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
-            } else {
-                HStack {
-                    Text(userGoalLabel)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
-                    Spacer()
+    private var tiersSection: some View {
+        let counts = [level1Days, level2Days, level3Days, level4Days]
+        let maxDays = counts.max() ?? 0
+        let levels: [DailyAchievement] = [.level1, .level2, .level3, .level4]
+        return ProgressSection(title: String(localized: "statistics.section.tiers", bundle: .gymNutshellCore)) {
+            AppGroupedCard(dividerInset: 74) {
+                ForEach(Array(levels.enumerated()), id: \.offset) { index, level in
+                    TierRow(emoji: selectedTheme.emoji(for: level, sex: sex),
+                            label: selectedTheme.name(for: level, sex: sex),
+                            days: counts[index],
+                            maxDays: maxDays,
+                            accentColor: accentColor)
                 }
             }
         }
         .contentShape(Rectangle())
-        .tapButton { navPath.append(StatsDestination.userGoal) }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(String(localized: "statistics.fitness.goal", bundle: .gymNutshellCore))
-        .accessibilityValue(userGoalLabel)
-        .accessibilityHint(String(localized: "a11y.stats.card.usergoal.hint", bundle: .gymNutshellCore))
+        .onTapGesture { showTierSheet = true }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(String(localized: "a11y.stats.card.tiers.hint", bundle: .gymNutshellCore))
+    }
+
+    private var bonusesSection: some View {
+        ProgressSection(title: String(localized: "statistics.section.bonuses", bundle: .gymNutshellCore)) {
+            Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+                GridRow {
+                    BonusTile(label: String(localized: "statistics.bonus.weekly.level3", bundle: .gymNutshellCore),
+                              count: weeklyStrongCount) { showBonusInfoSheet = true }
+                    BonusTile(label: String(localized: "statistics.bonus.weekly.level4", bundle: .gymNutshellCore),
+                              count: weeklyExpertCount) { showBonusInfoSheet = true }
+                }
+                GridRow {
+                    BonusTile(label: String(localized: "statistics.bonus.monthly.level3", bundle: .gymNutshellCore),
+                              count: monthlyStrongCount) { showBonusInfoSheet = true }
+                    BonusTile(label: String(localized: "statistics.bonus.monthly.level4", bundle: .gymNutshellCore),
+                              count: monthlyExpertCount) { showBonusInfoSheet = true }
+                }
+            }
+        }
+    }
+
+    private var activitySection: some View {
+        ProgressSection(title: String(localized: "statistics.section.activity", bundle: .gymNutshellCore)) {
+            HStack(spacing: 12) {
+                ActivityTile(emoji: "🏋️",
+                             label: String(localized: "statistics.activity.workout", bundle: .gymNutshellCore),
+                             days: workoutDays)
+                ActivityTile(emoji: "🏃",
+                             label: String(localized: "statistics.activity.cardio", bundle: .gymNutshellCore),
+                             days: cardioDays)
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture { openAchievementsList() }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(String(localized: "a11y.stats.card.activity.hint", bundle: .gymNutshellCore))
+    }
+
+    // Objetivo e metas ativas: duas linhas navegáveis (Objetivo só aparece se já foi escolhido).
+    private var goalsSection: some View {
+        ProgressSection(title: String(localized: "statistics.section.goals", bundle: .gymNutshellCore)) {
+            AppGroupedCard(dividerInset: 64) {
+                if !userGoalRaw.isEmpty {
+                    ProgressNavRow(icon: "flame.fill", color: .orange,
+                                   title: String(localized: "statistics.fitness.goal", bundle: .gymNutshellCore),
+                                   value: userGoalLabel)
+                        .tapButton { navPath.append(StatsDestination.userGoal) }
+                        .accessibilityHint(String(localized: "a11y.stats.card.usergoal.hint", bundle: .gymNutshellCore))
+                }
+                ProgressNavRow(icon: "target", color: .red,
+                               title: String(localized: "statistics.goals.active.label", bundle: .gymNutshellCore),
+                               value: String(format: String(localized: "statistics.goals.active", bundle: .gymNutshellCore),
+                                             activeTrackingCount))
+                    .tapButton { navPath.append(StatsDestination.goals) }
+                    .accessibilityHint(String(localized: "a11y.stats.card.goals.hint", bundle: .gymNutshellCore))
+            }
+        }
+    }
+
+    private var recentSection: some View {
+        ProfileRecentActivityView(
+            entries: last7Days,
+            selectedTheme: selectedTheme,
+            onDayTap: jumpToAchievements(date:)
+        )
     }
 
     // MARK: - Navegação

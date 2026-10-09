@@ -1,9 +1,10 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayCategoryGrid.swift
 //
-//  Propósito: Grade de categorias da tela Hoje (iPhone). Cada categoria vira um bloco com
-//             ícone, nome e progresso; tocar abre um balão (popover) saindo do bloco com os
-//             controles das metas daquela categoria. 2 colunas; linha com item único fica centralizada.
+//  Propósito: Grade de categorias da tela Hoje (iPhone). Cada categoria vira um botão redondo de
+//             vidro (iOS 26+) com ícone e mini anel de progresso, nome e contagem embaixo; tocar abre
+//             um balão (popover) abaixo do botão com os controles das metas daquela categoria.
+//             4 por linha; a última linha incompleta fica centralizada.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
 // ⌘
@@ -32,13 +33,17 @@ struct TodayCategoryGrid: View {
     @State private var openTileId: String? = nil
 
     private let spacing: CGFloat = 12
+    private let columns = 4
+    private static let circleSize: CGFloat = 68
 
     var body: some View {
-        // Agrupa em linhas de 2. A última linha com 1 item fica centralizada (mesma largura dos outros).
-        let rows = stride(from: 0, to: tiles.count, by: 2).map { Array(tiles[$0..<min($0 + 2, tiles.count)]) }
+        // Agrupa em linhas de 4. A última linha com menos itens fica centralizada (mesma largura dos outros).
+        let rows = stride(from: 0, to: tiles.count, by: columns).map {
+            Array(tiles[$0..<min($0 + columns, tiles.count)])
+        }
 
         GeometryReader { proxy in
-            let tileWidth = (proxy.size.width - spacing) / 2
+            let tileWidth = (proxy.size.width - spacing * CGFloat(columns - 1)) / CGFloat(columns)
             VStack(spacing: spacing) {
                 ForEach(rows, id: \.first?.id) { row in
                     HStack(spacing: spacing) {
@@ -55,13 +60,13 @@ struct TodayCategoryGrid: View {
     }
 
     // Altura fixa por linha pra o GeometryReader não colapsar.
-    private static let tileHeight: CGFloat = 128
+    private static let tileHeight: CGFloat = 112
 
     private func gridHeight(rows: Int) -> CGFloat {
         CGFloat(rows) * Self.tileHeight + CGFloat(max(rows - 1, 0)) * spacing
     }
 
-    // MARK: - Bloco
+    // MARK: - Botão redondo
 
     private func tileView(_ tile: TodayCategoryTile) -> some View {
         let isDone = tile.totalCount > 0 && tile.completedCount == tile.totalCount
@@ -69,46 +74,49 @@ struct TodayCategoryGrid: View {
             UISelectionFeedbackGenerator().selectionChanged()
             openTileId = tile.id
         } label: {
-            VStack(spacing: 8) {
-                // Ícone dentro de um mini anel com o progresso da categoria.
+            VStack(spacing: 6) {
+                // Ícone dentro de um mini anel com o progresso da categoria, sobre vidro.
                 ZStack {
                     Circle()
-                        .stroke(Color.secondary.opacity(0.18), lineWidth: 5)
+                        .stroke(Color.secondary.opacity(0.18), lineWidth: 4)
+                        .padding(5)
                     Circle()
                         .trim(from: 0, to: min(max(tile.progress, 0), 1))
                         .stroke(isDone ? Color.green : accentColor,
-                                style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                                style: StrokeStyle(lineWidth: 4, lineCap: .round))
                         .rotationEffect(.degrees(-90))
+                        .padding(5)
                         .animation(.easeInOut(duration: 0.4), value: tile.progress)
                     Image(systemName: isDone ? "checkmark" : tile.symbolName)
                         .font(.title3.weight(.semibold))
                         .foregroundStyle(isDone ? Color.green : accentColor)
                         .contentTransition(.symbolEffect(.replace))
                 }
-                .frame(width: 52, height: 52)
+                .frame(width: Self.circleSize, height: Self.circleSize)
+                .background(Circle().fill(Color(.secondarySystemGroupedBackground)))
+                .circleGlass()
 
                 Text(tile.title)
-                    .font(.subheadline.weight(.semibold))
+                    .font(.caption.weight(.semibold))
                     .foregroundStyle(.primary)
                     .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                    .minimumScaleFactor(0.75)
 
                 Text("\(tile.completedCount)/\(tile.totalCount)")
-                    .font(.caption.weight(.medium).monospacedDigit())
+                    .font(.caption2.weight(.medium).monospacedDigit())
                     .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity)
-            .frame(height: Self.tileHeight)
-            .background(Color(.secondarySystemGroupedBackground),
-                        in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-            .contentShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+            .frame(height: Self.tileHeight, alignment: .top)
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .pressScale(1.05, response: 0.25, dampingFraction: 0.6)
+        // Balão abaixo do botão (seta no topo); sem espaço, o sistema inverte sozinho.
         .popover(isPresented: Binding(
             get: { openTileId == tile.id },
             set: { if !$0 { openTileId = nil } }
-        )) {
+        ), attachmentAnchor: .point(.bottom), arrowEdge: .top) {
             popoverContent(tile)
                 // Balão de verdade no iPhone, em vez de virar sheet.
                 .presentationCompactAdaptation(.popover)
@@ -177,5 +185,20 @@ private struct TodayCategoryPopover: View {
                idealHeight: desiredHeight,
                maxHeight: desiredHeight)
         .background(Color(.systemGroupedBackground))
+    }
+}
+
+// MARK: - Vidro do botão redondo
+
+private extension View {
+
+    /// Vidro interativo no iOS 26+; nas versões anteriores o fundo sólido do card já basta.
+    @ViewBuilder
+    func circleGlass() -> some View {
+        if #available(iOS 26.0, *) {
+            self.glassEffect(.regular.interactive(), in: Circle())
+        } else {
+            self.overlay(Circle().strokeBorder(Color.secondary.opacity(0.15), lineWidth: 1))
+        }
     }
 }
