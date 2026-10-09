@@ -106,6 +106,7 @@ public struct BackupPayload: Codable, Sendable {
         public let widgetBackgroundMode: String?   // widget.background.mode
         public let orientationLock: String?        // app.orientation.lock
         public let autoWorkoutCheckin: Bool?       // healthkit.autoWorkoutCheckin
+        public let controlStyle: String?           // app.controlStyle (slider | stepper), novo na 1.1
         /// id da notificação ("<kind>" ou "custom.<uuid>") → valor.
         public let notificationEnabled: [String: Bool]?
         public let notificationInterval: [String: Int]?
@@ -118,6 +119,7 @@ public struct BackupPayload: Codable, Sendable {
             widgetBackgroundMode: String?,
             orientationLock: String?,
             autoWorkoutCheckin: Bool?,
+            controlStyle: String? = nil,
             notificationEnabled: [String: Bool]?,
             notificationInterval: [String: Int]?,
             notificationSound: [String: String]?,
@@ -127,6 +129,7 @@ public struct BackupPayload: Codable, Sendable {
             self.widgetBackgroundMode = widgetBackgroundMode
             self.orientationLock = orientationLock
             self.autoWorkoutCheckin = autoWorkoutCheckin
+            self.controlStyle = controlStyle
             self.notificationEnabled = notificationEnabled
             self.notificationInterval = notificationInterval
             self.notificationSound = notificationSound

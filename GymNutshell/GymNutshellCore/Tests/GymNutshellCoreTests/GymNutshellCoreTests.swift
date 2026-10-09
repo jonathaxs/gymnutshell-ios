@@ -116,3 +116,24 @@ import Foundation
     let decoded = try JSONDecoder().decode(CustomGoalCategory.self, from: data)
     #expect(decoded.symbolName == "figure.yoga")
 }
+
+// MARK: - Estilo de controle no backup (1.1)
+
+@Test func estiloDeControleViajaNoBackup() throws {
+    let prefs = BackupPayload.PreferencesSnapshot(
+        widgetBackground: nil, widgetBackgroundMode: nil, orientationLock: nil,
+        autoWorkoutCheckin: nil, controlStyle: "stepper",
+        notificationEnabled: nil, notificationInterval: nil,
+        notificationSound: nil, goalIncrements: nil
+    )
+    let data = try JSONEncoder().encode(prefs)
+    let decoded = try JSONDecoder().decode(BackupPayload.PreferencesSnapshot.self, from: data)
+    #expect(decoded.controlStyle == "stepper")
+}
+
+@Test func preferenciasDaV10SemEstiloDeControleDecodificam() throws {
+    let json = #"{"widgetBackground":"x","orientationLock":"portrait"}"#.data(using: .utf8)!
+    let prefs = try JSONDecoder().decode(BackupPayload.PreferencesSnapshot.self, from: json)
+    #expect(prefs.controlStyle == nil)
+    #expect(prefs.widgetBackground == "x")
+}

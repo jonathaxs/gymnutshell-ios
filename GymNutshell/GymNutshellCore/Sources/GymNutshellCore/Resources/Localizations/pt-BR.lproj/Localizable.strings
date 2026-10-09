@@ -190,11 +190,6 @@
 "profile.stats.points" = "Pontos";
 "profile.stats.bonuses" = "Bônus";
 "profile.recent.section" = "Últimos 7 dias";
-"profile.physical.section" = "Dados Físicos";
-"profile.physical.height" = "Altura";
-"profile.physical.weight" = "Peso";
-"profile.physical.age" = "Idade";
-"profile.physical.sex" = "Sexo";
 
 
 /* MARK: - Views/SettingsView */
@@ -207,21 +202,6 @@
 "settings.about.website" = "Site do desenvolvedor";
 "settings.about.feedback" = "Enviar feedback";
 "settings.about.description" = "Gym Nutshell são suas metas diárias da academia em resumo.\n\nMarque, acompanhe e veja a constância virar resultado.";
-
-/* AboutView, entrada do Tip Jar */
-"settings.about.support.header" = "Apoie o desenvolvedor";
-"settings.about.support.button" = "Deixar uma gorjeta";
-
-/* TipJarView */
-"tipjar.title"          = "Gorjeta";
-"tipjar.description"    = "O Gym Nutshell é feito por uma pessoa só e oferecido de graça. Se ele tem te ajudado, uma gorjeta mantém o projeto vivo. Obrigado!";
-"tipjar.error"          = "Gorjetas indisponíveis no momento. Verifique sua internet e tente novamente.";
-"tipjar.thanks.title"   = "Obrigado!";
-"tipjar.thanks.message" = "Seu apoio significa muito. Ele alimenta diretamente as próximas funcionalidades e atualizações.";
-
-
-/* AddCheckinGoalView.swift */
-
 
 /* AddTrackingGoalView.swift */
 "settings.addgoal.title.new" = "Nova meta";
@@ -295,7 +275,6 @@
 
 /* ProfileSettingsView.swift */
 "settings.profile.section.personal" = "Pessoal";
-"settings.profile.section.physical" = "Dados Físicos";
 "settings.profile.name" = "Nome";
 "settings.profile.name.placeholder" = "Seu nome";
 "settings.profile.favoriteExercise" = "Exercício favorito";
@@ -315,20 +294,9 @@
 "favoriteExercise.traps"      = "Trapézio";
 "favoriteExercise.forearms"   = "Antebraços";
 "favoriteExercise.calves"     = "Panturrilhas";
-"settings.profile.weight" = "Peso (kg)";
-"settings.profile.weight.lbs" = "Peso (lbs)";
-"settings.profile.weight.uk" = "Peso";
-"settings.profile.weight.stones.unit" = "st";
-"settings.profile.weight.stonelbs.unit" = "lbs";
-"settings.profile.height" = "Altura (cm)";
-"settings.profile.height.imperial" = "Altura";
-"settings.profile.height.feet.unit" = "pés";
-"settings.profile.height.inches.unit" = "pol";
-"settings.profile.birthday" = "Nascimento";
 "settings.profile.sex" = "Sexo";
 "profile.sex.male" = "Masculino";
 "profile.sex.female" = "Feminino";
-"profile.sex.other" = "Não informar";
 
 
 /* SettingsView.swift */
@@ -446,10 +414,7 @@
 "today.tier.level.2" = "Nível 2";
 "today.tier.level.3" = "Nível 3";
 "today.tier.level.4" = "Nível 4";
-"today.tier.label.achievement" = "Conquista";
 
-/* TodayProgressRingView.swift, label */
-"today.ring.label.progresso" = "Progresso";
 /* Tier button label combina o cabeçalho "Conquista de hoje" com o nome do tier.
    O emoji fica oculto (decorativo), evita "Galo, Galo". */
 "today.tier.a11y.label" = "Conquista de hoje, %2$@";
@@ -460,8 +425,6 @@
 "today.ring.a11y.value" = "%d por cento concluído";
 
 
-/* CheckinGoalRowView.swift */
-
 /* TodayView.swift, botão de data */
 "today.hero.date.a11y.label" = "Data de hoje, %@";
 "today.hero.date.a11y.hint" = "Toque para abrir o histórico de notificações.";
@@ -471,9 +434,6 @@
 
 
 /* MARK: - Views/WelcomeView */
-
-
-/* WelcomeCheckinGoalsStep.swift */
 
 
 /* WelcomeFitnessGoalStep.swift */
@@ -489,39 +449,11 @@
 "welcome.step.theme.footer" = "O tema pode ser alterado em ajustes do app.";
 
 
-/* WelcomeNameStep.swift */
-
-
 /* WelcomePhysicalDataStep.swift */
-"welcome.step.physical.title" = "Seus dados físicos";
-"welcome.step.physical.info.calculate" = "Isso será usado para calcular automaticamente os valores das suas metas diárias.";
-"welcome.step.physical.info.editable" = "Os valores podem ser alterados em ajustes do app.";
-"welcome.keyboard.next" = "Próximo";
-"welcome.keyboard.done" = "Concluído";
-"keyboard.next" = "Próximo";
-"keyboard.done" = "Concluído";
-"welcome.field.weight" = "Peso (kg)";
-"welcome.field.weight.placeholder" = "ex: 75";
-"welcome.field.weight.lbs" = "Peso (lbs)";
-"welcome.field.weight.placeholder.lbs" = "ex: 165";
-"welcome.field.weight.uk" = "Peso";
-"welcome.field.weight.stones" = "Stones";
-"welcome.field.weight.stones.placeholder" = "11";
-"welcome.field.weight.stonelbs" = "lbs (0–13)";
-"welcome.field.weight.stonelbs.placeholder" = "5";
-"welcome.field.height" = "Altura (cm)";
-"welcome.field.height.placeholder" = "ex: 175";
-"welcome.field.height.imperial" = "Altura";
-"welcome.field.height.feet" = "Pés";
-"welcome.field.height.feet.placeholder" = "5";
-"welcome.field.height.inches" = "Polegadas";
-"welcome.field.height.inches.placeholder" = "8";
-"welcome.field.birthday" = "Data de nascimento";
 "welcome.field.sex" = "Sexo";
 "welcome.field.goal" = "Objetivo";
 "welcome.field.sex.male" = "Masculino";
 "welcome.field.sex.female" = "Feminino";
-"welcome.field.sex.other" = "Não informar";
 
 
 /* WelcomeSummaryStep.swift */
@@ -537,7 +469,6 @@
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Olá!";
-"welcome.step.start.intro" = "Gym Nutshell é um companheiro diário na sua rotina de academia.\n\nRastreie sua nutrição, hidratação, sono, treinos e outras metas ao longo do dia.\n\nAcompanhe o seu avanço na tela de conquistas e progresso.";
 "welcome.start.feature.companion" = "Um companheiro diário na sua rotina de academia.";
 "welcome.start.feature.track" = "Registre nutrição, hidratação, sono, treinos e outras metas ao longo do dia.";
 "welcome.start.feature.progress" = "Acompanhe seu avanço nas conquistas e no progresso.";
@@ -575,8 +506,6 @@
 "healthkit.activity.coreTraining" = "Core";
 "healthkit.activity.climbing" = "Escalada";
 "healthkit.activity.other" = "Exercício";
-
-/* EditCheckinDescView.swift */
 
 /* AppTheme, Categorias */
 "app.theme.category.sport" = "Esporte";
@@ -695,7 +624,6 @@
 "tier.info.intro"             = "Sua conquista é registrada no fim do dia, à meia-noite.";
 "tier.info.section.levels"    = "Conquistas";
 "tier.info.change.theme"      = "Alterar Tema";
-"tier.info.update.footer"     = "\nSua Conquista é registrada quando o dia termina, à meia-noite.";
 "tier.info.range.suffix"      = " de progresso";
 
 
@@ -829,10 +757,6 @@
 "notifications.custom.footer"               = "Lembretes periódicos param quando você atinge a meta do dia dessa meta personalizada.";
 "notifications.history.delete" = "Apagar";
 
-"settings.preference.orientation" = "Orientação";
-"settings.orientation.portrait" = "Bloquear na vertical";
-"settings.orientation.both" = "Usar ambas";
-"settings.orientation.footer" = "Escolha como o app deve responder à rotação do dispositivo.";
 
 
 /* MARK: - Acessibilidade (VoiceOver), helpers em A11yHelpers.swift */
@@ -932,7 +856,6 @@
 "a11y.stats.card.tiers.hint"    = "Toque para ver como funcionam os níveis.";
 "a11y.stats.card.activity.hint" = "Toque para abrir o histórico de atividades.";
 "a11y.stats.card.goals.hint"    = "Toque para gerenciar metas rastreadas.";
-"a11y.stats.card.physical.hint" = "Toque para editar dados físicos.";
 
 /* ProfileRecentActivityView, botões dos dias */
 "a11y.recent.day.with.tier.format" = "%1$@, %2$@";
@@ -984,11 +907,6 @@
 /* Ícone do app (About) */
 "a11y.app.icon" = "Ícone do app";
 
-/* Linha de produto do tip jar */
-"a11y.tipjar.row.format" = "%1$@, %2$@";
-"a11y.tipjar.buy.label.format" = "Comprar %1$@ por %2$@";
-"a11y.tipjar.buy.hint" = "Toque para comprar.";
-
 /* Header colapsável de seção (metas e notificações) */
 "a11y.section.collapsible.hint" = "Toque para recolher ou expandir.";
 
@@ -1020,8 +938,6 @@
 /* Botões ± do Watch */
 "a11y.watch.increase.label.format" = "Aumentar %@";
 "a11y.watch.decrease.label.format" = "Diminuir %@";
-
-/* Stat card do Watch */
 
 /* Faixa "últimos 7 dias" do Watch, resumida num único elemento */
 "a11y.watch.recent.summary.format" = "%1$@: %2$d dias com conquistas em 7.";

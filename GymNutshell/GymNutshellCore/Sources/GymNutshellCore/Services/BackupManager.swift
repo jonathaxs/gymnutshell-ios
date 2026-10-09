@@ -146,6 +146,7 @@ public enum BackupManager {
             widgetBackgroundMode: defaults.string(forKey: WidgetBackgroundStore.modeKey),
             orientationLock:      defaults.string(forKey: PrefKeys.orientationLock),
             autoWorkoutCheckin:   autoCheckin,
+            controlStyle:         defaults.string(forKey: ControlStyle.storageKey),
             notificationEnabled:  enabled.isEmpty   ? nil : enabled,
             notificationInterval: interval.isEmpty  ? nil : interval,
             notificationSound:    sound.isEmpty     ? nil : sound,
@@ -158,6 +159,10 @@ public enum BackupManager {
         if let v = prefs.widgetBackgroundMode { defaults.set(v, forKey: WidgetBackgroundStore.modeKey) }
         if let v = prefs.orientationLock      { defaults.set(v, forKey: PrefKeys.orientationLock) }
         if let v = prefs.autoWorkoutCheckin   { defaults.set(v, forKey: PrefKeys.autoWorkoutCheckin) }
+        // Backup da 1.0 não tem o campo: mantém o valor atual. Valor desconhecido também é ignorado.
+        if let v = prefs.controlStyle, ControlStyle(rawValue: v) != nil {
+            defaults.set(v, forKey: ControlStyle.storageKey)
+        }
 
         if let map = prefs.notificationEnabled {
             for (id, val) in map { defaults.set(val, forKey: "notifications.enabled.\(id)") }
