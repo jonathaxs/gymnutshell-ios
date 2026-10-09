@@ -3,7 +3,8 @@
 //
 //  Propósito: Tela principal "Hoje", onde o usuário acompanha todas as metas diárias com sliders.
 //             O bloco hero mostra a data de hoje, o nível de conquista, o anel de progresso e a frase do próximo nível.
-//             O bloco de metas exibe todas as metas ativas em uma lista unificada.
+//             No iPhone as metas ficam em blocos por categoria; tocar abre um balão com os controles.
+//             No layout largo (iPad) continua a lista/grade completa.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-08-16.
 // ⌘
@@ -568,6 +569,89 @@ struct TodayView: View {
         )
     }
 
+    // MARK: - Grade de categorias (iPhone)
+
+    /// Progresso de uma meta personalizada (dia de descanso conta como cumprida).
+    private func customProgress(_ goal: CustomTrackingGoal) -> Double {
+        if supportsRestDay(for: goal), customTrackingRestDays[goal.id.uuidString] == true { return 1 }
+        let intake = customTrackingIntakes[goal.id.uuidString] ?? 0
+        return ProgressHelpers.normalizedProgress(current: intake, goal: goal.goal)
+    }
+
+    private func customRow(_ goal: CustomTrackingGoal) -> some View {
+        TrackingGoalRowView(
+            emoji: goal.emoji,
+            title: goal.name,
+            unit: goal.unit,
+            increment: goal.increment,
+            goal: goal.goal,
+            value: intakeBinding(for: goal),
+            isRestDay: restDayBinding(for: goal)
+        )
+    }
+
+    /// Monta um bloco a partir dos progressos das metas e das linhas de controle.
+    private func makeTile(id: String, title: String, symbol: String,
+                          progresses: [Double], content: AnyView) -> TodayCategoryTile {
+        let average = progresses.isEmpty ? 0 : progresses.reduce(0, +) / Double(progresses.count)
+        return TodayCategoryTile(
+            id: id,
+            title: title,
+            symbolName: symbol,
+            progress: average,
+            completedCount: progresses.filter { $0 >= 1 }.count,
+            totalCount: progresses.count,
+            content: content
+        )
+    }
+
+    /// Blocos da grade: as 4 categorias fixas primeiro, depois as do usuário, e "Outras" no fim.
+    private var categoryTiles: [TodayCategoryTile] {
+        let builtins = unifiedCategoryItems.filter { if case .builtin = $0 { return true }; return false }
+        let customs  = unifiedCategoryItems.filter { if case .custom = $0 { return true }; return false }
+        var tiles: [TodayCategoryTile] = []
+
+        for item in (builtins + customs) where categoryHasContent(item) {
+            switch item {
+            case .builtin(let category):
+                let keys = activeGoalKeys.filter { GoalCategory.defaultCategory(for: $0) == category }
+                let goals = customTrackingGoals.filter { $0.category == category }
+                tiles.append(makeTile(
+                    id: gridCellId(for: item),
+                    title: category.displayName,
+                    symbol: category.symbolName,
+                    progresses: keys.map { progress(for: $0) } + goals.map { customProgress($0) },
+                    content: AnyView(Group {
+                        ForEach(keys, id: \.self) { goalRow(for: $0) }
+                        ForEach(goals) { customRow($0) }
+                    })
+                ))
+            case .custom(let category):
+                let goals = customGoalsFor(customCategoryId: category.id)
+                tiles.append(makeTile(
+                    id: gridCellId(for: item),
+                    title: category.name,
+                    // Ícone próprio das categorias do usuário chega na 2.9.
+                    symbol: "square.grid.2x2.fill",
+                    progresses: goals.map { customProgress($0) },
+                    content: AnyView(ForEach(goals) { customRow($0) })
+                ))
+            }
+        }
+
+        if !uncategorizedCustomGoals.isEmpty {
+            let goals = uncategorizedCustomGoals
+            tiles.append(makeTile(
+                id: "__uncategorized__",
+                title: String(localized: "today.category.other", bundle: .gymNutshellCore),
+                symbol: "ellipsis",
+                progresses: goals.map { customProgress($0) },
+                content: AnyView(ForEach(goals) { customRow($0) })
+            ))
+        }
+        return tiles
+    }
+
     // MARK: - Corpo da lista de metas
 
     private var goalsListBody: some View {
@@ -656,12 +740,15 @@ struct TodayView: View {
 
                 Spacer().frame(height: heroToGoalsSpacing)
 
-                ViewThatFits(in: .vertical) {
-                    goalsListBody
-                    ScrollView {
-                        goalsListBody
-                    }
+                // Blocos de categoria; os controles abrem num balão ao tocar.
+                // Rola só se houver muitas categorias personalizadas.
+                ScrollView {
+                    TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
+                        .frame(maxWidth: UI.contentMaxWidth)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 4)
                 }
+                .scrollBounceBehavior(.basedOnSize)
 
                 Spacer(minLength: 0)
             }

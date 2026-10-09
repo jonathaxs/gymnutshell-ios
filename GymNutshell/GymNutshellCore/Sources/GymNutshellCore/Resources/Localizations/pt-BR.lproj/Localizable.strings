@@ -424,6 +424,9 @@
 "today.goals.workout" = "Musculação";
 "today.goals.cardio" = "Cardio";
 "today.goals.creatine" = "Creatina";
+"today.category.other" = "Outras";
+"today.category.tile.a11y.value" = "%d de %d metas concluídas";
+"today.category.tile.a11y.hint" = "Abre os controles desta categoria.";
 "today.restday.label" = "Dia de descanso";
 "today.restday.on" = "      ON      ";
 "today.restday.off" = "     OFF     ";

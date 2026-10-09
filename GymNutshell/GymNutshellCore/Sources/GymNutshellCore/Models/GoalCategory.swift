@@ -28,6 +28,18 @@ public enum GoalCategory: String, Codable, CaseIterable, Sendable {
         }
     }
 
+    // MARK: - Ícone (SF Symbol)
+
+    /// Ícone da categoria nos blocos da tela Hoje.
+    public var symbolName: String {
+        switch self {
+        case .essencial:  return "heart.fill"
+        case .nutricao:   return "fork.knife"
+        case .treino:     return "dumbbell.fill"
+        case .suplemento: return "pills.fill"
+        }
+    }
+
     // MARK: - Mapeamento de chaves fixas
 
     /// Categoria padrão de uma chave de meta fixa.
