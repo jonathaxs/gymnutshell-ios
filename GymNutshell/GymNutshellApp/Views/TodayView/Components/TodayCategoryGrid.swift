@@ -4,7 +4,8 @@
 //  Propósito: Grade de categorias da tela Hoje (iPhone). Cada categoria vira um botão redondo de
 //             vidro (iOS 26+) com ícone e mini anel de progresso, nome e contagem embaixo; tocar abre
 //             um balão (popover) abaixo do botão com os controles das metas daquela categoria.
-//             4 por linha; a última linha incompleta fica centralizada.
+//             4 por linha; a última linha incompleta fica centralizada. No iOS 18 o balão é
+//             apresentado pelo UIKit, que respeita a seta pra cima (o SwiftUI ignorava e abria acima).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
 // ⌘
@@ -34,7 +35,8 @@ struct TodayCategoryGrid: View {
 
     private let spacing: CGFloat = 12
     private let columns = 4
-    private static let circleSize: CGFloat = 68
+    /// Diâmetro máximo do botão; em telas estreitas ele encolhe pra caber na coluna.
+    private static let maxCircleSize: CGFloat = 80
 
     var body: some View {
         // Agrupa em linhas de 4. A última linha com menos itens fica centralizada (mesma largura dos outros).
@@ -48,7 +50,7 @@ struct TodayCategoryGrid: View {
                 ForEach(rows, id: \.first?.id) { row in
                     HStack(spacing: spacing) {
                         ForEach(row) { tile in
-                            tileView(tile)
+                            tileView(tile, circleSize: min(Self.maxCircleSize, tileWidth - 2))
                                 .frame(width: tileWidth)
                         }
                     }
@@ -60,11 +62,7 @@ struct TodayCategoryGrid: View {
     }
 
     // Altura fixa por linha pra o GeometryReader não colapsar.
-    private static let tileHeight: CGFloat = 112
-
-    // Balão abaixo do botão (seta no topo). No iOS 26+ vale o arrowEdge; no iOS 18 o sistema ignora
-    // e abre pra cima (conferido no simulador), o que continua usável.
-    private static var popoverArrowEdge: Edge { .top }
+    private static let tileHeight: CGFloat = 126
 
     private func gridHeight(rows: Int) -> CGFloat {
         CGFloat(rows) * Self.tileHeight + CGFloat(max(rows - 1, 0)) * spacing
@@ -72,8 +70,12 @@ struct TodayCategoryGrid: View {
 
     // MARK: - Botão redondo
 
-    private func tileView(_ tile: TodayCategoryTile) -> some View {
+    private func tileView(_ tile: TodayCategoryTile, circleSize: CGFloat) -> some View {
         let isDone = tile.totalCount > 0 && tile.completedCount == tile.totalCount
+        let isOpen = Binding(
+            get: { openTileId == tile.id },
+            set: { if !$0 { openTileId = nil } }
+        )
         return Button {
             UISelectionFeedbackGenerator().selectionChanged()
             openTileId = tile.id
@@ -82,21 +84,21 @@ struct TodayCategoryGrid: View {
                 // Ícone dentro de um mini anel com o progresso da categoria, sobre vidro.
                 ZStack {
                     Circle()
-                        .stroke(Color.secondary.opacity(0.18), lineWidth: 4)
-                        .padding(5)
+                        .stroke(Color.secondary.opacity(0.18), lineWidth: 5)
+                        .padding(6)
                     Circle()
                         .trim(from: 0, to: min(max(tile.progress, 0), 1))
                         .stroke(isDone ? Color.green : accentColor,
-                                style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                                style: StrokeStyle(lineWidth: 5, lineCap: .round))
                         .rotationEffect(.degrees(-90))
-                        .padding(5)
+                        .padding(6)
                         .animation(.easeInOut(duration: 0.4), value: tile.progress)
                     Image(systemName: isDone ? "checkmark" : tile.symbolName)
-                        .font(.title3.weight(.semibold))
+                        .font(.system(size: circleSize * 0.32, weight: .semibold))
                         .foregroundStyle(isDone ? Color.green : accentColor)
                         .contentTransition(.symbolEffect(.replace))
                 }
-                .frame(width: Self.circleSize, height: Self.circleSize)
+                .frame(width: circleSize, height: circleSize)
                 .background(Circle().fill(Color(.secondarySystemGroupedBackground)))
                 .circleGlass()
 
@@ -116,14 +118,9 @@ struct TodayCategoryGrid: View {
         }
         .buttonStyle(.plain)
         .pressScale(1.05, response: 0.25, dampingFraction: 0.6)
-        // Balão abaixo do botão (seta no topo); sem espaço, o sistema inverte sozinho.
-        .popover(isPresented: Binding(
-            get: { openTileId == tile.id },
-            set: { if !$0 { openTileId = nil } }
-        ), attachmentAnchor: .point(.bottom), arrowEdge: Self.popoverArrowEdge) {
+        // Balão abaixo do botão (seta no topo).
+        .categoryPopover(isPresented: isOpen) {
             popoverContent(tile)
-                // Balão de verdade no iPhone, em vez de virar sheet.
-                .presentationCompactAdaptation(.popover)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)
@@ -189,6 +186,92 @@ private struct TodayCategoryPopover: View {
                idealHeight: desiredHeight,
                maxHeight: desiredHeight)
         .background(Color(.systemGroupedBackground))
+    }
+}
+
+// MARK: - Balão abaixo do botão
+
+private extension View {
+
+    /// iOS 26+: popover do SwiftUI, que respeita a seta no topo. iOS 18: o SwiftUI ignora o
+    /// arrowEdge e abria o balão pra cima, então o UIKit apresenta com a seta só pra cima.
+    @ViewBuilder
+    func categoryPopover<Content: View>(isPresented: Binding<Bool>,
+                                        @ViewBuilder content: @escaping () -> Content) -> some View {
+        if #available(iOS 26.0, *) {
+            self.popover(isPresented: isPresented, attachmentAnchor: .point(.bottom), arrowEdge: .top) {
+                content()
+                    // Balão de verdade no iPhone, em vez de virar sheet.
+                    .presentationCompactAdaptation(.popover)
+            }
+        } else {
+            self.background(DownwardPopoverPresenter(isPresented: isPresented, content: content))
+        }
+    }
+}
+
+/// Apresenta o conteúdo num popover do UIKit preso à base da view, sempre abrindo pra baixo.
+/// O tamanho acompanha o tamanho ideal do conteúdo (preferredContentSize).
+private struct DownwardPopoverPresenter<Content: View>: UIViewControllerRepresentable {
+
+    @Binding var isPresented: Bool
+    let content: () -> Content
+
+    func makeCoordinator() -> Coordinator { Coordinator(isPresented: $isPresented) }
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        let controller = UIViewController()
+        controller.view.backgroundColor = .clear
+        controller.view.isUserInteractionEnabled = false
+        return controller
+    }
+
+    func updateUIViewController(_ controller: UIViewController, context: Context) {
+        context.coordinator.isPresented = $isPresented
+        let hosting = context.coordinator.hosting
+
+        if isPresented {
+            if let hosting {
+                // Balão já aberto: atualiza as metas (valores mudam a cada toque).
+                hosting.rootView = AnyView(content())
+            } else if controller.presentedViewController == nil, controller.view.window != nil {
+                let host = UIHostingController(rootView: AnyView(content()))
+                host.sizingOptions = .preferredContentSize
+                host.view.backgroundColor = .systemGroupedBackground
+                host.modalPresentationStyle = .popover
+                if let popover = host.popoverPresentationController {
+                    popover.sourceView = controller.view
+                    let bounds = controller.view.bounds
+                    popover.sourceRect = CGRect(x: bounds.midX, y: bounds.maxY, width: 0, height: 0)
+                    popover.permittedArrowDirections = .up
+                    popover.delegate = context.coordinator
+                }
+                context.coordinator.hosting = host
+                controller.present(host, animated: true)
+            }
+        } else if let hosting {
+            context.coordinator.hosting = nil
+            hosting.dismiss(animated: true)
+        }
+    }
+
+    final class Coordinator: NSObject, UIPopoverPresentationControllerDelegate {
+        var isPresented: Binding<Bool>
+        var hosting: UIHostingController<AnyView>?
+
+        init(isPresented: Binding<Bool>) { self.isPresented = isPresented }
+
+        // Mantém o balão no iPhone (sem virar sheet).
+        func adaptivePresentationStyle(for controller: UIPresentationController,
+                                       traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+            .none
+        }
+
+        // Fechou tocando fora: avisa o SwiftUI.
+        func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+            hosting = nil
+            isPresented.wrappedValue = false
+        }
     }
 }
 
