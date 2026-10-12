@@ -147,10 +147,11 @@ struct WelcomeContinueButton: View {
 struct WelcomeProgressBar: View {
     let currentStep: WelcomeStep
     let activeColor: Color
+    var steps: [WelcomeStep] = WelcomeStep.visible(includeUnits: false)
 
     var body: some View {
-        let total = WelcomeStep.allCases.count
-        let current = currentStep.rawValue + 1
+        let total = steps.count
+        let current = (steps.firstIndex(of: currentStep) ?? 0) + 1
 
         HStack(spacing: 6) {
             ForEach(0..<total, id: \.self) { index in

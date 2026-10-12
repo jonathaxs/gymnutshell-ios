@@ -31,6 +31,13 @@ struct GymNutshellApp: App {
     private let containerInitFailed: Bool
     private let sharedModelContainer: ModelContainer
 
+    /// Transição da Welcome pra Today; com Reduzir Movimento fica só o fade.
+    private static var handoffTransition: AnyTransition {
+        UIAccessibility.isReduceMotionEnabled
+            ? .opacity
+            : .opacity.combined(with: .scale(scale: 1.06))
+    }
+
     init() {
         // Registra o delegate do UNUserNotificationCenter antes de qualquer notificação ser entregue.
         // Garante que o toque na notificação seja roteado pra tela certa mesmo em cold start.
@@ -45,6 +52,10 @@ struct GymNutshellApp: App {
         // Migração one-shot: chave antiga "profile.fitnessGoal" → nova "profile.userGoal".
         // Executa quando o usuário atualiza a versão; limpa a chave antiga depois de copiar.
         let defaults = UserDefaults.standard
+        // 1.1: a opção "UK" saiu (só importava pra água, igual ao métrico); quem tinha vira métrico.
+        if defaults.string(forKey: UserProfile.measurementSystemKey) == "uk" {
+            defaults.set(MeasurementSystem.metric.rawValue, forKey: UserProfile.measurementSystemKey)
+        }
         if defaults.object(forKey: UserProfile.userGoalKey) == nil,
            let legacy = defaults.string(forKey: "profile.fitnessGoal") {
             defaults.set(legacy, forKey: UserProfile.userGoalKey)
@@ -91,12 +102,16 @@ struct GymNutshellApp: App {
                     DataStoreErrorView()
                 } else if didCompleteOnboarding {
                     MainView()
+                        .transition(Self.handoffTransition)
                 } else {
                     WelcomeView {
                         didCompleteOnboarding = true
                     }
+                    .transition(.opacity)
                 }
             }
+            // "Vamos lá": a Welcome some e a Today entra com um leve zoom.
+            .animation(.easeInOut(duration: 0.6), value: didCompleteOnboarding)
             .onReceive(NotificationCenter.default.publisher(for: .gymNutshellIntakeDidChange)) { _ in
                 sendWatchStats()
                 updateWidgetSnapshot()

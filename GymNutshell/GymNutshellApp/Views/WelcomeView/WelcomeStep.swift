@@ -10,6 +10,7 @@ import GymNutshellCore
 enum WelcomeStep: Int, CaseIterable {
     case start
     case goal
+    case units      // só aparece em aparelhos no sistema americano
     case summary
     case controlStyle
     case theme
@@ -20,6 +21,7 @@ enum WelcomeStep: Int, CaseIterable {
         switch self {
         case .start:        return "👋"
         case .goal:         return "🎯"
+        case .units:        return "📏"
         case .summary:      return "✅"
         case .controlStyle: return "🎛️"
         case .theme:        return "🎭"
@@ -32,6 +34,7 @@ enum WelcomeStep: Int, CaseIterable {
         switch self {
         case .start:        return String(localized: "welcome.step.start.title", bundle: .gymNutshellCore)
         case .goal:         return String(localized: "welcome.step.goal.title", bundle: .gymNutshellCore)
+        case .units:        return String(localized: "welcome.step.units.title", bundle: .gymNutshellCore)
         case .summary:      return String(localized: "welcome.step.summary.title", bundle: .gymNutshellCore)
         case .controlStyle: return String(localized: "welcome.step.control.title", bundle: .gymNutshellCore)
         case .theme:        return String(localized: "welcome.step.theme.title", bundle: .gymNutshellCore)
@@ -43,11 +46,17 @@ enum WelcomeStep: Int, CaseIterable {
     var panelSubtitle: String? {
         switch self {
         case .goal:    return String(localized: "welcome.step.goal.info.choose", bundle: .gymNutshellCore)
+        case .units:   return String(localized: "welcome.step.units.subtitle", bundle: .gymNutshellCore)
         case .summary: return String(localized: "welcome.step.summary.subtitle", bundle: .gymNutshellCore)
         case .controlStyle: return String(localized: "welcome.step.control.subtitle", bundle: .gymNutshellCore)
         case .theme:   return String(localized: "welcome.step.theme.subtitle", bundle: .gymNutshellCore)
         case .ready:   return String(localized: "welcome.step.ready.subtitle", bundle: .gymNutshellCore)
         default:       return nil
         }
+    }
+
+    /// Etapas que o usuário realmente percorre (a de medidas só entra quando faz sentido).
+    static func visible(includeUnits: Bool) -> [WelcomeStep] {
+        allCases.filter { $0 != .units || includeUnits }
     }
 }

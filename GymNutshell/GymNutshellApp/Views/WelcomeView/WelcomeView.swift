@@ -3,7 +3,7 @@
 //
 //  Propósito: Onboarding em múltiplas etapas que coleta o perfil do usuário e calcula as metas diárias.
 //             Dona do estado e faz a navegação entre as views de cada etapa.
-//             Etapas: início → objetivo + sexo → metas → estilo de controle → tema → tudo pronto (permissões).
+//             Etapas: início → objetivo + sexo → medidas (só EUA) → metas → estilo de controle → tema → tudo pronto (permissões).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
 // ⌘
@@ -48,6 +48,10 @@ struct WelcomeView: View {
     // O usuário pode mudar essa escolha depois em Settings.
     @State private var measurementSystem: MeasurementSystem = MeasurementSystemStore.detectDefault()
 
+    // A etapa de medidas só aparece em aparelhos no sistema americano.
+    private let showsUnitsStep = MeasurementSystemStore.needsChoice
+    private var visibleSteps: [WelcomeStep] { WelcomeStep.visible(includeUnits: showsUnitsStep) }
+
     // MARK: - Seleção de tema
 
     // O tema de mascote escolhido no onboarding. Padrão é Academia.
@@ -84,6 +88,8 @@ struct WelcomeView: View {
             case .goal:
                 summaryScrolledToEnd = false
                 calculatedGoals = GoalsCalculator.calculate(sex: sex, goal: userGoal)
+                currentStep = showsUnitsStep ? .units : .summary
+            case .units:
                 currentStep = .summary
             case .summary:
                 currentStep = .controlStyle
@@ -98,7 +104,8 @@ struct WelcomeView: View {
     }
 
     private func goBack() {
-        guard let prev = WelcomeStep(rawValue: currentStep.rawValue - 1) else { return }
+        guard let index = visibleSteps.firstIndex(of: currentStep), index > 0 else { return }
+        let prev = visibleSteps[index - 1]
         isGoingForward = false
         withAnimation(.easeInOut(duration: 0.3)) {
             currentStep = prev
@@ -138,6 +145,9 @@ struct WelcomeView: View {
         NotificationManager.shared.rescheduleAllActive()
 
         // Marca o onboarding como concluído.
+        // Começa o app na Today, mesmo que a última aba salva fosse outra (ex: depois de um reset).
+        defaults.set(0, forKey: UserProfile.selectedTabKey)
+        defaults.set(true, forKey: UserProfile.pendingRingCelebrationKey)
         defaults.set(true, forKey: UserProfile.didCompleteOnboardingKey)
 
         onComplete()
@@ -212,7 +222,7 @@ struct WelcomeView: View {
                     .transition(.scale.combined(with: .opacity))
                 }
 
-                WelcomeProgressBar(currentStep: currentStep, activeColor: sexColor)
+                WelcomeProgressBar(currentStep: currentStep, activeColor: sexColor, steps: visibleSteps)
             }
             .frame(minHeight: 44)
             .padding(.horizontal, AppStyle.horizontalPadding)
@@ -230,6 +240,8 @@ struct WelcomeView: View {
                     )
                 case .goal:
                     WelcomeUserGoalStep(userGoal: $userGoal, sex: $sex, accentColor: sexColor, isWide: isWide)
+                case .units:
+                    WelcomeUnitsStep(selection: $measurementSystem, accentColor: sexColor, isWide: isWide)
                 case .summary:
                     WelcomeSummaryStep(
                         goals: $calculatedGoals,
@@ -302,7 +314,7 @@ struct WelcomeView: View {
             case .maintenance: return Color.accentColor
             case .cutting:     return .green
             }
-        case .summary, .controlStyle, .theme, .ready:
+        case .units, .summary, .controlStyle, .theme, .ready:
             return sexColor
         default:
             return Color.accentColor
@@ -315,6 +327,7 @@ struct WelcomeView: View {
         switch currentStep {
         case .start:        return true
         case .goal:         return true
+        case .units:        return true
         case .summary:      return summaryScrolledToEnd
         case .controlStyle: return true
         case .theme:        return true

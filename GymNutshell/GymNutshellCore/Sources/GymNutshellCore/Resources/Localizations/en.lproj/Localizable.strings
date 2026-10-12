@@ -294,10 +294,9 @@
 "appleWatch.sheet.note" = "If the app is already installed, it appears in the \"Installed on Apple Watch\" section above.";
 "settings.preference.language" = "Language";
 "settings.preference.measurementSystem" = "Measurements";
-"settings.preference.measurementSystem.metric" = "Metric (kg, cm)";
-"settings.preference.measurementSystem.us" = "US (lbs, ft, fl oz)";
-"settings.preference.measurementSystem.uk" = "UK (st + lbs, ft)";
-"settings.measurementSystem.footer" = "How weight and height are shown and entered throughout the app.";
+"settings.preference.measurementSystem.metric" = "Metric (ml)";
+"settings.preference.measurementSystem.us" = "Imperial (fl oz)";
+"settings.measurementSystem.footer" = "How water is shown and entered in the app.";
 "settings.edit.widgets" = "Widgets";
 "widgetBackground.title" = "Widgets";
 "widgetBackground.mode.label" = "Background";
@@ -940,3 +939,9 @@
 
 "today.edit.goals" = "Edit goals";
 "today.edit.controls" = "Edit controls";
+
+"welcome.step.units.title" = "Your units";
+"welcome.step.units.subtitle" = "How do you prefer to measure water?";
+"welcome.step.units.note" = "You can change this later in Settings.";
+"welcome.units.metric.desc" = "Milliliters, like 250 ml per glass.";
+"welcome.units.imperial.desc" = "Fluid ounces, like 8 fl oz per glass.";

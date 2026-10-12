@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/SettingsView/Preferences/MeasurementSettingsView.swift
 //
-//  Propósito: Permite ao usuário escolher entre os sistemas de medidas Métrico, US e UK.
+//  Propósito: Permite ao usuário escolher entre Métrico (ml) e Imperial (fl oz).
 //             Selecionar uma linha salva imediatamente via @AppStorage, sem botão de Salvar.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-22.
@@ -10,7 +10,7 @@
 import SwiftUI
 import GymNutshellCore
 
-/// Tela de settings pra escolher o sistema de medidas (Métrico, US ou UK).
+/// Tela de settings pra escolher o sistema de medidas (Métrico ou Imperial).
 /// Selecionar uma linha aplica a mudança imediatamente. A nova preferência é
 /// refletida no Perfil e nas Settings sem precisar reiniciar o app.
 struct MeasurementSettingsView: View {
@@ -22,7 +22,6 @@ struct MeasurementSettingsView: View {
             Section {
                 systemRow(.metric)
                 systemRow(.us)
-                systemRow(.uk)
             } footer: {
                 Text(String(localized: "settings.measurementSystem.footer", bundle: .gymNutshellCore))
             }
@@ -40,7 +39,6 @@ struct MeasurementSettingsView: View {
             switch system {
             case .metric: return String(localized: "settings.preference.measurementSystem.metric", bundle: .gymNutshellCore)
             case .us:     return String(localized: "settings.preference.measurementSystem.us", bundle: .gymNutshellCore)
-            case .uk:     return String(localized: "settings.preference.measurementSystem.uk", bundle: .gymNutshellCore)
             }
         }()
 

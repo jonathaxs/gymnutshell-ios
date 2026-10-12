@@ -31,6 +31,8 @@ struct TodayProgressRingView: View {
     var lineWidth: CGFloat = 18
     /// false = só o anel (a porcentagem e a frase ficam por conta de quem usa, ex: card do hero).
     var showsLabels: Bool = true
+    /// true no anel do hero: ao entrar vindo da Welcome, o anel enche passando pelas cores e volta.
+    var celebratesAfterOnboarding: Bool = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -38,6 +40,9 @@ struct TodayProgressRingView: View {
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
 
     @GestureState private var isPressed: Bool = false
+
+    // Progresso forçado durante a comemoração (nil = mostra o progresso real).
+    @State private var celebrationProgress: Double? = nil
 
     // MARK: - Valores derivados
 
@@ -57,11 +62,27 @@ struct TodayProgressRingView: View {
     private var emoji: String { theme.emoji(for: achievement, sex: sex) }
     private var tierName: String { theme.name(for: achievement, sex: sex) }
 
+    // MARK: - Comemoração pós-Welcome
+
+    /// Depois do "Vamos lá": o anel enche (cada segmento dá o pulinho) e volta ao progresso real.
+    private func celebrateIfNeeded() {
+        guard celebratesAfterOnboarding,
+              UserDefaults.standard.bool(forKey: UserProfile.pendingRingCelebrationKey) else { return }
+        UserDefaults.standard.removeObject(forKey: UserProfile.pendingRingCelebrationKey)
+        guard !reduceMotion else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            celebrationProgress = 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
+                celebrationProgress = nil
+            }
+        }
+    }
+
     // MARK: - Body
 
     var body: some View {
         VStack(spacing: 10) {
-            SegmentedProgressRing(progress: clampedProgress, lineWidth: lineWidth) {
+            SegmentedProgressRing(progress: celebrationProgress ?? clampedProgress, lineWidth: lineWidth) {
                 if hasStarted {
                     Text(emoji)
                         .font(.system(size: size * 0.38))
@@ -92,6 +113,7 @@ struct TodayProgressRingView: View {
             // e não abre as duas sheets ao mesmo tempo.
             .onTapGesture { onTap?() }
             .accessibilityElement(children: .contain)
+            .onAppear(perform: celebrateIfNeeded)
 
             if showsLabels {
                 // Porcentagem fora do anel + nome do nível atual.

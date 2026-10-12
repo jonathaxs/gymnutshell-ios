@@ -9,11 +9,10 @@
 
 import Foundation
 
-/// Os três sistemas de medida suportados pelo app.
+/// Os dois sistemas de medida suportados pelo app.
 public enum MeasurementSystem: String, CaseIterable, Sendable {
-    case metric
-    case us     // libras, pés/polegadas, fluid ounces
-    case uk     // stones+lbs, pés/polegadas, mililitros
+    case metric // mililitros
+    case us     // fluid ounces (imperial)
 }
 
 /// Gerencia a preferência de sistema de medida do usuário.
@@ -22,10 +21,17 @@ public enum MeasurementSystemStore {
     public static let key = UserProfile.measurementSystemKey
 
     public static func detectDefault() -> MeasurementSystem {
-        switch Locale.current.measurementSystem {
-        case .us: return .us
-        case .uk: return .uk
-        default:  return .metric
-        }
+        needsChoice ? .us : .metric
+    }
+
+    /// Só aparelhos no sistema americano (EUA, Libéria, Mianmar) escolhem na Welcome;
+    /// no resto do mundo (inclusive Brasil e Reino Unido) o app já usa métrico.
+    public static var needsChoice: Bool {
+        Locale.current.measurementSystem == .us
+    }
+
+    /// Converte o valor salvo (backup ou versão antiga). "uk" e desconhecidos viram métrico.
+    public static func normalized(_ raw: String) -> MeasurementSystem {
+        MeasurementSystem(rawValue: raw) ?? .metric
     }
 }

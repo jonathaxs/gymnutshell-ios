@@ -113,7 +113,8 @@ struct TodayHeroView: View {
                                       onEmojiTap: { showTierSheet = true },
                                       size: 124,
                                       lineWidth: 14,
-                                      showsLabels: false)
+                                      showsLabels: false,
+                                      celebratesAfterOnboarding: true)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("\(dailyPercentage)%")

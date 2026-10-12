@@ -197,7 +197,7 @@ public enum BackupManager {
         defaults.set(UserProfile.normalizedSex(p.sex), forKey: UserProfile.sexKey)
         defaults.set(p.userGoal,    forKey: UserProfile.userGoalKey)
         if let system = p.measurementSystem {
-            defaults.set(system, forKey: UserProfile.measurementSystemKey)
+            defaults.set(MeasurementSystemStore.normalized(system).rawValue, forKey: UserProfile.measurementSystemKey)
         }
 
         let g = payload.goals

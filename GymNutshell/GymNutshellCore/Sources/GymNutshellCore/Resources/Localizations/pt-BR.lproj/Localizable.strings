@@ -330,10 +330,9 @@
 "appleWatch.sheet.note" = "Se o app já estiver instalado, ele aparece na seção \"Instalados no Apple Watch\" acima.";
 "settings.preference.language" = "Idioma";
 "settings.preference.measurementSystem" = "Medidas";
-"settings.preference.measurementSystem.metric" = "Métrico (kg, cm)";
-"settings.preference.measurementSystem.us" = "EUA (lbs, pés, fl oz)";
-"settings.preference.measurementSystem.uk" = "UK (st + lbs, pés)";
-"settings.measurementSystem.footer" = "Como peso e altura são exibidos e inseridos no app.";
+"settings.preference.measurementSystem.metric" = "Métrico (ml)";
+"settings.preference.measurementSystem.us" = "Imperial (fl oz)";
+"settings.measurementSystem.footer" = "Como a água é exibida e inserida no app.";
 "settings.edit.widgets" = "Widgets";
 "widgetBackground.title" = "Widgets";
 "widgetBackground.mode.label" = "Fundo";
@@ -990,3 +989,9 @@
 
 "today.edit.goals" = "Editar metas";
 "today.edit.controls" = "Editar controles";
+
+"welcome.step.units.title" = "Suas medidas";
+"welcome.step.units.subtitle" = "Como você prefere medir a água?";
+"welcome.step.units.note" = "Você pode mudar depois em Ajustes.";
+"welcome.units.metric.desc" = "Mililitros, como 250 ml por copo.";
+"welcome.units.imperial.desc" = "Onças fluidas, como 8 fl oz por copo.";
