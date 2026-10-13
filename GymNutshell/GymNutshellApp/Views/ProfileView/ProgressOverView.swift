@@ -1,9 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/ProfileView/ProgressOverView.swift
 //
-//  Propósito: Tela de progresso, mostra dados de desempenho derivados dos registros diários.
-//             Seções: estatísticas de resumo, distribuição por nível, atividade, objetivo e
-//             metas ativas, e últimos 7 dias.
+//  Propósito: Página Registro, mostra dados de desempenho derivados dos registros diários.
+//             Seções: últimos 7 dias, distribuição por nível, atividade, objetivo e metas ativas.
 //             Tocar num dia em "Últimos 7 dias" leva pra aquela data na AchievementsView.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-04-07.
@@ -40,14 +39,6 @@ struct ProgressOverView: View {
     @State private var removedItems: Set<String> = []
     @State private var customTrackingGoals: [CustomTrackingGoal] = []
     @State private var showTierSheet = false
-
-    // MARK: - Estatísticas resumidas
-
-    private var totalDays: Int { records.count }
-
-    private var totalPoints: Int {
-        records.reduce(0) { $0 + $1.points }
-    }
 
     // MARK: - Distribuição por nível
 
@@ -121,11 +112,10 @@ struct ProgressOverView: View {
     @ViewBuilder
     private var narrowLayout: some View {
         VStack(spacing: 24) {
-            statsSummaryRow
+            recentSection
             tiersSection
             activitySection
             goalsSection
-            recentSection
         }
         .padding()
     }
@@ -135,8 +125,8 @@ struct ProgressOverView: View {
     @ViewBuilder
     private var wideLayout: some View {
         VStack(spacing: 24) {
-            // Resumo de pontos, ocupa a largura toda.
-            statsSummaryRow
+            // Últimos 7 dias, ocupa a largura toda, acima das duas colunas.
+            recentSection
 
             // Dois VStacks alinhados ao topo formam o grid de 2 colunas.
             // Col esquerda: Níveis
@@ -153,9 +143,6 @@ struct ProgressOverView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-
-            // Últimos 7 dias, ocupa a largura toda, abaixo das duas colunas.
-            recentSection
         }
         .padding()
         .frame(maxWidth: 860)
@@ -163,15 +150,6 @@ struct ProgressOverView: View {
     }
 
     // MARK: - Seções
-
-    private var statsSummaryRow: some View {
-        ProfileStatsRow(
-            totalDays: totalDays,
-            totalPoints: totalPoints,
-            accentColor: accentColor,
-            onDaysTap: { jumpToAchievements(date: Date()) }
-        )
-    }
 
     private var tiersSection: some View {
         let counts = [level1Days, level2Days, level3Days, level4Days]
@@ -242,7 +220,7 @@ struct ProgressOverView: View {
 
     // MARK: - Navegação
 
-    // Abre a AchievementsView na data indicada (empilha; voltar retorna pras Estatísticas).
+    // Abre a AchievementsView na data indicada (empilha; voltar retorna pro Registro).
     private func jumpToAchievements(date: Date) {
         achievementsDateTimestamp = date.timeIntervalSince1970
         achievementsFilterMode = "day"

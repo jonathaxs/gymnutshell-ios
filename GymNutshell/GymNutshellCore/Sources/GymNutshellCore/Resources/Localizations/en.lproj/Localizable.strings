@@ -84,7 +84,7 @@
 /* MARK: - Views/AchievementsView */
 
 /* AchievementsView.swift */
-"achievements.header.title" = "Achievements";
+"achievements.header.title" = "Calendar";
 "achievements.points.total" = "pts";
 "achievements.filter.title" = "View";
 "achievements.filter.all" = "List";
@@ -107,7 +107,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "History";
+"statistics.title" = "Records";
 "statistics.section.tiers" = "Tier Breakdown";
 "statistics.section.activity" = "Gym Activity";
 "statistics.section.goals" = "Goals";

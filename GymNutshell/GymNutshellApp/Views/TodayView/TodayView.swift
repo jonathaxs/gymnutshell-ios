@@ -81,10 +81,6 @@ struct TodayView: View {
     @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
     private var goalsViewMode: TodayGoalsViewMode { TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list }
 
-    /// Largura da linha de botões do hero (lista/grade, Histórico, Conquistas). No iPhone em retrato
-    /// as metas usam essa largura, em vez da tela toda.
-    @State private var heroButtonRowWidth: CGFloat? = nil
-
     /// Liga cada categoria da lista ao seu botão da grade, pra transformação na troca de modo.
     @Namespace private var goalsMorphNamespace
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -460,8 +456,7 @@ struct TodayView: View {
             selectedTheme: selectedTheme,
             verticalLayout: vertical,
             showsHeader: showsHeader,
-            showsViewModeToggle: !showsHeader,
-            onButtonRowWidthChange: showsHeader ? nil : { heroButtonRowWidth = $0 }
+            showsViewModeToggle: !showsHeader
         )
     }
 
@@ -702,11 +697,6 @@ struct TodayView: View {
 
     // MARK: - Layout retrato
 
-    /// Metas na mesma largura da linha de botões do hero (com limite de 560).
-    private var portraitGoalsMaxWidth: CGFloat {
-        min(heroButtonRowWidth ?? 560, 560)
-    }
-
     private var portraitLayout: some View {
         // Data + sino + engrenagem ficam fixos no topo; anel, metas e atalhos rolam juntos.
         ScrollView {
@@ -717,10 +707,10 @@ struct TodayView: View {
                 if goalsViewMode == .grid {
                     // Blocos de categoria; os controles abrem num balão ao tocar.
                     TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
-                        .frame(maxWidth: portraitGoalsMaxWidth)
+                        .frame(maxWidth: 560)
                         .transition(.opacity)
                 } else {
-                    goalsListBody(maxWidth: portraitGoalsMaxWidth)
+                    goalsListBody(maxWidth: 560)
                         .transition(.opacity)
                 }
 
@@ -731,7 +721,8 @@ struct TodayView: View {
             // O modo muda pelo @AppStorage (fora da transação do botão), então a animação fica aqui.
             .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82),
                        value: goalsViewModeRaw)
-            .padding(.horizontal)
+            // Margem maior que a padrão: metas e botões do hero mais estreitos, na mesma largura.
+            .padding(.horizontal, 32)
             .padding(.bottom, 24)
         }
         .scrollBounceBehavior(.basedOnSize)
@@ -750,16 +741,16 @@ struct TodayView: View {
     /// Botões pequenos abaixo das metas: levam a Ajustes > Metas e Ajustes > Controles.
     private var editShortcuts: some View {
         HStack(spacing: 10) {
-            shortcutButton(titleKey: "today.edit.goals", icon: "target", route: .settingsGoals)
-            shortcutButton(titleKey: "today.edit.controls", icon: "slider.horizontal.3", route: .settingsControls)
+            shortcutButton(titleKey: "today.edit.goals", route: .settingsGoals)
+            shortcutButton(titleKey: "today.edit.controls", route: .settingsControls)
         }
     }
 
-    private func shortcutButton(titleKey: String, icon: String, route: AppRoute) -> some View {
+    private func shortcutButton(titleKey: String, route: AppRoute) -> some View {
         Button {
             router.reset(to: [.settings, route])
         } label: {
-            Label(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore), systemImage: icon)
+            Text(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore))
                 .font(.footnote.weight(.semibold))
         }
         .appSecondaryButton(todayAccentColor)

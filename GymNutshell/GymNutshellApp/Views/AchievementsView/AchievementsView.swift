@@ -161,19 +161,6 @@ struct AchievementsView: View {
     @ViewBuilder
     private var calendarSection: some View {
         Section {
-            Picker(String(localized: "achievements.filter.title", bundle: .gymNutshellCore), selection: $filterMode) {
-                Text(String(localized: "achievements.filter.day", bundle: .gymNutshellCore))
-                    .accessibilityLabel(String(localized: "a11y.achievements.filter.day", bundle: .gymNutshellCore))
-                    .tag(FilterMode.day)
-                Text(String(localized: "achievements.filter.all", bundle: .gymNutshellCore))
-                    .accessibilityLabel(String(localized: "a11y.achievements.filter.all", bundle: .gymNutshellCore))
-                    .tag(FilterMode.all)
-            }
-            .pickerStyle(.segmented)
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
-
             if filterMode == .day {
                 // Calendário num card próprio (o card já traz fundo e cantos).
                 AchievementsCalendarSection(
@@ -273,8 +260,14 @@ struct AchievementsView: View {
             .background(Color(.systemGroupedBackground))
         }
         .navigationTitle(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
+        // Troca calendário ↔ lista (como o botão lista/grade da Hoje), só ícone.
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                filterModeButton
+            }
+        }
         .onAppear {
-            filterMode = FilterMode(rawValue: storedFilterMode) ?? .all
+            filterMode = FilterMode(rawValue: storedFilterMode) ?? .day
             selectedDate = Date(timeIntervalSince1970: storedSelectedDateTimestamp)
             visibleMonthDate = startOfMonth(for: selectedDate)
         }
@@ -314,6 +307,23 @@ struct AchievementsView: View {
                 EditTodayView(record: record)
             }
         }
+    }
+
+    // MARK: - Botão calendário ↔ lista
+
+    /// Mostra o modo pra onde vai: no calendário, o ícone de lista; na lista, o de calendário.
+    private var filterModeButton: some View {
+        let next: FilterMode = filterMode == .day ? .all : .day
+        return Button {
+            UISelectionFeedbackGenerator().selectionChanged()
+            withAnimation(.easeInOut(duration: 0.25)) { filterMode = next }
+        } label: {
+            Image(systemName: next == .all ? "list.bullet" : "calendar")
+                .contentTransition(.symbolEffect(.replace))
+        }
+        .accessibilityLabel(String(localized: next == .all ? "a11y.achievements.filter.all"
+                                                            : "a11y.achievements.filter.day",
+                                   bundle: .gymNutshellCore))
     }
 
     // MARK: - Seção de histórico (extraída pra reuso no layout wide/narrow)

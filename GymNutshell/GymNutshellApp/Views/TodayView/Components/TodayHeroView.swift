@@ -4,7 +4,7 @@
 //  Propósito: Bloco hero da tela Hoje, no topo (retrato) ou na coluna esquerda (landscape/iPad).
 //             Contém: data grande + sino e engrenagem (opcional), o anel de progresso com a % no centro,
 //             depois do primeiro registro a conquista do dia ao lado, a frase do próximo nível e os
-//             botões das páginas Histórico e Conquistas (+ troca lista/grade no iPhone em retrato).
+//             botões das páginas Registro e Calendário (+ troca lista/grade no iPhone em retrato).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -26,8 +26,6 @@ struct TodayHeroView: View {
     var showsHeader: Bool = true
     /// true no iPhone em retrato: mostra ao lado de Conquistas o botão que alterna lista/grade das metas.
     var showsViewModeToggle: Bool = false
-    /// Avisa a largura da linha de botões, pra lista de metas abaixo acompanhar a mesma largura.
-    var onButtonRowWidthChange: ((CGFloat) -> Void)? = nil
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(AppRouter.self) private var router
@@ -169,16 +167,48 @@ struct TodayHeroView: View {
 
     // MARK: - Botões das páginas
 
-    /// Histórico e Conquistas abrem como páginas por cima da Hoje.
+    /// Registros (com texto) e Calendário (só ícone) abrem como páginas por cima da Hoje.
+    /// No iPhone em retrato o Registros estica pra linha ter a mesma largura das metas abaixo.
     private var pageButtons: some View {
         HStack(spacing: 10) {
             if showsViewModeToggle {
                 viewModeButton
             }
-            pageButton(titleKey: "statistics.title", icon: "chart.bar.fill", route: .statistics)
-            pageButton(titleKey: "achievements.header.title", icon: "trophy.fill", route: .achievements)
+            recordsButton
+            calendarButton
         }
-        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { onButtonRowWidthChange?($0) }
+    }
+
+    private var recordsButton: some View {
+        Button {
+            router.open(.statistics)
+        } label: {
+            Label(String(localized: "statistics.title", bundle: .gymNutshellCore),
+                  systemImage: "clock.arrow.trianglehead.counterclockwise.rotate.90")
+                .font(.subheadline.weight(.semibold))
+                .lineLimit(1)
+                .frame(maxWidth: showsViewModeToggle ? .infinity : nil)
+        }
+        .appSecondaryButton(accentColor)
+        .controlSize(.regular)
+    }
+
+    /// Largura do conteúdo dos botões só de ícone, mais largos pra equilibrar com o Registros.
+    private static let iconButtonWidth: CGFloat = 44
+    private static let iconButtonHeight: CGFloat = 20
+
+    private var calendarButton: some View {
+        Button {
+            router.open(.achievements)
+        } label: {
+            Image(systemName: "calendar")
+                .font(.title3.weight(.semibold))
+                // Altura travada na do texto do Registros: ícone maior sem aumentar o botão.
+                .frame(width: Self.iconButtonWidth, height: Self.iconButtonHeight)
+        }
+        .appSecondaryButton(accentColor)
+        .controlSize(.regular)
+        .accessibilityLabel(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
     }
 
     /// Alterna entre lista e grade das metas (só no iPhone em retrato, onde o modo vale).
@@ -192,25 +222,17 @@ struct TodayHeroView: View {
                 goalsViewModeRaw = next.rawValue
             }
         } label: {
+            // Ícone do modo pra onde vai: em lista, o de grade; em grade, o de lista.
             Image(systemName: next.symbolName)
-                .font(.subheadline.weight(.semibold))
+                .font(.title3.weight(.semibold))
+                // Altura travada na do texto do Registros: ícone maior sem aumentar o botão.
+                .frame(width: Self.iconButtonWidth, height: Self.iconButtonHeight)
                 .contentTransition(.symbolEffect(.replace))
         }
         .appSecondaryButton(accentColor)
         .controlSize(.regular)
         .accessibilityLabel(String(format: String(localized: "today.goals.viewMode.switch.a11y",
                                                   bundle: .gymNutshellCore), next.title))
-    }
-
-    private func pageButton(titleKey: String, icon: String, route: AppRoute) -> some View {
-        Button {
-            router.open(route)
-        } label: {
-            Label(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore), systemImage: icon)
-                .font(.subheadline.weight(.semibold))
-        }
-        .appSecondaryButton(accentColor)
-        .controlSize(.regular)
     }
 
     // MARK: - Frase abaixo
