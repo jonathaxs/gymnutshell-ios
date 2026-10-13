@@ -1,8 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/AchievementsView/AchievementsView.swift
 //
-//  Propósito: Tela de histórico que lista os DailyRecords salvos,
-//             mostra o saldo total de pontos e permite editar registros recentes.
+//  Propósito: Página Calendário: calendário com o emoji de cada dia (padrão) ou a lista de todos os
+//             DailyRecords, e edição dos registros dos últimos 30 dias.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-14.
 // ⌘
@@ -23,6 +23,7 @@ struct AchievementsView: View {
     @Query(sort: \DailyRecord.date, order: .reverse) private var records: [DailyRecord]
 
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AppStorage(AppTheme.storageKey) private var selectedTheme: AppTheme = .gym
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
@@ -59,18 +60,19 @@ struct AchievementsView: View {
         case day
     }
 
-    // Persiste a última seleção do usuário nos filtros da tela de conquistas.
-    @AppStorage(UserProfile.achievementsFilterModeKey) private var storedFilterMode: String = FilterMode.day.rawValue
+    // Modo pedido por quem abriu a página (ex: "ver todos" nos Registros). É lido uma vez e volta pro
+    // calendário: o padrão é sempre o calendário, a lista só quando o usuário troca na hora.
+    @AppStorage(UserProfile.achievementsFilterModeKey) private var requestedFilterMode: String = FilterMode.day.rawValue
     @AppStorage(UserProfile.achievementsSelectedDateKey) private var storedSelectedDateTimestamp: Double = Date().timeIntervalSince1970
 
     // Controla a filtragem da lista na tela de conquistas.
-    @State private var filterMode: FilterMode = .all
+    @State private var filterMode: FilterMode = .day
     @State private var selectedDate: Date = Date()
     @State private var visibleMonthDate: Date = Date()
 
-    // Define por quanto tempo um registro permanece editável após ser criado.
-    private static let editWindowHours: Int = 72
-    private static let editWindow: TimeInterval = TimeInterval(Self.editWindowHours * 60 * 60)
+    // Define por quanto tempo um registro permanece editável após ser criado (30 dias, um mês).
+    private static let editWindowDays: Int = 30
+    private static let editWindow: TimeInterval = TimeInterval(Self.editWindowDays * 24 * 60 * 60)
 
     // MARK: - Lista de histórico
 
@@ -123,7 +125,7 @@ struct AchievementsView: View {
         }
     }
 
-    // Um registro só pode ser editado dentro da janela de edição configurada (padrão: 72 horas).
+    // Um registro só pode ser editado dentro da janela de edição configurada (30 dias).
     private func canEdit(_ record: DailyRecord) -> Bool {
         let now = Date()
         let interval = now.timeIntervalSince(record.date)
@@ -239,17 +241,18 @@ struct AchievementsView: View {
                     .frame(maxWidth: 860)
                     .frame(maxWidth: .infinity)
                 } else {
-                    // Narrow (iPhone portrait): layout original com tudo numa List.
-                    List {
-                        calendarSection
-
-                        if visibleRecords.isEmpty {
-                            Section {
-                                AchievementsEmptyState(accentColor: accentColor)
-                                    .listRowBackground(Color.clear)
-                            }
+                    // Narrow (iPhone portrait): tudo numa List. A List sozinha só faz um esmaecido seco,
+                    // então cada modo é uma List própria e a troca usa transições: o calendário recolhe
+                    // pra cima e a lista sobe (e o contrário na volta).
+                    ZStack {
+                        if filterMode == .day {
+                            narrowList
+                                .transition(reduceMotion ? .opacity
+                                            : .opacity.combined(with: .scale(scale: 0.92, anchor: .top)))
                         } else {
-                            historySection
+                            narrowList
+                                .transition(reduceMotion ? .opacity
+                                            : .opacity.combined(with: .offset(y: 80)))
                         }
                     }
                 }
@@ -267,12 +270,10 @@ struct AchievementsView: View {
             }
         }
         .onAppear {
-            filterMode = FilterMode(rawValue: storedFilterMode) ?? .day
+            filterMode = FilterMode(rawValue: requestedFilterMode) ?? .day
+            requestedFilterMode = FilterMode.day.rawValue
             selectedDate = Date(timeIntervalSince1970: storedSelectedDateTimestamp)
             visibleMonthDate = startOfMonth(for: selectedDate)
-        }
-        .onChange(of: filterMode) { _, newValue in
-            storedFilterMode = newValue.rawValue
         }
         .onChange(of: selectedDate) { _, newValue in
             storedSelectedDateTimestamp = newValue.timeIntervalSince1970
@@ -309,6 +310,24 @@ struct AchievementsView: View {
         }
     }
 
+    /// List do iPhone em retrato (calendário + dia escolhido, ou todos os dias).
+    private var narrowList: some View {
+        List {
+            calendarSection
+
+            if visibleRecords.isEmpty {
+                Section {
+                    AchievementsEmptyState(accentColor: accentColor)
+                        .listRowBackground(Color.clear)
+                }
+            } else {
+                historySection
+            }
+        }
+        // Sem fundo próprio: na troca as duas Lists se sobrepõem e o fundo cinza vem de fora.
+        .scrollContentBackground(.hidden)
+    }
+
     // MARK: - Botão calendário ↔ lista
 
     /// Mostra o modo pra onde vai: no calendário, o ícone de lista; na lista, o de calendário.
@@ -316,7 +335,10 @@ struct AchievementsView: View {
         let next: FilterMode = filterMode == .day ? .all : .day
         return Button {
             UISelectionFeedbackGenerator().selectionChanged()
-            withAnimation(.easeInOut(duration: 0.25)) { filterMode = next }
+            // Mola: o calendário recolhe pra cima e a lista sobe (no iPhone em retrato).
+            withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.85)) {
+                filterMode = next
+            }
         } label: {
             Image(systemName: next == .all ? "list.bullet" : "calendar")
                 .contentTransition(.symbolEffect(.replace))

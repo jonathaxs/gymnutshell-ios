@@ -20,7 +20,9 @@ struct TodayView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
-    @Environment(AppRouter.self) private var router
+
+    /// Sheet de Editar metas / Editar controles aberta agora (nil = nenhuma).
+    @State private var editSheet: EditSheet?
 
     // Metas de treino
     @AppStorage("workoutIntake")  private var workoutIntake:  Int = 0
@@ -738,17 +740,23 @@ struct TodayView: View {
 
     // MARK: - Atalhos pra Ajustes
 
-    /// Botões pequenos abaixo das metas: levam a Ajustes > Metas e Ajustes > Controles.
+    /// Sheets de edição rápida, com as mesmas telas de Ajustes > Metas e Ajustes > Controles.
+    private enum EditSheet: String, Identifiable {
+        case goals, controls
+        var id: String { rawValue }
+    }
+
+    /// Botões pequenos abaixo das metas: abrem Metas e Controles numa sheet, sem sair da Hoje.
     private var editShortcuts: some View {
         HStack(spacing: 10) {
-            shortcutButton(titleKey: "today.edit.goals", route: .settingsGoals)
-            shortcutButton(titleKey: "today.edit.controls", route: .settingsControls)
+            shortcutButton(titleKey: "today.edit.goals", sheet: .goals)
+            shortcutButton(titleKey: "today.edit.controls", sheet: .controls)
         }
     }
 
-    private func shortcutButton(titleKey: String, route: AppRoute) -> some View {
+    private func shortcutButton(titleKey: String, sheet: EditSheet) -> some View {
         Button {
-            router.reset(to: [.settings, route])
+            editSheet = sheet
         } label: {
             Text(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore))
                 .font(.footnote.weight(.semibold))
@@ -833,27 +841,13 @@ struct TodayView: View {
             // Carrega stores ANTES de checkIfNewDay, caso contrário o dailyAchievement
             // do dia anterior é recalculado com state vazio (progressValues = []) e o
             // DailyRecord salvo fica com tier "level1" mesmo quando o usuário tinha conquistas.
-            orderedGoalKeys = GoalOrderStore.load()
-            orderedCategories = GoalCategoryOrderStore.load()
-            removedItems = RemovedItemsStore.load()
-            customTrackingGoals = CustomTrackingGoalsStore.load()
-            customTrackingIntakes = CustomTrackingIntakesStore.load()
-            customTrackingRestDays = CustomTrackingRestDaysStore.load()
-            userCategories = CustomGoalCategoriesStore.load()
-            unifiedCategoryItems = UnifiedCategoryOrderStore.load()
+            reloadGoalStores()
             checkIfNewDay()
             checkWorkoutsFromHealth()
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
-                orderedGoalKeys = GoalOrderStore.load()
-                orderedCategories = GoalCategoryOrderStore.load()
-                removedItems = RemovedItemsStore.load()
-                customTrackingGoals = CustomTrackingGoalsStore.load()
-                customTrackingIntakes = CustomTrackingIntakesStore.load()
-                customTrackingRestDays = CustomTrackingRestDaysStore.load()
-                userCategories = CustomGoalCategoriesStore.load()
-                unifiedCategoryItems = UnifiedCategoryOrderStore.load()
+                reloadGoalStores()
                 checkIfNewDay()
                 checkWorkoutsFromHealth()
             } else if newPhase == .background {
@@ -871,6 +865,34 @@ struct TodayView: View {
         .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
             checkIfNewDay()
         }
+        // Editar metas / controles abrem por cima da Hoje; ao fechar, recarrega o que mudou.
+        .sheet(item: $editSheet, onDismiss: reloadGoalStores) { sheet in
+            NavigationStack {
+                Group {
+                    switch sheet {
+                    case .goals:    TrackingGoalsSettingsView()
+                    case .controls: ControlStyleSettingsView()
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(String(localized: "common.close", bundle: .gymNutshellCore)) { editSheet = nil }
+                    }
+                }
+            }
+        }
+    }
+
+    /// Lê de novo as metas, categorias e ordens salvas (ao abrir, voltar pro app e fechar as sheets de edição).
+    private func reloadGoalStores() {
+        orderedGoalKeys = GoalOrderStore.load()
+        orderedCategories = GoalCategoryOrderStore.load()
+        removedItems = RemovedItemsStore.load()
+        customTrackingGoals = CustomTrackingGoalsStore.load()
+        customTrackingIntakes = CustomTrackingIntakesStore.load()
+        customTrackingRestDays = CustomTrackingRestDaysStore.load()
+        userCategories = CustomGoalCategoriesStore.load()
+        unifiedCategoryItems = UnifiedCategoryOrderStore.load()
     }
 }
 

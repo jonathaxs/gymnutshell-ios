@@ -97,16 +97,6 @@ struct GymNutshellWidgetEntryView: View {
         AppAccentColor(rawValue: entry.snapshot.accentColorRaw)?.color ?? .blue
     }
 
-    /// Pontos por tier, espelha `DailyAchievement.points`.
-    private var tierPoints: Int {
-        switch entry.snapshot.tier {
-        case 2:  return 40
-        case 3:  return 60
-        case 4:  return 90
-        default: return 0
-        }
-    }
-
     /// True quando o widget está usando fundo customizado (accent ou custom).
     /// Usado pra decidir se o ring precisa de borda de contraste.
     private var hasCustomBackground: Bool {
@@ -139,19 +129,18 @@ struct GymNutshellWidgetEntryView: View {
             }
         }
         // Widget inteiro vira UM único elemento de VoiceOver, sem isso o usuário
-        // ouve emoji, tier name, "%" e pts como elementos separados. O label
+        // ouve emoji, tier name e "%" como elementos separados. O label
         // composto reusa a frase de progresso do iPhone.
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(String(format: String(localized: "a11y.widget.summary.points.format",
                                                  bundle: .gymNutshellCore),
                                    entry.snapshot.tierName,
-                                   entry.snapshot.progressPercent,
-                                   tierPoints))
+                                   entry.snapshot.progressPercent))
     }
 
     // MARK: Lock screen (accessoryRectangular)
 
-    /// Layout para a tela de bloqueio: tier emoji + nome em destaque, % e pontos abaixo.
+    /// Layout para a tela de bloqueio: tier emoji + nome em destaque, % abaixo.
     /// Não usa background customizado, a tela de bloqueio aplica vibrant rendering.
     private var lockScreenView: some View {
         HStack(spacing: 8) {
@@ -162,7 +151,7 @@ struct GymNutshellWidgetEntryView: View {
                     .font(.headline)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
-                Text("\(entry.snapshot.progressPercent)%, \(tierPoints) pts")
+                Text("\(entry.snapshot.progressPercent)%")
                     .font(.caption2)
                     .lineLimit(1)
             }
@@ -215,15 +204,10 @@ struct GymNutshellWidgetEntryView: View {
                     .font(.headline)
                     .foregroundStyle(textColor)
                     .lineLimit(1)
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Text("\(entry.snapshot.progressPercent)%")
-                        .font(.system(size: 34, weight: .bold))
-                        .foregroundStyle(textColor)
-                        .minimumScaleFactor(0.8)
-                    Text(", \(tierPoints) pts")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(textColor)
-                }
+                Text("\(entry.snapshot.progressPercent)%")
+                    .font(.system(size: 34, weight: .bold))
+                    .foregroundStyle(textColor)
+                    .minimumScaleFactor(0.8)
                 Text(entry.date, style: .date)
                     .font(.caption2)
                     .foregroundStyle(textColor)

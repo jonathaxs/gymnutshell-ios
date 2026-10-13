@@ -42,9 +42,6 @@ struct HistoryDailyRow: View {
                 }
 
                 Spacer()
-
-                PointsCapsule(text: "\(record.points) \(String(localized: "achievements.points.total", bundle: .gymNutshellCore))",
-                              color: accentColor)
             }
             .contentShape(Rectangle())
             .tapButton(perform: onTap)
@@ -53,7 +50,7 @@ struct HistoryDailyRow: View {
                                                      bundle: .gymNutshellCore),
                                        tierName,
                                        A11y.spokenDate(for: record.date),
-                                       record.percent, record.points))
+                                       record.percent))
             .accessibilityHint(String(localized: "a11y.record.row.hint", bundle: .gymNutshellCore))
 
             // Botão de edição, visível só pra registros dentro da janela editável.
@@ -86,20 +83,5 @@ private struct EmojiBadge: View {
             .frame(width: 52, height: 52)
             .background(color.opacity(0.12), in: Circle())
             .accessibilityHidden(true)
-    }
-}
-
-/// Pontos do dia numa cápsula.
-private struct PointsCapsule: View {
-    let text: String
-    let color: Color
-
-    var body: some View {
-        Text(text)
-            .font(.subheadline.weight(.bold).monospacedDigit())
-            .foregroundStyle(color)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 5)
-            .background(color.opacity(0.12), in: Capsule())
     }
 }

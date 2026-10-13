@@ -121,7 +121,6 @@
 
 /* AchievementsView.swift */
 "achievements.header.title" = "Calendário";
-"achievements.points.total" = "pts";
 "achievements.filter.title" = "Visualização";
 "achievements.filter.all" = "Lista";
 "achievements.filter.day" = "Calendário";
@@ -153,14 +152,12 @@
 "statistics.goals.active.label" = "Metas ativas";
 "statistics.goals.active" = "%d ativas";
 "statistics.fitness.goal" = "Objetivo";
-"watch.stats.points" = "Pontos";
 "watch.stats.days" = "Dias";
 "watch.stats.syncing" = "Abra o Gym Nutshell no iPhone para ver as estatísticas.";
 "watch.stats.recent" = "Recentes";
 
 /* ProgressOverView.swift, stats rows and physical data */
 "profile.stats.days" = "Dias";
-"profile.stats.points" = "Pontos";
 "profile.recent.section" = "Últimos 7 dias";
 
 /* MARK: - Views/SettingsView */
@@ -761,7 +758,7 @@
 "a11y.month.next"     = "Próximo mês";
 
 /* AchievementsView, linhas do histórico */
-"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d por cento, %4$d pontos";
+"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d por cento";
 "a11y.record.row.hint"          = "Toque para ver detalhes.";
 "a11y.record.edit.label"        = "Editar registro";
 "a11y.record.edit.hint" = "Toque para editar.";
@@ -773,8 +770,6 @@
 "a11y.stats.days.label"            = "Dias";
 "a11y.stats.days.value.format"     = "%d dias";
 "a11y.stats.days.hint" = "Toque para abrir o calendário de hoje.";
-"a11y.stats.points.label"          = "Pontos";
-"a11y.stats.points.value.format"   = "%d pontos";
 
 /* ProgressOverView, linhas dentro dos cards */
 "a11y.stats.tier.row.format"     = "%1$@, %2$d dias";
@@ -876,10 +871,10 @@
 
 /* Resumo do widget (small/medium/lockscreen, watch circular/rectangular) */
 "a11y.widget.summary.format"       = "Progresso diário, %1$@, %2$d por cento concluído";
-"a11y.widget.summary.points.format" = "Progresso diário, %1$@, %2$d por cento concluído, %3$d pontos";
+"a11y.widget.summary.points.format" = "Progresso diário, %1$@, %2$d por cento concluído";
 
 /* Widgets grandes do iPhone */
-"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d por cento, %4$d pontos";
+"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d por cento";
 "a11y.widget.calendar.month.format" = "%@";
 
 /* Watch widget, corner e inline já falam pelo texto natural */

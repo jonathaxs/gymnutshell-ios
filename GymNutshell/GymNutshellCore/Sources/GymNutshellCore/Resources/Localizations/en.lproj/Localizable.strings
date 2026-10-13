@@ -85,7 +85,6 @@
 
 /* AchievementsView.swift */
 "achievements.header.title" = "Calendar";
-"achievements.points.total" = "pts";
 "achievements.filter.title" = "View";
 "achievements.filter.all" = "List";
 "achievements.filter.day" = "Calendar";
@@ -117,14 +116,12 @@
 "statistics.goals.active.label" = "Active goals";
 "statistics.goals.active" = "%d active";
 "statistics.fitness.goal" = "Goal";
-"watch.stats.points" = "Points";
 "watch.stats.days" = "Days";
 "watch.stats.syncing" = "Open Gym Nutshell on iPhone to see statistics.";
 "watch.stats.recent" = "Recent";
 
 /* ProgressOverView.swift, stats rows and physical data */
 "profile.stats.days" = "Days";
-"profile.stats.points" = "Points";
 "profile.recent.section" = "Last 7 days";
 
 /* MARK: - Views/SettingsView */
@@ -711,7 +708,7 @@
 "a11y.month.next"     = "Next month";
 
 /* AchievementsView history rows */
-"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d percent, %4$d points";
+"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d percent";
 "a11y.record.row.hint"          = "Tap to view details.";
 "a11y.record.edit.label"        = "Edit record";
 "a11y.record.edit.hint" = "Tap to edit.";
@@ -723,8 +720,6 @@
 "a11y.stats.days.label"            = "Days";
 "a11y.stats.days.value.format"     = "%d days";
 "a11y.stats.days.hint" = "Tap to open today's calendar.";
-"a11y.stats.points.label"          = "Points";
-"a11y.stats.points.value.format"   = "%d points";
 
 /* ProgressOverView, list rows inside cards */
 "a11y.stats.tier.row.format"     = "%1$@, %2$d days";
@@ -826,10 +821,10 @@
 
 /* Widget summary (small/medium/lockscreen, watch circular/rectangular) */
 "a11y.widget.summary.format"       = "Daily progress, %1$@, %2$d percent completed";
-"a11y.widget.summary.points.format" = "Daily progress, %1$@, %2$d percent completed, %3$d points";
+"a11y.widget.summary.points.format" = "Daily progress, %1$@, %2$d percent completed";
 
 /* iPhone large widgets */
-"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d percent, %4$d points";
+"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d percent";
 "a11y.widget.calendar.month.format" = "%@";
 
 /* Watch widget, corner and inline don't need extra labels (text already speaks) */

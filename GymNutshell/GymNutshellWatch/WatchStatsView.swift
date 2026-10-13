@@ -47,20 +47,14 @@ struct WatchStatsView: View {
     @ViewBuilder
     private func statsContent(_ s: WatchStatsSummary) -> some View {
         List {
-            // Pontos e dias, duas colunas no topo
-            Section {
-                HStack(spacing: 6) {
-                    statCard(
-                        value: formatted(s.totalPoints),
-                        label: String(localized: "watch.stats.points", bundle: .gymNutshellCore)
-                    )
-                    statCard(
-                        value: "\(s.totalDays)",
-                        label: String(localized: "watch.stats.days", bundle: .gymNutshellCore)
-                    )
-                }
-                .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets())
+            // Últimos 7 dias no topo, como na página Registros do iPhone
+            Section(
+                header: Text(String(localized: "watch.stats.recent", bundle: .gymNutshellCore))
+                    .font(.system(size: 11, weight: .semibold))
+            ) {
+                recentDaysStrip(s.last7Days)
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
             }
 
             // Tiers
@@ -85,41 +79,11 @@ struct WatchStatsView: View {
                             label: String(localized: "statistics.activity.cardio", bundle: .gymNutshellCore),
                             days: s.cardioDays)
             }
-
-            // Últimos 7 dias
-            Section(
-                header: Text(String(localized: "watch.stats.recent", bundle: .gymNutshellCore))
-                    .font(.system(size: 11, weight: .semibold))
-            ) {
-                recentDaysStrip(s.last7Days)
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets())
-            }
         }
         .listStyle(.plain)
     }
 
     // MARK: - Componentes
-
-    private func statCard(value: String, label: String) -> some View {
-        VStack(spacing: 2) {
-            Text(value)
-                .font(.system(size: 18, weight: .bold))
-                .foregroundStyle(accent.color)
-                .minimumScaleFactor(0.7)
-                .lineLimit(1)
-            Text(label)
-                .font(.system(size: 10))
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 8)
-        .background(Color.secondary.opacity(0.15))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(label)
-        .accessibilityValue(value)
-    }
 
     private func tierRow(tier: DailyAchievement, days: Int) -> some View {
         let name = selectedTheme.name(for: tier, sex: sex)
@@ -198,9 +162,5 @@ struct WatchStatsView: View {
         case .level3: return s.level3Days
         case .level4: return s.level4Days
         }
-    }
-
-    private func formatted(_ value: Int) -> String {
-        value >= 1000 ? String(format: "%.1fk", Double(value) / 1000) : "\(value)"
     }
 }

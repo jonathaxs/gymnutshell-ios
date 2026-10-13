@@ -93,15 +93,6 @@ struct LargeHeader: View {
     let snapshot: WidgetSnapshot
     let textColor: Color
 
-    private var tierPoints: Int {
-        switch snapshot.tier {
-        case 2: return 40
-        case 3: return 60
-        case 4: return 90
-        default: return 0
-        }
-    }
-
     var body: some View {
         HStack(spacing: 14) {
             LargeRing(
@@ -119,24 +110,18 @@ struct LargeHeader: View {
                     .font(.headline)
                     .foregroundStyle(textColor)
                     .lineLimit(1)
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Text("\(snapshot.progressPercent)%")
-                        .font(.system(size: 32, weight: .bold))
-                        .foregroundStyle(textColor)
-                    Text(", \(tierPoints) pts")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(textColor)
-                }
+                Text("\(snapshot.progressPercent)%")
+                    .font(.system(size: 32, weight: .bold))
+                    .foregroundStyle(textColor)
             }
             Spacer(minLength: 0)
         }
-        // Header inteiro vira 1 elemento: "Today, Big Cat, 65 percent, 60 points".
+        // Header inteiro vira 1 elemento: "Today, Big Cat, 65 percent".
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(String(format: String(localized: "a11y.widget.large.header.format",
                                                  bundle: .gymNutshellCore),
                                    snapshot.updatedAt.formatted(date: .abbreviated, time: .omitted),
                                    snapshot.tierName,
-                                   snapshot.progressPercent,
-                                   tierPoints))
+                                   snapshot.progressPercent))
     }
 }
