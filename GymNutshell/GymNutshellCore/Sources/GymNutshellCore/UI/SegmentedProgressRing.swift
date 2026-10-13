@@ -5,6 +5,7 @@
 //             Sentido horário a partir do topo: vermelho → amarelo → verde → azul → roxo (20% cada).
 //             Ao completar um segmento ele faz um "pop" (escala sobe e volta).
 //             Conteúdo opcional no centro (ex: emoji da conquista).
+//             Com `tintedTrack` o trilho já mostra a cor de cada segmento, lavada, e acende ao preencher.
 //             Vive no Core pra ser usado no app, no Watch e nos widgets (sem animação nem haptics lá).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
@@ -39,6 +40,8 @@ public struct SegmentedProgressRing<Center: View>: View {
     /// Quando não-nil, desenha um contorno de 1pt nessa cor atrás dos segmentos, pra separar
     /// o anel de fundos coloridos (widgets com fundo customizado).
     var borderColor: Color? = nil
+    /// true = trilho na cor do segmento, bem clara (hero da Today); false = trilho cinza.
+    var tintedTrack: Bool = false
     @ViewBuilder var center: Center
 
     public init(progress: Double,
@@ -46,12 +49,14 @@ public struct SegmentedProgressRing<Center: View>: View {
                 fillMode: RingFillMode = SegmentedProgressRing.defaultFillMode,
                 animated: Bool = true,
                 borderColor: Color? = nil,
+                tintedTrack: Bool = false,
                 @ViewBuilder center: () -> Center) {
         self.progress = progress
         self.lineWidth = lineWidth
         self.fillMode = fillMode
         self.animated = animated
         self.borderColor = borderColor
+        self.tintedTrack = tintedTrack
         self.center = center()
     }
 
@@ -99,9 +104,10 @@ public struct SegmentedProgressRing<Center: View>: View {
                                 .stroke(borderColor,
                                         style: StrokeStyle(lineWidth: lineWidth + 2, lineCap: .round))
                         }
-                        // Trilho cinza do segmento.
+                        // Trilho do segmento: cinza ou a própria cor, lavada.
                         RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)
-                            .stroke(Color.secondary.opacity(0.18),
+                            .stroke(tintedTrack ? Self.segmentColors[index].opacity(0.2)
+                                                : Color.secondary.opacity(0.18),
                                     style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                         // Parte preenchida, na cor do segmento.
                         RingSegmentShape(startDegrees: start, endDegrees: end, fraction: fraction(for: index))

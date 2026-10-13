@@ -1,8 +1,9 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayHeroView.swift
 //
-//  Propósito: Bloco hero fixo exibido no topo (retrato) ou na coluna esquerda (landscape).
-//             Contém: data grande, sino do histórico de notificações e o anel de progresso.
+//  Propósito: Bloco hero da tela Hoje, no topo (retrato) ou na coluna esquerda (landscape/iPad).
+//             Contém: data grande + sino (opcional), o anel de progresso com a % no centro e,
+//             depois do primeiro registro, a conquista do dia ao lado e quanto falta pro próximo nível embaixo.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -10,7 +11,8 @@
 import SwiftUI
 import GymNutshellCore
 
-/// Bloco hero da TodayView: saudação, data, sino, anel de progresso e frase do próximo nível.
+/// Bloco hero da TodayView. Antes de começar: anel centralizado com 0% e a dica embaixo.
+/// No primeiro registro o anel desliza pra esquerda e a conquista (emoji + nome) entra ao lado.
 struct TodayHeroView: View {
 
     let formattedDate: String
@@ -22,14 +24,12 @@ struct TodayHeroView: View {
     /// false no iPhone em retrato: a data + sino ficam fixos no topo da tela, fora do hero.
     var showsHeader: Bool = true
 
-    // Sexo do usuário, usado pra nomes de tier com gênero correto.
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    // Sexo do usuário, usado pra nomes e emojis de tier com gênero correto.
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
 
-    // Cor de destaque, segue a escolha do usuário em Settings > Cores.
-    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
-    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
-
-    // Sheets de informação do tier, do anel de progresso e do histórico de notificações.
+    // Sheets de informação do tier e do anel de progresso.
     @State private var showTierSheet = false
     @State private var showRingSheet = false
 
@@ -38,40 +38,30 @@ struct TodayHeroView: View {
         Int((dailyProgress * 100).rounded(.down))
     }
 
-    // Label de nível localizado pra um tier (ex: "Nível 2").
-    private func tierLevelString(for tier: DailyAchievement) -> String {
-        switch tier {
-        case .level1: return String(localized: "today.tier.level.1", bundle: .gymNutshellCore)
-        case .level2: return String(localized: "today.tier.level.2", bundle: .gymNutshellCore)
-        case .level3: return String(localized: "today.tier.level.3", bundle: .gymNutshellCore)
-        case .level4: return String(localized: "today.tier.level.4", bundle: .gymNutshellCore)
-        }
-    }
+    /// Nada marcado ainda: anel sozinho no centro, sem conquista ao lado.
+    private var hasStarted: Bool { dailyProgress > 0 }
 
-    // Componentes do próximo nível, (percent, tierName, levelNumber).
-    // nil quando o usuário já está no nível máximo (90%+).
-    private var nextLevelComponents: (percent: Int, name: String, level: Int)? {
+    private var ringSize: CGFloat { verticalLayout ? 170 : 150 }
+
+    // Próximo nível: quanto falta (em %) e qual tier. nil no nível máximo (90%+).
+    private var nextLevel: (percent: Int, tier: DailyAchievement)? {
         if dailyPercentage >= 90 { return nil }
-        if dailyPercentage >= 66 {
-            return (90 - dailyPercentage, selectedTheme.name(for: .level4, sex: sex), 4)
-        } else if dailyPercentage >= 33 {
-            return (66 - dailyPercentage, selectedTheme.name(for: .level3, sex: sex), 3)
-        } else {
-            return (33 - dailyPercentage, selectedTheme.name(for: .level2, sex: sex), 2)
+        if dailyPercentage >= 66 { return (90 - dailyPercentage, .level4) }
+        if dailyPercentage >= 33 { return (66 - dailyPercentage, .level3) }
+        return (33 - dailyPercentage, .level2)
+    }
+
+    private var nextLevelNumber: Int? {
+        switch nextLevel?.tier {
+        case .level2: return 2
+        case .level3: return 3
+        case .level4: return 4
+        default:      return nil
         }
     }
 
-    // Frase abaixo do anel: dica no 0%, quanto falta pro próximo nível, ou o nome do nível no máximo.
-    private var ringCaption: String {
-        if dailyPercentage <= 0 {
-            return String(localized: "today.hero.caption.start", bundle: .gymNutshellCore)
-        }
-        if let next = nextLevelComponents {
-            return String(format: String(localized: "today.hero.caption.next", bundle: .gymNutshellCore),
-                          next.percent, next.name)
-        }
-        return ""
-    }
+    private var tierEmoji: String { selectedTheme.emoji(for: dailyAchievement, sex: sex) }
+    private var tierName: String { selectedTheme.name(for: dailyAchievement, sex: sex) }
 
     var body: some View {
         content
@@ -79,9 +69,9 @@ struct TodayHeroView: View {
                 NavigationStack {
                     TierInfoView(
                         theme: selectedTheme, sex: sex, isSheet: true,
-                        nextLevelPercent: nextLevelComponents?.percent,
-                        nextLevelName: nextLevelComponents?.name ?? "",
-                        nextLevelNumber: nextLevelComponents?.level,
+                        nextLevelPercent: nextLevel?.percent,
+                        nextLevelName: nextLevel.map { selectedTheme.name(for: $0.tier, sex: sex) } ?? "",
+                        nextLevelNumber: nextLevelNumber,
                         isAtMaxLevel: dailyPercentage >= 90
                     )
                 }
@@ -102,19 +92,95 @@ struct TodayHeroView: View {
                     .padding(.horizontal, 4)
             }
 
-            // Anel de 5 segmentos centralizado, sem card atrás. Antes do primeiro registro o 0% fica
-            // dentro do anel e a dica embaixo; depois o emoji entra no centro e a % desce pra baixo.
-            TodayProgressRingView(progress: dailyProgress,
-                                  achievement: dailyAchievement,
-                                  theme: selectedTheme,
-                                  onTap: { showRingSheet = true },
-                                  onEmojiTap: { showTierSheet = true },
-                                  caption: ringCaption,
-                                  size: verticalLayout ? 180 : 160,
-                                  celebratesAfterOnboarding: true)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, verticalLayout ? 8 : 4)
+            VStack(spacing: 16) {
+                // O anel mantém a identidade no HStack: quando a conquista entra, ele só desliza.
+                HStack(spacing: 36) {
+                    TodayProgressRingView(progress: dailyProgress,
+                                          onTap: { showRingSheet = true },
+                                          size: ringSize,
+                                          celebratesAfterOnboarding: true)
 
+                    if hasStarted {
+                        achievementPanel
+                            .transition(reduceMotion
+                                        ? .opacity
+                                        : .opacity
+                                            .combined(with: .scale(scale: 0.85, anchor: .leading))
+                                            .combined(with: .offset(x: 24)))
+                    }
+                }
+                .frame(maxWidth: .infinity)
+
+                caption
+            }
+            .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.55, dampingFraction: 0.82),
+                       value: hasStarted)
+            .padding(.vertical, verticalLayout ? 8 : 4)
         }
+    }
+
+    // MARK: - Conquista ao lado do anel
+
+    /// Rótulo, emoji grande e nome, centralizados entre si e da mesma altura do anel.
+    private var achievementPanel: some View {
+        VStack(spacing: 4) {
+            Text(String(localized: "today.hero.achievement.label", bundle: .gymNutshellCore))
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(.secondary)
+
+            // Troca de nível: o emoji novo entra com escala.
+            Text(tierEmoji)
+                .font(.system(size: ringSize * 0.44))
+                .id(tierEmoji)
+                .transition(reduceMotion ? .opacity : .scale(scale: 0.4).combined(with: .opacity))
+
+            Text(tierName)
+                .font(.title3.weight(.bold))
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
+                .fixedSize(horizontal: false, vertical: true)
+                .id(tierName)
+                .transition(.opacity)
+        }
+        .frame(width: 130, height: ringSize)
+        .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.6), value: tierEmoji)
+        .contentShape(Rectangle())
+        .onTapGesture { showTierSheet = true }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(String(format: String(localized: "today.tier.a11y.label", bundle: .gymNutshellCore),
+                                   tierEmoji, tierName))
+        .accessibilityHint(A11y.moreInfoHint())
+    }
+
+    // MARK: - Frase abaixo
+
+    /// Dica antes de começar; depois, quanto falta pro próximo nível;
+    /// no nível máximo, um aviso de que já chegou lá.
+    @ViewBuilder
+    private var caption: some View {
+        Group {
+            if !hasStarted {
+                Text(String(localized: "today.hero.caption.start", bundle: .gymNutshellCore))
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.secondary)
+            } else if let next = nextLevel {
+                Text(String(format: String(localized: "today.hero.caption.nextLevel", bundle: .gymNutshellCore),
+                            next.percent))
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.secondary)
+                    .contentTransition(.numericText())
+            } else {
+                Text(String(localized: "today.hero.caption.max", bundle: .gymNutshellCore))
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity)
+        .transition(.opacity)
+        .contentShape(Rectangle())
+        .onTapGesture { showTierSheet = true }
     }
 }

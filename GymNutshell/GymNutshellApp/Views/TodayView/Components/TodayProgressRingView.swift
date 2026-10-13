@@ -2,9 +2,9 @@
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayProgressRingView.swift
 //
 //  Propósito: Anel de progresso do bloco hero da TodayView. Usa o anel de 5 segmentos
-//             (SegmentedProgressRing) com o emoji da conquista do dia no centro.
-//             Com progresso 0 o 0% fica dentro do anel e a dica embaixo; no primeiro registro o
-//             emoji entra no centro e a porcentagem desce pra baixo do anel, junto da frase.
+//             (SegmentedProgressRing) com as cores já visíveis, bem lavadas, que acendem conforme
+//             o progresso. A porcentagem fica sempre no centro (apagada enquanto está em 0).
+//             A conquista do dia e a frase do próximo nível ficam por conta do TodayHeroView.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-19.
 // ⌘
@@ -17,27 +17,15 @@ import GymNutshellCore
 struct TodayProgressRingView: View {
 
     let progress: Double
-    let achievement: DailyAchievement
-    let theme: AppTheme
     /// Toque no anel: abre a sheet de informação do anel.
     var onTap: (() -> Void)? = nil
-    /// Toque no emoji do centro: abre a sheet dos níveis de conquista.
-    var onEmojiTap: (() -> Void)? = nil
-
-    /// Frase abaixo da porcentagem. Vazia = mostra o nome do nível (ou nada, se não começou).
-    var caption: String = ""
 
     var size: CGFloat = 150
-    var lineWidth: CGFloat = 18
-    /// false = só o anel (a porcentagem e a frase ficam por conta de quem usa, ex: card do hero).
-    var showsLabels: Bool = true
+    var lineWidth: CGFloat = 16
     /// true no anel do hero: ao entrar vindo da Welcome, o anel enche passando pelas cores e volta.
     var celebratesAfterOnboarding: Bool = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    // Sexo do usuário, usado pro emoji e nome do nível no gênero correto.
-    @AppStorage(UserProfile.sexKey) private var sex: String = "male"
 
     @GestureState private var isPressed: Bool = false
 
@@ -56,11 +44,8 @@ struct TodayProgressRingView: View {
         Int((clampedProgress * 100).rounded(.down))
     }
 
-    /// Nada marcado ainda: centro vazio e sem nome de nível.
+    /// Nada marcado ainda: a % fica apagada.
     private var hasStarted: Bool { clampedProgress > 0 }
-
-    private var emoji: String { theme.emoji(for: achievement, sex: sex) }
-    private var tierName: String { theme.name(for: achievement, sex: sex) }
 
     // MARK: - Comemoração pós-Welcome
 
@@ -81,74 +66,33 @@ struct TodayProgressRingView: View {
     // MARK: - Body
 
     var body: some View {
-        VStack(spacing: 10) {
-            SegmentedProgressRing(progress: celebrationProgress ?? clampedProgress, lineWidth: lineWidth) {
-                if hasStarted {
-                    Text(emoji)
-                        .font(.system(size: size * 0.38))
-                        // Troca de nível: o emoji novo entra com escala.
-                        .id(emoji)
-                        .transition(reduceMotion ? .opacity : .scale(scale: 0.4).combined(with: .opacity))
-                        .contentShape(Circle())
-                        .onTapGesture { onEmojiTap?() }
-                        .accessibilityElement(children: .ignore)
-                        .accessibilityAddTraits(.isButton)
-                        .accessibilityLabel(String(format: String(localized: "today.tier.a11y.label",
-                                                                 bundle: .gymNutshellCore),
-                                                   emoji, tierName))
-                        .accessibilityHint(A11y.moreInfoHint())
-                } else if showsLabels {
-                    // Antes do primeiro registro: o 0% fica dentro do anel apagado.
-                    Text("\(percentage)%")
-                        .font(.system(size: size * 0.22, weight: .bold, design: .rounded).monospacedDigit())
-                        .foregroundStyle(.secondary)
-                        .transition(.opacity)
-                        .accessibilityHidden(true)
-                }
-            }
-            .frame(width: size, height: size)
-            .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.6), value: emoji)
-            .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.6), value: hasStarted)
-            // Expande ao pressionar, puramente visual.
-            .scaleEffect(isPressed ? 1.08 : 1.0)
-            .animation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.50), value: isPressed)
-            .simultaneousGesture(
-                DragGesture(minimumDistance: 0)
-                    .updating($isPressed) { _, state, _ in state = true }
-            )
-            // onTapGesture (não simultâneo): o toque no emoji do centro tem prioridade
-            // e não abre as duas sheets ao mesmo tempo.
-            .onTapGesture { onTap?() }
-            .accessibilityElement(children: .contain)
-            .onAppear(perform: celebrateIfNeeded)
-
-            if showsLabels {
-                // Abaixo do anel: a dica antes de começar; depois, a porcentagem + o próximo nível.
-                VStack(spacing: 2) {
-                    if hasStarted {
-                        Text("\(percentage)%")
-                            .font(.title2.weight(.bold).monospacedDigit())
-                            .contentTransition(.numericText())
-                            .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: percentage)
-                    }
-
-                    Text(caption.isEmpty ? (hasStarted ? tierName : " ") : caption)
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.9)
-                }
-                .contentShape(Rectangle())
-                .onTapGesture { onTap?() }
-                // Anel + porcentagem num único elemento de VoiceOver (o emoji fica separado, acima).
-                .accessibilityElement(children: .ignore)
-                .accessibilityAddTraits(.isButton)
-                .accessibilityLabel(String(localized: "today.ring.a11y.label", bundle: .gymNutshellCore))
-                .accessibilityValue(String(format: String(localized: "today.ring.a11y.value",
-                                                          bundle: .gymNutshellCore), percentage))
-                .accessibilityHint(String(localized: "today.ring.a11y.hint", bundle: .gymNutshellCore))
-            }
+        SegmentedProgressRing(progress: celebrationProgress ?? clampedProgress,
+                              lineWidth: lineWidth,
+                              tintedTrack: true) {
+            Text("\(percentage)%")
+                .font(.system(size: size * 0.22, weight: .bold, design: .rounded).monospacedDigit())
+                .foregroundStyle(hasStarted ? Color.primary : Color.secondary)
+                .contentTransition(.numericText())
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: percentage)
+                .minimumScaleFactor(0.6)
+                .lineLimit(1)
+                .padding(lineWidth)
         }
+        .frame(width: size, height: size)
+        // Expande ao pressionar, puramente visual.
+        .scaleEffect(isPressed ? 1.06 : 1.0)
+        .animation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.50), value: isPressed)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .updating($isPressed) { _, state, _ in state = true }
+        )
+        .onTapGesture { onTap?() }
+        .onAppear(perform: celebrateIfNeeded)
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(String(localized: "today.ring.a11y.label", bundle: .gymNutshellCore))
+        .accessibilityValue(String(format: String(localized: "today.ring.a11y.value",
+                                                  bundle: .gymNutshellCore), percentage))
+        .accessibilityHint(String(localized: "today.ring.a11y.hint", bundle: .gymNutshellCore))
     }
 }

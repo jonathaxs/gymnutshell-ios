@@ -316,8 +316,8 @@
 "today.category.other" = "Other";
 "today.category.a11y.value" = "%d of %d goals completed";
 "today.restday.label" = "Day off";
-"today.restday.on" = "      ON      ";
-"today.restday.off" = "     OFF     ";
+"today.restday.on" = "ON";
+"today.restday.off" = "OFF";
 "today.metric.sleep" = "Sleep";
 "today.metric.water" = "Water";
 "today.metric.calories" = "Calories";
@@ -348,7 +348,9 @@
 "today.hero.bell.a11y.label" = "Notification history";
 "today.hero.bell.a11y.hint" = "Tap to open your notification history.";
 "today.hero.caption.start" = "Log a goal to get started";
-"today.hero.caption.next" = "%d%% to go for %@";
+"today.hero.caption.nextLevel" = "%d%% to go for the next level";
+"today.hero.caption.max" = "Top achievement of the day!";
+"today.hero.achievement.label" = "Achievement";
 "today.greeting.morning"   = "Good morning!";
 "today.greeting.afternoon" = "Good afternoon!";
 "today.greeting.night"     = "Good evening!";

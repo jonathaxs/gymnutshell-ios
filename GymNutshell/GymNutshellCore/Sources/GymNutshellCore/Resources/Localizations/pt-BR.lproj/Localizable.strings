@@ -352,8 +352,8 @@
 "today.category.other" = "Outras";
 "today.category.a11y.value" = "%d de %d metas concluídas";
 "today.restday.label" = "Dia de descanso";
-"today.restday.on" = "      ON      ";
-"today.restday.off" = "     OFF     ";
+"today.restday.on" = "ON";
+"today.restday.off" = "OFF";
 "today.metric.sleep" = "Sono";
 "today.metric.water" = "Água";
 "today.metric.calories" = "Calorias";
@@ -384,7 +384,9 @@
 "today.hero.bell.a11y.label" = "Histórico de notificações";
 "today.hero.bell.a11y.hint" = "Toque para abrir o histórico de notificações.";
 "today.hero.caption.start" = "Acrescente alguma meta para começar";
-"today.hero.caption.next" = "Faltam %d%% pra %@";
+"today.hero.caption.nextLevel" = "Faltam %d%% para o próximo nível";
+"today.hero.caption.max" = "Conquista máxima do dia!";
+"today.hero.achievement.label" = "Conquista";
 "today.greeting.morning"   = "Bom dia!";
 "today.greeting.afternoon" = "Boa tarde!";
 "today.greeting.night"     = "Boa noite!";

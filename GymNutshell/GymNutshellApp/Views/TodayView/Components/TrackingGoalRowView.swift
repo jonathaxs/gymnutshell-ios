@@ -125,40 +125,72 @@ struct TrackingGoalRowView: View {
                     : A11y.goalRowValue(current: value, goal: safeGoal, unit: unit)
                 )
 
-                if let rest = isRestDay {
+                // No modo − / + o ON/OFF vai pra linha dos botões (ver stepperRow).
+                if let rest = isRestDay, !togglesInControlRow {
                     restDayToggle(isOn: rest)
                 }
             }
 
-            // Dia de descanso: substitui o slider por um texto centralizado.
-            if isRestDay?.wrappedValue == true {
-                Text(String(localized: "today.restday.label", bundle: .gymNutshellCore))
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.vertical, 6)
-                    // Já comunicado pelo value do header, esconde para não
-                    // duplicar "dia de descanso" no VoiceOver.
-                    .accessibilityHidden(true)
-            } else if safeGoal > 0 {
-                // Slider tem seu próprio label/value. Sem hint custom: o sistema
-                // já anuncia "ajustável, deslize para cima ou para baixo".
-                if controlStyle == .stepper {
-                    stepperControl
-                } else {
-                    Slider(
-                        value: sliderBinding,
-                        in: 0...Double(safeGoal)
-                    )
-                    .tint(progressTint)
-                    .accessibilityLabel(A11y.sliderLabel(for: title))
-                    .accessibilityValue(A11y.goalRowValue(current: value, goal: safeGoal, unit: unit))
+            // Dia de descanso: o controle continua ocupando o espaço (invisível) e o texto entra
+            // por cima, assim a linha não muda de altura ao ligar/desligar o descanso.
+            if safeGoal > 0 {
+                HStack(spacing: 8) {
+                    ZStack {
+                        control
+                            .opacity(isResting ? 0 : 1)
+                            .allowsHitTesting(!isResting)
+                            .accessibilityHidden(isResting)
+                        if isResting {
+                            restDayLabel
+                        }
+                    }
+                    if let rest = isRestDay, togglesInControlRow {
+                        roundRestDayToggle(isOn: rest)
+                    }
                 }
+            } else if isResting {
+                restDayLabel
             }
         }
         .padding(14)
         .modifier(GoalRowCard(isGrouped: isGrouped))
         .accessibilityElement(children: .contain)
+    }
+
+    private var isResting: Bool { isRestDay?.wrappedValue == true }
+
+    /// − / + com dia de descanso: o ON/OFF vira um botão redondo do tamanho do +, à direita dele,
+    /// longe do + pra não ser tocado sem querer. No slider ele continua pequeno, no cabeçalho.
+    private var togglesInControlRow: Bool {
+        controlStyle == .stepper && safeGoal > 0 && isRestDay != nil
+    }
+
+    /// Slider ou − / +, conforme o estilo escolhido. O slider tem seu próprio label/value; sem hint
+    /// custom porque o sistema já anuncia "ajustável, deslize para cima ou para baixo".
+    @ViewBuilder
+    private var control: some View {
+        if controlStyle == .stepper {
+            stepperControl
+        } else {
+            Slider(
+                value: sliderBinding,
+                in: 0...Double(safeGoal)
+            )
+            .tint(progressTint)
+            .accessibilityLabel(A11y.sliderLabel(for: title))
+            .accessibilityValue(A11y.goalRowValue(current: value, goal: safeGoal, unit: unit))
+        }
+    }
+
+    private var restDayLabel: some View {
+        Text(String(localized: "today.restday.label", bundle: .gymNutshellCore))
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(.secondary)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .transition(.opacity)
+            // Já comunicado pelo value do header, esconde para não
+            // duplicar "dia de descanso" no VoiceOver.
+            .accessibilityHidden(true)
     }
 
     // MARK: - Controle − / +
@@ -193,38 +225,94 @@ struct TrackingGoalRowView: View {
     }
 
     // Botão ON/OFF para alternar modo "dia de descanso".
-    // ON (cinza) → tap aciona descanso. OFF (accent) → tap volta slider com valor zerado.
+    // ON (vidro neutro, texto na cor de destaque) → tap aciona descanso.
+    // OFF (vidro com a cor de destaque) → tap volta o controle com valor zerado.
+    // Largura fixa: ON e OFF ocupam o mesmo espaço e o título ao lado não se mexe.
     private func restDayToggle(isOn: Binding<Bool>) -> some View {
         Button {
-            UISelectionFeedbackGenerator().selectionChanged()
-            withAnimation(.easeInOut(duration: 0.15)) {
-                if isOn.wrappedValue {
-                    isOn.wrappedValue = false
-                    value = 0
-                } else {
-                    isOn.wrappedValue = true
-                }
-            }
+            toggleRestDay(isOn)
         } label: {
             Text(isOn.wrappedValue
                  ? String(localized: "today.restday.off", bundle: .gymNutshellCore)
                  : String(localized: "today.restday.on", bundle: .gymNutshellCore))
                 .font(.caption.weight(.bold))
-                .foregroundStyle(isOn.wrappedValue ? Color.secondary : accentColor)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 4)
-                .background(
-                    Capsule().fill(isOn.wrappedValue ? accentColor.opacity(0.25) : Color.secondary.opacity(0.20))
-                )
+                .frame(width: 40)
         }
-        .buttonStyle(.plain)
-        // No macOS (iPad App on Mac) o Button respeita uma altura mínima do
-        // sistema e estica o conteúdo, deixando o capsule "gordo e estreito".
-        // .fixedSize força o botão a usar o tamanho intrínseco do label igual no iOS.
-        .fixedSize()
+        .restDayToggleStyle(isOn: isOn.wrappedValue, accentColor: accentColor)
         // Sem override de label: o texto visível ("ON"/"OFF") já vira o label
         // do Button automaticamente. Só adiciono o hint dinâmico.
         .accessibilityHint(A11y.restDayToggleHint(currentlyOn: isOn.wrappedValue))
+    }
+
+    /// ON/OFF redondo, mesmo tamanho e vidro dos botões − / +.
+    private func roundRestDayToggle(isOn: Binding<Bool>) -> some View {
+        let resting = isOn.wrappedValue
+        let label = Text(resting
+                         ? String(localized: "today.restday.off", bundle: .gymNutshellCore)
+                         : String(localized: "today.restday.on", bundle: .gymNutshellCore))
+            .font(.system(size: 14, weight: .bold))
+            .foregroundStyle(resting ? Color.white : accentColor)
+            .frame(width: 48, height: 48)
+        return Group {
+            if #available(iOS 26.0, *) {
+                Button { toggleRestDay(isOn) } label: { label }
+                    .buttonStyle(.plain)
+                    .glassEffect(resting ? .regular.tint(accentColor).interactive() : .regular.interactive(),
+                                 in: Circle())
+            } else {
+                Button { toggleRestDay(isOn) } label: { label }
+                    .buttonStyle(.plain)
+                    .background(Circle().fill(resting ? accentColor : Color(.tertiarySystemFill)))
+            }
+        }
+        .accessibilityHint(A11y.restDayToggleHint(currentlyOn: resting))
+    }
+
+    /// ON → liga o descanso (conta como meta cumprida). OFF → volta o controle com valor zerado.
+    private func toggleRestDay(_ isOn: Binding<Bool>) {
+        UISelectionFeedbackGenerator().selectionChanged()
+        withAnimation(.easeInOut(duration: 0.15)) {
+            if isOn.wrappedValue {
+                isOn.wrappedValue = false
+                value = 0
+            } else {
+                isOn.wrappedValue = true
+            }
+        }
+    }
+}
+
+// MARK: - Estilo do ON/OFF
+
+private extension View {
+
+    /// iOS 26+: cápsula de vidro (com a cor de destaque quando o descanso está ligado).
+    /// Antes: cápsula sólida como na 1.0.
+    @ViewBuilder
+    func restDayToggleStyle(isOn: Bool, accentColor: Color) -> some View {
+        if #available(iOS 26.0, *) {
+            if isOn {
+                self.buttonStyle(.glassProminent)
+                    .buttonBorderShape(.capsule)
+                    .controlSize(.small)
+                    .tint(accentColor)
+            } else {
+                self.buttonStyle(.glass)
+                    .buttonBorderShape(.capsule)
+                    .controlSize(.small)
+                    .tint(accentColor)
+            }
+        } else {
+            self.buttonStyle(.plain)
+                .foregroundStyle(isOn ? Color.secondary : accentColor)
+                .padding(.vertical, 4)
+                .padding(.horizontal, 6)
+                .background(
+                    Capsule().fill(isOn ? accentColor.opacity(0.25) : Color.secondary.opacity(0.20))
+                )
+                // No macOS (iPad App on Mac) o Button estica o conteúdo; fixedSize mantém a cápsula justa.
+                .fixedSize()
+        }
     }
 }
 
