@@ -186,7 +186,11 @@ struct TodayHeroView: View {
         let current = TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list
         let next: TodayGoalsViewMode = current == .list ? .grid : .list
         return Button {
-            withAnimation(.easeInOut(duration: 0.25)) { goalsViewModeRaw = next.rawValue }
+            UISelectionFeedbackGenerator().selectionChanged()
+            // Mola: os ícones da lista viram os círculos da grade (e voltam), o resto esmaece.
+            withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82)) {
+                goalsViewModeRaw = next.rawValue
+            }
         } label: {
             Image(systemName: next.symbolName)
                 .font(.subheadline.weight(.semibold))

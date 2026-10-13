@@ -49,6 +49,8 @@ struct TodayCategoryGrid: View {
     let tiles: [TodayCategoryTile]
     let accentColor: Color
 
+    @Environment(\.todayMorphNamespace) private var morphNamespace
+
     /// Bloco com o balão aberto (nil = nenhum).
     @State private var openTileId: String? = nil
 
@@ -122,12 +124,15 @@ struct TodayCategoryGrid: View {
                 .frame(width: circleSize, height: circleSize)
                 .background(Circle().fill(Color(.secondarySystemGroupedBackground)))
                 .circleGlass()
+                // Na troca de modo, o círculo nasce do ícone do cabeçalho da lista (e volta pra ele).
+                .todayMorph("icon-\(tile.id)", in: morphNamespace)
 
                 Text(tile.title)
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.primary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
+                    .todayMorph("title-\(tile.id)", in: morphNamespace, properties: .position)
 
                 Text("\(tile.completedCount)/\(tile.totalCount)")
                     .font(.caption2.weight(.medium).monospacedDigit())

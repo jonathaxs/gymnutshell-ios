@@ -85,6 +85,10 @@ struct TodayView: View {
     /// as metas usam essa largura, em vez da tela toda.
     @State private var heroButtonRowWidth: CGFloat? = nil
 
+    /// Liga cada categoria da lista ao seu botão da grade, pra transformação na troca de modo.
+    @Namespace private var goalsMorphNamespace
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     // Ordem das categorias, sincronizada com TrackingGoalsSettingsView.
     @State private var orderedCategories: [GoalCategory] = GoalCategoryOrderStore.defaultOrder
 
@@ -509,6 +513,7 @@ struct TodayView: View {
             let keys = activeGoalKeys.filter { GoalCategory.defaultCategory(for: $0) == category }
             let goals = customTrackingGoals.filter { $0.category == category }
             categoryBlock(id: category.rawValue,
+                          morphId: gridCellId(for: item),
                           title: category.displayName,
                           symbol: category.symbolName,
                           progresses: keys.map { progress(for: $0) } + goals.map { customProgress($0) }) {
@@ -518,6 +523,7 @@ struct TodayView: View {
         case .custom(let category):
             let goals = customGoalsFor(customCategoryId: category.id)
             categoryBlock(id: category.id,
+                          morphId: gridCellId(for: item),
                           title: category.name,
                           symbol: category.symbolName,
                           progresses: goals.map { customProgress($0) }) {
@@ -531,6 +537,7 @@ struct TodayView: View {
         let goals = uncategorizedCustomGoals
         if !goals.isEmpty {
             categoryBlock(id: Self.uncategorizedId,
+                          morphId: Self.uncategorizedId,
                           title: String(localized: "today.category.other", bundle: .gymNutshellCore),
                           symbol: "ellipsis.circle",
                           progresses: goals.map { customProgress($0) }) {
@@ -540,7 +547,7 @@ struct TodayView: View {
     }
 
     /// Cabeçalho colapsável + as metas num card só, com divisores (lista agrupada do iOS).
-    private func categoryBlock<Rows: View>(id: String, title: String, symbol: String,
+    private func categoryBlock<Rows: View>(id: String, morphId: String, title: String, symbol: String,
                                            progresses: [Double],
                                            @ViewBuilder rows: () -> Rows) -> some View {
         let collapsed = isTodayCategoryCollapsed(id)
@@ -555,7 +562,8 @@ struct TodayView: View {
                 accentColor: todayAccentColor,
                 a11yLabel: A11y.categoryLabel(title),
                 a11yHint: A11y.categoryHint(),
-                onToggle: { toggleTodayCategory(id) }
+                onToggle: { toggleTodayCategory(id) },
+                morphId: morphId
             )
 
             if !collapsed {
@@ -710,12 +718,19 @@ struct TodayView: View {
                     // Blocos de categoria; os controles abrem num balão ao tocar.
                     TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
                         .frame(maxWidth: portraitGoalsMaxWidth)
+                        .transition(.opacity)
                 } else {
                     goalsListBody(maxWidth: portraitGoalsMaxWidth)
+                        .transition(.opacity)
                 }
 
                 editShortcuts
             }
+            // Só no retrato: lista e grade trocam com transformação (ícone ↔ círculo, nome ↔ nome).
+            .environment(\.todayMorphNamespace, goalsMorphNamespace)
+            // O modo muda pelo @AppStorage (fora da transação do botão), então a animação fica aqui.
+            .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82),
+                       value: goalsViewModeRaw)
             .padding(.horizontal)
             .padding(.bottom, 24)
         }

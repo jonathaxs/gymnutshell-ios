@@ -159,7 +159,8 @@ struct AppTabHeader: View {
                 .font(.largeTitle.weight(.bold))
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                // Centralizada no espaço à esquerda do sino (mesma folga dos dois lados).
+                .frame(maxWidth: .infinity, alignment: .center)
                 .accessibilityAddTraits(.isHeader)
 
             Button {
