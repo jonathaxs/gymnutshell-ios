@@ -25,7 +25,6 @@ public enum UserProfile {
     // MARK: - Chaves de navegação
     /// Marcada ao fim da Welcome: a Today faz a comemoração do anel uma vez e apaga a marca.
     public static let pendingRingCelebrationKey       = "app.pendingRingCelebration"
-    public static let selectedTabKey                  = "app.selectedTab"
     public static let achievementsSelectedDateKey     = "achievements.selectedDate"
     public static let achievementsFilterModeKey       = "achievements.filterMode"
 

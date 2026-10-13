@@ -145,8 +145,6 @@ struct WelcomeView: View {
         NotificationManager.shared.rescheduleAllActive()
 
         // Marca o onboarding como concluído.
-        // Começa o app na Today, mesmo que a última aba salva fosse outra (ex: depois de um reset).
-        defaults.set(0, forKey: UserProfile.selectedTabKey)
         defaults.set(true, forKey: UserProfile.pendingRingCelebrationKey)
         defaults.set(true, forKey: UserProfile.didCompleteOnboardingKey)
 

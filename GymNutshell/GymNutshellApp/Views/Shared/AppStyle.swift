@@ -140,10 +140,13 @@ extension View {
 
 // MARK: - AppTabHeader
 
-/// Cabeçalho das abas principais: título grande à esquerda e o sino do histórico de notificações à direita.
+/// Cabeçalho da Hoje: título grande (a data) à esquerda, sino do histórico de notificações e engrenagem
+/// de Ajustes à direita. As outras páginas usam a barra de navegação nativa.
 struct AppTabHeader: View {
 
     let title: String
+
+    @Environment(AppRouter.self) private var router
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
@@ -151,7 +154,7 @@ struct AppTabHeader: View {
     @State private var showNotificationHistory = false
 
     var body: some View {
-        HStack(alignment: .center, spacing: 12) {
+        HStack(alignment: .center, spacing: 10) {
             Text(title)
                 .font(.largeTitle.weight(.bold))
                 .lineLimit(1)
@@ -170,6 +173,17 @@ struct AppTabHeader: View {
             .appCircleButton()
             .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
             .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
+
+            Button {
+                router.open(.settings)
+            } label: {
+                Image(systemName: "gearshape.fill")
+                    .font(.title3.weight(.semibold))
+                    .foregroundStyle(accentColor)
+                    .frame(width: 44, height: 44)
+            }
+            .appCircleButton()
+            .accessibilityLabel(String(localized: "settings.header.title", bundle: .gymNutshellCore))
         }
         .sheet(isPresented: $showNotificationHistory) {
             NotificationHistorySheet()

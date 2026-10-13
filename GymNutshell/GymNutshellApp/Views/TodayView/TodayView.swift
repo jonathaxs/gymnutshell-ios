@@ -20,6 +20,7 @@ struct TodayView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(AppRouter.self) private var router
 
     // Metas de treino
     @AppStorage("workoutIntake")  private var workoutIntake:  Int = 0
@@ -75,6 +76,10 @@ struct TodayView: View {
 
     // Estado de colapso das categorias de metas na TodayView.
     @AppStorage("today.goal.collapsed") private var todayCollapsedRaw: String = ""
+
+    // Modo de visualização das metas no iPhone em retrato (lista ou grade com balão).
+    @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
+    private var goalsViewMode: TodayGoalsViewMode { TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list }
 
     // Ordem das categorias, sincronizada com TrackingGoalsSettingsView.
     @State private var orderedCategories: [GoalCategory] = GoalCategoryOrderStore.defaultOrder
@@ -557,6 +562,82 @@ struct TodayView: View {
         }
     }
 
+    // MARK: - Blocos da grade
+
+    /// Monta um bloco a partir dos progressos das metas e das linhas de controle.
+    private func makeTile(id: String, title: String, symbol: String,
+                          progresses: [Double], content: AnyView) -> TodayCategoryTile {
+        let average = progresses.isEmpty ? 0 : progresses.reduce(0, +) / Double(progresses.count)
+        return TodayCategoryTile(
+            id: id,
+            title: title,
+            symbolName: symbol,
+            progress: average,
+            completedCount: progresses.filter { $0 >= 1 }.count,
+            totalCount: progresses.count,
+            content: content
+        )
+    }
+
+    /// Blocos da grade: as categorias fixas primeiro, depois as do usuário, e "Outras" no fim.
+    private var categoryTiles: [TodayCategoryTile] {
+        let builtins = unifiedCategoryItems.filter { if case .builtin = $0 { return true }; return false }
+        let customs  = unifiedCategoryItems.filter { if case .custom = $0 { return true }; return false }
+        var tiles: [TodayCategoryTile] = []
+
+        for item in (builtins + customs) where categoryHasContent(item) {
+            switch item {
+            case .builtin(let category):
+                let keys = activeGoalKeys.filter { GoalCategory.defaultCategory(for: $0) == category }
+                let goals = customTrackingGoals.filter { $0.category == category }
+                tiles.append(makeTile(
+                    id: gridCellId(for: item),
+                    title: category.displayName,
+                    symbol: category.symbolName,
+                    progresses: keys.map { progress(for: $0) } + goals.map { customProgress($0) },
+                    content: AnyView(
+                        AppGroupedCard(dividerInset: 14) {
+                            ForEach(keys, id: \.self) { goalRow(for: $0) }
+                            ForEach(goals) { customRow($0) }
+                        }
+                        .environment(\.goalRowGrouped, true)
+                    )
+                ))
+            case .custom(let category):
+                let goals = customGoalsFor(customCategoryId: category.id)
+                tiles.append(makeTile(
+                    id: gridCellId(for: item),
+                    title: category.name,
+                    symbol: category.symbolName,
+                    progresses: goals.map { customProgress($0) },
+                    content: AnyView(
+                        AppGroupedCard(dividerInset: 14) {
+                            ForEach(goals) { customRow($0) }
+                        }
+                        .environment(\.goalRowGrouped, true)
+                    )
+                ))
+            }
+        }
+
+        let others = uncategorizedCustomGoals
+        if !others.isEmpty {
+            tiles.append(makeTile(
+                id: Self.uncategorizedId,
+                title: String(localized: "today.category.other", bundle: .gymNutshellCore),
+                symbol: "ellipsis.circle",
+                progresses: others.map { customProgress($0) },
+                content: AnyView(
+                    AppGroupedCard(dividerInset: 14) {
+                        ForEach(others) { customRow($0) }
+                    }
+                    .environment(\.goalRowGrouped, true)
+                )
+            ))
+        }
+        return tiles
+    }
+
     // MARK: - Corpo da lista de metas
 
     private func goalsListBody(maxWidth: CGFloat = UI.contentMaxWidth) -> some View {
@@ -608,13 +689,19 @@ struct TodayView: View {
     // MARK: - Layout retrato
 
     private var portraitLayout: some View {
-        // Data + sino ficam fixos no topo (igual às outras abas); anel, metas e atalhos rolam juntos.
+        // Data + sino + engrenagem ficam fixos no topo; anel, metas e atalhos rolam juntos.
         ScrollView {
             VStack(spacing: 20) {
                 heroBlock(vertical: false, showsHeader: false)
                     .frame(maxWidth: .infinity, alignment: .center)
 
-                goalsListBody(maxWidth: 560)
+                if goalsViewMode == .grid {
+                    // Blocos de categoria; os controles abrem num balão ao tocar.
+                    TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
+                        .frame(maxWidth: 560)
+                } else {
+                    goalsListBody(maxWidth: 560)
+                }
 
                 editShortcuts
             }
@@ -639,13 +726,28 @@ struct TodayView: View {
         HStack(spacing: 10) {
             shortcutButton(titleKey: "today.edit.goals", icon: "target", route: .settingsGoals)
             shortcutButton(titleKey: "today.edit.controls", icon: "slider.horizontal.3", route: .settingsControls)
+            viewModeButton
         }
     }
 
-    private func shortcutButton(titleKey: String, icon: String, route: NotificationRoute) -> some View {
+    /// Alterna entre lista e grade (só aparece no iPhone em retrato, onde o modo vale).
+    private var viewModeButton: some View {
+        let next: TodayGoalsViewMode = goalsViewMode == .list ? .grid : .list
+        return Button {
+            withAnimation(.easeInOut(duration: 0.25)) { goalsViewModeRaw = next.rawValue }
+        } label: {
+            Image(systemName: next.symbolName)
+                .font(.footnote.weight(.semibold))
+        }
+        .appSecondaryButton(todayAccentColor)
+        .controlSize(.small)
+        .accessibilityLabel(String(format: String(localized: "today.goals.viewMode.switch.a11y",
+                                                  bundle: .gymNutshellCore), next.title))
+    }
+
+    private func shortcutButton(titleKey: String, icon: String, route: AppRoute) -> some View {
         Button {
-            NotificationCenter.default.post(name: .gaNotificationRoute, object: nil,
-                                            userInfo: ["route": route.rawValue])
+            router.reset(to: [.settings, route])
         } label: {
             Label(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore), systemImage: icon)
                 .font(.footnote.weight(.semibold))
@@ -774,4 +876,5 @@ struct TodayView: View {
 
 #Preview {
     TodayView()
+        .environment(AppRouter())
 }

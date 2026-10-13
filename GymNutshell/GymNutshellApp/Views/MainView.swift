@@ -1,9 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/MainView.swift
 //
-//  Propósito: Hospeda o TabView principal e roteia o usuário pras telas principais do app.
-//             A seleção da aba é guardada em @AppStorage pra que outras views possam
-//             navegar pra AchievementsView programaticamente.
+//  Propósito: Hospeda o NavigationStack raiz (Hoje de raiz) e roteia o usuário pras páginas do app
+//             (Estatísticas, Conquistas e Ajustes) pelo AppRouter, inclusive deep-links de widgets e notificações.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-15.
 // ⌘
@@ -12,25 +11,12 @@ import SwiftUI
 import GymNutshellCore
 import SwiftData
 
-// MARK: - Índices das abas
-// Constantes centralizadas pra outras views navegarem sem números mágicos.
-extension MainView {
-    enum Tab {
-        static let today        = 0
-        static let profile      = 1
-        static let achievements = 2
-        static let settings     = 3
-    }
-}
-
 // MARK: - Tela principal
-// Organiza as abas principais do app: Today, Statistics (profile), Achievements e Settings.
+// Raiz do app: um NavigationStack com a Hoje de raiz. Estatísticas, Conquistas e Ajustes abrem por cima
+// como páginas, pelo AppRouter (botões da Hoje, widgets e notificações).
 struct MainView: View {
 
-    // Seleção de aba persistida, permite navegação entre abas via @AppStorage.
-    @AppStorage(UserProfile.selectedTabKey) private var selectedTab: Int = 0
-
-    // Cor de destaque, usada no tint da TabView pra colorir a aba selecionada.
+    // Cor de destaque, aplicada no stack raiz pra colorir botões e links de todas as páginas.
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
@@ -40,33 +26,18 @@ struct MainView: View {
     // Fase do app, dispara o backup automático quando o app volta pro foreground.
     @Environment(\.scenePhase) private var scenePhase
 
+    @State private var router = AppRouter()
+
     var body: some View {
-        TabView(selection: $selectedTab) {
-
+        @Bindable var router = router
+        NavigationStack(path: $router.path) {
             TodayView()
-                .tabItem {
-                    Image(systemName: "checkmark")
+                .toolbar(.hidden, for: .navigationBar)
+                .navigationDestination(for: AppRoute.self) { route in
+                    destination(for: route)
                 }
-                .tag(Tab.today)
-
-            ProgressOverView()
-                .tabItem {
-                    Image(systemName: "chart.bar.fill")
-                }
-                .tag(Tab.profile)
-
-            AchievementsView()
-                .tabItem {
-                    Image(systemName: "trophy.fill")
-                }
-                .tag(Tab.achievements)
-
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gearshape.fill")
-                }
-                .tag(Tab.settings)
         }
+        .environment(router)
         .tint(accentColor)
         .task {
             await AutoBackupService.performIfNeeded(modelContext: modelContext)
@@ -82,13 +53,12 @@ struct MainView: View {
         .onOpenURL { url in
             guard url.scheme == "gymnutshell" else { return }
             switch url.host {
-            case "today":        selectedTab = Tab.today
-            case "achievements": selectedTab = Tab.achievements
+            case "today":        router.reset()
+            case "achievements": router.reset(to: [.achievements])
             default: break
             }
         }
-        // Deep-link a partir de notificações: troca a aba e republica sub-eventos pras filhas
-        // (AchievementsView e SettingsView) ajustarem seu estado.
+        // Deep-link a partir de notificações: troca o caminho do stack.
         .onReceive(NotificationCenter.default.publisher(for: .gaNotificationRoute)) { note in
             guard
                 let raw = note.userInfo?["route"] as? String,
@@ -96,36 +66,43 @@ struct MainView: View {
             else { return }
             switch route {
             case .today:
-                selectedTab = Tab.today
+                router.reset()
             case .achievementsToday:
-                // Pré-seta o filtro de dia em hoje antes de abrir a aba, a AchievementsView
-                // lê esses valores no onAppear e também escuta o sub-evento abaixo.
+                // Pré-seta o filtro de dia antes de abrir a página, a AchievementsView lê esses
+                // valores no onAppear e também escuta o sub-evento abaixo (se já estiver aberta).
                 // Se a notificação carrega a data da conquista, usa ela (senão cai pra hoje).
                 let achievementTs = note.userInfo?["achievementDate"] as? Double
                     ?? Date().timeIntervalSince1970
                 UserDefaults.standard.set("day", forKey: UserProfile.achievementsFilterModeKey)
                 UserDefaults.standard.set(achievementTs, forKey: UserProfile.achievementsSelectedDateKey)
-                selectedTab = Tab.achievements
+                router.reset(to: [.achievements])
                 NotificationCenter.default.post(
                     name: .gaAchievementsShowToday,
                     object: nil,
                     userInfo: ["achievementDate": achievementTs]
                 )
             case .backup:
-                // Grava flag persistente, SettingsView pode ainda não estar montada
-                // (TabView monta lazy). Ela lê a flag no .onAppear e empurra BackupSettingsView.
-                UserDefaults.standard.set("backup", forKey: "pendingSettingsRoute")
-                selectedTab = Tab.settings
-                NotificationCenter.default.post(name: .gaSettingsShowBackup, object: nil)
+                router.reset(to: [.settings, .settingsBackup])
             case .settingsGoals:
-                UserDefaults.standard.set("goals", forKey: "pendingSettingsRoute")
-                selectedTab = Tab.settings
-                NotificationCenter.default.post(name: .gaSettingsShowGoals, object: nil)
+                router.reset(to: [.settings, .settingsGoals])
             case .settingsControls:
-                UserDefaults.standard.set("controls", forKey: "pendingSettingsRoute")
-                selectedTab = Tab.settings
-                NotificationCenter.default.post(name: .gaSettingsShowControls, object: nil)
+                router.reset(to: [.settings, .settingsControls])
             }
+        }
+    }
+
+    // MARK: - Destinos
+
+    @ViewBuilder
+    private func destination(for route: AppRoute) -> some View {
+        switch route {
+        case .statistics:       ProgressOverView()
+        case .achievements:     AchievementsView()
+        case .settings:         SettingsView()
+        case .settingsBackup:   BackupSettingsView()
+        case .settingsGoals:    TrackingGoalsSettingsView()
+        case .settingsControls: ControlStyleSettingsView()
+        case .userGoal:         UserGoalChangeView()
         }
     }
 }

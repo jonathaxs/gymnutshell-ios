@@ -918,3 +918,10 @@
 "welcome.step.units.note" = "Você pode mudar depois em Ajustes.";
 "welcome.units.metric.desc" = "Mililitros, como 250 ml por copo.";
 "welcome.units.imperial.desc" = "Onças fluidas, como 8 fl oz por copo.";
+
+"today.goals.viewMode.list" = "Lista";
+"today.goals.viewMode.grid" = "Grade";
+"today.goals.viewMode.switch.a11y" = "Mudar para visualização em %@";
+"settings.goalsViewMode.title" = "Visualização das metas";
+"today.category.tile.a11y.value" = "%d de %d concluídas";
+"today.category.tile.a11y.hint" = "Toque para abrir as metas da categoria.";

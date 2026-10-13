@@ -2,8 +2,9 @@
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayHeroView.swift
 //
 //  Propósito: Bloco hero da tela Hoje, no topo (retrato) ou na coluna esquerda (landscape/iPad).
-//             Contém: data grande + sino (opcional), o anel de progresso com a % no centro e,
-//             depois do primeiro registro, a conquista do dia ao lado e quanto falta pro próximo nível embaixo.
+//             Contém: data grande + sino e engrenagem (opcional), o anel de progresso com a % no centro,
+//             depois do primeiro registro a conquista do dia ao lado, a frase do próximo nível e os
+//             botões das páginas Estatísticas e Conquistas.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -21,10 +22,14 @@ struct TodayHeroView: View {
     let selectedTheme: AppTheme
     /// Quando true (iPad, sobra altura), o anel fica maior.
     var verticalLayout: Bool = false
-    /// false no iPhone em retrato: a data + sino ficam fixos no topo da tela, fora do hero.
+    /// false no iPhone em retrato: a data + sino + engrenagem ficam fixos no topo da tela, fora do hero.
     var showsHeader: Bool = true
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(AppRouter.self) private var router
+
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
     // Sexo do usuário, usado pra nomes e emojis de tier com gênero correto.
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
@@ -112,6 +117,8 @@ struct TodayHeroView: View {
                 .frame(maxWidth: .infinity)
 
                 caption
+
+                pageButtons
             }
             .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.55, dampingFraction: 0.82),
                        value: hasStarted)
@@ -152,6 +159,27 @@ struct TodayHeroView: View {
         .accessibilityLabel(String(format: String(localized: "today.tier.a11y.label", bundle: .gymNutshellCore),
                                    tierEmoji, tierName))
         .accessibilityHint(A11y.moreInfoHint())
+    }
+
+    // MARK: - Botões das páginas
+
+    /// Estatísticas e Conquistas abrem como páginas por cima da Hoje.
+    private var pageButtons: some View {
+        HStack(spacing: 10) {
+            pageButton(titleKey: "statistics.title", icon: "chart.bar.fill", route: .statistics)
+            pageButton(titleKey: "achievements.header.title", icon: "trophy.fill", route: .achievements)
+        }
+    }
+
+    private func pageButton(titleKey: String, icon: String, route: AppRoute) -> some View {
+        Button {
+            router.open(route)
+        } label: {
+            Label(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore), systemImage: icon)
+                .font(.subheadline.weight(.semibold))
+        }
+        .appSecondaryButton(accentColor)
+        .controlSize(.regular)
     }
 
     // MARK: - Frase abaixo

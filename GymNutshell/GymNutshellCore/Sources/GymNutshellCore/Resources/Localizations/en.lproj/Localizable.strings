@@ -868,3 +868,10 @@
 "welcome.step.units.note" = "You can change this later in Settings.";
 "welcome.units.metric.desc" = "Milliliters, like 250 ml per glass.";
 "welcome.units.imperial.desc" = "Fluid ounces, like 8 fl oz per glass.";
+
+"today.goals.viewMode.list" = "List";
+"today.goals.viewMode.grid" = "Grid";
+"today.goals.viewMode.switch.a11y" = "Switch to %@ view";
+"settings.goalsViewMode.title" = "Goals view";
+"today.category.tile.a11y.value" = "%d of %d completed";
+"today.category.tile.a11y.hint" = "Tap to open the category goals.";

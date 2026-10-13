@@ -194,122 +194,109 @@ struct AchievementsView: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationStack {
-            GeometryReader { geo in
-                let isWide = geo.size.width >= 700
-                Group {
-                    if isWide {
-                        // Wide: cap em 860pt e centralizado, com cabeçalho customizado
-                        // alinhado à mesma borda que o conteúdo (igual StatisticsView).
-                        VStack(alignment: .leading, spacing: 0) {
-                            wideTitleBar
-                            if filterMode == .day {
-                                // Calendário à esquerda, histórico à direita.
-                                HStack(alignment: .top, spacing: 0) {
-                                    List {
-                                        calendarSection
-                                    }
-                                    .frame(maxWidth: 400)
-                                    .listStyle(.insetGrouped)
-
-                                    Divider()
-
-                                    List {
-                                        if visibleRecords.isEmpty {
-                                            Section {
-                                                AchievementsEmptyState(accentColor: accentColor)
-                                                    .listRowBackground(Color.clear)
-                                            }
-                                        } else {
-                                            // Section header invisível só pra forçar o mesmo
-                                            // inset superior que o calendário tem por causa do
-                                            // header da `calendarSection`. Sem isso, no macOS e
-                                            // iPhone landscape o `.insetGrouped` deixa a lista
-                                            // colada no topo enquanto o calendário tem respiro.
-                                            Section {
-                                                historySection
-                                            } header: {
-                                                Color.clear.frame(height: 0)
-                                            }
-                                        }
-                                    }
-                                    .listStyle(.insetGrouped)
-                                }
-                            } else {
-                                // Lista completa: painel único sem coluna de calendário.
+        GeometryReader { geo in
+            let isWide = geo.size.width >= 700
+            Group {
+                if isWide {
+                    // Wide: cap em 860pt e centralizado.
+                    VStack(alignment: .leading, spacing: 0) {
+                        if filterMode == .day {
+                            // Calendário à esquerda, histórico à direita.
+                            HStack(alignment: .top, spacing: 0) {
                                 List {
                                     calendarSection
+                                }
+                                .frame(maxWidth: 400)
+                                .listStyle(.insetGrouped)
 
+                                Divider()
+
+                                List {
                                     if visibleRecords.isEmpty {
                                         Section {
                                             AchievementsEmptyState(accentColor: accentColor)
                                                 .listRowBackground(Color.clear)
                                         }
                                     } else {
-                                        historySection
+                                        // Section header invisível só pra forçar o mesmo
+                                        // inset superior que o calendário tem por causa do
+                                        // header da `calendarSection`. Sem isso, no macOS e
+                                        // iPhone landscape o `.insetGrouped` deixa a lista
+                                        // colada no topo enquanto o calendário tem respiro.
+                                        Section {
+                                            historySection
+                                        } header: {
+                                            Color.clear.frame(height: 0)
+                                        }
                                     }
                                 }
                                 .listStyle(.insetGrouped)
                             }
-                        }
-                        .frame(maxWidth: 860)
-                        .frame(maxWidth: .infinity)
-                    } else {
-                        // Narrow (iPhone portrait): layout original com tudo numa List.
-                        List {
-                            calendarSection
+                        } else {
+                            // Lista completa: painel único sem coluna de calendário.
+                            List {
+                                calendarSection
 
-                            if visibleRecords.isEmpty {
-                                Section {
-                                    AchievementsEmptyState(accentColor: accentColor)
-                                        .listRowBackground(Color.clear)
+                                if visibleRecords.isEmpty {
+                                    Section {
+                                        AchievementsEmptyState(accentColor: accentColor)
+                                            .listRowBackground(Color.clear)
+                                    }
+                                } else {
+                                    historySection
                                 }
-                            } else {
-                                historySection
                             }
+                            .listStyle(.insetGrouped)
+                        }
+                    }
+                    .frame(maxWidth: 860)
+                    .frame(maxWidth: .infinity)
+                } else {
+                    // Narrow (iPhone portrait): layout original com tudo numa List.
+                    List {
+                        calendarSection
+
+                        if visibleRecords.isEmpty {
+                            Section {
+                                AchievementsEmptyState(accentColor: accentColor)
+                                    .listRowBackground(Color.clear)
+                            }
+                        } else {
+                            historySection
                         }
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                // Fundo cinza por toda a viewport, sem isso, no modo wide, as
-                // margens fora do cap de 860pt ficam brancas em light mode.
-                .background(Color(.systemGroupedBackground))
-                .toolbar(.hidden, for: .navigationBar)
-                .safeAreaInset(edge: .top, spacing: 0) {
-                    if !isWide {
-                        AppTabHeader(title: String(localized: "achievements.header.title", bundle: .gymNutshellCore))
-                            .padding(.horizontal)
-                            .padding(.bottom, 8)
-                            .background(Color(.systemGroupedBackground))
-                    }
-                }
             }
-            .navigationTitle(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
-            .onAppear {
-                filterMode = FilterMode(rawValue: storedFilterMode) ?? .all
-                selectedDate = Date(timeIntervalSince1970: storedSelectedDateTimestamp)
-                visibleMonthDate = startOfMonth(for: selectedDate)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            // Fundo cinza por toda a viewport, sem isso, no modo wide, as
+            // margens fora do cap de 860pt ficam brancas em light mode.
+            .background(Color(.systemGroupedBackground))
+        }
+        .navigationTitle(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
+        .onAppear {
+            filterMode = FilterMode(rawValue: storedFilterMode) ?? .all
+            selectedDate = Date(timeIntervalSince1970: storedSelectedDateTimestamp)
+            visibleMonthDate = startOfMonth(for: selectedDate)
+        }
+        .onChange(of: filterMode) { _, newValue in
+            storedFilterMode = newValue.rawValue
+        }
+        .onChange(of: selectedDate) { _, newValue in
+            storedSelectedDateTimestamp = newValue.timeIntervalSince1970
+            visibleMonthDate = startOfMonth(for: newValue)
+        }
+        // Deep-link da notificação de Conquista, força filtro "dia" na data
+        // que veio no userInfo (data real da conquista); cai pra hoje se ausente.
+        .onReceive(NotificationCenter.default.publisher(for: .gaAchievementsShowToday)) { note in
+            let target: Date
+            if let ts = note.userInfo?["achievementDate"] as? Double {
+                target = Date(timeIntervalSince1970: ts)
+            } else {
+                target = Date()
             }
-            .onChange(of: filterMode) { _, newValue in
-                storedFilterMode = newValue.rawValue
-            }
-            .onChange(of: selectedDate) { _, newValue in
-                storedSelectedDateTimestamp = newValue.timeIntervalSince1970
-                visibleMonthDate = startOfMonth(for: newValue)
-            }
-            // Deep-link da notificação de Conquista, força filtro "dia" na data
-            // que veio no userInfo (data real da conquista); cai pra hoje se ausente.
-            .onReceive(NotificationCenter.default.publisher(for: .gaAchievementsShowToday)) { note in
-                let target: Date
-                if let ts = note.userInfo?["achievementDate"] as? Double {
-                    target = Date(timeIntervalSince1970: ts)
-                } else {
-                    target = Date()
-                }
-                filterMode = .day
-                selectedDate = target
-                visibleMonthDate = startOfMonth(for: target)
-            }
+            filterMode = .day
+            selectedDate = target
+            visibleMonthDate = startOfMonth(for: target)
         }
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
@@ -327,17 +314,6 @@ struct AchievementsView: View {
                 EditTodayView(record: record)
             }
         }
-    }
-
-    // Cabeçalho customizado usado no wideLayout, bell + título alinhados ao
-    // mesmo maxWidth (860pt) do conteúdo, mesma técnica usada em StatisticsView.
-    @ViewBuilder
-    private var wideTitleBar: some View {
-        AppTabHeader(title: String(localized: "achievements.header.title", bundle: .gymNutshellCore))
-            .padding(.horizontal)
-            .padding(.top, 12)
-            .frame(maxWidth: 860)
-            .frame(maxWidth: .infinity)
     }
 
     // MARK: - Seção de histórico (extraída pra reuso no layout wide/narrow)
