@@ -143,7 +143,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Estatísticas";
+"statistics.title" = "Histórico";
 "statistics.section.tiers" = "Conquistas por Níveis";
 "statistics.section.activity" = "Atividade nos Treinos";
 "statistics.section.goals" = "Metas";
@@ -381,8 +381,8 @@
 "today.ring.a11y.value" = "%d por cento concluído";
 
 /* TodayView.swift, botão de data */
-"today.hero.bell.a11y.label" = "Histórico de notificações";
-"today.hero.bell.a11y.hint" = "Toque para abrir o histórico de notificações.";
+"today.hero.bell.a11y.label" = "Notificações";
+"today.hero.bell.a11y.hint" = "Toque para abrir as notificações.";
 "today.hero.caption.start" = "Acrescente alguma meta para começar";
 "today.hero.caption.nextLevel" = "Faltam %d%% para o próximo nível";
 "today.hero.caption.max" = "Conquista máxima do dia!";
@@ -590,7 +590,7 @@
 "common.done" = "Concluído";
 
 /* Histórico de notificações */
-"notifications.history.title" = "Histórico";
+"notifications.history.title" = "Notificações";
 "common.close" = "Fechar";
 "common.edit" = "Editar";
 "common.done" = "Concluído";

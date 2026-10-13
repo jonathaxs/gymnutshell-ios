@@ -107,7 +107,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Statistics";
+"statistics.title" = "History";
 "statistics.section.tiers" = "Tier Breakdown";
 "statistics.section.activity" = "Gym Activity";
 "statistics.section.goals" = "Goals";
@@ -345,8 +345,8 @@
 "today.ring.a11y.value" = "%d percent completed";
 
 /* TodayView.swift, date hero button */
-"today.hero.bell.a11y.label" = "Notification history";
-"today.hero.bell.a11y.hint" = "Tap to open your notification history.";
+"today.hero.bell.a11y.label" = "Notifications";
+"today.hero.bell.a11y.hint" = "Tap to open your notifications.";
 "today.hero.caption.start" = "Log a goal to get started";
 "today.hero.caption.nextLevel" = "%d%% to go for the next level";
 "today.hero.caption.max" = "Top achievement of the day!";
@@ -540,7 +540,7 @@
 "common.done" = "Done";
 
 /* Notification history */
-"notifications.history.title" = "History";
+"notifications.history.title" = "Notifications";
 "common.close" = "Close";
 "common.edit" = "Edit";
 "common.done" = "Done";

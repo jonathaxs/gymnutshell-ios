@@ -4,7 +4,7 @@
 //  Propósito: Bloco hero da tela Hoje, no topo (retrato) ou na coluna esquerda (landscape/iPad).
 //             Contém: data grande + sino e engrenagem (opcional), o anel de progresso com a % no centro,
 //             depois do primeiro registro a conquista do dia ao lado, a frase do próximo nível e os
-//             botões das páginas Estatísticas e Conquistas.
+//             botões das páginas Histórico e Conquistas (+ troca lista/grade no iPhone em retrato).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -24,12 +24,18 @@ struct TodayHeroView: View {
     var verticalLayout: Bool = false
     /// false no iPhone em retrato: a data + sino + engrenagem ficam fixos no topo da tela, fora do hero.
     var showsHeader: Bool = true
+    /// true no iPhone em retrato: mostra ao lado de Conquistas o botão que alterna lista/grade das metas.
+    var showsViewModeToggle: Bool = false
+    /// Avisa a largura da linha de botões, pra lista de metas abaixo acompanhar a mesma largura.
+    var onButtonRowWidthChange: ((CGFloat) -> Void)? = nil
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(AppRouter.self) private var router
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
+    @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
 
     // Sexo do usuário, usado pra nomes e emojis de tier com gênero correto.
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
@@ -163,12 +169,33 @@ struct TodayHeroView: View {
 
     // MARK: - Botões das páginas
 
-    /// Estatísticas e Conquistas abrem como páginas por cima da Hoje.
+    /// Histórico e Conquistas abrem como páginas por cima da Hoje.
     private var pageButtons: some View {
         HStack(spacing: 10) {
+            if showsViewModeToggle {
+                viewModeButton
+            }
             pageButton(titleKey: "statistics.title", icon: "chart.bar.fill", route: .statistics)
             pageButton(titleKey: "achievements.header.title", icon: "trophy.fill", route: .achievements)
         }
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { onButtonRowWidthChange?($0) }
+    }
+
+    /// Alterna entre lista e grade das metas (só no iPhone em retrato, onde o modo vale).
+    private var viewModeButton: some View {
+        let current = TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list
+        let next: TodayGoalsViewMode = current == .list ? .grid : .list
+        return Button {
+            withAnimation(.easeInOut(duration: 0.25)) { goalsViewModeRaw = next.rawValue }
+        } label: {
+            Image(systemName: next.symbolName)
+                .font(.subheadline.weight(.semibold))
+                .contentTransition(.symbolEffect(.replace))
+        }
+        .appSecondaryButton(accentColor)
+        .controlSize(.regular)
+        .accessibilityLabel(String(format: String(localized: "today.goals.viewMode.switch.a11y",
+                                                  bundle: .gymNutshellCore), next.title))
     }
 
     private func pageButton(titleKey: String, icon: String, route: AppRoute) -> some View {
