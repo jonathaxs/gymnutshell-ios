@@ -7,9 +7,7 @@
 
  ⌘ */
 
-
 /* MARK: - Models */
-
 
 /* DailyAchievement.swift, Cat theme (default) */
 "daily.achievement.level1" = "Gatinho";
@@ -112,18 +110,14 @@
 "app.theme.horse.fem" = "Égua";
 "app.theme.monkey" = "Primata";
 
-
 /* UserProfile.swift */
 "fitness.goal.bulking" = "Ganhar massa";
 "fitness.goal.maintenance" = "Se manter";
 "fitness.goal.cutting" = "Emagrecimento";
 
-
 /* MARK: - Views */
 
-
 /* MARK: - Views/AchievementsView */
-
 
 /* AchievementsView.swift */
 "achievements.header.title" = "Conquistas";
@@ -135,46 +129,25 @@
 "achievements.empty.title" = "Nenhuma conquista ainda.";
 "achievements.empty.description" = "No fim do dia irá desbloquear sua conquista aqui.";
 
-/* StreakBonus, AchievementsView.swift */
 "achievements.daily.row.description" = "Completou %d%% das metas diárias.";
-"streak.bonus.weekly.level3.title" = "Semana Fitness";
-"streak.bonus.weekly.level4.title" = "Semana Musculosa";
-"streak.bonus.monthly.level3.title" = "Mês Fitness";
-"streak.bonus.monthly.level4.title" = "Mês Musculoso";
-"streak.bonus.generic.title" = "Bônus de Sequência";
-"streak.bonus.info.intro" = "Bônus de Sequência são pontos concedidos quando você conquista Nível 3 ou 4 em todos os dias de uma semana ou mês.";
-"streak.bonus.weekly.level3.description" = "Todos os dias da semana com conquistas nível 3 ou 4.";
-"streak.bonus.weekly.level4.description" = "Todos os dias da semana com conquistas nível 4.";
-"streak.bonus.monthly.level3.description" = "Todos os dias do mês com conquistas nível 3 ou 4.";
-"streak.bonus.monthly.level4.description" = "Todos os dias do mês com conquistas nível 4.";
-
 
 /* EditTodayView.swift */
 "edit.record.cancel" = "Cancelar";
 "edit.record.save" = "Salvar";
-
 
 /* RecordDetailView.swift */
 "record.detail.title" = "Detalhes da Conquista";
 "record.detail.back" = "Voltar";
 "record.detail.edit" = "Editar";
 
-
 /* MARK: - Views/ProfileView */
-
 
 /* ProgressOverView.swift */
 "statistics.title" = "Estatísticas";
 "statistics.section.tiers" = "Conquistas por Níveis";
-"statistics.section.bonuses" = "Bônus de Sequência";
 "statistics.section.activity" = "Atividade nos Treinos";
 "statistics.section.goals" = "Metas";
 "statistics.tier.days" = "%d dias";
-"statistics.bonus.weekly.level3" = "🎖️ Semana Fitness";
-"statistics.bonus.weekly.level4" = "💀 Semana Musculosa";
-"statistics.bonus.monthly.level3" = "🏆 Mês Fitness";
-"statistics.bonus.monthly.level4" = "☠️ Mês Musculoso";
-"statistics.bonus.times" = "%d vezes";
 "statistics.activity.workout" = "Dias de Musculação";
 "statistics.activity.cardio" = "Dias de Cardio";
 "statistics.goals.active.label" = "Metas ativas";
@@ -188,12 +161,9 @@
 /* ProgressOverView.swift, stats rows and physical data */
 "profile.stats.days" = "Dias";
 "profile.stats.points" = "Pontos";
-"profile.stats.bonuses" = "Bônus";
 "profile.recent.section" = "Últimos 7 dias";
 
-
 /* MARK: - Views/SettingsView */
-
 
 /* AboutView.swift */
 "settings.about.title" = "Sobre o App";
@@ -229,7 +199,6 @@
 "settings.goals.custom.badge" = "Personalizada";
 "settings.goals.categories.title" = "Categorias";
 
-
 /* BackupSettingsView.swift */
 "settings.backup.nav.title" = "Backup";
 "settings.backup.section.data" = "Local";
@@ -258,11 +227,9 @@
 "settings.backup.icloud.auto.toggle" = "Backup automático diário";
 "settings.backup.icloud.auto.footer" = "\nO backup será salvo automaticamente quando uma nova conquista é atualizada.\nConquistas são atualizadas quando você abre o App após meia-noite.";
 
-
 /* CheckinGoalsSettingsView.swift */
 "settings.goals.mandatory.badge" = "Padrão";
 "settings.goals.optional.badge" = "Recomendado";
-
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Objetivo";
@@ -271,7 +238,6 @@
 "settings.goalchange.section.preview" = "Suas metas";
 "settings.goalchange.save.recalc" = "Salvar e recalcular";
 "settings.goalchange.save.keep" = "Salvar sem recalcular";
-
 
 /* ProfileSettingsView.swift */
 "settings.profile.section.personal" = "Pessoal";
@@ -299,7 +265,6 @@
 "profile.sex.male" = "Masculino";
 "profile.sex.female" = "Feminino";
 
-
 /* SettingsView.swift */
 "settings.header.title" = "Ajustes do App";
 "settings.detail.placeholder" = "Selecione uma página";
@@ -308,7 +273,6 @@
 "settings.section.preferences" = "Preferências";
 "settings.section.system" = "Sistema";
 "settings.section.about" = "Sobre";
-
 
 /* GymNutshellApp.swift, DataStoreErrorView */
 "app.error.dataStore.title" = "Algo deu errado";
@@ -345,14 +309,12 @@
 "widgetBackground.picker" = "Cor";
 "widgetBackground.preview" = "Pré-visualização";
 
-
 /* TrackingGoalDetailView.swift */
 "settings.goaldetail.stepper" = "Ajustar valor";
 "settings.goaldetail.footer" = "Alterar isso não afeta registros passados.";
 "settings.goaldetail.save" = "Salvar";
 "settings.goaldetail.increment.stepper" = "Ajustar passo";
 "settings.goaldetail.increment.footer" = "O passo é o quanto o slider avança no valor da meta.";
-
 
 /* TrackingGoalsSettingsView.swift */
 "settings.goals.title" = "Metas";
@@ -368,25 +330,20 @@
 "settings.goal.fiber" = "Fibra";
 "settings.goal.sleep" = "Sono";
 
-
 /* MARK: - Views/Shared */
-
 
 /* FitnessGoalPickerView.swift */
 "welcome.goal.bulking.description" = "Ganhar massa muscular com superávit calórico";
 "welcome.goal.maintenance.description" = "Manter o peso e composição atual";
 "welcome.goal.cutting.description" = "Reduzir gordura preservando a musculatura";
 
-
 /* MARK: - Views/TodayView */
-
 
 /* GoalCategory.swift */
 "goal.category.essencial" = "Essencial";
 "goal.category.nutricao" = "Nutrição";
 "goal.category.treino" = "Treino";
 "goal.category.suplemento" = "Suplemento";
-
 
 /* TodayView.swift */
 "today.goals.workout" = "Musculação";
@@ -424,7 +381,6 @@
 "today.ring.a11y.hint" = "Toque para mais informações.";
 "today.ring.a11y.value" = "%d por cento concluído";
 
-
 /* TodayView.swift, botão de data */
 "today.hero.bell.a11y.label" = "Histórico de notificações";
 "today.hero.bell.a11y.hint" = "Toque para abrir o histórico de notificações.";
@@ -434,9 +390,7 @@
 "today.greeting.afternoon" = "Boa tarde!";
 "today.greeting.night"     = "Boa noite!";
 
-
 /* MARK: - Views/WelcomeView */
-
 
 /* WelcomeFitnessGoalStep.swift */
 "welcome.step.goal.title" = "Seu objetivo";
@@ -444,19 +398,16 @@
 /* (mantido, o texto já usa apenas "objetivo") */
 "welcome.step.goal.info.editable" = "Você pode mudar depois em ajustes do app.";
 
-
 /* WelcomeThemeStep.swift */
 "welcome.step.theme.title" = "Seu tema";
 "welcome.step.theme.subtitle" = "Escolha os emojis que irão inspirar o seu progresso.";
 "welcome.step.theme.footer" = "O tema pode ser alterado em ajustes do app.";
-
 
 /* WelcomePhysicalDataStep.swift */
 "welcome.field.sex" = "Sexo";
 "welcome.field.goal" = "Objetivo";
 "welcome.field.sex.male" = "Masculino";
 "welcome.field.sex.female" = "Feminino";
-
 
 /* WelcomeSummaryStep.swift */
 "welcome.step.summary.title" = "Suas metas";
@@ -468,7 +419,6 @@
 "welcome.option.add" = "Adicionar";
 "welcome.option.remove" = "Remover";
 
-
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Olá!";
 "welcome.start.feature.companion" = "Um companheiro diário na sua rotina de academia.";
@@ -478,15 +428,12 @@
 "welcome.start.new" = "Começar agora";
 "welcome.start.restore" = "Restaurar backup";
 
-
 /* WelcomeView.swift */
 "welcome.button.continue" = "Continuar";
 "welcome.button.start" = "Vamos lá!";
 "welcome.button.back" = "Voltar";
 
-
 /* MARK: - ContentView.swift */
-
 
 /* HealthKit activity display names (auto check-in descriptions) */
 "healthkit.activity.running" = "Corrida";
@@ -599,7 +546,6 @@
 "daily.achievement.celestial.level3" = "Terra";
 "daily.achievement.celestial.level4" = "Saturno";
 
-
 /* AppAccentColor.swift, Nomes de cores */
 "color.red"    = "Vermelho";
 "color.blue"   = "Azul";
@@ -610,25 +556,20 @@
 "color.cyan"   = "Ciano";
 "color.pink"   = "Rosa";
 
-
 /* ColorSettingsView.swift */
 "settings.color.title"    = "Cores";
 "settings.color.subtitle" = "Cor de destaque usada em todo o app";
 "settings.color.preview" = "Prévia";
 
-
-/* TierInfoView.swift / ProgressRingInfoView.swift / StreakBonusInfoView.swift, links em Settings > Sobre */
+/* TierInfoView.swift / ProgressRingInfoView.swift, links em Settings > Sobre */
 "settings.about.achievement"  = "Conquista do dia";
 "settings.about.progressRing" = "Anel de Progresso";
-"settings.about.streakBonus"  = "Bônus de Sequência";
-
 
 /* TierInfoView.swift */
 "tier.info.intro"             = "Sua conquista é registrada no fim do dia, à meia-noite.";
 "tier.info.section.levels"    = "Conquistas";
 "tier.info.change.theme"      = "Alterar Tema";
 "tier.info.range.suffix"      = " de progresso";
-
 
 /* ProgressRingInfoView.swift */
 "ring.info.intro"             = "O anel apresenta a média de quantos % você completou das suas metas. Cada segmento colorido vale 20%.";
@@ -642,7 +583,6 @@
 "ring.info.level.label"       = "Nível ";
 "info.next.prefix"            = "Restam ";
 "info.next.middle"            = " de progresso para: ";
-
 
 /* Comuns */
 "common.cancel" = "Cancelar";
@@ -690,10 +630,6 @@
 "notifications.kind.achievement.title"      = "Conquista do dia";
 "notifications.kind.achievement.description" = "Notifica, à meia-noite, a conquista desbloqueada no dia.";
 "notifications.kind.achievement.body"       = "%@ Você fechou o dia como %@!";
-
-"notifications.kind.streakBonus.title"      = "Bônus de sequência";
-"notifications.kind.streakBonus.description" = "Avisa quando você ganha um bônus semanal ou mensal.";
-"notifications.kind.streakBonus.body"       = "%@ Sequência completa! +%d pontos.";
 
 "notifications.kind.appleHealth.title"      = "Apple Saúde";
 "notifications.kind.appleHealth.description" = "Confirma registros sincronizados com o Apple Saúde.";
@@ -760,8 +696,6 @@
 "notifications.custom.footer"               = "Lembretes periódicos param quando você atinge a meta do dia dessa meta personalizada.";
 "notifications.history.delete" = "Apagar";
 
-
-
 /* MARK: - Acessibilidade (VoiceOver), helpers em A11yHelpers.swift */
 
 /* Faixas de progresso, substituem o sinal de cor para quem não enxerga */
@@ -807,12 +741,10 @@
 /* Sheets de informação, helpers de combine de linha */
 "a11y.ringinfo.color.row.format"  = "%1$@, faixa %2$@";
 "a11y.tierinfo.row.format"        = "%1$@, %2$@, nível %3$d";
-"a11y.bonusinfo.row.format"       = "%1$@, %2$@, %3$d pontos";
-
 
 /* MARK: - Acessibilidade (Fase 2, Achievements + ProgressOver) */
 
-/* Célula de calendário com nome do tier ou do bônus falado */
+/* Célula de calendário com nome do tier falado */
 "a11y.calendar.day.tier.format"        = "%1$@, conquistado: %2$@";
 "a11y.calendar.day.today.tier.format"  = "hoje, %1$@, conquistado: %2$@";
 
@@ -829,9 +761,7 @@
 
 /* AchievementsView, linhas do histórico */
 "a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d por cento, %4$d pontos";
-"a11y.record.row.bonus.format"  = "%1$@, %2$@, %3$d pontos de bônus";
 "a11y.record.row.hint"          = "Toque para ver detalhes.";
-"a11y.record.bonus.hint" = "Toque para mais informações.";
 "a11y.record.edit.label"        = "Editar registro";
 "a11y.record.edit.hint" = "Toque para editar.";
 
@@ -844,13 +774,9 @@
 "a11y.stats.days.hint" = "Toque para abrir o calendário de hoje.";
 "a11y.stats.points.label"          = "Pontos";
 "a11y.stats.points.value.format"   = "%d pontos";
-"a11y.stats.bonuses.label"         = "Bônus";
-"a11y.stats.bonuses.value.format"  = "%d bônus";
-"a11y.stats.bonuses.hint" = "Toque para mais informações.";
 
 /* ProgressOverView, linhas dentro dos cards */
 "a11y.stats.tier.row.format"     = "%1$@, %2$d dias";
-"a11y.stats.bonus.row.format"    = "%1$@, %2$d vezes";
 "a11y.stats.activity.row.format" = "%1$@, %2$d dias";
 "a11y.stats.goals.row.format"    = "%1$@, %2$d ativas";
 
@@ -866,7 +792,6 @@
 "a11y.recent.day.today.format"     = "hoje, %1$@, %2$@";
 "a11y.recent.day.today.empty.format" = "hoje, %@, ainda sem registro";
 "a11y.recent.day.hint" = "Toque para abrir este dia.";
-
 
 /* MARK: - Acessibilidade (Fase 3, Settings) */
 
@@ -913,7 +838,6 @@
 /* Header colapsável de seção (metas e notificações) */
 "a11y.section.collapsible.hint" = "Toque para recolher ou expandir.";
 
-
 /* MARK: - Acessibilidade (Fase 4, Welcome / onboarding) */
 
 "a11y.welcome.progress.format"          = "Passo %1$d de %2$d";
@@ -922,7 +846,6 @@
 "a11y.welcome.optional.remove.label.format" = "Remover %@";
 "a11y.welcome.optional.add.hint" = "Toque para adicionar esta meta.";
 "a11y.welcome.optional.remove.hint" = "Toque para remover esta meta.";
-
 
 /* MARK: - Acessibilidade (Fase 5, Watch app) */
 
@@ -947,7 +870,6 @@
 
 /* Linha de notificação do Watch */
 "a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
-
 
 /* MARK: - Acessibilidade (Fase 6, Widgets) */
 
@@ -974,7 +896,7 @@
 "welcome.step.ready.title" = "Tudo pronto!";
 "welcome.step.ready.subtitle" = "Ative o que quiser. Nada aqui é obrigatório.";
 "welcome.ready.notifications.title" = "Notificações";
-"welcome.ready.notifications.desc" = "Lembretes de água, conquistas e bônus.";
+"welcome.ready.notifications.desc" = "Lembretes de água e conquistas.";
 "welcome.ready.health.title" = "Apple Saúde";
 "welcome.ready.health.desc" = "Registra seu sono e detecta seus treinos automaticamente.";
 "welcome.ready.allow" = "Permitir";

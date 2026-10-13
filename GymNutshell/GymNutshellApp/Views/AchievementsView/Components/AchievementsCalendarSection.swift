@@ -17,8 +17,8 @@ struct AchievementsCalendarSection: View {
     let visibleMonthDate: Date
     @Binding var selectedDate: Date
     let emojiByDay: [Date: String]
-    /// Nome localizado a falar no VoiceOver para cada data (tier do registro ou
-    /// título do bônus). Default vazio para call sites que não montem esse mapa.
+    /// Nome localizado a falar no VoiceOver para cada data (tier do registro).
+    /// Default vazio para call sites que não montem esse mapa.
     var tierNameByDay: [Date: String] = [:]
     let onChangeMonth: (Int) -> Void
 

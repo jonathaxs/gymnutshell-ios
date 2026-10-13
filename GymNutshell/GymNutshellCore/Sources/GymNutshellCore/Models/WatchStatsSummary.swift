@@ -23,7 +23,6 @@ public struct WatchStatsSummary: Codable, Sendable {
 
     public let totalDays: Int
     public let totalPoints: Int
-    public let bonusCount: Int
     public let level1Days: Int
     public let level2Days: Int
     public let level3Days: Int
@@ -41,13 +40,12 @@ import SwiftData
 
 extension WatchStatsSummary {
 
-    public init(records: [DailyRecord], bonuses: [StreakBonus]) {
+    public init(records: [DailyRecord]) {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
 
         totalDays   = records.count
-        totalPoints = records.reduce(0) { $0 + $1.points } + bonuses.reduce(0) { $0 + $1.bonusPoints }
-        bonusCount  = bonuses.count
+        totalPoints = records.reduce(0) { $0 + $1.points }
 
         level1Days = records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level1 }.count
         level2Days = records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level2 }.count

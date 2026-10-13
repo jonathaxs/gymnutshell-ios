@@ -1,8 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayCategoryGrid.swift
 //
-//  Propósito: Grade de categorias da tela Hoje (iPhone). Cada categoria vira um botão redondo de
-//             vidro (iOS 26+) com ícone e mini anel de progresso, nome e contagem embaixo; tocar abre
+//  Propósito: Grade de categorias da tela Hoje (iPhone). Cada categoria vira um botão largo de cantos
+//             arredondados, de vidro (iOS 26+), com ícone e mini anel de progresso, nome e contagem embaixo; tocar abre
 //             um balão (popover) abaixo do botão com os controles das metas daquela categoria.
 //             4 por linha; a última linha incompleta fica centralizada. No iOS 18 o balão é
 //             apresentado pelo UIKit, que respeita a seta pra cima (o SwiftUI ignorava e abria acima).
@@ -35,8 +35,9 @@ struct TodayCategoryGrid: View {
 
     private let spacing: CGFloat = 8
     private let columns = 4
-    /// Diâmetro máximo do botão; em telas estreitas ele encolhe pra caber na coluna.
-    private static let maxCircleSize: CGFloat = 88
+    /// Altura máxima do botão. A largura ocupa a coluna toda, então o botão fica mais largo que alto.
+    private static let maxButtonHeight: CGFloat = 80
+    private static let buttonCornerRadius: CGFloat = 28
 
     var body: some View {
         // Agrupa em linhas de 4. A última linha com menos itens fica centralizada (mesma largura dos outros).
@@ -50,7 +51,8 @@ struct TodayCategoryGrid: View {
                 ForEach(rows, id: \.first?.id) { row in
                     HStack(spacing: spacing) {
                         ForEach(row) { tile in
-                            tileView(tile, circleSize: min(Self.maxCircleSize, tileWidth - 2))
+                            tileView(tile, buttonSize: CGSize(width: tileWidth,
+                                                              height: min(Self.maxButtonHeight, tileWidth * 0.84)))
                                 .frame(width: tileWidth)
                         }
                     }
@@ -62,15 +64,16 @@ struct TodayCategoryGrid: View {
     }
 
     // Altura fixa por linha pra o GeometryReader não colapsar.
-    private static let tileHeight: CGFloat = 134
+    private static let tileHeight: CGFloat = 126
 
     private func gridHeight(rows: Int) -> CGFloat {
         CGFloat(rows) * Self.tileHeight + CGFloat(max(rows - 1, 0)) * spacing
     }
 
-    // MARK: - Botão redondo
+    // MARK: - Botão
 
-    private func tileView(_ tile: TodayCategoryTile, circleSize: CGFloat) -> some View {
+    private func tileView(_ tile: TodayCategoryTile, buttonSize: CGSize) -> some View {
+        let ringSize = buttonSize.height - 12
         let isDone = tile.totalCount > 0 && tile.completedCount == tile.totalCount
         let isOpen = Binding(
             get: { openTileId == tile.id },
@@ -85,22 +88,23 @@ struct TodayCategoryGrid: View {
                 ZStack {
                     Circle()
                         .stroke(Color.secondary.opacity(0.18), lineWidth: 5)
-                        .padding(6)
+                        .frame(width: ringSize, height: ringSize)
                     Circle()
                         .trim(from: 0, to: min(max(tile.progress, 0), 1))
                         .stroke(isDone ? Color.green : accentColor,
                                 style: StrokeStyle(lineWidth: 5, lineCap: .round))
                         .rotationEffect(.degrees(-90))
-                        .padding(6)
+                        .frame(width: ringSize, height: ringSize)
                         .animation(.easeInOut(duration: 0.4), value: tile.progress)
                     Image(systemName: isDone ? "checkmark" : tile.symbolName)
-                        .font(.system(size: circleSize * 0.32, weight: .semibold))
+                        .font(.system(size: buttonSize.height * 0.32, weight: .semibold))
                         .foregroundStyle(isDone ? Color.green : accentColor)
                         .contentTransition(.symbolEffect(.replace))
                 }
-                .frame(width: circleSize, height: circleSize)
-                .background(Circle().fill(Color(.secondarySystemGroupedBackground)))
-                .circleGlass()
+                .frame(width: buttonSize.width, height: buttonSize.height)
+                .background(RoundedRectangle(cornerRadius: Self.buttonCornerRadius, style: .continuous)
+                    .fill(Color(.secondarySystemGroupedBackground)))
+                .buttonGlass(cornerRadius: Self.buttonCornerRadius)
 
                 Text(tile.title)
                     .font(.caption.weight(.semibold))
@@ -275,17 +279,18 @@ private struct DownwardPopoverPresenter<Content: View>: UIViewControllerRepresen
     }
 }
 
-// MARK: - Vidro do botão redondo
+// MARK: - Vidro do botão
 
 private extension View {
 
     /// Vidro interativo no iOS 26+; nas versões anteriores o fundo sólido do card já basta.
     @ViewBuilder
-    func circleGlass() -> some View {
+    func buttonGlass(cornerRadius: CGFloat) -> some View {
+        let shape = RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
         if #available(iOS 26.0, *) {
-            self.glassEffect(.regular.interactive(), in: Circle())
+            self.glassEffect(.regular.interactive(), in: shape)
         } else {
-            self.overlay(Circle().strokeBorder(Color.secondary.opacity(0.15), lineWidth: 1))
+            self.overlay(shape.strokeBorder(Color.secondary.opacity(0.15), lineWidth: 1))
         }
     }
 }

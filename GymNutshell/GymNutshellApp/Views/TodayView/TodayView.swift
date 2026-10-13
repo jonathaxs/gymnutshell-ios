@@ -222,7 +222,7 @@ struct TodayView: View {
     // MARK: - Formatação de data
 
     private var formattedDate: String {
-        AppDateFormatters.longDate(for: Date())
+        AppDateFormatters.weekdayAndDay(for: Date())
     }
 
     private func dateString(from date: Date) -> String {
@@ -431,14 +431,11 @@ struct TodayView: View {
 
         // 4) Marca hoje como o novo dia corrente.
         lastFinishedDate = todayString
-
-        // 5) Verifica se os dias concluídos desbloquearam algum bônus semanal ou mensal.
-        StreakBonusChecker.evaluateAndAward(into: modelContext)
     }
 
     // MARK: - Bloco hero
 
-    private func heroBlock(vertical: Bool, card: Bool = false) -> some View {
+    private func heroBlock(vertical: Bool) -> some View {
         // O modo vertical (progresso em cima, conquista embaixo) só faz sentido quando
         // sobra altura, controlado pelo chamador via tamanho real da janela, não pelo
         // idiom do dispositivo. Assim, iPad em modo "janela pequena" (iOS 26 multi-window)
@@ -448,8 +445,7 @@ struct TodayView: View {
             dailyAchievement: dailyAchievement,
             dailyProgress: dailyProgress,
             selectedTheme: selectedTheme,
-            verticalLayout: vertical,
-            cardStyle: card
+            verticalLayout: vertical
         )
     }
 
@@ -734,7 +730,7 @@ struct TodayView: View {
                 Spacer().frame(height: topInset)
 
                 VStack(spacing: UI.heroInnerSpacing) {
-                    heroBlock(vertical: false, card: true)
+                    heroBlock(vertical: false)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
 
@@ -867,7 +863,6 @@ struct TodayView: View {
             userCategories = CustomGoalCategoriesStore.load()
             unifiedCategoryItems = UnifiedCategoryOrderStore.load()
             checkIfNewDay()
-            StreakBonusChecker.evaluateAndAward(into: modelContext)
             checkWorkoutsFromHealth()
         }
         .onChange(of: scenePhase) { _, newPhase in

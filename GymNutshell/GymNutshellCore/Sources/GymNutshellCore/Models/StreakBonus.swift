@@ -4,6 +4,8 @@
 //  Propósito: Define o model SwiftData StreakBonus.
 //             Cada instância representa um bônus de sequência concedido ao usuário
 //             por completar uma semana ou um mês inteiro no nível 3 ou 4.
+//             Os bônus saíram do app na 1.1: o model só continua no schema pra o store
+//             antigo abrir sem migração. Nada mais cria, lê ou mostra esses registros.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-26.
 // ⌘

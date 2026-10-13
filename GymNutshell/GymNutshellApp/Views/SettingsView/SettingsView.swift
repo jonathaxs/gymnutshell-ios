@@ -173,12 +173,6 @@ struct SettingsView: View {
                         Label { Text(String(localized: "settings.about.achievement", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "trophy.fill", color: .yellow) }
                             .foregroundStyle(.primary)
                     }
-                    NavigationLink {
-                        StreakBonusInfoView()
-                    } label: {
-                        Label { Text(String(localized: "settings.about.streakBonus", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "calendar.badge.checkmark", color: .green) }
-                            .foregroundStyle(.primary)
-                    }
                 }
 
                 #if DEBUG

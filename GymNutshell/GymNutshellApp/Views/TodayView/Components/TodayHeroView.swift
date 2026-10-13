@@ -19,8 +19,6 @@ struct TodayHeroView: View {
     let selectedTheme: AppTheme
     /// Quando true (iPad, sobra altura), o anel fica maior.
     var verticalLayout: Bool = false
-    /// iPhone em retrato: saudação em cima e um card com o anel à esquerda e a % com a frase à direita.
-    var cardStyle: Bool = false
 
     // Sexo do usuário, usado pra nomes de tier com gênero correto.
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
@@ -73,11 +71,6 @@ struct TodayHeroView: View {
         return ""
     }
 
-    // Frase ao lado do anel (card): a dica / quanto falta; no nível máximo, o nome do nível.
-    private var cardCaption: String {
-        ringCaption.isEmpty ? selectedTheme.name(for: dailyAchievement, sex: sex) : ringCaption
-    }
-
     var body: some View {
         content
             .sheet(isPresented: $showTierSheet) {
@@ -98,78 +91,23 @@ struct TodayHeroView: View {
             }
     }
 
-    // MARK: - Card (iPhone em retrato)
-
-    private var cardContent: some View {
-        VStack(spacing: 16) {
-            AppTabHeader(title: formattedDate)
-                .padding(.horizontal, 4)
-
-            HStack(spacing: 20) {
-                TodayProgressRingView(progress: dailyProgress,
-                                      achievement: dailyAchievement,
-                                      theme: selectedTheme,
-                                      onTap: { showRingSheet = true },
-                                      onEmojiTap: { showTierSheet = true },
-                                      size: 124,
-                                      lineWidth: 14,
-                                      showsLabels: false,
-                                      celebratesAfterOnboarding: true)
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("\(dailyPercentage)%")
-                        .font(.system(size: 46, weight: .bold, design: .rounded).monospacedDigit())
-                        .contentTransition(.numericText())
-                        .minimumScaleFactor(0.7)
-                        .lineLimit(1)
-                    Text(cardCaption)
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.secondary)
-                        .lineLimit(3)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .contentShape(Rectangle())
-                .onTapGesture { showRingSheet = true }
-                // Porcentagem + frase num único elemento de VoiceOver.
-                .accessibilityElement(children: .ignore)
-                .accessibilityAddTraits(.isButton)
-                .accessibilityLabel(String(localized: "today.ring.a11y.label", bundle: .gymNutshellCore))
-                .accessibilityValue(String(format: String(localized: "today.ring.a11y.value",
-                                                          bundle: .gymNutshellCore), dailyPercentage))
-                .accessibilityHint(String(localized: "today.ring.a11y.hint", bundle: .gymNutshellCore))
-            }
-            .padding(18)
-            .frame(maxWidth: .infinity)
-            .appCard()
-        }
-    }
-
-    @ViewBuilder
     private var content: some View {
-        if cardStyle {
-            cardContent
-        } else {
-            classicContent
-        }
-    }
-
-    private var classicContent: some View {
         VStack(spacing: 12) {
 
             // Topo: a data em fonte grande e o sino do histórico à direita.
             AppTabHeader(title: formattedDate)
                 .padding(.horizontal, 4)
 
-            // Anel de 5 segmentos com o emoji da conquista no centro e a porcentagem abaixo.
-            // Substitui o par anel + bloco de conquista lado a lado da 1.0.
+            // Anel de 5 segmentos centralizado, sem card atrás. Antes do primeiro registro o 0% fica
+            // dentro do anel e a dica embaixo; depois o emoji entra no centro e a % desce pra baixo.
             TodayProgressRingView(progress: dailyProgress,
                                   achievement: dailyAchievement,
                                   theme: selectedTheme,
                                   onTap: { showRingSheet = true },
                                   onEmojiTap: { showTierSheet = true },
                                   caption: ringCaption,
-                                  size: verticalLayout ? 180 : 150)
+                                  size: verticalLayout ? 180 : 160,
+                                  celebratesAfterOnboarding: true)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, verticalLayout ? 8 : 4)
 

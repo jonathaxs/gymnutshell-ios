@@ -69,7 +69,6 @@ struct MainView: View {
         }
         .tint(accentColor)
         .task {
-            StreakBonusMigration.runIfNeeded(in: modelContext)
             await AutoBackupService.performIfNeeded(modelContext: modelContext)
         }
         .onChange(of: scenePhase) { _, newPhase in

@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/ProfileView/Components/ProgressOverviewRows.swift
 //
 //  Propósito: Peças reutilizáveis da ProgressOverView no visual novo: seção com rótulo, linha de nível
-//             com barra proporcional, blocos de bônus e de atividade, e linha navegável com ícone.
+//             com barra proporcional, blocos de atividade e linha navegável com ícone.
 //             Cada peça encapsula o visual e a acessibilidade.
 // ⌘
 
@@ -61,38 +61,6 @@ struct TierRow: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel(String(format: String(localized: "a11y.stats.tier.row.format",
                                                  bundle: .gymNutshellCore), label, days))
-    }
-}
-
-// MARK: - Bônus
-
-/// Bloco de bônus de sequência (grade 2x2): contagem grande + nome. Toque abre a sheet informativa.
-struct BonusTile: View {
-    let label: String
-    let count: Int
-    let onTap: () -> Void
-
-    var body: some View {
-        VStack(spacing: 6) {
-            Text("\(count)")
-                .font(.system(size: 30, weight: .bold, design: .rounded).monospacedDigit())
-            Text(label)
-                .font(.footnote.weight(.medium))
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-                .minimumScaleFactor(0.8)
-        }
-        .frame(maxWidth: .infinity)
-        .frame(minHeight: 96)
-        .padding(.horizontal, 8)
-        .appCard()
-        .contentShape(RoundedRectangle(cornerRadius: AppStyle.cardRadius, style: .continuous))
-        .tapButton(perform: onTap)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(String(format: String(localized: "a11y.stats.bonus.row.format",
-                                                 bundle: .gymNutshellCore), label, count))
-        .accessibilityHint(String(localized: "a11y.record.bonus.hint", bundle: .gymNutshellCore))
     }
 }
 

@@ -1,9 +1,9 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/ProfileView/ProgressOverView.swift
 //
-//  Propósito: Tela de progresso, mostra dados de desempenho derivados dos registros diários
-//             e dos bônus de sequência. Seções: estatísticas de resumo, distribuição por nível,
-//             bônus de sequência, atividade, objetivo e metas ativas, e últimos 7 dias.
+//  Propósito: Tela de progresso, mostra dados de desempenho derivados dos registros diários.
+//             Seções: estatísticas de resumo, distribuição por nível, atividade, objetivo e
+//             metas ativas, e últimos 7 dias.
 //             Tocar num dia em "Últimos 7 dias" leva pra aquela data na AchievementsView.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-04-07.
@@ -22,14 +22,13 @@ private enum StatsDestination: Hashable {
 
 // MARK: - Tela de progresso
 
-/// Tela de progresso. Busca os registros diários e bônus de streak do SwiftData,
+/// Tela de progresso. Busca os registros diários do SwiftData,
 /// e compõe cada seção usando componentes de sub-view focados.
 struct ProgressOverView: View {
 
     // MARK: - Dados
 
     @Query(sort: \DailyRecord.date, order: .forward) private var records: [DailyRecord]
-    @Query private var bonuses: [StreakBonus]
 
     // Campos do perfil necessários pra exibir o objetivo fitness.
     @AppStorage(UserProfile.sexKey) private var sex: String = ""
@@ -47,7 +46,6 @@ struct ProgressOverView: View {
     // Contagem de metas ativas, carregada no onAppear pra a stat ficar atualizada.
     @State private var removedItems: Set<String> = []
     @State private var customTrackingGoals: [CustomTrackingGoal] = []
-    @State private var showBonusInfoSheet = false
     @State private var showTierSheet = false
     @State private var navPath = NavigationPath()
 
@@ -56,9 +54,7 @@ struct ProgressOverView: View {
     private var totalDays: Int { records.count }
 
     private var totalPoints: Int {
-        let dailyTotal = records.reduce(0) { $0 + $1.points }
-        let bonusTotal = bonuses.reduce(0) { $0 + $1.bonusPoints }
-        return dailyTotal + bonusTotal
+        records.reduce(0) { $0 + $1.points }
     }
 
     // MARK: - Distribuição por nível
@@ -68,13 +64,6 @@ struct ProgressOverView: View {
     private var level2Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level2 }.count }
     private var level3Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level3 }.count }
     private var level4Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level4 }.count }
-
-    // MARK: - Bônus de streak
-
-    private var weeklyStrongCount:  Int { bonuses.filter { $0.bonusType == "weekly.level3"  }.count }
-    private var weeklyExpertCount:  Int { bonuses.filter { $0.bonusType == "weekly.level4"  }.count }
-    private var monthlyStrongCount: Int { bonuses.filter { $0.bonusType == "monthly.level3" }.count }
-    private var monthlyExpertCount: Int { bonuses.filter { $0.bonusType == "monthly.level4" }.count }
 
     // MARK: - Atividade
 
@@ -153,11 +142,6 @@ struct ProgressOverView: View {
             removedItems = RemovedItemsStore.load()
             customTrackingGoals = CustomTrackingGoalsStore.load()
         }
-        .sheet(isPresented: $showBonusInfoSheet) {
-            NavigationStack {
-                StreakBonusInfoView(isSheet: true)
-            }
-        }
         .sheet(isPresented: $showTierSheet) {
             NavigationStack {
                 TierInfoView(theme: selectedTheme, sex: sex, isSheet: true)
@@ -183,7 +167,6 @@ struct ProgressOverView: View {
         VStack(spacing: 24) {
             statsSummaryRow
             tiersSection
-            bonusesSection
             activitySection
             goalsSection
             recentSection
@@ -200,18 +183,17 @@ struct ProgressOverView: View {
             statsSummaryRow
 
             // Dois VStacks alinhados ao topo formam o grid de 2 colunas.
-            // Col esquerda: Níveis → Atividade → Metas
-            // Col direita:  Bônus de Sequência
+            // Col esquerda: Níveis
+            // Col direita:  Atividade → Metas
             HStack(alignment: .top, spacing: 16) {
                 VStack(spacing: 24) {
                     tiersSection
-                    activitySection
-                    goalsSection
                 }
                 .frame(maxWidth: .infinity)
 
                 VStack(spacing: 24) {
-                    bonusesSection
+                    activitySection
+                    goalsSection
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -230,10 +212,8 @@ struct ProgressOverView: View {
         ProfileStatsRow(
             totalDays: totalDays,
             totalPoints: totalPoints,
-            bonusCount: bonuses.count,
             accentColor: accentColor,
-            onDaysTap: { jumpToAchievements(date: Date()) },
-            onBonusTap: { showBonusInfoSheet = true }
+            onDaysTap: { jumpToAchievements(date: Date()) }
         )
     }
 
@@ -256,25 +236,6 @@ struct ProgressOverView: View {
         .onTapGesture { showTierSheet = true }
         .accessibilityAddTraits(.isButton)
         .accessibilityHint(String(localized: "a11y.stats.card.tiers.hint", bundle: .gymNutshellCore))
-    }
-
-    private var bonusesSection: some View {
-        ProgressSection(title: String(localized: "statistics.section.bonuses", bundle: .gymNutshellCore)) {
-            Grid(horizontalSpacing: 12, verticalSpacing: 12) {
-                GridRow {
-                    BonusTile(label: String(localized: "statistics.bonus.weekly.level3", bundle: .gymNutshellCore),
-                              count: weeklyStrongCount) { showBonusInfoSheet = true }
-                    BonusTile(label: String(localized: "statistics.bonus.weekly.level4", bundle: .gymNutshellCore),
-                              count: weeklyExpertCount) { showBonusInfoSheet = true }
-                }
-                GridRow {
-                    BonusTile(label: String(localized: "statistics.bonus.monthly.level3", bundle: .gymNutshellCore),
-                              count: monthlyStrongCount) { showBonusInfoSheet = true }
-                    BonusTile(label: String(localized: "statistics.bonus.monthly.level4", bundle: .gymNutshellCore),
-                              count: monthlyExpertCount) { showBonusInfoSheet = true }
-                }
-            }
-        }
     }
 
     private var activitySection: some View {
@@ -342,5 +303,5 @@ struct ProgressOverView: View {
 
 #Preview {
     ProgressOverView()
-        .modelContainer(for: [DailyRecord.self, StreakBonus.self], inMemory: true)
+        .modelContainer(for: DailyRecord.self, inMemory: true)
 }

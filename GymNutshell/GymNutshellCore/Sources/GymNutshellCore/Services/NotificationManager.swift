@@ -79,14 +79,14 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
     }
 
     // Grava notificações de intervalo (água, progresso, metas) no histórico.
-    // Notificações de evento (conquista, streak, saúde, backup) já são gravadas no ponto de disparo.
+    // Notificações de evento (conquista, saúde, backup) já são gravadas no ponto de disparo.
     private func appendIntervalNotificationToHistoryIfNeeded(_ request: UNNotificationRequest) {
         guard !loggedNotificationIdentifiers.contains(request.identifier) else { return }
         let userInfo = request.content.userInfo
         guard let kindIdRaw = userInfo["kindId"] as? String,
               let routeRaw = userInfo["route"] as? String,
               let route = NotificationRoute(rawValue: routeRaw) else { return }
-        // Evento puros (achievement, streakBonus, appleHealth, backup) são gravados no ponto de
+        // Evento puros (achievement, appleHealth, backup) são gravados no ponto de
         // disparo, não precisam de segunda gravação aqui.
         if let kind = NotificationKind(rawValue: kindIdRaw), !kind.isIntervalBased { return }
         loggedNotificationIdentifiers.insert(request.identifier)
@@ -103,7 +103,7 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
 
     private func route(for kind: NotificationKind) -> NotificationRoute {
         switch kind {
-        case .achievement, .streakBonus: return .achievementsToday
+        case .achievement: return .achievementsToday
         case .backup:                    return .backup
         default:                         return .today
         }
@@ -148,7 +148,6 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
     public func applyDefaultEnabledKinds() {
         NotificationPreferences.setEnabled(true, for: .progress)
         NotificationPreferences.setEnabled(true, for: .achievement)
-        NotificationPreferences.setEnabled(true, for: .streakBonus)
         NotificationPreferences.setEnabled(false, for: .appleHealth)
         NotificationPreferences.setEnabled(false, for: .backup)
         NotificationPreferences.setEnabled(true, for: .water)
@@ -246,29 +245,6 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
         Task { @MainActor in
             NotificationHistoryStore.shared.append(
                 kind: .achievement, title: title, body: body,
-                route: .achievementsToday, achievementDate: date
-            )
-        }
-    }
-
-    public func fireStreakBonus(emoji: String, points: Int, typeKey: String, date: Date = Date()) {
-        guard NotificationPreferences.isEnabled(.streakBonus) else { return }
-        let title = String(localized: "notifications.kind.streakBonus.title", bundle: .gymNutshellCore)
-        let body = String(
-            format: String(localized: "notifications.kind.streakBonus.body", bundle: .gymNutshellCore),
-            emoji, points
-        )
-        scheduleImmediate(
-            identifier: "notif.streakBonus.\(Int(Date().timeIntervalSince1970))",
-            title: title,
-            body: body,
-            route: .achievementsToday,
-            achievementDate: date,
-            sound: NotificationPreferences.sound(for: .streakBonus).systemSound
-        )
-        Task { @MainActor in
-            NotificationHistoryStore.shared.append(
-                kind: .streakBonus, title: title, body: body,
                 route: .achievementsToday, achievementDate: date
             )
         }

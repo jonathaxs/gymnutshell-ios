@@ -43,13 +43,15 @@ public enum AppDateFormatters {
         return f
     }()
 
-    /// Data por extenso pra leitura visual ("Sábado, 16 de maio").
-    /// Usa template localizado `EEEEMMMMd` e capitaliza a primeira letra.
-    public static func longDate(for date: Date, locale: Locale = .current) -> String {
+    /// Dia da semana e dia do mês, sem o mês ("Segunda-feira, 12"). Título da aba Hoje.
+    /// O template `EEEEd` sai como "12 Monday" em inglês, então a ordem é montada aqui.
+    public static func weekdayAndDay(for date: Date, locale: Locale = .current) -> String {
         let f = DateFormatter()
         f.locale = locale
-        f.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
-        let s = f.string(from: date)
-        return s.isEmpty ? s : s.prefix(1).uppercased() + s.dropFirst()
+        f.dateFormat = "EEEE"
+        let weekday = f.string(from: date)
+        let day = Calendar.current.component(.day, from: date)
+        let s = "\(weekday), \(day)"
+        return s.prefix(1).uppercased() + s.dropFirst()
     }
 }

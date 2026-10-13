@@ -1,9 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/AchievementsView/Components/AchievementsHistoryRows.swift
 //
-//  Propósito: Linhas da lista de histórico em Conquistas, uma para registros
-//             diários (com botão de editar quando dentro da janela) e outra para
-//             bônus de sequência.
+//  Propósito: Linha da lista de histórico em Conquistas para registros
+//             diários (com botão de editar quando dentro da janela).
 // ⌘
 
 import SwiftUI
@@ -74,50 +73,6 @@ struct HistoryDailyRow: View {
     }
 }
 
-/// Linha da lista que representa um `StreakBonus`. O "+" no total diferencia
-/// pontos de bônus dos pontos diários.
-struct HistoryBonusRow: View {
-    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
-    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
-
-    let bonus: StreakBonus
-    let onTap: () -> Void
-
-    var body: some View {
-        let bTitle = bonus.displayTitle
-        let bDesc  = bonus.displayDescription
-        HStack(spacing: 16) {
-            EmojiBadge(emoji: bonus.displayEmoji, color: accentColor)
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(bTitle)
-                    .font(.headline)
-
-                Text(bDesc)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-
-                Text(bonus.anchorDate, style: .date)
-                    .foregroundStyle(.secondary)
-                    .font(.caption)
-            }
-
-            Spacer()
-
-            PointsCapsule(text: "+\(bonus.bonusPoints) \(String(localized: "achievements.points.total", bundle: .gymNutshellCore))",
-                          color: accentColor)
-        }
-        .padding(.vertical, 8)
-        .contentShape(Rectangle())
-        .tapButton(perform: onTap)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(String(format: String(localized: "a11y.record.row.bonus.format",
-                                                 bundle: .gymNutshellCore),
-                                   bTitle, bDesc, bonus.bonusPoints))
-        .accessibilityHint(String(localized: "a11y.record.bonus.hint", bundle: .gymNutshellCore))
-    }
-}
-
 // MARK: - Peças visuais
 
 /// Emoji do nível dentro de um círculo suave na cor de destaque.
@@ -134,7 +89,7 @@ private struct EmojiBadge: View {
     }
 }
 
-/// Pontos do dia ou do bônus numa cápsula.
+/// Pontos do dia numa cápsula.
 private struct PointsCapsule: View {
     let text: String
     let color: Color

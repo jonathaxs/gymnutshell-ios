@@ -67,7 +67,6 @@ struct NotificationsSettingsView: View {
             Section {
                 NotificationRow(kind: .progress)
                 NotificationRow(kind: .achievement)
-                NotificationRow(kind: .streakBonus)
                 NotificationRow(kind: .appleHealth)
                 NotificationRow(kind: .backup)
             } header: {

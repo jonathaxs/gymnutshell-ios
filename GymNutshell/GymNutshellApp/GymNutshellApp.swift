@@ -72,6 +72,8 @@ struct GymNutshellApp: App {
         // Escreve o snapshot imediatamente pra o widget não mostrar placeholder no primeiro carregamento.
         WidgetSnapshotStore.save(WidgetSnapshot.buildCurrent())
 
+        // StreakBonus saiu do app na 1.1, mas continua no schema pra o store de quem já tinha
+        // bônus abrir sem migração. Os registros antigos ficam guardados e não aparecem mais.
         let schema = Schema([DailyRecord.self, StreakBonus.self])
         // URL explícita + cloudKitDatabase: .none evita que o iOS 17 tente subir
         // o mirror de CloudKit por causa do entitlement de iCloud Documents (backup).
@@ -150,9 +152,8 @@ struct GymNutshellApp: App {
         let records = (try? ctx.fetch(
             FetchDescriptor<DailyRecord>(sortBy: [SortDescriptor(\.date)])
         )) ?? []
-        let bonuses = (try? ctx.fetch(FetchDescriptor<StreakBonus>())) ?? []
         WatchConnectivityManager.shared.updateStatsSummary(
-            WatchStatsSummary(records: records, bonuses: bonuses)
+            WatchStatsSummary(records: records)
         )
     }
 }

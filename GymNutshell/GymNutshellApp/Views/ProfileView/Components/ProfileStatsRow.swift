@@ -1,8 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/ProfileView/Components/ProfileStatsRow.swift
 //
-//  Propósito: Resumo da tela de Progresso, três blocos com ícone: total de dias, total de pontos
-//             e contagem de bônus.
+//  Propósito: Resumo da tela de Progresso, dois blocos com ícone: total de dias e total de pontos.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-28.
 // ⌘
@@ -10,17 +9,15 @@
 import SwiftUI
 import GymNutshellCore
 
-/// Três blocos lado a lado mostrando o resumo de atividade do usuário.
+/// Dois blocos lado a lado mostrando o resumo de atividade do usuário.
 struct ProfileStatsRow: View {
 
     let totalDays: Int
     let totalPoints: Int
-    let bonusCount: Int
     let accentColor: Color
 
-    // Dias → calendário de hoje; Bônus → sheet de bônus de sequência.
+    // Dias → calendário de hoje.
     var onDaysTap: (() -> Void)? = nil
-    var onBonusTap: (() -> Void)? = nil
 
     var body: some View {
         HStack(spacing: 12) {
@@ -34,7 +31,7 @@ struct ProfileStatsRow: View {
                                                          bundle: .gymNutshellCore), totalDays))
                 .accessibilityHint(String(localized: "a11y.stats.days.hint", bundle: .gymNutshellCore))
 
-            // Pontos mantém o efeito de escala; Dias e Bônus não.
+            // Pontos mantém o efeito de escala; Dias não.
             tile(icon: "star.fill", value: totalPoints,
                  label: String(localized: "profile.stats.points", bundle: .gymNutshellCore))
                 .pressScale(1.20, response: 0.25, dampingFraction: 0.50)
@@ -42,16 +39,6 @@ struct ProfileStatsRow: View {
                 .accessibilityLabel(String(localized: "a11y.stats.points.label", bundle: .gymNutshellCore))
                 .accessibilityValue(String(format: String(localized: "a11y.stats.points.value.format",
                                                          bundle: .gymNutshellCore), totalPoints))
-
-            tile(icon: "medal.fill", value: bonusCount,
-                 label: String(localized: "profile.stats.bonuses", bundle: .gymNutshellCore))
-                .contentShape(RoundedRectangle(cornerRadius: AppStyle.cardRadius, style: .continuous))
-                .tapButton { onBonusTap?() }
-                .accessibilityElement(children: .combine)
-                .accessibilityLabel(String(localized: "a11y.stats.bonuses.label", bundle: .gymNutshellCore))
-                .accessibilityValue(String(format: String(localized: "a11y.stats.bonuses.value.format",
-                                                         bundle: .gymNutshellCore), bonusCount))
-                .accessibilityHint(String(localized: "a11y.stats.bonuses.hint", bundle: .gymNutshellCore))
         }
     }
 

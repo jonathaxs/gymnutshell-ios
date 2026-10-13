@@ -23,8 +23,7 @@ struct MonthlyCalendarView: View {
     let emojiByDay: [Date: String]
 
     /// Mapeamento de dia -> nome localizado a falar no VoiceOver (nome do tier
-    /// quando há DailyRecord, ou título do bônus quando há StreakBonus naquela
-    /// data). Quando ausente, a célula é narrada como "sem registro".
+    /// quando há DailyRecord naquela data). Quando ausente, a célula é narrada como "sem registro".
     /// AchievementsView popula isso; outros call sites podem deixar vazio.
     var tierNameByDay: [Date: String] = [:]
 

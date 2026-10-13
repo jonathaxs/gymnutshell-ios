@@ -3,8 +3,8 @@
 //
 //  Propósito: Anel de progresso do bloco hero da TodayView. Usa o anel de 5 segmentos
 //             (SegmentedProgressRing) com o emoji da conquista do dia no centro.
-//             A porcentagem e uma frase (próximo nível, dica ou nome do nível) ficam abaixo do anel.
-//             Com progresso 0 o centro fica vazio; o emoji aparece no primeiro registro.
+//             Com progresso 0 o 0% fica dentro do anel e a dica embaixo; no primeiro registro o
+//             emoji entra no centro e a porcentagem desce pra baixo do anel, junto da frase.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-19.
 // ⌘
@@ -97,6 +97,13 @@ struct TodayProgressRingView: View {
                                                                  bundle: .gymNutshellCore),
                                                    emoji, tierName))
                         .accessibilityHint(A11y.moreInfoHint())
+                } else if showsLabels {
+                    // Antes do primeiro registro: o 0% fica dentro do anel apagado.
+                    Text("\(percentage)%")
+                        .font(.system(size: size * 0.22, weight: .bold, design: .rounded).monospacedDigit())
+                        .foregroundStyle(.secondary)
+                        .transition(.opacity)
+                        .accessibilityHidden(true)
                 }
             }
             .frame(width: size, height: size)
@@ -116,12 +123,14 @@ struct TodayProgressRingView: View {
             .onAppear(perform: celebrateIfNeeded)
 
             if showsLabels {
-                // Porcentagem fora do anel + nome do nível atual.
+                // Abaixo do anel: a dica antes de começar; depois, a porcentagem + o próximo nível.
                 VStack(spacing: 2) {
-                    Text("\(percentage)%")
-                        .font(.title2.weight(.bold).monospacedDigit())
-                        .contentTransition(.numericText())
-                        .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: percentage)
+                    if hasStarted {
+                        Text("\(percentage)%")
+                            .font(.title2.weight(.bold).monospacedDigit())
+                            .contentTransition(.numericText())
+                            .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: percentage)
+                    }
 
                     Text(caption.isEmpty ? (hasStarted ? tierName : " ") : caption)
                         .font(.subheadline.weight(.medium))
