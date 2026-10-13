@@ -836,7 +836,7 @@
 "welcome.step.control.subtitle" = "How do you prefer to log your goals every day?";
 "welcome.control.slider" = "Slide";
 "welcome.control.slider.desc" = "Drag the control to the value you want.";
-"welcome.control.stepper" = "➖ and ➕ buttons";
+"welcome.control.stepper" = "Buttons";
 "welcome.control.stepper.desc" = "Tap to add or remove one step at a time.";
 "welcome.control.footer" = "You can change this later in Settings.";
 "welcome.step.ready.title" = "All set!";
@@ -867,6 +867,5 @@
 "today.goals.viewMode.list" = "List";
 "today.goals.viewMode.grid" = "Grid";
 "today.goals.viewMode.switch.a11y" = "Switch to %@ view";
-"settings.goalsViewMode.title" = "Goals view";
 "today.category.tile.a11y.value" = "%d of %d completed";
 "today.category.tile.a11y.hint" = "Tap to open the category goals.";

@@ -2,6 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/SettingsView/Preferences/ControlStyleSettingsView.swift
 //
 //  Propósito: Troca o estilo dos controles de registro das metas (slider ou botões − / +).
+//             Lista/grade das metas só se troca na própria Hoje.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
 // ⌘
@@ -13,8 +14,6 @@ import GymNutshellCore
 struct ControlStyleSettingsView: View {
 
     @AppStorage(ControlStyle.storageKey) private var styleRaw: String = ControlStyle.default.rawValue
-
-    @AppStorage(TodayGoalsViewMode.storageKey) private var viewModeRaw: String = TodayGoalsViewMode.list.rawValue
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
@@ -37,7 +36,6 @@ struct ControlStyleSettingsView: View {
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
-                viewModeSection
             }
             .padding(.horizontal, AppStyle.horizontalPadding)
             .padding(.vertical)
@@ -47,20 +45,6 @@ struct ControlStyleSettingsView: View {
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle(String(localized: "settings.preference.controlStyle", bundle: .gymNutshellCore))
         .navigationBarTitleDisplayMode(.inline)
-    }
-
-    /// Visualização das metas na Hoje (iPhone em retrato): lista ou grade com balão.
-    private var viewModeSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            AppSectionLabel(text: String(localized: "settings.goalsViewMode.title", bundle: .gymNutshellCore))
-            Picker(String(localized: "settings.goalsViewMode.title", bundle: .gymNutshellCore), selection: $viewModeRaw) {
-                ForEach(TodayGoalsViewMode.allCases, id: \.rawValue) { mode in
-                    Label(mode.title, systemImage: mode.symbolName).tag(mode.rawValue)
-                }
-            }
-            .pickerStyle(.segmented)
-        }
-        .padding(.top, 8)
     }
 
     private func card<Preview: View>(

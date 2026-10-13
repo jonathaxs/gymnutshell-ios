@@ -20,6 +20,7 @@ struct TodayView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(AppRouter.self) private var router
 
     /// Sheet de Editar metas / Editar controles aberta agora (nil = nenhuma).
     @State private var editSheet: EditSheet?
@@ -864,6 +865,10 @@ struct TodayView: View {
         }
         .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
             checkIfNewDay()
+        }
+        // Registros (sheet do MainView) também edita metas e objetivo; ao fechar, recarrega.
+        .onChange(of: router.sheet) { _, newSheet in
+            if newSheet == nil { reloadGoalStores() }
         }
         // Editar metas / controles abrem por cima da Hoje; ao fechar, recarrega o que mudou.
         .sheet(item: $editSheet, onDismiss: reloadGoalStores) { sheet in

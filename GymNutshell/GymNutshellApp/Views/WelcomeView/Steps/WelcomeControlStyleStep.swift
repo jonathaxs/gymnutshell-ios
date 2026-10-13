@@ -108,37 +108,26 @@ struct StepperPreview: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            Capsule()
-                .fill(Color.secondary.opacity(0.25))
-                .frame(height: 6)
-                .overlay(alignment: .leading) {
-                    Capsule().fill(color).frame(width: 90, height: 6)
-                }
+            ProgressView(value: 0.4)
+                .tint(color)
             HStack(spacing: 8) {
                 RoundStepButton(kind: .minus, size: 44, color: color) {}
                 RoundStepButton(kind: .plus, size: 44, color: color) {}
             }
-            .allowsHitTesting(false)
         }
+        .allowsHitTesting(false)
     }
 }
 
-/// Prévia estática do slider (sem toque).
+/// Prévia do slider: o Slider nativo travado, pra ficar igual ao da Today em cada iOS
+/// (vidro no iOS 26+, clássico no 18).
 struct SliderPreview: View {
 
     let color: Color
 
     var body: some View {
-        Capsule()
-            .fill(Color.secondary.opacity(0.25))
-            .frame(height: 6)
-            .overlay(alignment: .leading) {
-                Capsule().fill(color).frame(width: 90, height: 6)
-            }
-            .overlay(alignment: .leading) {
-                Circle().fill(.white).frame(width: 24, height: 24)
-                    .shadow(radius: 2, y: 1)
-                    .offset(x: 78)
-            }
+        Slider(value: .constant(0.4))
+            .tint(color)
+            .allowsHitTesting(false)
     }
 }

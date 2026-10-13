@@ -2,7 +2,8 @@
 //  GymNutshell/GymNutshellApp/Views/MainView.swift
 //
 //  Propósito: Hospeda o NavigationStack raiz (Hoje de raiz) e roteia o usuário pras páginas do app
-//             (Estatísticas, Conquistas e Ajustes) pelo AppRouter, inclusive deep-links de widgets e notificações.
+//             pelo AppRouter: Registros e Calendário em sheet, Ajustes como página. Inclui os
+//             deep-links de widgets e notificações.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-15.
 // ⌘
@@ -12,8 +13,8 @@ import GymNutshellCore
 import SwiftData
 
 // MARK: - Tela principal
-// Raiz do app: um NavigationStack com a Hoje de raiz. Estatísticas, Conquistas e Ajustes abrem por cima
-// como páginas, pelo AppRouter (botões da Hoje, widgets e notificações).
+// Raiz do app: um NavigationStack com a Hoje de raiz. Registros e Calendário abrem em sheet e os Ajustes
+// como página, pelo AppRouter (botões da Hoje, widgets e notificações).
 struct MainView: View {
 
     // Cor de destaque, aplicada no stack raiz pra colorir botões e links de todas as páginas.
@@ -37,6 +38,25 @@ struct MainView: View {
                     destination(for: route)
                 }
         }
+        // Registros / Calendário: cada sheet tem seu próprio stack (Registros → dia no Calendário).
+        .sheet(item: $router.sheet) { sheet in
+            NavigationStack(path: $router.sheetPath) {
+                sheetRoot(sheet)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button(String(localized: "common.close", bundle: .gymNutshellCore)) {
+                                router.sheet = nil
+                            }
+                        }
+                    }
+                    .navigationDestination(for: AppRoute.self) { route in
+                        destination(for: route)
+                    }
+            }
+            .environment(router)
+            .tint(accentColor)
+        }
         .environment(router)
         .tint(accentColor)
         .task {
@@ -54,7 +74,7 @@ struct MainView: View {
             guard url.scheme == "gymnutshell" else { return }
             switch url.host {
             case "today":        router.reset()
-            case "achievements": router.reset(to: [.achievements])
+            case "achievements": router.reset(sheet: .achievements)
             default: break
             }
         }
@@ -75,7 +95,7 @@ struct MainView: View {
                     ?? Date().timeIntervalSince1970
                 UserDefaults.standard.set("day", forKey: UserProfile.achievementsFilterModeKey)
                 UserDefaults.standard.set(achievementTs, forKey: UserProfile.achievementsSelectedDateKey)
-                router.reset(to: [.achievements])
+                router.reset(sheet: .achievements)
                 NotificationCenter.default.post(
                     name: .gaAchievementsShowToday,
                     object: nil,
@@ -92,6 +112,14 @@ struct MainView: View {
     }
 
     // MARK: - Destinos
+
+    @ViewBuilder
+    private func sheetRoot(_ sheet: AppSheet) -> some View {
+        switch sheet {
+        case .statistics:   ProgressOverView()
+        case .achievements: AchievementsView()
+        }
+    }
 
     @ViewBuilder
     private func destination(for route: AppRoute) -> some View {

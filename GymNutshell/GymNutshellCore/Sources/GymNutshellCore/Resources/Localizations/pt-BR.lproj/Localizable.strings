@@ -886,7 +886,7 @@
 "welcome.step.control.subtitle" = "Como você prefere marcar suas metas no dia a dia?";
 "welcome.control.slider" = "Deslizar";
 "welcome.control.slider.desc" = "Arraste o controle até o valor desejado.";
-"welcome.control.stepper" = "Botões ➖ e ➕";
+"welcome.control.stepper" = "Botões";
 "welcome.control.stepper.desc" = "Toque para somar ou tirar um passo de cada vez.";
 "welcome.control.footer" = "Você pode mudar isso depois em Ajustes.";
 "welcome.step.ready.title" = "Tudo pronto!";
@@ -917,6 +917,5 @@
 "today.goals.viewMode.list" = "Lista";
 "today.goals.viewMode.grid" = "Grade";
 "today.goals.viewMode.switch.a11y" = "Mudar para visualização em %@";
-"settings.goalsViewMode.title" = "Visualização das metas";
 "today.category.tile.a11y.value" = "%d de %d concluídas";
 "today.category.tile.a11y.hint" = "Toque para abrir as metas da categoria.";
