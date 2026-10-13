@@ -30,7 +30,7 @@ public enum GoalCategory: String, Codable, CaseIterable, Sendable {
 
     // MARK: - Ícone (SF Symbol)
 
-    /// Ícone da categoria nos blocos da tela Hoje.
+    /// Ícone da categoria no cabeçalho de seção da tela Hoje.
     public var symbolName: String {
         switch self {
         case .essencial:  return "heart.fill"

@@ -3,8 +3,8 @@
 //
 //  Propósito: Tela principal "Hoje", onde o usuário acompanha todas as metas diárias com sliders.
 //             O bloco hero mostra a data de hoje, o nível de conquista, o anel de progresso e a frase do próximo nível.
-//             No iPhone as metas ficam em blocos por categoria; tocar abre um balão com os controles.
-//             No layout largo (iPad) continua a lista/grade completa.
+//             As metas ficam agrupadas por categoria (cabeçalho colapsável + card com as linhas);
+//             no iPhone em lista, no layout largo (iPad) em grade de colunas.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-08-16.
 // ⌘
@@ -435,7 +435,7 @@ struct TodayView: View {
 
     // MARK: - Bloco hero
 
-    private func heroBlock(vertical: Bool) -> some View {
+    private func heroBlock(vertical: Bool, showsHeader: Bool = true) -> some View {
         // O modo vertical (progresso em cima, conquista embaixo) só faz sentido quando
         // sobra altura, controlado pelo chamador via tamanho real da janela, não pelo
         // idiom do dispositivo. Assim, iPad em modo "janela pequena" (iOS 26 multi-window)
@@ -445,105 +445,12 @@ struct TodayView: View {
             dailyAchievement: dailyAchievement,
             dailyProgress: dailyProgress,
             selectedTheme: selectedTheme,
-            verticalLayout: vertical
+            verticalLayout: vertical,
+            showsHeader: showsHeader
         )
     }
 
     // MARK: - Conteúdo das metas (agrupado por categoria)
-
-    @ViewBuilder
-    private var goalsContent: some View {
-        // Renderiza fixas e personalizadas na ordem unificada escolhida pelo usuário.
-        ForEach(unifiedCategoryItems) { item in
-            switch item {
-            case .builtin(let category):  todayCategorySection(category)
-            case .custom(let category):   todayCustomCategorySection(category)
-            }
-        }
-        // Metas personalizadas sem categoria ficam no final.
-        ForEach(uncategorizedCustomGoals) { goal in
-            TrackingGoalRowView(
-                emoji: goal.emoji,
-                title: goal.name,
-                unit: goal.unit,
-                increment: goal.increment,
-                goal: goal.goal,
-                value: intakeBinding(for: goal),
-                isRestDay: restDayBinding(for: goal)
-            )
-        }
-    }
-
-    // Header + conteúdo colapsável para uma categoria criada pelo usuário.
-    @ViewBuilder
-    private func todayCustomCategorySection(_ customCategory: CustomGoalCategory) -> some View {
-        let goals = customGoalsFor(customCategoryId: customCategory.id)
-        if !goals.isEmpty {
-            todayCustomCategoryHeader(customCategory)
-            if !isTodayCategoryCollapsed(customCategory.id) {
-                VStack(spacing: 10) {
-                    ForEach(goals) { goal in
-                        TrackingGoalRowView(
-                            emoji: goal.emoji,
-                            title: goal.name,
-                            unit: goal.unit,
-                            increment: goal.increment,
-                            goal: goal.goal,
-                            value: intakeBinding(for: goal),
-                            isRestDay: restDayBinding(for: goal)
-                        )
-                    }
-                }
-                .transition(.scale(scale: 0.92, anchor: .top).combined(with: .opacity))
-            }
-        }
-    }
-
-    // Header de categoria customizada, mesmo visual das fixas, mas com chave própria.
-    @ViewBuilder
-    private func todayCustomCategoryHeader(_ customCategory: CustomGoalCategory) -> some View {
-        TodayCategoryHeader(
-            title: customCategory.name,
-            collapsed: isTodayCategoryCollapsed(customCategory.id),
-            accentColor: todayAccentColor,
-            a11yLabel: A11y.categoryLabel(customCategory.name),
-            a11yHint: A11y.categoryHint(),
-            onToggle: { toggleTodayCategory(customCategory.id) }
-        )
-    }
-
-    // Seção colapsável de uma categoria, mostra o header e, quando expandido, as metas.
-    @ViewBuilder
-    private func todayCategorySection(_ category: GoalCategory) -> some View {
-        let fixedKeys = activeGoalKeys.filter {
-            GoalCategory.defaultCategory(for: $0) == category
-        }
-        let customGoalsInCategory = customTrackingGoals.filter { $0.category == category }
-
-        if !fixedKeys.isEmpty || !customGoalsInCategory.isEmpty {
-            todayCategoryHeader(category)
-
-            if !isTodayCategoryCollapsed(category.rawValue) {
-                VStack(spacing: 10) {
-                    ForEach(fixedKeys, id: \.self) { key in
-                        goalRow(for: key)
-                    }
-                    ForEach(customGoalsInCategory) { goal in
-                        TrackingGoalRowView(
-                            emoji: goal.emoji,
-                            title: goal.name,
-                            unit: goal.unit,
-                            increment: goal.increment,
-                            goal: goal.goal,
-                            value: intakeBinding(for: goal),
-                            isRestDay: restDayBinding(for: goal)
-                        )
-                    }
-                }
-                .transition(.scale(scale: 0.92, anchor: .top).combined(with: .opacity))
-            }
-        }
-    }
 
     // Cor de destaque lida do AppStorage, segue a escolha do usuário em Settings > Cores.
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
@@ -551,22 +458,18 @@ struct TodayView: View {
         (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color
     }
 
-    // Header de categoria com botão de colapso, texto centralizado, preto/branco.
-    // Recolhida: cantos superiores arredondados, inferiores zerados (indicativo visual de abertura pra baixo).
-    // Expandida: cantos inferiores arredondados, superiores zerados (indica que há conteúdo acima/aberto).
-    @ViewBuilder
-    private func todayCategoryHeader(_ category: GoalCategory) -> some View {
-        TodayCategoryHeader(
-            title: category.displayName,
-            collapsed: isTodayCategoryCollapsed(category.rawValue),
-            accentColor: todayAccentColor,
-            a11yLabel: A11y.categoryLabel(category.displayName),
-            a11yHint: A11y.categoryHint(),
-            onToggle: { toggleTodayCategory(category.rawValue) }
-        )
-    }
+    /// Chave de colapso de "Outras" (metas personalizadas sem categoria).
+    private static let uncategorizedId = "__uncategorized__"
 
-    // MARK: - Grade de categorias (iPhone)
+    @ViewBuilder
+    private var goalsContent: some View {
+        // Renderiza fixas e personalizadas na ordem unificada escolhida pelo usuário.
+        ForEach(unifiedCategoryItems.filter { categoryHasContent($0) }) { item in
+            categorySection(for: item)
+        }
+        // Metas personalizadas sem categoria ficam no final, em "Outras".
+        uncategorizedSection
+    }
 
     /// Progresso de uma meta personalizada (dia de descanso conta como cumprida).
     private func customProgress(_ goal: CustomTrackingGoal) -> Double {
@@ -587,71 +490,77 @@ struct TodayView: View {
         )
     }
 
-    /// Monta um bloco a partir dos progressos das metas e das linhas de controle.
-    private func makeTile(id: String, title: String, symbol: String,
-                          progresses: [Double], content: AnyView) -> TodayCategoryTile {
-        let average = progresses.isEmpty ? 0 : progresses.reduce(0, +) / Double(progresses.count)
-        return TodayCategoryTile(
-            id: id,
-            title: title,
-            symbolName: symbol,
-            progress: average,
-            completedCount: progresses.filter { $0 >= 1 }.count,
-            totalCount: progresses.count,
-            content: content
-        )
-    }
-
-    /// Blocos da grade: as 4 categorias fixas primeiro, depois as do usuário, e "Outras" no fim.
-    private var categoryTiles: [TodayCategoryTile] {
-        let builtins = unifiedCategoryItems.filter { if case .builtin = $0 { return true }; return false }
-        let customs  = unifiedCategoryItems.filter { if case .custom = $0 { return true }; return false }
-        var tiles: [TodayCategoryTile] = []
-
-        for item in (builtins + customs) where categoryHasContent(item) {
-            switch item {
-            case .builtin(let category):
-                let keys = activeGoalKeys.filter { GoalCategory.defaultCategory(for: $0) == category }
-                let goals = customTrackingGoals.filter { $0.category == category }
-                tiles.append(makeTile(
-                    id: gridCellId(for: item),
-                    title: category.displayName,
-                    symbol: category.symbolName,
-                    progresses: keys.map { progress(for: $0) } + goals.map { customProgress($0) },
-                    content: AnyView(Group {
-                        ForEach(keys, id: \.self) { goalRow(for: $0) }
-                        ForEach(goals) { customRow($0) }
-                    })
-                ))
-            case .custom(let category):
-                let goals = customGoalsFor(customCategoryId: category.id)
-                tiles.append(makeTile(
-                    id: gridCellId(for: item),
-                    title: category.name,
-                    symbol: category.symbolName,
-                    progresses: goals.map { customProgress($0) },
-                    content: AnyView(ForEach(goals) { customRow($0) })
-                ))
+    /// Uma categoria fixa ou criada pelo usuário: cabeçalho + card com as metas.
+    @ViewBuilder
+    private func categorySection(for item: CategoryItem) -> some View {
+        switch item {
+        case .builtin(let category):
+            let keys = activeGoalKeys.filter { GoalCategory.defaultCategory(for: $0) == category }
+            let goals = customTrackingGoals.filter { $0.category == category }
+            categoryBlock(id: category.rawValue,
+                          title: category.displayName,
+                          symbol: category.symbolName,
+                          progresses: keys.map { progress(for: $0) } + goals.map { customProgress($0) }) {
+                ForEach(keys, id: \.self) { goalRow(for: $0) }
+                ForEach(goals) { customRow($0) }
+            }
+        case .custom(let category):
+            let goals = customGoalsFor(customCategoryId: category.id)
+            categoryBlock(id: category.id,
+                          title: category.name,
+                          symbol: category.symbolName,
+                          progresses: goals.map { customProgress($0) }) {
+                ForEach(goals) { customRow($0) }
             }
         }
+    }
 
-        if !uncategorizedCustomGoals.isEmpty {
-            let goals = uncategorizedCustomGoals
-            tiles.append(makeTile(
-                id: "__uncategorized__",
-                title: String(localized: "today.category.other", bundle: .gymNutshellCore),
-                symbol: "ellipsis",
-                progresses: goals.map { customProgress($0) },
-                content: AnyView(ForEach(goals) { customRow($0) })
-            ))
+    @ViewBuilder
+    private var uncategorizedSection: some View {
+        let goals = uncategorizedCustomGoals
+        if !goals.isEmpty {
+            categoryBlock(id: Self.uncategorizedId,
+                          title: String(localized: "today.category.other", bundle: .gymNutshellCore),
+                          symbol: "ellipsis.circle",
+                          progresses: goals.map { customProgress($0) }) {
+                ForEach(goals) { customRow($0) }
+            }
         }
-        return tiles
+    }
+
+    /// Cabeçalho colapsável + as metas num card só, com divisores (lista agrupada do iOS).
+    private func categoryBlock<Rows: View>(id: String, title: String, symbol: String,
+                                           progresses: [Double],
+                                           @ViewBuilder rows: () -> Rows) -> some View {
+        let collapsed = isTodayCategoryCollapsed(id)
+        let content = rows()
+        return VStack(spacing: 8) {
+            TodayCategoryHeader(
+                title: title,
+                symbolName: symbol,
+                completedCount: progresses.filter { $0 >= 1 }.count,
+                totalCount: progresses.count,
+                collapsed: collapsed,
+                accentColor: todayAccentColor,
+                a11yLabel: A11y.categoryLabel(title),
+                a11yHint: A11y.categoryHint(),
+                onToggle: { toggleTodayCategory(id) }
+            )
+
+            if !collapsed {
+                AppGroupedCard(dividerInset: 14) {
+                    content
+                }
+                .environment(\.goalRowGrouped, true)
+                .transition(.scale(scale: 0.96, anchor: .top).combined(with: .opacity))
+            }
+        }
     }
 
     // MARK: - Corpo da lista de metas
 
-    private var goalsListBody: some View {
-        TodayGoalsListView {
+    private func goalsListBody(maxWidth: CGFloat = UI.contentMaxWidth) -> some View {
+        TodayGoalsListView(maxWidth: maxWidth) {
             goalsContent
         }
         .animation(.easeInOut(duration: 0.28), value: todayCollapsedRaw)
@@ -664,33 +573,12 @@ struct TodayView: View {
             .filter { categoryHasContent($0) }
             .map { item in
                 TodayGridCell(id: gridCellId(for: item)) {
-                    AnyView(
-                        VStack(spacing: 10) {
-                            switch item {
-                            case .builtin(let category): todayCategorySection(category)
-                            case .custom(let category):  todayCustomCategorySection(category)
-                            }
-                        }
-                    )
+                    AnyView(categorySection(for: item))
                 }
             }
         if !uncategorizedCustomGoals.isEmpty {
-            cells.append(TodayGridCell(id: "__uncategorized__") {
-                AnyView(
-                    VStack(spacing: 10) {
-                        ForEach(uncategorizedCustomGoals) { goal in
-                            TrackingGoalRowView(
-                                emoji: goal.emoji,
-                                title: goal.name,
-                                unit: goal.unit,
-                                increment: goal.increment,
-                                goal: goal.goal,
-                                value: intakeBinding(for: goal),
-                                isRestDay: restDayBinding(for: goal)
-                            )
-                        }
-                    }
-                )
+            cells.append(TodayGridCell(id: Self.uncategorizedId) {
+                AnyView(uncategorizedSection)
             })
         }
         return cells
@@ -704,7 +592,6 @@ struct TodayView: View {
     }
 
     // Verifica se uma categoria tem ao menos uma meta visível.
-    // Espelha as condições internas de todayCategorySection / todayCustomCategorySection.
     private func categoryHasContent(_ item: CategoryItem) -> Bool {
         switch item {
         case .builtin(let category):
@@ -721,49 +608,38 @@ struct TodayView: View {
     // MARK: - Layout retrato
 
     private var portraitLayout: some View {
-        GeometryReader { proxy in
-            // Hero ocupa só o necessário (ancorado no topo, sem padding superior).
-            // Espaço entre hero e metas é menor que o spacing padrão de seção.
-            let topInset: CGFloat = 16
-            let heroToGoalsSpacing: CGFloat = 20
-            VStack(spacing: 0) {
-                Spacer().frame(height: topInset)
+        // Data + sino ficam fixos no topo (igual às outras abas); anel, metas e atalhos rolam juntos.
+        ScrollView {
+            VStack(spacing: 20) {
+                heroBlock(vertical: false, showsHeader: false)
+                    .frame(maxWidth: .infinity, alignment: .center)
 
-                VStack(spacing: UI.heroInnerSpacing) {
-                    heroBlock(vertical: false)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }
+                goalsListBody(maxWidth: 560)
 
-                Spacer().frame(height: heroToGoalsSpacing)
-
-                // Blocos de categoria; os controles abrem num balão ao tocar.
-                // Rola só se houver muitas categorias personalizadas.
-                ScrollView {
-                    TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
-                        .frame(maxWidth: UI.contentMaxWidth)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 4)
-
-                    editShortcuts
-                }
-                .scrollBounceBehavior(.basedOnSize)
-
-                Spacer(minLength: 0)
+                editShortcuts
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(.horizontal)
+            .padding(.bottom, 24)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .safeAreaInset(edge: .top, spacing: 0) {
+            AppTabHeader(title: formattedDate)
+                .padding(.horizontal)
+                .padding(.horizontal, 4)
+                .padding(.top, 16)
+                .padding(.bottom, 8)
+                .background(Color(.systemGroupedBackground))
         }
     }
 
     // MARK: - Atalhos pra Ajustes
 
-    /// Botões pequenos abaixo das categorias: levam a Ajustes > Metas e Ajustes > Controles.
+    /// Botões pequenos abaixo das metas: levam a Ajustes > Metas e Ajustes > Controles.
     private var editShortcuts: some View {
         HStack(spacing: 10) {
             shortcutButton(titleKey: "today.edit.goals", icon: "target", route: .settingsGoals)
             shortcutButton(titleKey: "today.edit.controls", icon: "slider.horizontal.3", route: .settingsControls)
         }
-        .padding(.top, 6)
     }
 
     private func shortcutButton(titleKey: String, icon: String, route: NotificationRoute) -> some View {
@@ -805,7 +681,7 @@ struct TodayView: View {
                         ScrollView {
                             VStack(spacing: 0) {
                                 Spacer(minLength: 0)
-                                goalsListBody
+                                goalsListBody()
                                 Spacer(minLength: 0)
                             }
                             .frame(minHeight: goalsProxy.size.height)

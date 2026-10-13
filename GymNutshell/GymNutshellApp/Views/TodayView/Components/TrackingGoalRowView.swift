@@ -3,12 +3,20 @@
 //
 //  Propósito: Linha em estilo de card pras metas de rastreio (acumulação numérica).
 //             Mostra um slider pra entrada. Os tons de cor refletem o nível de progresso.
+//             Dentro de um card agrupado (Hoje, por categoria) perde o card próprio e vira só a linha.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-19.
 // ⌘
 
 import SwiftUI
 import GymNutshellCore
+
+// MARK: - Linha dentro de card agrupado
+
+extension EnvironmentValues {
+    /// true quando a linha está dentro de um card que já tem fundo e divisores (ex: categoria em Hoje).
+    @Entry var goalRowGrouped: Bool = false
+}
 
 // MARK: - TrackingGoalRowView
 
@@ -33,6 +41,8 @@ struct TrackingGoalRowView: View {
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
+    @Environment(\.goalRowGrouped) private var isGrouped
 
     // MARK: - Valores derivados
 
@@ -147,15 +157,7 @@ struct TrackingGoalRowView: View {
             }
         }
         .padding(14)
-        .background {
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .fill(Color(.secondarySystemGroupedBackground))
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.secondary.opacity(0.15), lineWidth: 1)
-        }
+        .modifier(GoalRowCard(isGrouped: isGrouped))
         .accessibilityElement(children: .contain)
     }
 
@@ -223,5 +225,24 @@ struct TrackingGoalRowView: View {
         // Sem override de label: o texto visível ("ON"/"OFF") já vira o label
         // do Button automaticamente. Só adiciono o hint dinâmico.
         .accessibilityHint(A11y.restDayToggleHint(currentlyOn: isOn.wrappedValue))
+    }
+}
+
+// MARK: - Card próprio
+
+/// Card individual da linha; some quando a linha já está num card agrupado.
+private struct GoalRowCard: ViewModifier {
+    let isGrouped: Bool
+
+    func body(content: Content) -> some View {
+        if isGrouped {
+            content
+        } else {
+            let shape = RoundedRectangle(cornerRadius: 22, style: .continuous)
+            content
+                .background { shape.fill(Color(.secondarySystemGroupedBackground)) }
+                .clipShape(shape)
+                .overlay { shape.stroke(Color.secondary.opacity(0.15), lineWidth: 1) }
+        }
     }
 }

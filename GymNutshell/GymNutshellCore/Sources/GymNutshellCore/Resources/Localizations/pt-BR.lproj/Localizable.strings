@@ -350,8 +350,7 @@
 "today.goals.cardio" = "Cardio";
 "today.goals.creatine" = "Creatina";
 "today.category.other" = "Outras";
-"today.category.tile.a11y.value" = "%d de %d metas concluídas";
-"today.category.tile.a11y.hint" = "Abre os controles desta categoria.";
+"today.category.a11y.value" = "%d de %d metas concluídas";
 "today.restday.label" = "Dia de descanso";
 "today.restday.on" = "      ON      ";
 "today.restday.off" = "     OFF     ";
@@ -384,7 +383,7 @@
 /* TodayView.swift, botão de data */
 "today.hero.bell.a11y.label" = "Histórico de notificações";
 "today.hero.bell.a11y.hint" = "Toque para abrir o histórico de notificações.";
-"today.hero.caption.start" = "Toque numa categoria pra começar";
+"today.hero.caption.start" = "Acrescente alguma meta para começar";
 "today.hero.caption.next" = "Faltam %d%% pra %@";
 "today.greeting.morning"   = "Bom dia!";
 "today.greeting.afternoon" = "Boa tarde!";

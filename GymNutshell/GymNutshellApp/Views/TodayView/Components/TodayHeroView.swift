@@ -19,6 +19,8 @@ struct TodayHeroView: View {
     let selectedTheme: AppTheme
     /// Quando true (iPad, sobra altura), o anel fica maior.
     var verticalLayout: Bool = false
+    /// false no iPhone em retrato: a data + sino ficam fixos no topo da tela, fora do hero.
+    var showsHeader: Bool = true
 
     // Sexo do usuário, usado pra nomes de tier com gênero correto.
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
@@ -95,8 +97,10 @@ struct TodayHeroView: View {
         VStack(spacing: 12) {
 
             // Topo: a data em fonte grande e o sino do histórico à direita.
-            AppTabHeader(title: formattedDate)
-                .padding(.horizontal, 4)
+            if showsHeader {
+                AppTabHeader(title: formattedDate)
+                    .padding(.horizontal, 4)
+            }
 
             // Anel de 5 segmentos centralizado, sem card atrás. Antes do primeiro registro o 0% fica
             // dentro do anel e a dica embaixo; depois o emoji entra no centro e a % desce pra baixo.

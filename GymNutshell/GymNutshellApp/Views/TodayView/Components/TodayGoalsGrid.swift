@@ -76,7 +76,7 @@ struct TodayGoalsGrid: View {
                 let start = perColumnCounts.prefix(col).reduce(0, +)
                 let end = start + perColumnCounts[col]
                 if start < end {
-                    VStack(spacing: 10) {
+                    VStack(spacing: 20) {
                         ForEach(start..<end, id: \.self) { idx in
                             cells[idx].view
                         }
