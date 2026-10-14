@@ -17,3 +17,14 @@ Pods/**/xcuserdata/
 
 # Xcode generated / transient files
 GymAxis-Info.plist
+# Xcode per-user settings inside the project
+xcuserdata/
+
+# Signing keys and credentials (never commit)
+*.p8
+*.p12
+*.cer
+*.mobileprovision
+*.jks
+*.keystore
+.env

@@ -3,7 +3,7 @@
 //
 //  Propósito: AppDelegate mínimo registrado via @UIApplicationDelegateAdaptor.
 //             Existe pra entregar `application(_:supportedInterfaceOrientationsFor:)`,
-//             que SwiftUI sozinho não expõe. Na 1.1 o iPhone fica travado em retrato.
+//             que SwiftUI sozinho não expõe. Na 2.0 o iPhone fica travado em retrato.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-04-25.
 // ⌘
@@ -16,7 +16,7 @@ final class GymNutshellAppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         supportedInterfaceOrientationsFor window: UIWindow?
     ) -> UIInterfaceOrientationMask {
-        // iPad / Mac / Vision: sempre liberado. iPhone: só retrato (sem paisagem na 1.1).
+        // iPad / Mac / Vision: sempre liberado. iPhone: só retrato (sem paisagem na 2.0).
         if UIDevice.current.userInterfaceIdiom != .phone {
             return .all
         }

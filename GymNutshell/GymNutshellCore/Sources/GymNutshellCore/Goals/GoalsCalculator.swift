@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshellCore/Goals/GoalsCalculator.swift
 //
-//  Propósito: Metas diárias padrão por objetivo × sexo (tabela fixa). Desde a 1.1 o app não coleta
+//  Propósito: Metas diárias padrão por objetivo × sexo (tabela fixa). Desde a 2.0 o app não coleta
 //             peso, altura nem idade: os valores partem de um corpo de referência e o usuário ajusta
 //             tudo depois com − / +.
 //

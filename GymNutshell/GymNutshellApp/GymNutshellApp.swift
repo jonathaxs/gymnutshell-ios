@@ -46,13 +46,13 @@ struct GymNutshellApp: App {
         // Ativa a sessão de WatchConnectivity pra sincronizar estado iPhone ↔ Watch.
         WatchConnectivityManager.shared.activate()
 
-        // 1.1: apaga dados físicos da 1.0 e normaliza o sexo ("other" vira "male").
+        // 2.0: apaga dados físicos da 1.0 e normaliza o sexo ("other" vira "male").
         UserProfile.migrateLegacyProfile()
 
         // Migração one-shot: chave antiga "profile.fitnessGoal" → nova "profile.userGoal".
         // Executa quando o usuário atualiza a versão; limpa a chave antiga depois de copiar.
         let defaults = UserDefaults.standard
-        // 1.1: a opção "UK" saiu (só importava pra água, igual ao métrico); quem tinha vira métrico.
+        // 2.0: a opção "UK" saiu (só importava pra água, igual ao métrico); quem tinha vira métrico.
         if defaults.string(forKey: UserProfile.measurementSystemKey) == "uk" {
             defaults.set(MeasurementSystem.metric.rawValue, forKey: UserProfile.measurementSystemKey)
         }
@@ -72,7 +72,7 @@ struct GymNutshellApp: App {
         // Escreve o snapshot imediatamente pra o widget não mostrar placeholder no primeiro carregamento.
         WidgetSnapshotStore.save(WidgetSnapshot.buildCurrent())
 
-        // StreakBonus saiu do app na 1.1, mas continua no schema pra o store de quem já tinha
+        // StreakBonus saiu do app na 2.0, mas continua no schema pra o store de quem já tinha
         // bônus abrir sem migração. Os registros antigos ficam guardados e não aparecem mais.
         let schema = Schema([DailyRecord.self, StreakBonus.self])
         // URL explícita + cloudKitDatabase: .none evita que o iOS 17 tente subir

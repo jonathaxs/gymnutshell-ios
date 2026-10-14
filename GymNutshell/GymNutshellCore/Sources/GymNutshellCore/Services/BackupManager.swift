@@ -22,7 +22,7 @@ public enum BackupManager {
         let profile = BackupPayload.ProfileSnapshot(
             name:              defaults.string(forKey: UserProfile.nameKey) ?? "",
             username:          nil,
-            // Dados físicos saíram na 1.1; segue gravando 0 pra backups continuarem legíveis na 1.0/Android.
+            // Dados físicos saíram na 2.0; segue gravando 0 pra backups continuarem legíveis na 1.0/Android.
             height:            0,
             weight:            0,
             age:               0,

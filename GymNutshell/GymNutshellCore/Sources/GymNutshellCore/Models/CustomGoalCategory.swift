@@ -15,7 +15,7 @@ public struct CustomGoalCategory: Codable, Identifiable, Hashable, Sendable {
     public let id: String
     public var name: String
     public var supportsRestDay: Bool
-    /// Nome do SF Symbol exibido no bloco da categoria (tela Hoje). Campo novo da 1.1.
+    /// Nome do SF Symbol exibido no bloco da categoria (tela Hoje). Campo novo da 2.0.
     public var symbolName: String
 
     /// Ícone usado quando a categoria não tem um escolhido (ex: criada na 1.0).

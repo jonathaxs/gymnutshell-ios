@@ -106,7 +106,7 @@ public struct BackupPayload: Codable, Sendable {
         public let widgetBackgroundMode: String?   // widget.background.mode
         public let orientationLock: String?        // app.orientation.lock
         public let autoWorkoutCheckin: Bool?       // healthkit.autoWorkoutCheckin
-        public let controlStyle: String?           // app.controlStyle (slider | stepper), novo na 1.1
+        public let controlStyle: String?           // app.controlStyle (slider | stepper), novo na 2.0
         /// id da notificação ("<kind>" ou "custom.<uuid>") → valor.
         public let notificationEnabled: [String: Bool]?
         public let notificationInterval: [String: Int]?

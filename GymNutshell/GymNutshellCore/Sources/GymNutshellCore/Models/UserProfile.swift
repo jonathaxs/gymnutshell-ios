@@ -28,9 +28,9 @@ public enum UserProfile {
     public static let achievementsSelectedDateKey     = "achievements.selectedDate"
     public static let achievementsFilterModeKey       = "achievements.filterMode"
 
-    // MARK: - Migração da 1.0 → 1.1
+    // MARK: - Migração da 1.0 → 2.0
 
-    /// Chaves de dados físicos que existiam na 1.0 e foram removidas na 1.1.
+    /// Chaves de dados físicos que existiam na 1.0 e foram removidas na 2.0.
     private static let legacyPhysicalKeys = [
         "profile.weight", "profile.height", "profile.age", "profile.birthday"
     ]
@@ -40,7 +40,7 @@ public enum UserProfile {
         raw == "female" ? "female" : "male"
     }
 
-    /// Roda no launch: apaga os dados físicos antigos (a 1.1 não usa mais) e normaliza o sexo
+    /// Roda no launch: apaga os dados físicos antigos (a 2.0 não usa mais) e normaliza o sexo
     /// salvo. Não mexe nas metas já definidas, quem veio da 1.0 mantém os valores que tinha.
     public static func migrateLegacyProfile(defaults: UserDefaults = .standard) {
         legacyPhysicalKeys.forEach { defaults.removeObject(forKey: $0) }

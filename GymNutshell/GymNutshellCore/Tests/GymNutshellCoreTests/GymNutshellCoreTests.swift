@@ -179,7 +179,7 @@ import Foundation
     #expect(decoded.symbolName == "figure.yoga")
 }
 
-// MARK: - Estilo de controle no backup (1.1)
+// MARK: - Estilo de controle no backup (2.0)
 
 @Test func estiloDeControleViajaNoBackup() throws {
     let prefs = BackupPayload.PreferencesSnapshot(

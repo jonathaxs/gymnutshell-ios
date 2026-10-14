@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/SettingsView/Profile/ProfileSettingsView.swift
 //
 //  Propósito: Permite ao usuário editar o nome, o sexo (masculino/feminino, define cor e emojis)
-//             e o exercício favorito. Na 1.1 não existem mais dados físicos (peso, altura, idade).
+//             e o exercício favorito. Na 2.0 não existem mais dados físicos (peso, altura, idade).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
 // ⌘
