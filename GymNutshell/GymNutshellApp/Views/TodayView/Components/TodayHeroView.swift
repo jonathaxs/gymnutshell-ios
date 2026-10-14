@@ -4,7 +4,7 @@
 //  Propósito: Bloco hero da tela Hoje, no topo (retrato) ou na coluna esquerda (landscape/iPad).
 //             Contém: data grande + sino e engrenagem (opcional), o anel de progresso com a % no centro,
 //             depois do primeiro registro a conquista do dia ao lado, a frase do próximo nível e os
-//             botões das páginas Registro e Calendário (+ troca lista/grade no iPhone em retrato).
+//             botões das páginas Histórico e Conquistas (+ troca lista/grade no iPhone em retrato).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -95,7 +95,7 @@ struct TodayHeroView: View {
     private var content: some View {
         VStack(spacing: 12) {
 
-            // Topo: a data em fonte grande e o sino do histórico à direita.
+            // Topo: sino à esquerda, a data em fonte grande no meio e a engrenagem à direita.
             if showsHeader {
                 AppTabHeader(title: formattedDate)
                     .padding(.horizontal, 4)
@@ -135,9 +135,12 @@ struct TodayHeroView: View {
     /// Rótulo, emoji grande e nome, centralizados entre si e da mesma altura do anel.
     private var achievementPanel: some View {
         VStack(spacing: 4) {
+            // "Conquista do dia" numa linha só; encolhe um pouco se a largura do painel não der.
             Text(String(localized: "today.hero.achievement.label", bundle: .gymNutshellCore))
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
 
             // Troca de nível: o emoji novo entra com escala.
             Text(tierEmoji)
@@ -167,15 +170,15 @@ struct TodayHeroView: View {
 
     // MARK: - Botões das páginas
 
-    /// Registros (com texto) e Calendário (só ícone) abrem como páginas por cima da Hoje.
-    /// No iPhone em retrato o Registros estica pra linha ter a mesma largura das metas abaixo.
+    /// Histórico (com texto) e Conquistas (só o troféu) abrem como páginas por cima da Hoje.
+    /// Os botões abraçam o conteúdo: a linha fica estreita e centralizada, perto da largura da frase acima.
     private var pageButtons: some View {
         HStack(spacing: 10) {
             if showsViewModeToggle {
                 viewModeButton
             }
             recordsButton
-            calendarButton
+            achievementsButton
         }
     }
 
@@ -187,26 +190,25 @@ struct TodayHeroView: View {
                   systemImage: "clock.arrow.trianglehead.counterclockwise.rotate.90")
                 .font(.subheadline.weight(.semibold))
                 .lineLimit(1)
-                .frame(maxWidth: showsViewModeToggle ? .infinity : nil)
         }
         .appSecondaryButton(accentColor)
         .controlSize(.regular)
     }
 
-    /// Largura do conteúdo dos botões só de ícone, mais largos pra equilibrar com o Registros.
-    private static let iconButtonWidth: CGFloat = 44
+    /// Largura do conteúdo dos botões só de ícone (redondos), enxuta pra linha ficar estreita e centralizada.
+    private static let iconButtonWidth: CGFloat = 30
     private static let iconButtonHeight: CGFloat = 20
 
-    private var calendarButton: some View {
+    private var achievementsButton: some View {
         Button {
             router.open(.achievements)
         } label: {
-            Image(systemName: "calendar")
+            Image(systemName: "trophy")
                 .font(.title3.weight(.semibold))
-                // Altura travada na do texto do Registros: ícone maior sem aumentar o botão.
+                // Altura travada na do texto do Histórico: ícone maior sem aumentar o botão.
                 .frame(width: Self.iconButtonWidth, height: Self.iconButtonHeight)
         }
-        .appSecondaryButton(accentColor)
+        .appSecondaryButton(accentColor, circle: true)
         .controlSize(.regular)
         .accessibilityLabel(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
     }
@@ -225,11 +227,11 @@ struct TodayHeroView: View {
             // Ícone do modo pra onde vai: em lista, o de grade; em grade, o de lista.
             Image(systemName: next.symbolName)
                 .font(.title3.weight(.semibold))
-                // Altura travada na do texto do Registros: ícone maior sem aumentar o botão.
+                // Altura travada na do texto do Histórico: ícone maior sem aumentar o botão.
                 .frame(width: Self.iconButtonWidth, height: Self.iconButtonHeight)
                 .contentTransition(.symbolEffect(.replace))
         }
-        .appSecondaryButton(accentColor)
+        .appSecondaryButton(accentColor, circle: true)
         .controlSize(.regular)
         .accessibilityLabel(String(format: String(localized: "today.goals.viewMode.switch.a11y",
                                                   bundle: .gymNutshellCore), next.title))

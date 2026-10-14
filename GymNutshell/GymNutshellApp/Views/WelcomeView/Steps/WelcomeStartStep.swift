@@ -3,7 +3,7 @@
 //
 //  Propósito: Primeira etapa do onboarding, permite ao usuário escolher entre iniciar um novo perfil
 //             ou restaurar a partir de um arquivo de backup exportado anteriormente.
-//             Layout: cabeçalho + destaques com ícone no topo; subtítulo + botões fixados no rodapé.
+//             Layout: cabeçalho + destaques com ícone no topo; botões fixados no rodapé.
 //             "Restaurar backup" abre um sheet com as opções de restauração via iCloud e arquivo local.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-20.
@@ -15,7 +15,7 @@ import SwiftData
 import UniformTypeIdentifiers
 
 /// Primeira etapa do onboarding: o usuário escolhe entre começar do zero ou restaurar um backup.
-/// No modo narrow: intro em ScrollView no topo, subtitle + botões fixos na base.
+/// No modo narrow: intro em ScrollView no topo, botões fixos na base.
 struct WelcomeStartStep: View {
 
     let onRestore: () -> Void
@@ -36,8 +36,9 @@ struct WelcomeStartStep: View {
                 ScrollView {
                     VStack(spacing: 28) {
                         if !isWide {
+                            // O esquilo que corre atrás da noz (nutshell), como o da Era do Gelo.
                             WelcomeStepHeader(
-                                emoji: "👋",
+                                emoji: "🐿️",
                                 title: String(localized: "welcome.step.start.title", bundle: .gymNutshellCore),
                                 accentColor: accentColor
                             )
@@ -45,12 +46,13 @@ struct WelcomeStartStep: View {
 
                         // Destaques do app em linhas com ícone, no estilo das telas de boas-vindas do sistema.
                         VStack(alignment: .leading, spacing: 22) {
-                            featureRow(icon: "figure.strengthtraining.traditional",
-                                       text: String(localized: "welcome.start.feature.companion", bundle: .gymNutshellCore))
                             featureRow(icon: "checklist",
                                        text: String(localized: "welcome.start.feature.track", bundle: .gymNutshellCore))
-                            featureRow(icon: "trophy.fill",
+                            // Mesmo ícone do botão Histórico da Hoje.
+                            featureRow(icon: "clock.arrow.trianglehead.counterclockwise.rotate.90",
                                        text: String(localized: "welcome.start.feature.progress", bundle: .gymNutshellCore))
+                            featureRow(icon: "theatermasks.fill",
+                                       text: String(localized: "welcome.start.feature.theme", bundle: .gymNutshellCore))
                         }
                         .padding(.horizontal, 8)
                     }
@@ -62,30 +64,22 @@ struct WelcomeStartStep: View {
             }
 
             if !isWide {
-                VStack(spacing: 14) {
-                    Text(String(localized: "welcome.step.start.subtitle", bundle: .gymNutshellCore))
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity, alignment: .center)
-
-                    VStack(spacing: 10) {
-                        Button(action: onNewProfile) {
-                            Text(String(localized: "welcome.start.new", bundle: .gymNutshellCore))
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 4)
-                        }
-                        .appProminentButton(accentColor)
-
-                        Button { showRestoreSheet = true } label: {
-                            Text(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 4)
-                        }
-                        .appSecondaryButton(accentColor)
+                VStack(spacing: 10) {
+                    Button(action: onNewProfile) {
+                        Text(String(localized: "welcome.start.new", bundle: .gymNutshellCore))
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 4)
                     }
+                    .appProminentButton(accentColor)
+
+                    Button { showRestoreSheet = true } label: {
+                        Text(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 4)
+                    }
+                    .appSecondaryButton(accentColor)
                 }
                 .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.top, 8)

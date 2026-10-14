@@ -3,7 +3,7 @@
 //
 //  Propósito: Onboarding em múltiplas etapas que coleta o perfil do usuário e calcula as metas diárias.
 //             Dona do estado e faz a navegação entre as views de cada etapa.
-//             Etapas: início → objetivo + sexo → medidas (só EUA) → metas → estilo de controle → tema → tudo pronto (permissões).
+//             Etapas: início → sobre você (sexo + exercício favorito) → objetivo → medidas (só EUA) → metas → estilo de controle → tema → tudo pronto (permissões).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
 // ⌘
@@ -62,6 +62,7 @@ struct WelcomeView: View {
 
     @State private var name: String = ""
     @State private var sex: String = "male"
+    @State private var favoriteExercise: FavoriteExercise = .unknown
     @State private var userGoal: UserGoal = .maintenance
     @State private var controlStyle: ControlStyle = .default
 
@@ -84,6 +85,8 @@ struct WelcomeView: View {
         withAnimation(.easeInOut(duration: 0.3)) {
             switch currentStep {
             case .start:
+                currentStep = .about
+            case .about:
                 currentStep = .goal
             case .goal:
                 summaryScrolledToEnd = false
@@ -119,6 +122,7 @@ struct WelcomeView: View {
         // Persiste os dados do perfil.
         defaults.set(trimmedName,              forKey: UserProfile.nameKey)
         defaults.set(sex,                      forKey: UserProfile.sexKey)
+        defaults.set(favoriteExercise.rawValue, forKey: UserProfile.favoriteExerciseKey)
         defaults.set(userGoal.rawValue,     forKey: UserProfile.userGoalKey)
         // Persiste o sistema de medidas escolhido no onboarding.
         defaults.set(measurementSystem.rawValue, forKey: UserProfile.measurementSystemKey)
@@ -184,17 +188,17 @@ struct WelcomeView: View {
         .background { welcomeBackground }
     }
 
-    // Fundo agrupado com um brilho suave da cor de destaque no topo.
+    // Fundo agrupado com um brilho suave da cor da etapa no topo (sexo, ou objetivo na etapa de objetivo).
     private var welcomeBackground: some View {
         ZStack(alignment: .top) {
             Color(.systemGroupedBackground)
             LinearGradient(
-                colors: [sexColor.opacity(0.22), sexColor.opacity(0)],
+                colors: [stepColor.opacity(0.22), stepColor.opacity(0)],
                 startPoint: .top,
                 endPoint: .center
             )
         }
-        .animation(.easeInOut(duration: 0.4), value: sex)
+        .animation(.easeInOut(duration: 0.4), value: stepColor)
         .ignoresSafeArea()
     }
 
@@ -204,25 +208,9 @@ struct WelcomeView: View {
     private func stepContent(isWide: Bool) -> some View {
         VStack(spacing: 0) {
 
-            // Botão de voltar e barra de progresso no topo.
-            HStack(spacing: 14) {
-                // Botão de voltar redondo de vidro, escondido na primeira etapa e no modo wide
-                // (no wide os botões ficam no painel).
-                if currentStep != .start && !isWide {
-                    Button(action: goBack) {
-                        Image(systemName: "chevron.left")
-                            .font(.body.weight(.semibold))
-                            .frame(width: 24, height: 24)
-                    }
-                    .appCircleButton(fallbackPadding: 8)
-                    .accessibilityLabel(String(localized: "a11y.welcome.back.button",
-                                               bundle: .gymNutshellCore))
-                    .transition(.scale.combined(with: .opacity))
-                }
-
-                WelcomeProgressBar(currentStep: currentStep, activeColor: sexColor, steps: visibleSteps)
-            }
-            .frame(minHeight: 44)
+            // Barra de progresso no topo. O voltar fica no rodapé, abaixo do Continuar.
+            WelcomeProgressBar(currentStep: currentStep, activeColor: stepColor, steps: visibleSteps)
+                .frame(minHeight: 44)
             .padding(.horizontal, AppStyle.horizontalPadding)
             .padding(.top, 12)
 
@@ -236,15 +224,16 @@ struct WelcomeView: View {
                         accentColor: sexColor,
                         isWide: isWide
                     )
+                case .about:
+                    WelcomeAboutStep(sex: $sex, favoriteExercise: $favoriteExercise, accentColor: sexColor, isWide: isWide)
                 case .goal:
-                    WelcomeUserGoalStep(userGoal: $userGoal, sex: $sex, accentColor: sexColor, isWide: isWide)
+                    WelcomeUserGoalStep(userGoal: $userGoal, accentColor: stepColor, isWide: isWide)
                 case .units:
                     WelcomeUnitsStep(selection: $measurementSystem, accentColor: sexColor, isWide: isWide)
                 case .summary:
                     WelcomeSummaryStep(
                         goals: $calculatedGoals,
                         measurementSystem: measurementSystem,
-                        userGoal: userGoal,
                         accentColor: sexColor,
                         includeFats: $includeFats,
                         includeCreatine: $includeCreatine,
@@ -276,15 +265,24 @@ struct WelcomeView: View {
             ))
             .animation(.easeInOut(duration: 0.3), value: currentStep)
 
-            // Botão de rodapé, só no modo narrow e fora da etapa inicial.
-            // O voltar fica no botão redondo do topo.
+            // Botões de rodapé, só no modo narrow e fora da etapa inicial: Continuar e, abaixo, Voltar.
             if currentStep != .start && !isWide {
-                WelcomeContinueButton(
-                    label: continueButtonLabel,
-                    color: continueButtonColor,
-                    isEnabled: isCurrentStepValid,
-                    action: advance
-                )
+                VStack(spacing: 10) {
+                    WelcomeContinueButton(
+                        label: continueButtonLabel,
+                        color: continueButtonColor,
+                        isEnabled: isCurrentStepValid,
+                        action: advance
+                    )
+
+                    Button(action: goBack) {
+                        Text(String(localized: "welcome.button.back", bundle: .gymNutshellCore))
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 4)
+                    }
+                    .appSecondaryButton(continueButtonColor)
+                }
                 .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.top, 8)
                 .padding(.bottom, 16)
@@ -293,6 +291,32 @@ struct WelcomeView: View {
         // O VStack externo ignora a safe area do teclado: os botões ficam fixos na base,
         // o ScrollView interno de cada etapa ajusta seu contentInset pra mostrar os campos.
         .ignoresSafeArea(.keyboard)
+        // Arrastar da borda esquerda pra direita volta uma etapa, como no padrão do iOS.
+        .overlay(alignment: .leading) {
+            if currentStep != .start && !isWide {
+                backSwipeEdge
+            }
+        }
+    }
+
+    /// Faixa fina na borda esquerda que reconhece o gesto de voltar. Fica só na borda pra não
+    /// disputar o arraste com as listas e os controles de cada etapa.
+    private var backSwipeEdge: some View {
+        Color.clear
+            .frame(width: 20)
+            .frame(maxHeight: .infinity)
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture(minimumDistance: 10)
+                    .onEnded { value in
+                        let isHorizontal = abs(value.translation.width) > abs(value.translation.height)
+                        if isHorizontal && (value.translation.width > 60 || value.predictedEndTranslation.width > 140) {
+                            goBack()
+                        }
+                    }
+            )
+            // O VoiceOver já tem o botão Voltar no rodapé.
+            .accessibilityHidden(true)
     }
 
     // MARK: - Cores dinâmicas
@@ -303,27 +327,25 @@ struct WelcomeView: View {
         AppAccentColor.defaultForSex(sex).color
     }
 
-    // Cor do botão Continuar: segue o objetivo na etapa de goal, e o sexo nas demais.
-    private var continueButtonColor: Color {
-        switch currentStep {
-        case .goal:
-            switch userGoal {
-            case .bulking:     return .orange
-            case .maintenance: return Color.accentColor
-            case .cutting:     return .green
-            }
-        case .units, .summary, .controlStyle, .theme, .ready:
-            return sexColor
-        default:
-            return Color.accentColor
+    // Cor da etapa: segue o objetivo escolhido na etapa de objetivo e o sexo nas demais.
+    // Pinta o fundo, a barra de progresso e os botões do rodapé.
+    private var stepColor: Color {
+        guard currentStep == .goal else { return sexColor }
+        switch userGoal {
+        case .bulking:     return .orange
+        case .maintenance: return Color.accentColor
+        case .cutting:     return .green
         }
     }
+
+    private var continueButtonColor: Color { stepColor }
 
     // MARK: - Validação e label do continuar
 
     private var isCurrentStepValid: Bool {
         switch currentStep {
         case .start:        return true
+        case .about:        return true
         case .goal:         return true
         case .units:        return true
         case .summary:      return summaryScrolledToEnd

@@ -57,10 +57,6 @@ struct UserGoalChangeView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     AppSectionLabel(text: String(localized: "settings.goalchange.section.pick", bundle: .gymNutshellCore))
                     UserGoalPickerView(selection: $selectedGoal)
-                    Text(String(localized: "settings.goalchange.section.pick.footer", bundle: .gymNutshellCore))
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                        .padding(.horizontal, 6)
                 }
 
                 // Prévia: aparece assim que o usuário escolhe um objetivo diferente.

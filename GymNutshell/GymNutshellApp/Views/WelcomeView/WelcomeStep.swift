@@ -9,6 +9,7 @@ import GymNutshellCore
 
 enum WelcomeStep: Int, CaseIterable {
     case start
+    case about      // sexo + exercício favorito
     case goal
     case units      // só aparece em aparelhos no sistema americano
     case summary
@@ -19,10 +20,11 @@ enum WelcomeStep: Int, CaseIterable {
     /// Emoji representativo da etapa, exibido no painel contextual em wide.
     var panelEmoji: String {
         switch self {
-        case .start:        return "👋"
+        case .start:        return "🐿️"
+        case .about:        return "👤"
         case .goal:         return "🎯"
         case .units:        return "📏"
-        case .summary:      return "✅"
+        case .summary:      return "💪"
         case .controlStyle: return "🎛️"
         case .theme:        return "🎭"
         case .ready:        return "🚀"
@@ -33,6 +35,7 @@ enum WelcomeStep: Int, CaseIterable {
     var panelTitle: String {
         switch self {
         case .start:        return String(localized: "welcome.step.start.title", bundle: .gymNutshellCore)
+        case .about:        return String(localized: "welcome.step.about.title", bundle: .gymNutshellCore)
         case .goal:         return String(localized: "welcome.step.goal.title", bundle: .gymNutshellCore)
         case .units:        return String(localized: "welcome.step.units.title", bundle: .gymNutshellCore)
         case .summary:      return String(localized: "welcome.step.summary.title", bundle: .gymNutshellCore)
@@ -45,9 +48,7 @@ enum WelcomeStep: Int, CaseIterable {
     /// Subtítulo opcional pra manter paridade com o cabeçalho narrow.
     var panelSubtitle: String? {
         switch self {
-        case .goal:    return String(localized: "welcome.step.goal.info.choose", bundle: .gymNutshellCore)
         case .units:   return String(localized: "welcome.step.units.subtitle", bundle: .gymNutshellCore)
-        case .summary: return String(localized: "welcome.step.summary.subtitle", bundle: .gymNutshellCore)
         case .controlStyle: return String(localized: "welcome.step.control.subtitle", bundle: .gymNutshellCore)
         case .theme:   return String(localized: "welcome.step.theme.subtitle", bundle: .gymNutshellCore)
         case .ready:   return String(localized: "welcome.step.ready.subtitle", bundle: .gymNutshellCore)

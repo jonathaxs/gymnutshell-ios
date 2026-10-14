@@ -718,6 +718,8 @@ struct TodayView: View {
                 }
 
                 editShortcuts
+                    // Na lista a última meta termina num card sem respiro embaixo; a grade já tem folga.
+                    .padding(.top, goalsViewMode == .list ? 12 : 0)
             }
             // Só no retrato: lista e grade trocam com transformação (ícone ↔ círculo, nome ↔ nome).
             .environment(\.todayMorphNamespace, goalsMorphNamespace)
@@ -741,17 +743,21 @@ struct TodayView: View {
 
     // MARK: - Atalhos pra Ajustes
 
-    /// Sheets de edição rápida, com as mesmas telas de Ajustes > Metas e Ajustes > Controles.
+    /// Sheets de edição rápida, com as mesmas telas de Ajustes > Tema, Cores, Controles e Metas.
     private enum EditSheet: String, Identifiable {
-        case goals, controls
+        case theme, colors, controls, goals
         var id: String { rawValue }
     }
 
-    /// Botões pequenos abaixo das metas: abrem Metas e Controles numa sheet, sem sair da Hoje.
+    /// Botões pequenos abaixo das metas, centralizados: Tema (máscaras, como no Welcome), Cores (paleta) e
+    /// Controles (os tracinhos dos Ajustes) só com o ícone e, por último, "Editar metas" com texto. Cada um abre a tela
+    /// dos Ajustes numa sheet, sem sair da Hoje. Os ícones daqui são só desses atalhos; os Ajustes têm os seus.
     private var editShortcuts: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 8) {
+            shortcutIconButton(systemImage: "theatermasks", a11yKey: "today.edit.theme", sheet: .theme)
+            shortcutIconButton(systemImage: "paintpalette", a11yKey: "today.edit.colors", sheet: .colors)
+            shortcutIconButton(systemImage: "slider.horizontal.3", a11yKey: "today.edit.controls", sheet: .controls)
             shortcutButton(titleKey: "today.edit.goals", sheet: .goals)
-            shortcutButton(titleKey: "today.edit.controls", sheet: .controls)
         }
     }
 
@@ -761,9 +767,28 @@ struct TodayView: View {
         } label: {
             Text(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore))
                 .font(.footnote.weight(.semibold))
+                // Numa linha só; nos iPhones mais estreitos encolhe um pouco em vez de quebrar.
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
         .appSecondaryButton(todayAccentColor)
         .controlSize(.small)
+    }
+
+    /// Só o ícone, maior que o texto (como os botões de ícone do hero), mas com o frame travado no tamanho
+    /// antigo: o ícone ocupa parte da margem interna do vidro, sem aumentar o botão. Com um frame mais largo,
+    /// o "Editar metas" quebrava em duas linhas no iPhone de 6,3".
+    private func shortcutIconButton(systemImage: String, a11yKey: String, sheet: EditSheet) -> some View {
+        Button {
+            editSheet = sheet
+        } label: {
+            Image(systemName: systemImage)
+                .font(.title3.weight(.semibold))
+                .frame(width: 22, height: 16)
+        }
+        .appSecondaryButton(todayAccentColor, circle: true)
+        .controlSize(.small)
+        .accessibilityLabel(String(localized: String.LocalizationValue(a11yKey), bundle: .gymNutshellCore))
     }
 
     // MARK: - Layout largo (paisagem / iPad)
@@ -866,17 +891,19 @@ struct TodayView: View {
         .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
             checkIfNewDay()
         }
-        // Registros (sheet do MainView) também edita metas e objetivo; ao fechar, recarrega.
+        // Histórico (sheet do MainView) também edita metas e objetivo; ao fechar, recarrega.
         .onChange(of: router.sheet) { _, newSheet in
             if newSheet == nil { reloadGoalStores() }
         }
-        // Editar metas / controles abrem por cima da Hoje; ao fechar, recarrega o que mudou.
+        // Edição rápida (tema, cores, controles, metas) abre por cima da Hoje; ao fechar, recarrega o que mudou.
         .sheet(item: $editSheet, onDismiss: reloadGoalStores) { sheet in
             NavigationStack {
                 Group {
                     switch sheet {
-                    case .goals:    TrackingGoalsSettingsView()
+                    case .theme:    ThemeSettingsView()
+                    case .colors:   ColorSettingsView()
                     case .controls: ControlStyleSettingsView()
+                    case .goals:    TrackingGoalsSettingsView()
                     }
                 }
                 .toolbar {

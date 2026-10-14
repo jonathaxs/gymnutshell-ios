@@ -120,11 +120,12 @@
 /* MARK: - Views/AchievementsView */
 
 /* AchievementsView.swift */
-"achievements.header.title" = "Calendário";
+"achievements.header.title" = "Conquistas";
+"achievements.filter.list" = "Lista";
+"achievements.filter.calendar" = "Calendário";
 "achievements.filter.title" = "Visualização";
 "achievements.filter.all" = "Lista";
 "achievements.filter.day" = "Calendário";
-"achievements.calendar.title" = "Histórico";
 "achievements.empty.title" = "Nenhuma conquista ainda.";
 "achievements.empty.description" = "No fim do dia irá desbloquear sua conquista aqui.";
 
@@ -142,7 +143,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Registros";
+"statistics.title" = "Histórico";
 "statistics.section.tiers" = "Conquistas por Níveis";
 "statistics.section.activity" = "Atividade nos Treinos";
 "statistics.section.goals" = "Metas";
@@ -231,7 +232,6 @@
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Objetivo";
 "settings.goalchange.section.pick" = "Escolha seu objetivo";
-"settings.goalchange.section.pick.footer" = "Ao recalcular, calorias, proteína, carboidratos, gordura boa e fibra mudam na proporção do novo objetivo, a partir dos seus valores atuais. Água, sono, treino, cardio e creatina não mudam.";
 "settings.goalchange.section.preview" = "Suas metas";
 "settings.goalchange.save.recalc" = "Salvar e recalcular";
 "settings.goalchange.save.keep" = "Salvar sem recalcular";
@@ -380,50 +380,45 @@
 /* TodayView.swift, botão de data */
 "today.hero.bell.a11y.label" = "Notificações";
 "today.hero.bell.a11y.hint" = "Toque para abrir as notificações.";
-"today.hero.caption.start" = "Acrescente alguma meta para começar";
+"today.hero.caption.start" = "Rastreie alguma meta para começar";
 "today.hero.caption.nextLevel" = "Faltam %d%% para o próximo nível";
 "today.hero.caption.max" = "Conquista máxima do dia!";
-"today.hero.achievement.label" = "Conquista";
+"today.hero.achievement.label" = "Conquista do dia";
 "today.greeting.morning"   = "Bom dia!";
 "today.greeting.afternoon" = "Boa tarde!";
 "today.greeting.night"     = "Boa noite!";
 
 /* MARK: - Views/WelcomeView */
 
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "Sobre você";
+
 /* WelcomeFitnessGoalStep.swift */
 "welcome.step.goal.title" = "Seu objetivo";
-"welcome.step.goal.info.choose" = "Escolha o que melhor descreve seu objetivo atual.";
 /* (mantido, o texto já usa apenas "objetivo") */
 "welcome.step.goal.info.editable" = "Você pode mudar depois em ajustes do app.";
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "Seu tema";
+"welcome.step.theme.title" = "Tema";
 "welcome.step.theme.subtitle" = "Escolha os emojis que irão inspirar o seu progresso.";
-"welcome.step.theme.footer" = "O tema pode ser alterado em ajustes do app.";
+"welcome.step.theme.footer" = "O tema pode ser alterado depois.";
 
 /* WelcomePhysicalDataStep.swift */
 "welcome.field.sex" = "Sexo";
-"welcome.field.goal" = "Objetivo";
 "welcome.field.sex.male" = "Masculino";
 "welcome.field.sex.female" = "Feminino";
 
 /* WelcomeSummaryStep.swift */
 "welcome.step.summary.title" = "Suas metas";
-"welcome.step.summary.subtitle" = "Deslize até o final.";
-"welcome.summary.subtitle.customize" = "Você pode mudar esses valores quando quiser em Ajustes, e também criar metas personalizadas.";
-"welcome.summary.optional.badge" = "Recomendada";
-"welcome.summary.subtitle.calculated.prefix" = "Esses valores são uma sugestão para o seu objetivo ";
-"welcome.summary.subtitle.calculated.suffix" = ".";
+"welcome.summary.subtitle.customize" = "Você pode editar esses valores ou adicionar novas metas quando quiser.";
 "welcome.option.add" = "Adicionar";
-"welcome.option.remove" = "Remover";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Olá!";
-"welcome.start.feature.companion" = "Um companheiro diário na sua rotina de academia.";
-"welcome.start.feature.track" = "Registre nutrição, hidratação, sono, treinos e outras metas ao longo do dia.";
-"welcome.start.feature.progress" = "Acompanhe seu avanço nas conquistas e no progresso.";
-"welcome.step.start.subtitle" = "Vamos lá!\nComece agora ou restaure um backup existente.";
-"welcome.start.new" = "Começar agora";
+"welcome.start.feature.track" = "Rastreie suas metas fitness ao longo do dia.";
+"welcome.start.feature.theme" = "Escolha um tema para te inspirar.";
+"welcome.start.feature.progress" = "Acompanhe o seu avanço.";
+"welcome.start.new" = "Começar";
 "welcome.start.restore" = "Restaurar backup";
 
 /* WelcomeView.swift */
@@ -565,7 +560,7 @@
 
 /* TierInfoView.swift */
 "tier.info.intro"             = "Sua conquista é registrada no fim do dia, à meia-noite.";
-"tier.info.section.levels"    = "Conquistas";
+"tier.info.section.levels"    = "Níveis";
 "tier.info.change.theme"      = "Alterar Tema";
 "tier.info.range.suffix"      = " de progresso";
 
@@ -747,11 +742,8 @@
 "a11y.calendar.day.today.tier.format"  = "hoje, %1$@, conquistado: %2$@";
 
 /* Picker segmentado de visualização (Lista / Calendário) */
-"a11y.achievements.filter.day"  = "Visualização em calendário";
-"a11y.achievements.filter.all"  = "Visualização em lista";
 
 /* Cabeçalho da seção do calendário */
-"a11y.achievements.calendar.title"  = "Calendário de histórico";
 
 /* Navegação de mês (chevrons) */
 "a11y.month.previous" = "Mês anterior";
@@ -837,7 +829,6 @@
 /* MARK: - Acessibilidade (Fase 4, Welcome / onboarding) */
 
 "a11y.welcome.progress.format"          = "Passo %1$d de %2$d";
-"a11y.welcome.back.button"              = "Voltar ao passo anterior";
 "a11y.welcome.optional.add.label.format"    = "Adicionar %@";
 "a11y.welcome.optional.remove.label.format" = "Remover %@";
 "a11y.welcome.optional.add.hint" = "Toque para adicionar esta meta.";
@@ -882,15 +873,14 @@
 "a11y.welcome.goal.decrease.format" = "Diminuir %@";
 "a11y.welcome.goal.increase.format" = "Aumentar %@";
 
-"welcome.step.control.title" = "Seus controles";
+"welcome.step.control.title" = "Controles";
 "welcome.step.control.subtitle" = "Como você prefere marcar suas metas no dia a dia?";
 "welcome.control.slider" = "Deslizar";
 "welcome.control.slider.desc" = "Arraste o controle até o valor desejado.";
 "welcome.control.stepper" = "Botões";
 "welcome.control.stepper.desc" = "Toque para somar ou tirar um passo de cada vez.";
-"welcome.control.footer" = "Você pode mudar isso depois em Ajustes.";
 "welcome.step.ready.title" = "Tudo pronto!";
-"welcome.step.ready.subtitle" = "Ative o que quiser. Nada aqui é obrigatório.";
+"welcome.step.ready.subtitle" = "Ative o que quiser.";
 "welcome.ready.notifications.title" = "Notificações";
 "welcome.ready.notifications.desc" = "Lembretes de água e conquistas.";
 "welcome.ready.health.title" = "Apple Saúde";
@@ -907,6 +897,8 @@
 
 "today.edit.goals" = "Editar metas";
 "today.edit.controls" = "Editar controles";
+"today.edit.theme" = "Editar tema";
+"today.edit.colors" = "Editar cores";
 
 "welcome.step.units.title" = "Suas medidas";
 "welcome.step.units.subtitle" = "Como você prefere medir a água?";

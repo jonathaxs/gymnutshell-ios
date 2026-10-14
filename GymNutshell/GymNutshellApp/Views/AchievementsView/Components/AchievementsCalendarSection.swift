@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/AchievementsView/Components/AchievementsCalendarSection.swift
 //
-//  Propósito: Cabeçalho de navegação mensal + MonthlyCalendarView pra tela de Conquistas.
+//  Propósito: Dia da semana do dia selecionado + navegação mensal + MonthlyCalendarView pra tela de Conquistas.
 //             Exibido só quando o filtro "Dia" está ativo.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
@@ -25,9 +25,12 @@ struct AchievementsCalendarSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text(String(localized: "achievements.calendar.title", bundle: .gymNutshellCore))
+                // Título: só o dia da semana do dia selecionado, sem o número (ex: "Quinta-feira").
+                Text(AppDateFormatters.weekday(for: selectedDate))
                     .font(.headline)
-                    .accessibilityLabel(String(localized: "a11y.achievements.calendar.title", bundle: .gymNutshellCore))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+                    .accessibilityAddTraits(.isHeader)
 
                 Spacer()
 

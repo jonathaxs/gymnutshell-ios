@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/AchievementsView/AchievementsView.swift
 //
-//  Propósito: Página Calendário: calendário com o emoji de cada dia (padrão) ou a lista de todos os
+//  Propósito: Página Conquistas: calendário com o emoji de cada dia (padrão) ou a lista de todos os
 //             DailyRecords, e edição dos registros dos últimos 30 dias.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-14.
@@ -60,7 +60,7 @@ struct AchievementsView: View {
         case day
     }
 
-    // Modo pedido por quem abriu a página (ex: "ver todos" nos Registros). É lido uma vez e volta pro
+    // Modo pedido por quem abriu a página (ex: "ver todos" no Histórico). É lido uma vez e volta pro
     // calendário: o padrão é sempre o calendário, a lista só quando o usuário troca na hora.
     @AppStorage(UserProfile.achievementsFilterModeKey) private var requestedFilterMode: String = FilterMode.day.rawValue
     @AppStorage(UserProfile.achievementsSelectedDateKey) private var storedSelectedDateTimestamp: Double = Date().timeIntervalSince1970
@@ -241,20 +241,10 @@ struct AchievementsView: View {
                     .frame(maxWidth: 860)
                     .frame(maxWidth: .infinity)
                 } else {
-                    // Narrow (iPhone portrait): tudo numa List. A List sozinha só faz um esmaecido seco,
-                    // então cada modo é uma List própria e a troca usa transições: o calendário recolhe
-                    // pra cima e a lista sobe (e o contrário na volta).
-                    ZStack {
-                        if filterMode == .day {
-                            narrowList
-                                .transition(reduceMotion ? .opacity
-                                            : .opacity.combined(with: .scale(scale: 0.92, anchor: .top)))
-                        } else {
-                            narrowList
-                                .transition(reduceMotion ? .opacity
-                                            : .opacity.combined(with: .offset(y: 80)))
-                        }
-                    }
+                    // Narrow (iPhone portrait): uma List só pros dois modos. Trocar entre duas Lists fazia o
+                    // topo da sheet piscar (a barra perde o scroll que acompanha e redesenha o efeito de borda),
+                    // então o calendário e as linhas entram e saem dentro da mesma List.
+                    narrowList
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -262,8 +252,9 @@ struct AchievementsView: View {
             // margens fora do cap de 860pt ficam brancas em light mode.
             .background(Color(.systemGroupedBackground))
         }
-        .navigationTitle(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
-        // Troca calendário ↔ lista (como o botão lista/grade da Hoje), só ícone.
+        // Sem título na barra: o botão de troca muda de largura (Lista ↔ Calendário) e o título centralizado
+        // deslizava junto. O nome da página fica no botão de troféu da Hoje.
+        // Troca calendário ↔ lista (como o botão lista/grade da Hoje), com ícone e texto.
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 filterModeButton
@@ -324,28 +315,29 @@ struct AchievementsView: View {
                 historySection
             }
         }
-        // Sem fundo próprio: na troca as duas Lists se sobrepõem e o fundo cinza vem de fora.
+        // Sem fundo próprio: o cinza vem de fora, igual ao layout largo.
         .scrollContentBackground(.hidden)
     }
 
     // MARK: - Botão calendário ↔ lista
 
-    /// Mostra o modo pra onde vai: no calendário, o ícone de lista; na lista, o de calendário.
+    /// Mostra o modo pra onde vai: no calendário, "Lista"; na lista, "Calendário".
     private var filterModeButton: some View {
         let next: FilterMode = filterMode == .day ? .all : .day
         return Button {
             UISelectionFeedbackGenerator().selectionChanged()
-            // Mola: o calendário recolhe pra cima e a lista sobe (no iPhone em retrato).
             withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.85)) {
                 filterMode = next
             }
         } label: {
-            Image(systemName: next == .all ? "list.bullet" : "calendar")
-                .contentTransition(.symbolEffect(.replace))
+            // HStack em vez de Label: na barra o Label vira só ícone.
+            HStack(spacing: 6) {
+                Image(systemName: next == .all ? "list.bullet" : "calendar")
+                    .contentTransition(.symbolEffect(.replace))
+                Text(String(localized: next == .all ? "achievements.filter.list" : "achievements.filter.calendar",
+                            bundle: .gymNutshellCore))
+            }
         }
-        .accessibilityLabel(String(localized: next == .all ? "a11y.achievements.filter.all"
-                                                            : "a11y.achievements.filter.day",
-                                   bundle: .gymNutshellCore))
     }
 
     // MARK: - Seção de histórico (extraída pra reuso no layout wide/narrow)

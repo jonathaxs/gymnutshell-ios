@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Helpers/Navigation/AppRouter.swift
 //
 //  Propósito: Roteador único do app. Guarda o caminho do NavigationStack raiz (MainView), a sheet
-//             aberta por cima da Hoje (Registros ou Calendário) e o caminho dentro dela, e deixa
+//             aberta por cima da Hoje (Histórico ou Conquistas) e o caminho dentro dela, e deixa
 //             qualquer tela, widget ou notificação abrir uma página sem conhecer a hierarquia.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-13.
@@ -43,10 +43,10 @@ final class AppRouter {
     /// Sheet aberta por cima da Hoje (nil = nenhuma).
     var sheet: AppSheet?
 
-    /// Caminho dentro da sheet (ex.: Registros → Calendário de um dia).
+    /// Caminho dentro da sheet (ex.: Histórico → Conquistas de um dia).
     var sheetPath: [AppRoute] = []
 
-    /// Com uma sheet aberta, empilha dentro dela. Sem sheet, Registros e Calendário abrem em
+    /// Com uma sheet aberta, empilha dentro dela. Sem sheet, Histórico e Conquistas abrem em
     /// sheet e o resto empilha no stack raiz. Ajustes sempre é página: fecha a sheet antes.
     func open(_ route: AppRoute) {
         if route == .settings {

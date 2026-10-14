@@ -106,17 +106,17 @@ extension View {
         }
     }
 
-    /// Botão secundário em cápsula (vidro neutro no iOS 26+).
+    /// Botão secundário em cápsula (vidro neutro no iOS 26+). `circle` deixa redondo (botões só de ícone).
     @ViewBuilder
-    func appSecondaryButton(_ color: Color) -> some View {
+    func appSecondaryButton(_ color: Color, circle: Bool = false) -> some View {
         if #available(iOS 26.0, *) {
             self.buttonStyle(.glass)
-                .buttonBorderShape(.capsule)
+                .buttonBorderShape(circle ? .circle : .capsule)
                 .controlSize(.large)
                 .tint(color)
         } else {
             self.buttonStyle(.bordered)
-                .buttonBorderShape(.capsule)
+                .buttonBorderShape(circle ? .circle : .capsule)
                 .controlSize(.large)
                 .tint(color)
         }
@@ -140,8 +140,8 @@ extension View {
 
 // MARK: - AppTabHeader
 
-/// Cabeçalho da Hoje: título grande (a data) à esquerda, sino do histórico de notificações e engrenagem
-/// de Ajustes à direita. As outras páginas usam a barra de navegação nativa.
+/// Cabeçalho da Hoje: sino do histórico de notificações à esquerda, título grande (a data) no meio e
+/// engrenagem de Ajustes à direita. As outras páginas usam a barra de navegação nativa.
 struct AppTabHeader: View {
 
     let title: String
@@ -153,27 +153,34 @@ struct AppTabHeader: View {
 
     @State private var showNotificationHistory = false
 
+    /// Ícone de 35 pt + a borda do vidro (~7,5 pt de cada lado) dá ~50 pt, a mesma altura dos botões
+    /// Histórico, grade e troféu logo abaixo do anel.
+    private static let iconSize: CGFloat = 35
+    private static let fallbackPadding: CGFloat = 7.5
+
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
-            Text(title)
-                .font(.largeTitle.weight(.bold))
-                .lineLimit(1)
-                .minimumScaleFactor(0.6)
-                // Centralizada no espaço à esquerda do sino (mesma folga dos dois lados).
-                .frame(maxWidth: .infinity, alignment: .center)
-                .accessibilityAddTraits(.isHeader)
-
             Button {
                 showNotificationHistory = true
             } label: {
                 Image(systemName: "bell.fill")
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(accentColor)
-                    .frame(width: 44, height: 44)
+                    .frame(width: Self.iconSize, height: Self.iconSize)
             }
-            .appCircleButton()
+            .appCircleButton(fallbackPadding: Self.fallbackPadding)
             .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
             .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
+
+            Text(title)
+                .font(.title.weight(.bold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+                // Centralizada entre o sino e a engrenagem, que têm a mesma largura.
+                .frame(maxWidth: .infinity, alignment: .center)
+                .accessibilityAddTraits(.isHeader)
+                // O VoiceOver lê a data antes dos botões, mesmo com o sino à esquerda.
+                .accessibilitySortPriority(1)
 
             Button {
                 router.open(.settings)
@@ -181,11 +188,12 @@ struct AppTabHeader: View {
                 Image(systemName: "gearshape.fill")
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(accentColor)
-                    .frame(width: 44, height: 44)
+                    .frame(width: Self.iconSize, height: Self.iconSize)
             }
-            .appCircleButton()
+            .appCircleButton(fallbackPadding: Self.fallbackPadding)
             .accessibilityLabel(String(localized: "settings.header.title", bundle: .gymNutshellCore))
         }
+        .accessibilityElement(children: .contain)
         .sheet(isPresented: $showNotificationHistory) {
             NotificationHistorySheet()
         }
@@ -213,10 +221,20 @@ struct IconBadge: View {
 
 // MARK: - RoundStepButton
 
-/// Botão redondo de vidro com - ou +, usado nas metas e nos controles de registro.
+/// Botão redondo de vidro com -, + ou lixeira, usado nas metas e nos controles de registro.
 struct RoundStepButton: View {
 
-    enum Kind { case minus, plus }
+    enum Kind {
+        case minus, plus, trash
+
+        var symbolName: String {
+            switch self {
+            case .minus: return "minus"
+            case .plus:  return "plus"
+            case .trash: return "trash"
+            }
+        }
+    }
 
     let kind: Kind
     var size: CGFloat = 44
@@ -225,7 +243,7 @@ struct RoundStepButton: View {
     let action: () -> Void
 
     var body: some View {
-        let icon = Image(systemName: kind == .minus ? "minus" : "plus")
+        let icon = Image(systemName: kind.symbolName)
             .font(.system(size: size * 0.4, weight: .bold))
             .foregroundStyle(color)
             .frame(width: size, height: size)

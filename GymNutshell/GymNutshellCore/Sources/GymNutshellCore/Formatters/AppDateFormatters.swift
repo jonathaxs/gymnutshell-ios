@@ -43,6 +43,15 @@ public enum AppDateFormatters {
         return f
     }()
 
+    /// Só o dia da semana por extenso ("Terça-feira"). Título do calendário nas Conquistas.
+    public static func weekday(for date: Date, locale: Locale = .current) -> String {
+        let f = DateFormatter()
+        f.locale = locale
+        f.dateFormat = "EEEE"
+        let s = f.string(from: date)
+        return s.prefix(1).uppercased() + s.dropFirst()
+    }
+
     /// Dia da semana e dia do mês, sem o mês ("Segunda-feira, 12"). Título da aba Hoje.
     /// O template `EEEEd` sai como "12 Monday" em inglês, então a ordem é montada aqui.
     public static func weekdayAndDay(for date: Date, locale: Locale = .current) -> String {

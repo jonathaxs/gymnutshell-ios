@@ -91,6 +91,15 @@ struct MonthlyCalendarView: View {
                 .font(.callout.weight(.semibold))
                 .foregroundStyle(isSelected ? .white : (isInDisplayedMonth ? .primary : .secondary))
                 .opacity(isInDisplayedMonth || isSelected ? 1 : 0.45)
+                // Hoje: traço curto embaixo do número (branco quando o dia está selecionado).
+                .overlay(alignment: .bottom) {
+                    if isToday {
+                        Capsule()
+                            .fill(isSelected ? Color.white : accentColor)
+                            .frame(width: 16, height: 2.5)
+                            .offset(y: 3)
+                    }
+                }
 
             if let emoji {
                 Text(emoji)

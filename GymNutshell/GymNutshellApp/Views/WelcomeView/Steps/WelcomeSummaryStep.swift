@@ -3,7 +3,7 @@
 //
 //  Propósito: Etapa do onboarding, exibe as metas diárias padrão organizadas por categoria, com
 //             botões − / + pra ajustar cada valor, e permite adicionar opcionalmente Gordura e Creatina.
-//             Os parágrafos informativos aparecem no fim, depois das metas opcionais.
+//             O aviso de que dá pra editar depois aparece no fim, depois das metas opcionais.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-10.
 // ⌘
@@ -12,25 +12,16 @@ import SwiftUI
 import GymNutshellCore
 
 /// Última etapa do onboarding: mostra as metas organizadas por categoria.
-/// Fixas aparecem como linhas informativas; opcionais têm botão Adicionar/Remover.
+/// Fixas têm − / +; opcionais têm Adicionar e, depois de adicionadas, − / + e a lixeira na mesma linha.
 struct WelcomeSummaryStep: View {
 
     @Binding var goals: GoalsCalculator.Result?
     let measurementSystem: MeasurementSystem
-    let userGoal: UserGoal
     let accentColor: Color
     @Binding var includeFats: Bool
     @Binding var includeCreatine: Bool
     @Binding var scrolledToEnd: Bool
     var isWide: Bool = false
-
-    private var goalColor: Color {
-        switch userGoal {
-        case .bulking:     return .orange
-        case .maintenance: return .blue
-        case .cutting:     return .green
-        }
-    }
 
     var body: some View {
         ScrollView {
@@ -38,9 +29,8 @@ struct WelcomeSummaryStep: View {
 
                 if !isWide {
                     WelcomeStepHeader(
-                        emoji: "✅",
+                        emoji: "💪",
                         title: String(localized: "welcome.step.summary.title", bundle: .gymNutshellCore),
-                        subtitle: String(localized: "welcome.step.summary.subtitle", bundle: .gymNutshellCore),
                         accentColor: accentColor
                     )
                 }
@@ -75,6 +65,8 @@ struct WelcomeSummaryStep: View {
                             value: "\(goals.goodFat)g",
                             accentColor: accentColor,
                             isIncluded: $includeFats,
+                            canDecrease: goals.goodFat - 5 >= 5,
+                            canIncrease: goals.goodFat + 5 <= 300,
                             onDecrease: { adjust(\.goodFat, by: -5, range: 5...300) },
                             onIncrease: { adjust(\.goodFat, by: 5, range: 5...300) }
                         )
@@ -96,6 +88,8 @@ struct WelcomeSummaryStep: View {
                             value: "\(goals.creatine)g",
                             accentColor: accentColor,
                             isIncluded: $includeCreatine,
+                            canDecrease: goals.creatine - 1 >= 1,
+                            canIncrease: goals.creatine + 1 <= 20,
                             onDecrease: { adjust(\.creatine, by: -1, range: 1...20) },
                             onIncrease: { adjust(\.creatine, by: 1, range: 1...20) }
                         )
@@ -106,14 +100,6 @@ struct WelcomeSummaryStep: View {
                     VStack(alignment: .center, spacing: 10) {
                         Color.clear.frame(height: 1)
                             .onAppear { scrolledToEnd = true }
-
-                        (Text(String(localized: "welcome.summary.subtitle.calculated.prefix", bundle: .gymNutshellCore))
-                         + Text(userGoal.label).fontWeight(.semibold)
-                         + Text(String(localized: "welcome.summary.subtitle.calculated.suffix", bundle: .gymNutshellCore)))
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity, alignment: .center)
 
                         Text(String(localized: "welcome.summary.subtitle.customize", bundle: .gymNutshellCore))
                             .font(.subheadline)
@@ -201,6 +187,8 @@ private struct GoalStepper: View {
     let canIncrease: Bool
     let onDecrease: () -> Void
     let onIncrease: () -> Void
+    /// Metas opcionais: lixeira entre o valor e o −, pra o − / + ficarem alinhados com os das metas fixas.
+    var onRemove: (() -> Void)? = nil
 
     var body: some View {
         HStack(spacing: 8) {
@@ -213,6 +201,13 @@ private struct GoalStepper: View {
                 .accessibilityLabel(label)
                 .accessibilityValue(valueText)
 
+            if let onRemove {
+                RoundStepButton(kind: .trash, size: 46, color: .red, action: onRemove)
+                    .accessibilityLabel(String(format: String(localized: "a11y.welcome.optional.remove.label.format",
+                                                              bundle: .gymNutshellCore), label))
+                    .accessibilityHint(String(localized: "a11y.welcome.optional.remove.hint", bundle: .gymNutshellCore))
+            }
+
             RoundStepButton(kind: .minus, size: 46, isEnabled: canDecrease, action: onDecrease)
                 .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
             RoundStepButton(kind: .plus, size: 46, isEnabled: canIncrease, action: onIncrease)
@@ -223,6 +218,8 @@ private struct GoalStepper: View {
 
 // MARK: - Linha de meta de rastreio opcional
 
+/// Fora da lista: nome + Adicionar, sem o valor. Na lista, tudo na mesma linha das metas fixas:
+/// valor, lixeira vermelha (mesmo círculo de vidro) e − / +, alinhados com os das metas fixas.
 private struct OptionalTrackingGoalRow: View {
 
     let icon: String
@@ -230,102 +227,59 @@ private struct OptionalTrackingGoalRow: View {
     let value: String
     let accentColor: Color
     @Binding var isIncluded: Bool
+    let canDecrease: Bool
+    let canIncrease: Bool
     let onDecrease: () -> Void
     let onIncrease: () -> Void
 
-    @State private var buttonScale: CGFloat = 1.0
-
     var body: some View {
-        VStack(spacing: 10) {
-            HStack {
-                // Bloco informativo (emoji + nome + badge + valor) combina num único
-                // elemento de a11y; botão Add/Remove fica FORA do combine pra ser
-                // focável separadamente (mesmo padrão do TrackingGoalRow do Today).
-                HStack(spacing: 12) {
-                    Text(icon)
-                        .frame(width: 24)
-                        .accessibilityHidden(true)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(label)
-                            .font(.subheadline)
-                        Text(String(localized: "welcome.summary.optional.badge", bundle: .gymNutshellCore))
-                            .font(.caption2.weight(.medium))
-                            .foregroundStyle(.secondary)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(Color.secondary.opacity(0.12))
-                            .clipShape(Capsule())
-                    }
-                    Spacer()
-                    Text(value)
-                        .font(isIncluded ? .subheadline.bold() : .subheadline)
-                        .foregroundStyle(.primary)
-                        .monospacedDigit()
-                }
-                .accessibilityElement(children: .combine)
-                .accessibilityLabel(label)
-                .accessibilityValue(value)
+        HStack(spacing: 12) {
+            Text(icon)
+                .frame(width: 24)
+                .accessibilityHidden(true)
 
-                // Fora da lista: Adicionar fica ao lado do nome.
-                if !isIncluded { toggleButton }
-            }
+            // Sem Spacer: o nome ocupa a sobra da linha e só encolhe a fonte quando falta espaço
+            // (com os 3 botões e "100g" a linha fica apertada nos iPhones mais estreitos).
+            Text(label)
+                .font(.subheadline)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
-            // Na lista: segunda linha, Remover à esquerda e − / + à direita (o título não aperta).
             if isIncluded {
-                HStack(spacing: 8) {
-                    toggleButton
-                    Spacer()
-                    RoundStepButton(kind: .minus, size: 46, action: onDecrease)
-                        .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
-                    RoundStepButton(kind: .plus, size: 46, action: onIncrease)
-                        .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
-                }
+                GoalStepper(
+                    valueText: value,
+                    label: label,
+                    canDecrease: canDecrease,
+                    canIncrease: canIncrease,
+                    onDecrease: onDecrease,
+                    onIncrease: onIncrease,
+                    onRemove: { setIncluded(false) }
+                )
+                .transition(.opacity)
+            } else {
+                addButton
+                    .transition(.opacity)
             }
         }
         .padding(.leading, 16)
         .padding(.trailing, 12)
-        .padding(.vertical, 8)
         .frame(minHeight: 60)
     }
 
-    private var toggleButton: some View {
-        Button {
-            UISelectionFeedbackGenerator().selectionChanged()
-            withAnimation(.spring(response: 0.25, dampingFraction: 0.5)) {
-                buttonScale = 1.4
-            }
-            withAnimation(.spring(response: 0.25, dampingFraction: 0.5).delay(0.12)) {
-                buttonScale = 1.0
-            }
-            isIncluded.toggle()
-        } label: {
-            Label(isIncluded
-                  ? String(localized: "welcome.option.remove", bundle: .gymNutshellCore)
-                  : String(localized: "welcome.option.add", bundle: .gymNutshellCore),
-                  systemImage: isIncluded ? "xmark" : "plus")
-                .font(.subheadline.weight(.semibold))
-                .scaleEffect(buttonScale)
-        }
-        .modifier(OptionalToggleStyle(isIncluded: isIncluded, accentColor: accentColor))
-        .accessibilityLabel(String(format: String(localized: isIncluded
-            ? "a11y.welcome.optional.remove.label.format"
-            : "a11y.welcome.optional.add.label.format", bundle: .gymNutshellCore), label))
-        .accessibilityHint(String(localized: isIncluded
-            ? "a11y.welcome.optional.remove.hint"
-            : "a11y.welcome.optional.add.hint", bundle: .gymNutshellCore))
+    private func setIncluded(_ included: Bool) {
+        UISelectionFeedbackGenerator().selectionChanged()
+        withAnimation(.snappy(duration: 0.25)) { isIncluded = included }
     }
-}
 
-/// Adicionar = azul (principal); Remover = vermelho (secundário).
-private struct OptionalToggleStyle: ViewModifier {
-    let isIncluded: Bool
-    let accentColor: Color
-
-    func body(content: Content) -> some View {
-        if isIncluded {
-            content.appSecondaryButton(.red).controlSize(.regular)
-        } else {
-            content.appProminentButton(accentColor, size: .regular)
+    private var addButton: some View {
+        Button { setIncluded(true) } label: {
+            Label(String(localized: "welcome.option.add", bundle: .gymNutshellCore), systemImage: "plus")
+                .font(.subheadline.weight(.semibold))
         }
+        .appProminentButton(accentColor, size: .regular)
+        .accessibilityLabel(String(format: String(localized: "a11y.welcome.optional.add.label.format",
+                                                  bundle: .gymNutshellCore), label))
+        .accessibilityHint(String(localized: "a11y.welcome.optional.add.hint", bundle: .gymNutshellCore))
     }
 }

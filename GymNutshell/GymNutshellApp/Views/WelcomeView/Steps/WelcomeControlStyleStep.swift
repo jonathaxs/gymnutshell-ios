@@ -27,7 +27,6 @@ struct WelcomeControlStyleStep: View {
                             emoji: "🎛️",
                             title: String(localized: "welcome.step.control.title", bundle: .gymNutshellCore),
                             subtitle: String(localized: "welcome.step.control.subtitle", bundle: .gymNutshellCore),
-                            note: String(localized: "welcome.control.footer", bundle: .gymNutshellCore),
                             accentColor: accentColor
                         )
                     }
@@ -42,14 +41,6 @@ struct WelcomeControlStyleStep: View {
                          title: String(localized: "welcome.control.stepper", bundle: .gymNutshellCore),
                          desc: String(localized: "welcome.control.stepper.desc", bundle: .gymNutshellCore)) {
                         StepperPreview(color: accentColor)
-                    }
-
-                    if isWide {
-                        Text(String(localized: "welcome.control.footer", bundle: .gymNutshellCore))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity, alignment: .center)
                     }
                 }
                 .padding(.horizontal, AppStyle.horizontalPadding)
