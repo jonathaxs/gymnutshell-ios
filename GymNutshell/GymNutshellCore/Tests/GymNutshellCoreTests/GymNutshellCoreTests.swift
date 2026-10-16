@@ -199,3 +199,39 @@ import Foundation
     #expect(prefs.controlStyle == nil)
     #expect(prefs.widgetBackground == "x")
 }
+
+// MARK: - Níveis (5 faixas de 20%)
+
+@Test func faixasDosCincoNiveis() {
+    #expect(DailyAchievement.from(percent: 0) == .level1)
+    #expect(DailyAchievement.from(percent: 20) == .level1)
+    #expect(DailyAchievement.from(percent: 21) == .level2)
+    #expect(DailyAchievement.from(percent: 40) == .level2)
+    #expect(DailyAchievement.from(percent: 41) == .level3)
+    #expect(DailyAchievement.from(percent: 61) == .level4)
+    #expect(DailyAchievement.from(percent: 80) == .level4)
+    #expect(DailyAchievement.from(percent: 81) == .level5)
+    #expect(DailyAchievement.from(progress: 1) == .level5)
+    #expect(DailyAchievement.level2.percentRange == "21 – 40%")
+    #expect(DailyAchievement.level5.next == nil)
+}
+
+/// O nível de um dia salvo é lido de volta pelo emoji, então nenhum emoji pode se repetir entre temas/níveis.
+@Test func emojisDosNiveisSaoUnicos() {
+    let all = AppTheme.allCases.flatMap { theme in DailyAchievement.allCases.map { theme.emoji(for: $0) } }
+    #expect(Set(all).count == all.count)
+    for theme in AppTheme.allCases {
+        for tier in DailyAchievement.allCases {
+            #expect(DailyAchievement.from(emoji: theme.emoji(for: tier)) == tier)
+        }
+    }
+}
+
+@Test func registroAntigoReclassificadoPelaPorcentagem() {
+    // Dia antigo com 70%: era nível 3, nas faixas novas é nível 4 do mesmo tema.
+    let record = DailyRecord(water: 0, protein: 0, carbs: 0, goodFat: 0, fiber: 0, sleep: 0, percent: 70,
+                             achievementTitle: "", achievementEmoji: AppTheme.dog.emoji(for: .level3), points: 60)
+    record.normalizeAchievement()
+    #expect(record.achievementEmoji == AppTheme.dog.emoji(for: .level4))
+    #expect(record.points == DailyAchievement.level4.points)
+}

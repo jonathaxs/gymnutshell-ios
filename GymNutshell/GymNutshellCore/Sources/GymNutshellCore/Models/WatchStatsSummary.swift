@@ -27,6 +27,7 @@ public struct WatchStatsSummary: Codable, Sendable {
     public let level2Days: Int
     public let level3Days: Int
     public let level4Days: Int
+    public let level5Days: Int
     public let workoutDays: Int
     public let cardioDays: Int
     /// 7 entradas, da mais antiga pra mais recente.
@@ -51,6 +52,7 @@ extension WatchStatsSummary {
         level2Days = records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level2 }.count
         level3Days = records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level3 }.count
         level4Days = records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level4 }.count
+        level5Days = records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level5 }.count
 
         workoutDays = records.filter { $0.didWorkout }.count
         cardioDays  = records.filter { $0.didCardio  }.count

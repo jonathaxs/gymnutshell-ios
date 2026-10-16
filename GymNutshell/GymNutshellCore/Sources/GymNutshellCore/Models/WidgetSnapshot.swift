@@ -159,13 +159,7 @@ extension WidgetSnapshot {
         let sex = defaults.string(forKey: UserProfile.sexKey) ?? ""
         let accentColorRaw = defaults.string(forKey: AppAccentColor.storageKey) ?? AppAccentColor.blue.rawValue
 
-        let tierNumber: Int
-        switch achievement {
-        case .level1: tierNumber = 1
-        case .level2: tierNumber = 2
-        case .level3: tierNumber = 3
-        case .level4: tierNumber = 4
-        }
+        let tierNumber = achievement.number
 
         let goals = perGoal.map { (key, value) in
             GoalProgress(

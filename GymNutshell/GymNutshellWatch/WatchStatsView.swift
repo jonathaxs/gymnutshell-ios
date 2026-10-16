@@ -161,6 +161,7 @@ struct WatchStatsView: View {
         case .level2: return s.level2Days
         case .level3: return s.level3Days
         case .level4: return s.level4Days
+        case .level5: return s.level5Days
         }
     }
 }

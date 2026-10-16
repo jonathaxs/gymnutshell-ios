@@ -158,12 +158,7 @@ struct RecordDetailView: View {
     }
 
     private func tierLevel(for achievement: DailyAchievement) -> Int {
-        switch achievement {
-        case .level1: return 1
-        case .level2: return 2
-        case .level3: return 3
-        case .level4: return 4
-        }
+        achievement.number
     }
 
     // MARK: - Notas

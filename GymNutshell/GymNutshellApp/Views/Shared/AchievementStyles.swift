@@ -17,15 +17,7 @@ extension DailyAchievement {
     // Cor representativa associada ao nível de conquista.
     // Usada principalmente pra fundos sutis e destaques.
     var color: Color {
-        switch self {
-        case .level1:
-            return Color.red.opacity(0.30)
-        case .level2:
-            return Color.yellow.opacity(0.30)
-        case .level3:
-            return Color.green.opacity(0.30)
-        case .level4:
-            return Color.blue.opacity(0.30)
-        }
+        // Mesmas cores dos 5 segmentos do anel.
+        SegmentedProgressRing<EmptyView>.segmentColors[number - 1].opacity(0.30)
     }
 }

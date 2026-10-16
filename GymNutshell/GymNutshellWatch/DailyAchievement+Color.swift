@@ -13,11 +13,7 @@ import GymNutshellCore
 extension DailyAchievement {
     /// Cor base associada ao nível de conquista (sem opacidade).
     var color: Color {
-        switch self {
-        case .level1: return .red
-        case .level2: return .yellow
-        case .level3: return .green
-        case .level4: return .blue
-        }
+        // Mesmas cores dos 5 segmentos do anel.
+        SegmentedProgressRing<EmptyView>.segmentColors[number - 1]
     }
 }

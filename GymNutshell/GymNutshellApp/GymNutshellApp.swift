@@ -95,6 +95,10 @@ struct GymNutshellApp: App {
             )
             containerInitFailed = true
         }
+        // 2.0: os dias salvos com 4 níveis passam pras faixas novas de 5 níveis (uma vez só).
+        if !containerInitFailed {
+            DailyRecord.migrateToFiveLevelsIfNeeded(in: sharedModelContainer.mainContext)
+        }
     }
 
     var body: some Scene {

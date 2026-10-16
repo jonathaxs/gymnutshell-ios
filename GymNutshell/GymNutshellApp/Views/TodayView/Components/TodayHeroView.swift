@@ -48,22 +48,13 @@ struct TodayHeroView: View {
 
     private var ringSize: CGFloat { verticalLayout ? 170 : 150 }
 
-    // Próximo nível: quanto falta (em %) e qual tier. nil no nível máximo (90%+).
+    // Próximo nível: quanto falta (em %) e qual tier. nil no nível máximo (81%+).
     private var nextLevel: (percent: Int, tier: DailyAchievement)? {
-        if dailyPercentage >= 90 { return nil }
-        if dailyPercentage >= 66 { return (90 - dailyPercentage, .level4) }
-        if dailyPercentage >= 33 { return (66 - dailyPercentage, .level3) }
-        return (33 - dailyPercentage, .level2)
+        guard let next = DailyAchievement.from(percent: dailyPercentage).next else { return nil }
+        return (next.minPercent - dailyPercentage, next)
     }
 
-    private var nextLevelNumber: Int? {
-        switch nextLevel?.tier {
-        case .level2: return 2
-        case .level3: return 3
-        case .level4: return 4
-        default:      return nil
-        }
-    }
+    private var nextLevelNumber: Int? { nextLevel?.tier.number }
 
     private var tierEmoji: String { selectedTheme.emoji(for: dailyAchievement, sex: sex) }
     private var tierName: String { selectedTheme.name(for: dailyAchievement, sex: sex) }
@@ -77,7 +68,7 @@ struct TodayHeroView: View {
                         nextLevelPercent: nextLevel?.percent,
                         nextLevelName: nextLevel.map { selectedTheme.name(for: $0.tier, sex: sex) } ?? "",
                         nextLevelNumber: nextLevelNumber,
-                        isAtMaxLevel: dailyPercentage >= 90
+                        isAtMaxLevel: nextLevel == nil
                     )
                 }
             }

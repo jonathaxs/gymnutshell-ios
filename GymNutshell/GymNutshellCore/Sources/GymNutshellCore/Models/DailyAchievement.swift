@@ -14,21 +14,63 @@ public enum DailyAchievement: CaseIterable, Sendable {
     case level2
     case level3
     case level4
+    case level5
 }
 
 extension DailyAchievement {
     /// Converte um valor de progresso normalizado (0...1) no tier `DailyAchievement` correspondente.
+    /// Usa a % inteira (arredondada pra baixo), igual à mostrada no anel.
     public static func from(progress: Double) -> DailyAchievement {
-        switch progress {
-        case ..<0.33:
-            return .level1
-        case ..<0.66:
-            return .level2
-        case ..<0.9:
-            return .level3
-        default:
-            return .level4
+        from(percent: Int((progress * 100).rounded(.down)))
+    }
+
+    /// Faixas de 20%, as mesmas cores do anel: 0–20, 21–40, 41–60, 61–80 e 81–100.
+    public static func from(percent: Int) -> DailyAchievement {
+        switch percent {
+        case ...20: return .level1
+        case ...40: return .level2
+        case ...60: return .level3
+        case ...80: return .level4
+        default:    return .level5
         }
+    }
+
+    /// Número do nível (1...5).
+    public var number: Int {
+        switch self {
+        case .level1: return 1
+        case .level2: return 2
+        case .level3: return 3
+        case .level4: return 4
+        case .level5: return 5
+        }
+    }
+
+    /// % mínima pra chegar neste nível.
+    public var minPercent: Int {
+        switch self {
+        case .level1: return 0
+        case .level2: return 21
+        case .level3: return 41
+        case .level4: return 61
+        case .level5: return 81
+        }
+    }
+
+    /// % máxima deste nível.
+    public var maxPercent: Int {
+        switch self {
+        case .level5: return 100
+        default:      return DailyAchievement.allCases[number].minPercent - 1
+        }
+    }
+
+    /// Faixa pra exibição, ex.: "21 – 40%".
+    public var percentRange: String { "\(minPercent) – \(maxPercent)%" }
+
+    /// Próximo nível (nil no 5).
+    public var next: DailyAchievement? {
+        number < DailyAchievement.allCases.count ? DailyAchievement.allCases[number] : nil
     }
 
     /// Converte um emoji armazenado (vindo de `DailyRecord`) de volta pro tier `DailyAchievement`.
@@ -55,6 +97,8 @@ extension DailyAchievement {
             return "🐆"
         case .level4:
             return "🦁"
+        case .level5:
+            return "🐅"
         }
     }
 
@@ -68,6 +112,8 @@ extension DailyAchievement {
             return String(localized: "daily.achievement.level3", bundle: .gymNutshellCore)
         case .level4:
             return String(localized: "daily.achievement.level4", bundle: .gymNutshellCore)
+        case .level5:
+            return String(localized: "daily.achievement.level5", bundle: .gymNutshellCore)
         }
     }
 
@@ -76,11 +122,13 @@ extension DailyAchievement {
         case .level1:
             return 0
         case .level2:
-            return 40
+            return 25
         case .level3:
-            return 60
+            return 50
         case .level4:
-            return 90
+            return 75
+        case .level5:
+            return 100
         }
     }
 }

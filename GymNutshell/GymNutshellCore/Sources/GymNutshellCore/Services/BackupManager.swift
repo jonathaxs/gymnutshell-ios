@@ -259,6 +259,8 @@ public enum BackupManager {
             record.didWorkout = snap.didWorkout
             record.didCardio = snap.didCardio ?? false
             record.customValues = (try? JSONEncoder().encode(snap.customValues)) ?? Data()
+            // Backup de antes dos 5 níveis (ou do Android): reclassifica pela % salva.
+            record.normalizeAchievement()
             context.insert(record)
         }
     }

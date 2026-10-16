@@ -64,3 +64,35 @@ public final class DailyRecord {
         self.points = points
     }
 }
+
+// MARK: - Nível a partir da %
+
+extension DailyRecord {
+
+    /// Recalcula nível, emoji, nome e pontos pela % salva, mantendo o tema do emoji gravado.
+    /// Usado na migração pros 5 níveis (2.0) e ao restaurar backups antigos.
+    public func normalizeAchievement() {
+        let tier = DailyAchievement.from(percent: percent)
+        let theme = AppTheme.allCases.first { theme in
+            DailyAchievement.allCases.contains { theme.emoji(for: $0) == achievementEmoji }
+        } ?? .cat
+        achievementEmoji = theme.emoji(for: tier)
+        achievementTitle = theme.name(for: tier)
+        points = tier.points
+    }
+
+    /// Chave da migração única dos registros antigos (4 níveis) pros 5 níveis.
+    public static let fiveLevelsMigrationKey = "migration.achievement.fiveLevels"
+
+    /// Roda uma vez: reclassifica os dias salvos com as faixas novas.
+    @MainActor
+    public static func migrateToFiveLevelsIfNeeded(in context: ModelContext,
+                                                   defaults: UserDefaults = .standard) {
+        guard !defaults.bool(forKey: fiveLevelsMigrationKey) else { return }
+        let records = (try? context.fetch(FetchDescriptor<DailyRecord>())) ?? []
+        records.forEach { $0.normalizeAchievement() }
+        try? context.save()
+        defaults.set(true, forKey: fiveLevelsMigrationKey)
+    }
+}
+

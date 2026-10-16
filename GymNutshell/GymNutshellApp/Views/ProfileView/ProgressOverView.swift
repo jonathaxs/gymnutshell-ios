@@ -47,6 +47,7 @@ struct ProgressOverView: View {
     private var level2Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level2 }.count }
     private var level3Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level3 }.count }
     private var level4Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level4 }.count }
+    private var level5Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level5 }.count }
 
     // MARK: - Atividade
 
@@ -152,9 +153,9 @@ struct ProgressOverView: View {
     // MARK: - Seções
 
     private var tiersSection: some View {
-        let counts = [level1Days, level2Days, level3Days, level4Days]
+        let counts = [level1Days, level2Days, level3Days, level4Days, level5Days]
         let maxDays = counts.max() ?? 0
-        let levels: [DailyAchievement] = [.level1, .level2, .level3, .level4]
+        let levels: [DailyAchievement] = DailyAchievement.allCases
         return ProgressSection(title: String(localized: "statistics.section.tiers", bundle: .gymNutshellCore)) {
             AppGroupedCard(dividerInset: 74) {
                 ForEach(Array(levels.enumerated()), id: \.offset) { index, level in
