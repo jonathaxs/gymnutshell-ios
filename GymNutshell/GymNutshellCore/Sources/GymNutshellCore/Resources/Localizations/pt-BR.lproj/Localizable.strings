@@ -935,3 +935,6 @@
 "today.goals.viewMode.switch.a11y" = "Mudar para visualização em %@";
 "today.category.tile.a11y.value" = "%d de %d concluídas";
 "today.category.tile.a11y.hint" = "Toque para abrir as metas da categoria.";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%1$@, %2$d";

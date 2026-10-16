@@ -1,0 +1,886 @@
+/* ⌘
+  GymNutshell/GymNutshellCore/Resources/Localizations/ko.lproj/Localizable.strings
+
+  Propósito: Chaves de localização em coreano e strings da interface do usuário para o aplicativo.
+
+  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
+
+ ⌘ */
+
+/* MARK: - Models */
+
+/* DailyAchievement.swift, Cat theme (default) */
+"daily.achievement.level1" = "아기 고양이";
+"daily.achievement.level2" = "헬스 냥이";
+"daily.achievement.level3" = "근육 냥이";
+"daily.achievement.level4" = "보스 냥이";
+"daily.achievement.level5" = "호랑이";
+"daily.achievement.level5.fem" = "암호랑이";
+
+/* AppTheme.swift, Dog theme tier names */
+"daily.achievement.dog.level1" = "아기 강아지";
+"daily.achievement.dog.level2" = "헬스 댕댕이";
+"daily.achievement.dog.level3" = "스눕독";
+"daily.achievement.dog.level4" = "시골 누렁이";
+"daily.achievement.dog.level5" = "늑대";
+
+/* AppTheme.swift, Bear theme tier names */
+"daily.achievement.bear.level1" = "아기 곰";
+"daily.achievement.bear.level2" = "불곰";
+"daily.achievement.bear.level3" = "북극곰";
+"daily.achievement.bear.level4" = "천하장사 들소";
+"daily.achievement.bear.level5" = "매머드";
+
+/* AppTheme.swift, Dino theme tier names */
+"daily.achievement.dino.level1" = "아기 거북이";
+"daily.achievement.dino.level2" = "악어";
+"daily.achievement.dino.level3" = "티라노";
+"daily.achievement.dino.level4" = "거대 공룡";
+"daily.achievement.dino.level5" = "전설의 화석";
+
+/* AppTheme.swift, Bird theme tier names */
+"daily.achievement.bird.level1" = "아기 병아리";
+"daily.achievement.bird.level2" = "파랑새";
+"daily.achievement.bird.level3" = "독수리";
+"daily.achievement.bird.level4" = "지혜로운 부엉이";
+"daily.achievement.bird.level5" = "불사조";
+
+/* AppTheme.swift, Ocean theme tier names */
+"daily.achievement.ocean.level1" = "아기 물고기";
+"daily.achievement.ocean.level2" = "돌고래";
+"daily.achievement.ocean.level3" = "해파리";
+"daily.achievement.ocean.level4" = "대왕고래";
+"daily.achievement.ocean.level5" = "크라켄";
+
+/* AppTheme.swift, Dragon theme tier names */
+"daily.achievement.dragon.level1" = "아기 알";
+"daily.achievement.dragon.level2" = "도마뱀";
+"daily.achievement.dragon.level3" = "드래곤";
+"daily.achievement.dragon.level4" = "고룡";
+"daily.achievement.dragon.level5" = "드래곤 킹";
+"daily.achievement.dragon.level5.fem" = "드래곤 퀸";
+
+/* AppTheme.swift, Horse theme tier names */
+"daily.achievement.horse.level1" = "망아지";
+"daily.achievement.horse.level2" = "유니콘";
+"daily.achievement.horse.level3" = "기수";
+"daily.achievement.horse.level4" = "회전목마 챔피언";
+"daily.achievement.horse.level5" = "명마";
+
+/* AppTheme.swift, Primate theme tier names (enum case is still `.monkey` for compatibility) */
+"daily.achievement.monkey.level1" = "아기 영장류";
+"daily.achievement.monkey.level2" = "헬스 영장류";
+"daily.achievement.monkey.level3" = "동키 영장류";
+"daily.achievement.monkey.level4" = "마스터 영장류";
+"daily.achievement.monkey.level5" = "밀림의 전설";
+
+/* AppTheme.swift, Theme display names */
+"app.theme.cat" = "고양이";
+"app.theme.dog" = "강아지";
+"app.theme.bear" = "곰";
+"app.theme.dino" = "공룡";
+"app.theme.bird" = "새";
+"app.theme.ocean" = "물고기";
+"app.theme.dragon" = "드래곤";
+"app.theme.horse" = "말";
+"app.theme.monkey" = "영장류";
+
+/* UserProfile.swift */
+"fitness.goal.bulking" = "벌크업";
+"fitness.goal.maintenance" = "유지";
+"fitness.goal.cutting" = "커팅";
+
+/* MARK: - Views */
+
+/* MARK: - Views/AchievementsView */
+
+/* AchievementsView.swift */
+"achievements.header.title" = "업적";
+"achievements.filter.list" = "목록";
+"achievements.filter.calendar" = "캘린더";
+"achievements.filter.title" = "보기";
+"achievements.filter.all" = "목록";
+"achievements.filter.day" = "캘린더";
+"achievements.empty.title" = "아직 달성한 업적이 없어요";
+"achievements.empty.description" = "하루가 끝나면 이곳에 오늘의 업적이 잠금 해제돼요.";
+
+"achievements.daily.row.description" = "일일 목표의 %d%%를 달성했어요.";
+
+/* EditTodayView.swift */
+"edit.record.cancel" = "취소";
+"edit.record.save" = "저장";
+
+/* RecordDetailView.swift */
+"record.detail.title" = "업적 상세";
+"record.detail.back" = "뒤로";
+"record.detail.edit" = "편집";
+
+/* MARK: - Views/ProfileView */
+
+/* ProgressOverView.swift */
+"statistics.title" = "기록";
+"statistics.section.tiers" = "티어별 현황";
+"statistics.section.activity" = "운동 활동";
+"statistics.section.goals" = "목표";
+"statistics.tier.days" = "%d일";
+"statistics.activity.workout" = "근력 운동한 날";
+"statistics.activity.cardio" = "유산소 운동한 날";
+"statistics.goals.active.label" = "진행 중인 목표";
+"statistics.goals.active" = "%d개 진행 중";
+"statistics.fitness.goal" = "목표";
+"watch.stats.days" = "일수";
+"watch.stats.syncing" = "통계를 보려면 iPhone에서 Gym Nutshell을 열어주세요.";
+"watch.stats.recent" = "최근";
+
+/* ProgressOverView.swift, stats rows and physical data */
+"profile.stats.days" = "일수";
+"profile.recent.section" = "최근 7일";
+
+/* MARK: - Views/SettingsView */
+
+/* AboutView.swift */
+"settings.about.title" = "앱 정보";
+"settings.about.version" = "버전";
+"settings.about.feedback" = "피드백 보내기";
+"settings.about.description" = "Gym Nutshell은 매일의 운동 목표를 한눈에 관리하는 앱이에요.\n\n목표를 설정하고 기록하며, 꾸준함이 만드는 결과를 확인해보세요.";
+
+/* AddTrackingGoalView.swift */
+"settings.addgoal.title.new" = "새 목표";
+"settings.addgoal.section.icon" = "이모지";
+"settings.addgoal.emoji.placeholder" = "예: 🧘";
+"settings.addgoal.section.name" = "이름";
+"settings.addgoal.name.placeholder" = "예: 명상";
+"settings.addgoal.section.unit" = "단위";
+"settings.addgoal.unit.placeholder" = "예: min";
+"settings.addgoal.section.goal" = "목표치";
+"settings.addgoal.goal.placeholder" = "예: 10";
+"settings.addgoal.section.increment" = "조절 단위";
+"settings.addgoal.increment.placeholder" = "예: 2";
+"settings.addgoal.cancel" = "취소";
+"settings.addgoal.save" = "저장";
+"settings.addgoal.warning.catalog" = "동일한 이름의 목표가 이미 있어요.";
+"settings.addgoal.warning.emoji" = "이미 다른 목표에서 사용 중인 이모지예요.";
+"settings.addgoal.warning.emoji.keyboard" = "이모지만 입력할 수 있어요. 설정 → 일반 → 키보드 → 키보드로 이동하여 '이모티콘' 키보드를 활성화해주세요.";
+"settings.addgoal.warning.category.duplicate" = "동일한 이름의 카테고리가 이미 있어요.";
+"settings.addgoal.warning.step" = "조절 단위는 목표치보다 클 수 없어요.";
+"settings.addgoal.section.category" = "카테고리";
+"settings.addgoal.category.new.button" = "새 카테고리";
+"settings.addgoal.category.new.section" = "사용자 지정 카테고리";
+"settings.addgoal.category.new.name.placeholder" = "예: 스트레칭";
+"settings.addgoal.category.new.restDay" = "휴식일 토글 (ON/OFF)";
+"settings.goals.custom.badge" = "사용자 지정";
+"settings.goals.categories.title" = "카테고리";
+
+/* BackupSettingsView.swift */
+"settings.backup.nav.title" = "백업";
+"settings.backup.section.data" = "로컬";
+"settings.backup.section.footer" = "로컬 내보내기 및 가져오기는 .json 파일로 진행돼요.";
+"settings.backup.export" = "백업 내보내기";
+"settings.backup.import" = "백업 가져오기";
+"settings.backup.import.alert.title" = "데이터를 덮어쓸까요?";
+"settings.backup.import.alert.message" = "현재 프로필, 목표 및 기록이 백업 데이터로 대체돼요. 이 작업은 되돌릴 수 없어요.";
+"settings.backup.import.alert.confirm" = "덮어쓰기";
+"settings.backup.import.alert.cancel" = "취소";
+"settings.backup.error.title" = "오류";
+"settings.backup.success.title" = "완료";
+"settings.backup.success.message" = "백업에서 데이터가 복원되었어요.";
+
+/* iCloud backup */
+"settings.backup.icloud.save" = "iCloud에 저장";
+"settings.backup.icloud.restore" = "iCloud에서 복원";
+"settings.backup.icloud.restoring" = "iCloud에서 백업 복원 중…";
+"settings.backup.icloud.save.success" = "백업이 iCloud에 저장되었어요.";
+"settings.backup.icloud.unavailable" = "iCloud를 사용할 수 없음";
+"settings.backup.icloud.noBackup" = "iCloud에 저장된 백업이 아직 없어요.";
+"settings.backup.icloud.lastBackup" = "마지막 백업:";
+"settings.backup.icloud.footer.unavailable" = "클라우드 백업을 사용하려면 설정에서 iCloud에 로그인해주세요.";
+"settings.backup.icloud.error.unavailable" = "iCloud Drive를 사용할 수 없어요. iCloud에 로그인되어 있고 iCloud Drive가 켜져 있는지 확인해주세요.";
+"settings.backup.icloud.error.downloadTimeout" = "iCloud에서 백업을 다운로드할 수 없어요. 네트워크 연결을 확인하고 다시 시도해주세요.";
+"settings.backup.icloud.auto.toggle" = "매일 자동 백업";
+"settings.backup.icloud.auto.footer" = "\n새로운 업적이 업데이트될 때 백업이 자동으로 저장돼요.\n업적은 자정 이후 앱을 열 때 업데이트돼요.";
+
+/* CheckinGoalsSettingsView.swift */
+"settings.goals.mandatory.badge" = "기본";
+"settings.goals.optional.badge" = "추천";
+
+/* FitnessGoalChangeView.swift */
+"settings.goalchange.title" = "운동 목표";
+"settings.goalchange.section.pick" = "목표 선택";
+"settings.goalchange.section.preview" = "나의 목표";
+"settings.goalchange.save.recalc" = "저장 및 다시 계산";
+"settings.goalchange.save.keep" = "다시 계산하지 않고 저장";
+
+/* ProfileSettingsView.swift */
+"settings.profile.section.personal" = "개인 정보";
+"settings.profile.section.optional" = "선택 사항";
+"settings.profile.name" = "이름";
+"settings.profile.name.placeholder" = "이름 입력";
+"settings.profile.favoriteExercise" = "좋아하는 운동 부위";
+
+/* Favorite exercises (easter egg) */
+"favoriteExercise.unknown"    = "잘 모르겠음";
+"favoriteExercise.back"       = "등";
+"favoriteExercise.arms"       = "팔";
+"favoriteExercise.chest"      = "가슴";
+"favoriteExercise.legs"       = "하체";
+"favoriteExercise.hamstrings" = "햄스트링";
+"favoriteExercise.glutes"     = "둔근";
+"favoriteExercise.shoulders"  = "어깨";
+"favoriteExercise.biceps"     = "이두근";
+"favoriteExercise.triceps"    = "삼두근";
+"favoriteExercise.abs"        = "복근";
+"favoriteExercise.traps"      = "승모근";
+"favoriteExercise.forearms"   = "전완근";
+"favoriteExercise.calves"     = "종아리";
+"settings.profile.sex" = "성별";
+"profile.sex.male" = "남성";
+"profile.sex.female" = "여성";
+
+/* SettingsView.swift */
+"settings.header.title" = "앱 설정";
+"settings.detail.placeholder" = "항목을 선택하세요";
+"settings.section.edit" = "내 데이터";
+"settings.theme.title" = "테마";
+"settings.section.preferences" = "화면 스타일";
+"settings.section.system" = "시스템";
+"settings.section.about" = "정보";
+
+/* GymNutshellApp.swift, DataStoreErrorView */
+"app.error.dataStore.title" = "문제가 발생했어요";
+"app.error.dataStore.message" = "Gym Nutshell에서 데이터를 불러오지 못했어요.\n앱을 완전히 종료한 후 다시 열어주세요.";
+"settings.about.link" = "Gym Nutshell";
+"settings.section.physicaldata" = "프로필";
+"settings.fitness.goal.edit" = "운동 목표";
+"settings.goals.edit" = "일일 목표";
+"settings.preference.appleHealth" = "Apple 건강";
+"settings.preference.appleHealth.syncSleep" = "수면 기록";
+"settings.preference.appleHealth.autoWorkoutCheckin" = "운동 자동 감지";
+"settings.preference.appleHealth.footer" = "수면 기록은 해당 날짜에 기록이 없을 때 수면 시간을 Apple 건강에 기록해요.\n\n운동 자동 감지는 완료된 운동을 감지하여 근력 운동 또는 유산소 운동에 자동으로 기록해요.";
+"settings.preference.appleWatch" = "Apple Watch";
+"appleWatch.sheet.title" = "Apple Watch에 설치";
+"appleWatch.sheet.intro" = "Apple Watch에 Gym Nutshell을 설치하려면 아래 단계를 따르세요:";
+"appleWatch.sheet.step1" = "iPhone에서 Watch 앱을 엽니다";
+"appleWatch.sheet.step2" = "\"설치 가능한 앱\" 섹션으로 스크롤합니다";
+"appleWatch.sheet.step3" = "Gym Nutshell 옆의 설치를 탭합니다";
+"appleWatch.sheet.note" = "이미 설치되어 있다면 위의 \"Apple Watch에 설치됨\" 섹션에 표시됩니다.";
+"settings.preference.language" = "언어";
+"settings.preference.measurementSystem" = "측정 단위";
+"settings.preference.measurementSystem.metric" = "미터법 (ml)";
+"settings.preference.measurementSystem.us" = "야드파운드법 (fl oz)";
+"settings.measurementSystem.footer" = "앱에서 물 섭취량을 표시하고 입력하는 방식이에요.";
+"settings.edit.widgets" = "위젯";
+"widgetBackground.title" = "위젯";
+"widgetBackground.mode.label" = "배경";
+"widgetBackground.mode.system" = "시스템";
+"widgetBackground.mode.accent" = "포인트 색상";
+"widgetBackground.mode.custom" = "사용자 지정";
+"widgetBackground.footer.system" = "위젯이 iOS 기본 배경을 사용하며, 시스템 테마에 맞춰 검은색 또는 흰색 텍스트로 표시돼요.";
+"widgetBackground.footer.accent" = "앱의 포인트 색상을 위젯 배경으로 사용해요.";
+"widgetBackground.footer.custom" = "아래에서 색상을 선택하세요. 선택한 색상을 위젯 배경으로 사용해요.";
+"widgetBackground.picker" = "색상";
+"widgetBackground.preview" = "미리보기";
+
+/* TrackingGoalDetailView.swift */
+"settings.goaldetail.stepper" = "목표치 조절";
+"settings.goaldetail.footer" = "이 설정을 변경해도 지난 기록에는 영향을 주지 않아요.";
+"settings.goaldetail.save" = "저장";
+"settings.goaldetail.increment.stepper" = "조절 단위 변경";
+"settings.goaldetail.increment.footer" = "조절 단위는 슬라이더를 한 번 움직일 때 증감하는 값이에요.";
+
+/* TrackingGoalsSettingsView.swift */
+"settings.goals.title" = "목표";
+"settings.tracking.goals.section.custom" = "사용자 지정 목표";
+"settings.tracking.goals.done" = "완료";
+"settings.tracking.goals.editMode" = "편집";
+"settings.goals.category.order.section" = "카테고리 순서";
+"settings.goal.water" = "물";
+"settings.goal.calories" = "칼로리";
+"settings.goal.protein" = "단백질";
+"settings.goal.carbs" = "탄수화물";
+"settings.goal.fats" = "착한 지방";
+"settings.goal.fiber" = "식이섬유";
+"settings.goal.sleep" = "수면";
+
+/* MARK: - Views/Shared */
+
+/* FitnessGoalPickerView.swift */
+"welcome.goal.bulking.description" = "충분한 칼로리 섭취로 근육량을 늘려요";
+"welcome.goal.maintenance.description" = "현재 체중과 체성분을 유지해요";
+"welcome.goal.cutting.description" = "근육을 지키면서 체지방을 감량해요";
+
+/* MARK: - Views/TodayView */
+
+/* GoalCategory.swift */
+"goal.category.essencial" = "필수";
+"goal.category.nutricao" = "영양";
+"goal.category.treino" = "운동";
+"goal.category.suplemento" = "보충제";
+
+/* TodayView.swift */
+"today.goals.workout" = "웨이트 트레이닝";
+"today.goals.cardio" = "유산소";
+"today.goals.creatine" = "크레아틴";
+"today.category.other" = "기타";
+"today.category.a11y.value" = "목표 %d개 완료 (총 %d개)";
+"today.restday.label" = "휴식일";
+"today.restday.on" = "ON";
+"today.restday.off" = "OFF";
+"today.metric.sleep" = "수면";
+"today.metric.water" = "물";
+"today.metric.calories" = "칼로리";
+"today.metric.protein" = "단백질";
+"today.metric.carbs" = "탄수화물";
+"today.metric.fats" = "착한 지방";
+"today.metric.fiber" = "식이섬유";
+
+/* TodayHeroView.swift, next level phrase */
+"today.max.level" = "오늘 최고 레벨에 도달했어요!";
+
+/* DailyTierView.swift */
+"today.tier.level.1" = "티어 1";
+"today.tier.level.2" = "티어 2";
+"today.tier.level.3" = "티어 3";
+"today.tier.level.4" = "티어 4";
+/* Tier button label combines the "Today's achievement" header phrase with the
+   tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
+   duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
+"today.tier.a11y.label" = "오늘의 업적, %2$@";
+
+/* TodayProgressRingView.swift */
+"today.ring.a11y.label" = "오늘의 진행 링";
+"today.ring.a11y.hint" = "자세한 정보를 보려면 탭하세요.";
+"today.ring.a11y.value" = "%d퍼센트 완료";
+
+/* TodayView.swift, date hero button */
+"today.hero.bell.a11y.label" = "알림";
+"today.hero.bell.a11y.hint" = "알림을 열려면 탭하세요.";
+"today.hero.caption.start" = "목표를 기록하고 시작해보세요";
+"today.hero.caption.nextLevel" = "다음 레벨까지 %d%% 남았어요";
+"today.hero.caption.max" = "오늘의 최고 업적 달성!";
+"today.hero.achievement.label" = "오늘의 업적";
+"today.greeting.morning"   = "좋은 아침이에요!";
+"today.greeting.afternoon" = "좋은 오후예요!";
+"today.greeting.night"     = "좋은 저녁이에요!";
+
+/* MARK: - Views/WelcomeView */
+
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "기본 정보";
+
+/* WelcomeFitnessGoalStep.swift */
+"welcome.step.goal.title" = "운동 목표";
+"welcome.step.goal.info.editable" = "앱 설정에서 나중에 변경할 수 있어요.";
+
+/* WelcomeThemeStep.swift */
+"welcome.step.theme.title" = "테마";
+"welcome.step.theme.subtitle" = "동기부여가 되는 이모지를 골라보세요.";
+"welcome.step.theme.footer" = "테마는 나중에 언제든 변경할 수 있어요.";
+
+/* WelcomePhysicalDataStep.swift */
+"welcome.field.sex" = "성별";
+"welcome.field.sex.male" = "남성";
+"welcome.field.sex.female" = "여성";
+
+/* WelcomeSummaryStep.swift */
+"welcome.step.summary.title" = "나의 목표";
+"welcome.summary.subtitle.customize" = "이 값들을 수정하거나 언제든 새 목표를 추가할 수 있어요.";
+"welcome.option.add" = "추가";
+
+/* WelcomeStartStep.swift */
+"welcome.step.start.title" = "환영해요!";
+"welcome.start.feature.track" = "하루 동안 피트니스 목표를 기록해보세요.";
+"welcome.start.feature.theme" = "동기부여를 주는 테마를 선택해보세요.";
+"welcome.start.feature.progress" = "나의 성장을 한눈에 확인해보세요.";
+"welcome.start.new" = "시작하기";
+"welcome.start.restore" = "백업 복원";
+
+/* WelcomeView.swift */
+"welcome.button.continue" = "계속";
+"welcome.button.start" = "시작하기!";
+"welcome.button.back" = "뒤로";
+
+/* MARK: - ContentView.swift */
+
+/* HealthKit activity display names (auto check-in descriptions) */
+"healthkit.activity.running" = "러닝";
+"healthkit.activity.walking" = "걷기";
+"healthkit.activity.cycling" = "사이클링";
+"healthkit.activity.swimming" = "수영";
+"healthkit.activity.elliptical" = "일립티컬";
+"healthkit.activity.rowing" = "로잉";
+"healthkit.activity.stairClimbing" = "계단 오르기";
+"healthkit.activity.hiking" = "하이킹";
+"healthkit.activity.jumpRope" = "줄넘기";
+"healthkit.activity.dance" = "댄스";
+"healthkit.activity.strengthTraining" = "근력 운동";
+"healthkit.activity.functionalTraining" = "기능성 트레이닝";
+"healthkit.activity.crossTraining" = "크로스 트레이닝";
+"healthkit.activity.hiit" = "고강도 인터벌 트레이닝";
+"healthkit.activity.boxing" = "복싱";
+"healthkit.activity.martialArts" = "무술";
+"healthkit.activity.coreTraining" = "코어 트레이닝";
+"healthkit.activity.climbing" = "클라이밍";
+"healthkit.activity.other" = "기타 운동";
+
+/* AppTheme, Categories */
+"app.theme.category.sport" = "스포츠";
+"app.theme.category.animals" = "동물";
+"app.theme.category.elements" = "자연과 원소";
+"app.theme.category.competition" = "성장";
+"app.theme.category.warrior" = "히어로";
+"app.theme.category.space" = "우주";
+
+/* AppTheme, Gym */
+"app.theme.gym" = "헬스";
+"app.theme.running" = "러닝";
+"daily.achievement.running.level1" = "산책러";
+"daily.achievement.running.level2" = "페이스 러너";
+"daily.achievement.running.level3" = "러너";
+"daily.achievement.running.level4" = "마라토너";
+"daily.achievement.running.level5" = "울트라 마라토너";
+"daily.achievement.gym.level1" = "수탉";
+"daily.achievement.gym.level1.fem" = "암탉";
+"daily.achievement.gym.level2" = "근육 꿈나무";
+"daily.achievement.gym.level3" = "헬스 마니아";
+"daily.achievement.gym.level4" = "근육맨";
+"daily.achievement.gym.level5" = "몬스터";
+
+/* AppTheme, Fire */
+"app.theme.fire" = "불";
+"daily.achievement.fire.level1" = "촛불";
+"daily.achievement.fire.level2" = "불꽃";
+"daily.achievement.fire.level3" = "화산";
+"daily.achievement.fire.level4" = "태양";
+"daily.achievement.fire.level5" = "초신성";
+
+/* AppTheme, Plant */
+"app.theme.plant" = "숲";
+"daily.achievement.plant.level1" = "새싹";
+"daily.achievement.plant.level2" = "풀잎";
+"daily.achievement.plant.level3" = "큰 나무";
+"daily.achievement.plant.level4" = "크리스마스 트리";
+"daily.achievement.plant.level5" = "울창한 숲";
+
+/* AppTheme, Champion */
+"app.theme.champion" = "메달";
+"daily.achievement.champion.level1" = "브론즈";
+"daily.achievement.champion.level2" = "실버";
+"daily.achievement.champion.level3" = "골드";
+"daily.achievement.champion.level4" = "다이아몬드";
+"daily.achievement.champion.level5" = "트로피";
+
+/* AppTheme, Number */
+"app.theme.number" = "숫자";
+"daily.achievement.number.level1" = "하나";
+"daily.achievement.number.level2" = "둘";
+"daily.achievement.number.level3" = "셋";
+"daily.achievement.number.level4" = "넷";
+"daily.achievement.number.level5" = "다섯";
+
+/* AppTheme, Doctor */
+"app.theme.doctor" = "의사";
+"daily.achievement.doctor.level1" = "수련생";
+"daily.achievement.doctor.level2" = "레지던트";
+"daily.achievement.doctor.level3" = "전문의";
+"daily.achievement.doctor.level4" = "닥터 후";
+"daily.achievement.doctor.level5" = "병원장";
+
+/* AppTheme, Ninja (Fighter) */
+"app.theme.ninja" = "파이터";
+"daily.achievement.ninja.level1" = "수련생";
+"daily.achievement.ninja.level2" = "검객";
+"daily.achievement.ninja.level3" = "닌자";
+"daily.achievement.ninja.level4" = "슈퍼 파이터";
+"daily.achievement.ninja.level5" = "전설의 마스터";
+
+/* AppTheme, Astronaut (Exploration) */
+"app.theme.astronaut" = "탐험";
+"daily.achievement.astronaut.level1" = "인공위성";
+"daily.achievement.astronaut.level2" = "우주비행사";
+"daily.achievement.astronaut.level3" = "우주 로켓";
+"daily.achievement.astronaut.level4" = "비행접시";
+"daily.achievement.astronaut.level5" = "외계인";
+
+/* AppTheme, Celestial */
+"app.theme.celestial" = "천체";
+"daily.achievement.celestial.level1" = "혜성";
+"daily.achievement.celestial.level2" = "달";
+"daily.achievement.celestial.level3" = "지구";
+"daily.achievement.celestial.level4" = "토성";
+"daily.achievement.celestial.level5" = "은하";
+
+/* AppAccentColor.swift, Color names */
+"color.red"    = "빨강";
+"color.blue"   = "파랑";
+"color.purple" = "보라";
+"color.green"  = "초록";
+"color.yellow" = "노랑";
+"color.orange" = "주황";
+"color.cyan"   = "청록";
+"color.pink"   = "분홍";
+
+/* ColorSettingsView.swift */
+"settings.color.title"    = "포인트 색상";
+"settings.color.subtitle" = "앱 전체에서 사용할 포인트 색상";
+"settings.color.preview" = "미리보기";
+
+/* TierInfoView.swift / ProgressRingInfoView.swift, links in Settings > About */
+"settings.about.achievement"  = "업적";
+"settings.about.progressRing" = "진행 링";
+
+/* TierInfoView.swift */
+"tier.info.intro"             = "나의 업적은 하루가 끝나는 자정에 기록돼요.";
+"tier.info.section.levels"    = "레벨";
+"tier.info.change.theme"      = "테마 변경";
+"tier.info.range.suffix"      = " 달성";
+
+/* ProgressRingInfoView.swift */
+"ring.info.intro"             = "진행 링은 달성한 목표의 평균 백분율을 보여줘요. 각 색상 구간은 20%를 나타냅니다.";
+"ring.info.section.colors"    = "링 구간";
+"ring.info.color.red"         = "시작 단계";
+"ring.info.color.orange"      = "진행 중";
+"ring.info.color.green"       = "순항 중";
+"ring.info.color.cyan"        = "거의 다 왔어요";
+"ring.info.color.purple"      = "마지막 스퍼트";
+"ring.info.color.blue"        = "목표 달성";
+"ring.info.level.label"       = "레벨 ";
+"info.next.prefix"            = "남은 진행률: ";
+"info.next.middle"            = " / 다음 단계: ";
+
+/* Common */
+"common.cancel" = "취소";
+"common.done" = "완료";
+
+/* Notification history */
+"notifications.history.title" = "알림";
+"common.close" = "닫기";
+"common.edit" = "편집";
+"common.done" = "완료";
+"notifications.history.today" = "오늘";
+"notifications.history.yesterday" = "어제";
+"notifications.history.empty.title" = "아직 알림이 없어요";
+"notifications.history.empty.description" = "최근 3일간의 알림 기록이 여기에 표시돼요.";
+
+/* NotificationsSettingsView */
+"settings.preference.notifications"       = "알림";
+"settings.notifications.section.system"   = "시스템";
+"settings.notifications.section.goals"    = "목표";
+"settings.notifications.authorize.button" = "알림 켜기";
+"settings.notifications.authorize.footer" = "'허용'을 탭하고 iOS 메시지에서 허용하면 미리알림을 받을 수 있어요. 이미 거부한 경우 iOS 설정에서 다시 켤 수 있어요.";
+"settings.notifications.denied.title"     = "알림이 꺼져 있어요";
+"settings.notifications.denied.message"   = "이전에 알림을 거부하셨어요. Gym Nutshell 알림을 받으려면 iOS 설정에서 활성화해주세요.";
+"settings.notifications.denied.open"      = "설정 열기";
+
+/* NotificationIntervalEditView */
+"settings.notifications.interval.header"   = "알림 간격";
+"settings.notifications.interval.stepper"  = "간격";
+"settings.notifications.interval.value"    = "%d min";
+
+/* NotificationIntervalEditView, sound picker */
+"settings.notifications.sound.header"      = "사운드";
+"settings.notifications.sound.label"       = "알림 사운드";
+"settings.notifications.sound.footer"      = "기본 설정은 iOS 설정 → 알림 → Gym Nutshell → 사운드에서 선택한 소리(삼중음, 노트, 코드 등)로 재생돼요. '무음'은 이 앱의 알림 소리만 끕니다.";
+"settings.notifications.sound.openSystem"  = "iOS 설정에서 소리 선택";
+"notifications.sound.default"              = "기본";
+"notifications.sound.silent"               = "무음";
+
+/* NotificationKind, title / description on list + body of notification + footer */
+"notifications.kind.progress.title"         = "진행 상황";
+"notifications.kind.progress.description"   = "오늘의 다음 업적까지 남은 목표를 알려줘요.";
+"notifications.kind.progress.body"          = "조금만 더 힘내세요! 목표를 달성할 때마다 다음 업적에 가까워져요.";
+"notifications.kind.progress.footer"        = "오늘 다음 레벨에 도달하기까지 얼마나 남았는지 정기적으로 알려줘요.";
+
+"notifications.kind.achievement.title"      = "오늘의 업적";
+"notifications.kind.achievement.description" = "자정에 오늘 잠금 해제된 업적을 알려줘요.";
+"notifications.kind.achievement.body"       = "%@ 오늘 하루를 %@ 등급으로 마무리했어요!";
+
+"notifications.kind.appleHealth.title"      = "Apple 건강";
+"notifications.kind.appleHealth.description" = "Apple 건강과 동기화된 기록을 알려줘요.";
+"notifications.kind.appleHealth.body.cardio" = "유산소 운동 %d min을 기록했어요(%@).";
+"notifications.kind.appleHealth.body.workout" = "근력 운동 %d min을 기록했어요(%@).";
+"notifications.kind.appleHealth.body.sleep" = "Apple 건강에 수면 %d h을 기록했어요.";
+
+"notifications.kind.backup.title"           = "iCloud 백업";
+"notifications.kind.backup.description"     = "자동 백업 완료 시 알려줘요.";
+"notifications.kind.backup.body"            = "iCloud 백업이 성공적으로 완료되었어요.";
+
+"notifications.kind.sleep.title"            = "수면";
+"notifications.kind.sleep.description"      = "수면 목표를 채우지 못했을 때 낮잠을 권장해요 (오전 10시~오후 7시 사이에만 발송).";
+"notifications.kind.sleep.body"             = "오늘 수면 목표를 채우기 위해 잠깐 낮잠 한숨 어떠세요?";
+"notifications.kind.sleep.footer"           = "일일 목표를 달성할 때까지 정해진 시간마다 휴식을 권장해요. 오전 10시 이전이나 오후 7시 이후에는 알림이 울리지 않아요.";
+
+"notifications.kind.water.title"            = "물";
+"notifications.kind.water.description"      = "일일 목표를 채울 때까지 물 한 잔 마시기를 알려줘요.";
+"notifications.kind.water.body"             = "시원한 물 한 잔 어때요? 오늘의 목표를 향해 달려보세요.";
+"notifications.kind.water.footer"           = "정해진 시간마다 물 마시기를 알려줘요. 일일 목표를 달성하면 알림이 멈춥니다.";
+
+"notifications.kind.calories.title"         = "칼로리";
+"notifications.kind.calories.description"   = "일일 칼로리 목표 달성을 위한 알림이에요.";
+"notifications.kind.calories.body"          = "오늘의 칼로리 목표를 위해 식사를 기록할 시간이에요.";
+"notifications.kind.calories.footer"        = "칼로리 목표를 달성하면 정기 알림이 멈춥니다.";
+"notifications.kind.protein.title"          = "단백질";
+"notifications.kind.protein.description"    = "일일 단백질 목표 달성을 위한 알림이에요.";
+"notifications.kind.protein.body"           = "오늘의 목표를 채우기 위해 단백질을 챙겨 드세요.";
+"notifications.kind.protein.footer"         = "단백질 목표를 달성하면 정기 알림이 멈춥니다.";
+
+"notifications.kind.carbs.title"            = "탄수화물";
+"notifications.kind.carbs.description"      = "일일 탄수화물 목표 달성을 위한 알림이에요.";
+"notifications.kind.carbs.body"             = "에너지를 보충할 좋은 탄수화물 어떠세요?";
+"notifications.kind.carbs.footer"           = "탄수화물 목표를 달성하면 정기 알림이 멈춥니다.";
+
+"notifications.kind.goodFat.title"          = "착한 지방";
+"notifications.kind.goodFat.description"    = "일일 착한 지방 섭취 목표를 위한 알림이에요.";
+"notifications.kind.goodFat.body"           = "오늘 착한 지방(올리브유, 견과류, 아보카도)도 잊지 마세요.";
+"notifications.kind.goodFat.footer"         = "착한 지방 목표를 달성하면 정기 알림이 멈춥니다.";
+
+"notifications.kind.fiber.title"            = "식이섬유";
+"notifications.kind.fiber.description"      = "일일 식이섬유 목표 달성을 위한 알림이에요.";
+"notifications.kind.fiber.body"             = "다음 식사에 식이섬유를 곁들여보세요.";
+"notifications.kind.fiber.footer"           = "식이섬유 목표를 달성하면 정기 알림이 멈춥니다.";
+
+"notifications.kind.workout.title"          = "근력 운동";
+"notifications.kind.workout.description"    = "오늘의 근력 운동을 완료하기 위한 알림이에요.";
+"notifications.kind.workout.body"           = "오늘의 근력 운동이 기다리고 있어요. 파이팅!";
+"notifications.kind.workout.footer"         = "근력 운동 목표를 달성하면 정기 알림이 멈춥니다.";
+
+"notifications.kind.cardio.title"           = "유산소";
+"notifications.kind.cardio.description"     = "오늘의 유산소 운동을 완료하기 위한 알림이에요.";
+"notifications.kind.cardio.body"            = "유산소 운동할 시간이에요! 가벼운 움직임이 큰 변화를 만들어요.";
+"notifications.kind.cardio.footer"          = "유산소 운동 목표를 달성하면 정기 알림이 멈춥니다.";
+
+"notifications.kind.creatine.title"         = "크레아틴";
+"notifications.kind.creatine.description"   = "일일 크레아틴 섭취를 위한 알림이에요.";
+"notifications.kind.creatine.body"          = "오늘 크레아틴 챙겨 드셨나요?";
+"notifications.kind.creatine.footer"        = "오늘의 섭취량을 기록하면 정기 알림이 멈춥니다.";
+
+/* Custom goals */
+"notifications.custom.description"          = "오늘의 목표를 달성하기 위한 알림이에요.";
+"notifications.custom.body"                 = "%@ 항목을 기록하고 오늘의 목표를 향해 달려보세요.";
+"notifications.custom.footer"               = "이 사용자 지정 목표를 달성하면 정기 알림이 멈춥니다.";
+"notifications.history.delete" = "삭제";
+
+/* MARK: - Accessibility (VoiceOver), shared helpers in A11yHelpers.swift */
+
+/* Progress band, color-coded zones spoken instead of just relying on the visual hue */
+"a11y.band.red"    = "빨간색 구간, 목표까지 많이 남음";
+"a11y.band.orange" = "주황색 구간, 진행 중";
+"a11y.band.green"  = "초록색 구간, 순항 중";
+"a11y.band.cyan"   = "청록색 구간, 거의 다 옴";
+"a11y.band.blue"   = "파란색 구간, 목표 달성";
+
+/* Generic progress phrasing, band dropped from progress value after user testing */
+"a11y.percent.format"          = "%d퍼센트";
+"a11y.progress.value.format"   = "%d퍼센트 완료";
+
+/* Tracking goal row, header value drops percent + band to stay concise */
+"a11y.goalrow.value.format"    = "총 %2$d %3$@ 중 %1$d 완료";
+"a11y.goalrow.value.restday"   = "휴식일 모드, 목표 달성됨";
+"a11y.goalrow.a11y.label"      = "%@ 목표";
+"a11y.slider.label.format"     = "%@ 슬라이더";
+
+/* Generic "open details" hint reused across ring/tier */
+"a11y.hint.more.info"          = "자세한 정보를 보려면 탭하세요.";
+
+/* Collapsible category header (TodayView) */
+"a11y.category.label.format"   = "%@ 카테고리";
+"a11y.category.hint"           = "접거나 펼치려면 탭하세요.";
+
+/* Day cell (MonthlyCalendarView + widget Calendar) */
+"a11y.daycell.today.format"        = "오늘, %1$@, %2$d퍼센트, %3$@";
+"a11y.daycell.past.format"         = "%1$@, %2$d퍼센트, %3$@";
+"a11y.daycell.future.format"       = "%@, 예정";
+"a11y.daycell.empty.format"        = "%@, 기록 없음";
+"a11y.daycell.today.empty.format"  = "오늘, %@, 아직 기록 없음";
+"a11y.daycell.selected.suffix"     = ", 선택됨";
+
+/* Increment / decrement buttons (Watch, edit sheets) */
+"a11y.hint.increment" = "증가하려면 탭하세요.";
+"a11y.hint.decrement" = "감소하려면 탭하세요.";
+
+/* Rest day toggle, label reflects on/off, hint describes the action */
+"a11y.hint.restday.activate"   = "휴식일을 켜려면 탭하세요.";
+"a11y.hint.restday.deactivate" = "휴식일 모드를 끄려면 탭하세요.";
+
+/* Info sheets, row combine helpers */
+"a11y.ringinfo.color.row.format"  = "%1$@, 범위 %2$@";
+"a11y.tierinfo.row.format"        = "%1$@, %2$@, 레벨 %3$d";
+
+/* MARK: - Accessibility (Phase 2, Achievements + ProgressOver) */
+
+/* Calendar cell with a tier name spoken */
+"a11y.calendar.day.tier.format"        = "%1$@, 달성: %2$@";
+"a11y.calendar.day.today.tier.format"  = "오늘, %1$@, 달성: %2$@";
+
+/* Achievements view-mode segmented picker (List / Calendar) */
+
+/* Calendar section header */
+
+/* Month navigation chevrons */
+"a11y.month.previous" = "이전 달";
+"a11y.month.next"     = "다음 달";
+
+/* AchievementsView history rows */
+"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d퍼센트";
+"a11y.record.row.hint"          = "상세 정보를 보려면 탭하세요.";
+"a11y.record.edit.label"        = "기록 편집";
+"a11y.record.edit.hint" = "편집하려면 탭하세요.";
+
+/* RecordDetail / EditToday header card */
+"a11y.record.header.format"     = "%1$@, %2$@, %3$d퍼센트, 레벨 %4$d";
+
+/* ProgressOverView, stats cards */
+"a11y.stats.days.label"            = "일수";
+"a11y.stats.days.value.format"     = "%d일";
+"a11y.stats.days.hint" = "오늘 캘린더를 열려면 탭하세요.";
+
+/* ProgressOverView, list rows inside cards */
+"a11y.stats.tier.row.format"     = "%1$@, %2$d일";
+"a11y.stats.activity.row.format" = "%1$@, %2$d일";
+"a11y.stats.goals.row.format"    = "%1$@, %2$d개 진행 중";
+
+/* ProgressOverView, whole-card tap hints */
+"a11y.stats.card.usergoal.hint" = "목표를 변경하려면 탭하세요.";
+"a11y.stats.card.tiers.hint"    = "티어 시스템 설명을 보려면 탭하세요.";
+"a11y.stats.card.activity.hint" = "활동 기록을 열려면 탭하세요.";
+"a11y.stats.card.goals.hint"    = "기록 목표를 관리하려면 탭하세요.";
+
+/* ProfileRecentActivityView, day buttons */
+"a11y.recent.day.with.tier.format" = "%1$@, %2$@";
+"a11y.recent.day.empty.format"     = "%@, 기록 없음";
+"a11y.recent.day.today.format"     = "오늘, %1$@, %2$@";
+"a11y.recent.day.today.empty.format" = "오늘, %@, 아직 기록 없음";
+"a11y.recent.day.hint" = "이 날짜를 열려면 탭하세요.";
+
+/* MARK: - Accessibility (Phase 3, Settings) */
+
+/* Generic selection state */
+"a11y.selected"     = "선택됨";
+"a11y.not.selected" = "선택되지 않음";
+
+/* Theme picker (ThemeSettingsView) */
+"a11y.theme.hint"             = "이 테마를 선택하려면 탭하세요.";
+"a11y.theme.info.label.format" = "%@ 자세한 정보";
+"a11y.theme.info.hint" = "자세한 정보를 보려면 탭하세요.";
+
+/* Color picker (ColorSettingsView) */
+"a11y.color.hint" = "이 색상을 선택하려면 탭하세요.";
+
+/* Fitness goal picker (UserGoalPickerView) */
+"a11y.usergoal.hint" = "이 목표를 선택하려면 탭하세요.";
+
+/* Tracking goals settings, image-only buttons */
+"a11y.button.add.goal.label"     = "새 기록 목표";
+"a11y.button.add.goal.hint" = "새 목표를 만들려면 탭하세요.";
+"a11y.button.remove.goal.label"  = "목표 제거";
+"a11y.button.restore.goal.label" = "목표 복원";
+
+/* Categories settings, pencil button */
+"a11y.button.edit.category.label" = "카테고리 편집";
+"a11y.button.edit.category.hint" = "이 카테고리를 편집하려면 탭하세요.";
+
+/* Notification rows, pencil button */
+"a11y.button.edit.notification.label" = "알림 편집";
+"a11y.button.edit.notification.hint" = "알림 설정을 편집하려면 탭하세요.";
+
+/* SettingsView toolbar bell */
+"a11y.notification.history.bell" = "알림 기록";
+"a11y.notification.history.bell.hint" = "알림을 열려면 탭하세요.";
+
+/* Notification history row */
+"a11y.history.row.format" = "%1$@, %2$@, %3$@";
+"a11y.history.row.hint" = "열려면 탭하세요.";
+
+/* App icon (About) */
+"a11y.app.icon" = "앱 아이콘";
+
+/* Collapsible section header (settings goals + notifications) */
+"a11y.section.collapsible.hint" = "접거나 펼치려면 탭하세요.";
+
+/* MARK: - Accessibility (Phase 4, Welcome / onboarding) */
+
+"a11y.welcome.progress.format"          = "%2$d단계 중 %1$d단계";
+"a11y.welcome.optional.add.label.format"    = "%@ 추가";
+"a11y.welcome.optional.remove.label.format" = "%@ 제거";
+"a11y.welcome.optional.add.hint" = "이 목표를 추가하려면 탭하세요.";
+"a11y.welcome.optional.remove.hint" = "이 목표를 제거하려면 탭하세요.";
+
+/* MARK: - Accessibility (Phase 5, Watch app) */
+
+/* Watch hero ring (ContentView), same wording as the iPhone ring */
+"a11y.watch.hero.label"  = "일일 진행 상황";
+"a11y.watch.page.stats"         = "통계 페이지";
+"a11y.watch.page.today"         = "오늘 페이지";
+"a11y.watch.page.notifications" = "알림 페이지";
+
+/* Watch goal card header */
+"a11y.watch.card.expanded"   = "펼쳐짐";
+"a11y.watch.card.collapsed"  = "접힘";
+"a11y.watch.card.hint.expand" = "펼치려면 탭하세요.";
+"a11y.watch.card.hint.collapse" = "접으려면 탭하세요.";
+
+/* Watch ± buttons */
+"a11y.watch.increase.label.format" = "%@ 증가";
+"a11y.watch.decrease.label.format" = "%@ 감소";
+
+/* Watch recent strip, collapsed into a single summary */
+"a11y.watch.recent.summary.format" = "%1$@: 최근 7일 중 %2$d일 업적 달성.";
+
+/* Watch notification row */
+"a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
+
+/* MARK: - Accessibility (Phase 6, Widgets) */
+
+/* Widget summary (small/medium/lockscreen, watch circular/rectangular) */
+"a11y.widget.summary.format"       = "일일 진행 상황, %1$@, %2$d퍼센트 완료";
+"a11y.widget.summary.points.format" = "일일 진행 상황, %1$@, %2$d퍼센트 완료";
+
+/* iPhone large widgets */
+"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d퍼센트";
+"a11y.widget.calendar.month.format" = "%@";
+
+/* Watch widget, corner and inline don't need extra labels (text already speaks) */
+
+"a11y.welcome.goal.decrease.format" = "%@ 감소";
+"a11y.welcome.goal.increase.format" = "%@ 증가";
+
+"welcome.step.control.title" = "입력 방식";
+"welcome.step.control.subtitle" = "매일 목표를 어떤 방식으로 기록하고 싶으신가요?";
+"welcome.control.slider" = "슬라이더";
+"welcome.control.slider.desc" = "컨트롤을 원하는 값까지 드래그해요.";
+"welcome.control.stepper" = "버튼";
+"welcome.control.stepper.desc" = "탭해서 조절 단위만큼 더하거나 빼요.";
+"welcome.step.ready.title" = "준비 완료!";
+"welcome.step.ready.subtitle" = "원하는 기능을 켜보세요.";
+"welcome.ready.notifications.title" = "알림";
+"welcome.ready.notifications.desc" = "물 마시기와 업적 달성 미리알림이에요.";
+"welcome.ready.health.title" = "Apple 건강";
+"welcome.ready.health.desc" = "수면을 기록하고 운동을 자동으로 감지해요.";
+"welcome.ready.allow" = "허용";
+"welcome.ready.allowed" = "허용됨";
+"welcome.ready.requested" = "요청됨";
+"welcome.ready.denied" = "거부됨";
+"welcome.ready.footer" = "이 설정은 언제든 설정에서 변경할 수 있어요.";
+"settings.preference.controlStyle" = "입력 방식";
+"settings.controlStyle.footer" = "오늘 화면에서 목표 진행 상황을 기록하는 방식이에요.";
+
+"settings.category.icon.section" = "아이콘";
+
+"today.edit.goals" = "목표 편집";
+"today.edit.controls" = "입력 방식 변경";
+"today.edit.theme" = "테마 변경";
+"today.edit.colors" = "포인트 색상 변경";
+
+"welcome.step.units.title" = "측정 단위";
+"welcome.step.units.subtitle" = "물 섭취량을 어떤 단위로 측정하고 싶으신가요?";
+"welcome.step.units.note" = "이 설정은 나중에 설정에서 변경할 수 있어요.";
+"welcome.units.metric.desc" = "밀리리터(한 잔에 250 ml 등).";
+"welcome.units.imperial.desc" = "온스 단위(한 잔에 %d fl oz 등).";
+
+"today.goals.viewMode.list" = "목록";
+"today.goals.viewMode.grid" = "격자";
+"today.goals.viewMode.switch.a11y" = "%@ 보기로 전환";
+"today.category.tile.a11y.value" = "%d개 완료 (총 %d개)";
+"today.category.tile.a11y.hint" = "카테고리 목표를 열려면 탭하세요.";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%2$d일 %1$@";

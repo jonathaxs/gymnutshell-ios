@@ -1,0 +1,885 @@
+/* ⌘
+  GymNutshell/GymNutshellCore/Resources/Localizations/zh-Hans.lproj/Localizable.strings
+
+  用途：应用程序的简体中文本地化键和用户界面文本。
+
+  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
+
+ ⌘ */
+
+/* MARK: - Models */
+
+/* DailyAchievement.swift, 猫咪主题（默认） */
+"daily.achievement.level1" = "小奶猫";
+"daily.achievement.level2" = "健身猫";
+"daily.achievement.level3" = "大猫";
+"daily.achievement.level4" = "猫老大";
+"daily.achievement.level5" = "猛虎";
+"daily.achievement.level5.fem" = "母老虎";
+
+/* AppTheme.swift, 狗狗主题等级名称 */
+"daily.achievement.dog.level1" = "小奶狗";
+"daily.achievement.dog.level2" = "健身汪";
+"daily.achievement.dog.level3" = "酷狗大佬";
+"daily.achievement.dog.level4" = "大黄狗";
+"daily.achievement.dog.level5" = "狼王";
+
+/* AppTheme.swift, 巨熊主题等级名称 */
+"daily.achievement.bear.level1" = "小熊仔";
+"daily.achievement.bear.level2" = "棕熊";
+"daily.achievement.bear.level3" = "北极熊";
+"daily.achievement.bear.level4" = "狂暴野牛";
+"daily.achievement.bear.level5" = "猛犸象";
+
+/* AppTheme.swift, 恐龙主题等级名称 */
+"daily.achievement.dino.level1" = "小海龟";
+"daily.achievement.dino.level2" = "巨鳄";
+"daily.achievement.dino.level3" = "霸王龙";
+"daily.achievement.dino.level4" = "大恐龙";
+"daily.achievement.dino.level5" = "传奇化石";
+
+/* AppTheme.swift, 飞鸟主题等级名称 */
+"daily.achievement.bird.level1" = "小雏鸟";
+"daily.achievement.bird.level2" = "青鸟";
+"daily.achievement.bird.level3" = "雄鹰";
+"daily.achievement.bird.level4" = "智者猫头鹰";
+"daily.achievement.bird.level5" = "不死鸟";
+
+/* AppTheme.swift, 海洋主题等级名称 */
+"daily.achievement.ocean.level1" = "小鱼苗";
+"daily.achievement.ocean.level2" = "海豚";
+"daily.achievement.ocean.level3" = "水母";
+"daily.achievement.ocean.level4" = "蓝鲸";
+"daily.achievement.ocean.level5" = "海怪克拉肯";
+
+/* AppTheme.swift, 巨龙主题等级名称 */
+"daily.achievement.dragon.level1" = "小龙蛋";
+"daily.achievement.dragon.level2" = "小蜥蜴";
+"daily.achievement.dragon.level3" = "飞龙";
+"daily.achievement.dragon.level4" = "远古巨龙";
+"daily.achievement.dragon.level5" = "龙王";
+"daily.achievement.dragon.level5.fem" = "龙后";
+
+/* AppTheme.swift, 骏马主题等级名称 */
+"daily.achievement.horse.level1" = "小马驹";
+"daily.achievement.horse.level2" = "独角兽";
+"daily.achievement.horse.level3" = "骑手";
+"daily.achievement.horse.level4" = "旋转木马之星";
+"daily.achievement.horse.level5" = "纯种马";
+
+/* AppTheme.swift, 灵长类主题等级名称（兼容性枚举仍为 `.monkey`） */
+"daily.achievement.monkey.level1" = "小灵长";
+"daily.achievement.monkey.level2" = "活力灵长";
+"daily.achievement.monkey.level3" = "大金刚";
+"daily.achievement.monkey.level4" = "灵长大宗师";
+"daily.achievement.monkey.level5" = "丛林传说";
+
+/* AppTheme.swift, 主题显示名称 */
+"app.theme.cat" = "猫咪";
+"app.theme.dog" = "狗狗";
+"app.theme.bear" = "熊";
+"app.theme.dino" = "恐龙";
+"app.theme.bird" = "飞鸟";
+"app.theme.ocean" = "游鱼";
+"app.theme.dragon" = "巨龙";
+"app.theme.horse" = "骏马";
+"app.theme.monkey" = "灵长类";
+
+/* UserProfile.swift */
+"fitness.goal.bulking" = "增肌";
+"fitness.goal.maintenance" = "维持";
+"fitness.goal.cutting" = "减脂";
+
+/* MARK: - Views */
+
+/* MARK: - Views/AchievementsView */
+
+/* AchievementsView.swift */
+"achievements.header.title" = "成就";
+"achievements.filter.list" = "列表";
+"achievements.filter.calendar" = "日历";
+"achievements.filter.title" = "视图";
+"achievements.filter.all" = "列表";
+"achievements.filter.day" = "日历";
+"achievements.empty.title" = "暂无成就";
+"achievements.empty.description" = "每天结束时，你解锁的成就将显示在这里。";
+
+"achievements.daily.row.description" = "已完成 %d%% 的每日目标。";
+
+/* EditTodayView.swift */
+"edit.record.cancel" = "取消";
+"edit.record.save" = "保存";
+
+/* RecordDetailView.swift */
+"record.detail.title" = "成就详情";
+"record.detail.back" = "返回";
+"record.detail.edit" = "编辑";
+
+/* MARK: - Views/ProfileView */
+
+/* ProgressOverView.swift */
+"statistics.title" = "历史记录";
+"statistics.section.tiers" = "等级分布";
+"statistics.section.activity" = "健身活动";
+"statistics.section.goals" = "目标";
+"statistics.tier.days" = "%d 天";
+"statistics.activity.workout" = "力量训练天数";
+"statistics.activity.cardio" = "有氧运动天数";
+"statistics.goals.active.label" = "进行中的目标";
+"statistics.goals.active" = "%d 个进行中";
+"statistics.fitness.goal" = "健身目标";
+"watch.stats.days" = "天数";
+"watch.stats.syncing" = "在 iPhone 上打开 Gym Nutshell 查看统计数据。";
+"watch.stats.recent" = "近期";
+
+/* ProgressOverView.swift, stats rows and physical data */
+"profile.stats.days" = "天数";
+"profile.recent.section" = "最近 7 天";
+
+/* MARK: - Views/SettingsView */
+
+/* AboutView.swift */
+"settings.about.title" = "关于 App";
+"settings.about.version" = "版本";
+"settings.about.feedback" = "发送反馈";
+"settings.about.description" = "Gym Nutshell 让你对每天的健身目标一目了然。\n\n设定目标，坚持打卡，见证习惯的力量铸就成果。";
+
+/* AddTrackingGoalView.swift */
+"settings.addgoal.title.new" = "新建目标";
+"settings.addgoal.section.icon" = "表情符号";
+"settings.addgoal.emoji.placeholder" = "例如：🧘";
+"settings.addgoal.section.name" = "名称";
+"settings.addgoal.name.placeholder" = "例如：冥想";
+"settings.addgoal.section.unit" = "单位";
+"settings.addgoal.unit.placeholder" = "例如：min";
+"settings.addgoal.section.goal" = "目标值";
+"settings.addgoal.goal.placeholder" = "例如：10";
+"settings.addgoal.section.increment" = "单次增量";
+"settings.addgoal.increment.placeholder" = "例如：2";
+"settings.addgoal.cancel" = "取消";
+"settings.addgoal.save" = "保存";
+"settings.addgoal.warning.catalog" = "已存在同名目标。";
+"settings.addgoal.warning.emoji" = "该表情符号已被其他目标使用。";
+"settings.addgoal.warning.emoji.keyboard" = "此字段仅支持表情符号。请前往“设置”→“通用”→“键盘”→“键盘”并启用“表情符号”键盘。";
+"settings.addgoal.warning.category.duplicate" = "已存在同名分类。";
+"settings.addgoal.warning.step" = "单次增量不能大于目标值。";
+"settings.addgoal.section.category" = "分类";
+"settings.addgoal.category.new.button" = "新建分类";
+"settings.addgoal.category.new.section" = "自定义分类";
+"settings.addgoal.category.new.name.placeholder" = "例如：拉伸";
+"settings.addgoal.category.new.restDay" = "休息日开关（开/关）";
+"settings.goals.custom.badge" = "自定义";
+"settings.goals.categories.title" = "分类";
+
+/* BackupSettingsView.swift */
+"settings.backup.nav.title" = "备份";
+"settings.backup.section.data" = "本地";
+"settings.backup.section.footer" = "本地导出和导入通过 .json 文件进行。";
+"settings.backup.export" = "导出备份";
+"settings.backup.import" = "导入备份";
+"settings.backup.import.alert.title" = "覆盖数据？";
+"settings.backup.import.alert.message" = "这将用备份数据替换你当前的个人资料、目标和历史记录。此操作无法撤销。";
+"settings.backup.import.alert.confirm" = "覆盖";
+"settings.backup.import.alert.cancel" = "取消";
+"settings.backup.error.title" = "错误";
+"settings.backup.success.title" = "完成";
+"settings.backup.success.message" = "已从备份恢复你的数据。";
+
+/* iCloud backup */
+"settings.backup.icloud.save" = "保存到 iCloud";
+"settings.backup.icloud.restore" = "从 iCloud 恢复";
+"settings.backup.icloud.restoring" = "正在从 iCloud 恢复备份…";
+"settings.backup.icloud.save.success" = "备份已成功保存到 iCloud。";
+"settings.backup.icloud.unavailable" = "iCloud 不可用";
+"settings.backup.icloud.noBackup" = "iCloud 中暂无备份。";
+"settings.backup.icloud.lastBackup" = "上次备份：";
+"settings.backup.icloud.footer.unavailable" = "请在“设置”中登录 iCloud 以启用云端备份。";
+"settings.backup.icloud.error.unavailable" = "iCloud 云盘不可用。请确认已登录 iCloud 且已启用 iCloud 云盘。";
+"settings.backup.icloud.error.downloadTimeout" = "无法从 iCloud 下载备份。请检查网络连接后重试。";
+"settings.backup.icloud.auto.toggle" = "每日自动备份";
+"settings.backup.icloud.auto.footer" = "\n新成就更新时会自动保存备份。\n成就将在午夜过后打开 App 时更新。";
+
+/* CheckinGoalsSettingsView.swift */
+"settings.goals.mandatory.badge" = "标准";
+"settings.goals.optional.badge" = "推荐";
+
+/* FitnessGoalChangeView.swift */
+"settings.goalchange.title" = "健身目标";
+"settings.goalchange.section.pick" = "选择你的目标";
+"settings.goalchange.section.preview" = "你的每日目标";
+"settings.goalchange.save.recalc" = "保存并重新计算";
+"settings.goalchange.save.keep" = "保存但不重新计算";
+
+/* ProfileSettingsView.swift */
+"settings.profile.section.personal" = "个人信息";
+"settings.profile.section.optional" = "选填";
+"settings.profile.name" = "名字";
+"settings.profile.name.placeholder" = "你的名字";
+"settings.profile.favoriteExercise" = "最喜欢的锻炼部位";
+
+/* Favorite exercises (easter egg) */
+"favoriteExercise.unknown"    = "不确定";
+"favoriteExercise.back"       = "背部";
+"favoriteExercise.arms"       = "手臂";
+"favoriteExercise.chest"      = "胸部";
+"favoriteExercise.legs"       = "腿部";
+"favoriteExercise.hamstrings" = "腘绳肌";
+"favoriteExercise.glutes"     = "臀部";
+"favoriteExercise.shoulders"  = "肩部";
+"favoriteExercise.biceps"     = "二头肌";
+"favoriteExercise.triceps"    = "三头肌";
+"favoriteExercise.abs"        = "腹肌";
+"favoriteExercise.traps"      = "斜方肌";
+"favoriteExercise.forearms"   = "前臂";
+"favoriteExercise.calves"     = "小腿";
+"settings.profile.sex" = "性别";
+"profile.sex.male" = "男";
+"profile.sex.female" = "女";
+
+/* SettingsView.swift */
+"settings.header.title" = "App 设置";
+"settings.detail.placeholder" = "选择一个页面";
+"settings.section.edit" = "你的数据";
+"settings.theme.title" = "主题";
+"settings.section.preferences" = "外观";
+"settings.section.system" = "系统";
+"settings.section.about" = "关于";
+
+/* GymNutshellApp.swift, DataStoreErrorView */
+"app.error.dataStore.title" = "出错了";
+"app.error.dataStore.message" = "Gym Nutshell 无法载入你的数据。\n请强制关闭 App 并重新打开重试。";
+"settings.about.link" = "Gym Nutshell";
+"settings.section.physicaldata" = "个人资料";
+"settings.fitness.goal.edit" = "健身目标";
+"settings.goals.edit" = "每日目标";
+"settings.preference.appleHealth" = "Apple 健康";
+"settings.preference.appleHealth.syncSleep" = "记录睡眠";
+"settings.preference.appleHealth.autoWorkoutCheckin" = "体能训练检测";
+"settings.preference.appleHealth.footer" = "“记录睡眠”会在当天无记录时，将你的睡眠时长记录至 Apple 健康。\n\n“体能训练检测”会检测已完成的体能训练，并自动记入力量训练或有氧运动。";
+"settings.preference.appleWatch" = "Apple Watch";
+"appleWatch.sheet.title" = "安装到 Apple Watch";
+"appleWatch.sheet.intro" = "若要在 Apple Watch 上安装 Gym Nutshell，请按以下步骤操作：";
+"appleWatch.sheet.step1" = "在 iPhone 上打开 Watch App";
+"appleWatch.sheet.step2" = "滚动至“可用 App”部分";
+"appleWatch.sheet.step3" = "轻点 Gym Nutshell 旁边的“安装”";
+"appleWatch.sheet.note" = "如果 App 已安装，它会显示在顶部的“已在 Apple Watch 上安装”部分。";
+"settings.preference.language" = "语言";
+"settings.preference.measurementSystem" = "度量衡单位";
+"settings.preference.measurementSystem.metric" = "公制 (ml)";
+"settings.preference.measurementSystem.us" = "英制 (fl oz)";
+"settings.measurementSystem.footer" = "App 中水量的显示和记录方式。";
+"settings.edit.widgets" = "小组件";
+"widgetBackground.title" = "小组件";
+"widgetBackground.mode.label" = "背景";
+"widgetBackground.mode.system" = "系统";
+"widgetBackground.mode.accent" = "强调色";
+"widgetBackground.mode.custom" = "自定义";
+"widgetBackground.footer.system" = "小组件将使用 iOS 默认背景，黑白文字会随系统外观自动调整。";
+"widgetBackground.footer.accent" = "小组件将使用 App 的强调色作为背景。";
+"widgetBackground.footer.custom" = "在下方选取颜色，小组件将以此颜色作为背景。";
+"widgetBackground.picker" = "颜色";
+"widgetBackground.preview" = "预览";
+
+/* TrackingGoalDetailView.swift */
+"settings.goaldetail.stepper" = "调整数值";
+"settings.goaldetail.footer" = "修改此项不会影响过去的记录。";
+"settings.goaldetail.save" = "保存";
+"settings.goaldetail.increment.stepper" = "调整单次增量";
+"settings.goaldetail.increment.footer" = "单次增量是滑动条向目标值推进的每次调整幅度。";
+
+/* TrackingGoalsSettingsView.swift */
+"settings.goals.title" = "目标";
+"settings.tracking.goals.section.custom" = "自定义目标";
+"settings.tracking.goals.done" = "完成";
+"settings.tracking.goals.editMode" = "编辑";
+"settings.goals.category.order.section" = "分类顺序";
+"settings.goal.water" = "水";
+"settings.goal.calories" = "热量";
+"settings.goal.protein" = "蛋白质";
+"settings.goal.carbs" = "碳水化合物";
+"settings.goal.fats" = "优质脂肪";
+"settings.goal.fiber" = "膳食纤维";
+"settings.goal.sleep" = "睡眠";
+
+/* MARK: - Views/Shared */
+
+/* FitnessGoalPickerView.swift */
+"welcome.goal.bulking.description" = "通过热量盈余增加肌肉量";
+"welcome.goal.maintenance.description" = "维持当前体重和身体成分";
+"welcome.goal.cutting.description" = "减少体脂同时保留肌肉";
+
+/* MARK: - Views/TodayView */
+
+/* GoalCategory.swift */
+"goal.category.essencial" = "基础";
+"goal.category.nutricao" = "营养";
+"goal.category.treino" = "训练";
+"goal.category.suplemento" = "补剂";
+
+/* TodayView.swift */
+"today.goals.workout" = "力量训练";
+"today.goals.cardio" = "有氧运动";
+"today.goals.creatine" = "肌酸";
+"today.category.other" = "其他";
+"today.category.a11y.value" = "已完成 %d 个目标（共 %d 个）";
+"today.restday.label" = "休息日";
+"today.restday.on" = "开启";
+"today.restday.off" = "关闭";
+"today.metric.sleep" = "睡眠";
+"today.metric.water" = "喝水";
+"today.metric.calories" = "热量";
+"today.metric.protein" = "蛋白质";
+"today.metric.carbs" = "碳水";
+"today.metric.fats" = "优质脂肪";
+"today.metric.fiber" = "膳食纤维";
+
+/* TodayHeroView.swift, next level phrase */
+"today.max.level" = "今天已达到最高等级！";
+
+/* DailyTierView.swift */
+"today.tier.level.1" = "等级 1";
+"today.tier.level.2" = "等级 2";
+"today.tier.level.3" = "等级 3";
+"today.tier.level.4" = "等级 4";
+/* 旁白标签结合了“今日成就”标题短语与等级名称。表情符号仅作装饰并已隐藏，避免重复播报。%1$@ = 表情符号（忽略），%2$@ = 等级名称。 */
+"today.tier.a11y.label" = "今日成就：%2$@";
+
+/* TodayProgressRingView.swift */
+"today.ring.a11y.label" = "今日进度环";
+"today.ring.a11y.hint" = "轻点查看更多信息。";
+"today.ring.a11y.value" = "已完成百分之%d";
+
+/* TodayView.swift, date hero button */
+"today.hero.bell.a11y.label" = "通知";
+"today.hero.bell.a11y.hint" = "轻点打开通知。";
+"today.hero.caption.start" = "记录一个目标以开启今天";
+"today.hero.caption.nextLevel" = "还差 %d%% 即可升级";
+"today.hero.caption.max" = "已达成今日最高成就！";
+"today.hero.achievement.label" = "今日成就";
+"today.greeting.morning"   = "早上好！";
+"today.greeting.afternoon" = "下午好！";
+"today.greeting.night"     = "晚上好！";
+
+/* MARK: - Views/WelcomeView */
+
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "关于你";
+
+/* WelcomeFitnessGoalStep.swift */
+"welcome.step.goal.title" = "你的目标";
+"welcome.step.goal.info.editable" = "稍后可在 App 设置中更改。";
+
+/* WelcomeThemeStep.swift */
+"welcome.step.theme.title" = "主题";
+"welcome.step.theme.subtitle" = "挑选能激励你不断进步的表情符号。";
+"welcome.step.theme.footer" = "稍后可随时更换主题。";
+
+/* WelcomePhysicalDataStep.swift */
+"welcome.field.sex" = "性别";
+"welcome.field.sex.male" = "男";
+"welcome.field.sex.female" = "女";
+
+/* WelcomeSummaryStep.swift */
+"welcome.step.summary.title" = "你的目标";
+"welcome.summary.subtitle.customize" = "你可以随时修改这些数值或添加新目标。";
+"welcome.option.add" = "添加";
+
+/* WelcomeStartStep.swift */
+"welcome.step.start.title" = "你好！";
+"welcome.start.feature.track" = "全天追踪你的健身目标。";
+"welcome.start.feature.theme" = "选择一个激励你的主题。";
+"welcome.start.feature.progress" = "查看你的进步历程。";
+"welcome.start.new" = "开始使用";
+"welcome.start.restore" = "恢复备份";
+
+/* WelcomeView.swift */
+"welcome.button.continue" = "继续";
+"welcome.button.start" = "开始吧！";
+"welcome.button.back" = "返回";
+
+/* MARK: - ContentView.swift */
+
+/* HealthKit 活动显示名称（自动打卡描述） */
+"healthkit.activity.running" = "跑步";
+"healthkit.activity.walking" = "步行";
+"healthkit.activity.cycling" = "骑行";
+"healthkit.activity.swimming" = "游泳";
+"healthkit.activity.elliptical" = "椭圆机";
+"healthkit.activity.rowing" = "划船机";
+"healthkit.activity.stairClimbing" = "爬楼";
+"healthkit.activity.hiking" = "徒步";
+"healthkit.activity.jumpRope" = "跳绳";
+"healthkit.activity.dance" = "跳舞";
+"healthkit.activity.strengthTraining" = "力量训练";
+"healthkit.activity.functionalTraining" = "功能性训练";
+"healthkit.activity.crossTraining" = "交叉训练";
+"healthkit.activity.hiit" = "高强度间歇训练";
+"healthkit.activity.boxing" = "拳击";
+"healthkit.activity.martialArts" = "武术";
+"healthkit.activity.coreTraining" = "核心训练";
+"healthkit.activity.climbing" = "攀爬";
+"healthkit.activity.other" = "健身运动";
+
+/* AppTheme, 分类 */
+"app.theme.category.sport" = "运动";
+"app.theme.category.animals" = "动物";
+"app.theme.category.elements" = "元素与自然";
+"app.theme.category.competition" = "进阶";
+"app.theme.category.warrior" = "英雄";
+"app.theme.category.space" = "太空";
+
+/* AppTheme, 健身 */
+"app.theme.gym" = "健身";
+"app.theme.running" = "跑步";
+"daily.achievement.running.level1" = "漫步者";
+"daily.achievement.running.level2" = "踏上节奏";
+"daily.achievement.running.level3" = "跑者";
+"daily.achievement.running.level4" = "马拉松选手";
+"daily.achievement.running.level5" = "超马选手";
+"daily.achievement.gym.level1" = "健身弱鸡";
+"daily.achievement.gym.level1.fem" = "弱鸡妹";
+"daily.achievement.gym.level2" = "撸铁新手";
+"daily.achievement.gym.level3" = "健身老手";
+"daily.achievement.gym.level4" = "肌肉猛男";
+"daily.achievement.gym.level5" = "肌肉巨兽";
+
+/* AppTheme, 烈焰 */
+"app.theme.fire" = "烈焰";
+"daily.achievement.fire.level1" = "小蜡烛";
+"daily.achievement.fire.level2" = "火苗";
+"daily.achievement.fire.level3" = "活火山";
+"daily.achievement.fire.level4" = "耀阳";
+"daily.achievement.fire.level5" = "超新星";
+
+/* AppTheme, 森林 */
+"app.theme.plant" = "森林";
+"daily.achievement.plant.level1" = "小嫩芽";
+"daily.achievement.plant.level2" = "绿植";
+"daily.achievement.plant.level3" = "参天大树";
+"daily.achievement.plant.level4" = "圣诞树";
+"daily.achievement.plant.level5" = "大森林";
+
+/* AppTheme, 奖牌 */
+"app.theme.champion" = "奖牌";
+"daily.achievement.champion.level1" = "青铜";
+"daily.achievement.champion.level2" = "白银";
+"daily.achievement.champion.level3" = "黄金";
+"daily.achievement.champion.level4" = "钻石";
+"daily.achievement.champion.level5" = "冠军奖杯";
+
+/* AppTheme, 数字 */
+"app.theme.number" = "数字";
+"daily.achievement.number.level1" = "一";
+"daily.achievement.number.level2" = "二";
+"daily.achievement.number.level3" = "三";
+"daily.achievement.number.level4" = "四";
+"daily.achievement.number.level5" = "五";
+
+/* AppTheme, 医生 */
+"app.theme.doctor" = "医生";
+"daily.achievement.doctor.level1" = "见习学徒";
+"daily.achievement.doctor.level2" = "初级医师";
+"daily.achievement.doctor.level3" = "主治医师";
+"daily.achievement.doctor.level4" = "神秘博士";
+"daily.achievement.doctor.level5" = "主任医师";
+
+/* AppTheme, 武者 */
+"app.theme.ninja" = "格斗士";
+"daily.achievement.ninja.level1" = "见习武徒";
+"daily.achievement.ninja.level2" = "剑士";
+"daily.achievement.ninja.level3" = "忍者";
+"daily.achievement.ninja.level4" = "超级英雄";
+"daily.achievement.ninja.level5" = "绝世宗师";
+
+/* AppTheme, 探索 */
+"app.theme.astronaut" = "探索";
+"daily.achievement.astronaut.level1" = "人造卫星";
+"daily.achievement.astronaut.level2" = "宇航员";
+"daily.achievement.astronaut.level3" = "运载火箭";
+"daily.achievement.astronaut.level4" = "飞碟";
+"daily.achievement.astronaut.level5" = "外星人";
+
+/* AppTheme, 天体 */
+"app.theme.celestial" = "天体";
+"daily.achievement.celestial.level1" = "彗星";
+"daily.achievement.celestial.level2" = "月球";
+"daily.achievement.celestial.level3" = "地球";
+"daily.achievement.celestial.level4" = "土星";
+"daily.achievement.celestial.level5" = "银河";
+
+/* AppAccentColor.swift, 颜色名称 */
+"color.red"    = "红色";
+"color.blue"   = "蓝色";
+"color.purple" = "紫色";
+"color.green"  = "绿色";
+"color.yellow" = "黄色";
+"color.orange" = "橙色";
+"color.cyan"   = "青色";
+"color.pink"   = "粉色";
+
+/* ColorSettingsView.swift */
+"settings.color.title"    = "强调色";
+"settings.color.subtitle" = "在整个 App 中使用的强调色";
+"settings.color.preview" = "预览";
+
+/* TierInfoView.swift / ProgressRingInfoView.swift, 设置 > 关于 中的链接 */
+"settings.about.achievement"  = "成就";
+"settings.about.progressRing" = "进度环";
+
+/* TierInfoView.swift */
+"tier.info.intro"             = "你的成就将在每天午夜结束时记录。";
+"tier.info.section.levels"    = "等级";
+"tier.info.change.theme"      = "更换主题";
+"tier.info.range.suffix"      = " 进度";
+
+/* ProgressRingInfoView.swift */
+"ring.info.intro"             = "进度环显示你已完成目标的平均百分比。每个彩色弧段代表 20%。";
+"ring.info.section.colors"    = "环段说明";
+"ring.info.color.red"         = "刚刚开始";
+"ring.info.color.orange"      = "渐入佳境";
+"ring.info.color.green"       = "状态良好";
+"ring.info.color.cyan"        = "胜利在望";
+"ring.info.color.purple"      = "最后冲刺";
+"ring.info.color.blue"        = "目标达成";
+"ring.info.level.label"       = "等级 ";
+"info.next.prefix"            = "还差 ";
+"info.next.middle"            = " 即可达到：";
+
+/* 通用 */
+"common.cancel" = "取消";
+"common.done" = "完成";
+
+/* 通知历史 */
+"notifications.history.title" = "通知";
+"common.close" = "关闭";
+"common.edit" = "编辑";
+"common.done" = "完成";
+"notifications.history.today" = "今天";
+"notifications.history.yesterday" = "昨天";
+"notifications.history.empty.title" = "暂无通知";
+"notifications.history.empty.description" = "此处显示最近 3 天的通知历史。";
+
+/* NotificationsSettingsView */
+"settings.preference.notifications"       = "通知";
+"settings.notifications.section.system"   = "系统";
+"settings.notifications.section.goals"    = "目标";
+"settings.notifications.authorize.button" = "启用通知";
+"settings.notifications.authorize.footer" = "轻点“允许”并在系统弹窗中确认以开始接收提醒。如果之前已拒绝，可在 iOS“设置”中重新启用。";
+"settings.notifications.denied.title"     = "通知已停用";
+"settings.notifications.denied.message"   = "你之前拒绝了通知权限。请在 iOS“设置”中启用通知以接收 Gym Nutshell 提醒。";
+"settings.notifications.denied.open"      = "打开“设置”";
+
+/* NotificationIntervalEditView */
+"settings.notifications.interval.header"   = "通知间隔";
+"settings.notifications.interval.stepper"  = "每隔";
+"settings.notifications.interval.value"    = "%d min";
+
+/* NotificationIntervalEditView, sound picker */
+"settings.notifications.sound.header"      = "声音";
+"settings.notifications.sound.label"       = "通知提示音";
+"settings.notifications.sound.footer"      = "“默认”将播放你在 iOS“设置”→“通知”→“Gym Nutshell”→“声音”中选取的提示音（如三音符、便签、和弦等）。“静音”仅关闭本 App 的提示音。";
+"settings.notifications.sound.openSystem"  = "在 iOS“设置”中选取提示音";
+"notifications.sound.default"              = "默认";
+"notifications.sound.silent"               = "静音";
+
+/* NotificationKind, 列表上的标题 / 描述 + 通知正文 + 页脚 */
+"notifications.kind.progress.title"         = "进度";
+"notifications.kind.progress.description"   = "距离达成下一个每日成就还差多少。";
+"notifications.kind.progress.body"          = "加油！每个完成的目标都让你离下一个成就更近一步。";
+"notifications.kind.progress.footer"        = "定期发送提醒，显示今天升级还需多少进度。";
+
+"notifications.kind.achievement.title"      = "每日成就";
+"notifications.kind.achievement.description" = "在午夜通知当天解锁的成就。";
+"notifications.kind.achievement.body"       = "%@ 你今天达成了“%@”！";
+
+"notifications.kind.appleHealth.title"      = "Apple 健康";
+"notifications.kind.appleHealth.description" = "确认已与 Apple 健康同步的记录。";
+"notifications.kind.appleHealth.body.cardio" = "已记录 %d min 有氧运动（%@）。";
+"notifications.kind.appleHealth.body.workout" = "已记录 %d min 力量训练（%@）。";
+"notifications.kind.appleHealth.body.sleep" = "已在 Apple 健康中记录 %d h 睡眠。";
+
+"notifications.kind.backup.title"           = "iCloud 备份";
+"notifications.kind.backup.description"     = "确认每次自动备份。";
+"notifications.kind.backup.body"            = "iCloud 备份已成功完成。";
+
+"notifications.kind.sleep.title"            = "睡眠";
+"notifications.kind.sleep.description"      = "未达到睡眠目标时建议小憩片刻（仅限上午 10 点至晚上 7 点之间）。";
+"notifications.kind.sleep.body"             = "要不要小憩一下，达成今天的睡眠目标？";
+"notifications.kind.sleep.footer"           = "App 会定期建议你休息，直到达到每日目标。上午 10 点前或晚上 7 点后不会发送提醒。";
+
+"notifications.kind.water.title"            = "喝水";
+"notifications.kind.water.description"      = "提醒喝水，直到达成每日目标。";
+"notifications.kind.water.body"             = "该喝杯水了？继续向每日目标迈进吧。";
+"notifications.kind.water.footer"           = "App 会定期提醒你喝水。达成每日目标后将停止提醒。";
+
+"notifications.kind.calories.title"         = "热量";
+"notifications.kind.calories.description"   = "提醒摄入足够热量以达成每日目标。";
+"notifications.kind.calories.body"          = "该记录饮食了，快来达成今天的热量目标吧。";
+"notifications.kind.calories.footer"        = "达成热量目标后将停止定期提醒。";
+
+"notifications.kind.protein.title"          = "蛋白质";
+"notifications.kind.protein.description"    = "提醒摄入蛋白质以达成每日目标。";
+"notifications.kind.protein.body"           = "该补充蛋白质了，快来达成今天的目标吧。";
+"notifications.kind.protein.footer"         = "达成蛋白质目标后将停止定期提醒。";
+
+"notifications.kind.carbs.title"            = "碳水";
+"notifications.kind.carbs.description"      = "提醒摄入碳水以达成每日目标。";
+"notifications.kind.carbs.body"             = "来点优质碳水补充能量怎么样？";
+"notifications.kind.carbs.footer"           = "达成碳水目标后将停止定期提醒。";
+
+"notifications.kind.goodFat.title"          = "优质脂肪";
+"notifications.kind.goodFat.description"    = "提醒摄入优质脂肪以达成每日目标。";
+"notifications.kind.goodFat.body"           = "今天别忘了摄入优质脂肪（橄榄油、坚果、牛油果）。";
+"notifications.kind.goodFat.footer"         = "达成优质脂肪目标后将停止定期提醒。";
+
+"notifications.kind.fiber.title"            = "膳食纤维";
+"notifications.kind.fiber.description"      = "提醒摄入膳食纤维以达成每日目标。";
+"notifications.kind.fiber.body"             = "下一餐记得加一份膳食纤维。";
+"notifications.kind.fiber.footer"           = "达成膳食纤维目标后将停止定期提醒。";
+
+"notifications.kind.workout.title"          = "力量训练";
+"notifications.kind.workout.description"    = "提醒完成今天的力量训练。";
+"notifications.kind.workout.body"           = "力量训练正在等着你，动起来吧！";
+"notifications.kind.workout.footer"         = "达成力量训练目标后将停止定期提醒。";
+
+"notifications.kind.cardio.title"           = "有氧运动";
+"notifications.kind.cardio.description"     = "提醒完成今天的有氧运动。";
+"notifications.kind.cardio.body"            = "有氧时间到！活动一下，活力满满。";
+"notifications.kind.cardio.footer"          = "达成有氧目标后将停止定期提醒。";
+
+"notifications.kind.creatine.title"         = "肌酸";
+"notifications.kind.creatine.description"   = "提醒服用每日肌酸。";
+"notifications.kind.creatine.body"          = "今天吃肌酸了吗？";
+"notifications.kind.creatine.footer"        = "记录今日用量后将停止定期提醒。";
+
+/* 自定义目标 */
+"notifications.custom.description"          = "提醒达成今日目标。";
+"notifications.custom.body"                 = "该记录%@了，继续向今日目标迈进吧。";
+"notifications.custom.footer"               = "达成此自定义目标的今日进度后将停止定期提醒。";
+"notifications.history.delete" = "删除";
+
+/* MARK: - Accessibility (VoiceOver), shared helpers in A11yHelpers.swift */
+
+/* 进度分段，播报颜色分区名称而不仅依赖视觉色调 */
+"a11y.band.red"    = "红色区域，距目标尚远";
+"a11y.band.orange" = "橙色区域，进行中";
+"a11y.band.green"  = "绿色区域，状态良好";
+"a11y.band.cyan"   = "青色区域，胜利在望";
+"a11y.band.blue"   = "蓝色区域，目标达成";
+
+/* 通用进度表述，经过用户测试后去除了分段名称以保持简洁 */
+"a11y.percent.format"          = "百分之%d";
+"a11y.progress.value.format"   = "已完成百分之%d";
+
+/* 目标打卡行，标题数值去除了百分比和色带以保持简练 */
+"a11y.goalrow.value.format"    = "已完成 %1$d/%2$d %3$@";
+"a11y.goalrow.value.restday"   = "处于休息日模式，目标已完成";
+"a11y.goalrow.a11y.label"      = "%@目标";
+"a11y.slider.label.format"     = "%@滑块";
+
+/* 在进度环和等级中复用的通用“打开详情”提示 */
+"a11y.hint.more.info"          = "轻点查看更多信息。";
+
+/* 可折叠分类标题 (TodayView) */
+"a11y.category.label.format"   = "%@分类";
+"a11y.category.hint"           = "轻点折叠或展开。";
+
+/* 日期单元格（月历视图 + 小组件日历） */
+"a11y.daycell.today.format"        = "今天，%1$@，完成度百分之%2$d，%3$@";
+"a11y.daycell.past.format"         = "%1$@，完成度百分之%2$d，%3$@";
+"a11y.daycell.future.format"       = "%@，未来";
+"a11y.daycell.empty.format"        = "%@，无记录";
+"a11y.daycell.today.empty.format"  = "今天，%@，暂无记录";
+"a11y.daycell.selected.suffix"     = "，已选定";
+
+/* 递增 / 递减按钮（Watch、编辑动作表） */
+"a11y.hint.increment" = "轻点增加。";
+"a11y.hint.decrement" = "轻点减少。";
+
+/* 休息日开关，标签反映开/关状态，提示说明操作效果 */
+"a11y.hint.restday.activate"   = "轻点开启休息日。";
+"a11y.hint.restday.deactivate" = "轻点退出休息日模式。";
+
+/* 信息弹窗，行组合辅助文本 */
+"a11y.ringinfo.color.row.format"  = "%1$@，范围 %2$@";
+"a11y.tierinfo.row.format"        = "%1$@，%2$@，等级 %3$d";
+
+/* MARK: - Accessibility (Phase 2, Achievements + ProgressOver) */
+
+/* 包含等级名称播报的日历单元格 */
+"a11y.calendar.day.tier.format"        = "%1$@，已达成：%2$@";
+"a11y.calendar.day.today.tier.format"  = "今天，%1$@，已达成：%2$@";
+
+/* Achievements view-mode segmented picker (List / Calendar) */
+
+/* Calendar section header */
+
+/* 月份切换箭头 */
+"a11y.month.previous" = "上个月";
+"a11y.month.next"     = "下个月";
+
+/* AchievementsView 历史记录行 */
+"a11y.record.row.daily.format"  = "%1$@，%2$@，百分之%3$d";
+"a11y.record.row.hint"          = "轻点查看详情。";
+"a11y.record.edit.label"        = "编辑记录";
+"a11y.record.edit.hint" = "轻点编辑。";
+
+/* RecordDetail / EditToday 顶部卡片 */
+"a11y.record.header.format"     = "%1$@，%2$@，百分之%3$d，等级 %4$d";
+
+/* ProgressOverView, 统计卡片 */
+"a11y.stats.days.label"            = "天数";
+"a11y.stats.days.value.format"     = "%d 天";
+"a11y.stats.days.hint" = "轻点打开今天的日历。";
+
+/* ProgressOverView, 卡片内的列表行 */
+"a11y.stats.tier.row.format"     = "%1$@，%2$d 天";
+"a11y.stats.activity.row.format" = "%1$@，%2$d 天";
+"a11y.stats.goals.row.format"    = "%1$@，%2$d 个进行中";
+
+/* ProgressOverView, 整张卡片轻点提示 */
+"a11y.stats.card.usergoal.hint" = "轻点修改目标。";
+"a11y.stats.card.tiers.hint"    = "轻点了解等级规则。";
+"a11y.stats.card.activity.hint" = "轻点打开活动日志。";
+"a11y.stats.card.goals.hint"    = "轻点管理打卡目标。";
+
+/* ProfileRecentActivityView, 日期按钮 */
+"a11y.recent.day.with.tier.format" = "%1$@，%2$@";
+"a11y.recent.day.empty.format"     = "%@，无记录";
+"a11y.recent.day.today.format"     = "今天，%1$@，%2$@";
+"a11y.recent.day.today.empty.format" = "今天，%@，暂无记录";
+"a11y.recent.day.hint" = "轻点打开该日期。";
+
+/* MARK: - Accessibility (Phase 3, Settings) */
+
+/* 通用选中状态 */
+"a11y.selected"     = "已选定";
+"a11y.not.selected" = "未选定";
+
+/* 主题选择器 (ThemeSettingsView) */
+"a11y.theme.hint"             = "轻点选取此主题。";
+"a11y.theme.info.label.format" = "关于%@的更多信息";
+"a11y.theme.info.hint" = "轻点查看更多信息。";
+
+/* 颜色选择器 (ColorSettingsView) */
+"a11y.color.hint" = "轻点选取此颜色。";
+
+/* 健身目标选择器 (UserGoalPickerView) */
+"a11y.usergoal.hint" = "轻点选取此目标。";
+
+/* 目标设置，纯图标按钮 */
+"a11y.button.add.goal.label"     = "新建打卡目标";
+"a11y.button.add.goal.hint" = "轻点创建新目标。";
+"a11y.button.remove.goal.label"  = "移除目标";
+"a11y.button.restore.goal.label" = "恢复目标";
+
+/* 分类设置，铅笔按钮 */
+"a11y.button.edit.category.label" = "编辑分类";
+"a11y.button.edit.category.hint" = "轻点编辑此分类。";
+
+/* 通知行，铅笔按钮 */
+"a11y.button.edit.notification.label" = "编辑通知";
+"a11y.button.edit.notification.hint" = "轻点编辑通知设置。";
+
+/* SettingsView 工具栏铃铛 */
+"a11y.notification.history.bell" = "通知历史";
+"a11y.notification.history.bell.hint" = "轻点打开通知。";
+
+/* 通知历史行 */
+"a11y.history.row.format" = "%1$@，%2$@，%3$@";
+"a11y.history.row.hint" = "轻点打开。";
+
+/* App 图标（关于） */
+"a11y.app.icon" = "App 图标";
+
+/* 可折叠分组标题（目标设置 + 通知） */
+"a11y.section.collapsible.hint" = "轻点折叠或展开。";
+
+/* MARK: - Accessibility (Phase 4, Welcome / onboarding) */
+
+"a11y.welcome.progress.format"          = "第 %1$d 步，共 %2$d 步";
+"a11y.welcome.optional.add.label.format"    = "添加%@";
+"a11y.welcome.optional.remove.label.format" = "移除%@";
+"a11y.welcome.optional.add.hint" = "轻点添加此目标。";
+"a11y.welcome.optional.remove.hint" = "轻点移除此目标。";
+
+/* MARK: - Accessibility (Phase 5, Watch app) */
+
+/* Watch 主进度环 (ContentView)，用词与 iPhone 进度环一致 */
+"a11y.watch.hero.label"  = "每日进度";
+"a11y.watch.page.stats"         = "统计页面";
+"a11y.watch.page.today"         = "今天页面";
+"a11y.watch.page.notifications" = "通知页面";
+
+/* Watch 目标卡片头部 */
+"a11y.watch.card.expanded"   = "已展开";
+"a11y.watch.card.collapsed"  = "已折叠";
+"a11y.watch.card.hint.expand" = "轻点展开。";
+"a11y.watch.card.hint.collapse" = "轻点折叠。";
+
+/* Watch ± 按钮 */
+"a11y.watch.increase.label.format" = "增加%@";
+"a11y.watch.decrease.label.format" = "减少%@";
+
+/* Watch 近期动态条，汇总为单一描述 */
+"a11y.watch.recent.summary.format" = "%1$@：过去 7 天中有 %2$d 天获得成就。";
+
+/* Watch 通知行 */
+"a11y.watch.notification.row.format" = "%1$@，%2$@，%3$@";
+
+/* MARK: - Accessibility (Phase 6, Widgets) */
+
+/* 小组件摘要（小/中/锁定屏幕，watch 圆形/矩形） */
+"a11y.widget.summary.format"       = "每日进度，%1$@，已完成百分之%2$d";
+"a11y.widget.summary.points.format" = "每日进度，%1$@，已完成百分之%2$d";
+
+/* iPhone 大尺寸小组件 */
+"a11y.widget.large.header.format"  = "%1$@，%2$@，百分之%3$d";
+"a11y.widget.calendar.month.format" = "%@";
+
+/* Watch 小组件，角落和内联无需额外标签（文本已可朗读） */
+
+"a11y.welcome.goal.decrease.format" = "减少%@";
+"a11y.welcome.goal.increase.format" = "增加%@";
+
+"welcome.step.control.title" = "记录方式";
+"welcome.step.control.subtitle" = "你更喜欢哪种方式来记录每日目标？";
+"welcome.control.slider" = "滑动";
+"welcome.control.slider.desc" = "拖动滑块至目标数值。";
+"welcome.control.stepper" = "按键";
+"welcome.control.stepper.desc" = "轻点单步递增或递减。";
+"welcome.step.ready.title" = "大功告成！";
+"welcome.step.ready.subtitle" = "开启你需要的权限与功能。";
+"welcome.ready.notifications.title" = "通知";
+"welcome.ready.notifications.desc" = "喝水提醒与成就通知。";
+"welcome.ready.health.title" = "Apple 健康";
+"welcome.ready.health.desc" = "自动记录睡眠并检测体能训练。";
+"welcome.ready.allow" = "允许";
+"welcome.ready.allowed" = "已允许";
+"welcome.ready.requested" = "已请求";
+"welcome.ready.denied" = "已拒绝";
+"welcome.ready.footer" = "你之后可随时在“设置”中修改这些选项。";
+"settings.preference.controlStyle" = "记录方式";
+"settings.controlStyle.footer" = "设定在“今天”页面中记录目标进度的方式。";
+
+"settings.category.icon.section" = "图标";
+
+"today.edit.goals" = "编辑目标";
+"today.edit.controls" = "编辑记录方式";
+"today.edit.theme" = "编辑主题";
+"today.edit.colors" = "编辑强调色";
+
+"welcome.step.units.title" = "度量单位";
+"welcome.step.units.subtitle" = "你习惯如何计量饮水量？";
+"welcome.step.units.note" = "稍后可在“设置”中更改。";
+"welcome.units.metric.desc" = "毫升，如每杯 250 ml。";
+"welcome.units.imperial.desc" = "液量盎司，如每杯 %d fl oz。";
+
+"today.goals.viewMode.list" = "列表";
+"today.goals.viewMode.grid" = "网格";
+"today.goals.viewMode.switch.a11y" = "切换到%@视图";
+"today.category.tile.a11y.value" = "已完成 %d 个（共 %d 个）";
+"today.category.tile.a11y.hint" = "轻点打开该分类下的目标。";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%2$d日 %1$@";

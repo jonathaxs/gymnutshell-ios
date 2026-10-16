@@ -1,0 +1,3 @@
+"NSHealthShareUsageDescription" = "毎日のアクティビティを表示し進捗を計算するために、ヘルスケアから睡眠とワークアウトの履歴を読み取ります。";
+"NSHealthUpdateUsageDescription" = "他のアプリと履歴を同期できるよう、睡眠データをヘルスケアに保存します。";
+"NSCameraUsageDescription" = "毎日の成果に保存する写真を撮影するためにカメラを使用します。";

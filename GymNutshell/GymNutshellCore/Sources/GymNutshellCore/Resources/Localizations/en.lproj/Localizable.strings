@@ -881,3 +881,6 @@
 "today.goals.viewMode.switch.a11y" = "Switch to %@ view";
 "today.category.tile.a11y.value" = "%d of %d completed";
 "today.category.tile.a11y.hint" = "Tap to open the category goals.";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%1$@, %2$d";

@@ -1,0 +1,886 @@
+/* ⌘
+  GymNutshell/GymNutshellCore/Resources/Localizations/ja.lproj/Localizable.strings
+
+  Propósito: Chaves de localização em japonês e strings da interface do usuário para o aplicativo.
+
+  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
+
+ ⌘ */
+
+/* MARK: - Models */
+
+/* DailyAchievement.swift, Cat theme (default) */
+"daily.achievement.level1" = "子ネコ";
+"daily.achievement.level2" = "フィットネスネコ";
+"daily.achievement.level3" = "ボスネコ";
+"daily.achievement.level4" = "リーダーネコ";
+"daily.achievement.level5" = "トラ";
+"daily.achievement.level5.fem" = "トラ";
+
+/* AppTheme.swift, Dog theme tier names */
+"daily.achievement.dog.level1" = "子イヌ";
+"daily.achievement.dog.level2" = "フィットネスイヌ";
+"daily.achievement.dog.level3" = "スヌープドッグ";
+"daily.achievement.dog.level4" = "キャラメルドッグ";
+"daily.achievement.dog.level5" = "オオカミ";
+
+/* AppTheme.swift, Bear theme tier names */
+"daily.achievement.bear.level1" = "子グマ";
+"daily.achievement.bear.level2" = "ヒグマ";
+"daily.achievement.bear.level3" = "ホッキョクグマ";
+"daily.achievement.bear.level4" = "強豪バイソン";
+"daily.achievement.bear.level5" = "マンモス";
+
+/* AppTheme.swift, Dino theme tier names */
+"daily.achievement.dino.level1" = "子ガメ";
+"daily.achievement.dino.level2" = "ワニ";
+"daily.achievement.dino.level3" = "ティラノサウルス";
+"daily.achievement.dino.level4" = "巨大恐竜";
+"daily.achievement.dino.level5" = "伝説の化石";
+
+/* AppTheme.swift, Bird theme tier names */
+"daily.achievement.bird.level1" = "ヒヨコ";
+"daily.achievement.bird.level2" = "青い鳥";
+"daily.achievement.bird.level3" = "ワシ";
+"daily.achievement.bird.level4" = "ものしりフクロウ";
+"daily.achievement.bird.level5" = "フェニックス";
+
+/* AppTheme.swift, Ocean theme tier names */
+"daily.achievement.ocean.level1" = "小魚";
+"daily.achievement.ocean.level2" = "イルカ";
+"daily.achievement.ocean.level3" = "クラゲ";
+"daily.achievement.ocean.level4" = "シロナガスクジラ";
+"daily.achievement.ocean.level5" = "クラーケン";
+
+/* AppTheme.swift, Dragon theme tier names */
+"daily.achievement.dragon.level1" = "ちいさな卵";
+"daily.achievement.dragon.level2" = "トカゲ";
+"daily.achievement.dragon.level3" = "ドラゴン";
+"daily.achievement.dragon.level4" = "古龍";
+"daily.achievement.dragon.level5" = "竜王";
+"daily.achievement.dragon.level5.fem" = "竜女王";
+
+/* AppTheme.swift, Horse theme tier names */
+"daily.achievement.horse.level1" = "子ウマ";
+"daily.achievement.horse.level2" = "ユニコーン";
+"daily.achievement.horse.level3" = "ジョッキー";
+"daily.achievement.horse.level4" = "回転木馬の王者";
+"daily.achievement.horse.level5" = "サラブレッド";
+
+/* AppTheme.swift, Primate theme tier names (enum case is still `.monkey` for compatibility) */
+"daily.achievement.monkey.level1" = "子ザル";
+"daily.achievement.monkey.level2" = "マッチョザル";
+"daily.achievement.monkey.level3" = "ドンキー霊長類";
+"daily.achievement.monkey.level4" = "マスター霊長類";
+"daily.achievement.monkey.level5" = "ジャングルの伝説";
+
+/* AppTheme.swift, Theme display names */
+"app.theme.cat" = "ネコ";
+"app.theme.dog" = "イヌ";
+"app.theme.bear" = "クマ";
+"app.theme.dino" = "恐竜";
+"app.theme.bird" = "トリ";
+"app.theme.ocean" = "魚";
+"app.theme.dragon" = "ドラゴン";
+"app.theme.horse" = "ウマ";
+"app.theme.monkey" = "霊長類";
+
+/* UserProfile.swift */
+"fitness.goal.bulking" = "増量";
+"fitness.goal.maintenance" = "維持";
+"fitness.goal.cutting" = "減量";
+
+/* MARK: - Views */
+
+/* MARK: - Views/AchievementsView */
+
+/* AchievementsView.swift */
+"achievements.header.title" = "成果";
+"achievements.filter.list" = "リスト";
+"achievements.filter.calendar" = "カレンダー";
+"achievements.filter.title" = "表示";
+"achievements.filter.all" = "リスト";
+"achievements.filter.day" = "カレンダー";
+"achievements.empty.title" = "まだ成果がありません";
+"achievements.empty.description" = "1日の終わりに、ここで成果がアンロックされます。";
+
+"achievements.daily.row.description" = "毎日の目標の%d%%を達成しました。";
+
+/* EditTodayView.swift */
+"edit.record.cancel" = "キャンセル";
+"edit.record.save" = "保存";
+
+/* RecordDetailView.swift */
+"record.detail.title" = "成果の詳細";
+"record.detail.back" = "戻る";
+"record.detail.edit" = "編集";
+
+/* MARK: - Views/ProfileView */
+
+/* ProgressOverView.swift */
+"statistics.title" = "履歴";
+"statistics.section.tiers" = "レベル別の内訳";
+"statistics.section.activity" = "ジムのアクティビティ";
+"statistics.section.goals" = "目標";
+"statistics.tier.days" = "%d日";
+"statistics.activity.workout" = "筋トレの日数";
+"statistics.activity.cardio" = "有酸素運動の日数";
+"statistics.goals.active.label" = "アクティブな目標";
+"statistics.goals.active" = "進行中 %d件";
+"statistics.fitness.goal" = "目標";
+"watch.stats.days" = "日数";
+"watch.stats.syncing" = "iPhoneでGym Nutshellを開いて統計を確認してください。";
+"watch.stats.recent" = "最近";
+
+/* ProgressOverView.swift, stats rows and physical data */
+"profile.stats.days" = "日数";
+"profile.recent.section" = "過去7日間";
+
+/* MARK: - Views/SettingsView */
+
+/* AboutView.swift */
+"settings.about.title" = "アプリについて";
+"settings.about.version" = "バージョン";
+"settings.about.feedback" = "フィードバックを送信";
+"settings.about.description" = "Gym Nutshellは、毎日のジム目標をシンプルに管理できるアプリです。\n\n目標を設定して記録し、継続が成果へと変わるのを実感しましょう。";
+
+/* AddTrackingGoalView.swift */
+"settings.addgoal.title.new" = "新しい目標";
+"settings.addgoal.section.icon" = "絵文字";
+"settings.addgoal.emoji.placeholder" = "例: 🧘";
+"settings.addgoal.section.name" = "名前";
+"settings.addgoal.name.placeholder" = "例: 瞑想";
+"settings.addgoal.section.unit" = "単位";
+"settings.addgoal.unit.placeholder" = "例: min";
+"settings.addgoal.section.goal" = "目標値";
+"settings.addgoal.goal.placeholder" = "例: 10";
+"settings.addgoal.section.increment" = "増減幅";
+"settings.addgoal.increment.placeholder" = "例: 2";
+"settings.addgoal.cancel" = "キャンセル";
+"settings.addgoal.save" = "保存";
+"settings.addgoal.warning.catalog" = "同じ名前の目標がすでに存在します。";
+"settings.addgoal.warning.emoji" = "その絵文字はすでに他の目標で使用されています。";
+"settings.addgoal.warning.emoji.keyboard" = "この項目には絵文字のみ入力できます。「設定」→「一般」→「キーボード」→「キーボード」で「絵文字」キーボードを有効にしてください。";
+"settings.addgoal.warning.category.duplicate" = "同じ名前のカテゴリーがすでに存在します。";
+"settings.addgoal.warning.step" = "増減幅を目標値より大きくすることはできません。";
+"settings.addgoal.section.category" = "カテゴリー";
+"settings.addgoal.category.new.button" = "新しいカテゴリー";
+"settings.addgoal.category.new.section" = "カスタムカテゴリー";
+"settings.addgoal.category.new.name.placeholder" = "例: ストレッチ";
+"settings.addgoal.category.new.restDay" = "休息日切り替え (ON/OFF)";
+"settings.goals.custom.badge" = "カスタム";
+"settings.goals.categories.title" = "カテゴリー";
+
+/* BackupSettingsView.swift */
+"settings.backup.nav.title" = "バックアップ";
+"settings.backup.section.data" = "ローカル";
+"settings.backup.section.footer" = "ローカルのエクスポートとインポートは.jsonファイルを使用します。";
+"settings.backup.export" = "バックアップをエクスポート";
+"settings.backup.import" = "バックアップをインポート";
+"settings.backup.import.alert.title" = "データを上書きしますか？";
+"settings.backup.import.alert.message" = "現在のプロフィール、目標、履歴がバックアップデータで置き換えられます。この操作は取り消せません。";
+"settings.backup.import.alert.confirm" = "上書き";
+"settings.backup.import.alert.cancel" = "キャンセル";
+"settings.backup.error.title" = "エラー";
+"settings.backup.success.title" = "完了";
+"settings.backup.success.message" = "バックアップからデータが復元されました。";
+
+/* iCloud backup */
+"settings.backup.icloud.save" = "iCloudに保存";
+"settings.backup.icloud.restore" = "iCloudから復元";
+"settings.backup.icloud.restoring" = "iCloudからバックアップを復元中…";
+"settings.backup.icloud.save.success" = "バックアップがiCloudに保存されました。";
+"settings.backup.icloud.unavailable" = "iCloudを利用できません";
+"settings.backup.icloud.noBackup" = "iCloudに保存されたバックアップはまだありません。";
+"settings.backup.icloud.lastBackup" = "最新のバックアップ:";
+"settings.backup.icloud.footer.unavailable" = "クラウドバックアップを有効にするには、「設定」でiCloudにサインインしてください。";
+"settings.backup.icloud.error.unavailable" = "iCloud Driveを利用できません。iCloudにサインインし、iCloud Driveが有効になっていることを確認してください。";
+"settings.backup.icloud.error.downloadTimeout" = "iCloudからバックアップをダウンロードできませんでした。接続を確認してやり直してください。";
+"settings.backup.icloud.auto.toggle" = "毎日の自動バックアップ";
+"settings.backup.icloud.auto.footer" = "\n新しい成果が更新されたときに、バックアップが自動的に保存されます。\n成果は午前0時以降にアプリを開いたときに更新されます。";
+
+/* CheckinGoalsSettingsView.swift */
+"settings.goals.mandatory.badge" = "標準";
+"settings.goals.optional.badge" = "おすすめ";
+
+/* FitnessGoalChangeView.swift */
+"settings.goalchange.title" = "目標";
+"settings.goalchange.section.pick" = "目標を選択";
+"settings.goalchange.section.preview" = "設定される目標";
+"settings.goalchange.save.recalc" = "保存して再計算";
+"settings.goalchange.save.keep" = "再計算せずに保存";
+
+/* ProfileSettingsView.swift */
+"settings.profile.section.personal" = "個人情報";
+"settings.profile.section.optional" = "任意";
+"settings.profile.name" = "名前";
+"settings.profile.name.placeholder" = "お名前";
+"settings.profile.favoriteExercise" = "好きな種目・部位";
+
+/* Favorite exercises (easter egg) */
+"favoriteExercise.unknown"    = "決まっていない";
+"favoriteExercise.back"       = "背中";
+"favoriteExercise.arms"       = "腕";
+"favoriteExercise.chest"      = "胸";
+"favoriteExercise.legs"       = "脚";
+"favoriteExercise.hamstrings" = "ハムストリングス";
+"favoriteExercise.glutes"     = "お尻";
+"favoriteExercise.shoulders"  = "肩";
+"favoriteExercise.biceps"     = "上腕二頭筋";
+"favoriteExercise.triceps"    = "上腕三頭筋";
+"favoriteExercise.abs"        = "腹筋";
+"favoriteExercise.traps"      = "僧帽筋";
+"favoriteExercise.forearms"   = "前腕";
+"favoriteExercise.calves"     = "ふくらはぎ";
+"settings.profile.sex" = "性別";
+"profile.sex.male" = "男性";
+"profile.sex.female" = "女性";
+
+/* SettingsView.swift */
+"settings.header.title" = "アプリ設定";
+"settings.detail.placeholder" = "ページを選択";
+"settings.section.edit" = "ユーザーデータ";
+"settings.theme.title" = "テーマ";
+"settings.section.preferences" = "外観";
+"settings.section.system" = "システム";
+"settings.section.about" = "情報";
+
+/* GymNutshellApp.swift, DataStoreErrorView */
+"app.error.dataStore.title" = "問題が発生しました";
+"app.error.dataStore.message" = "Gym Nutshellでデータを読み込めませんでした。\nアプリを強制終了して再度開いてください。";
+"settings.about.link" = "Gym Nutshell";
+"settings.section.physicaldata" = "プロフィール";
+"settings.fitness.goal.edit" = "フィットネス目標";
+"settings.goals.edit" = "毎日の目標";
+"settings.preference.appleHealth" = "ヘルスケア";
+"settings.preference.appleHealth.syncSleep" = "睡眠を記録";
+"settings.preference.appleHealth.autoWorkoutCheckin" = "ワークアウト検出";
+"settings.preference.appleHealth.footer" = "「睡眠の記録」は、ヘルスケアにその日の記録がない場合に睡眠時間を記録します。\n\n「ワークアウト検出」は、完了したワークアウトを検出して「筋トレ」または「有酸素運動」に自動記録します。";
+"settings.preference.appleWatch" = "Apple Watch";
+"appleWatch.sheet.title" = "Apple Watchにインストール";
+"appleWatch.sheet.intro" = "Apple WatchにGym Nutshellをインストールするには、以下の手順に従ってください:";
+"appleWatch.sheet.step1" = "iPhoneで「Watch」アプリを開きます";
+"appleWatch.sheet.step2" = "「利用可能なApp」セクションまでスクロールします";
+"appleWatch.sheet.step3" = "Gym Nutshellの横にある「インストール」をタップします";
+"appleWatch.sheet.note" = "すでにインストールされている場合は、上部の「Apple Watchにインストール済み」セクションに表示されます。";
+"settings.preference.language" = "言語";
+"settings.preference.measurementSystem" = "単位";
+"settings.preference.measurementSystem.metric" = "メートル法 (ml)";
+"settings.preference.measurementSystem.us" = "ヤード・ポンド法 (fl oz)";
+"settings.measurementSystem.footer" = "アプリ内での水分の表示および入力方法です。";
+"settings.edit.widgets" = "ウィジェット";
+"widgetBackground.title" = "ウィジェット";
+"widgetBackground.mode.label" = "背景";
+"widgetBackground.mode.system" = "システム";
+"widgetBackground.mode.accent" = "アクセント";
+"widgetBackground.mode.custom" = "カスタム";
+"widgetBackground.footer.system" = "ウィジェットはiOSのデフォルト背景を使用し、システムのテーマに合わせて黒または白のテキストで表示されます。";
+"widgetBackground.footer.accent" = "ウィジェットはアプリのアクセントカラーを背景として使用します。";
+"widgetBackground.footer.custom" = "以下から色を選択してください。ウィジェットの背景として使用されます。";
+"widgetBackground.picker" = "カラー";
+"widgetBackground.preview" = "プレビュー";
+
+/* TrackingGoalDetailView.swift */
+"settings.goaldetail.stepper" = "値を調整";
+"settings.goaldetail.footer" = "これを変更しても過去の記録には影響しません。";
+"settings.goaldetail.save" = "保存";
+"settings.goaldetail.increment.stepper" = "増減幅を調整";
+"settings.goaldetail.increment.footer" = "増減幅は、スライダーが目標値に向かって進む刻み幅です。";
+
+/* TrackingGoalsSettingsView.swift */
+"settings.goals.title" = "目標";
+"settings.tracking.goals.section.custom" = "カスタム目標";
+"settings.tracking.goals.done" = "完了";
+"settings.tracking.goals.editMode" = "編集";
+"settings.goals.category.order.section" = "カテゴリーの順序";
+"settings.goal.water" = "水分";
+"settings.goal.calories" = "カロリー";
+"settings.goal.protein" = "タンパク質";
+"settings.goal.carbs" = "炭水化物";
+"settings.goal.fats" = "良質な脂質";
+"settings.goal.fiber" = "食物繊維";
+"settings.goal.sleep" = "睡眠";
+
+/* MARK: - Views/Shared */
+
+/* FitnessGoalPickerView.swift */
+"welcome.goal.bulking.description" = "カロリー余剰で筋肉量を増やします";
+"welcome.goal.maintenance.description" = "現在の体重と体組成を維持します";
+"welcome.goal.cutting.description" = "筋肉を維持しながら体脂肪を減らします";
+
+/* MARK: - Views/TodayView */
+
+/* GoalCategory.swift */
+"goal.category.essencial" = "必須";
+"goal.category.nutricao" = "栄養";
+"goal.category.treino" = "トレーニング";
+"goal.category.suplemento" = "サプリメント";
+
+/* TodayView.swift */
+"today.goals.workout" = "筋トレ";
+"today.goals.cardio" = "有酸素運動";
+"today.goals.creatine" = "クレアチン";
+"today.category.other" = "その他";
+"today.category.a11y.value" = "%2$d件中%1$d件の目標を達成";
+"today.restday.label" = "休息日";
+"today.restday.on" = "オン";
+"today.restday.off" = "オフ";
+"today.metric.sleep" = "睡眠";
+"today.metric.water" = "水分";
+"today.metric.calories" = "カロリー";
+"today.metric.protein" = "タンパク質";
+"today.metric.carbs" = "炭水化物";
+"today.metric.fats" = "良質な脂質";
+"today.metric.fiber" = "食物繊維";
+
+/* TodayHeroView.swift, next level phrase */
+"today.max.level" = "本日の最高レベルに到達しました！";
+
+/* DailyTierView.swift */
+"today.tier.level.1" = "レベル1";
+"today.tier.level.2" = "レベル2";
+"today.tier.level.3" = "レベル3";
+"today.tier.level.4" = "レベル4";
+/* Tier button label combines the "Today's achievement" header phrase with the
+   tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
+   duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
+"today.tier.a11y.label" = "今日の成果、%2$@";
+
+/* TodayProgressRingView.swift */
+"today.ring.a11y.label" = "今日の進捗リング";
+"today.ring.a11y.hint" = "タップして詳細を表示。";
+"today.ring.a11y.value" = "%dパーセント達成";
+
+/* TodayView.swift, date hero button */
+"today.hero.bell.a11y.label" = "通知";
+"today.hero.bell.a11y.hint" = "タップして通知を開く。";
+"today.hero.caption.start" = "目標を記録してスタートしましょう";
+"today.hero.caption.nextLevel" = "次のレベルまであと%d%%";
+"today.hero.caption.max" = "本日のトップ達成！";
+"today.hero.achievement.label" = "毎日の成果";
+"today.greeting.morning"   = "おはようございます！";
+"today.greeting.afternoon" = "こんにちは！";
+"today.greeting.night"     = "こんばんは！";
+
+/* MARK: - Views/WelcomeView */
+
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "あなたについて";
+
+/* WelcomeFitnessGoalStep.swift */
+"welcome.step.goal.title" = "あなたの目標";
+"welcome.step.goal.info.editable" = "後からアプリの設定で変更できます。";
+
+/* WelcomeThemeStep.swift */
+"welcome.step.theme.title" = "テーマ";
+"welcome.step.theme.subtitle" = "毎日のモチベーションを高める絵文字を選びましょう。";
+"welcome.step.theme.footer" = "テーマは後から変更できます。";
+
+/* WelcomePhysicalDataStep.swift */
+"welcome.field.sex" = "性別";
+"welcome.field.sex.male" = "男性";
+"welcome.field.sex.female" = "女性";
+
+/* WelcomeSummaryStep.swift */
+"welcome.step.summary.title" = "あなたの目標";
+"welcome.summary.subtitle.customize" = "これらの値はいつでも編集でき、新しい目標も追加できます。";
+"welcome.option.add" = "追加";
+
+/* WelcomeStartStep.swift */
+"welcome.step.start.title" = "ようこそ！";
+"welcome.start.feature.track" = "1日を通じてフィットネス目標を記録。";
+"welcome.start.feature.theme" = "お気に入りのテーマでモチベーションアップ。";
+"welcome.start.feature.progress" = "日々の進捗を確認。";
+"welcome.start.new" = "はじめる";
+"welcome.start.restore" = "バックアップから復元";
+
+/* WelcomeView.swift */
+"welcome.button.continue" = "続ける";
+"welcome.button.start" = "スタート！";
+"welcome.button.back" = "戻る";
+
+/* MARK: - ContentView.swift */
+
+/* HealthKit activity display names (auto check-in descriptions) */
+"healthkit.activity.running" = "ランニング";
+"healthkit.activity.walking" = "ウォーキング";
+"healthkit.activity.cycling" = "サイクリング";
+"healthkit.activity.swimming" = "水泳";
+"healthkit.activity.elliptical" = "エリプティカル";
+"healthkit.activity.rowing" = "ローイング";
+"healthkit.activity.stairClimbing" = "ステアクライミング";
+"healthkit.activity.hiking" = "ハイキング";
+"healthkit.activity.jumpRope" = "縄跳び";
+"healthkit.activity.dance" = "ダンス";
+"healthkit.activity.strengthTraining" = "筋力トレーニング";
+"healthkit.activity.functionalTraining" = "機能的トレーニング";
+"healthkit.activity.crossTraining" = "クロストレーニング";
+"healthkit.activity.hiit" = "HIIT";
+"healthkit.activity.boxing" = "ボクシング";
+"healthkit.activity.martialArts" = "格闘技";
+"healthkit.activity.coreTraining" = "体幹トレーニング";
+"healthkit.activity.climbing" = "クライミング";
+"healthkit.activity.other" = "ワークアウト";
+
+/* AppTheme, Categories */
+"app.theme.category.sport" = "スポーツ";
+"app.theme.category.animals" = "動物";
+"app.theme.category.elements" = "エレメント＆自然";
+"app.theme.category.competition" = "進捗";
+"app.theme.category.warrior" = "ヒーロー";
+"app.theme.category.space" = "宇宙";
+
+/* AppTheme, Gym */
+"app.theme.gym" = "ジム";
+"app.theme.running" = "ランニング";
+"daily.achievement.running.level1" = "ウォーカー";
+"daily.achievement.running.level2" = "ペース良好";
+"daily.achievement.running.level3" = "ランナー";
+"daily.achievement.running.level4" = "マラソンランナー";
+"daily.achievement.running.level5" = "ウルトラマラソンランナー";
+"daily.achievement.gym.level1" = "ヒヨコ";
+"daily.achievement.gym.level1.fem" = "ヒヨコ";
+"daily.achievement.gym.level2" = "筋トレ見習い";
+"daily.achievement.gym.level3" = "ジム通い";
+"daily.achievement.gym.level4" = "マッチョ";
+"daily.achievement.gym.level5" = "ビースト";
+
+/* AppTheme, Fire */
+"app.theme.fire" = "炎";
+"daily.achievement.fire.level1" = "キャンドル";
+"daily.achievement.fire.level2" = "炎";
+"daily.achievement.fire.level3" = "火山";
+"daily.achievement.fire.level4" = "ソーラー";
+"daily.achievement.fire.level5" = "スーパーノヴァ";
+
+/* AppTheme, Plant */
+"app.theme.plant" = "森林";
+"daily.achievement.plant.level1" = "小さな芽";
+"daily.achievement.plant.level2" = "ハーブ";
+"daily.achievement.plant.level3" = "大樹";
+"daily.achievement.plant.level4" = "クリスマスツリー";
+"daily.achievement.plant.level5" = "大森林";
+
+/* AppTheme, Champion */
+"app.theme.champion" = "メダル";
+"daily.achievement.champion.level1" = "ブロンズ";
+"daily.achievement.champion.level2" = "シルバー";
+"daily.achievement.champion.level3" = "ゴールド";
+"daily.achievement.champion.level4" = "ダイヤモンド";
+"daily.achievement.champion.level5" = "トロフィー";
+
+/* AppTheme, Number */
+"app.theme.number" = "数字";
+"daily.achievement.number.level1" = "ワン";
+"daily.achievement.number.level2" = "ツー";
+"daily.achievement.number.level3" = "スリー";
+"daily.achievement.number.level4" = "フォー";
+"daily.achievement.number.level5" = "ファイブ";
+
+/* AppTheme, Doctor */
+"app.theme.doctor" = "ドクター";
+"daily.achievement.doctor.level1" = "見習い";
+"daily.achievement.doctor.level2" = "研修医";
+"daily.achievement.doctor.level3" = "専攻医";
+"daily.achievement.doctor.level4" = "名医";
+"daily.achievement.doctor.level5" = "院長";
+
+/* AppTheme, Ninja (Fighter) */
+"app.theme.ninja" = "格闘家";
+"daily.achievement.ninja.level1" = "見習い";
+"daily.achievement.ninja.level2" = "剣士";
+"daily.achievement.ninja.level3" = "忍者";
+"daily.achievement.ninja.level4" = "達人";
+"daily.achievement.ninja.level5" = "伝説の師範";
+
+/* AppTheme, Astronaut (Exploration) */
+"app.theme.astronaut" = "宇宙探査";
+"daily.achievement.astronaut.level1" = "人工衛星";
+"daily.achievement.astronaut.level2" = "宇宙飛行士";
+"daily.achievement.astronaut.level3" = "ロケット";
+"daily.achievement.astronaut.level4" = "空飛ぶ円盤";
+"daily.achievement.astronaut.level5" = "エイリアン";
+
+/* AppTheme, Celestial */
+"app.theme.celestial" = "天体";
+"daily.achievement.celestial.level1" = "彗星";
+"daily.achievement.celestial.level2" = "月";
+"daily.achievement.celestial.level3" = "地球";
+"daily.achievement.celestial.level4" = "土星";
+"daily.achievement.celestial.level5" = "銀河";
+
+/* AppAccentColor.swift, Color names */
+"color.red"    = "レッド";
+"color.blue"   = "ブルー";
+"color.purple" = "パープル";
+"color.green"  = "グリーン";
+"color.yellow" = "イエロー";
+"color.orange" = "オレンジ";
+"color.cyan"   = "シアン";
+"color.pink"   = "ピンク";
+
+/* ColorSettingsView.swift */
+"settings.color.title"    = "アクセントカラー";
+"settings.color.subtitle" = "アプリ全体で使用されるアクセントカラー";
+"settings.color.preview" = "プレビュー";
+
+/* TierInfoView.swift / ProgressRingInfoView.swift, links in Settings > About */
+"settings.about.achievement"  = "成果";
+"settings.about.progressRing" = "進捗リング";
+
+/* TierInfoView.swift */
+"tier.info.intro"             = "成果は1日の終わり（深夜0時）に記録されます。";
+"tier.info.section.levels"    = "レベル";
+"tier.info.change.theme"      = "テーマを変更";
+"tier.info.range.suffix"      = "の進捗";
+
+/* ProgressRingInfoView.swift */
+"ring.info.intro"             = "リングは達成した目標の平均パーセンテージを示します。各カラーセグメントは20%に相当します。";
+"ring.info.section.colors"    = "リングセグメント";
+"ring.info.color.red"         = "スタート直後";
+"ring.info.color.orange"      = "順調なペース";
+"ring.info.color.green"       = "好調";
+"ring.info.color.cyan"        = "あと少し";
+"ring.info.color.purple"      = "ラストスパート";
+"ring.info.color.blue"        = "目標達成";
+"ring.info.level.label"       = "レベル ";
+"info.next.prefix"            = "あと ";
+"info.next.middle"            = " で到達: ";
+
+/* Common */
+"common.cancel" = "キャンセル";
+"common.done" = "完了";
+
+/* Notification history */
+"notifications.history.title" = "通知";
+"common.close" = "閉じる";
+"common.edit" = "編集";
+"common.done" = "完了";
+"notifications.history.today" = "今日";
+"notifications.history.yesterday" = "昨日";
+"notifications.history.empty.title" = "通知はまだありません";
+"notifications.history.empty.description" = "過去3日間の通知履歴がここに表示されます。";
+
+/* NotificationsSettingsView */
+"settings.preference.notifications"       = "通知";
+"settings.notifications.section.system"   = "システム";
+"settings.notifications.section.goals"    = "目標";
+"settings.notifications.authorize.button" = "通知を有効にする";
+"settings.notifications.authorize.footer" = "リマインダーを受け取るには、iOSの確認ダイアログで「許可」をタップしてください。すでに拒否している場合は、iOSの「設定」で再度有効にできます。";
+"settings.notifications.denied.title"     = "通知が無効です";
+"settings.notifications.denied.message"   = "通知が拒否されています。Gym Nutshellのリマインダーを受け取るには、iOSの「設定」で有効にしてください。";
+"settings.notifications.denied.open"      = "設定を開く";
+
+/* NotificationIntervalEditView */
+"settings.notifications.interval.header"   = "通知の間隔";
+"settings.notifications.interval.stepper"  = "間隔";
+"settings.notifications.interval.value"    = "%d min";
+
+/* NotificationIntervalEditView, sound picker */
+"settings.notifications.sound.header"      = "サウンド";
+"settings.notifications.sound.label"       = "通知音";
+"settings.notifications.sound.footer"      = "「デフォルト」は、iOSの「設定」→「通知」→「Gym Nutshell」→「サウンド」で選択した通知音（トライトーン、メモ、コードなど）を再生します。「消音」を選択すると、このアプリのサウンドのみが無効になります。";
+"settings.notifications.sound.openSystem"  = "iOSの設定で通知音を選択";
+"notifications.sound.default"              = "デフォルト";
+"notifications.sound.silent"               = "消音";
+
+/* NotificationKind, title / description on list + body of notification + footer */
+"notifications.kind.progress.title"         = "進捗";
+"notifications.kind.progress.description"   = "次の成果までに必要な残り進捗。";
+"notifications.kind.progress.body"          = "その調子！毎日の目標達成が次の成果につながります。";
+"notifications.kind.progress.footer"        = "今日のレベルアップに必要な進捗を定期的にお知らせします。";
+
+"notifications.kind.achievement.title"      = "毎日の成果";
+"notifications.kind.achievement.description" = "深夜0時に、その日にアンロックされた成果を通知します。";
+"notifications.kind.achievement.body"       = "%@ 今日は「%@」を達成しました！";
+
+"notifications.kind.appleHealth.title"      = "ヘルスケア";
+"notifications.kind.appleHealth.description" = "ヘルスケアと同期された記録を確認します。";
+"notifications.kind.appleHealth.body.cardio" = "%d minの有酸素運動（%@）を記録しました。";
+"notifications.kind.appleHealth.body.workout" = "%d minの筋トレ（%@）を記録しました。";
+"notifications.kind.appleHealth.body.sleep" = "ヘルスケアに睡眠 %d h を記録しました。";
+
+"notifications.kind.backup.title"           = "iCloudバックアップ";
+"notifications.kind.backup.description"     = "自動バックアップの完了を確認します。";
+"notifications.kind.backup.body"            = "iCloudバックアップが正常に完了しました。";
+
+"notifications.kind.sleep.title"            = "睡眠";
+"notifications.kind.sleep.description"      = "睡眠目標に達していない場合、お昼寝を提案します（午前10時〜午後7時のみ）。";
+"notifications.kind.sleep.body"             = "睡眠目標を達成するために、少しお昼寝しませんか？";
+"notifications.kind.sleep.footer"           = "毎日の目標を達成するまで、一定の間隔で休息を提案します。午前10時前または午後7時以降には送信されません。";
+
+"notifications.kind.water.title"            = "水分";
+"notifications.kind.water.description"      = "毎日の目標に達するまで、コップ1杯の水を飲むようリマインドします。";
+"notifications.kind.water.body"             = "お水を1杯いかがですか？毎日の目標に向かって進みましょう。";
+"notifications.kind.water.footer"           = "一定の間隔で水分補給をリマインドします。毎日の目標を達成すると通知は止まります。";
+
+"notifications.kind.calories.title"         = "カロリー";
+"notifications.kind.calories.description"   = "毎日のカロリー目標を達成するためのリマインダー。";
+"notifications.kind.calories.body"          = "今日のカロリー目標に向けて、食事を記録しましょう。";
+"notifications.kind.calories.footer"        = "定期リマインダーは、カロリー目標を達成すると停止します。";
+"notifications.kind.protein.title"          = "タンパク質";
+"notifications.kind.protein.description"    = "毎日のタンパク質目標を達成するためのリマインダー。";
+"notifications.kind.protein.body"           = "今日の目標達成に向けて、タンパク質を補給しましょう。";
+"notifications.kind.protein.footer"         = "定期リマインダーは、タンパク質目標を達成すると停止します。";
+
+"notifications.kind.carbs.title"            = "炭水化物";
+"notifications.kind.carbs.description"      = "毎日の炭水化物目標を達成するためのリマインダー。";
+"notifications.kind.carbs.body"             = "エネルギーをチャージするために、炭水化物をしっかり摂りましょう！";
+"notifications.kind.carbs.footer"           = "定期リマインダーは、炭水化物目標を達成すると停止します。";
+
+"notifications.kind.goodFat.title"          = "良質な脂質";
+"notifications.kind.goodFat.description"    = "毎日の良質な脂質目標を達成するためのリマインダー。";
+"notifications.kind.goodFat.body"           = "オリーブオイルやナッツ、アボカドなど、良質な脂質もお忘れなく。";
+"notifications.kind.goodFat.footer"         = "定期リマインダーは、良質な脂質の目標を達成すると停止します。";
+
+"notifications.kind.fiber.title"            = "食物繊維";
+"notifications.kind.fiber.description"      = "毎日の食物繊維目標を達成するためのリマインダー。";
+"notifications.kind.fiber.body"             = "次の食事に食物繊維をプラスしましょう。";
+"notifications.kind.fiber.footer"           = "定期リマインダーは、食物繊維目標を達成すると停止します。";
+
+"notifications.kind.workout.title"          = "筋トレ";
+"notifications.kind.workout.description"    = "今日の筋トレを完了するためのリマインダー。";
+"notifications.kind.workout.body"           = "筋トレの時間です。今日も頑張りましょう！";
+"notifications.kind.workout.footer"         = "定期リマインダーは、筋トレ目標を達成すると停止します。";
+
+"notifications.kind.cardio.title"           = "有酸素運動";
+"notifications.kind.cardio.description"     = "今日の有酸素運動を完了するためのリマインダー。";
+"notifications.kind.cardio.body"            = "有酸素運動の時間です！少し体を動かしてリフレッシュしましょう。";
+"notifications.kind.cardio.footer"          = "定期リマインダーは、有酸素目標を達成すると停止します。";
+
+"notifications.kind.creatine.title"         = "クレアチン";
+"notifications.kind.creatine.description"   = "毎日のクレアチン摂取リマインダー。";
+"notifications.kind.creatine.body"          = "今日のクレアチンはもう飲みましたか？";
+"notifications.kind.creatine.footer"        = "定期リマインダーは、今日の分を記録すると停止します。";
+
+/* Custom goals */
+"notifications.custom.description"          = "今日の目標を達成するためのリマインダー。";
+"notifications.custom.body"                 = "%@を記録して、今日の目標に向かって進みましょう。";
+"notifications.custom.footer"               = "定期リマインダーは、このカスタムトラッカーの目標を達成すると停止します。";
+"notifications.history.delete" = "削除";
+
+/* MARK: - Accessibility (VoiceOver), shared helpers in A11yHelpers.swift */
+
+/* Progress band, color-coded zones spoken instead of just relying on the visual hue */
+"a11y.band.red"    = "レッドゾーン、目標まで遠い";
+"a11y.band.orange" = "オレンジゾーン、進行中";
+"a11y.band.green"  = "グリーンゾーン、順調";
+"a11y.band.cyan"   = "シアンゾーン、あと少し";
+"a11y.band.blue"   = "ブルーゾーン、目標達成";
+
+/* Generic progress phrasing, band dropped from progress value after user testing */
+"a11y.percent.format"          = "%dパーセント";
+"a11y.progress.value.format"   = "%dパーセント達成";
+
+/* Tracking goal row, header value drops percent + band to stay concise */
+"a11y.goalrow.value.format"    = "%2$d %3$@中 %1$d 達成";
+"a11y.goalrow.value.restday"   = "休息日モード中、目標達成";
+"a11y.goalrow.a11y.label"      = "%@の目標";
+"a11y.slider.label.format"     = "%@スライダー";
+
+/* Generic "open details" hint reused across ring/tier */
+"a11y.hint.more.info"          = "タップして詳細を表示。";
+
+/* Collapsible category header (TodayView) */
+"a11y.category.label.format"   = "%@カテゴリー";
+"a11y.category.hint"           = "タップして折りたたむか展開します。";
+
+/* Day cell (MonthlyCalendarView + widget Calendar) */
+"a11y.daycell.today.format"        = "今日、%1$@、%2$dパーセント、%3$@";
+"a11y.daycell.past.format"         = "%1$@、%2$dパーセント、%3$@";
+"a11y.daycell.future.format"       = "%@、予定";
+"a11y.daycell.empty.format"        = "%@、記録なし";
+"a11y.daycell.today.empty.format"  = "今日、%@、記録なし";
+"a11y.daycell.selected.suffix"     = "、選択中";
+
+/* Increment / decrement buttons (Watch, edit sheets) */
+"a11y.hint.increment" = "タップして増やす。";
+"a11y.hint.decrement" = "タップして減らす。";
+
+/* Rest day toggle, label reflects on/off, hint describes the action */
+"a11y.hint.restday.activate"   = "タップして休息日を有効にする。";
+"a11y.hint.restday.deactivate" = "タップして休息日モードを解除する。";
+
+/* Info sheets, row combine helpers */
+"a11y.ringinfo.color.row.format"  = "%1$@、範囲 %2$@";
+"a11y.tierinfo.row.format"        = "%1$@、%2$@、レベル %3$d";
+
+/* MARK: - Accessibility (Phase 2, Achievements + ProgressOver) */
+
+/* Calendar cell with a tier name spoken */
+"a11y.calendar.day.tier.format"        = "%1$@、達成: %2$@";
+"a11y.calendar.day.today.tier.format"  = "今日、%1$@、達成: %2$@";
+
+/* Achievements view-mode segmented picker (List / Calendar) */
+
+/* Calendar section header */
+
+/* Month navigation chevrons */
+"a11y.month.previous" = "前月";
+"a11y.month.next"     = "翌月";
+
+/* AchievementsView history rows */
+"a11y.record.row.daily.format"  = "%1$@、%2$@、%3$dパーセント";
+"a11y.record.row.hint"          = "タップして詳細を表示。";
+"a11y.record.edit.label"        = "記録を編集";
+"a11y.record.edit.hint" = "タップして編集。";
+
+/* RecordDetail / EditToday header card */
+"a11y.record.header.format"     = "%1$@、%2$@、%3$dパーセント、レベル %4$d";
+
+/* ProgressOverView, stats cards */
+"a11y.stats.days.label"            = "日数";
+"a11y.stats.days.value.format"     = "%d日";
+"a11y.stats.days.hint" = "タップして今日のカレンダーを開く。";
+
+/* ProgressOverView, list rows inside cards */
+"a11y.stats.tier.row.format"     = "%1$@、%2$d日";
+"a11y.stats.activity.row.format" = "%1$@、%2$d日";
+"a11y.stats.goals.row.format"    = "%1$@、進行中 %2$d件";
+
+/* ProgressOverView, whole-card tap hints */
+"a11y.stats.card.usergoal.hint" = "タップして目標を変更。";
+"a11y.stats.card.tiers.hint"    = "タップして成果レベルの仕組みを表示。";
+"a11y.stats.card.activity.hint" = "タップしてアクティビティログを開く。";
+"a11y.stats.card.goals.hint"    = "タップして記録中の目標を管理。";
+
+/* ProfileRecentActivityView, day buttons */
+"a11y.recent.day.with.tier.format" = "%1$@、%2$@";
+"a11y.recent.day.empty.format"     = "%@、記録なし";
+"a11y.recent.day.today.format"     = "今日、%1$@、%2$@";
+"a11y.recent.day.today.empty.format" = "今日、%@、記録なし";
+"a11y.recent.day.hint" = "タップしてこの日を開く。";
+
+/* MARK: - Accessibility (Phase 3, Settings) */
+
+/* Generic selection state */
+"a11y.selected"     = "選択中";
+"a11y.not.selected" = "未選択";
+
+/* Theme picker (ThemeSettingsView) */
+"a11y.theme.hint"             = "タップしてこのテーマを選択。";
+"a11y.theme.info.label.format" = "%@の詳細情報";
+"a11y.theme.info.hint" = "タップして詳細を表示。";
+
+/* Color picker (ColorSettingsView) */
+"a11y.color.hint" = "タップしてこのカラーを選択。";
+
+/* Fitness goal picker (UserGoalPickerView) */
+"a11y.usergoal.hint" = "タップしてこの目標を選択。";
+
+/* Tracking goals settings, image-only buttons */
+"a11y.button.add.goal.label"     = "新しい記録目標";
+"a11y.button.add.goal.hint" = "タップして新しい目標を作成。";
+"a11y.button.remove.goal.label"  = "目標を削除";
+"a11y.button.restore.goal.label" = "目標を復元";
+
+/* Categories settings, pencil button */
+"a11y.button.edit.category.label" = "カテゴリーを編集";
+"a11y.button.edit.category.hint" = "タップしてこのカテゴリーを編集。";
+
+/* Notification rows, pencil button */
+"a11y.button.edit.notification.label" = "通知を編集";
+"a11y.button.edit.notification.hint" = "タップして通知設定を編集。";
+
+/* SettingsView toolbar bell */
+"a11y.notification.history.bell" = "通知履歴";
+"a11y.notification.history.bell.hint" = "タップして通知を開く。";
+
+/* Notification history row */
+"a11y.history.row.format" = "%1$@、%2$@、%3$@";
+"a11y.history.row.hint" = "タップして開く。";
+
+/* App icon (About) */
+"a11y.app.icon" = "アプリアイコン";
+
+/* Collapsible section header (settings goals + notifications) */
+"a11y.section.collapsible.hint" = "タップして折りたたむか展開します。";
+
+/* MARK: - Accessibility (Phase 4, Welcome / onboarding) */
+
+"a11y.welcome.progress.format"          = "ステップ %1$d / %2$d";
+"a11y.welcome.optional.add.label.format"    = "%@を追加";
+"a11y.welcome.optional.remove.label.format" = "%@を削除";
+"a11y.welcome.optional.add.hint" = "タップしてこの目標を追加。";
+"a11y.welcome.optional.remove.hint" = "タップしてこの目標を削除。";
+
+/* MARK: - Accessibility (Phase 5, Watch app) */
+
+/* Watch hero ring (ContentView), same wording as the iPhone ring */
+"a11y.watch.hero.label"  = "今日の進捗";
+"a11y.watch.page.stats"         = "統計ページ";
+"a11y.watch.page.today"         = "今日ページ";
+"a11y.watch.page.notifications" = "通知ページ";
+
+/* Watch goal card header */
+"a11y.watch.card.expanded"   = "展開";
+"a11y.watch.card.collapsed"  = "折りたたみ";
+"a11y.watch.card.hint.expand" = "タップして展開。";
+"a11y.watch.card.hint.collapse" = "タップして折りたたむ。";
+
+/* Watch ± buttons */
+"a11y.watch.increase.label.format" = "%@を増やす";
+"a11y.watch.decrease.label.format" = "%@を減らす";
+
+/* Watch recent strip, collapsed into a single summary */
+"a11y.watch.recent.summary.format" = "%1$@: 過去7日間のうち成果達成は %2$d 日。";
+
+/* Watch notification row */
+"a11y.watch.notification.row.format" = "%1$@、%2$@、%3$@";
+
+/* MARK: - Accessibility (Phase 6, Widgets) */
+
+/* Widget summary (small/medium/lockscreen, watch circular/rectangular) */
+"a11y.widget.summary.format"       = "今日の進捗、%1$@、%2$dパーセント達成";
+"a11y.widget.summary.points.format" = "今日の進捗、%1$@、%2$dパーセント達成";
+
+/* iPhone large widgets */
+"a11y.widget.large.header.format"  = "%1$@、%2$@、%3$dパーセント";
+"a11y.widget.calendar.month.format" = "%@";
+
+/* Watch widget, corner and inline don't need extra labels (text already speaks) */
+
+"a11y.welcome.goal.decrease.format" = "%@を減らす";
+"a11y.welcome.goal.increase.format" = "%@を増やす";
+
+"welcome.step.control.title" = "操作方法";
+"welcome.step.control.subtitle" = "毎日の目標をどのように記録しますか？";
+"welcome.control.slider" = "スライド";
+"welcome.control.slider.desc" = "コントロールを希望の値までドラッグします。";
+"welcome.control.stepper" = "ボタン";
+"welcome.control.stepper.desc" = "タップして1ステップずつ増減します。";
+"welcome.step.ready.title" = "準備完了！";
+"welcome.step.ready.subtitle" = "お好みの機能をオンにしましょう。";
+"welcome.ready.notifications.title" = "通知";
+"welcome.ready.notifications.desc" = "水分補給や成果のリマインダー。";
+"welcome.ready.health.title" = "ヘルスケア";
+"welcome.ready.health.desc" = "睡眠を記録し、ワークアウトを自動で検出します。";
+"welcome.ready.allow" = "許可";
+"welcome.ready.allowed" = "許可済み";
+"welcome.ready.requested" = "リクエスト済み";
+"welcome.ready.denied" = "拒否";
+"welcome.ready.footer" = "これらの設定は「設定」でいつでも変更できます。";
+"settings.preference.controlStyle" = "操作方法";
+"settings.controlStyle.footer" = "「今日」画面で目標の進捗を記録する方法を設定します。";
+
+"settings.category.icon.section" = "アイコン";
+
+"today.edit.goals" = "目標を編集";
+"today.edit.controls" = "操作方法を編集";
+"today.edit.theme" = "テーマを編集";
+"today.edit.colors" = "アクセントカラーを編集";
+
+"welcome.step.units.title" = "単位の設定";
+"welcome.step.units.subtitle" = "水分の単位はどちらを使用しますか？";
+"welcome.step.units.note" = "後から「設定」で変更できます。";
+"welcome.units.metric.desc" = "ミリリットル（コップ1杯あたり 250 ml など）。";
+"welcome.units.imperial.desc" = "液量オンス（コップ1杯あたり %d fl oz など）。";
+
+"today.goals.viewMode.list" = "リスト";
+"today.goals.viewMode.grid" = "グリッド";
+"today.goals.viewMode.switch.a11y" = "%@表示に切り替え";
+"today.category.tile.a11y.value" = "%2$d件中%1$d件達成";
+"today.category.tile.a11y.hint" = "タップしてカテゴリーの目標を開く。";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%2$d日 %1$@";

@@ -39,7 +39,12 @@ public enum AppDateFormatters {
     /// idiomas como pt-BR sem precisar de `.capitalized` manual.
     public static let monthYear: DateFormatter = {
         let f = DateFormatter()
-        f.dateFormat = "LLLL yyyy"
+        // Chinês, japonês e coreano escrevem ano antes do mês ("2026年10月"): usa o template do sistema.
+        if ["zh", "ja", "ko"].contains(Locale.current.language.languageCode?.identifier ?? "") {
+            f.setLocalizedDateFormatFromTemplate("yyyyMMMM")
+        } else {
+            f.dateFormat = "LLLL yyyy"
+        }
         return f
     }()
 
@@ -60,7 +65,9 @@ public enum AppDateFormatters {
         f.dateFormat = "EEEE"
         let weekday = f.string(from: date)
         let day = Calendar.current.component(.day, from: date)
-        let s = "\(weekday), \(day)"
+        // A ordem e a pontuação vêm da tradução ("%1$@, %2$d", "%2$d日 %1$@"...).
+        let format = String(localized: "date.weekdayDay.format", bundle: .gymNutshellCore)
+        let s = String(format: format, weekday, day)
         return s.prefix(1).uppercased() + s.dropFirst()
     }
 }

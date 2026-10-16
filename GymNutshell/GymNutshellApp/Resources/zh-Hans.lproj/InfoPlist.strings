@@ -1,0 +1,3 @@
+"NSHealthShareUsageDescription" = "从 Apple 健康读取你的睡眠和体能训练记录，以展示每日活动并计算进度。";
+"NSHealthUpdateUsageDescription" = "将睡眠记录保存到 Apple 健康，以便在各个 App 之间保持历史同步。";
+"NSCameraUsageDescription" = "使用相机拍摄照片并保存至你的每日成就中。";

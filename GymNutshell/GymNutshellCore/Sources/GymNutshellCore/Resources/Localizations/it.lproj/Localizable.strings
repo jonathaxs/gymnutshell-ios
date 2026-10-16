@@ -1,0 +1,915 @@
+/* ⌘
+  GymNutshell/GymNutshellCore/Resources/Localizations/it.lproj/Localizable.strings
+
+  Propósito: Chavi di localizzazione in italiano e stringhe dell'interfaccia utente per l'applicazione.
+
+  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
+
+ ⌘ */
+
+/* MARK: - Models */
+
+/* DailyAchievement.swift, Cat theme (default) */
+"daily.achievement.level1" = "Gattino";
+"daily.achievement.level1.fem" = "Gattina";
+"daily.achievement.level2" = "Gatto Fitness";
+"daily.achievement.level2.fem" = "Gatta Fitness";
+"daily.achievement.level3" = "Gattone";
+"daily.achievement.level3.fem" = "Gattona";
+"daily.achievement.level4" = "Gatto Leader";
+"daily.achievement.level4.fem" = "Gatta Leader";
+"daily.achievement.level5" = "Tigre";
+"daily.achievement.level5.fem" = "Tigressa";
+
+/* AppTheme.swift, Dog theme tier names */
+"daily.achievement.dog.level1" = "Cagnolino";
+"daily.achievement.dog.level1.fem" = "Cagnolina";
+"daily.achievement.dog.level2" = "Cane Fitness";
+"daily.achievement.dog.level3" = "Cagnolone";
+"daily.achievement.dog.level3.fem" = "Cagnolona";
+"daily.achievement.dog.level4" = "Cane Caramello";
+"daily.achievement.dog.level5" = "Lupo";
+"daily.achievement.dog.level5.fem" = "Lupa";
+
+/* AppTheme.swift, Bear theme tier names */
+"daily.achievement.bear.level1" = "Orsetto";
+"daily.achievement.bear.level1.fem" = "Orsetta";
+"daily.achievement.bear.level2" = "Orso Bruno";
+"daily.achievement.bear.level2.fem" = "Orsa Bruna";
+"daily.achievement.bear.level3" = "Orso Polare";
+"daily.achievement.bear.level3.fem" = "Orsa Polare";
+"daily.achievement.bear.level4" = "Bisonte";
+"daily.achievement.bear.level5" = "Mammut";
+
+/* AppTheme.swift, Dino theme tier names */
+"daily.achievement.dino.level1" = "Tartarughina";
+"daily.achievement.dino.level2" = "Coccodrillo";
+"daily.achievement.dino.level3" = "T-Rex";
+"daily.achievement.dino.level4" = "Grande Dino";
+"daily.achievement.dino.level5" = "Fossile Leggendario";
+
+/* AppTheme.swift, Bird theme tier names */
+"daily.achievement.bird.level1" = "Pulcino";
+"daily.achievement.bird.level2" = "Passerotto";
+"daily.achievement.bird.level3" = "Aquila";
+"daily.achievement.bird.level4" = "Gufo Saggio";
+"daily.achievement.bird.level5" = "Fenice";
+
+/* AppTheme.swift, Ocean theme tier names */
+"daily.achievement.ocean.level1" = "Pesciolino";
+"daily.achievement.ocean.level2" = "Delfino";
+"daily.achievement.ocean.level3" = "Medusa";
+"daily.achievement.ocean.level4" = "Balenottera Azzurra";
+"daily.achievement.ocean.level5" = "Kraken";
+
+/* AppTheme.swift, Dragon theme tier names */
+"daily.achievement.dragon.level1" = "Piccolo Uovo";
+"daily.achievement.dragon.level2" = "Lucertola";
+"daily.achievement.dragon.level3" = "Drago";
+"daily.achievement.dragon.level3.fem" = "Draghessa";
+"daily.achievement.dragon.level4" = "Drago Anziano";
+"daily.achievement.dragon.level4.fem" = "Draghessa Anziana";
+"daily.achievement.dragon.level5" = "Re Drago";
+"daily.achievement.dragon.level5.fem" = "Regina Drago";
+
+/* AppTheme.swift, Horse theme tier names */
+"daily.achievement.horse.level1" = "Puledro";
+"daily.achievement.horse.level1.fem" = "Puledra";
+"daily.achievement.horse.level2" = "Unicorno";
+"daily.achievement.horse.level3" = "Fantino";
+"daily.achievement.horse.level3.fem" = "Fantina";
+"daily.achievement.horse.level4" = "Campione del Carosello";
+"daily.achievement.horse.level4.fem" = "Campionessa del Carosello";
+"daily.achievement.horse.level5" = "Purosangue";
+
+/* AppTheme.swift, Primate theme tier names (enum case is still `.monkey` for compatibility) */
+"daily.achievement.monkey.level1" = "Piccolo Primate";
+"daily.achievement.monkey.level2" = "Primate in Forma";
+"daily.achievement.monkey.level3" = "Donkey Primate";
+"daily.achievement.monkey.level4" = "Mastro Primate";
+"daily.achievement.monkey.level5" = "Leggenda della Giungla";
+
+/* AppTheme.swift, Theme display names */
+"app.theme.cat" = "Gatto";
+"app.theme.cat.fem" = "Gatta";
+"app.theme.dog" = "Cane";
+"app.theme.bear" = "Orso";
+"app.theme.bear.fem" = "Orsa";
+"app.theme.dino" = "Dino";
+"app.theme.bird" = "Uccellino";
+"app.theme.ocean" = "Pesci";
+"app.theme.dragon" = "Drago";
+"app.theme.dragon.fem" = "Draghessa";
+"app.theme.horse" = "Cavallo";
+"app.theme.horse.fem" = "Cavalla";
+"app.theme.monkey" = "Primate";
+
+/* UserProfile.swift */
+"fitness.goal.bulking" = "Massa";
+"fitness.goal.maintenance" = "Mantenimento";
+"fitness.goal.cutting" = "Definizione";
+
+/* MARK: - Views */
+
+/* MARK: - Views/AchievementsView */
+
+/* AchievementsView.swift */
+"achievements.header.title" = "Traguardi";
+"achievements.filter.list" = "Elenco";
+"achievements.filter.calendar" = "Calendario";
+"achievements.filter.title" = "Vista";
+"achievements.filter.all" = "Elenco";
+"achievements.filter.day" = "Calendario";
+"achievements.empty.title" = "Ancora nessun traguardo";
+"achievements.empty.description" = "A fine giornata sbloccherai qui il tuo traguardo.";
+
+"achievements.daily.row.description" = "Completato il %d%% degli obiettivi giornalieri.";
+
+/* EditTodayView.swift */
+"edit.record.cancel" = "Annulla";
+"edit.record.save" = "Salva";
+
+/* RecordDetailView.swift */
+"record.detail.title" = "Dettagli traguardo";
+"record.detail.back" = "Indietro";
+"record.detail.edit" = "Modifica";
+
+/* MARK: - Views/ProfileView */
+
+/* ProgressOverView.swift */
+"statistics.title" = "Cronologia";
+"statistics.section.tiers" = "Traguardi per livello";
+"statistics.section.activity" = "Attività in palestra";
+"statistics.section.goals" = "Obiettivi";
+"statistics.tier.days" = "%d giorni";
+"statistics.activity.workout" = "Giorni di pesi";
+"statistics.activity.cardio" = "Giorni di cardio";
+"statistics.goals.active.label" = "Obiettivi attivi";
+"statistics.goals.active" = "%d attivi";
+"statistics.fitness.goal" = "Obiettivo";
+"watch.stats.days" = "Giorni";
+"watch.stats.syncing" = "Apri Gym Nutshell su iPhone per visualizzare le statistiche.";
+"watch.stats.recent" = "Recenti";
+
+/* ProgressOverView.swift, stats rows and physical data */
+"profile.stats.days" = "Giorni";
+"profile.recent.section" = "Ultimi 7 giorni";
+
+/* MARK: - Views/SettingsView */
+
+/* AboutView.swift */
+"settings.about.title" = "Info sull'app";
+"settings.about.version" = "Versione";
+"settings.about.feedback" = "Invia feedback";
+"settings.about.description" = "Gym Nutshell racchiude i tuoi obiettivi di allenamento quotidiani.\n\nFissa gli obiettivi, monitorali e guarda la costanza trasformarsi in risultati.";
+
+/* AddTrackingGoalView.swift */
+"settings.addgoal.title.new" = "Nuovo obiettivo";
+"settings.addgoal.section.icon" = "Emoji";
+"settings.addgoal.emoji.placeholder" = "es: 🧘";
+"settings.addgoal.section.name" = "Nome";
+"settings.addgoal.name.placeholder" = "es: Meditazione";
+"settings.addgoal.section.unit" = "Unità";
+"settings.addgoal.unit.placeholder" = "es: min";
+"settings.addgoal.section.goal" = "Target";
+"settings.addgoal.goal.placeholder" = "es: 10";
+"settings.addgoal.section.increment" = "Passo";
+"settings.addgoal.increment.placeholder" = "es: 2";
+"settings.addgoal.cancel" = "Annulla";
+"settings.addgoal.save" = "Salva";
+"settings.addgoal.warning.catalog" = "Esiste già un obiettivo con questo nome.";
+"settings.addgoal.warning.emoji" = "Questa emoji è già utilizzata da un altro obiettivo.";
+"settings.addgoal.warning.emoji.keyboard" = "Questo campo accetta solo emoji. Vai in Impostazioni → Generali → Tastiera → Tastiere e abilita la tastiera 'Emoji'.";
+"settings.addgoal.warning.category.duplicate" = "Esiste già una categoria con questo nome.";
+"settings.addgoal.warning.step" = "Il passo non può essere superiore al target.";
+"settings.addgoal.section.category" = "Categoria";
+"settings.addgoal.category.new.button" = "Nuova categoria";
+"settings.addgoal.category.new.section" = "Categoria personalizzata";
+"settings.addgoal.category.new.name.placeholder" = "es: Stretching";
+"settings.addgoal.category.new.restDay" = "Pulsante giorno di riposo (ON/OFF)";
+"settings.goals.custom.badge" = "Personalizzato";
+"settings.goals.categories.title" = "Categorie";
+
+/* BackupSettingsView.swift */
+"settings.backup.nav.title" = "Backup";
+"settings.backup.section.data" = "Locale";
+"settings.backup.section.footer" = "L'esportazione e l'importazione locale avvengono tramite un file .json.";
+"settings.backup.export" = "Esporta backup";
+"settings.backup.import" = "Importa backup";
+"settings.backup.import.alert.title" = "Sovrascrivere i dati?";
+"settings.backup.import.alert.message" = "Questo sostituirà il tuo profilo attuale, gli obiettivi e la cronologia con i dati del backup. L'operazione non può essere annullata.";
+"settings.backup.import.alert.confirm" = "Sovrascrivi";
+"settings.backup.import.alert.cancel" = "Annulla";
+"settings.backup.error.title" = "Errore";
+"settings.backup.success.title" = "Fine";
+"settings.backup.success.message" = "I tuoi dati sono stati ripristinati dal backup.";
+
+/* iCloud backup */
+"settings.backup.icloud.save" = "Salva su iCloud";
+"settings.backup.icloud.restore" = "Ripristina da iCloud";
+"settings.backup.icloud.restoring" = "Ripristino del backup da iCloud in corso…";
+"settings.backup.icloud.save.success" = "Il backup è stato salvato su iCloud.";
+"settings.backup.icloud.unavailable" = "iCloud non disponibile";
+"settings.backup.icloud.noBackup" = "Nessun backup ancora salvato su iCloud.";
+"settings.backup.icloud.lastBackup" = "Ultimo backup:";
+"settings.backup.icloud.footer.unavailable" = "Accedi a iCloud in Impostazioni per abilitare il backup sul cloud.";
+"settings.backup.icloud.error.unavailable" = "iCloud Drive non è disponibile. Verifica di aver effettuato l'accesso a iCloud e che iCloud Drive sia abilitato.";
+"settings.backup.icloud.error.downloadTimeout" = "Impossibile scaricare il backup da iCloud. Controlla la connessione e riprova.";
+"settings.backup.icloud.auto.toggle" = "Backup automatico giornaliero";
+"settings.backup.icloud.auto.footer" = "\nIl backup verrà salvato automaticamente quando viene aggiornato un nuovo traguardo.\nI traguardi si aggiornano quando apri l'app dopo mezzanotte.";
+
+/* CheckinGoalsSettingsView.swift */
+"settings.goals.mandatory.badge" = "Standard";
+"settings.goals.optional.badge" = "Consigliato";
+
+/* FitnessGoalChangeView.swift */
+"settings.goalchange.title" = "Obiettivo";
+"settings.goalchange.section.pick" = "Scegli il tuo obiettivo";
+"settings.goalchange.section.preview" = "I tuoi obiettivi";
+"settings.goalchange.save.recalc" = "Salva e ricalcola";
+"settings.goalchange.save.keep" = "Salva senza ricalcolare";
+
+/* ProfileSettingsView.swift */
+"settings.profile.section.personal" = "Personali";
+"settings.profile.section.optional" = "Facoltativo";
+"settings.profile.name" = "Nome";
+"settings.profile.name.placeholder" = "Il tuo nome";
+"settings.profile.favoriteExercise" = "Esercizio preferito";
+
+/* Favorite exercises (easter egg) */
+"favoriteExercise.unknown"    = "Non saprei";
+"favoriteExercise.back"       = "Dorsali";
+"favoriteExercise.arms"       = "Braccia";
+"favoriteExercise.chest"      = "Petto";
+"favoriteExercise.legs"       = "Gambe";
+"favoriteExercise.hamstrings" = "Femorali";
+"favoriteExercise.glutes"     = "Glutei";
+"favoriteExercise.shoulders"  = "Spalle";
+"favoriteExercise.biceps"     = "Bicipiti";
+"favoriteExercise.triceps"    = "Tricipiti";
+"favoriteExercise.abs"        = "Addominali";
+"favoriteExercise.traps"      = "Trapezi";
+"favoriteExercise.forearms"   = "Avambracci";
+"favoriteExercise.calves"     = "Polpacci";
+"settings.profile.sex" = "Sesso";
+"profile.sex.male" = "Maschile";
+"profile.sex.female" = "Femminile";
+
+/* SettingsView.swift */
+"settings.header.title" = "Impostazioni";
+"settings.detail.placeholder" = "Seleziona una voce";
+"settings.section.edit" = "I tuoi dati";
+"settings.theme.title" = "Temi";
+"settings.section.preferences" = "Aspetto";
+"settings.section.system" = "Sistema";
+"settings.section.about" = "Info";
+
+/* GymNutshellApp.swift, DataStoreErrorView */
+"app.error.dataStore.title" = "Qualcosa è andato storto";
+"app.error.dataStore.message" = "Gym Nutshell non è riuscito a caricare i tuoi dati.\nForza la chiusura dell'app e riaprila per riprovare.";
+"settings.about.link" = "Gym Nutshell";
+"settings.section.physicaldata" = "Profilo";
+"settings.fitness.goal.edit" = "Obiettivo fitness";
+"settings.goals.edit" = "Obiettivi giornalieri";
+"settings.preference.appleHealth" = "Apple Salute";
+"settings.preference.appleHealth.syncSleep" = "Registra sonno";
+"settings.preference.appleHealth.autoWorkoutCheckin" = "Rilevamento allenamento";
+"settings.preference.appleHealth.footer" = "Registra sonno salva le tue ore di sonno su Apple Salute se non sono presenti registrazioni per il giorno.\n\nRilevamento allenamento rileva un allenamento completato e lo registra automaticamente in Allenamento pesi o Cardio.";
+"settings.preference.appleWatch" = "Apple Watch";
+"appleWatch.sheet.title" = "Installa su Apple Watch";
+"appleWatch.sheet.intro" = "Per installare Gym Nutshell su Apple Watch, segui questi passaggi:";
+"appleWatch.sheet.step1" = "Apri l'app Watch su iPhone";
+"appleWatch.sheet.step2" = "Scorri fino alla sezione \"App disponibili\"";
+"appleWatch.sheet.step3" = "Tocca Installa accanto a Gym Nutshell";
+"appleWatch.sheet.note" = "Se l'app è già installata, compare nella sezione \"Installate su Apple Watch\" in alto.";
+"settings.preference.language" = "Lingua";
+"settings.preference.measurementSystem" = "Unità di misura";
+"settings.preference.measurementSystem.metric" = "Metrico (ml)";
+"settings.preference.measurementSystem.us" = "Imperiale (fl oz)";
+"settings.measurementSystem.footer" = "Come viene mostrata e inserita l'acqua nell'app.";
+"settings.edit.widgets" = "Widget";
+"widgetBackground.title" = "Widget";
+"widgetBackground.mode.label" = "Sfondo";
+"widgetBackground.mode.system" = "Sistema";
+"widgetBackground.mode.accent" = "In risalto";
+"widgetBackground.mode.custom" = "Personalizzato";
+"widgetBackground.footer.system" = "I widget useranno lo sfondo predefinito di iOS, con testo bianco o nero in base al tema di sistema.";
+"widgetBackground.footer.accent" = "I widget useranno il colore principale dell'app come sfondo.";
+"widgetBackground.footer.custom" = "Scegli un colore sotto. I widget lo useranno come sfondo.";
+"widgetBackground.picker" = "Colore";
+"widgetBackground.preview" = "Anteprima";
+
+/* TrackingGoalDetailView.swift */
+"settings.goaldetail.stepper" = "Modifica valore";
+"settings.goaldetail.footer" = "Modificare questo valore non influisce sulle registrazioni passate.";
+"settings.goaldetail.save" = "Salva";
+"settings.goaldetail.increment.stepper" = "Modifica passo";
+"settings.goaldetail.increment.footer" = "Il passo indica di quanto avanza il cursore verso il target.";
+
+/* TrackingGoalsSettingsView.swift */
+"settings.goals.title" = "Obiettivi";
+"settings.tracking.goals.section.custom" = "Obiettivi personalizzati";
+"settings.tracking.goals.done" = "Fine";
+"settings.tracking.goals.editMode" = "Modifica";
+"settings.goals.category.order.section" = "Ordine delle categorie";
+"settings.goal.water" = "Acqua";
+"settings.goal.calories" = "Calorie";
+"settings.goal.protein" = "Proteine";
+"settings.goal.carbs" = "Carboidrati";
+"settings.goal.fats" = "Grassi buoni";
+"settings.goal.fiber" = "Fibre";
+"settings.goal.sleep" = "Sonno";
+
+/* MARK: - Views/Shared */
+
+/* FitnessGoalPickerView.swift */
+"welcome.goal.bulking.description" = "Aumenta la massa muscolare con un surplus calorico";
+"welcome.goal.maintenance.description" = "Mantieni il peso e la composizione corporea attuale";
+"welcome.goal.cutting.description" = "Riduci il grasso corporeo preservando i muscoli";
+
+/* MARK: - Views/TodayView */
+
+/* GoalCategory.swift */
+"goal.category.essencial" = "Essenziale";
+"goal.category.nutricao" = "Nutrizione";
+"goal.category.treino" = "Allenamento";
+"goal.category.suplemento" = "Integratore";
+
+/* TodayView.swift */
+"today.goals.workout" = "Allenamento pesi";
+"today.goals.cardio" = "Cardio";
+"today.goals.creatine" = "Creatina";
+"today.category.other" = "Altro";
+"today.category.a11y.value" = "%d di %d obiettivi completati";
+"today.restday.label" = "Giorno di riposo";
+"today.restday.on" = "ON";
+"today.restday.off" = "OFF";
+"today.metric.sleep" = "Sonno";
+"today.metric.water" = "Acqua";
+"today.metric.calories" = "Calorie";
+"today.metric.protein" = "Proteine";
+"today.metric.carbs" = "Carboidrati";
+"today.metric.fats" = "Grassi buoni";
+"today.metric.fiber" = "Fibre";
+
+/* TodayHeroView.swift, next level phrase */
+"today.max.level" = "Livello massimo raggiunto oggi!";
+
+/* DailyTierView.swift */
+"today.tier.level.1" = "Livello 1";
+"today.tier.level.2" = "Livello 2";
+"today.tier.level.3" = "Livello 3";
+"today.tier.level.4" = "Livello 4";
+/* Tier button label combines the "Today's achievement" header phrase with the
+   tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
+   duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
+"today.tier.a11y.label" = "Traguardo di oggi, %2$@";
+
+/* TodayProgressRingView.swift */
+"today.ring.a11y.label" = "Anello di avanzamento di oggi";
+"today.ring.a11y.hint" = "Tocca per maggiori informazioni.";
+"today.ring.a11y.value" = "%d per cento completato";
+
+/* TodayView.swift, date hero button */
+"today.hero.bell.a11y.label" = "Notifiche";
+"today.hero.bell.a11y.hint" = "Tocca per aprire le notifiche.";
+"today.hero.caption.start" = "Monitora un obiettivo per iniziare";
+"today.hero.caption.nextLevel" = "Manca il %d%% al prossimo livello";
+"today.hero.caption.max" = "Massimo traguardo del giorno!";
+"today.hero.achievement.label" = "Traguardo del giorno";
+"today.greeting.morning"   = "Buongiorno!";
+"today.greeting.afternoon" = "Buon pomeriggio!";
+"today.greeting.night"     = "Buonasera!";
+
+/* MARK: - Views/WelcomeView */
+
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "Chi sei";
+
+/* WelcomeFitnessGoalStep.swift */
+"welcome.step.goal.title" = "Il tuo obiettivo";
+"welcome.step.goal.info.editable" = "Puoi modificarlo in seguito nelle impostazioni dell'app.";
+
+/* WelcomeThemeStep.swift */
+"welcome.step.theme.title" = "Tema";
+"welcome.step.theme.subtitle" = "Scegli le emoji che ispireranno i tuoi progressi.";
+"welcome.step.theme.footer" = "Puoi cambiare tema in qualsiasi momento.";
+
+/* WelcomePhysicalDataStep.swift */
+"welcome.field.sex" = "Sesso";
+"welcome.field.sex.male" = "Maschile";
+"welcome.field.sex.female" = "Femminile";
+
+/* WelcomeSummaryStep.swift */
+"welcome.step.summary.title" = "I tuoi obiettivi";
+"welcome.summary.subtitle.customize" = "Puoi modificare questi valori o aggiungere nuovi obiettivi quando vuoi.";
+"welcome.option.add" = "Aggiungi";
+
+/* WelcomeStartStep.swift */
+"welcome.step.start.title" = "Ciao!";
+"welcome.start.feature.track" = "Monitora i tuoi obiettivi di fitness durante la giornata.";
+"welcome.start.feature.theme" = "Scegli un tema per trovare la giusta motivazione.";
+"welcome.start.feature.progress" = "Segui i tuoi progressi nel tempo.";
+"welcome.start.new" = "Inizia";
+"welcome.start.restore" = "Ripristina backup";
+
+/* WelcomeView.swift */
+"welcome.button.continue" = "Continua";
+"welcome.button.start" = "Andiamo!";
+"welcome.button.back" = "Indietro";
+
+/* MARK: - ContentView.swift */
+
+/* HealthKit activity display names (auto check-in descriptions) */
+"healthkit.activity.running" = "Corsa";
+"healthkit.activity.walking" = "Camminata";
+"healthkit.activity.cycling" = "Bici";
+"healthkit.activity.swimming" = "Nuoto";
+"healthkit.activity.elliptical" = "Ellittica";
+"healthkit.activity.rowing" = "Vogatore";
+"healthkit.activity.stairClimbing" = "Stepper";
+"healthkit.activity.hiking" = "Trekking";
+"healthkit.activity.jumpRope" = "Salto con la corda";
+"healthkit.activity.dance" = "Ballo";
+"healthkit.activity.strengthTraining" = "Pesi";
+"healthkit.activity.functionalTraining" = "Funzionale";
+"healthkit.activity.crossTraining" = "Cross Training";
+"healthkit.activity.hiit" = "HIIT";
+"healthkit.activity.boxing" = "Pugilato";
+"healthkit.activity.martialArts" = "Arti marziali";
+"healthkit.activity.coreTraining" = "Addominali";
+"healthkit.activity.climbing" = "Arrampicata";
+"healthkit.activity.other" = "Esercizio";
+
+/* AppTheme, Categories */
+"app.theme.category.sport" = "Sport";
+"app.theme.category.animals" = "Animali";
+"app.theme.category.elements" = "Elementi e natura";
+"app.theme.category.competition" = "Progresso";
+"app.theme.category.warrior" = "Eroe";
+"app.theme.category.warrior.fem" = "Eroina";
+"app.theme.category.space" = "Spazio";
+
+/* AppTheme, Gym */
+"app.theme.gym" = "Palestra";
+"app.theme.running" = "Corsa";
+"daily.achievement.running.level1" = "Camminatore";
+"daily.achievement.running.level2" = "In ritmo";
+"daily.achievement.running.level3" = "Corridore";
+"daily.achievement.running.level3.fem" = "Corritrice";
+"daily.achievement.running.level4" = "Maratoneta";
+"daily.achievement.running.level5" = "Ultramaratoneta";
+"daily.achievement.gym.level1" = "Gallo";
+"daily.achievement.gym.level1.fem" = "Gallina";
+"daily.achievement.gym.level2" = "Forzuto";
+"daily.achievement.gym.level2.fem" = "Forzuta";
+"daily.achievement.gym.level3" = "Topo da palestra";
+"daily.achievement.gym.level4" = "Muscoloso";
+"daily.achievement.gym.level4.fem" = "Muscolosa";
+"daily.achievement.gym.level5" = "Bestia";
+
+/* AppTheme, Fire */
+"app.theme.fire" = "Fuoco";
+"daily.achievement.fire.level1" = "Candela";
+"daily.achievement.fire.level2" = "Fiamma";
+"daily.achievement.fire.level3" = "Vulcano";
+"daily.achievement.fire.level4" = "Solare";
+"daily.achievement.fire.level5" = "Supernova";
+
+/* AppTheme, Plant */
+"app.theme.plant" = "Foresta";
+"daily.achievement.plant.level1" = "Germoglio";
+"daily.achievement.plant.level2" = "Erba";
+"daily.achievement.plant.level3" = "Grande Albero";
+"daily.achievement.plant.level4" = "Albero di Natale";
+"daily.achievement.plant.level5" = "Foresta";
+
+/* AppTheme, Champion */
+"app.theme.champion" = "Medaglia";
+"daily.achievement.champion.level1" = "Bronzo";
+"daily.achievement.champion.level2" = "Argento";
+"daily.achievement.champion.level3" = "Oro";
+"daily.achievement.champion.level4" = "Diamante";
+"daily.achievement.champion.level5" = "Trofeo";
+
+/* AppTheme, Number */
+"app.theme.number" = "Numeri";
+"daily.achievement.number.level1" = "Uno";
+"daily.achievement.number.level2" = "Due";
+"daily.achievement.number.level3" = "Tre";
+"daily.achievement.number.level4" = "Quattro";
+"daily.achievement.number.level5" = "Cinque";
+
+/* AppTheme, Doctor */
+"app.theme.doctor" = "Dottore";
+"app.theme.doctor.fem" = "Dottoressa";
+"daily.achievement.doctor.level1" = "Apprendista";
+"daily.achievement.doctor.level2" = "Principiante";
+"daily.achievement.doctor.level3" = "Laureato";
+"daily.achievement.doctor.level3.fem" = "Laureata";
+"daily.achievement.doctor.level4" = "Dottore";
+"daily.achievement.doctor.level4.fem" = "Dottoressa";
+"daily.achievement.doctor.level5" = "Primario";
+"daily.achievement.doctor.level5.fem" = "Primaria";
+
+/* AppTheme, Ninja (Fighter) */
+"app.theme.ninja" = "Guerriero";
+"app.theme.ninja.fem" = "Guerriera";
+"daily.achievement.ninja.level1" = "Allievo";
+"daily.achievement.ninja.level2" = "Spadaccino";
+"daily.achievement.ninja.level3" = "Ninja";
+"daily.achievement.ninja.level4" = "Super";
+"daily.achievement.ninja.level5" = "Maestro Leggendario";
+"daily.achievement.ninja.level5.fem" = "Maestra Leggendaria";
+
+/* AppTheme, Astronaut (Exploration) */
+"app.theme.astronaut" = "Esplorazione";
+"daily.achievement.astronaut.level1" = "Satellite";
+"daily.achievement.astronaut.level2" = "Astronauta";
+"daily.achievement.astronaut.level3" = "Razzo Spaziale";
+"daily.achievement.astronaut.level4" = "Disco Volante";
+"daily.achievement.astronaut.level5" = "Alieno";
+
+/* AppTheme, Celestial */
+"app.theme.celestial" = "Corpi celesti";
+"daily.achievement.celestial.level1" = "Cometa";
+"daily.achievement.celestial.level2" = "Luna";
+"daily.achievement.celestial.level3" = "Terra";
+"daily.achievement.celestial.level4" = "Saturno";
+"daily.achievement.celestial.level5" = "Galassia";
+
+/* AppAccentColor.swift, Color names */
+"color.red"    = "Rosso";
+"color.blue"   = "Blu";
+"color.purple" = "Viola";
+"color.green"  = "Verde";
+"color.yellow" = "Giallo";
+"color.orange" = "Arancione";
+"color.cyan"   = "Ciano";
+"color.pink"   = "Rosa";
+
+/* ColorSettingsView.swift */
+"settings.color.title"    = "Colori in risalto";
+"settings.color.subtitle" = "Colore principale usato in tutta l'app";
+"settings.color.preview" = "Anteprima";
+
+/* TierInfoView.swift / ProgressRingInfoView.swift, links in Settings > About */
+"settings.about.achievement"  = "Traguardo";
+"settings.about.progressRing" = "Anello di avanzamento";
+
+/* TierInfoView.swift */
+"tier.info.intro"             = "Il tuo traguardo viene registrato alla fine della giornata, a mezzanotte.";
+"tier.info.section.levels"    = "Livelli";
+"tier.info.change.theme"      = "Cambia tema";
+"tier.info.range.suffix"      = " di avanzamento";
+
+/* ProgressRingInfoView.swift */
+"ring.info.intro"             = "L'anello mostra la percentuale media degli obiettivi completati. Ogni segmento colorato vale il 20%.";
+"ring.info.section.colors"    = "Segmenti dell'anello";
+"ring.info.color.red"         = "All'inizio";
+"ring.info.color.orange"      = "In cammino";
+"ring.info.color.green"       = "Alla grande";
+"ring.info.color.cyan"        = "Quasi fatta";
+"ring.info.color.purple"      = "Traguardo vicino";
+"ring.info.color.blue"        = "Obiettivo completato";
+"ring.info.level.label"       = "Livello ";
+"info.next.prefix"            = "Manca ";
+"info.next.middle"            = " per raggiungere: ";
+
+/* Common */
+"common.cancel" = "Annulla";
+"common.done" = "Fine";
+
+/* Notification history */
+"notifications.history.title" = "Notifiche";
+"common.close" = "Chiudi";
+"common.edit" = "Modifica";
+"common.done" = "Fine";
+"notifications.history.today" = "Oggi";
+"notifications.history.yesterday" = "Ieri";
+"notifications.history.empty.title" = "Nessuna notifica ancora";
+"notifications.history.empty.description" = "La cronologia delle notifiche degli ultimi 3 giorni viene mostrata qui.";
+
+/* NotificationsSettingsView */
+"settings.preference.notifications"       = "Notifiche";
+"settings.notifications.section.system"   = "Sistema";
+"settings.notifications.section.goals"    = "Obiettivi";
+"settings.notifications.authorize.button" = "Abilita notifiche";
+"settings.notifications.authorize.footer" = "Tocca Consenti e autorizza nel prompt di iOS per ricevere i promemoria. Se hai rifiutato in precedenza, puoi riattivare le notifiche nelle Impostazioni di iOS.";
+"settings.notifications.denied.title"     = "Notifiche disabilitate";
+"settings.notifications.denied.message"   = "In precedenza hai rifiutato le notifiche. Abilitale nelle Impostazioni di iOS per ricevere i promemoria di Gym Nutshell.";
+"settings.notifications.denied.open"      = "Apri Impostazioni";
+
+/* NotificationIntervalEditView */
+"settings.notifications.interval.header"   = "Intervallo tra le notifiche";
+"settings.notifications.interval.stepper"  = "Ogni";
+"settings.notifications.interval.value"    = "%d min";
+
+/* NotificationIntervalEditView, sound picker */
+"settings.notifications.sound.header"      = "Suono";
+"settings.notifications.sound.label"       = "Suono di notifica";
+"settings.notifications.sound.footer"      = "L'opzione Di default riproduce il tono scelto in Impostazioni iOS → Notifiche → Gym Nutshell → Suoni (Tri-tono, Nota, Accordo, ecc.). Silenzioso disattiva l'audio solo per quest'app.";
+"settings.notifications.sound.openSystem"  = "Scegli il tono nelle Impostazioni iOS";
+"notifications.sound.default"              = "Di default";
+"notifications.sound.silent"               = "Silenzioso";
+
+/* NotificationKind, title / description on list + body of notification + footer */
+"notifications.kind.progress.title"         = "Progresso";
+"notifications.kind.progress.description"   = "Quanto manca al tuo prossimo traguardo giornaliero.";
+"notifications.kind.progress.body"          = "Continua così! Ogni obiettivo conta per il tuo prossimo traguardo.";
+"notifications.kind.progress.footer"        = "Promemoria periodici che mostrano quanto manca per salire di livello oggi.";
+
+"notifications.kind.achievement.title"      = "Traguardo del giorno";
+"notifications.kind.achievement.description" = "Notifica, a mezzanotte, il traguardo sbloccato per la giornata.";
+"notifications.kind.achievement.body"       = "%@ Hai concluso la giornata come %@!";
+
+"notifications.kind.appleHealth.title"      = "Apple Salute";
+"notifications.kind.appleHealth.description" = "Conferma le voci sincronizzate con Apple Salute.";
+"notifications.kind.appleHealth.body.cardio" = "Registrati %d min di Cardio (%@).";
+"notifications.kind.appleHealth.body.workout" = "Registrati %d min di Pesi (%@).";
+"notifications.kind.appleHealth.body.sleep" = "Registrate %d h di sonno su Apple Salute.";
+
+"notifications.kind.backup.title"           = "Backup iCloud";
+"notifications.kind.backup.description"     = "Conferma ogni backup automatico.";
+"notifications.kind.backup.body"            = "Backup su iCloud completato con successo.";
+
+"notifications.kind.sleep.title"            = "Sonno";
+"notifications.kind.sleep.description"      = "Suggerisce un riposino se non hai ancora raggiunto il tuo obiettivo di sonno (solo tra le 10:00 e le 19:00).";
+"notifications.kind.sleep.body"             = "Che ne dici di un riposino per raggiungere il tuo obiettivo di sonno oggi?";
+"notifications.kind.sleep.footer"           = "Ogni X minuti l'app suggerisce di riposare finché non raggiungi l'obiettivo giornaliero. Nessun promemoria viene inviato prima delle 10:00 o dopo le 19:00.";
+
+"notifications.kind.water.title"            = "Acqua";
+"notifications.kind.water.description"      = "Promemoria per bere un bicchiere d'acqua fino al raggiungimento dell'obiettivo giornaliero.";
+"notifications.kind.water.body"             = "Tempo per un bicchiere d'acqua? Continua ad avvicinarti al tuo obiettivo.";
+"notifications.kind.water.footer"           = "Ogni X minuti l'app ti ricorda di bere acqua. I promemoria si interrompono una volta raggiunto l'obiettivo giornaliero.";
+
+"notifications.kind.calories.title"         = "Calorie";
+"notifications.kind.calories.description"   = "Promemoria per raggiungere il tuo obiettivo calorico giornaliero.";
+"notifications.kind.calories.body"          = "È ora di registrare i pasti per raggiungere l'obiettivo calorico di oggi.";
+"notifications.kind.calories.footer"        = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo calorico.";
+"notifications.kind.protein.title"          = "Proteine";
+"notifications.kind.protein.description"    = "Promemoria per raggiungere il tuo obiettivo di proteine giornaliero.";
+"notifications.kind.protein.body"           = "È ora di fare il pieno di proteine per centrare l'obiettivo di oggi.";
+"notifications.kind.protein.footer"         = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo proteico.";
+
+"notifications.kind.carbs.title"            = "Carboidrati";
+"notifications.kind.carbs.description"      = "Promemoria per raggiungere il tuo obiettivo di carboidrati giornaliero.";
+"notifications.kind.carbs.body"             = "Che ne dici di una buona fonte di carboidrati per mantenere l'energia alta?";
+"notifications.kind.carbs.footer"           = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo di carboidrati.";
+
+"notifications.kind.goodFat.title"          = "Grassi buoni";
+"notifications.kind.goodFat.description"    = "Promemoria per raggiungere il tuo obiettivo giornaliero di grassi buoni.";
+"notifications.kind.goodFat.body"           = "Non dimenticare i grassi buoni oggi (olio d'oliva, frutta a guscio, avocado).";
+"notifications.kind.goodFat.footer"         = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo di grassi buoni.";
+
+"notifications.kind.fiber.title"            = "Fibre";
+"notifications.kind.fiber.description"      = "Promemoria per raggiungere il tuo obiettivo di fibre giornaliero.";
+"notifications.kind.fiber.body"             = "Aggiungi una porzione di fibre al tuo prossimo pasto.";
+"notifications.kind.fiber.footer"           = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo di fibre.";
+
+"notifications.kind.workout.title"          = "Pesi";
+"notifications.kind.workout.description"    = "Promemoria per completare l'allenamento con i pesi di oggi.";
+"notifications.kind.workout.body"           = "Il tuo allenamento con i pesi ti aspetta. Andiamo in palestra!";
+"notifications.kind.workout.footer"         = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo di allenamento.";
+
+"notifications.kind.cardio.title"           = "Cardio";
+"notifications.kind.cardio.description"     = "Promemoria per completare il cardio di oggi.";
+"notifications.kind.cardio.body"            = "È ora di fare cardio! Anche un po' di movimento fa la differenza.";
+"notifications.kind.cardio.footer"          = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo di cardio.";
+
+"notifications.kind.creatine.title"         = "Creatina";
+"notifications.kind.creatine.description"   = "Promemoria per la dose giornaliera di creatina.";
+"notifications.kind.creatine.body"          = "Hai già preso la tua creatina oggi?";
+"notifications.kind.creatine.footer"        = "I promemoria periodici si interrompono una volta registrata la dose di oggi.";
+
+/* Custom goals */
+"notifications.custom.description"          = "Promemoria per raggiungere l'obiettivo di oggi.";
+"notifications.custom.body"                 = "È ora di registrare %@, continua ad avvicinarti all'obiettivo di oggi.";
+"notifications.custom.footer"               = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo giornaliero per questo elemento personalizzato.";
+"notifications.history.delete" = "Elimina";
+
+/* MARK: - Accessibility (VoiceOver), shared helpers in A11yHelpers.swift */
+
+/* Progress band, color-coded zones spoken instead of just relying on the visual hue */
+"a11y.band.red"    = "zona rossa, lontana dall'obiettivo";
+"a11y.band.orange" = "zona arancione, in corso";
+"a11y.band.green"  = "zona verde, ottimo lavoro";
+"a11y.band.cyan"   = "zona ciano, quasi al traguardo";
+"a11y.band.blue"   = "zona blu, obiettivo raggiunto";
+
+/* Generic progress phrasing, band dropped from progress value after user testing */
+"a11y.percent.format"          = "%d per cento";
+"a11y.progress.value.format"   = "%d per cento completato";
+
+/* Tracking goal row, header value drops percent + band to stay concise */
+"a11y.goalrow.value.format"    = "%1$d di %2$d %3$@ completati";
+"a11y.goalrow.value.restday"   = "in modalità giorno di riposo, obiettivo completato";
+"a11y.goalrow.a11y.label"      = "Obiettivo %@";
+"a11y.slider.label.format"     = "Cursore %@";
+
+/* Generic "open details" hint reused across ring/tier */
+"a11y.hint.more.info"          = "Tocca per maggiori informazioni.";
+
+/* Collapsible category header (TodayView) */
+"a11y.category.label.format"   = "Categoria %@";
+"a11y.category.hint"           = "Tocca per comprimere o espandere.";
+
+/* Day cell (MonthlyCalendarView + widget Calendar) */
+"a11y.daycell.today.format"        = "oggi, %1$@, %2$d per cento, %3$@";
+"a11y.daycell.past.format"         = "%1$@, %2$d per cento, %3$@";
+"a11y.daycell.future.format"       = "%@, futuro";
+"a11y.daycell.empty.format"        = "%@, nessuna registrazione";
+"a11y.daycell.today.empty.format"  = "oggi, %@, ancora nessuna registrazione";
+"a11y.daycell.selected.suffix"     = ", selezionato";
+
+/* Increment / decrement buttons (Watch, edit sheets) */
+"a11y.hint.increment" = "Tocca per aumentare.";
+"a11y.hint.decrement" = "Tocca per diminuire.";
+
+/* Rest day toggle, label reflects on/off, hint describes the action */
+"a11y.hint.restday.activate"   = "Tocca per attivare il giorno di riposo.";
+"a11y.hint.restday.deactivate" = "Tocca per disattivare la modalità giorno di riposo.";
+
+/* Info sheets, row combine helpers */
+"a11y.ringinfo.color.row.format"  = "%1$@, intervallo %2$@";
+"a11y.tierinfo.row.format"        = "%1$@, %2$@, livello %3$d";
+
+/* MARK: - Accessibility (Phase 2, Achievements + ProgressOver) */
+
+/* Calendar cell with a tier name spoken */
+"a11y.calendar.day.tier.format"        = "%1$@, traguardo: %2$@";
+"a11y.calendar.day.today.tier.format"  = "oggi, %1$@, traguardo: %2$@";
+
+/* Achievements view-mode segmented picker (List / Calendar) */
+
+/* Calendar section header */
+
+/* Month navigation chevrons */
+"a11y.month.previous" = "Mese precedente";
+"a11y.month.next"     = "Mese successivo";
+
+/* AchievementsView history rows */
+"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d per cento";
+"a11y.record.row.hint"          = "Tocca per visualizzare i dettagli.";
+"a11y.record.edit.label"        = "Modifica registrazione";
+"a11y.record.edit.hint" = "Tocca per modificare.";
+
+/* RecordDetail / EditToday header card */
+"a11y.record.header.format"     = "%1$@, %2$@, %3$d per cento, livello %4$d";
+
+/* ProgressOverView, stats cards */
+"a11y.stats.days.label"            = "Giorni";
+"a11y.stats.days.value.format"     = "%d giorni";
+"a11y.stats.days.hint" = "Tocca per aprire il calendario di oggi.";
+
+/* ProgressOverView, list rows inside cards */
+"a11y.stats.tier.row.format"     = "%1$@, %2$d giorni";
+"a11y.stats.activity.row.format" = "%1$@, %2$d giorni";
+"a11y.stats.goals.row.format"    = "%1$@, %2$d attivi";
+
+/* ProgressOverView, whole-card tap hints */
+"a11y.stats.card.usergoal.hint" = "Tocca per cambiare obiettivo.";
+"a11y.stats.card.tiers.hint"    = "Tocca per scoprire come funzionano i livelli.";
+"a11y.stats.card.activity.hint" = "Tocca per aprire il registro delle attività.";
+"a11y.stats.card.goals.hint"    = "Tocca per gestire gli obiettivi monitorati.";
+
+/* ProfileRecentActivityView, day buttons */
+"a11y.recent.day.with.tier.format" = "%1$@, %2$@";
+"a11y.recent.day.empty.format"     = "%@, nessuna registrazione";
+"a11y.recent.day.today.format"     = "oggi, %1$@, %2$@";
+"a11y.recent.day.today.empty.format" = "oggi, %@, ancora nessuna registrazione";
+"a11y.recent.day.hint" = "Tocca per aprire questo giorno.";
+
+/* MARK: - Accessibility (Phase 3, Settings) */
+
+/* Generic selection state */
+"a11y.selected"     = "selezionato";
+"a11y.not.selected" = "non selezionato";
+
+/* Theme picker (ThemeSettingsView) */
+"a11y.theme.hint"             = "Tocca per selezionare questo tema.";
+"a11y.theme.info.label.format" = "Maggiori informazioni su %@";
+"a11y.theme.info.hint" = "Tocca per maggiori informazioni.";
+
+/* Color picker (ColorSettingsView) */
+"a11y.color.hint" = "Tocca per selezionare questo colore.";
+
+/* Fitness goal picker (UserGoalPickerView) */
+"a11y.usergoal.hint" = "Tocca per selezionare questo obiettivo.";
+
+/* Tracking goals settings, image-only buttons */
+"a11y.button.add.goal.label"     = "Nuovo obiettivo di monitoraggio";
+"a11y.button.add.goal.hint" = "Tocca per creare un nuovo obiettivo.";
+"a11y.button.remove.goal.label"  = "Rimuovi obiettivo";
+"a11y.button.restore.goal.label" = "Ripristina obiettivo";
+
+/* Categories settings, pencil button */
+"a11y.button.edit.category.label" = "Modifica categoria";
+"a11y.button.edit.category.hint" = "Tocca per modificare questa categoria.";
+
+/* Notification rows, pencil button */
+"a11y.button.edit.notification.label" = "Modifica notifica";
+"a11y.button.edit.notification.hint" = "Tocca per modificare le impostazioni di notifica.";
+
+/* SettingsView toolbar bell */
+"a11y.notification.history.bell" = "Cronologia notifiche";
+"a11y.notification.history.bell.hint" = "Tocca per aprire le notifiche.";
+
+/* Notification history row */
+"a11y.history.row.format" = "%1$@, %2$@, %3$@";
+"a11y.history.row.hint" = "Tocca per aprire.";
+
+/* App icon (About) */
+"a11y.app.icon" = "Icona dell'app";
+
+/* Collapsible section header (settings goals + notifications) */
+"a11y.section.collapsible.hint" = "Tocca per comprimere o espandere.";
+
+/* MARK: - Accessibility (Phase 4, Welcome / onboarding) */
+
+"a11y.welcome.progress.format"          = "Passo %1$d di %2$d";
+"a11y.welcome.optional.add.label.format"    = "Aggiungi %@";
+"a11y.welcome.optional.remove.label.format" = "Rimuovi %@";
+"a11y.welcome.optional.add.hint" = "Tocca per aggiungere questo obiettivo.";
+"a11y.welcome.optional.remove.hint" = "Tocca per rimuovere questo obiettivo.";
+
+/* MARK: - Accessibility (Phase 5, Watch app) */
+
+/* Watch hero ring (ContentView), same wording as the iPhone ring */
+"a11y.watch.hero.label"  = "Progresso giornaliero";
+"a11y.watch.page.stats"         = "Pagina statistiche";
+"a11y.watch.page.today"         = "Pagina oggi";
+"a11y.watch.page.notifications" = "Pagina notifiche";
+
+/* Watch goal card header */
+"a11y.watch.card.expanded"   = "espanso";
+"a11y.watch.card.collapsed"  = "compresso";
+"a11y.watch.card.hint.expand" = "Tocca per espandere.";
+"a11y.watch.card.hint.collapse" = "Tocca per comprimere.";
+
+/* Watch ± buttons */
+"a11y.watch.increase.label.format" = "Aumenta %@";
+"a11y.watch.decrease.label.format" = "Diminuisci %@";
+
+/* Watch recent strip, collapsed into a single summary */
+"a11y.watch.recent.summary.format" = "%1$@: %2$d giorni con traguardi su 7.";
+
+/* Watch notification row */
+"a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
+
+/* MARK: - Accessibility (Phase 6, Widgets) */
+
+/* Widget summary (small/medium/lockscreen, watch circular/rectangular) */
+"a11y.widget.summary.format"       = "Progresso giornaliero, %1$@, %2$d per cento completato";
+"a11y.widget.summary.points.format" = "Progresso giornaliero, %1$@, %2$d per cento completato";
+
+/* iPhone large widgets */
+"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d per cento";
+"a11y.widget.calendar.month.format" = "%@";
+
+/* Watch widget, corner and inline don't need extra labels (text already speaks) */
+
+"a11y.welcome.goal.decrease.format" = "Diminuisci %@";
+"a11y.welcome.goal.increase.format" = "Aumenta %@";
+
+"welcome.step.control.title" = "Controlli";
+"welcome.step.control.subtitle" = "Come preferisci registrare i tuoi obiettivi ogni giorno?";
+"welcome.control.slider" = "Scorri";
+"welcome.control.slider.desc" = "Trascina il controllo fino al valore desiderato.";
+"welcome.control.stepper" = "Pulsanti";
+"welcome.control.stepper.desc" = "Tocca per aggiungere o togliere un passo alla volta.";
+"welcome.step.ready.title" = "Tutto pronto!";
+"welcome.step.ready.subtitle" = "Attiva ciò che preferisci.";
+"welcome.ready.notifications.title" = "Notifiche";
+"welcome.ready.notifications.desc" = "Promemoria per acqua e traguardi.";
+"welcome.ready.health.title" = "Apple Salute";
+"welcome.ready.health.desc" = "Registra il sonno e rileva automaticamente i tuoi allenamenti.";
+"welcome.ready.allow" = "Consenti";
+"welcome.ready.allowed" = "Consentito";
+"welcome.ready.requested" = "Richiesto";
+"welcome.ready.denied" = "Rifiutato";
+"welcome.ready.footer" = "Puoi modificare tutto questo in qualsiasi momento nelle Impostazioni.";
+"settings.preference.controlStyle" = "Controlli";
+"settings.controlStyle.footer" = "Definisce la modalità di registrazione dei progressi nella schermata Oggi.";
+
+"settings.category.icon.section" = "Icona";
+
+"today.edit.goals" = "Modifica obiettivi";
+"today.edit.controls" = "Modifica controlli";
+"today.edit.theme" = "Modifica tema";
+"today.edit.colors" = "Modifica colori in risalto";
+
+"welcome.step.units.title" = "Le tue unità";
+"welcome.step.units.subtitle" = "Come preferisci misurare l'acqua?";
+"welcome.step.units.note" = "Puoi modificare questa scelta più tardi nelle Impostazioni.";
+"welcome.units.metric.desc" = "Millilitri, ad esempio 250 ml a bicchiere.";
+"welcome.units.imperial.desc" = "Once fluide, ad esempio %d fl oz a bicchiere.";
+
+"today.goals.viewMode.list" = "Elenco";
+"today.goals.viewMode.grid" = "Griglia";
+"today.goals.viewMode.switch.a11y" = "Passa alla vista %@";
+"today.category.tile.a11y.value" = "%d di %d completati";
+"today.category.tile.a11y.hint" = "Tocca per aprire gli obiettivi della categoria.";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%1$@ %2$d";

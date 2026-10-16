@@ -1,0 +1,886 @@
+/* ⌘
+  GymNutshell/GymNutshellCore/Resources/Localizations/tr.lproj/Localizable.strings
+
+  Propósito: Chaves de localização em turco e strings da interface do usuário para o aplicativo.
+
+  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
+
+ ⌘ */
+
+/* MARK: - Models */
+
+/* DailyAchievement.swift, Cat theme (default) */
+"daily.achievement.level1" = "Minik Kedi";
+"daily.achievement.level2" = "Fit Kedi";
+"daily.achievement.level3" = "Koca Kedi";
+"daily.achievement.level4" = "Lider Kedi";
+"daily.achievement.level5" = "Kaplan";
+"daily.achievement.level5.fem" = "Dişi Kaplan";
+
+/* AppTheme.swift, Dog theme tier names */
+"daily.achievement.dog.level1" = "Minik Köpek";
+"daily.achievement.dog.level2" = "Fit Köpek";
+"daily.achievement.dog.level3" = "Snoop Dog";
+"daily.achievement.dog.level4" = "Karamel Köpek";
+"daily.achievement.dog.level5" = "Kurt";
+
+/* AppTheme.swift, Bear theme tier names */
+"daily.achievement.bear.level1" = "Ayı Yavrusu";
+"daily.achievement.bear.level2" = "Bozayı";
+"daily.achievement.bear.level3" = "Kutup Ayısı";
+"daily.achievement.bear.level4" = "Güçlü Bizon";
+"daily.achievement.bear.level5" = "Mamut";
+
+/* AppTheme.swift, Dino theme tier names */
+"daily.achievement.dino.level1" = "Yavru Kaplumbağa";
+"daily.achievement.dino.level2" = "Timsah";
+"daily.achievement.dino.level3" = "T-Rex";
+"daily.achievement.dino.level4" = "Büyük Dino";
+"daily.achievement.dino.level5" = "Efsanevi Fosil";
+
+/* AppTheme.swift, Bird theme tier names */
+"daily.achievement.bird.level1" = "Minik Civciv";
+"daily.achievement.bird.level2" = "Mavi Kuş";
+"daily.achievement.bird.level3" = "Kartal";
+"daily.achievement.bird.level4" = "Bilge Baykuş";
+"daily.achievement.bird.level5" = "Anka Kuşu";
+
+/* AppTheme.swift, Ocean theme tier names */
+"daily.achievement.ocean.level1" = "Küçük Balık";
+"daily.achievement.ocean.level2" = "Yunus";
+"daily.achievement.ocean.level3" = "Denizanası";
+"daily.achievement.ocean.level4" = "Mavi Balina";
+"daily.achievement.ocean.level5" = "Kraken";
+
+/* AppTheme.swift, Dragon theme tier names */
+"daily.achievement.dragon.level1" = "Küçük Yumurta";
+"daily.achievement.dragon.level2" = "Kertenkele";
+"daily.achievement.dragon.level3" = "Ejderha";
+"daily.achievement.dragon.level4" = "Kadim Ejderha";
+"daily.achievement.dragon.level5" = "Ejderha Kralı";
+"daily.achievement.dragon.level5.fem" = "Ejderha Kraliçesi";
+
+/* AppTheme.swift, Horse theme tier names */
+"daily.achievement.horse.level1" = "Tay";
+"daily.achievement.horse.level2" = "Unicorn";
+"daily.achievement.horse.level3" = "Jokey";
+"daily.achievement.horse.level4" = "Atlıkarınca Şampiyonu";
+"daily.achievement.horse.level5" = "Safkan";
+
+/* AppTheme.swift, Primate theme tier names (enum case is still `.monkey` for compatibility) */
+"daily.achievement.monkey.level1" = "Minik Primat";
+"daily.achievement.monkey.level2" = "Fit Primat";
+"daily.achievement.monkey.level3" = "Donkey Primat";
+"daily.achievement.monkey.level4" = "Usta Primat";
+"daily.achievement.monkey.level5" = "Orman Efsanesi";
+
+/* AppTheme.swift, Theme display names */
+"app.theme.cat" = "Kedi";
+"app.theme.dog" = "Köpek";
+"app.theme.bear" = "Ayı";
+"app.theme.dino" = "Dino";
+"app.theme.bird" = "Kuş";
+"app.theme.ocean" = "Balık";
+"app.theme.dragon" = "Ejderha";
+"app.theme.horse" = "At";
+"app.theme.monkey" = "Primat";
+
+/* UserProfile.swift */
+"fitness.goal.bulking" = "Kas Kazanma";
+"fitness.goal.maintenance" = "Form Koruma";
+"fitness.goal.cutting" = "Yağ Yakma";
+
+/* MARK: - Views */
+
+/* MARK: - Views/AchievementsView */
+
+/* AchievementsView.swift */
+"achievements.header.title" = "Başarılar";
+"achievements.filter.list" = "Liste";
+"achievements.filter.calendar" = "Takvim";
+"achievements.filter.title" = "Görünüm";
+"achievements.filter.all" = "Liste";
+"achievements.filter.day" = "Takvim";
+"achievements.empty.title" = "Henüz başarı yok";
+"achievements.empty.description" = "Günün sonunda başarın burada açılacak.";
+
+"achievements.daily.row.description" = "Günlük hedeflerin %%%d kadarı tamamlandı.";
+
+/* EditTodayView.swift */
+"edit.record.cancel" = "Vazgeç";
+"edit.record.save" = "Kaydet";
+
+/* RecordDetailView.swift */
+"record.detail.title" = "Başarı Ayrıntıları";
+"record.detail.back" = "Geri";
+"record.detail.edit" = "Düzenle";
+
+/* MARK: - Views/ProfileView */
+
+/* ProgressOverView.swift */
+"statistics.title" = "Geçmiş";
+"statistics.section.tiers" = "Seviye Dağılımı";
+"statistics.section.activity" = "Antrenman Aktivitesi";
+"statistics.section.goals" = "Hedefler";
+"statistics.tier.days" = "%d gün";
+"statistics.activity.workout" = "Ağırlık Antrenmanı Günleri";
+"statistics.activity.cardio" = "Kardiyo Günleri";
+"statistics.goals.active.label" = "Aktif hedefler";
+"statistics.goals.active" = "%d aktif";
+"statistics.fitness.goal" = "Hedef";
+"watch.stats.days" = "Gün";
+"watch.stats.syncing" = "İstatistikleri görmek için iPhone'da Gym Nutshell'i aç.";
+"watch.stats.recent" = "Son";
+
+/* ProgressOverView.swift, stats rows and physical data */
+"profile.stats.days" = "Gün";
+"profile.recent.section" = "Son 7 gün";
+
+/* MARK: - Views/SettingsView */
+
+/* AboutView.swift */
+"settings.about.title" = "Uygulama Hakkında";
+"settings.about.version" = "Sürüm";
+"settings.about.feedback" = "Geri Bildirim Gönder";
+"settings.about.description" = "Gym Nutshell, günlük fitness hedeflerinin özüdür.\n\nHedeflerini belirle, takip et ve istikrarın sonuçlara dönüşmesini izle.";
+
+/* AddTrackingGoalView.swift */
+"settings.addgoal.title.new" = "Yeni hedef";
+"settings.addgoal.section.icon" = "Emoji";
+"settings.addgoal.emoji.placeholder" = "örnek: 🧘";
+"settings.addgoal.section.name" = "Ad";
+"settings.addgoal.name.placeholder" = "örnek: Meditasyon";
+"settings.addgoal.section.unit" = "Birim";
+"settings.addgoal.unit.placeholder" = "örnek: min";
+"settings.addgoal.section.goal" = "Hedef";
+"settings.addgoal.goal.placeholder" = "örnek: 10";
+"settings.addgoal.section.increment" = "Adım";
+"settings.addgoal.increment.placeholder" = "örnek: 2";
+"settings.addgoal.cancel" = "Vazgeç";
+"settings.addgoal.save" = "Kaydet";
+"settings.addgoal.warning.catalog" = "Bu ada sahip bir hedef zaten var.";
+"settings.addgoal.warning.emoji" = "Bu emoji zaten başka bir hedef tarafından kullanılıyor.";
+"settings.addgoal.warning.emoji.keyboard" = "Bu alana yalnızca emoji girilebilir. Ayarlar → Genel → Klavye → Klavyeler bölümüne gidip 'Emoji' klavyesini etkinleştir.";
+"settings.addgoal.warning.category.duplicate" = "Bu ada sahip bir kategori zaten var.";
+"settings.addgoal.warning.step" = "Adım, hedeften büyük olamaz.";
+"settings.addgoal.section.category" = "Kategori";
+"settings.addgoal.category.new.button" = "Yeni kategori";
+"settings.addgoal.category.new.section" = "Özel kategori";
+"settings.addgoal.category.new.name.placeholder" = "örnek: Esneme";
+"settings.addgoal.category.new.restDay" = "Dinlenme günü anahtarı (AÇIK/KAPALI)";
+"settings.goals.custom.badge" = "Özel";
+"settings.goals.categories.title" = "Kategoriler";
+
+/* BackupSettingsView.swift */
+"settings.backup.nav.title" = "Yedekleme";
+"settings.backup.section.data" = "Yerel";
+"settings.backup.section.footer" = "Yerel dışa ve içe aktarma .json dosyası ile çalışır.";
+"settings.backup.export" = "Yedeği dışa aktar";
+"settings.backup.import" = "Yedeği içe aktar";
+"settings.backup.import.alert.title" = "Verilerin üzerine yazılsın mı?";
+"settings.backup.import.alert.message" = "Bu işlem mevcut profilini, hedeflerini ve geçmişini yedek verileriyle değiştirecek. Bu işlem geri alınamaz.";
+"settings.backup.import.alert.confirm" = "Üzerine Yaz";
+"settings.backup.import.alert.cancel" = "Vazgeç";
+"settings.backup.error.title" = "Hata";
+"settings.backup.success.title" = "Bitti";
+"settings.backup.success.message" = "Verilerin yedekten geri yüklendi.";
+
+/* iCloud backup */
+"settings.backup.icloud.save" = "iCloud'a Kaydet";
+"settings.backup.icloud.restore" = "iCloud'dan Geri Yükle";
+"settings.backup.icloud.restoring" = "Yedek iCloud'dan geri yükleniyor…";
+"settings.backup.icloud.save.success" = "Yedeğin iCloud'a kaydedildi.";
+"settings.backup.icloud.unavailable" = "iCloud kullanılamıyor";
+"settings.backup.icloud.noBackup" = "Henüz iCloud'a kaydedilmiş bir yedek yok.";
+"settings.backup.icloud.lastBackup" = "Son yedekleme:";
+"settings.backup.icloud.footer.unavailable" = "Bulut yedeklemesini etkinleştirmek için Ayarlar'da iCloud'a giriş yap.";
+"settings.backup.icloud.error.unavailable" = "iCloud Drive kullanılamıyor. iCloud'a giriş yaptığını ve iCloud Drive'ın açık olduğunu kontrol et.";
+"settings.backup.icloud.error.downloadTimeout" = "Yedek iCloud'dan indirilemedi. Bağlantını kontrol edip tekrar dene.";
+"settings.backup.icloud.auto.toggle" = "Günlük otomatik yedekleme";
+"settings.backup.icloud.auto.footer" = "\nYeni bir başarı güncellendiğinde yedek otomatik olarak kaydedilir.\nBaşarılar, gece yarısından sonra uygulamayı açtığında güncellenir.";
+
+/* CheckinGoalsSettingsView.swift */
+"settings.goals.mandatory.badge" = "Standart";
+"settings.goals.optional.badge" = "Önerilen";
+
+/* FitnessGoalChangeView.swift */
+"settings.goalchange.title" = "Hedef";
+"settings.goalchange.section.pick" = "Hedefini seç";
+"settings.goalchange.section.preview" = "Hedeflerin";
+"settings.goalchange.save.recalc" = "Kaydet ve yeniden hesapla";
+"settings.goalchange.save.keep" = "Yeniden hesaplamadan kaydet";
+
+/* ProfileSettingsView.swift */
+"settings.profile.section.personal" = "Kişisel";
+"settings.profile.section.optional" = "İsteğe Bağlı";
+"settings.profile.name" = "Ad";
+"settings.profile.name.placeholder" = "Adın";
+"settings.profile.favoriteExercise" = "Favori egzersiz";
+
+/* Favorite exercises (easter egg) */
+"favoriteExercise.unknown"    = "Emin değilim";
+"favoriteExercise.back"       = "Sırt";
+"favoriteExercise.arms"       = "Kollar";
+"favoriteExercise.chest"      = "Göğüs";
+"favoriteExercise.legs"       = "Bacaklar";
+"favoriteExercise.hamstrings" = "Arka Bacak";
+"favoriteExercise.glutes"     = "Kalça";
+"favoriteExercise.shoulders"  = "Omuzlar";
+"favoriteExercise.biceps"     = "Biceps";
+"favoriteExercise.triceps"    = "Triceps";
+"favoriteExercise.abs"        = "Karın";
+"favoriteExercise.traps"      = "Trapez";
+"favoriteExercise.forearms"   = "Ön Kol";
+"favoriteExercise.calves"     = "Kalf";
+"settings.profile.sex" = "Cinsiyet";
+"profile.sex.male" = "Erkek";
+"profile.sex.female" = "Kadın";
+
+/* SettingsView.swift */
+"settings.header.title" = "Uygulama Ayarları";
+"settings.detail.placeholder" = "Bir sayfa seç";
+"settings.section.edit" = "Verilerin";
+"settings.theme.title" = "Temalar";
+"settings.section.preferences" = "Görünüş";
+"settings.section.system" = "Sistem";
+"settings.section.about" = "Hakkında";
+
+/* GymNutshellApp.swift, DataStoreErrorView */
+"app.error.dataStore.title" = "Bir sorun oluştu";
+"app.error.dataStore.message" = "Gym Nutshell verilerini yükleyemedi.\nUygulamayı kapatmaya zorla ve tekrar açarak yeniden dene.";
+"settings.about.link" = "Gym Nutshell";
+"settings.section.physicaldata" = "Profil";
+"settings.fitness.goal.edit" = "Fitness Hedefi";
+"settings.goals.edit" = "Günlük Hedefler";
+"settings.preference.appleHealth" = "Apple Sağlık";
+"settings.preference.appleHealth.syncSleep" = "Uykuyu Kaydet";
+"settings.preference.appleHealth.autoWorkoutCheckin" = "Antrenman Algılama";
+"settings.preference.appleHealth.footer" = "Uykuyu Kaydet, o gün için bir kayıt yoksa uyku saatlerini Apple Sağlık'a kaydeder.\n\nAntrenman Algılama, tamamlanan bir antrenmanı tespit eder ve Güç Antrenmanı veya Kardiyo'ya otomatik olarak kaydeder.";
+"settings.preference.appleWatch" = "Apple Watch";
+"appleWatch.sheet.title" = "Apple Watch'a Yükle";
+"appleWatch.sheet.intro" = "Gym Nutshell'ı Apple Watch'una yüklemek için aşağıdaki adımları izle:";
+"appleWatch.sheet.step1" = "iPhone'undaki Watch uygulamasını aç";
+"appleWatch.sheet.step2" = "\"Kullanılabilir Uygulamalar\" bölümüne kaydır";
+"appleWatch.sheet.step3" = "Gym Nutshell'ın yanındaki Yükle'ye dokun";
+"appleWatch.sheet.note" = "Uygulama zaten yüklüyse yukarıdaki \"Apple Watch'ta Yüklü\" bölümünde görünür.";
+"settings.preference.language" = "Dil";
+"settings.preference.measurementSystem" = "Ölçü Birimleri";
+"settings.preference.measurementSystem.metric" = "Metrik (ml)";
+"settings.preference.measurementSystem.us" = "İngiliz (fl oz)";
+"settings.measurementSystem.footer" = "Suyun uygulamada nasıl gösterileceği ve girileceği.";
+"settings.edit.widgets" = "Araç Takımları";
+"widgetBackground.title" = "Araç Takımları";
+"widgetBackground.mode.label" = "Arka Plan";
+"widgetBackground.mode.system" = "Sistem";
+"widgetBackground.mode.accent" = "Vurgu";
+"widgetBackground.mode.custom" = "Özel";
+"widgetBackground.footer.system" = "Araç takımları, sistem temasıyla eşleşen siyah veya beyaz metinle saptanmış iOS arka planını kullanır.";
+"widgetBackground.footer.accent" = "Araç takımları, arka plan olarak uygulamanın vurgu rengini kullanır.";
+"widgetBackground.footer.custom" = "Aşağıdan bir renk seç. Araç takımları bu rengi arka plan olarak kullanır.";
+"widgetBackground.picker" = "Renk";
+"widgetBackground.preview" = "Önizleme";
+
+/* TrackingGoalDetailView.swift */
+"settings.goaldetail.stepper" = "Değeri ayarla";
+"settings.goaldetail.footer" = "Bunu değiştirmek geçmiş kayıtları etkilemez.";
+"settings.goaldetail.save" = "Kaydet";
+"settings.goaldetail.increment.stepper" = "Adımı ayarla";
+"settings.goaldetail.increment.footer" = "Adım, kaydırıcının hedef değere doğru ne kadar ilerleyeceğini belirler.";
+
+/* TrackingGoalsSettingsView.swift */
+"settings.goals.title" = "Hedefler";
+"settings.tracking.goals.section.custom" = "Özel hedefler";
+"settings.tracking.goals.done" = "Bitti";
+"settings.tracking.goals.editMode" = "Düzenle";
+"settings.goals.category.order.section" = "Kategori sırası";
+"settings.goal.water" = "Su";
+"settings.goal.calories" = "Kalori";
+"settings.goal.protein" = "Protein";
+"settings.goal.carbs" = "Karbonhidrat";
+"settings.goal.fats" = "Sağlıklı Yağ";
+"settings.goal.fiber" = "Lif";
+"settings.goal.sleep" = "Uyku";
+
+/* MARK: - Views/Shared */
+
+/* FitnessGoalPickerView.swift */
+"welcome.goal.bulking.description" = "Kalori fazlasıyla kas kütlesini artır";
+"welcome.goal.maintenance.description" = "Mevcut kiloyu ve vücut kompozisyonunu koru";
+"welcome.goal.cutting.description" = "Kasları koruyarak vücut yağını azalt";
+
+/* MARK: - Views/TodayView */
+
+/* GoalCategory.swift */
+"goal.category.essencial" = "Temel";
+"goal.category.nutricao" = "Beslenme";
+"goal.category.treino" = "Antrenman";
+"goal.category.suplemento" = "Takviye";
+
+/* TodayView.swift */
+"today.goals.workout" = "Ağırlık Antrenmanı";
+"today.goals.cardio" = "Kardiyo";
+"today.goals.creatine" = "Kreatin";
+"today.category.other" = "Diğer";
+"today.category.a11y.value" = "%2$d hedeften %1$d tanesi tamamlandı";
+"today.restday.label" = "Dinlenme günü";
+"today.restday.on" = "AÇIK";
+"today.restday.off" = "KAPALI";
+"today.metric.sleep" = "Uyku";
+"today.metric.water" = "Su";
+"today.metric.calories" = "Kalori";
+"today.metric.protein" = "Protein";
+"today.metric.carbs" = "Karbonhidrat";
+"today.metric.fats" = "Sağlıklı Yağ";
+"today.metric.fiber" = "Lif";
+
+/* TodayHeroView.swift, next level phrase */
+"today.max.level" = "Bugün maksimum seviyeye ulaşıldı!";
+
+/* DailyTierView.swift */
+"today.tier.level.1" = "1. Seviye";
+"today.tier.level.2" = "2. Seviye";
+"today.tier.level.3" = "3. Seviye";
+"today.tier.level.4" = "4. Seviye";
+/* Tier button label combines the "Today's achievement" header phrase with the
+   tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
+   duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
+"today.tier.a11y.label" = "Bugünün başarısı, %2$@";
+
+/* TodayProgressRingView.swift */
+"today.ring.a11y.label" = "Bugünün ilerleme halkası";
+"today.ring.a11y.hint" = "Daha fazla bilgi için dokun.";
+"today.ring.a11y.value" = "yüzde %d tamamlandı";
+
+/* TodayView.swift, date hero button */
+"today.hero.bell.a11y.label" = "Bildirimler";
+"today.hero.bell.a11y.hint" = "Bildirimlerini açmak için dokun.";
+"today.hero.caption.start" = "Başlamak için bir hedefi takip et";
+"today.hero.caption.nextLevel" = "Sonraki seviye için %%%d kaldı";
+"today.hero.caption.max" = "Günün en yüksek başarısı!";
+"today.hero.achievement.label" = "Günlük başarı";
+"today.greeting.morning"   = "Günaydın!";
+"today.greeting.afternoon" = "İyi günler!";
+"today.greeting.night"     = "İyi akşamlar!";
+
+/* MARK: - Views/WelcomeView */
+
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "Senin hakkında";
+
+/* WelcomeFitnessGoalStep.swift */
+"welcome.step.goal.title" = "Hedefin";
+"welcome.step.goal.info.editable" = "Bunu daha sonra uygulama ayarlarından değiştirebilirsin.";
+
+/* WelcomeThemeStep.swift */
+"welcome.step.theme.title" = "Tema";
+"welcome.step.theme.subtitle" = "İlerlemeni motive edecek emojileri seç.";
+"welcome.step.theme.footer" = "Tema daha sonra değiştirilebilir.";
+
+/* WelcomePhysicalDataStep.swift */
+"welcome.field.sex" = "Cinsiyet";
+"welcome.field.sex.male" = "Erkek";
+"welcome.field.sex.female" = "Kadın";
+
+/* WelcomeSummaryStep.swift */
+"welcome.step.summary.title" = "Hedeflerin";
+"welcome.summary.subtitle.customize" = "Bu değerleri istediğin zaman düzenleyebilir veya yeni hedefler ekleyebilirsin.";
+"welcome.option.add" = "Ekle";
+
+/* WelcomeStartStep.swift */
+"welcome.step.start.title" = "Merhaba!";
+"welcome.start.feature.track" = "Gün boyunca fitness hedeflerini takip et.";
+"welcome.start.feature.theme" = "Sana ilham verecek bir tema seç.";
+"welcome.start.feature.progress" = "İlerlemeni takip et.";
+"welcome.start.new" = "Başla";
+"welcome.start.restore" = "Yedeği geri yükle";
+
+/* WelcomeView.swift */
+"welcome.button.continue" = "Sürdür";
+"welcome.button.start" = "Haydi başlayalım!";
+"welcome.button.back" = "Geri";
+
+/* MARK: - ContentView.swift */
+
+/* HealthKit activity display names (auto check-in descriptions) */
+"healthkit.activity.running" = "Koşu";
+"healthkit.activity.walking" = "Yürüyüş";
+"healthkit.activity.cycling" = "Bisiklet";
+"healthkit.activity.swimming" = "Yüzme";
+"healthkit.activity.elliptical" = "Eliptik Bisiklet";
+"healthkit.activity.rowing" = "Kürek";
+"healthkit.activity.stairClimbing" = "Merdiven Tırmanma";
+"healthkit.activity.hiking" = "Doğa Yürüyüşü";
+"healthkit.activity.jumpRope" = "İp Atlama";
+"healthkit.activity.dance" = "Dans";
+"healthkit.activity.strengthTraining" = "Güç Antrenmanı";
+"healthkit.activity.functionalTraining" = "Fonksiyonel Antrenman";
+"healthkit.activity.crossTraining" = "Cross Training";
+"healthkit.activity.hiit" = "HIIT";
+"healthkit.activity.boxing" = "Boks";
+"healthkit.activity.martialArts" = "Dövüş Sanatları";
+"healthkit.activity.coreTraining" = "Core Antrenmanı";
+"healthkit.activity.climbing" = "Tırmanış";
+"healthkit.activity.other" = "Egzersiz";
+
+/* AppTheme, Categories */
+"app.theme.category.sport" = "Spor";
+"app.theme.category.animals" = "Hayvanlar";
+"app.theme.category.elements" = "Elementler ve Doğa";
+"app.theme.category.competition" = "İlerleme";
+"app.theme.category.warrior" = "Kahraman";
+"app.theme.category.space" = "Uzay";
+
+/* AppTheme, Gym */
+"app.theme.gym" = "Spor Salonu";
+"app.theme.running" = "Koşu";
+"daily.achievement.running.level1" = "Yürüyüşçü";
+"daily.achievement.running.level2" = "Tempolu";
+"daily.achievement.running.level3" = "Koşucu";
+"daily.achievement.running.level4" = "Maratoncu";
+"daily.achievement.running.level5" = "Ultramaratoncu";
+"daily.achievement.gym.level1" = "Horoz";
+"daily.achievement.gym.level1.fem" = "Tavuk";
+"daily.achievement.gym.level2" = "Kaslıcık";
+"daily.achievement.gym.level3" = "Salon Faresi";
+"daily.achievement.gym.level4" = "Kaslı";
+"daily.achievement.gym.level5" = "Canavar";
+
+/* AppTheme, Fire */
+"app.theme.fire" = "Ateş";
+"daily.achievement.fire.level1" = "Mum";
+"daily.achievement.fire.level2" = "Alev";
+"daily.achievement.fire.level3" = "Yanardağ";
+"daily.achievement.fire.level4" = "Güneş";
+"daily.achievement.fire.level5" = "Süpernova";
+
+/* AppTheme, Plant */
+"app.theme.plant" = "Orman";
+"daily.achievement.plant.level1" = "Minik Filiz";
+"daily.achievement.plant.level2" = "Şifalı Ot";
+"daily.achievement.plant.level3" = "Ulu Ağaç";
+"daily.achievement.plant.level4" = "Yılbaşı Ağacı";
+"daily.achievement.plant.level5" = "Orman";
+
+/* AppTheme, Champion */
+"app.theme.champion" = "Madalya";
+"daily.achievement.champion.level1" = "Bronz";
+"daily.achievement.champion.level2" = "Gümüş";
+"daily.achievement.champion.level3" = "Altın";
+"daily.achievement.champion.level4" = "Elmas";
+"daily.achievement.champion.level5" = "Kupa";
+
+/* AppTheme, Number */
+"app.theme.number" = "Sayılar";
+"daily.achievement.number.level1" = "Bir";
+"daily.achievement.number.level2" = "İki";
+"daily.achievement.number.level3" = "Üç";
+"daily.achievement.number.level4" = "Dört";
+"daily.achievement.number.level5" = "Beş";
+
+/* AppTheme, Doctor */
+"app.theme.doctor" = "Doktor";
+"daily.achievement.doctor.level1" = "Stajyer";
+"daily.achievement.doctor.level2" = "Pratisyen";
+"daily.achievement.doctor.level3" = "Mezun";
+"daily.achievement.doctor.level4" = "Doctor Who";
+"daily.achievement.doctor.level5" = "Başhekim";
+
+/* AppTheme, Ninja (Fighter) */
+"app.theme.ninja" = "Dövüşçü";
+"daily.achievement.ninja.level1" = "Çırak";
+"daily.achievement.ninja.level2" = "Kılıç Ustası";
+"daily.achievement.ninja.level3" = "Ninja";
+"daily.achievement.ninja.level4" = "Süper";
+"daily.achievement.ninja.level5" = "Efsanevi Usta";
+
+/* AppTheme, Astronaut (Exploration) */
+"app.theme.astronaut" = "Keşif";
+"daily.achievement.astronaut.level1" = "Uydu";
+"daily.achievement.astronaut.level2" = "Astronot";
+"daily.achievement.astronaut.level3" = "Uzay Roketi";
+"daily.achievement.astronaut.level4" = "Uçan Daire";
+"daily.achievement.astronaut.level5" = "Uzaylı";
+
+/* AppTheme, Celestial */
+"app.theme.celestial" = "Gök Cisimleri";
+"daily.achievement.celestial.level1" = "Kuyruklu Yıldız";
+"daily.achievement.celestial.level2" = "Ay";
+"daily.achievement.celestial.level3" = "Dünya";
+"daily.achievement.celestial.level4" = "Satürn";
+"daily.achievement.celestial.level5" = "Galaksi";
+
+/* AppAccentColor.swift, Color names */
+"color.red"    = "Kırmızı";
+"color.blue"   = "Mavi";
+"color.purple" = "Mor";
+"color.green"  = "Yeşil";
+"color.yellow" = "Sarı";
+"color.orange" = "Turuncu";
+"color.cyan"   = "Camgöbeği";
+"color.pink"   = "Pembe";
+
+/* ColorSettingsView.swift */
+"settings.color.title"    = "Vurgu renkleri";
+"settings.color.subtitle" = "Uygulama genelinde kullanılan vurgu rengi";
+"settings.color.preview" = "Önizleme";
+
+/* TierInfoView.swift / ProgressRingInfoView.swift, links in Settings > About */
+"settings.about.achievement"  = "Başarı";
+"settings.about.progressRing" = "İlerleme Halkası";
+
+/* TierInfoView.swift */
+"tier.info.intro"             = "Başarın günün sonunda, gece yarısında kaydedilir.";
+"tier.info.section.levels"    = "Seviyeler";
+"tier.info.change.theme"      = "Temayı Değiştir";
+"tier.info.range.suffix"      = " ilerleme";
+
+/* ProgressRingInfoView.swift */
+"ring.info.intro"             = "Halka, hedeflerinin ortalama yüzde kaçını tamamladığını gösterir. Her renkli dilim %20 değerindedir.";
+"ring.info.section.colors"    = "Halka dilimleri";
+"ring.info.color.red"         = "Yeni başlıyor";
+"ring.info.color.orange"      = "Yolda";
+"ring.info.color.green"       = "Harika gidiyor";
+"ring.info.color.cyan"        = "Neredeyse bitti";
+"ring.info.color.purple"      = "Son düzlük";
+"ring.info.color.blue"        = "Hedef tamamlandı";
+"ring.info.level.label"       = "Seviye ";
+"info.next.prefix"            = "Kalan: ";
+"info.next.middle"            = " ulaşmak için: ";
+
+/* Common */
+"common.cancel" = "Vazgeç";
+"common.done" = "Bitti";
+
+/* Notification history */
+"notifications.history.title" = "Bildirimler";
+"common.close" = "Kapat";
+"common.edit" = "Düzenle";
+"common.done" = "Bitti";
+"notifications.history.today" = "Bugün";
+"notifications.history.yesterday" = "Dün";
+"notifications.history.empty.title" = "Henüz bildirim yok";
+"notifications.history.empty.description" = "Son 3 günün bildirim geçmişi burada görünür.";
+
+/* NotificationsSettingsView */
+"settings.preference.notifications"       = "Bildirimler";
+"settings.notifications.section.system"   = "Sistem";
+"settings.notifications.section.goals"    = "Hedefler";
+"settings.notifications.authorize.button" = "Bildirimleri Etkinleştir";
+"settings.notifications.authorize.footer" = "Hatırlatıcıları almaya başlamak için İzin Ver'e dokun ve iOS isteminde izin ver. Zaten reddettiysen iOS Ayarları'ndan yeniden etkinleştirebilirsin.";
+"settings.notifications.denied.title"     = "Bildirimler devre dışı";
+"settings.notifications.denied.message"   = "Daha önce bildirimleri reddettin. Gym Nutshell hatırlatıcılarını almak için iOS Ayarları'nda bildirimleri aç.";
+"settings.notifications.denied.open"      = "Ayarları Aç";
+
+/* NotificationIntervalEditView */
+"settings.notifications.interval.header"   = "Bildirimler arasındaki süre";
+"settings.notifications.interval.stepper"  = "Her";
+"settings.notifications.interval.value"    = "%d min";
+
+/* NotificationIntervalEditView, sound picker */
+"settings.notifications.sound.header"      = "Ses";
+"settings.notifications.sound.label"       = "Bildirim sesi";
+"settings.notifications.sound.footer"      = "Saptanmış seçeneği, iOS Ayarları → Bildirimler → Gym Nutshell → Sesler (Tri-tone, Note, Chord vb.) bölümünde seçtiğin tonu çalar. Sessiz, yalnızca bu uygulama için sesi kapatır.";
+"settings.notifications.sound.openSystem"  = "Tonu iOS Ayarları'ndan seç";
+"notifications.sound.default"              = "Saptanmış";
+"notifications.sound.silent"               = "Sessiz";
+
+/* NotificationKind, title / description on list + body of notification + footer */
+"notifications.kind.progress.title"         = "İlerleme";
+"notifications.kind.progress.description"   = "Bir sonraki günlük başarına ne kadar kaldığı.";
+"notifications.kind.progress.body"          = "Böyle devam et! Her hedef, bir sonraki başarın için önemli.";
+"notifications.kind.progress.footer"        = "Bugün seviye atlamak için ne kadar kaldığını gösteren periyodik hatırlatıcılar.";
+
+"notifications.kind.achievement.title"      = "Günlük başarı";
+"notifications.kind.achievement.description" = "Gece yarısı, gün boyunca açılan başarıyı bildirir.";
+"notifications.kind.achievement.body"       = "%@ Günü %@ olarak tamamladın!";
+
+"notifications.kind.appleHealth.title"      = "Apple Sağlık";
+"notifications.kind.appleHealth.description" = "Apple Sağlık ile senkronize edilen kayıtları doğrular.";
+"notifications.kind.appleHealth.body.cardio" = "%d min Kardiyo kaydedildi (%@).";
+"notifications.kind.appleHealth.body.workout" = "%d min Güç Antrenmanı kaydedildi (%@).";
+"notifications.kind.appleHealth.body.sleep" = "Apple Sağlık'a %d h uyku kaydedildi.";
+
+"notifications.kind.backup.title"           = "iCloud yedekleme";
+"notifications.kind.backup.description"     = "Her otomatik yedeklemeyi onaylar.";
+"notifications.kind.backup.body"            = "iCloud yedeklemesi başarıyla tamamlandı.";
+
+"notifications.kind.sleep.title"            = "Uyku";
+"notifications.kind.sleep.description"      = "Uyku hedefine henüz ulaşamadığında şekerleme yapmanı önerir (yalnızca 10:00 ile 19:00 arasında).";
+"notifications.kind.sleep.body"             = "Bugün uyku hedefine ulaşmak için kısa bir şekerlemeye ne dersin?";
+"notifications.kind.sleep.footer"           = "Uygulama, günlük hedefe ulaşana kadar her X dakikada bir dinlenmeyi önerir. Saat 10:00'dan önce veya 19:00'dan sonra hatırlatıcı gönderilmez.";
+
+"notifications.kind.water.title"            = "Su";
+"notifications.kind.water.description"      = "Günlük hedefine ulaşana kadar bir bardak su içmen için hatırlatıcılar.";
+"notifications.kind.water.body"             = "Bir bardak su zamanı geldi mi? Günlük hedefine doğru ilerlemeye devam et.";
+"notifications.kind.water.footer"           = "Uygulama her X dakikada bir su içmeni hatırlatır. Günlük hedefine ulaştığında hatırlatıcılar durur.";
+
+"notifications.kind.calories.title"         = "Kalori";
+"notifications.kind.calories.description"   = "Günlük kalori hedefine ulaşman için hatırlatıcılar.";
+"notifications.kind.calories.body"          = "Bugünkü kalori hedefine ulaşmak için öğünlerini kaydetme zamanı.";
+"notifications.kind.calories.footer"        = "Kalori hedefine ulaştığında periyodik hatırlatıcılar durur.";
+"notifications.kind.protein.title"          = "Protein";
+"notifications.kind.protein.description"    = "Günlük protein hedefine ulaşman için hatırlatıcılar.";
+"notifications.kind.protein.body"           = "Bugünkü hedefine ulaşmak için biraz protein alma zamanı.";
+"notifications.kind.protein.footer"         = "Protein hedefine ulaştığında periyodik hatırlatıcılar durur.";
+
+"notifications.kind.carbs.title"            = "Karbonhidrat";
+"notifications.kind.carbs.description"      = "Günlük karbonhidrat hedefine ulaşman için hatırlatıcılar.";
+"notifications.kind.carbs.body"             = "Enerjini yüksek tutmak için iyi bir karbonhidrat kaynağına ne dersin?";
+"notifications.kind.carbs.footer"           = "Karbonhidrat hedefine ulaştığında periyodik hatırlatıcılar durur.";
+
+"notifications.kind.goodFat.title"          = "Sağlıklı Yağlar";
+"notifications.kind.goodFat.description"    = "Günlük sağlıklı yağ hedefine ulaşman için hatırlatıcılar.";
+"notifications.kind.goodFat.body"           = "Bugün sağlıklı yağları unutma (zeytinyağı, kuruyemiş, avokado).";
+"notifications.kind.goodFat.footer"         = "Sağlıklı yağ hedefine ulaştığında periyodik hatırlatıcılar durur.";
+
+"notifications.kind.fiber.title"            = "Lif";
+"notifications.kind.fiber.description"      = "Günlük lif hedefine ulaşman için hatırlatıcılar.";
+"notifications.kind.fiber.body"             = "Bir sonraki öğününe bir porsiyon lif ekle.";
+"notifications.kind.fiber.footer"           = "Lif hedefine ulaştığında periyodik hatırlatıcılar durur.";
+
+"notifications.kind.workout.title"          = "Güç Antrenmanı";
+"notifications.kind.workout.description"    = "Bugünkü güç antrenmanını tamamlaman için hatırlatıcılar.";
+"notifications.kind.workout.body"           = "Güç antrenmanın seni bekliyor. Haydi salona!";
+"notifications.kind.workout.footer"         = "Güç antrenmanı hedefine ulaştığında periyodik hatırlatıcılar durur.";
+
+"notifications.kind.cardio.title"           = "Kardiyo";
+"notifications.kind.cardio.description"     = "Bugünkü kardiyoyu tamamlaman için hatırlatıcılar.";
+"notifications.kind.cardio.body"            = "Kardiyo zamanı! Biraz hareket büyük fark yaratır.";
+"notifications.kind.cardio.footer"          = "Kardiyo hedefine ulaştığında periyodik hatırlatıcılar durur.";
+
+"notifications.kind.creatine.title"         = "Kreatin";
+"notifications.kind.creatine.description"   = "Günlük kreatin dozun için hatırlatıcılar.";
+"notifications.kind.creatine.body"          = "Bugün kreatinini aldın mı?";
+"notifications.kind.creatine.footer"        = "Günün dozunu kaydettiğinde periyodik hatırlatıcılar durur.";
+
+/* Custom goals */
+"notifications.custom.description"          = "Bugünkü hedefe ulaşman için hatırlatıcılar.";
+"notifications.custom.body"                 = "%@ kaydetme zamanı, bugünkü hedefe doğru ilerlemeye devam et.";
+"notifications.custom.footer"               = "Bu özel takipçi için bugünkü hedefe ulaştığında periyodik hatırlatıcılar durur.";
+"notifications.history.delete" = "Sil";
+
+/* MARK: - Accessibility (VoiceOver), shared helpers in A11yHelpers.swift */
+
+/* Progress band, color-coded zones spoken instead of just relying on the visual hue */
+"a11y.band.red"    = "kırmızı bölge, hedeften uzak";
+"a11y.band.orange" = "turuncu bölge, devam ediyor";
+"a11y.band.green"  = "yeşil bölge, harika gidiyor";
+"a11y.band.cyan"   = "camgöbeği bölge, neredeyse bitti";
+"a11y.band.blue"   = "mavi bölge, hedefe ulaşıldı";
+
+/* Generic progress phrasing, band dropped from progress value after user testing */
+"a11y.percent.format"          = "yüzde %d";
+"a11y.progress.value.format"   = "yüzde %d tamamlandı";
+
+/* Tracking goal row, header value drops percent + band to stay concise */
+"a11y.goalrow.value.format"    = "%2$d %3$@ üzerinden %1$d tamamlandı";
+"a11y.goalrow.value.restday"   = "dinlenme günü modunda, hedef tamamlandı";
+"a11y.goalrow.a11y.label"      = "%@ hedefi";
+"a11y.slider.label.format"     = "%@ kaydırıcısı";
+
+/* Generic "open details" hint reused across ring/tier */
+"a11y.hint.more.info"          = "Daha fazla bilgi için dokun.";
+
+/* Collapsible category header (TodayView) */
+"a11y.category.label.format"   = "%@ kategorisi";
+"a11y.category.hint"           = "Daraltmak veya genişletmek için dokun.";
+
+/* Day cell (MonthlyCalendarView + widget Calendar) */
+"a11y.daycell.today.format"        = "bugün, %1$@, yüzde %2$d, %3$@";
+"a11y.daycell.past.format"         = "%1$@, yüzde %2$d, %3$@";
+"a11y.daycell.future.format"       = "%@, gelecek";
+"a11y.daycell.empty.format"        = "%@, kayıt yok";
+"a11y.daycell.today.empty.format"  = "bugün, %@, henüz kayıt yok";
+"a11y.daycell.selected.suffix"     = ", seçili";
+
+/* Increment / decrement buttons (Watch, edit sheets) */
+"a11y.hint.increment" = "Artırmak için dokun.";
+"a11y.hint.decrement" = "Azaltmak için dokun.";
+
+/* Rest day toggle, label reflects on/off, hint describes the action */
+"a11y.hint.restday.activate"   = "Dinlenme gününü etkinleştirmek için dokun.";
+"a11y.hint.restday.deactivate" = "Dinlenme günü modundan çıkmak için dokun.";
+
+/* Info sheets, row combine helpers */
+"a11y.ringinfo.color.row.format"  = "%1$@, aralık %2$@";
+"a11y.tierinfo.row.format"        = "%1$@, %2$@, seviye %3$d";
+
+/* MARK: - Accessibility (Phase 2, Achievements + ProgressOver) */
+
+/* Calendar cell with a tier name spoken */
+"a11y.calendar.day.tier.format"        = "%1$@, kazanılan: %2$@";
+"a11y.calendar.day.today.tier.format"  = "bugün, %1$@, kazanılan: %2$@";
+
+/* Achievements view-mode segmented picker (List / Calendar) */
+
+/* Calendar section header */
+
+/* Month navigation chevrons */
+"a11y.month.previous" = "Önceki ay";
+"a11y.month.next"     = "Sonraki ay";
+
+/* AchievementsView history rows */
+"a11y.record.row.daily.format"  = "%1$@, %2$@, yüzde %3$d";
+"a11y.record.row.hint"          = "Ayrıntıları görmek için dokun.";
+"a11y.record.edit.label"        = "Kaydı düzenle";
+"a11y.record.edit.hint" = "Düzenlemek için dokun.";
+
+/* RecordDetail / EditToday header card */
+"a11y.record.header.format"     = "%1$@, %2$@, yüzde %3$d, seviye %4$d";
+
+/* ProgressOverView, stats cards */
+"a11y.stats.days.label"            = "Gün";
+"a11y.stats.days.value.format"     = "%d gün";
+"a11y.stats.days.hint" = "Bugünün takvimini açmak için dokun.";
+
+/* ProgressOverView, list rows inside cards */
+"a11y.stats.tier.row.format"     = "%1$@, %2$d gün";
+"a11y.stats.activity.row.format" = "%1$@, %2$d gün";
+"a11y.stats.goals.row.format"    = "%1$@, %2$d aktif";
+
+/* ProgressOverView, whole-card tap hints */
+"a11y.stats.card.usergoal.hint" = "Hedefi değiştirmek için dokun.";
+"a11y.stats.card.tiers.hint"    = "Seviyelerin nasıl çalıştığını görmek için dokun.";
+"a11y.stats.card.activity.hint" = "Aktivite günlüğünü açmak için dokun.";
+"a11y.stats.card.goals.hint"    = "Takip edilen hedefleri yönetmek için dokun.";
+
+/* ProfileRecentActivityView, day buttons */
+"a11y.recent.day.with.tier.format" = "%1$@, %2$@";
+"a11y.recent.day.empty.format"     = "%@, kayıt yok";
+"a11y.recent.day.today.format"     = "bugün, %1$@, %2$@";
+"a11y.recent.day.today.empty.format" = "bugün, %@, henüz kayıt yok";
+"a11y.recent.day.hint" = "Bu günü açmak için dokun.";
+
+/* MARK: - Accessibility (Phase 3, Settings) */
+
+/* Generic selection state */
+"a11y.selected"     = "seçili";
+"a11y.not.selected" = "seçili değil";
+
+/* Theme picker (ThemeSettingsView) */
+"a11y.theme.hint"             = "Bu temayı seçmek için dokun.";
+"a11y.theme.info.label.format" = "%@ hakkında daha fazla bilgi";
+"a11y.theme.info.hint" = "Daha fazla bilgi için dokun.";
+
+/* Color picker (ColorSettingsView) */
+"a11y.color.hint" = "Bu rengi seçmek için dokun.";
+
+/* Fitness goal picker (UserGoalPickerView) */
+"a11y.usergoal.hint" = "Bu hedefi seçmek için dokun.";
+
+/* Tracking goals settings, image-only buttons */
+"a11y.button.add.goal.label"     = "Yeni takip hedefi";
+"a11y.button.add.goal.hint" = "Yeni bir hedef oluşturmak için dokun.";
+"a11y.button.remove.goal.label"  = "Hedefi kaldır";
+"a11y.button.restore.goal.label" = "Hedefi geri yükle";
+
+/* Categories settings, pencil button */
+"a11y.button.edit.category.label" = "Kategoriyi düzenle";
+"a11y.button.edit.category.hint" = "Bu kategoriyi düzenlemek için dokun.";
+
+/* Notification rows, pencil button */
+"a11y.button.edit.notification.label" = "Bildirimi düzenle";
+"a11y.button.edit.notification.hint" = "Bildirim ayarlarını düzenlemek için dokun.";
+
+/* SettingsView toolbar bell */
+"a11y.notification.history.bell" = "Bildirim geçmişi";
+"a11y.notification.history.bell.hint" = "Bildirimleri açmak için dokun.";
+
+/* Notification history row */
+"a11y.history.row.format" = "%1$@, %2$@, %3$@";
+"a11y.history.row.hint" = "Açmak için dokun.";
+
+/* App icon (About) */
+"a11y.app.icon" = "Uygulama simgesi";
+
+/* Collapsible section header (settings goals + notifications) */
+"a11y.section.collapsible.hint" = "Daraltmak veya genişletmek için dokun.";
+
+/* MARK: - Accessibility (Phase 4, Welcome / onboarding) */
+
+"a11y.welcome.progress.format"          = "Adım %1$d / %2$d";
+"a11y.welcome.optional.add.label.format"    = "%@ ekle";
+"a11y.welcome.optional.remove.label.format" = "%@ kaldır";
+"a11y.welcome.optional.add.hint" = "Bu hedefi eklemek için dokun.";
+"a11y.welcome.optional.remove.hint" = "Bu hedefi kaldırmak için dokun.";
+
+/* MARK: - Accessibility (Phase 5, Watch app) */
+
+/* Watch hero ring (ContentView), same wording as the iPhone ring */
+"a11y.watch.hero.label"  = "Günlük ilerleme";
+"a11y.watch.page.stats"         = "İstatistikler sayfası";
+"a11y.watch.page.today"         = "Bugün sayfası";
+"a11y.watch.page.notifications" = "Bildirimler sayfası";
+
+/* Watch goal card header */
+"a11y.watch.card.expanded"   = "genişletildi";
+"a11y.watch.card.collapsed"  = "daraltıldı";
+"a11y.watch.card.hint.expand" = "Genişletmek için dokun.";
+"a11y.watch.card.hint.collapse" = "Daraltmak için dokun.";
+
+/* Watch ± buttons */
+"a11y.watch.increase.label.format" = "%@ artır";
+"a11y.watch.decrease.label.format" = "%@ azalt";
+
+/* Watch recent strip, collapsed into a single summary */
+"a11y.watch.recent.summary.format" = "%1$@: 7 günde %2$d gün başarı kazanıldı.";
+
+/* Watch notification row */
+"a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
+
+/* MARK: - Accessibility (Phase 6, Widgets) */
+
+/* Widget summary (small/medium/lockscreen, watch circular/rectangular) */
+"a11y.widget.summary.format"       = "Günlük ilerleme, %1$@, yüzde %2$d tamamlandı";
+"a11y.widget.summary.points.format" = "Günlük ilerleme, %1$@, yüzde %2$d tamamlandı";
+
+/* iPhone large widgets */
+"a11y.widget.large.header.format"  = "%1$@, %2$@, yüzde %3$d";
+"a11y.widget.calendar.month.format" = "%@";
+
+/* Watch widget, corner and inline don't need extra labels (text already speaks) */
+
+"a11y.welcome.goal.decrease.format" = "%@ azalt";
+"a11y.welcome.goal.increase.format" = "%@ artır";
+
+"welcome.step.control.title" = "Denetimler";
+"welcome.step.control.subtitle" = "Hedeflerini her gün nasıl kaydetmeyi tercih edersin?";
+"welcome.control.slider" = "Kaydırma";
+"welcome.control.slider.desc" = "Denetimi istediğin değere sürükle.";
+"welcome.control.stepper" = "Düğmeler";
+"welcome.control.stepper.desc" = "Her seferinde bir adım eklemek veya çıkarmak için dokun.";
+"welcome.step.ready.title" = "Her şey hazır!";
+"welcome.step.ready.subtitle" = "İstediklerini aç.";
+"welcome.ready.notifications.title" = "Bildirimler";
+"welcome.ready.notifications.desc" = "Su ve başarılar için hatırlatıcılar.";
+"welcome.ready.health.title" = "Apple Sağlık";
+"welcome.ready.health.desc" = "Uykunu kaydeder ve antrenmanlarını otomatik olarak algılar.";
+"welcome.ready.allow" = "İzin Ver";
+"welcome.ready.allowed" = "İzin Verildi";
+"welcome.ready.requested" = "İstendi";
+"welcome.ready.denied" = "Reddedildi";
+"welcome.ready.footer" = "Tüm bunları istediğin zaman Ayarlar'dan değiştirebilirsin.";
+"settings.preference.controlStyle" = "Denetimler";
+"settings.controlStyle.footer" = "Bugün ekranında hedef ilerlemesini nasıl kaydedeceğini belirler.";
+
+"settings.category.icon.section" = "Simge";
+
+"today.edit.goals" = "Hedefleri düzenle";
+"today.edit.controls" = "Denetimleri düzenle";
+"today.edit.theme" = "Temayı düzenle";
+"today.edit.colors" = "Vurgu renklerini düzenle";
+
+"welcome.step.units.title" = "Ölçü birimlerin";
+"welcome.step.units.subtitle" = "Suyu nasıl ölçmeyi tercih edersin?";
+"welcome.step.units.note" = "Bunu daha sonra Ayarlar'dan değiştirebilirsin.";
+"welcome.units.metric.desc" = "Mililitre, bardak başına 250 ml gibi.";
+"welcome.units.imperial.desc" = "Sıvı onsu, bardak başına %d fl oz gibi.";
+
+"today.goals.viewMode.list" = "Liste";
+"today.goals.viewMode.grid" = "Izgara";
+"today.goals.viewMode.switch.a11y" = "%@ görünümüne geç";
+"today.category.tile.a11y.value" = "%2$d hedeften %1$d tamamlandı";
+"today.category.tile.a11y.hint" = "Kategori hedeflerini açmak için dokun.";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%2$d %1$@";

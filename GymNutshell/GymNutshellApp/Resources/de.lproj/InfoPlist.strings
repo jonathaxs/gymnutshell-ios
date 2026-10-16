@@ -1,0 +1,3 @@
+"NSHealthShareUsageDescription" = "Liest deinen Schlaf- und Trainingsverlauf aus Apple Health, um deine tägliche Aktivität anzuzeigen und Fortschritte zu berechnen.";
+"NSHealthUpdateUsageDescription" = "Speichert deine Schlafeinträge in Apple Health, damit dein Verlauf über alle Apps hinweg synchron bleibt.";
+"NSCameraUsageDescription" = "Verwende die Kamera, um Fotos aufzunehmen, die in deinen täglichen Erfolgen gespeichert werden.";

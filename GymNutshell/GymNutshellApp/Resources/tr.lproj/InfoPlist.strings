@@ -1,0 +1,3 @@
+"NSHealthShareUsageDescription" = "Günlük aktiviteni göstermek ve ilerlemeni hesaplamak için Apple Sağlık'taki uyku ve antrenman geçmişini okur.";
+"NSHealthUpdateUsageDescription" = "Geçmişinin uygulamalar arasında eşzamanlı kalması için uyku kayıtlarını Apple Sağlık'a kaydeder.";
+"NSCameraUsageDescription" = "Günlük başarılarına kaydedilen fotoğrafları çekmek için kamerayı kullanır.";
