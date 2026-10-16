@@ -41,7 +41,21 @@ struct TodayCategoryTile: Identifiable {
     let progress: Double
     let completedCount: Int
     let totalCount: Int
+    /// Cor própria da categoria (as fixas têm a sua); nil usa a cor de destaque.
+    var tint: Color? = nil
     let content: AnyView
+}
+
+extension GoalCategory {
+    /// Cor fixa de cada categoria na grade: Essencial vermelho, Nutrição verde, Treino laranja, Suplemento violeta.
+    var tintColor: Color {
+        switch self {
+        case .essencial:  return AppAccentColor.red.color
+        case .nutricao:   return AppAccentColor.green.color
+        case .treino:     return AppAccentColor.orange.color
+        case .suplemento: return AppAccentColor.purple.color
+        }
+    }
 }
 
 struct TodayCategoryGrid: View {
@@ -95,6 +109,7 @@ struct TodayCategoryGrid: View {
 
     private func tileView(_ tile: TodayCategoryTile, circleSize: CGFloat) -> some View {
         let isDone = tile.totalCount > 0 && tile.completedCount == tile.totalCount
+        let tint = tile.tint ?? accentColor
         let isOpen = Binding(
             get: { openTileId == tile.id },
             set: { if !$0 { openTileId = nil } }
@@ -111,14 +126,14 @@ struct TodayCategoryGrid: View {
                         .padding(6)
                     Circle()
                         .trim(from: 0, to: min(max(tile.progress, 0), 1))
-                        .stroke(isDone ? Color.green : accentColor,
+                        .stroke(isDone ? Color.green : tint,
                                 style: StrokeStyle(lineWidth: 5, lineCap: .round))
                         .rotationEffect(.degrees(-90))
                         .padding(6)
                         .animation(.easeInOut(duration: 0.4), value: tile.progress)
                     Image(systemName: isDone ? "checkmark" : tile.symbolName)
                         .font(.system(size: circleSize * 0.32, weight: .semibold))
-                        .foregroundStyle(isDone ? Color.green : accentColor)
+                        .foregroundStyle(isDone ? Color.green : tint)
                         .contentTransition(.symbolEffect(.replace))
                 }
                 .frame(width: circleSize, height: circleSize)
@@ -160,7 +175,7 @@ struct TodayCategoryGrid: View {
     // MARK: - Balão
 
     private func popoverContent(_ tile: TodayCategoryTile) -> some View {
-        TodayCategoryPopover(tile: tile, accentColor: accentColor)
+        TodayCategoryPopover(tile: tile, accentColor: tile.tint ?? accentColor)
     }
 }
 

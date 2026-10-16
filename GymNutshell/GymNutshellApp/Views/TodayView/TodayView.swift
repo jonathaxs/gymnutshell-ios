@@ -459,7 +459,9 @@ struct TodayView: View {
             selectedTheme: selectedTheme,
             verticalLayout: vertical,
             showsHeader: showsHeader,
-            showsViewModeToggle: !showsHeader
+            showsViewModeToggle: !showsHeader,
+            // No retrato os botões ficam na TodayView, acima ou abaixo da grade conforme o modo.
+            showsPageButtons: showsHeader
         )
     }
 
@@ -577,7 +579,7 @@ struct TodayView: View {
     // MARK: - Blocos da grade
 
     /// Monta um bloco a partir dos progressos das metas e das linhas de controle.
-    private func makeTile(id: String, title: String, symbol: String,
+    private func makeTile(id: String, title: String, symbol: String, tint: Color? = nil,
                           progresses: [Double], content: AnyView) -> TodayCategoryTile {
         let average = progresses.isEmpty ? 0 : progresses.reduce(0, +) / Double(progresses.count)
         return TodayCategoryTile(
@@ -587,6 +589,7 @@ struct TodayView: View {
             progress: average,
             completedCount: progresses.filter { $0 >= 1 }.count,
             totalCount: progresses.count,
+            tint: tint,
             content: content
         )
     }
@@ -606,6 +609,7 @@ struct TodayView: View {
                     id: gridCellId(for: item),
                     title: category.displayName,
                     symbol: category.symbolName,
+                    tint: category.tintColor,
                     progresses: keys.map { progress(for: $0) } + goals.map { customProgress($0) },
                     content: AnyView(
                         AppGroupedCard(dividerInset: 14) {
@@ -707,12 +711,20 @@ struct TodayView: View {
                 heroBlock(vertical: false, showsHeader: false)
                     .frame(maxWidth: .infinity, alignment: .center)
 
+                // Grade: anel → grade → botões → atalhos. Lista: anel → botões → lista → atalhos.
+                // Os botões são sempre a mesma view, então na troca eles deslizam e a grade sobe/desce.
                 if goalsViewMode == .grid {
                     // Blocos de categoria; os controles abrem num balão ao tocar.
                     TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
                         .frame(maxWidth: 560)
                         .transition(.opacity)
-                } else {
+                }
+
+                TodayPageButtons(showsViewModeToggle: true)
+                    // Mesmo respiro entre a frase do hero e os botões de antes (o hero usa 16 por dentro).
+                    .padding(.top, goalsViewMode == .list ? -4 : 0)
+
+                if goalsViewMode == .list {
                     goalsListBody(maxWidth: 560)
                         .transition(.opacity)
                 }

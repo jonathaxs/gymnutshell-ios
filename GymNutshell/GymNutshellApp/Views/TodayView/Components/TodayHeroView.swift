@@ -26,14 +26,10 @@ struct TodayHeroView: View {
     var showsHeader: Bool = true
     /// true no iPhone em retrato: mostra ao lado de Conquistas o botão que alterna lista/grade das metas.
     var showsViewModeToggle: Bool = false
+    /// false no iPhone em retrato: a TodayView posiciona os botões (acima ou abaixo da grade, conforme o modo).
+    var showsPageButtons: Bool = true
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(AppRouter.self) private var router
-
-    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
-    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
-
-    @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
 
     // Sexo do usuário, usado pra nomes e emojis de tier com gênero correto.
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
@@ -122,7 +118,9 @@ struct TodayHeroView: View {
 
                 caption
 
-                pageButtons
+                if showsPageButtons {
+                    TodayPageButtons(showsViewModeToggle: showsViewModeToggle)
+                }
             }
             .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.55, dampingFraction: 0.82),
                        value: hasStarted)
@@ -168,11 +166,55 @@ struct TodayHeroView: View {
         .accessibilityHint(A11y.moreInfoHint())
     }
 
-    // MARK: - Botões das páginas
+    // MARK: - Frase abaixo
 
-    /// Histórico (com texto) e Conquistas (só o troféu) abrem como páginas por cima da Hoje.
-    /// Os botões abraçam o conteúdo: a linha fica estreita e centralizada, perto da largura da frase acima.
-    private var pageButtons: some View {
+    /// Dica antes de começar; depois, quanto falta pro próximo nível;
+    /// no nível máximo, um aviso de que já chegou lá.
+    @ViewBuilder
+    private var caption: some View {
+        Group {
+            if !hasStarted {
+                Text(String(localized: "today.hero.caption.start", bundle: .gymNutshellCore))
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.secondary)
+            } else if let next = nextLevel {
+                Text(String(format: String(localized: "today.hero.caption.nextLevel", bundle: .gymNutshellCore),
+                            next.percent))
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.secondary)
+                    .contentTransition(.numericText())
+            } else {
+                Text(String(localized: "today.hero.caption.max", bundle: .gymNutshellCore))
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity)
+        .transition(.opacity)
+        .contentShape(Rectangle())
+        .onTapGesture { showTierSheet = true }
+    }
+}
+
+// MARK: - Botões das páginas
+
+/// Histórico (com texto) e Conquistas (só o troféu) abrem como páginas por cima da Hoje.
+/// Os botões abraçam o conteúdo: a linha fica estreita e centralizada, perto da largura da frase acima.
+struct TodayPageButtons: View {
+
+    /// true no iPhone em retrato: mostra ao lado de Conquistas o botão que alterna lista/grade das metas.
+    var showsViewModeToggle: Bool = false
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(AppRouter.self) private var router
+
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
+    @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
+
+    var body: some View {
         HStack(spacing: 10) {
             if showsViewModeToggle {
                 viewModeButton
@@ -235,35 +277,5 @@ struct TodayHeroView: View {
         .controlSize(.regular)
         .accessibilityLabel(String(format: String(localized: "today.goals.viewMode.switch.a11y",
                                                   bundle: .gymNutshellCore), next.title))
-    }
-
-    // MARK: - Frase abaixo
-
-    /// Dica antes de começar; depois, quanto falta pro próximo nível;
-    /// no nível máximo, um aviso de que já chegou lá.
-    @ViewBuilder
-    private var caption: some View {
-        Group {
-            if !hasStarted {
-                Text(String(localized: "today.hero.caption.start", bundle: .gymNutshellCore))
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.secondary)
-            } else if let next = nextLevel {
-                Text(String(format: String(localized: "today.hero.caption.nextLevel", bundle: .gymNutshellCore),
-                            next.percent))
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.secondary)
-                    .contentTransition(.numericText())
-            } else {
-                Text(String(localized: "today.hero.caption.max", bundle: .gymNutshellCore))
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .multilineTextAlignment(.center)
-        .frame(maxWidth: .infinity)
-        .transition(.opacity)
-        .contentShape(Rectangle())
-        .onTapGesture { showTierSheet = true }
     }
 }
