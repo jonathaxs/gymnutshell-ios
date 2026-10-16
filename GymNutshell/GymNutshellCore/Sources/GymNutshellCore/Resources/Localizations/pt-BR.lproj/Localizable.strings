@@ -166,7 +166,6 @@
 /* AboutView.swift */
 "settings.about.title" = "Sobre o App";
 "settings.about.version" = "Versão";
-"settings.about.developer.header" = "Fale com o desenvolvedor";
 "settings.about.feedback" = "Enviar feedback";
 "settings.about.description" = "Gym Nutshell são suas metas diárias da academia em resumo.\n\nMarque, acompanhe e veja a constância virar resultado.";
 
@@ -265,9 +264,9 @@
 /* SettingsView.swift */
 "settings.header.title" = "Ajustes do App";
 "settings.detail.placeholder" = "Selecione uma página";
-"settings.section.edit" = "Perfil";
+"settings.section.edit" = "Seus dados";
 "settings.theme.title" = "Temas";
-"settings.section.preferences" = "Preferências";
+"settings.section.preferences" = "Aparência";
 "settings.section.system" = "Sistema";
 "settings.section.about" = "Sobre";
 
@@ -275,7 +274,7 @@
 "app.error.dataStore.title" = "Algo deu errado";
 "app.error.dataStore.message" = "O Gym Nutshell não conseguiu carregar seus dados.\nForce o fechamento do app e abra novamente.";
 "settings.about.link" = "Gym Nutshell";
-"settings.section.physicaldata" = "Seus dados";
+"settings.section.physicaldata" = "Perfil";
 "settings.fitness.goal.edit" = "Objetivo";
 "settings.goals.edit" = "Metas";
 "settings.preference.appleHealth" = "Apple Saúde";
@@ -542,7 +541,7 @@
 /* AppAccentColor.swift, Nomes de cores */
 "color.red"    = "Vermelho";
 "color.blue"   = "Azul";
-"color.purple" = "Roxo";
+"color.purple" = "Violeta";
 "color.green"  = "Verde";
 "color.yellow" = "Amarelo";
 "color.orange" = "Laranja";
@@ -550,7 +549,7 @@
 "color.pink"   = "Rosa";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Cores";
+"settings.color.title"    = "Cores de destaque";
 "settings.color.subtitle" = "Cor de destaque usada em todo o app";
 "settings.color.preview" = "Prévia";
 
@@ -898,13 +897,13 @@
 "today.edit.goals" = "Editar metas";
 "today.edit.controls" = "Editar controles";
 "today.edit.theme" = "Editar tema";
-"today.edit.colors" = "Editar cores";
+"today.edit.colors" = "Editar cores de destaque";
 
 "welcome.step.units.title" = "Suas medidas";
 "welcome.step.units.subtitle" = "Como você prefere medir a água?";
 "welcome.step.units.note" = "Você pode mudar depois em Ajustes.";
 "welcome.units.metric.desc" = "Mililitros, como 250 ml por copo.";
-"welcome.units.imperial.desc" = "Onças fluidas, como 8 fl oz por copo.";
+"welcome.units.imperial.desc" = "Onças fluidas, como %d fl oz por copo.";
 
 "today.goals.viewMode.list" = "Lista";
 "today.goals.viewMode.grid" = "Grade";

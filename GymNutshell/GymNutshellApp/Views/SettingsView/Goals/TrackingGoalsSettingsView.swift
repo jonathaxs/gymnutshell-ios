@@ -88,7 +88,7 @@ struct TrackingGoalsSettingsView: View {
             return ("💤", "h",    DefaultGoals.sleep,    storedIncrement(for: key, fallback: 1))
         case "tracking.water":
             if measurementSystem == .us {
-                return ("💧", "fl oz", DefaultGoals.water, storedIncrement(for: key, fallback: 8))
+                return ("💧", "fl oz", DefaultGoals.water, storedIncrement(for: key, fallback: UnitConverter.flOzWaterStep))
             }
             return ("💧", "ml", DefaultGoals.water, storedIncrement(for: key, fallback: 250))
         case "tracking.calories":

@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/WelcomeView/Steps/WelcomeSummaryStep.swift
 //
 //  Propósito: Etapa do onboarding, exibe as metas diárias padrão organizadas por categoria, com
-//             botões − / + pra ajustar cada valor, e permite adicionar opcionalmente Gordura e Creatina.
+//             botões − / + pra ajustar cada valor, e permite adicionar opcionalmente Calorias, Gordura e Creatina.
 //             O aviso de que dá pra editar depois aparece no fim, depois das metas opcionais.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-10.
@@ -18,6 +18,7 @@ struct WelcomeSummaryStep: View {
     @Binding var goals: GoalsCalculator.Result?
     let measurementSystem: MeasurementSystem
     let accentColor: Color
+    @Binding var includeCalories: Bool
     @Binding var includeFats: Bool
     @Binding var includeCreatine: Bool
     @Binding var scrolledToEnd: Bool
@@ -51,14 +52,23 @@ struct WelcomeSummaryStep: View {
 
                     // MARK: Nutrição
                     summaryCategory(GoalCategory.nutricao) {
-                        adjustableRow(icon: "🔥", label: String(localized: "today.metric.calories", bundle: .gymNutshellCore),
-                                      keyPath: \.calories, step: 50, range: 500...10000) { "\($0) kcal" }
+                        OptionalTrackingGoalRow(
+                            icon: "🔥",
+                            label: String(localized: "today.metric.calories", bundle: .gymNutshellCore),
+                            value: "\(goals.calories) kcal",
+                            accentColor: accentColor,
+                            isIncluded: $includeCalories,
+                            canDecrease: goals.calories - 50 >= 500,
+                            canIncrease: goals.calories + 50 <= 10000,
+                            onDecrease: { adjust(\.calories, by: -50, range: 500...10000) },
+                            onIncrease: { adjust(\.calories, by: 50, range: 500...10000) }
+                        )
                         adjustableRow(icon: "🍗", label: String(localized: "today.metric.protein", bundle: .gymNutshellCore),
                                       keyPath: \.protein, step: 5, range: 10...500) { "\($0)g" }
-                        adjustableRow(icon: "🌾", label: String(localized: "today.metric.fiber", bundle: .gymNutshellCore),
-                                      keyPath: \.fiber, step: 1, range: 5...100) { "\($0)g" }
                         adjustableRow(icon: "🍞", label: String(localized: "today.metric.carbs", bundle: .gymNutshellCore),
                                       keyPath: \.carbs, step: 10, range: 10...1000) { "\($0)g" }
+                        adjustableRow(icon: "🌾", label: String(localized: "today.metric.fiber", bundle: .gymNutshellCore),
+                                      keyPath: \.fiber, step: 1, range: 5...100) { "\($0)g" }
                         OptionalTrackingGoalRow(
                             icon: "🧈",
                             label: String(localized: "today.metric.fats", bundle: .gymNutshellCore),

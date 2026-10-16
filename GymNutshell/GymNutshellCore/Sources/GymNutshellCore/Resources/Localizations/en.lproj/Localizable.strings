@@ -130,7 +130,6 @@
 /* AboutView.swift */
 "settings.about.title" = "About the App";
 "settings.about.version" = "Version";
-"settings.about.developer.header" = "Talk to the developer";
 "settings.about.feedback" = "Send Feedback";
 "settings.about.description" = "Gym Nutshell is your gym daily goals in a nutshell.\n\nSet goals, track them, and watch consistency turn into results.";
 
@@ -229,9 +228,9 @@
 /* SettingsView.swift */
 "settings.header.title" = "App Settings";
 "settings.detail.placeholder" = "Select a page";
-"settings.section.edit" = "Profile";
+"settings.section.edit" = "Your data";
 "settings.theme.title" = "Themes";
-"settings.section.preferences" = "Preferences";
+"settings.section.preferences" = "Appearance";
 "settings.section.system" = "System";
 "settings.section.about" = "About";
 
@@ -239,7 +238,7 @@
 "app.error.dataStore.title" = "Something went wrong";
 "app.error.dataStore.message" = "Gym Nutshell could not load your data.\nForce-close the app and reopen it to try again.";
 "settings.about.link" = "Gym Nutshell";
-"settings.section.physicaldata" = "Your data";
+"settings.section.physicaldata" = "Profile";
 "settings.fitness.goal.edit" = "Fitness Goal";
 "settings.goals.edit" = "Daily Goals";
 "settings.preference.appleHealth" = "Apple Health";
@@ -492,7 +491,7 @@
 /* AppAccentColor.swift, Color names */
 "color.red"    = "Red";
 "color.blue"   = "Blue";
-"color.purple" = "Purple";
+"color.purple" = "Violet";
 "color.green"  = "Green";
 "color.yellow" = "Yellow";
 "color.orange" = "Orange";
@@ -500,7 +499,7 @@
 "color.pink"   = "Pink";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Colors";
+"settings.color.title"    = "Accent colors";
 "settings.color.subtitle" = "Accent color used throughout the app";
 "settings.color.preview" = "Preview";
 
@@ -848,13 +847,13 @@
 "today.edit.goals" = "Edit goals";
 "today.edit.controls" = "Edit controls";
 "today.edit.theme" = "Edit theme";
-"today.edit.colors" = "Edit colors";
+"today.edit.colors" = "Edit accent colors";
 
 "welcome.step.units.title" = "Your units";
 "welcome.step.units.subtitle" = "How do you prefer to measure water?";
 "welcome.step.units.note" = "You can change this later in Settings.";
 "welcome.units.metric.desc" = "Milliliters, like 250 ml per glass.";
-"welcome.units.imperial.desc" = "Fluid ounces, like 8 fl oz per glass.";
+"welcome.units.imperial.desc" = "Fluid ounces, like %d fl oz per glass.";
 
 "today.goals.viewMode.list" = "List";
 "today.goals.viewMode.grid" = "Grid";

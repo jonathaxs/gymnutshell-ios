@@ -20,14 +20,15 @@ public enum MeasurementSystemStore {
 
     public static let key = UserProfile.measurementSystemKey
 
+    /// Imperial só de cara no sistema americano (EUA, Libéria, Mianmar); no resto, métrico.
     public static func detectDefault() -> MeasurementSystem {
-        needsChoice ? .us : .metric
+        Locale.current.measurementSystem == .us ? .us : .metric
     }
 
-    /// Só aparelhos no sistema americano (EUA, Libéria, Mianmar) escolhem na Welcome;
-    /// no resto do mundo (inclusive Brasil e Reino Unido) o app já usa métrico.
+    /// Regiões fora do métrico (sistema americano e Reino Unido) escolhem na Welcome;
+    /// no resto do mundo (inclusive Brasil) o app já usa métrico sem perguntar.
     public static var needsChoice: Bool {
-        Locale.current.measurementSystem == .us
+        Locale.current.measurementSystem != .metric
     }
 
     /// Converte o valor salvo (backup ou versão antiga). "uk" e desconhecidos viram métrico.

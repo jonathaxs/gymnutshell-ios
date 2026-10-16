@@ -34,7 +34,7 @@ struct WelcomeUnitsStep: View {
 
                     card(.us,
                          title: String(localized: "settings.preference.measurementSystem.us", bundle: .gymNutshellCore),
-                         desc: String(localized: "welcome.units.imperial.desc", bundle: .gymNutshellCore))
+                         desc: String(format: String(localized: "welcome.units.imperial.desc", bundle: .gymNutshellCore), UnitConverter.flOzWaterStep))
                     card(.metric,
                          title: String(localized: "settings.preference.measurementSystem.metric", bundle: .gymNutshellCore),
                          desc: String(localized: "welcome.units.metric.desc", bundle: .gymNutshellCore))

@@ -26,12 +26,12 @@ struct SettingsView: View {
     var body: some View {
         // Lista simples empurrada no stack raiz; no iPad fica centralizada com largura máxima.
         List {
-            // Seção Perfil, dados físicos, objetivo fitness e metas do usuário.
+            // Seção Seus dados, metas, objetivo fitness e perfil do usuário.
             Section(header: Text(String(localized: "settings.section.edit", bundle: .gymNutshellCore)).foregroundStyle(accentColor.color)) {
                 NavigationLink {
-                    ProfileSettingsView()
+                    TrackingGoalsSettingsView()
                 } label: {
-                    Label { Text(String(localized: "settings.section.physicaldata", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "person.circle", color: .blue) }
+                    Label { Text(String(localized: "settings.goals.edit", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "target", color: .red) }
                         .foregroundStyle(.primary)
                 }
                 NavigationLink {
@@ -41,14 +41,14 @@ struct SettingsView: View {
                         .foregroundStyle(.primary)
                 }
                 NavigationLink {
-                    TrackingGoalsSettingsView()
+                    ProfileSettingsView()
                 } label: {
-                    Label { Text(String(localized: "settings.goals.edit", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "target", color: .red) }
+                    Label { Text(String(localized: "settings.section.physicaldata", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "person.circle", color: .blue) }
                         .foregroundStyle(.primary)
                 }
             }
 
-            // Seção de preferências do usuário.
+            // Seção Aparência, tema, cores de destaque, widgets e estilo dos controles.
             Section(header: Text(String(localized: "settings.section.preferences", bundle: .gymNutshellCore)).foregroundStyle(accentColor.color)) {
                 // Tema, controla os emojis de mascote e nomes de nível em todo o app.
                 NavigationLink {
@@ -57,7 +57,7 @@ struct SettingsView: View {
                     Label { Text(String(localized: "settings.theme.title", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "face.smiling", color: .purple) }
                         .foregroundStyle(.primary)
                 }
-                // Cores, cor de destaque independente do sexo.
+                // Cores de destaque, cor do app independente do sexo.
                 NavigationLink {
                     ColorSettingsView()
                 } label: {
@@ -79,18 +79,18 @@ struct SettingsView: View {
                     Label { Text(String(localized: "settings.preference.controlStyle", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "slider.horizontal.3", color: .gray) }
                         .foregroundStyle(.primary)
                 }
-
-                // Sistema de medidas, abre uma página de seleção dedicada.
-                NavigationLink {
-                    MeasurementSettingsView()
-                } label: {
-                    Label { Text(String(localized: "settings.preference.measurementSystem", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "ruler", color: .teal) }
-                        .foregroundStyle(.primary)
-                }
             }
 
-            // Seção Sistema, notificações, integrações de plataforma e backup.
+            // Seção Sistema, integrações de plataforma, notificações, medidas e backup.
             Section(header: Text(String(localized: "settings.section.system", bundle: .gymNutshellCore)).foregroundStyle(accentColor.color)) {
+                // Apple Health, abre uma página dedicada pra sincronização de sono e auto check-in.
+                NavigationLink {
+                    HealthSettingsView()
+                } label: {
+                    Label { Text(String(localized: "settings.preference.appleHealth", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "heart.fill", color: .pink) }
+                        .foregroundStyle(.primary)
+                }
+
                 // Notificações, configuração completa das notificações locais do app.
                 NavigationLink {
                     NotificationsSettingsView()
@@ -99,11 +99,11 @@ struct SettingsView: View {
                         .foregroundStyle(.primary)
                 }
 
-                // Apple Health, abre uma página dedicada pra sincronização de sono e auto check-in.
+                // Sistema de medidas, abre uma página de seleção dedicada.
                 NavigationLink {
-                    HealthSettingsView()
+                    MeasurementSettingsView()
                 } label: {
-                    Label { Text(String(localized: "settings.preference.appleHealth", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "heart.fill", color: .pink) }
+                    Label { Text(String(localized: "settings.preference.measurementSystem", bundle: .gymNutshellCore)) } icon: { IconBadge(systemName: "ruler", color: .teal) }
                         .foregroundStyle(.primary)
                 }
 
@@ -163,19 +163,6 @@ struct SettingsView: View {
                         .foregroundStyle(.primary)
                 }
             }
-
-            #if DEBUG
-            // Seção Dev, só existe em build de Debug (rodando pelo Xcode), nunca vai pro Release.
-            // Volta a flag do onboarding pra false e o app troca na hora pra WelcomeView.
-            Section(header: Text(verbatim: "Dev").foregroundStyle(accentColor.color)) {
-                Button {
-                    UserDefaults.standard.set(false, forKey: UserProfile.didCompleteOnboardingKey)
-                } label: {
-                    Label { Text(verbatim: "Abrir Welcome View") } icon: { Image(systemName: "hammer") }
-                        .foregroundStyle(.primary)
-                }
-            }
-            #endif
 
         }
         .frame(maxWidth: 700)

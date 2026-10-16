@@ -140,7 +140,7 @@ struct TodayView: View {
     }
 
     private var waterUnit: String   { measurementSystem == .us ? "fl oz" : "ml" }
-    private var waterIncrement: Int { measurementSystem == .us ? 8 : 250 }
+    private var waterIncrement: Int { measurementSystem == .us ? UnitConverter.flOzWaterStep : 250 }
 
     // MARK: - Categorias de metas
 
@@ -743,13 +743,13 @@ struct TodayView: View {
 
     // MARK: - Atalhos pra Ajustes
 
-    /// Sheets de edição rápida, com as mesmas telas de Ajustes > Tema, Cores, Controles e Metas.
+    /// Sheets de edição rápida, com as mesmas telas de Ajustes > Tema, Cores de destaque, Controles e Metas.
     private enum EditSheet: String, Identifiable {
         case theme, colors, controls, goals
         var id: String { rawValue }
     }
 
-    /// Botões pequenos abaixo das metas, centralizados: Tema (máscaras, como no Welcome), Cores (paleta) e
+    /// Botões pequenos abaixo das metas, centralizados: Tema (máscaras, como no Welcome), Cores de destaque (paleta) e
     /// Controles (os tracinhos dos Ajustes) só com o ícone e, por último, "Editar metas" com texto. Cada um abre a tela
     /// dos Ajustes numa sheet, sem sair da Hoje. Os ícones daqui são só desses atalhos; os Ajustes têm os seus.
     private var editShortcuts: some View {

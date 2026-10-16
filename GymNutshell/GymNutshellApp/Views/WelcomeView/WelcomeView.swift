@@ -68,6 +68,8 @@ struct WelcomeView: View {
 
     // MARK: - Seleções de metas opcionais
 
+    // Se o usuário escolheu incluir a meta de Calorias no rastreio.
+    @State private var includeCalories: Bool = false
     // Se o usuário escolheu incluir Good Fat no rastreio.
     @State private var includeFats: Bool = false
     // Se o usuário escolheu incluir a meta de check-in Creatina.
@@ -131,7 +133,7 @@ struct WelcomeView: View {
         // Persiste o tema de mascote escolhido no onboarding.
         defaults.set(onboardingTheme.rawValue, forKey: AppTheme.storageKey)
         // Persiste a cor de destaque padrão baseada no sexo escolhido.
-        // O usuário pode sobrescrever em Settings > Cores.
+        // O usuário pode sobrescrever em Settings > Cores de destaque.
         defaults.set(AppAccentColor.defaultForSex(sex).rawValue, forKey: AppAccentColor.storageKey)
 
         // Persiste as metas calculadas pra o GoalsProvider pegar imediatamente.
@@ -140,6 +142,7 @@ struct WelcomeView: View {
         }
 
         // Marca metas opcionais de rastreio como removidas se o usuário não incluiu.
+        if !includeCalories { RemovedItemsStore.remove("tracking.calories") }
         if !includeFats  { RemovedItemsStore.remove("tracking.goodFat") }
 
         // Marca metas opcionais de suplementos como removidas se o usuário não incluiu.
@@ -235,6 +238,7 @@ struct WelcomeView: View {
                         goals: $calculatedGoals,
                         measurementSystem: measurementSystem,
                         accentColor: sexColor,
+                        includeCalories: $includeCalories,
                         includeFats: $includeFats,
                         includeCreatine: $includeCreatine,
                         scrolledToEnd: $summaryScrolledToEnd,

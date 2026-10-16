@@ -17,8 +17,8 @@ public enum GoalOrderStore {
         "tracking.water",
         "tracking.calories",
         "tracking.protein",
-        "tracking.fiber",
         "tracking.carbs",
+        "tracking.fiber",
         "tracking.goodFat",
         "tracking.creatine"
     ]
