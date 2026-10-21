@@ -21,7 +21,8 @@ struct TodayProgressRingView: View {
     var onTap: (() -> Void)? = nil
 
     var size: CGFloat = 150
-    var lineWidth: CGFloat = 16
+    /// Mesma espessura do anel do ícone, proporcional ao tamanho.
+    private var lineWidth: CGFloat { size * SegmentedProgressRing<EmptyView>.iconLineWidthRatio }
     /// true no anel do hero: ao entrar vindo da Welcome, o anel enche passando pelas cores e volta.
     var celebratesAfterOnboarding: Bool = false
 
