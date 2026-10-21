@@ -121,16 +121,9 @@ struct TodayHeroView: View {
 
     // MARK: - Conquista ao lado do anel
 
-    /// Rótulo, emoji grande e nome, centralizados entre si e da mesma altura do anel.
+    /// Emoji grande e nome, centralizados entre si e da mesma altura do anel.
     private var achievementPanel: some View {
         VStack(spacing: 4) {
-            // "Conquista do dia" numa linha só; encolhe um pouco se a largura do painel não der.
-            Text(String(localized: "today.hero.achievement.label", bundle: .gymNutshellCore))
-                .font(.subheadline.weight(.medium))
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-
             // Troca de nível: o emoji novo entra com escala.
             Text(tierEmoji)
                 .font(.system(size: ringSize * 0.44))

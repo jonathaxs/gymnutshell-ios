@@ -358,7 +358,6 @@
 "today.hero.caption.start" = "Başlamak için bir hedefi takip et";
 "today.hero.caption.nextLevel" = "Sonraki seviye için %%%d kaldı";
 "today.hero.caption.max" = "Günün en yüksek başarısı!";
-"today.hero.achievement.label" = "Günlük başarı";
 "today.greeting.morning"   = "Günaydın!";
 "today.greeting.afternoon" = "İyi günler!";
 "today.greeting.night"     = "İyi akşamlar!";

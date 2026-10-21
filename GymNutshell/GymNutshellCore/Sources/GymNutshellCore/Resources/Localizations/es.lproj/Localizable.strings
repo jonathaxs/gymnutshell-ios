@@ -381,7 +381,6 @@
 "today.hero.caption.start" = "Registra una meta para empezar";
 "today.hero.caption.nextLevel" = "Falta un %d%% para el siguiente nivel";
 "today.hero.caption.max" = "¡Logro máximo del día!";
-"today.hero.achievement.label" = "Logro diario";
 "today.greeting.morning"   = "¡Buenos días!";
 "today.greeting.afternoon" = "¡Buenas tardes!";
 "today.greeting.night"     = "¡Buenas noches!";

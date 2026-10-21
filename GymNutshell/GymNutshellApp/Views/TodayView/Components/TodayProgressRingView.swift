@@ -49,7 +49,7 @@ struct TodayProgressRingView: View {
 
     // MARK: - Comemoração pós-Welcome
 
-    /// Depois do "Vamos lá": o anel enche (cada segmento dá o pulinho) e volta ao progresso real.
+    /// Depois do "Vamos lá": o anel enche (pulsando ao virar de cor) e volta ao progresso real.
     private func celebrateIfNeeded() {
         guard celebratesAfterOnboarding,
               UserDefaults.standard.bool(forKey: UserProfile.pendingRingCelebrationKey) else { return }

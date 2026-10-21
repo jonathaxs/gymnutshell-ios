@@ -358,7 +358,6 @@
 "today.hero.caption.start" = "目標を記録してスタートしましょう";
 "today.hero.caption.nextLevel" = "次のレベルまであと%d%%";
 "today.hero.caption.max" = "本日のトップ達成！";
-"today.hero.achievement.label" = "毎日の成果";
 "today.greeting.morning"   = "おはようございます！";
 "today.greeting.afternoon" = "こんにちは！";
 "today.greeting.night"     = "こんばんは！";

@@ -3,7 +3,7 @@
 //
 //  Propósito: Anel de progresso em 5 segmentos arredondados, no estilo do ícone do app.
 //             Sentido horário a partir do topo: vermelho → amarelo → verde → azul → roxo (20% cada).
-//             Ao completar um segmento ele faz um "pop" (escala sobe e volta).
+//             Ao entrar numa cor nova o anel inteiro pulsa (escala sobe e volta).
 //             Conteúdo opcional no centro (ex: emoji da conquista).
 //             Com `tintedTrack` o trilho já mostra a cor de cada segmento, lavada, e acende ao preencher.
 //             Vive no Core pra ser usado no app, no Watch e nos widgets (sem animação nem haptics lá).
@@ -62,8 +62,8 @@ public struct SegmentedProgressRing<Center: View>: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    /// Escala de cada segmento, usada no "pop" ao completar.
-    @State private var popScales: [CGFloat] = Array(repeating: 1, count: 5)
+    /// Escala do anel inteiro, usada no pulso ao entrar numa cor nova.
+    @State private var pulseScale: CGFloat = 1
 
     private var segmentCount: Int { Self.segmentColors.count }
 
@@ -96,7 +96,6 @@ public struct SegmentedProgressRing<Center: View>: View {
                 ForEach(0..<segmentCount, id: \.self) { index in
                     let start = Double(index) * span + gapDegrees / 2
                     let end = Double(index + 1) * span - gapDegrees / 2
-                    let mid = (start + end) / 2 * .pi / 180
 
                     ZStack {
                         if let borderColor {
@@ -115,39 +114,36 @@ public struct SegmentedProgressRing<Center: View>: View {
                                     style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                     }
                     .padding(lineWidth / 2)
-                    // O pop cresce a partir do meio do próprio segmento.
-                    .scaleEffect(popScales[index],
-                                 anchor: UnitPoint(x: 0.5 + 0.5 * sin(mid), y: 0.5 - 0.5 * cos(mid)))
                 }
 
                 center
             }
+            .scaleEffect(pulseScale)
             .frame(width: side, height: side)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .aspectRatio(1, contentMode: .fit)
         .animation(reduceMotion || !animated ? nil : .easeInOut(duration: 0.45), value: clampedProgress)
         .onChange(of: completedCount) { old, new in
+            // Entrou numa cor nova (ex: vermelho → amarelo): o anel inteiro pulsa uma vez.
             guard new > old, !reduceMotion, animated else { return }
-            for index in old..<min(new, segmentCount) {
-                pop(index, delay: 0.35 + Double(index - old) * 0.08)
-            }
+            pulse(delay: 0.35)
         }
     }
 
-    // MARK: - Pop
+    // MARK: - Pulso
 
-    private func pop(_ index: Int, delay: Double) {
+    private func pulse(delay: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             #if os(iOS)
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             #endif
-            withAnimation(.spring(response: 0.18, dampingFraction: 0.5)) {
-                popScales[index] = 1.12
+            withAnimation(.spring(response: 0.2, dampingFraction: 0.5)) {
+                pulseScale = 1.08
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.16) {
-                withAnimation(.spring(response: 0.35, dampingFraction: 0.6)) {
-                    popScales[index] = 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+                    pulseScale = 1
                 }
             }
         }

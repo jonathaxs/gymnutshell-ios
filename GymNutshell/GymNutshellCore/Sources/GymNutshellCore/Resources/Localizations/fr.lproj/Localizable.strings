@@ -379,7 +379,6 @@
 "today.hero.caption.start" = "Suis un premier objectif pour commencer";
 "today.hero.caption.nextLevel" = "Plus que %d%% pour le niveau suivant";
 "today.hero.caption.max" = "Meilleur succès du jour !";
-"today.hero.achievement.label" = "Succès du jour";
 "today.greeting.morning"   = "Bonjour !";
 "today.greeting.afternoon" = "Bon après-midi !";
 "today.greeting.night"     = "Bonsoir !";

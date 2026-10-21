@@ -356,7 +356,6 @@
 "today.hero.caption.start" = "记录一个目标以开启今天";
 "today.hero.caption.nextLevel" = "还差 %d%% 即可升级";
 "today.hero.caption.max" = "已达成今日最高成就！";
-"today.hero.achievement.label" = "今日成就";
 "today.greeting.morning"   = "早上好！";
 "today.greeting.afternoon" = "下午好！";
 "today.greeting.night"     = "晚上好！";
