@@ -142,11 +142,14 @@ extension View {
 
 /// Cabeçalho da Hoje: sino do histórico de notificações à esquerda, título grande (a data) no meio e
 /// engrenagem de Ajustes à direita. As outras páginas usam a barra de navegação nativa.
+/// Com a barra vertical do sistema (iPhone Duo dobrado), o sino e a engrenagem viram itens da toolbar e
+/// o sistema os põe na coluna lateral, abaixo da barra de status; aqui fica só a data.
 struct AppTabHeader: View {
 
     let title: String
 
     @Environment(AppRouter.self) private var router
+    @Environment(\.usesVerticalBar) private var usesVerticalBar
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
@@ -160,17 +163,10 @@ struct AppTabHeader: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
-            Button {
-                showNotificationHistory = true
-            } label: {
-                Image(systemName: "bell.fill")
-                    .font(.title3.weight(.semibold))
-                    .foregroundStyle(accentColor)
-                    .frame(width: Self.iconSize, height: Self.iconSize)
+            if !usesVerticalBar {
+                bellButton
+                    .appCircleButton(fallbackPadding: Self.fallbackPadding)
             }
-            .appCircleButton(fallbackPadding: Self.fallbackPadding)
-            .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
-            .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
 
             Text(title)
                 .font(.title.weight(.bold))
@@ -182,20 +178,96 @@ struct AppTabHeader: View {
                 // O VoiceOver lê a data antes dos botões, mesmo com o sino à esquerda.
                 .accessibilitySortPriority(1)
 
-            Button {
-                router.open(.settings)
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .font(.title3.weight(.semibold))
-                    .foregroundStyle(accentColor)
-                    .frame(width: Self.iconSize, height: Self.iconSize)
+            if !usesVerticalBar {
+                settingsButton
+                    .appCircleButton(fallbackPadding: Self.fallbackPadding)
             }
-            .appCircleButton(fallbackPadding: Self.fallbackPadding)
-            .accessibilityLabel(String(localized: "settings.header.title", bundle: .gymNutshellCore))
         }
         .accessibilityElement(children: .contain)
+        .toolbar {
+            if usesVerticalBar {
+                ToolbarItem(placement: .topBarLeading) { bellButton }
+                ToolbarItem(placement: .topBarTrailing) { settingsButton }
+            }
+        }
         .sheet(isPresented: $showNotificationHistory) {
             NotificationHistorySheet()
+        }
+    }
+
+    private var bellButton: some View {
+        Button {
+            showNotificationHistory = true
+        } label: {
+            Image(systemName: "bell.fill")
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(accentColor)
+                .frame(width: usesVerticalBar ? nil : Self.iconSize, height: usesVerticalBar ? nil : Self.iconSize)
+        }
+        .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
+        .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
+    }
+
+    private var settingsButton: some View {
+        Button {
+            router.open(.settings)
+        } label: {
+            Image(systemName: "gearshape.fill")
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(accentColor)
+                .frame(width: usesVerticalBar ? nil : Self.iconSize, height: usesVerticalBar ? nil : Self.iconSize)
+        }
+        .accessibilityLabel(String(localized: "settings.header.title", bundle: .gymNutshellCore))
+    }
+}
+
+// MARK: - Barra vertical (iPhone Duo)
+
+extension EnvironmentValues {
+    /// True quando o sistema põe as barras na coluna vertical ao lado da tela (iPhone Duo dobrado, iOS 27.1+).
+    @Entry var usesVerticalBar: Bool = false
+}
+
+/// Lê do UIKit se a cena usa a barra vertical e avisa quando muda (dobrar/desdobrar o Duo).
+/// Fora do Duo o `verticalBarEdge` é sempre `.unspecified`, então nada muda nos outros aparelhos.
+struct VerticalBarReader: UIViewRepresentable {
+    @Binding var isActive: Bool
+
+    func makeUIView(context: Context) -> ReaderView {
+        let view = ReaderView()
+        view.onChange = { isActive = $0 }
+        return view
+    }
+
+    func updateUIView(_ uiView: ReaderView, context: Context) {
+        uiView.onChange = { isActive = $0 }
+    }
+
+    final class ReaderView: UIView {
+        var onChange: ((Bool) -> Void)?
+
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            isUserInteractionEnabled = false
+            if #available(iOS 27.1, *) {
+                registerForTraitChanges(UITraitCollection.systemTraitsAffectingVerticalBarEdge) { (view: ReaderView, _) in
+                    view.report()
+                }
+            }
+        }
+
+        required init?(coder: NSCoder) { fatalError("init(coder:) não usado") }
+
+        override func didMoveToWindow() {
+            super.didMoveToWindow()
+            report()
+        }
+
+        private func report() {
+            guard #available(iOS 27.1, *), window != nil else { return }
+            let active = traitCollection.verticalBarEdge != .unspecified
+            // Fora do ciclo de atualização da view, pra não mexer em @State durante o render.
+            DispatchQueue.main.async { [weak self] in self?.onChange?(active) }
         }
     }
 }

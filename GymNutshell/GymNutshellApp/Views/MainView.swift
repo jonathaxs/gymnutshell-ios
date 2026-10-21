@@ -28,16 +28,21 @@ struct MainView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var router = AppRouter()
+    @State private var usesVerticalBar = false
 
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.path) {
             TodayView()
-                .toolbar(.hidden, for: .navigationBar)
+                // A Hoje desenha o próprio cabeçalho; com a barra vertical (Duo dobrado) a barra fica
+                // visível pra que o sino e a engrenagem apareçam na coluna lateral.
+                .toolbar(usesVerticalBar ? .automatic : .hidden, for: .navigationBar)
+                .environment(\.usesVerticalBar, usesVerticalBar)
                 .navigationDestination(for: AppRoute.self) { route in
                     destination(for: route)
                 }
         }
+        .background(VerticalBarReader(isActive: $usesVerticalBar))
         // Histórico / Conquistas: cada sheet tem seu próprio stack (Histórico → dia nas Conquistas).
         .sheet(item: $router.sheet) { sheet in
             NavigationStack(path: $router.sheetPath) {
