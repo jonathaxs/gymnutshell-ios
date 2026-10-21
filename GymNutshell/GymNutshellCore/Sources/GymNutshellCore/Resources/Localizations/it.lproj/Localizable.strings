@@ -402,7 +402,7 @@
 "welcome.summary.subtitle.customize" = "Puoi modificare questi valori o aggiungere nuovi obiettivi quando vuoi.";
 "welcome.option.add" = "Aggiungi";
 "welcome.restore.importJSON" = "Importa backup JSON";
-"welcome.theme.preview" = "Anteprima";
+"welcome.theme.preview" = "Dettagli";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Ciao!";

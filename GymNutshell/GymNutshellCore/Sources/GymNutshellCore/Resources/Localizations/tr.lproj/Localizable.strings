@@ -384,7 +384,7 @@
 "welcome.summary.subtitle.customize" = "Bu değerleri istediğin zaman düzenleyebilir veya yeni hedefler ekleyebilirsin.";
 "welcome.option.add" = "Ekle";
 "welcome.restore.importJSON" = "JSON yedeğini içe aktar";
-"welcome.theme.preview" = "Önizle";
+"welcome.theme.preview" = "Ayrıntılar";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Merhaba!";

@@ -42,8 +42,8 @@ public struct SegmentedProgressRing<Center: View>: View {
     var fillMode: RingFillMode = Self.defaultFillMode
     /// false em widgets e no Watch: sem animação de preenchimento, sem "pop" e sem haptics.
     var animated: Bool = true
-    /// Quando não-nil, desenha um contorno de 2pt nessa cor atrás dos segmentos, pra separar
-    /// o anel de fundos coloridos (widgets com fundo customizado).
+    /// Quando não-nil (widgets com fundo colorido): contorno de 2pt nessa cor em volta da parte
+    /// preenchida e o trilho translúcido nessa mesma cor, pra separar o anel do fundo.
     var borderColor: Color? = nil
     /// true = trilho na cor do segmento, bem clara (hero da Today); false = trilho cinza.
     var tintedTrack: Bool = false
@@ -115,15 +115,21 @@ public struct SegmentedProgressRing<Center: View>: View {
 
                     ZStack {
                         if let borderColor {
+                            // Fundo colorido: o trilho vira um vidro na cor do texto (a cor lavada some
+                            // no fundo) e só a parte preenchida ganha o contorno de contraste em volta.
                             RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)
+                                .stroke(borderColor.opacity(0.22),
+                                        style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                            filled
                                 .stroke(borderColor,
                                         style: StrokeStyle(lineWidth: lineWidth + 4, lineCap: .round))
+                        } else {
+                            // Trilho do segmento: cinza ou a própria cor, lavada (com o contorno bem fraco).
+                            RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)
+                                .stroke(tintedTrack ? palette.base.opacity(0.2) : Color.secondary.opacity(0.18),
+                                        style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                         }
-                        // Trilho do segmento: cinza ou a própria cor, lavada (com o contorno bem fraco).
-                        RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)
-                            .stroke(tintedTrack ? palette.base.opacity(0.2) : Color.secondary.opacity(0.18),
-                                    style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
-                        if tintedTrack {
+                        if tintedTrack && borderColor == nil {
                             RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)
                                 .stroke(style: StrokeStyle(lineWidth: lineWidth - rimWidth, lineCap: .round))
                                 .stroke(rim.opacity(0.25), lineWidth: rimWidth)

@@ -80,7 +80,8 @@ struct WelcomeView: View {
 
     // MARK: - Botões do rodapé (narrow)
 
-    @State private var showRestoreSheet = false
+    @State private var showRestoreOptions = false
+    @State private var restoreRequest: WelcomeRestoreSource? = nil
     // Onde ficam os botões do rodapé e o espaço que as etapas Início e Tudo pronto reservam pra eles.
     @State private var footerFrame: CGRect? = nil
     @State private var slotFrames: [WelcomeStep: CGRect] = [:]
@@ -160,6 +161,7 @@ struct WelcomeView: View {
 
         // Marca o onboarding como concluído.
         defaults.set(true, forKey: UserProfile.pendingRingCelebrationKey)
+        defaults.set(true, forKey: UserProfile.pendingGoalsEntranceKey)
         defaults.set(true, forKey: UserProfile.didCompleteOnboardingKey)
 
         onComplete()
@@ -230,7 +232,7 @@ struct WelcomeView: View {
                 case .start:
                     WelcomeStartStep(
                         onRestore: onComplete,
-                        showRestoreSheet: $showRestoreSheet,
+                        restoreRequest: $restoreRequest,
                         accentColor: sexColor,
                         isWide: isWide
                     )
@@ -308,7 +310,7 @@ struct WelcomeView: View {
             )
 
             Button {
-                if currentStep == .start { showRestoreSheet = true } else { goBack() }
+                if currentStep == .start { showRestoreOptions = true } else { goBack() }
             } label: {
                 Text(currentStep == .start
                      ? String(localized: "welcome.start.restore", bundle: .gymNutshellCore)
@@ -318,6 +320,13 @@ struct WelcomeView: View {
                     .padding(.vertical, 4)
             }
             .appSecondaryButton(continueButtonColor)
+            // Restaurar backup abre um balão logo abaixo, como o Detalhes dos emojis.
+            .downwardPopover(isPresented: $showRestoreOptions) {
+                WelcomeRestorePopover(accentColor: continueButtonColor) { source in
+                    showRestoreOptions = false
+                    restoreRequest = source
+                }
+            }
         }
         // No Início ficam mais estreitos, na proporção do "Olá!"; ao descer pro rodapé se alargam.
         .frame(maxWidth: currentStep == .start ? 260 : .infinity)

@@ -88,6 +88,10 @@ struct TodayView: View {
     // Ordem das categorias, sincronizada com TrackingGoalsSettingsView.
     @State private var orderedCategories: [GoalCategory] = GoalCategoryOrderStore.defaultOrder
 
+    /// Logo depois do "Vamos lá" da Welcome: as categorias da lista começam escondidas e entram vindo
+    /// de baixo, uma a uma, junto com a comemoração do anel. Só uma vez.
+    @State private var goalsEntranceHidden = UserDefaults.standard.bool(forKey: UserProfile.pendingGoalsEntranceKey)
+
 
     // MARK: - Constantes de layout
 
@@ -468,11 +472,26 @@ struct TodayView: View {
     @ViewBuilder
     private var goalsContent: some View {
         // Renderiza fixas e personalizadas na ordem unificada escolhida pelo usuário.
-        ForEach(unifiedCategoryItems.filter { categoryHasContent($0) }) { item in
+        let items = unifiedCategoryItems.filter { categoryHasContent($0) }
+        ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
             categorySection(for: item)
+                .goalsEntrance(index: index, hidden: goalsEntranceHidden)
         }
         // Metas personalizadas sem categoria ficam no final, em "Outras".
         uncategorizedSection
+            .goalsEntrance(index: items.count, hidden: goalsEntranceHidden)
+    }
+
+    /// Solta a entrada das metas depois do "Vamos lá" (a marca é apagada pra não repetir).
+    private func playGoalsEntranceIfNeeded() {
+        guard goalsEntranceHidden else { return }
+        UserDefaults.standard.removeObject(forKey: UserProfile.pendingGoalsEntranceKey)
+        guard !reduceMotion else {
+            goalsEntranceHidden = false
+            return
+        }
+        // Espera a Welcome terminar de sumir (0,6s na troca do GymNutshellApp) pra a subida ser vista.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { goalsEntranceHidden = false }
     }
 
     /// Progresso de uma meta personalizada (dia de descanso conta como cumprida).
@@ -871,6 +890,7 @@ struct TodayView: View {
             reloadGoalStores()
             checkIfNewDay()
             checkWorkoutsFromHealth()
+            playGoalsEntranceIfNeeded()
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
@@ -933,4 +953,17 @@ struct TodayView: View {
 #Preview {
     TodayView()
         .environment(AppRouter())
+}
+
+// MARK: - Entrada das metas
+
+private extension View {
+    /// Escondida: um pouco abaixo e invisível. Ao revelar, sobe com mola, cada categoria
+    /// um pouquinho depois da anterior.
+    func goalsEntrance(index: Int, hidden: Bool) -> some View {
+        self
+            .offset(y: hidden ? 140 : 0)
+            .opacity(hidden ? 0 : 1)
+            .animation(.spring(response: 0.75, dampingFraction: 0.8).delay(Double(index) * 0.12), value: hidden)
+    }
 }

@@ -382,7 +382,7 @@
 "welcome.summary.subtitle.customize" = "你可以随时修改这些数值或添加新目标。";
 "welcome.option.add" = "添加";
 "welcome.restore.importJSON" = "导入 JSON 备份";
-"welcome.theme.preview" = "预览";
+"welcome.theme.preview" = "详情";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "你好！";

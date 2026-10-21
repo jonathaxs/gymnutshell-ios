@@ -74,20 +74,7 @@ var largeWidgetHasCustomBackground: Bool {
 
 // MARK: - Ring grande reutilizável
 
-struct LargeRing: View {
-    let progress: Double
-    let emoji: String
-    let borderColor: Color?
-
-    var body: some View {
-        SegmentedProgressRing(progress: progress, lineWidth: 12,
-                              animated: false, borderColor: borderColor) {
-            Text(emoji).font(.system(size: 36))
-        }
-    }
-}
-
-// MARK: - Header compartilhado (tier + %)
+// MARK: - Header compartilhado (anel com a % + emoji e tier ao lado)
 
 struct LargeHeader: View {
     let snapshot: WidgetSnapshot
@@ -95,12 +82,14 @@ struct LargeHeader: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            LargeRing(
-                progress: snapshot.progressNormalized,
-                emoji: snapshot.tierEmoji,
-                borderColor: largeWidgetHasCustomBackground ? textColor : nil
-            )
+            // Mesmo anel da Hoje, com a % no centro.
+            PercentProgressRing(progress: snapshot.progressNormalized,
+                                borderColor: largeWidgetHasCustomBackground ? textColor : nil,
+                                textColor: textColor)
             .frame(width: 86, height: 86)
+
+            Text(snapshot.tierEmoji)
+                .font(.system(size: 40))
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(snapshot.updatedAt, style: .date)
@@ -109,10 +98,8 @@ struct LargeHeader: View {
                 Text(snapshot.tierName)
                     .font(.headline)
                     .foregroundStyle(textColor)
-                    .lineLimit(1)
-                Text("\(snapshot.progressPercent)%")
-                    .font(.system(size: 32, weight: .bold))
-                    .foregroundStyle(textColor)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
             }
             Spacer(minLength: 0)
         }

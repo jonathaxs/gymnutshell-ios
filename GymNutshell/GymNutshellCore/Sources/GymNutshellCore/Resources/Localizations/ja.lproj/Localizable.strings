@@ -384,7 +384,7 @@
 "welcome.summary.subtitle.customize" = "これらの値はいつでも編集でき、新しい目標も追加できます。";
 "welcome.option.add" = "追加";
 "welcome.restore.importJSON" = "JSONバックアップを読み込む";
-"welcome.theme.preview" = "プレビュー";
+"welcome.theme.preview" = "詳細";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "ようこそ！";

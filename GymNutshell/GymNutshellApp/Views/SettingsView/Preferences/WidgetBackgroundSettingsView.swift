@@ -28,6 +28,10 @@ struct WidgetBackgroundSettingsView: View {
 
     @State private var pickedColor: Color = .blue
 
+    // Emoji e nome do nível na prévia seguem o tema e o sexo escolhidos, como no widget de verdade.
+    @AppStorage(AppTheme.storageKey) private var selectedTheme: AppTheme = .gym
+    @AppStorage(UserProfile.sexKey) private var sex: String = "male"
+
     private static let defaultPickedColor: Color = Color(red: 0.0, green: 0.478, blue: 1.0)
 
     var body: some View {
@@ -154,19 +158,43 @@ struct WidgetBackgroundSettingsView: View {
                   : AnyShapeStyle(WidgetBackground.gradient(from: sourceColor)))
             .frame(width: width, height: size)
             .overlay {
-                HStack(spacing: 12) {
-                    // Mesma borda do widget de verdade: separa o anel do fundo colorido (o azul do anel
-                    // some num fundo azul sem ela).
-                    SegmentedProgressRing(progress: 0.62, lineWidth: size * 0.09, animated: false,
-                                          borderColor: isSystem ? nil : textColor) {
-                        Text("💪").font(.system(size: size * 0.26))
+                // Mesmo layout do widget de verdade: pequeno = anel com a % + emoji ao lado e o nome
+                // embaixo; médio = anel à esquerda e emoji, nome e data ao lado.
+                let tier = DailyAchievement.from(percent: 62)
+                let emoji = selectedTheme.emoji(for: tier, sex: sex)
+                let name = selectedTheme.name(for: tier, sex: sex)
+                let ring = PercentProgressRing(progress: 0.62,
+                                               borderColor: isSystem ? nil : textColor,
+                                               textColor: textColor)
+                if wide {
+                    HStack(spacing: 12) {
+                        ring.frame(width: size * 0.66, height: size * 0.66)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(emoji).font(.system(size: size * 0.24))
+                            Text(name)
+                                .font(.system(size: size * 0.13, weight: .semibold))
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.8)
+                            Text(Date.now, style: .date)
+                                .font(.system(size: size * 0.09))
+                        }
+                        .foregroundStyle(textColor)
+                        Spacer(minLength: 0)
                     }
-                    .frame(width: size * 0.62, height: size * 0.62)
-                    if wide {
-                        Text("62%")
-                            .font(.system(size: size * 0.3, weight: .bold, design: .rounded))
+                    .padding(.horizontal, size * 0.13)
+                } else {
+                    VStack(spacing: 4) {
+                        HStack(spacing: 4) {
+                            ring.frame(width: size * 0.52, height: size * 0.52)
+                            Text(emoji).font(.system(size: size * 0.22))
+                        }
+                        Text(name)
+                            .font(.system(size: size * 0.11, weight: .semibold))
                             .foregroundStyle(textColor)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                     }
+                    .padding(size * 0.07)
                 }
             }
             .overlay(

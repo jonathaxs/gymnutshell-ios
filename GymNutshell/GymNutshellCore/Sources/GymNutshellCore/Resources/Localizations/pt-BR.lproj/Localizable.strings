@@ -421,7 +421,7 @@
 "welcome.summary.subtitle.customize" = "Você pode editar esses valores ou adicionar novas metas quando quiser.";
 "welcome.option.add" = "Adicionar";
 "welcome.restore.importJSON" = "Importar backup JSON";
-"welcome.theme.preview" = "Visualizar";
+"welcome.theme.preview" = "Detalhes";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Olá!";

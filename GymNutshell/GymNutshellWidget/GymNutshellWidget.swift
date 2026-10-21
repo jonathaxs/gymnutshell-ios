@@ -162,79 +162,55 @@ struct GymNutshellWidgetEntryView: View {
 
     // MARK: Small
 
+    /// Igual ao hero da Hoje em miniatura: anel com a % dentro e o emoji ao lado, nome embaixo.
     private var smallView: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 8) {
+            HStack(spacing: 6) {
+                ring
+                    .frame(width: 80, height: 80)
+                Text(entry.snapshot.tierEmoji)
+                    .font(.system(size: 38))
+                    .minimumScaleFactor(0.6)
+            }
+
             Text(entry.snapshot.tierName)
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(textColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
-
-            Spacer(minLength: 10)
-
-            Text(entry.snapshot.tierEmoji)
-                .font(.system(size: 60))
-                .minimumScaleFactor(0.6)
-
-            Spacer(minLength: 10)
-
-            Text("\(entry.snapshot.progressPercent)%")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundStyle(textColor)
-                .minimumScaleFactor(0.7)
         }
-        .padding(12)
+        .padding(8)
     }
 
     // MARK: Medium
 
     private var mediumView: some View {
-        HStack(spacing: 16) {
-            ProgressRingView(
-                progress: entry.snapshot.progressNormalized,
-                emoji: entry.snapshot.tierEmoji,
-                lineWidth: 10,
-                emojiSize: 28,
-                borderColor: hasCustomBackground ? textColor : nil
-            )
-            .frame(width: 80, height: 80)
+        HStack(spacing: 18) {
+            ring
+                .frame(width: 104, height: 104)
 
             VStack(alignment: .leading, spacing: 4) {
+                Text(entry.snapshot.tierEmoji)
+                    .font(.system(size: 40))
                 Text(entry.snapshot.tierName)
                     .font(.headline)
                     .foregroundStyle(textColor)
-                    .lineLimit(1)
-                Text("\(entry.snapshot.progressPercent)%")
-                    .font(.system(size: 34, weight: .bold))
-                    .foregroundStyle(textColor)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 Text(entry.date, style: .date)
                     .font(.caption2)
                     .foregroundStyle(textColor)
             }
-            Spacer()
+            Spacer(minLength: 0)
         }
         .padding()
     }
-}
 
-// MARK: - Componente compartilhado: anel de progresso
-
-private struct ProgressRingView: View {
-    let progress: Double
-    let emoji: String
-    let lineWidth: CGFloat
-    let emojiSize: CGFloat
-    /// Quando não-nil, desenha um contorno de 2pt nessa cor atrás do anel, pra separar
-    /// o anel de fundos coloridos.
-    var borderColor: Color? = nil
-
-    var body: some View {
-        SegmentedProgressRing(progress: progress, lineWidth: lineWidth,
-                              animated: false, borderColor: borderColor) {
-            Text(emoji)
-                .font(.system(size: emojiSize))
-        }
+    /// Mesmo anel da Hoje, com a % no centro. Em fundo colorido ganha o contorno de contraste.
+    private var ring: some View {
+        PercentProgressRing(progress: entry.snapshot.progressNormalized,
+                            borderColor: hasCustomBackground ? textColor : nil,
+                            textColor: textColor)
     }
 }
 

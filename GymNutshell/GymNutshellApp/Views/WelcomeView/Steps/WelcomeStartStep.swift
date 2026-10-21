@@ -5,7 +5,8 @@
 //             ou restaurar a partir de um arquivo de backup exportado anteriormente.
 //             Layout: cabeçalho e, logo abaixo, o espaço dos botões Começar / Restaurar backup
 //             (os botões são os do rodapé da WelcomeView, que sobem até aqui).
-//             "Restaurar backup" abre um sheet com as opções de restauração via iCloud e arquivo local.
+//             "Restaurar backup" abre um balão (WelcomeRestorePopover, preso ao botão na WelcomeView) com as
+//             opções iCloud e arquivo JSON; a escolha chega aqui por `restoreRequest`.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-20.
 // ⌘
@@ -20,7 +21,8 @@ import UniformTypeIdentifiers
 struct WelcomeStartStep: View {
 
     let onRestore: () -> Void
-    @Binding var showRestoreSheet: Bool
+    /// Opção escolhida no balão de Restaurar backup; volta pra nil depois de tratada.
+    @Binding var restoreRequest: WelcomeRestoreSource?
     var accentColor: Color = .accentColor
     var isWide: Bool = false
 
@@ -52,8 +54,17 @@ struct WelcomeStartStep: View {
             }
             .scrollBounceBehavior(.basedOnSize)
         }
-        .sheet(isPresented: $showRestoreSheet) {
-            restoreSheet
+        .onChange(of: restoreRequest) { _, source in
+            guard let source else { return }
+            restoreRequest = nil
+            switch source {
+            case .iCloud:
+                iCloudRestoring = true
+                Task { await performICloudRestore() }
+            case .file:
+                // Espera o balão terminar de fechar antes de abrir o seletor de arquivos.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { isImporting = true }
+            }
         }
         .overlay {
             if iCloudRestoring {
@@ -76,54 +87,11 @@ struct WelcomeStartStep: View {
         }
     }
 
-    // MARK: - Sheet de restauração
-
-    private var restoreSheet: some View {
-        NavigationStack {
-            List {
-                Section {
-                    Button {
-                        iCloudRestoring = true
-                        showRestoreSheet = false
-                        Task { await performICloudRestore() }
-                    } label: {
-                        HStack {
-                            Label(String(localized: "settings.backup.icloud.restore", bundle: .gymNutshellCore),
-                                  systemImage: "icloud.and.arrow.down")
-                            if iCloudRestoring {
-                                Spacer()
-                                ProgressView()
-                            }
-                        }
-                    }
-                    .disabled(!ICloudBackupManager.isSignedIn || iCloudRestoring)
-
-                    Button {
-                        showRestoreSheet = false
-                        isImporting = true
-                    } label: {
-                        Label(String(localized: "welcome.restore.importJSON", bundle: .gymNutshellCore),
-                              systemImage: "doc.badge.arrow.up")
-                    }
-                }
-            }
-            .navigationTitle(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "welcome.button.back", bundle: .gymNutshellCore)) {
-                        showRestoreSheet = false
-                    }
-                }
-            }
-        }
-    }
-
     // MARK: - Overlay "Restaurando backup do iCloud"
 
     // Cobre a tela enquanto o iCloud restore está em andamento.
     // O onRestore() só é chamado ao fim do performICloudRestore, por isso
-    // o overlay precisa ficar visível depois que a sheet fecha.
+    // o overlay precisa ficar visível depois que o balão fecha.
     private var restoringOverlay: some View {
         ZStack {
             Color.black.opacity(0.35).ignoresSafeArea()
@@ -178,5 +146,67 @@ struct WelcomeStartStep: View {
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+}
+
+// MARK: - Balão de Restaurar backup
+
+/// De onde restaurar o backup, escolhido no balão.
+enum WelcomeRestoreSource {
+    case iCloud, file
+}
+
+/// Balão que abre abaixo do botão Restaurar backup, no mesmo estilo do balão de Detalhes dos emojis.
+struct WelcomeRestorePopover: View {
+
+    var accentColor: Color
+    let onPick: (WelcomeRestoreSource) -> Void
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Text(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
+                .font(.headline)
+                .accessibilityAddTraits(.isHeader)
+                .frame(maxWidth: .infinity)
+                .frame(height: 48)
+
+            VStack(spacing: 0) {
+                row(String(localized: "settings.backup.icloud.restore", bundle: .gymNutshellCore),
+                    systemImage: "icloud.and.arrow.down", source: .iCloud)
+                    .disabled(!ICloudBackupManager.isSignedIn)
+                    .opacity(ICloudBackupManager.isSignedIn ? 1 : 0.4)
+                Divider().padding(.leading, 52)
+                row(String(localized: "welcome.restore.importJSON", bundle: .gymNutshellCore),
+                    systemImage: "doc.badge.arrow.up", source: .file)
+            }
+            .background(Color(.secondarySystemGroupedBackground),
+                        in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .padding(.horizontal, 12)
+            .padding(.bottom, 12)
+        }
+        .frame(width: 300)
+        .fixedSize(horizontal: false, vertical: true)
+        .background(Color(.systemGroupedBackground))
+    }
+
+    private func row(_ title: String, systemImage: String, source: WelcomeRestoreSource) -> some View {
+        Button {
+            onPick(source)
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: systemImage)
+                    .font(.title3)
+                    .foregroundStyle(accentColor)
+                    .frame(width: 28)
+                Text(title)
+                    .font(.body)
+                    .foregroundStyle(Color.primary)
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 14)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 }

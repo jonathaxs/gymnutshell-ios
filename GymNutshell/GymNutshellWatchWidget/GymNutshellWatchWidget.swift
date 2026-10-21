@@ -98,42 +98,30 @@ struct GymNutshellWatchWidgetEntryView: View {
                                    entry.snapshot.progressPercent))
     }
 
-    // MARK: Circular, anel com emoji no centro
+    // MARK: Circular, mesmo anel do iPhone com a % no centro
 
     private var circularView: some View {
-        ZStack {
-            AccessoryRing(progress: entry.snapshot.progressNormalized, color: ringColor)
-            Text(entry.snapshot.tierEmoji)
-                .font(.system(size: 16))
-                .minimumScaleFactor(0.7)
-        }
-        .padding(4)
-        .widgetAccentable()
+        PercentProgressRing(progress: entry.snapshot.progressNormalized)
+            .padding(2)
+            .widgetAccentable()
     }
 
-    // MARK: Rectangular, anel ocupando a altura toda à esquerda; nome em cima e % embaixo à direita
+    // MARK: Rectangular, anel com a % à esquerda; emoji e nome ao lado
 
     private var rectangularView: some View {
-        HStack(spacing: 8) {
-            ZStack {
-                AccessoryRing(progress: entry.snapshot.progressNormalized, color: ringColor)
-                Text(entry.snapshot.tierEmoji)
-                    .font(.system(size: 22))
-                    .minimumScaleFactor(0.5)
-            }
-            .padding(3)
-            .aspectRatio(1, contentMode: .fit)
-            .widgetAccentable()
+        HStack(spacing: 6) {
+            PercentProgressRing(progress: entry.snapshot.progressNormalized)
+                .padding(2)
+                .widgetAccentable()
 
-            VStack(alignment: .leading, spacing: 0) {
-                Text(entry.snapshot.tierName)
-                    .font(.caption2.weight(.semibold))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-                Text("\(entry.snapshot.progressPercent)%")
-                    .font(.system(size: 20, weight: .bold))
-                    .minimumScaleFactor(0.6)
-            }
+            Text(entry.snapshot.tierEmoji)
+                .font(.system(size: 22))
+                .minimumScaleFactor(0.5)
+
+            Text(entry.snapshot.tierName)
+                .font(.caption2.weight(.semibold))
+                .lineLimit(2)
+                .minimumScaleFactor(0.7)
 
             Spacer(minLength: 0)
         }
@@ -157,25 +145,6 @@ struct GymNutshellWatchWidgetEntryView: View {
 
     private var inlineView: some View {
         Text("\(entry.snapshot.tierEmoji) \(entry.snapshot.progressPercent)%")
-    }
-}
-
-// MARK: - Anel reutilizável
-
-private struct AccessoryRing: View {
-    let progress: Double
-    let color: Color
-
-    var body: some View {
-        ZStack {
-            Circle()
-                .stroke(Color.secondary.opacity(0.25), lineWidth: 4)
-            Circle()
-                .trim(from: 0, to: CGFloat(min(progress, 1.0)))
-                .stroke(color, style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                .rotationEffect(.degrees(-90))
-                .animation(.easeOut(duration: 0.3), value: progress)
-        }
     }
 }
 

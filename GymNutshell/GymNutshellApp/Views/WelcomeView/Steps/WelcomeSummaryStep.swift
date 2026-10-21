@@ -190,30 +190,54 @@ private struct GoalStepper: View {
     let onIncrease: () -> Void
     /// Metas opcionais: lixeira entre o valor e o −, pra o − / + ficarem alinhados com os das metas fixas.
     var onRemove: (() -> Void)? = nil
+    /// Metas opcionais: false = valor e botões encolhidos e invisíveis. Ao virar true eles surgem um a um
+    /// (valor, lixeira, −, +); ao voltar pra false somem na ordem inversa.
+    var revealed: Bool = true
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         HStack(spacing: 8) {
-            Text(valueText)
-                .font(.subheadline.bold())
-                .monospacedDigit()
-                .lineLimit(1)
-                .fixedSize()
-                .padding(.trailing, 4)
-                .accessibilityLabel(label)
-                .accessibilityValue(valueText)
-
-            if let onRemove {
-                RoundStepButton(kind: .trash, size: 46, color: .red, action: onRemove)
-                    .accessibilityLabel(String(format: String(localized: "a11y.welcome.optional.remove.label.format",
-                                                              bundle: .gymNutshellCore), label))
-                    .accessibilityHint(String(localized: "a11y.welcome.optional.remove.hint", bundle: .gymNutshellCore))
+            reveal(index: 0) {
+                Text(valueText)
+                    .font(.subheadline.bold())
+                    .monospacedDigit()
+                    .lineLimit(1)
+                    .fixedSize()
+                    .padding(.trailing, 4)
+                    .accessibilityLabel(label)
+                    .accessibilityValue(valueText)
             }
 
-            RoundStepButton(kind: .minus, size: 46, color: color, isEnabled: canDecrease, action: onDecrease)
-                .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
-            RoundStepButton(kind: .plus, size: 46, color: color, isEnabled: canIncrease, action: onIncrease)
-                .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
+            if let onRemove {
+                reveal(index: 1) {
+                    RoundStepButton(kind: .trash, size: 46, color: .red, action: onRemove)
+                        .accessibilityLabel(String(format: String(localized: "a11y.welcome.optional.remove.label.format",
+                                                                  bundle: .gymNutshellCore), label))
+                        .accessibilityHint(String(localized: "a11y.welcome.optional.remove.hint", bundle: .gymNutshellCore))
+                }
+            }
+
+            reveal(index: 2) {
+                RoundStepButton(kind: .minus, size: 46, color: color, isEnabled: canDecrease, action: onDecrease)
+                    .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
+            }
+            reveal(index: 3) {
+                RoundStepButton(kind: .plus, size: 46, color: color, isEnabled: canIncrease, action: onIncrease)
+                    .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
+            }
         }
+    }
+
+    /// Cada peça surge com uma mola, um pouco depois da anterior; some na ordem inversa.
+    private func reveal<Content: View>(index: Int, @ViewBuilder content: () -> Content) -> some View {
+        let delay = revealed ? Double(index) * 0.06 : Double(3 - index) * 0.04
+        return content()
+            .scaleEffect(revealed || reduceMotion ? 1 : 0.3)
+            .opacity(revealed ? 1 : 0)
+            .animation(reduceMotion ? .easeInOut(duration: 0.2)
+                                    : .spring(response: 0.38, dampingFraction: 0.68).delay(delay),
+                       value: revealed)
     }
 }
 
@@ -232,6 +256,11 @@ private struct OptionalTrackingGoalRow: View {
     let canIncrease: Bool
     let onDecrease: () -> Void
     let onIncrease: () -> Void
+
+    /// Valor e botões já visíveis (separado de isIncluded pra animar a entrada e a saída em etapas).
+    @State private var buttonsShown = false
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         HStack(spacing: 12) {
@@ -256,22 +285,38 @@ private struct OptionalTrackingGoalRow: View {
                     canIncrease: canIncrease,
                     onDecrease: onDecrease,
                     onIncrease: onIncrease,
-                    onRemove: { setIncluded(false) }
+                    onRemove: { setIncluded(false) },
+                    revealed: buttonsShown
                 )
-                .transition(.opacity)
             } else {
                 addButton
-                    .transition(.opacity)
+                    .transition(reduceMotion ? .opacity
+                                             : .scale(scale: 0.5, anchor: .trailing).combined(with: .opacity))
             }
         }
         .padding(.leading, 16)
         .padding(.trailing, 12)
         .frame(minHeight: 60)
+        // Voltando pra esta etapa com a meta já incluída: botões visíveis, sem animar.
+        .onAppear { buttonsShown = isIncluded }
     }
 
+    /// Adicionar: o botão encolhe e some, e valor, lixeira, − e + surgem um a um no lugar dele.
+    /// Lixeira: o caminho inverso, as peças somem da direita pra esquerda e o Adicionar volta crescendo.
     private func setIncluded(_ included: Bool) {
         UISelectionFeedbackGenerator().selectionChanged()
-        withAnimation(.snappy(duration: 0.25)) { isIncluded = included }
+        if included {
+            withAnimation(.snappy(duration: 0.25)) { isIncluded = true }
+            DispatchQueue.main.async { buttonsShown = true }
+        } else {
+            buttonsShown = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + (reduceMotion ? 0.15 : 0.28)) {
+                withAnimation(reduceMotion ? .easeInOut(duration: 0.2)
+                                           : .spring(response: 0.4, dampingFraction: 0.72)) {
+                    isIncluded = false
+                }
+            }
+        }
     }
 
     private var addButton: some View {
