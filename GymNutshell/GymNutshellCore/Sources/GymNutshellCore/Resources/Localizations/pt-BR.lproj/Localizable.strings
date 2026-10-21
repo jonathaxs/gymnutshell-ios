@@ -13,29 +13,29 @@
 "daily.achievement.level1" = "Gatinho";
 "daily.achievement.level2" = "Gato Fitness";
 "daily.achievement.level3" = "Gatão";
-"daily.achievement.level4" = "Gato Líder";
+"daily.achievement.level4" = "Tigre";
 
 /* AppTheme.swift, Cat theme tier names, feminino (sexo female/other) */
 "daily.achievement.level1.fem" = "Gatinha";
 "daily.achievement.level2.fem" = "Gata Fitness";
 "daily.achievement.level3.fem" = "Gatona";
-"daily.achievement.level4.fem" = "Gata Líder";
-"daily.achievement.level5" = "Tigre";
-"daily.achievement.level5.fem" = "Tigresa";
+"daily.achievement.level4.fem" = "Tigresa";
+"daily.achievement.level5" = "Leão";
+"daily.achievement.level5.fem" = "Leoa";
 
 /* AppTheme.swift, Dog theme tier names */
 "daily.achievement.dog.level1" = "Cachorrinho";
 "daily.achievement.dog.level2" = "Cachorro Fitness";
 "daily.achievement.dog.level3" = "Cachorrão";
-"daily.achievement.dog.level4" = "Cachorro Caramelo";
+"daily.achievement.dog.level4" = "Lobo";
 
 /* AppTheme.swift, Dog theme tier names, feminino */
 "daily.achievement.dog.level1.fem" = "Cachorrinha";
 "daily.achievement.dog.level2.fem" = "Cachorra Fitness";
 "daily.achievement.dog.level3.fem" = "Cachorrona";
-"daily.achievement.dog.level4.fem" = "Cachorra Caramelo";
-"daily.achievement.dog.level5" = "Lobo";
-"daily.achievement.dog.level5.fem" = "Loba";
+"daily.achievement.dog.level4.fem" = "Loba";
+"daily.achievement.dog.level5" = "Cachorro Caramelo";
+"daily.achievement.dog.level5.fem" = "Cachorra Caramelo";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "Ursinho";
@@ -277,7 +277,7 @@
 "settings.header.title" = "Ajustes do App";
 "settings.detail.placeholder" = "Selecione uma página";
 "settings.section.edit" = "Seus dados";
-"settings.theme.title" = "Temas";
+"settings.theme.title" = "Emojis";
 "settings.section.preferences" = "Aparência";
 "settings.section.system" = "Sistema";
 "settings.section.about" = "Sobre";
@@ -410,9 +410,9 @@
 "welcome.step.goal.info.editable" = "Você pode mudar depois em ajustes do app.";
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "Tema";
+"welcome.step.theme.title" = "Emoji";
 "welcome.step.theme.subtitle" = "Escolha os emojis que irão inspirar o seu progresso.";
-"welcome.step.theme.footer" = "O tema pode ser alterado depois.";
+"welcome.step.theme.footer" = "Os emojis podem ser alterados depois.";
 
 /* WelcomePhysicalDataStep.swift */
 "welcome.field.sex" = "Sexo";
@@ -427,7 +427,7 @@
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Olá!";
 "welcome.start.feature.track" = "Rastreie suas metas fitness ao longo do dia.";
-"welcome.start.feature.theme" = "Escolha um tema para te inspirar.";
+"welcome.start.feature.theme" = "Escolha emojis para te inspirar.";
 "welcome.start.feature.progress" = "Acompanhe o seu avanço.";
 "welcome.start.new" = "Começar";
 "welcome.start.restore" = "Restaurar backup";
@@ -467,7 +467,7 @@
 "app.theme.category.competition" = "Progresso";
 "app.theme.category.warrior" = "Herói";
 "app.theme.category.warrior.fem" = "Heroína";
-"app.theme.category.space" = "Espaço";
+"app.theme.category.space" = "Cosmos";
 
 /* AppTheme, Gym (Academia) */
 "app.theme.gym" = "Academia";
@@ -476,8 +476,8 @@
 "daily.achievement.running.level2" = "No Ritmo";
 "daily.achievement.running.level3" = "Corredor";
 "daily.achievement.running.level3.fem" = "Corredora";
-"daily.achievement.running.level4" = "Maratonista";
-"daily.achievement.running.level5" = "Ultramaratonista";
+"daily.achievement.running.level4" = "Velocista";
+"daily.achievement.running.level5" = "Maratonista";
 "app.theme.gym.fem" = "Academia";
 "daily.achievement.gym.level1" = "Frango";
 "daily.achievement.gym.level1.fem" = "Franga";
@@ -533,8 +533,8 @@
 "daily.achievement.doctor.level3.fem" = "Formada";
 "daily.achievement.doctor.level4" = "Doutor";
 "daily.achievement.doctor.level4.fem" = "Doutora";
-"daily.achievement.doctor.level5" = "Diretor Clínico";
-"daily.achievement.doctor.level5.fem" = "Diretora Clínica";
+"daily.achievement.doctor.level5" = "Diretor";
+"daily.achievement.doctor.level5.fem" = "Diretora";
 
 /* AppTheme, Ninja (Lutador/Lutadora) */
 "app.theme.ninja" = "Lutador";
@@ -544,16 +544,16 @@
 "daily.achievement.ninja.level3" = "Ninja";
 "daily.achievement.ninja.level4" = "Super";
 "daily.achievement.ninja.level4.fem" = "Super";
-"daily.achievement.ninja.level5" = "Mestre Lendário";
-"daily.achievement.ninja.level5.fem" = "Mestra Lendária";
+"daily.achievement.ninja.level5" = "Lendário";
+"daily.achievement.ninja.level5.fem" = "Lendária";
 
-/* AppTheme, Astronaut (Exploração) */
-"app.theme.astronaut" = "Exploração";
-"daily.achievement.astronaut.level1" = "Satélite";
-"daily.achievement.astronaut.level2" = "Astronauta";
-"daily.achievement.astronaut.level3" = "Foguetão";
-"daily.achievement.astronaut.level4" = "Disco Voador";
-"daily.achievement.astronaut.level5" = "Alienígena";
+/* AppTheme, Astronaut (Espaço) */
+"app.theme.astronaut" = "Espaço";
+"daily.achievement.astronaut.level1" = "Astronauta";
+"daily.achievement.astronaut.level2" = "Foguete";
+"daily.achievement.astronaut.level3" = "Disco Voador";
+"daily.achievement.astronaut.level4" = "Alienígena";
+"daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */
 "app.theme.celestial" = "Corpos Celestes";
@@ -585,7 +585,7 @@
 /* TierInfoView.swift */
 "tier.info.intro"             = "Sua conquista é registrada no fim do dia, à meia-noite.";
 "tier.info.section.levels"    = "Níveis";
-"tier.info.change.theme"      = "Alterar Tema";
+"tier.info.change.theme"      = "Alterar Emoji";
 "tier.info.range.suffix"      = " de progresso";
 
 /* ProgressRingInfoView.swift */
@@ -812,7 +812,7 @@
 "a11y.not.selected" = "não selecionado";
 
 /* Picker de tema (ThemeSettingsView) */
-"a11y.theme.hint"             = "Toque para escolher este tema.";
+"a11y.theme.hint"             = "Toque para escolher estes emojis.";
 "a11y.theme.info.label.format" = "Mais informações sobre %@";
 "a11y.theme.info.hint" = "Toque para mais informações.";
 
@@ -921,7 +921,7 @@
 
 "today.edit.goals" = "Editar metas";
 "today.edit.controls" = "Editar controles";
-"today.edit.theme" = "Editar tema";
+"today.edit.theme" = "Editar emoji";
 "today.edit.colors" = "Editar cores de destaque";
 
 "welcome.step.units.title" = "Suas medidas";

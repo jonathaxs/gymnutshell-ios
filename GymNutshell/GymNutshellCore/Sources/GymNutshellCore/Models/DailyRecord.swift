@@ -73,9 +73,7 @@ extension DailyRecord {
     /// Usado na migração pros 5 níveis (2.0) e ao restaurar backups antigos.
     public func normalizeAchievement() {
         let tier = DailyAchievement.from(percent: percent)
-        let theme = AppTheme.allCases.first { theme in
-            DailyAchievement.allCases.contains { theme.emoji(for: $0) == achievementEmoji }
-        } ?? .cat
+        let theme = AppTheme.owner(ofEmoji: achievementEmoji) ?? .cat
         achievementEmoji = theme.emoji(for: tier)
         achievementTitle = theme.name(for: tier)
         points = tier.points

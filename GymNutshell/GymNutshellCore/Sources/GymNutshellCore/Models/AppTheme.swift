@@ -82,6 +82,14 @@ public enum AppTheme: String, CaseIterable, Sendable {
         allCases.filter { $0.category == category }
     }
 
+    /// Tema dono de um emoji salvo. Inclui emojis que saíram de uso (🛰️ era o nível 1 do Espaço).
+    public static func owner(ofEmoji emoji: String) -> AppTheme? {
+        if emoji == "🛰️" { return .astronaut }
+        return allCases.first { theme in
+            DailyAchievement.allCases.contains { theme.emoji(for: $0) == emoji }
+        }
+    }
+
     // MARK: - Emoji por nível
 
     public func emoji(for tier: DailyAchievement) -> String {
@@ -99,24 +107,24 @@ public enum AppTheme: String, CaseIterable, Sendable {
             case .level1: return "🚶‍♂️"
             case .level2: return "👟"
             case .level3: return "🏃‍♂️"
-            case .level4: return "🏅"
-            case .level5: return "🎽"
+            case .level4: return "🎽"
+            case .level5: return "🏅"
             }
         case .cat:
             switch tier {
             case .level1: return "🐱"
             case .level2: return "🐈"
             case .level3: return "🐆"
-            case .level4: return "🦁"
-            case .level5: return "🐅"
+            case .level4: return "🐅"
+            case .level5: return "🦁"
             }
         case .dog:
             switch tier {
             case .level1: return "🐶"
             case .level2: return "🐩"
             case .level3: return "🐕‍🦺"
-            case .level4: return "🐕"
-            case .level5: return "🐺"
+            case .level4: return "🐺"
+            case .level5: return "🐕"
             }
         case .bear:
             switch tier {
@@ -208,11 +216,11 @@ public enum AppTheme: String, CaseIterable, Sendable {
             }
         case .astronaut:
             switch tier {
-            case .level1: return "🛰️"
-            case .level2: return "🧑‍🚀"
-            case .level3: return "🚀"
-            case .level4: return "🛸"
-            case .level5: return "👽"
+            case .level1: return "🧑‍🚀"
+            case .level2: return "🚀"
+            case .level3: return "🛸"
+            case .level4: return "👽"
+            case .level5: return "🚪"
             }
         case .celestial:
             switch tier {

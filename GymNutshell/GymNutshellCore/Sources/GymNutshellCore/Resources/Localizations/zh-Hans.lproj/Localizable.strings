@@ -13,16 +13,17 @@
 "daily.achievement.level1" = "小奶猫";
 "daily.achievement.level2" = "健身猫";
 "daily.achievement.level3" = "大猫";
-"daily.achievement.level4" = "猫老大";
-"daily.achievement.level5" = "猛虎";
-"daily.achievement.level5.fem" = "母老虎";
+"daily.achievement.level4" = "猛虎";
+"daily.achievement.level4.fem" = "母老虎";
+"daily.achievement.level5" = "狮王";
+"daily.achievement.level5.fem" = "母狮";
 
 /* AppTheme.swift, 狗狗主题等级名称 */
 "daily.achievement.dog.level1" = "小奶狗";
 "daily.achievement.dog.level2" = "健身汪";
 "daily.achievement.dog.level3" = "酷狗大佬";
-"daily.achievement.dog.level4" = "大黄狗";
-"daily.achievement.dog.level5" = "狼王";
+"daily.achievement.dog.level4" = "狼王";
+"daily.achievement.dog.level5" = "大黄狗";
 
 /* AppTheme.swift, 巨熊主题等级名称 */
 "daily.achievement.bear.level1" = "小熊仔";
@@ -240,7 +241,7 @@
 "settings.header.title" = "App 设置";
 "settings.detail.placeholder" = "选择一个页面";
 "settings.section.edit" = "你的数据";
-"settings.theme.title" = "主题";
+"settings.theme.title" = "表情";
 "settings.section.preferences" = "外观";
 "settings.section.system" = "系统";
 "settings.section.about" = "关于";
@@ -370,9 +371,9 @@
 "welcome.step.goal.info.editable" = "稍后可在 App 设置中更改。";
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "主题";
+"welcome.step.theme.title" = "表情";
 "welcome.step.theme.subtitle" = "挑选能激励你不断进步的表情符号。";
-"welcome.step.theme.footer" = "稍后可随时更换主题。";
+"welcome.step.theme.footer" = "稍后可随时更换表情。";
 
 /* WelcomePhysicalDataStep.swift */
 "welcome.field.sex" = "性别";
@@ -387,7 +388,7 @@
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "你好！";
 "welcome.start.feature.track" = "全天追踪你的健身目标。";
-"welcome.start.feature.theme" = "选择一个激励你的主题。";
+"welcome.start.feature.theme" = "选择激励你的表情。";
 "welcome.start.feature.progress" = "查看你的进步历程。";
 "welcome.start.new" = "开始使用";
 "welcome.start.restore" = "恢复备份";
@@ -426,7 +427,7 @@
 "app.theme.category.elements" = "元素与自然";
 "app.theme.category.competition" = "进阶";
 "app.theme.category.warrior" = "英雄";
-"app.theme.category.space" = "太空";
+"app.theme.category.space" = "宇宙";
 
 /* AppTheme, 健身 */
 "app.theme.gym" = "健身";
@@ -434,8 +435,8 @@
 "daily.achievement.running.level1" = "漫步者";
 "daily.achievement.running.level2" = "踏上节奏";
 "daily.achievement.running.level3" = "跑者";
-"daily.achievement.running.level4" = "马拉松选手";
-"daily.achievement.running.level5" = "超马选手";
+"daily.achievement.running.level4" = "短跑健将";
+"daily.achievement.running.level5" = "马拉松选手";
 "daily.achievement.gym.level1" = "健身弱鸡";
 "daily.achievement.gym.level1.fem" = "弱鸡妹";
 "daily.achievement.gym.level2" = "撸铁新手";
@@ -481,7 +482,7 @@
 "daily.achievement.doctor.level2" = "初级医师";
 "daily.achievement.doctor.level3" = "主治医师";
 "daily.achievement.doctor.level4" = "神秘博士";
-"daily.achievement.doctor.level5" = "主任医师";
+"daily.achievement.doctor.level5" = "院长";
 
 /* AppTheme, 武者 */
 "app.theme.ninja" = "格斗士";
@@ -489,15 +490,15 @@
 "daily.achievement.ninja.level2" = "剑士";
 "daily.achievement.ninja.level3" = "忍者";
 "daily.achievement.ninja.level4" = "超级英雄";
-"daily.achievement.ninja.level5" = "绝世宗师";
+"daily.achievement.ninja.level5" = "传奇";
 
 /* AppTheme, 探索 */
-"app.theme.astronaut" = "探索";
-"daily.achievement.astronaut.level1" = "人造卫星";
-"daily.achievement.astronaut.level2" = "宇航员";
-"daily.achievement.astronaut.level3" = "运载火箭";
-"daily.achievement.astronaut.level4" = "飞碟";
-"daily.achievement.astronaut.level5" = "外星人";
+"app.theme.astronaut" = "太空";
+"daily.achievement.astronaut.level1" = "宇航员";
+"daily.achievement.astronaut.level2" = "火箭";
+"daily.achievement.astronaut.level3" = "飞碟";
+"daily.achievement.astronaut.level4" = "外星人";
+"daily.achievement.astronaut.level5" = "塔迪斯";
 
 /* AppTheme, 天体 */
 "app.theme.celestial" = "天体";
@@ -529,7 +530,7 @@
 /* TierInfoView.swift */
 "tier.info.intro"             = "你的成就将在每天午夜结束时记录。";
 "tier.info.section.levels"    = "等级";
-"tier.info.change.theme"      = "更换主题";
+"tier.info.change.theme"      = "更换表情";
 "tier.info.range.suffix"      = " 进度";
 
 /* ProgressRingInfoView.swift */
@@ -757,7 +758,7 @@
 "a11y.not.selected" = "未选定";
 
 /* 主题选择器 (ThemeSettingsView) */
-"a11y.theme.hint"             = "轻点选取此主题。";
+"a11y.theme.hint"             = "轻点选取这组表情。";
 "a11y.theme.info.label.format" = "关于%@的更多信息";
 "a11y.theme.info.hint" = "轻点查看更多信息。";
 
@@ -866,7 +867,7 @@
 
 "today.edit.goals" = "编辑目标";
 "today.edit.controls" = "编辑记录方式";
-"today.edit.theme" = "编辑主题";
+"today.edit.theme" = "编辑表情";
 "today.edit.colors" = "编辑强调色";
 
 "welcome.step.units.title" = "度量单位";

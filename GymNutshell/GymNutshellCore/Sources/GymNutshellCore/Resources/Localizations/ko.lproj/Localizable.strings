@@ -13,16 +13,17 @@
 "daily.achievement.level1" = "아기 고양이";
 "daily.achievement.level2" = "헬스 냥이";
 "daily.achievement.level3" = "근육 냥이";
-"daily.achievement.level4" = "보스 냥이";
-"daily.achievement.level5" = "호랑이";
-"daily.achievement.level5.fem" = "암호랑이";
+"daily.achievement.level4" = "호랑이";
+"daily.achievement.level4.fem" = "암호랑이";
+"daily.achievement.level5" = "사자";
+"daily.achievement.level5.fem" = "암사자";
 
 /* AppTheme.swift, Dog theme tier names */
 "daily.achievement.dog.level1" = "아기 강아지";
 "daily.achievement.dog.level2" = "헬스 댕댕이";
 "daily.achievement.dog.level3" = "스눕독";
-"daily.achievement.dog.level4" = "시골 누렁이";
-"daily.achievement.dog.level5" = "늑대";
+"daily.achievement.dog.level4" = "늑대";
+"daily.achievement.dog.level5" = "시골 누렁이";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "아기 곰";
@@ -240,7 +241,7 @@
 "settings.header.title" = "앱 설정";
 "settings.detail.placeholder" = "항목을 선택하세요";
 "settings.section.edit" = "내 데이터";
-"settings.theme.title" = "테마";
+"settings.theme.title" = "이모지";
 "settings.section.preferences" = "화면 스타일";
 "settings.section.system" = "시스템";
 "settings.section.about" = "정보";
@@ -372,9 +373,9 @@
 "welcome.step.goal.info.editable" = "앱 설정에서 나중에 변경할 수 있어요.";
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "테마";
+"welcome.step.theme.title" = "이모지";
 "welcome.step.theme.subtitle" = "동기부여가 되는 이모지를 골라보세요.";
-"welcome.step.theme.footer" = "테마는 나중에 언제든 변경할 수 있어요.";
+"welcome.step.theme.footer" = "이모지는 나중에 언제든 변경할 수 있어요.";
 
 /* WelcomePhysicalDataStep.swift */
 "welcome.field.sex" = "성별";
@@ -389,7 +390,7 @@
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "환영해요!";
 "welcome.start.feature.track" = "하루 동안 피트니스 목표를 기록해보세요.";
-"welcome.start.feature.theme" = "동기부여를 주는 테마를 선택해보세요.";
+"welcome.start.feature.theme" = "동기부여를 주는 이모지를 선택해보세요.";
 "welcome.start.feature.progress" = "나의 성장을 한눈에 확인해보세요.";
 "welcome.start.new" = "시작하기";
 "welcome.start.restore" = "백업 복원";
@@ -428,7 +429,7 @@
 "app.theme.category.elements" = "자연과 원소";
 "app.theme.category.competition" = "성장";
 "app.theme.category.warrior" = "히어로";
-"app.theme.category.space" = "우주";
+"app.theme.category.space" = "코스모스";
 
 /* AppTheme, Gym */
 "app.theme.gym" = "헬스";
@@ -436,8 +437,8 @@
 "daily.achievement.running.level1" = "산책러";
 "daily.achievement.running.level2" = "페이스 러너";
 "daily.achievement.running.level3" = "러너";
-"daily.achievement.running.level4" = "마라토너";
-"daily.achievement.running.level5" = "울트라 마라토너";
+"daily.achievement.running.level4" = "스프린터";
+"daily.achievement.running.level5" = "마라토너";
 "daily.achievement.gym.level1" = "수탉";
 "daily.achievement.gym.level1.fem" = "암탉";
 "daily.achievement.gym.level2" = "근육 꿈나무";
@@ -491,15 +492,15 @@
 "daily.achievement.ninja.level2" = "검객";
 "daily.achievement.ninja.level3" = "닌자";
 "daily.achievement.ninja.level4" = "슈퍼 파이터";
-"daily.achievement.ninja.level5" = "전설의 마스터";
+"daily.achievement.ninja.level5" = "전설";
 
-/* AppTheme, Astronaut (Exploration) */
-"app.theme.astronaut" = "탐험";
-"daily.achievement.astronaut.level1" = "인공위성";
-"daily.achievement.astronaut.level2" = "우주비행사";
-"daily.achievement.astronaut.level3" = "우주 로켓";
-"daily.achievement.astronaut.level4" = "비행접시";
-"daily.achievement.astronaut.level5" = "외계인";
+/* AppTheme, Astronaut (Space) */
+"app.theme.astronaut" = "우주";
+"daily.achievement.astronaut.level1" = "우주비행사";
+"daily.achievement.astronaut.level2" = "로켓";
+"daily.achievement.astronaut.level3" = "비행접시";
+"daily.achievement.astronaut.level4" = "외계인";
+"daily.achievement.astronaut.level5" = "타디스";
 
 /* AppTheme, Celestial */
 "app.theme.celestial" = "천체";
@@ -531,7 +532,7 @@
 /* TierInfoView.swift */
 "tier.info.intro"             = "나의 업적은 하루가 끝나는 자정에 기록돼요.";
 "tier.info.section.levels"    = "레벨";
-"tier.info.change.theme"      = "테마 변경";
+"tier.info.change.theme"      = "이모지 변경";
 "tier.info.range.suffix"      = " 달성";
 
 /* ProgressRingInfoView.swift */
@@ -758,7 +759,7 @@
 "a11y.not.selected" = "선택되지 않음";
 
 /* Theme picker (ThemeSettingsView) */
-"a11y.theme.hint"             = "이 테마를 선택하려면 탭하세요.";
+"a11y.theme.hint"             = "이 이모지를 선택하려면 탭하세요.";
 "a11y.theme.info.label.format" = "%@ 자세한 정보";
 "a11y.theme.info.hint" = "자세한 정보를 보려면 탭하세요.";
 
@@ -867,7 +868,7 @@
 
 "today.edit.goals" = "목표 편집";
 "today.edit.controls" = "입력 방식 변경";
-"today.edit.theme" = "테마 변경";
+"today.edit.theme" = "이모지 변경";
 "today.edit.colors" = "포인트 색상 변경";
 
 "welcome.step.units.title" = "측정 단위";

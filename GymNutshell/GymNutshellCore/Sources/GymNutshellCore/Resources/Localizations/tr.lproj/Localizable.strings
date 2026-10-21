@@ -13,16 +13,17 @@
 "daily.achievement.level1" = "Minik Kedi";
 "daily.achievement.level2" = "Fit Kedi";
 "daily.achievement.level3" = "Koca Kedi";
-"daily.achievement.level4" = "Lider Kedi";
-"daily.achievement.level5" = "Kaplan";
-"daily.achievement.level5.fem" = "Dişi Kaplan";
+"daily.achievement.level4" = "Kaplan";
+"daily.achievement.level4.fem" = "Dişi Kaplan";
+"daily.achievement.level5" = "Aslan";
+"daily.achievement.level5.fem" = "Dişi Aslan";
 
 /* AppTheme.swift, Dog theme tier names */
 "daily.achievement.dog.level1" = "Minik Köpek";
 "daily.achievement.dog.level2" = "Fit Köpek";
 "daily.achievement.dog.level3" = "Snoop Dog";
-"daily.achievement.dog.level4" = "Karamel Köpek";
-"daily.achievement.dog.level5" = "Kurt";
+"daily.achievement.dog.level4" = "Kurt";
+"daily.achievement.dog.level5" = "Karamel Köpek";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "Ayı Yavrusu";
@@ -240,7 +241,7 @@
 "settings.header.title" = "Uygulama Ayarları";
 "settings.detail.placeholder" = "Bir sayfa seç";
 "settings.section.edit" = "Verilerin";
-"settings.theme.title" = "Temalar";
+"settings.theme.title" = "Emojiler";
 "settings.section.preferences" = "Görünüş";
 "settings.section.system" = "Sistem";
 "settings.section.about" = "Hakkında";
@@ -372,9 +373,9 @@
 "welcome.step.goal.info.editable" = "Bunu daha sonra uygulama ayarlarından değiştirebilirsin.";
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "Tema";
+"welcome.step.theme.title" = "Emoji";
 "welcome.step.theme.subtitle" = "İlerlemeni motive edecek emojileri seç.";
-"welcome.step.theme.footer" = "Tema daha sonra değiştirilebilir.";
+"welcome.step.theme.footer" = "Emojiler daha sonra değiştirilebilir.";
 
 /* WelcomePhysicalDataStep.swift */
 "welcome.field.sex" = "Cinsiyet";
@@ -389,7 +390,7 @@
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Merhaba!";
 "welcome.start.feature.track" = "Gün boyunca fitness hedeflerini takip et.";
-"welcome.start.feature.theme" = "Sana ilham verecek bir tema seç.";
+"welcome.start.feature.theme" = "Sana ilham verecek emojileri seç.";
 "welcome.start.feature.progress" = "İlerlemeni takip et.";
 "welcome.start.new" = "Başla";
 "welcome.start.restore" = "Yedeği geri yükle";
@@ -428,7 +429,7 @@
 "app.theme.category.elements" = "Elementler ve Doğa";
 "app.theme.category.competition" = "İlerleme";
 "app.theme.category.warrior" = "Kahraman";
-"app.theme.category.space" = "Uzay";
+"app.theme.category.space" = "Kozmos";
 
 /* AppTheme, Gym */
 "app.theme.gym" = "Spor Salonu";
@@ -436,8 +437,8 @@
 "daily.achievement.running.level1" = "Yürüyüşçü";
 "daily.achievement.running.level2" = "Tempolu";
 "daily.achievement.running.level3" = "Koşucu";
-"daily.achievement.running.level4" = "Maratoncu";
-"daily.achievement.running.level5" = "Ultramaratoncu";
+"daily.achievement.running.level4" = "Sprinter";
+"daily.achievement.running.level5" = "Maratoncu";
 "daily.achievement.gym.level1" = "Horoz";
 "daily.achievement.gym.level1.fem" = "Tavuk";
 "daily.achievement.gym.level2" = "Kaslıcık";
@@ -491,15 +492,15 @@
 "daily.achievement.ninja.level2" = "Kılıç Ustası";
 "daily.achievement.ninja.level3" = "Ninja";
 "daily.achievement.ninja.level4" = "Süper";
-"daily.achievement.ninja.level5" = "Efsanevi Usta";
+"daily.achievement.ninja.level5" = "Efsane";
 
-/* AppTheme, Astronaut (Exploration) */
-"app.theme.astronaut" = "Keşif";
-"daily.achievement.astronaut.level1" = "Uydu";
-"daily.achievement.astronaut.level2" = "Astronot";
-"daily.achievement.astronaut.level3" = "Uzay Roketi";
-"daily.achievement.astronaut.level4" = "Uçan Daire";
-"daily.achievement.astronaut.level5" = "Uzaylı";
+/* AppTheme, Astronaut (Space) */
+"app.theme.astronaut" = "Uzay";
+"daily.achievement.astronaut.level1" = "Astronot";
+"daily.achievement.astronaut.level2" = "Roket";
+"daily.achievement.astronaut.level3" = "Uçan Daire";
+"daily.achievement.astronaut.level4" = "Uzaylı";
+"daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */
 "app.theme.celestial" = "Gök Cisimleri";
@@ -531,7 +532,7 @@
 /* TierInfoView.swift */
 "tier.info.intro"             = "Başarın günün sonunda, gece yarısında kaydedilir.";
 "tier.info.section.levels"    = "Seviyeler";
-"tier.info.change.theme"      = "Temayı Değiştir";
+"tier.info.change.theme"      = "Emojiyi Değiştir";
 "tier.info.range.suffix"      = " ilerleme";
 
 /* ProgressRingInfoView.swift */
@@ -758,7 +759,7 @@
 "a11y.not.selected" = "seçili değil";
 
 /* Theme picker (ThemeSettingsView) */
-"a11y.theme.hint"             = "Bu temayı seçmek için dokun.";
+"a11y.theme.hint"             = "Bu emojileri seçmek için dokun.";
 "a11y.theme.info.label.format" = "%@ hakkında daha fazla bilgi";
 "a11y.theme.info.hint" = "Daha fazla bilgi için dokun.";
 
@@ -867,7 +868,7 @@
 
 "today.edit.goals" = "Hedefleri düzenle";
 "today.edit.controls" = "Denetimleri düzenle";
-"today.edit.theme" = "Temayı düzenle";
+"today.edit.theme" = "Emojiyi düzenle";
 "today.edit.colors" = "Vurgu renklerini düzenle";
 
 "welcome.step.units.title" = "Ölçü birimlerin";

@@ -13,16 +13,17 @@
 "daily.achievement.level1" = "子ネコ";
 "daily.achievement.level2" = "フィットネスネコ";
 "daily.achievement.level3" = "ボスネコ";
-"daily.achievement.level4" = "リーダーネコ";
-"daily.achievement.level5" = "トラ";
-"daily.achievement.level5.fem" = "トラ";
+"daily.achievement.level4" = "トラ";
+"daily.achievement.level4.fem" = "トラ";
+"daily.achievement.level5" = "ライオン";
+"daily.achievement.level5.fem" = "ライオン";
 
 /* AppTheme.swift, Dog theme tier names */
 "daily.achievement.dog.level1" = "子イヌ";
 "daily.achievement.dog.level2" = "フィットネスイヌ";
 "daily.achievement.dog.level3" = "スヌープドッグ";
-"daily.achievement.dog.level4" = "キャラメルドッグ";
-"daily.achievement.dog.level5" = "オオカミ";
+"daily.achievement.dog.level4" = "オオカミ";
+"daily.achievement.dog.level5" = "キャラメルドッグ";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "子グマ";
@@ -240,7 +241,7 @@
 "settings.header.title" = "アプリ設定";
 "settings.detail.placeholder" = "ページを選択";
 "settings.section.edit" = "ユーザーデータ";
-"settings.theme.title" = "テーマ";
+"settings.theme.title" = "絵文字";
 "settings.section.preferences" = "外観";
 "settings.section.system" = "システム";
 "settings.section.about" = "情報";
@@ -372,9 +373,9 @@
 "welcome.step.goal.info.editable" = "後からアプリの設定で変更できます。";
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "テーマ";
+"welcome.step.theme.title" = "絵文字";
 "welcome.step.theme.subtitle" = "毎日のモチベーションを高める絵文字を選びましょう。";
-"welcome.step.theme.footer" = "テーマは後から変更できます。";
+"welcome.step.theme.footer" = "絵文字は後から変更できます。";
 
 /* WelcomePhysicalDataStep.swift */
 "welcome.field.sex" = "性別";
@@ -389,7 +390,7 @@
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "ようこそ！";
 "welcome.start.feature.track" = "1日を通じてフィットネス目標を記録。";
-"welcome.start.feature.theme" = "お気に入りのテーマでモチベーションアップ。";
+"welcome.start.feature.theme" = "お気に入りの絵文字でモチベーションアップ。";
 "welcome.start.feature.progress" = "日々の進捗を確認。";
 "welcome.start.new" = "はじめる";
 "welcome.start.restore" = "バックアップから復元";
@@ -428,7 +429,7 @@
 "app.theme.category.elements" = "エレメント＆自然";
 "app.theme.category.competition" = "進捗";
 "app.theme.category.warrior" = "ヒーロー";
-"app.theme.category.space" = "宇宙";
+"app.theme.category.space" = "コスモ";
 
 /* AppTheme, Gym */
 "app.theme.gym" = "ジム";
@@ -436,8 +437,8 @@
 "daily.achievement.running.level1" = "ウォーカー";
 "daily.achievement.running.level2" = "ペース良好";
 "daily.achievement.running.level3" = "ランナー";
-"daily.achievement.running.level4" = "マラソンランナー";
-"daily.achievement.running.level5" = "ウルトラマラソンランナー";
+"daily.achievement.running.level4" = "スプリンター";
+"daily.achievement.running.level5" = "マラソンランナー";
 "daily.achievement.gym.level1" = "ヒヨコ";
 "daily.achievement.gym.level1.fem" = "ヒヨコ";
 "daily.achievement.gym.level2" = "筋トレ見習い";
@@ -491,15 +492,15 @@
 "daily.achievement.ninja.level2" = "剣士";
 "daily.achievement.ninja.level3" = "忍者";
 "daily.achievement.ninja.level4" = "達人";
-"daily.achievement.ninja.level5" = "伝説の師範";
+"daily.achievement.ninja.level5" = "伝説";
 
-/* AppTheme, Astronaut (Exploration) */
-"app.theme.astronaut" = "宇宙探査";
-"daily.achievement.astronaut.level1" = "人工衛星";
-"daily.achievement.astronaut.level2" = "宇宙飛行士";
-"daily.achievement.astronaut.level3" = "ロケット";
-"daily.achievement.astronaut.level4" = "空飛ぶ円盤";
-"daily.achievement.astronaut.level5" = "エイリアン";
+/* AppTheme, Astronaut (Space) */
+"app.theme.astronaut" = "宇宙";
+"daily.achievement.astronaut.level1" = "宇宙飛行士";
+"daily.achievement.astronaut.level2" = "ロケット";
+"daily.achievement.astronaut.level3" = "空飛ぶ円盤";
+"daily.achievement.astronaut.level4" = "エイリアン";
+"daily.achievement.astronaut.level5" = "ターディス";
 
 /* AppTheme, Celestial */
 "app.theme.celestial" = "天体";
@@ -531,7 +532,7 @@
 /* TierInfoView.swift */
 "tier.info.intro"             = "成果は1日の終わり（深夜0時）に記録されます。";
 "tier.info.section.levels"    = "レベル";
-"tier.info.change.theme"      = "テーマを変更";
+"tier.info.change.theme"      = "絵文字を変更";
 "tier.info.range.suffix"      = "の進捗";
 
 /* ProgressRingInfoView.swift */
@@ -758,7 +759,7 @@
 "a11y.not.selected" = "未選択";
 
 /* Theme picker (ThemeSettingsView) */
-"a11y.theme.hint"             = "タップしてこのテーマを選択。";
+"a11y.theme.hint"             = "タップしてこの絵文字を選択。";
 "a11y.theme.info.label.format" = "%@の詳細情報";
 "a11y.theme.info.hint" = "タップして詳細を表示。";
 
@@ -867,7 +868,7 @@
 
 "today.edit.goals" = "目標を編集";
 "today.edit.controls" = "操作方法を編集";
-"today.edit.theme" = "テーマを編集";
+"today.edit.theme" = "絵文字を編集";
 "today.edit.colors" = "アクセントカラーを編集";
 
 "welcome.step.units.title" = "単位の設定";

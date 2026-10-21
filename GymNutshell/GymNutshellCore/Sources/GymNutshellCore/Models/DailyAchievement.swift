@@ -96,9 +96,9 @@ extension DailyAchievement {
         case .level3:
             return "🐆"
         case .level4:
-            return "🦁"
-        case .level5:
             return "🐅"
+        case .level5:
+            return "🦁"
         }
     }
 

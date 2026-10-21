@@ -13,17 +13,18 @@
 "daily.achievement.level1" = "Kätzchen";
 "daily.achievement.level2" = "Fitness-Katze";
 "daily.achievement.level3" = "Große Katze";
-"daily.achievement.level4" = "Anführer-Katze";
-"daily.achievement.level5" = "Tiger";
-"daily.achievement.level5.fem" = "Tigerin";
+"daily.achievement.level4" = "Tiger";
+"daily.achievement.level4.fem" = "Tigerin";
+"daily.achievement.level5" = "Löwe";
+"daily.achievement.level5.fem" = "Löwin";
 
 /* AppTheme.swift, Dog theme tier names */
 "daily.achievement.dog.level1" = "Hündchen";
 "daily.achievement.dog.level2" = "Fitness-Hund";
 "daily.achievement.dog.level3" = "Snoop Dog";
-"daily.achievement.dog.level4" = "Karamell-Hund";
-"daily.achievement.dog.level5" = "Wolf";
-"daily.achievement.dog.level5.fem" = "Wölfin";
+"daily.achievement.dog.level4" = "Wolf";
+"daily.achievement.dog.level4.fem" = "Wölfin";
+"daily.achievement.dog.level5" = "Karamell-Hund";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "Bärchen";
@@ -241,7 +242,7 @@
 "settings.header.title" = "App-Einstellungen";
 "settings.detail.placeholder" = "Wähle eine Seite";
 "settings.section.edit" = "Deine Daten";
-"settings.theme.title" = "Designs";
+"settings.theme.title" = "Emojis";
 "settings.section.preferences" = "Erscheinungsbild";
 "settings.section.system" = "System";
 "settings.section.about" = "Über";
@@ -373,9 +374,9 @@
 "welcome.step.goal.info.editable" = "Du kannst dies später in den App-Einstellungen ändern.";
 
 /* WelcomeThemeStep.swift */
-"welcome.step.theme.title" = "Design";
+"welcome.step.theme.title" = "Emoji";
 "welcome.step.theme.subtitle" = "Wähle die Emojis, die deinen Fortschritt begleiten.";
-"welcome.step.theme.footer" = "Das Design kann später geändert werden.";
+"welcome.step.theme.footer" = "Die Emojis können später geändert werden.";
 
 /* WelcomePhysicalDataStep.swift */
 "welcome.field.sex" = "Geschlecht";
@@ -390,7 +391,7 @@
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Hallo!";
 "welcome.start.feature.track" = "Tracke deine Fitnessziele über den Tag verteilt.";
-"welcome.start.feature.theme" = "Wähle ein Design, das dich inspiriert.";
+"welcome.start.feature.theme" = "Wähle Emojis, die dich inspirieren.";
 "welcome.start.feature.progress" = "Verfolge deinen Fortschritt.";
 "welcome.start.new" = "Starten";
 "welcome.start.restore" = "Backup wiederherstellen";
@@ -430,7 +431,7 @@
 "app.theme.category.competition" = "Fortschritt";
 "app.theme.category.warrior" = "Held";
 "app.theme.category.warrior.fem" = "Heldin";
-"app.theme.category.space" = "Weltraum";
+"app.theme.category.space" = "Kosmos";
 
 /* AppTheme, Gym */
 "app.theme.gym" = "Gym";
@@ -439,8 +440,8 @@
 "daily.achievement.running.level2" = "Im Takt";
 "daily.achievement.running.level3" = "Läufer";
 "daily.achievement.running.level3.fem" = "Läuferin";
-"daily.achievement.running.level4" = "Marathonläufer";
-"daily.achievement.running.level5" = "Ultramarathonläufer";
+"daily.achievement.running.level4" = "Sprinter";
+"daily.achievement.running.level5" = "Marathonläufer";
 "daily.achievement.gym.level1" = "Hahn";
 "daily.achievement.gym.level1.fem" = "Henne";
 "daily.achievement.gym.level2" = "Kraftpaket";
@@ -489,8 +490,8 @@
 "daily.achievement.doctor.level3.fem" = "Absolventin";
 "daily.achievement.doctor.level4" = "Doktor";
 "daily.achievement.doctor.level4.fem" = "Doktorin";
-"daily.achievement.doctor.level5" = "Chefarzt";
-"daily.achievement.doctor.level5.fem" = "Chefärztin";
+"daily.achievement.doctor.level5" = "Direktor";
+"daily.achievement.doctor.level5.fem" = "Direktorin";
 
 /* AppTheme, Ninja (Fighter) */
 "app.theme.ninja" = "Kämpfer";
@@ -499,16 +500,16 @@
 "daily.achievement.ninja.level2" = "Schwertkämpfer";
 "daily.achievement.ninja.level3" = "Ninja";
 "daily.achievement.ninja.level4" = "Super";
-"daily.achievement.ninja.level5" = "Legendärer Meister";
-"daily.achievement.ninja.level5.fem" = "Legendäre Meisterin";
+"daily.achievement.ninja.level5" = "Legende";
+"daily.achievement.ninja.level5.fem" = "Legende";
 
-/* AppTheme, Astronaut (Exploration) */
-"app.theme.astronaut" = "Erkundung";
-"daily.achievement.astronaut.level1" = "Satellit";
-"daily.achievement.astronaut.level2" = "Astronaut";
-"daily.achievement.astronaut.level3" = "Weltraumrakete";
-"daily.achievement.astronaut.level4" = "Fliegende Untertasse";
-"daily.achievement.astronaut.level5" = "Alien";
+/* AppTheme, Astronaut (Space) */
+"app.theme.astronaut" = "Weltraum";
+"daily.achievement.astronaut.level1" = "Astronaut";
+"daily.achievement.astronaut.level2" = "Rakete";
+"daily.achievement.astronaut.level3" = "Fliegende Untertasse";
+"daily.achievement.astronaut.level4" = "Alien";
+"daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */
 "app.theme.celestial" = "Himmelskörper";
@@ -540,7 +541,7 @@
 /* TierInfoView.swift */
 "tier.info.intro"             = "Dein Erfolg wird am Ende des Tages, um Mitternacht, festgehalten.";
 "tier.info.section.levels"    = "Stufen";
-"tier.info.change.theme"      = "Design ändern";
+"tier.info.change.theme"      = "Emoji ändern";
 "tier.info.range.suffix"      = " Fortschritt";
 
 /* ProgressRingInfoView.swift */
@@ -768,7 +769,7 @@
 "a11y.not.selected" = "nicht ausgewählt";
 
 /* Theme picker (ThemeSettingsView) */
-"a11y.theme.hint"             = "Tippen, um dieses Design auszuwählen.";
+"a11y.theme.hint"             = "Tippen, um diese Emojis auszuwählen.";
 "a11y.theme.info.label.format" = "Weitere Informationen über %@";
 "a11y.theme.info.hint" = "Tippen für weitere Informationen.";
 
@@ -877,7 +878,7 @@
 
 "today.edit.goals" = "Ziele bearbeiten";
 "today.edit.controls" = "Steuerung bearbeiten";
-"today.edit.theme" = "Design bearbeiten";
+"today.edit.theme" = "Emoji bearbeiten";
 "today.edit.colors" = "Akzentfarben bearbeiten";
 
 "welcome.step.units.title" = "Deine Einheiten";
