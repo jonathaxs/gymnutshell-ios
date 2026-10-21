@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/WelcomeView/Steps/WelcomeSummaryStep.swift
 //
 //  Propósito: Etapa do onboarding, exibe as metas diárias padrão organizadas por categoria, com
-//             botões − / + pra ajustar cada valor, e permite adicionar opcionalmente Calorias, Gordura e Creatina.
+//             botões − / + pra ajustar cada valor, e permite adicionar opcionalmente Gordura e Creatina.
 //             O aviso de que dá pra editar depois aparece no fim, depois das metas opcionais.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-10.
@@ -18,7 +18,6 @@ struct WelcomeSummaryStep: View {
     @Binding var goals: GoalsCalculator.Result?
     let measurementSystem: MeasurementSystem
     let accentColor: Color
-    @Binding var includeCalories: Bool
     @Binding var includeFats: Bool
     @Binding var includeCreatine: Bool
     @Binding var scrolledToEnd: Bool
@@ -52,17 +51,6 @@ struct WelcomeSummaryStep: View {
 
                     // MARK: Nutrição
                     summaryCategory(GoalCategory.nutricao) {
-                        OptionalTrackingGoalRow(
-                            icon: "🔥",
-                            label: String(localized: "today.metric.calories", bundle: .gymNutshellCore),
-                            value: "\(goals.calories) kcal",
-                            accentColor: accentColor,
-                            isIncluded: $includeCalories,
-                            canDecrease: goals.calories - 50 >= 500,
-                            canIncrease: goals.calories + 50 <= 10000,
-                            onDecrease: { adjust(\.calories, by: -50, range: 500...10000) },
-                            onIncrease: { adjust(\.calories, by: 50, range: 500...10000) }
-                        )
                         adjustableRow(icon: "🍗", label: String(localized: "today.metric.protein", bundle: .gymNutshellCore),
                                       keyPath: \.protein, step: 5, range: 10...500) { "\($0)g" }
                         adjustableRow(icon: "🍞", label: String(localized: "today.metric.carbs", bundle: .gymNutshellCore),
@@ -174,6 +162,7 @@ struct WelcomeSummaryStep: View {
             GoalStepper(
                 valueText: format(value),
                 label: label,
+                color: accentColor,
                 canDecrease: value - step >= range.lowerBound,
                 canIncrease: value + step <= range.upperBound,
                 onDecrease: { adjust(keyPath, by: -step, range: range) },
@@ -193,6 +182,8 @@ private struct GoalStepper: View {
 
     let valueText: String
     let label: String
+    /// Cor do objetivo escolhido (− / + pintados com ela).
+    let color: Color
     let canDecrease: Bool
     let canIncrease: Bool
     let onDecrease: () -> Void
@@ -218,9 +209,9 @@ private struct GoalStepper: View {
                     .accessibilityHint(String(localized: "a11y.welcome.optional.remove.hint", bundle: .gymNutshellCore))
             }
 
-            RoundStepButton(kind: .minus, size: 46, isEnabled: canDecrease, action: onDecrease)
+            RoundStepButton(kind: .minus, size: 46, color: color, isEnabled: canDecrease, action: onDecrease)
                 .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.decrease.format", bundle: .gymNutshellCore), label))
-            RoundStepButton(kind: .plus, size: 46, isEnabled: canIncrease, action: onIncrease)
+            RoundStepButton(kind: .plus, size: 46, color: color, isEnabled: canIncrease, action: onIncrease)
                 .accessibilityLabel(String(format: String(localized: "a11y.welcome.goal.increase.format", bundle: .gymNutshellCore), label))
         }
     }
@@ -260,6 +251,7 @@ private struct OptionalTrackingGoalRow: View {
                 GoalStepper(
                     valueText: value,
                     label: label,
+                    color: accentColor,
                     canDecrease: canDecrease,
                     canIncrease: canIncrease,
                     onDecrease: onDecrease,

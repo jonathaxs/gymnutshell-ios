@@ -3,7 +3,8 @@
 //
 //  Propósito: Primeira etapa do onboarding, permite ao usuário escolher entre iniciar um novo perfil
 //             ou restaurar a partir de um arquivo de backup exportado anteriormente.
-//             Layout: cabeçalho + destaques com ícone no topo; botões fixados no rodapé.
+//             Layout: cabeçalho e, logo abaixo, o espaço dos botões Começar / Restaurar backup
+//             (os botões são os do rodapé da WelcomeView, que sobem até aqui).
 //             "Restaurar backup" abre um sheet com as opções de restauração via iCloud e arquivo local.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-20.
@@ -15,76 +16,41 @@ import SwiftData
 import UniformTypeIdentifiers
 
 /// Primeira etapa do onboarding: o usuário escolhe entre começar do zero ou restaurar um backup.
-/// No modo narrow: intro em ScrollView no topo, botões fixos na base.
+/// No modo narrow: cabeçalho e botões centralizados na tela.
 struct WelcomeStartStep: View {
 
     let onRestore: () -> Void
-    let onNewProfile: () -> Void
+    @Binding var showRestoreSheet: Bool
     var accentColor: Color = .accentColor
     var isWide: Bool = false
 
     @Environment(\.modelContext) private var modelContext
 
-    @State private var showRestoreSheet = false
     @State private var isImporting = false
     @State private var iCloudRestoring = false
     @State private var errorMessage: String? = nil
 
     var body: some View {
-        VStack(spacing: 0) {
-            GeometryReader { geo in
-                ScrollView {
-                    VStack(spacing: 28) {
-                        if !isWide {
-                            // O esquilo que corre atrás da noz (nutshell), como o da Era do Gelo.
-                            WelcomeStepHeader(
-                                emoji: "🐿️",
-                                title: String(localized: "welcome.step.start.title", bundle: .gymNutshellCore),
-                                accentColor: accentColor
-                            )
-                        }
+        GeometryReader { geo in
+            ScrollView {
+                VStack(spacing: 28) {
+                    // O esquilo que corre atrás da noz (nutshell), como o da Era do Gelo.
+                    // No layout largo aparece também, pra o lado direito não ficar vazio.
+                    WelcomeStepHeader(
+                        emoji: "🐿️",
+                        title: String(localized: "welcome.step.start.title", bundle: .gymNutshellCore),
+                        accentColor: accentColor
+                    )
 
-                        // Destaques do app em linhas com ícone, no estilo das telas de boas-vindas do sistema.
-                        VStack(alignment: .leading, spacing: 22) {
-                            featureRow(icon: "checklist",
-                                       text: String(localized: "welcome.start.feature.track", bundle: .gymNutshellCore))
-                            // Mesmo ícone do botão Histórico da Hoje.
-                            featureRow(icon: "clock.arrow.trianglehead.counterclockwise.rotate.90",
-                                       text: String(localized: "welcome.start.feature.progress", bundle: .gymNutshellCore))
-                            featureRow(icon: "theatermasks.fill",
-                                       text: String(localized: "welcome.start.feature.theme", bundle: .gymNutshellCore))
-                        }
-                        .padding(.horizontal, 8)
+                    if !isWide {
+                        WelcomeButtonsSlot(step: .start)
                     }
-                    .padding(.horizontal, AppStyle.horizontalPadding)
-                    .padding(.vertical)
-                    .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .center)
-                }
-                .scrollBounceBehavior(.basedOnSize)
-            }
-
-            if !isWide {
-                VStack(spacing: 10) {
-                    Button(action: onNewProfile) {
-                        Text(String(localized: "welcome.start.new", bundle: .gymNutshellCore))
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 4)
-                    }
-                    .appProminentButton(accentColor)
-
-                    Button { showRestoreSheet = true } label: {
-                        Text(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 4)
-                    }
-                    .appSecondaryButton(accentColor)
                 }
                 .padding(.horizontal, AppStyle.horizontalPadding)
-                .padding(.top, 8)
-                .padding(.bottom, 16)
+                .padding(.vertical)
+                .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .center)
             }
+            .scrollBounceBehavior(.basedOnSize)
         }
         .sheet(isPresented: $showRestoreSheet) {
             restoreSheet
@@ -107,22 +73,6 @@ struct WelcomeStartStep: View {
             Button("OK", role: .cancel) {}
         } message: {
             if let msg = errorMessage { Text(msg) }
-        }
-    }
-
-    // MARK: - Linha de destaque
-
-    private func featureRow(icon: String, text: String) -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundStyle(accentColor)
-                .frame(width: 40)
-                .accessibilityHidden(true)
-            Text(text)
-                .font(.body)
-                .fixedSize(horizontal: false, vertical: true)
-            Spacer(minLength: 0)
         }
     }
 
@@ -152,7 +102,7 @@ struct WelcomeStartStep: View {
                         showRestoreSheet = false
                         isImporting = true
                     } label: {
-                        Label(String(localized: "settings.backup.import", bundle: .gymNutshellCore),
+                        Label(String(localized: "welcome.restore.importJSON", bundle: .gymNutshellCore),
                               systemImage: "doc.badge.arrow.up")
                     }
                 }

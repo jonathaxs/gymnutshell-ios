@@ -406,12 +406,11 @@
 "welcome.step.summary.title" = "Tes objectifs";
 "welcome.summary.subtitle.customize" = "Tu peux modifier ces valeurs ou ajouter de nouveaux objectifs à tout moment.";
 "welcome.option.add" = "Ajouter";
+"welcome.restore.importJSON" = "Importer une sauvegarde JSON";
+"welcome.theme.preview" = "Aperçu";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Salut !";
-"welcome.start.feature.track" = "Suis tes objectifs sportifs tout au long de la journée.";
-"welcome.start.feature.theme" = "Choisis des emojis pour te motiver.";
-"welcome.start.feature.progress" = "Observe ta progression.";
 "welcome.start.new" = "Commencer";
 "welcome.start.restore" = "Restaurer une sauvegarde";
 

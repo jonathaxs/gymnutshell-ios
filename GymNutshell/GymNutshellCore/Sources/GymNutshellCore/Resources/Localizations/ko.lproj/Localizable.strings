@@ -385,12 +385,11 @@
 "welcome.step.summary.title" = "나의 목표";
 "welcome.summary.subtitle.customize" = "이 값들을 수정하거나 언제든 새 목표를 추가할 수 있어요.";
 "welcome.option.add" = "추가";
+"welcome.restore.importJSON" = "JSON 백업 가져오기";
+"welcome.theme.preview" = "미리보기";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "환영해요!";
-"welcome.start.feature.track" = "하루 동안 피트니스 목표를 기록해보세요.";
-"welcome.start.feature.theme" = "동기부여를 주는 이모지를 선택해보세요.";
-"welcome.start.feature.progress" = "나의 성장을 한눈에 확인해보세요.";
 "welcome.start.new" = "시작하기";
 "welcome.start.restore" = "백업 복원";
 

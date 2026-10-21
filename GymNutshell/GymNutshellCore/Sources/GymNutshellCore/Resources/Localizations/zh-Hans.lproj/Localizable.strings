@@ -383,12 +383,11 @@
 "welcome.step.summary.title" = "你的目标";
 "welcome.summary.subtitle.customize" = "你可以随时修改这些数值或添加新目标。";
 "welcome.option.add" = "添加";
+"welcome.restore.importJSON" = "导入 JSON 备份";
+"welcome.theme.preview" = "预览";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "你好！";
-"welcome.start.feature.track" = "全天追踪你的健身目标。";
-"welcome.start.feature.theme" = "选择激励你的表情。";
-"welcome.start.feature.progress" = "查看你的进步历程。";
 "welcome.start.new" = "开始使用";
 "welcome.start.restore" = "恢复备份";
 

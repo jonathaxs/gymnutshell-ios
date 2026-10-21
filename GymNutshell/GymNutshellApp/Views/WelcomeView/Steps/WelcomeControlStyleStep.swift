@@ -2,7 +2,8 @@
 //  GymNutshell/GymNutshellApp/Views/WelcomeView/Steps/WelcomeControlStyleStep.swift
 //
 //  Propósito: Etapa do onboarding, o usuário escolhe se marca as metas deslizando (slider)
-//             ou com botões − / +. Cada opção mostra uma prévia do controle.
+//             ou com botões − / +. Só a opção selecionada mostra a prévia do controle, animada:
+//             o slider vai e volta sozinho e os botões − / + são "tocados" de exemplo.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
 // ⌘
@@ -10,7 +11,7 @@
 import SwiftUI
 import GymNutshellCore
 
-/// Etapa do onboarding: dois cards selecionáveis (slider / − +) com prévia do controle.
+/// Etapa do onboarding: dois cards selecionáveis (slider / − +); o selecionado abre a prévia do controle.
 struct WelcomeControlStyleStep: View {
 
     @Binding var selection: ControlStyle
@@ -71,16 +72,20 @@ struct WelcomeControlStyleStep: View {
             Text(desc)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            preview()
-                .padding(.vertical, 6)
-                .accessibilityHidden(true)
+            if isSelected {
+                preview()
+                    .padding(.vertical, 6)
+                    .accessibilityHidden(true)
+                    .transition(.opacity.combined(with: .scale(scale: 0.9, anchor: .top)))
+            }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(18)
         .appCard(isSelected: isSelected, accentColor: accentColor)
         .contentShape(RoundedRectangle(cornerRadius: AppStyle.cardRadius, style: .continuous))
         .tapButton {
             UISelectionFeedbackGenerator().selectionChanged()
-            selection = style
+            withAnimation(.snappy(duration: 0.35)) { selection = style }
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(title)
@@ -92,33 +97,72 @@ struct WelcomeControlStyleStep: View {
 
 // MARK: - Prévia do controle − / +
 
-/// Barra à esquerda e os dois botões juntos à direita, como na Today. Estática, sem toque.
+/// Barra à esquerda e os dois botões juntos à direita, como na Today. Sem toque: o + é "tocado"
+/// três vezes enchendo a barra, depois o − três vezes esvaziando, em loop.
 struct StepperPreview: View {
 
     let color: Color
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    @State private var value: Double = 0.25
+    @State private var pressed: RoundStepButton.Kind? = nil
+
     var body: some View {
         HStack(spacing: 14) {
-            ProgressView(value: 0.4)
+            ProgressView(value: value)
                 .tint(color)
             HStack(spacing: 8) {
-                RoundStepButton(kind: .minus, size: 44, color: color) {}
-                RoundStepButton(kind: .plus, size: 44, color: color) {}
+                demoButton(.minus)
+                demoButton(.plus)
             }
         }
         .allowsHitTesting(false)
+        .task {
+            guard !reduceMotion else { return }
+            var tap = 0
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(0.7))
+                let kind: RoundStepButton.Kind = (tap / 3) % 2 == 0 ? .plus : .minus
+                withAnimation(.spring(response: 0.18, dampingFraction: 0.6)) { pressed = kind }
+                try? await Task.sleep(for: .seconds(0.15))
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) { pressed = nil }
+                withAnimation(.easeInOut(duration: 0.3)) { value += kind == .plus ? 0.2 : -0.2 }
+                tap += 1
+            }
+        }
+    }
+
+    /// Botão da prévia: encolhe e ganha um brilho da cor quando é "tocado".
+    private func demoButton(_ kind: RoundStepButton.Kind) -> some View {
+        RoundStepButton(kind: kind, size: 44, color: color) {}
+            .overlay {
+                Circle()
+                    .fill(color.opacity(pressed == kind ? 0.25 : 0))
+            }
+            .scaleEffect(pressed == kind ? 0.85 : 1)
     }
 }
 
 /// Prévia do slider: o Slider nativo travado, pra ficar igual ao da Today em cada iOS
-/// (vidro no iOS 26+, clássico no 18).
+/// (vidro no iOS 26+, clássico no 18). O valor vai e volta sozinho, de leve.
 struct SliderPreview: View {
 
     let color: Color
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     var body: some View {
-        Slider(value: .constant(0.4))
-            .tint(color)
-            .allowsHitTesting(false)
+        TimelineView(.animation(paused: reduceMotion)) { context in
+            Slider(value: .constant(reduceMotion ? 0.4 : value(at: context.date)))
+                .tint(color)
+        }
+        .allowsHitTesting(false)
+    }
+
+    /// Onda suave entre 15% e 85%, num ciclo de 4 segundos.
+    private func value(at date: Date) -> Double {
+        let phase = date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 4) / 4
+        return 0.5 - 0.35 * cos(phase * 2 * .pi)
     }
 }

@@ -403,12 +403,11 @@
 "welcome.step.summary.title" = "I tuoi obiettivi";
 "welcome.summary.subtitle.customize" = "Puoi modificare questi valori o aggiungere nuovi obiettivi quando vuoi.";
 "welcome.option.add" = "Aggiungi";
+"welcome.restore.importJSON" = "Importa backup JSON";
+"welcome.theme.preview" = "Anteprima";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Ciao!";
-"welcome.start.feature.track" = "Monitora i tuoi obiettivi di fitness durante la giornata.";
-"welcome.start.feature.theme" = "Scegli le emoji per trovare la giusta motivazione.";
-"welcome.start.feature.progress" = "Segui i tuoi progressi nel tempo.";
 "welcome.start.new" = "Inizia";
 "welcome.start.restore" = "Ripristina backup";
 

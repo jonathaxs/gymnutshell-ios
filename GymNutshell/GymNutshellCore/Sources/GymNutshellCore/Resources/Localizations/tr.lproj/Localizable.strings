@@ -385,12 +385,11 @@
 "welcome.step.summary.title" = "Hedeflerin";
 "welcome.summary.subtitle.customize" = "Bu değerleri istediğin zaman düzenleyebilir veya yeni hedefler ekleyebilirsin.";
 "welcome.option.add" = "Ekle";
+"welcome.restore.importJSON" = "JSON yedeğini içe aktar";
+"welcome.theme.preview" = "Önizle";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Merhaba!";
-"welcome.start.feature.track" = "Gün boyunca fitness hedeflerini takip et.";
-"welcome.start.feature.theme" = "Sana ilham verecek emojileri seç.";
-"welcome.start.feature.progress" = "İlerlemeni takip et.";
 "welcome.start.new" = "Başla";
 "welcome.start.restore" = "Yedeği geri yükle";
 

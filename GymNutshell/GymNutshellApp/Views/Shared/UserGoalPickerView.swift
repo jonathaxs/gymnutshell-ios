@@ -82,7 +82,7 @@ struct UserGoalPickerView: View {
     private func goalColor(_ goal: UserGoal) -> Color {
         switch goal {
         case .bulking:     return .orange
-        case .maintenance: return .accentColor
+        case .maintenance: return .cyan
         case .cutting:     return .green
         }
     }

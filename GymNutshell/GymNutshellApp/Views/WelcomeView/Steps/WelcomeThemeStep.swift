@@ -74,17 +74,24 @@ struct WelcomeThemeStep: View {
         let themeName = theme.displayName(sex: sex)
         return HStack(spacing: 8) {
             // Bloco esquerdo (prévia + nome + check), elemento único
-            // a11y; botão info FORA pra ficar focável separado.
+            // a11y; botão Visualizar FORA pra ficar focável separado.
             HStack(spacing: 14) {
-                Text(theme.themeEmojis(sex: sex))
-                    .font(.title3)
-                    .accessibilityHidden(true)
+                // Nome em cima e os 5 emojis numa linha só embaixo, pra caber o Visualizar ao lado.
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(themeName)
+                        .font(.body.weight(isSelected ? .semibold : .regular))
+                        .foregroundStyle(.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
 
-                Text(themeName)
-                    .font(.body.weight(isSelected ? .semibold : .regular))
-                    .foregroundStyle(.primary)
+                    Text(theme.themeEmojis(sex: sex))
+                        .font(.body)
+                        .lineLimit(1)
+                        .fixedSize()
+                        .accessibilityHidden(true)
+                }
 
-                Spacer()
+                Spacer(minLength: 0)
 
                 Image(systemName: "checkmark")
                     .font(.body.weight(.bold))
@@ -104,23 +111,24 @@ struct WelcomeThemeStep: View {
                                 : String(localized: "a11y.not.selected", bundle: .gymNutshellCore))
             .accessibilityHint(String(localized: "a11y.theme.hint", bundle: .gymNutshellCore))
 
+            // Mesmo visual do Adicionar da etapa de metas.
             Button {
                 infoTheme = theme
             } label: {
-                Image(systemName: "info.circle")
-                    .font(.title2)
-                    .frame(minWidth: 44, minHeight: 44)
+                Label(String(localized: "welcome.theme.preview", bundle: .gymNutshellCore), systemImage: "eye")
+                    .font(.subheadline.weight(.semibold))
+                    .lineLimit(1)
             }
-            .buttonStyle(.borderless)
-            .tint(accentColor)
+            .appProminentButton(accentColor, size: .regular)
             .accessibilityLabel(String(format: String(localized: "a11y.theme.info.label.format",
                                                      bundle: .gymNutshellCore), themeName))
             .accessibilityHint(String(localized: "a11y.theme.info.hint",
                                       bundle: .gymNutshellCore))
         }
         .padding(.leading, 16)
-        .padding(.trailing, 8)
-        .frame(minHeight: 56)
+        .padding(.trailing, 12)
+        .padding(.vertical, 8)
+        .frame(minHeight: 60)
         .background(isSelected ? accentColor.opacity(0.10) : .clear)
     }
 }

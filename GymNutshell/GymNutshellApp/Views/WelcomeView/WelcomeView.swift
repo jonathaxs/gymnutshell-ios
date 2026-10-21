@@ -68,8 +68,6 @@ struct WelcomeView: View {
 
     // MARK: - Seleções de metas opcionais
 
-    // Se o usuário escolheu incluir a meta de Calorias no rastreio.
-    @State private var includeCalories: Bool = false
     // Se o usuário escolheu incluir Good Fat no rastreio.
     @State private var includeFats: Bool = false
     // Se o usuário escolheu incluir a meta de check-in Creatina.
@@ -79,6 +77,16 @@ struct WelcomeView: View {
 
     @State private var calculatedGoals: GoalsCalculator.Result? = nil
     @State private var summaryScrolledToEnd = false
+
+    // MARK: - Botões do rodapé (narrow)
+
+    @State private var showRestoreSheet = false
+    // Onde ficam os botões do rodapé e o espaço que as etapas Início e Tudo pronto reservam pra eles.
+    @State private var footerFrame: CGRect? = nil
+    @State private var slotFrames: [WelcomeStep: CGRect] = [:]
+    @State private var buttonsHeight: CGFloat = 112
+    // A primeira posição (Início, ao abrir) entra sem animação.
+    @State private var didPlaceButtons = false
 
     // MARK: - Ações
 
@@ -142,7 +150,8 @@ struct WelcomeView: View {
         }
 
         // Marca metas opcionais de rastreio como removidas se o usuário não incluiu.
-        if !includeCalories { RemovedItemsStore.remove("tracking.calories") }
+        // Calorias saiu do onboarding: perfil novo começa sem ela.
+        RemovedItemsStore.remove("tracking.calories")
         if !includeFats  { RemovedItemsStore.remove("tracking.goodFat") }
 
         // Marca metas opcionais de suplementos como removidas se o usuário não incluiu.
@@ -223,7 +232,7 @@ struct WelcomeView: View {
                 case .start:
                     WelcomeStartStep(
                         onRestore: onComplete,
-                        onNewProfile: advance,
+                        showRestoreSheet: $showRestoreSheet,
                         accentColor: sexColor,
                         isWide: isWide
                     )
@@ -237,8 +246,7 @@ struct WelcomeView: View {
                     WelcomeSummaryStep(
                         goals: $calculatedGoals,
                         measurementSystem: measurementSystem,
-                        accentColor: sexColor,
-                        includeCalories: $includeCalories,
+                        accentColor: stepColor,
                         includeFats: $includeFats,
                         includeCreatine: $includeCreatine,
                         scrolledToEnd: $summaryScrolledToEnd,
@@ -268,28 +276,12 @@ struct WelcomeView: View {
                 removal: .move(edge: isGoingForward ? .leading : .trailing)
             ))
             .animation(.easeInOut(duration: 0.3), value: currentStep)
+            .environment(\.welcomeButtonsHeight, buttonsHeight)
+            .environment(\.welcomeButtonsSlotReporter, WelcomeButtonsSlotReporter(report: reportSlot))
 
-            // Botões de rodapé, só no modo narrow e fora da etapa inicial: Continuar e, abaixo, Voltar.
-            if currentStep != .start && !isWide {
-                VStack(spacing: 10) {
-                    WelcomeContinueButton(
-                        label: continueButtonLabel,
-                        color: continueButtonColor,
-                        isEnabled: isCurrentStepValid,
-                        action: advance
-                    )
-
-                    Button(action: goBack) {
-                        Text(String(localized: "welcome.button.back", bundle: .gymNutshellCore))
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 4)
-                    }
-                    .appSecondaryButton(continueButtonColor)
-                }
-                .padding(.horizontal, AppStyle.horizontalPadding)
-                .padding(.top, 8)
-                .padding(.bottom, 16)
+            // Botões de rodapé, só no modo narrow: Continuar e, abaixo, Voltar.
+            if !isWide {
+                footerButtons
             }
         }
         // O VStack externo ignora a safe area do teclado: os botões ficam fixos na base,
@@ -300,6 +292,62 @@ struct WelcomeView: View {
             if currentStep != .start && !isWide {
                 backSwipeEdge
             }
+        }
+    }
+
+    // MARK: - Botões do rodapé
+
+    /// Um só par de botões pra todas as etapas. No Início eles ficam logo abaixo do "Olá" como
+    /// Começar / Restaurar backup e, ao avançar, descem pro rodapé virando Continuar / Voltar.
+    /// No Tudo pronto sobem pra logo abaixo das permissões (o caminho inverso).
+    private var footerButtons: some View {
+        VStack(spacing: 10) {
+            WelcomeContinueButton(
+                label: continueButtonLabel,
+                color: continueButtonColor,
+                isEnabled: isCurrentStepValid,
+                action: advance
+            )
+
+            Button {
+                if currentStep == .start { showRestoreSheet = true } else { goBack() }
+            } label: {
+                Text(currentStep == .start
+                     ? String(localized: "welcome.start.restore", bundle: .gymNutshellCore)
+                     : String(localized: "welcome.button.back", bundle: .gymNutshellCore))
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
+            }
+            .appSecondaryButton(continueButtonColor)
+        }
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { buttonsHeight = $0 }
+        .offset(y: buttonsOffset)
+        // Até saber onde fica o espaço do Início, os botões não aparecem (evita o pulo ao abrir).
+        .opacity(didPlaceButtons ? 1 : 0)
+        .padding(.horizontal, AppStyle.horizontalPadding)
+        .padding(.top, 8)
+        .padding(.bottom, 16)
+        // Medido fora do offset: é a posição de repouso no rodapé.
+        .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { footerFrame = $0 }
+    }
+
+    /// Quanto os botões sobem do rodapé até o espaço reservado pela etapa (0 = no rodapé).
+    private var buttonsOffset: CGFloat {
+        guard let footerFrame, let slot = slotFrames[currentStep] else { return 0 }
+        // O VStack dos botões começa 8pt abaixo do topo do rodapé (padding de cima).
+        return slot.minY - (footerFrame.minY + 8)
+    }
+
+    /// Recebe a posição do espaço reservado por uma etapa. Só vale a da etapa atual,
+    /// pra a etapa que sai deslizando não puxar os botões junto.
+    private func reportSlot(_ step: WelcomeStep, _ frame: CGRect) {
+        guard step == currentStep else { return }
+        if didPlaceButtons {
+            withAnimation(.spring(response: 0.55, dampingFraction: 0.85)) { slotFrames[step] = frame }
+        } else {
+            slotFrames[step] = frame
+            DispatchQueue.main.async { didPlaceButtons = true }
         }
     }
 
@@ -331,13 +379,13 @@ struct WelcomeView: View {
         AppAccentColor.defaultForSex(sex).color
     }
 
-    // Cor da etapa: segue o objetivo escolhido na etapa de objetivo e o sexo nas demais.
+    // Cor da etapa: segue o objetivo escolhido nas etapas de objetivo e de metas e o sexo nas demais.
     // Pinta o fundo, a barra de progresso e os botões do rodapé.
     private var stepColor: Color {
-        guard currentStep == .goal else { return sexColor }
+        guard currentStep == .goal || currentStep == .summary else { return sexColor }
         switch userGoal {
         case .bulking:     return .orange
-        case .maintenance: return Color.accentColor
+        case .maintenance: return .cyan
         case .cutting:     return .green
         }
     }
@@ -360,9 +408,43 @@ struct WelcomeView: View {
     }
 
     private var continueButtonLabel: String {
-        currentStep == .ready
-            ? String(localized: "welcome.button.start", bundle: .gymNutshellCore)
-            : String(localized: "welcome.button.continue", bundle: .gymNutshellCore)
+        switch currentStep {
+        case .start: return String(localized: "welcome.start.new", bundle: .gymNutshellCore)
+        case .ready: return String(localized: "welcome.button.start", bundle: .gymNutshellCore)
+        default:     return String(localized: "welcome.button.continue", bundle: .gymNutshellCore)
+        }
+    }
+}
+
+// MARK: - Espaço reservado pros botões
+
+extension EnvironmentValues {
+    /// Altura do par de botões do rodapé, pra a etapa reservar o mesmo espaço.
+    @Entry var welcomeButtonsHeight: CGFloat = 112
+    /// Avisa a WelcomeView onde a etapa reservou o espaço dos botões.
+    @Entry var welcomeButtonsSlotReporter = WelcomeButtonsSlotReporter()
+}
+
+/// Closure embrulhada num Equatable que nunca muda, pra o environment não invalidar a cada update.
+struct WelcomeButtonsSlotReporter: Equatable {
+    var report: (WelcomeStep, CGRect) -> Void = { _, _ in }
+    static func == (lhs: Self, rhs: Self) -> Bool { true }
+}
+
+/// Espaço vazio do tamanho dos botões. Os botões de verdade ficam no rodapé da WelcomeView
+/// e deslizam até aqui (Início e Tudo pronto).
+struct WelcomeButtonsSlot: View {
+
+    let step: WelcomeStep
+
+    @Environment(\.welcomeButtonsHeight) private var height
+    @Environment(\.welcomeButtonsSlotReporter) private var reporter
+
+    var body: some View {
+        Color.clear
+            .frame(height: height)
+            .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { reporter.report(step, $0) }
+            .accessibilityHidden(true)
     }
 }
 

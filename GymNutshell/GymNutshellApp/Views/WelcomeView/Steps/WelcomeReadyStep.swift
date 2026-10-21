@@ -3,6 +3,7 @@
 //
 //  Propósito: Última etapa do onboarding ("Tudo pronto"). Oferece pedir as permissões de
 //             notificações e Apple Saúde. Recusar ou pular não bloqueia nada.
+//             Os botões Vamos lá / Voltar sobem do rodapé pra logo abaixo das permissões.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
 // ⌘
@@ -32,7 +33,7 @@ struct WelcomeReadyStep: View {
 
                     if !isWide {
                         WelcomeStepHeader(
-                            emoji: "🚀",
+                            emoji: "🚶",
                             title: String(localized: "welcome.step.ready.title", bundle: .gymNutshellCore),
                             subtitle: String(localized: "welcome.step.ready.subtitle", bundle: .gymNutshellCore),
                             accentColor: accentColor
@@ -61,10 +62,15 @@ struct WelcomeReadyStep: View {
                             action: requestHealth
                         )
                     }
+
+                    if !isWide {
+                        WelcomeButtonsSlot(step: .ready)
+                            .padding(.top, 8)
+                    }
                 }
                 .padding(.horizontal, AppStyle.horizontalPadding)
                 .padding(.vertical)
-                .frame(maxWidth: .infinity, minHeight: isWide ? geo.size.height : 0, alignment: .center)
+                .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .center)
             }
         }
         .task {

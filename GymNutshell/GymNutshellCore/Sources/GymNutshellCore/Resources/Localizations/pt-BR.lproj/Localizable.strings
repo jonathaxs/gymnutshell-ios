@@ -422,12 +422,11 @@
 "welcome.step.summary.title" = "Suas metas";
 "welcome.summary.subtitle.customize" = "Você pode editar esses valores ou adicionar novas metas quando quiser.";
 "welcome.option.add" = "Adicionar";
+"welcome.restore.importJSON" = "Importar backup JSON";
+"welcome.theme.preview" = "Visualizar";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "Olá!";
-"welcome.start.feature.track" = "Rastreie suas metas fitness ao longo do dia.";
-"welcome.start.feature.theme" = "Escolha emojis para te inspirar.";
-"welcome.start.feature.progress" = "Acompanhe o seu avanço.";
 "welcome.start.new" = "Começar";
 "welcome.start.restore" = "Restaurar backup";
 

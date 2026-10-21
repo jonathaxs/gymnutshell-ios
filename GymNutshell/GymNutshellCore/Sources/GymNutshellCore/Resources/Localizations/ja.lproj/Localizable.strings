@@ -385,12 +385,11 @@
 "welcome.step.summary.title" = "あなたの目標";
 "welcome.summary.subtitle.customize" = "これらの値はいつでも編集でき、新しい目標も追加できます。";
 "welcome.option.add" = "追加";
+"welcome.restore.importJSON" = "JSONバックアップを読み込む";
+"welcome.theme.preview" = "プレビュー";
 
 /* WelcomeStartStep.swift */
 "welcome.step.start.title" = "ようこそ！";
-"welcome.start.feature.track" = "1日を通じてフィットネス目標を記録。";
-"welcome.start.feature.theme" = "お気に入りの絵文字でモチベーションアップ。";
-"welcome.start.feature.progress" = "日々の進捗を確認。";
 "welcome.start.new" = "はじめる";
 "welcome.start.restore" = "バックアップから復元";
 

@@ -27,7 +27,7 @@ enum WelcomeStep: Int, CaseIterable {
         case .summary:      return "💪"
         case .controlStyle: return "🎛️"
         case .theme:        return "🎭"
-        case .ready:        return "🚀"
+        case .ready:        return "🚶"
         }
     }
 
