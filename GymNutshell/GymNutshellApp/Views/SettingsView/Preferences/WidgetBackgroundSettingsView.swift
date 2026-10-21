@@ -158,43 +158,39 @@ struct WidgetBackgroundSettingsView: View {
                   : AnyShapeStyle(WidgetBackground.gradient(from: sourceColor)))
             .frame(width: width, height: size)
             .overlay {
-                // Mesmo layout do widget de verdade: pequeno = anel com a % + emoji ao lado e o nome
-                // embaixo; médio = anel à esquerda e emoji, nome e data ao lado.
+                // Mesmo layout do widget de verdade: anel com o emoji dentro; pequeno = % embaixo,
+                // médio = % ao lado com a frase do próximo nível embaixo dela.
                 let tier = DailyAchievement.from(percent: 62)
-                let emoji = selectedTheme.emoji(for: tier, sex: sex)
-                let name = selectedTheme.name(for: tier, sex: sex)
                 let ring = PercentProgressRing(progress: 0.62,
                                                borderColor: isSystem ? nil : textColor,
-                                               textColor: textColor)
+                                               textColor: textColor,
+                                               emoji: selectedTheme.emoji(for: tier, sex: sex))
+                let percent = Text("62%")
+                    .font(.system(size: size * (wide ? 0.27 : 0.16), weight: .bold, design: .rounded))
+                    .foregroundStyle(textColor)
+                    .lineLimit(1)
+                    .fixedSize()
                 if wide {
-                    HStack(spacing: 12) {
-                        ring.frame(width: size * 0.66, height: size * 0.66)
+                    HStack(spacing: size * 0.09) {
+                        ring.frame(width: size * 0.64, height: size * 0.64)
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(emoji).font(.system(size: size * 0.24))
-                            Text(name)
-                                .font(.system(size: size * 0.13, weight: .semibold))
-                                .lineLimit(2)
-                                .minimumScaleFactor(0.8)
-                            Text(Date.now, style: .date)
-                                .font(.system(size: size * 0.09))
+                            percent
+                            Text(String(format: String(localized: "today.hero.caption.nextLevel",
+                                                       bundle: .gymNutshellCore),
+                                        (tier.next?.minPercent ?? 62) - 62))
+                                .font(.system(size: size * 0.09, weight: .medium))
+                                .foregroundStyle(textColor.opacity(0.8))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
                         }
-                        .foregroundStyle(textColor)
                         Spacer(minLength: 0)
                     }
-                    .padding(.horizontal, size * 0.13)
+                    .padding(.horizontal, size * 0.11)
                 } else {
-                    VStack(spacing: 4) {
-                        HStack(spacing: 4) {
-                            ring.frame(width: size * 0.52, height: size * 0.52)
-                            Text(emoji).font(.system(size: size * 0.22))
-                        }
-                        Text(name)
-                            .font(.system(size: size * 0.11, weight: .semibold))
-                            .foregroundStyle(textColor)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.7)
+                    VStack(spacing: size * 0.04) {
+                        ring.frame(width: size * 0.58, height: size * 0.58)
+                        percent
                     }
-                    .padding(size * 0.07)
                 }
             }
             .overlay(

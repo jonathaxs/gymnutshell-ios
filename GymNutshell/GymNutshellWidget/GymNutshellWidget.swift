@@ -162,55 +162,61 @@ struct GymNutshellWidgetEntryView: View {
 
     // MARK: Small
 
-    /// Igual ao hero da Hoje em miniatura: anel com a % dentro e o emoji ao lado, nome embaixo.
+    /// Anel com o emoji dentro, no alto e centralizado; a % centralizada embaixo.
     private var smallView: some View {
-        VStack(spacing: 8) {
-            HStack(spacing: 6) {
-                ring
-                    .frame(width: 80, height: 80)
-                Text(entry.snapshot.tierEmoji)
-                    .font(.system(size: 38))
-                    .minimumScaleFactor(0.6)
-            }
-
-            Text(entry.snapshot.tierName)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(textColor)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
+        VStack(spacing: 6) {
+            ring
+                .frame(width: 90, height: 90)
+            percentText(size: 26)
         }
         .padding(8)
     }
 
     // MARK: Medium
 
+    /// Anel com o emoji dentro à esquerda; ao lado a % e, embaixo dela, quanto falta pro próximo nível.
     private var mediumView: some View {
-        HStack(spacing: 18) {
+        HStack(spacing: 14) {
             ring
                 .frame(width: 104, height: 104)
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text(entry.snapshot.tierEmoji)
-                    .font(.system(size: 40))
-                Text(entry.snapshot.tierName)
-                    .font(.headline)
-                    .foregroundStyle(textColor)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.8)
-                Text(entry.date, style: .date)
-                    .font(.caption2)
-                    .foregroundStyle(textColor)
+            VStack(alignment: .leading, spacing: 2) {
+                percentText(size: 44)
+                Text(nextLevelText)
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(textColor.opacity(0.8))
+                    // Sempre numa linha só: encolhe a fonte em vez de quebrar.
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
             }
             Spacer(minLength: 0)
         }
         .padding()
     }
 
-    /// Mesmo anel da Hoje, com a % no centro. Em fundo colorido ganha o contorno de contraste.
+    /// Mesma frase do hero da Hoje: quanto falta pro próximo nível, ou o aviso de nível máximo.
+    private var nextLevelText: String {
+        let percent = entry.snapshot.progressPercent
+        guard let next = DailyAchievement.from(percent: percent).next else {
+            return String(localized: "today.hero.caption.max", bundle: .gymNutshellCore)
+        }
+        return String(format: String(localized: "today.hero.caption.nextLevel", bundle: .gymNutshellCore),
+                      next.minPercent - percent)
+    }
+
+    private func percentText(size: CGFloat) -> some View {
+        Text("\(entry.snapshot.progressPercent)%")
+            .font(.system(size: size, weight: .bold, design: .rounded).monospacedDigit())
+            .foregroundStyle(textColor)
+            .lineLimit(1)
+            .minimumScaleFactor(0.6)
+    }
+
+    /// Mesmo anel da Hoje, com o emoji da conquista dentro. Em fundo colorido ganha o contorno de contraste.
     private var ring: some View {
         PercentProgressRing(progress: entry.snapshot.progressNormalized,
                             borderColor: hasCustomBackground ? textColor : nil,
-                            textColor: textColor)
+                            textColor: textColor,
+                            emoji: entry.snapshot.tierEmoji)
     }
 }
 

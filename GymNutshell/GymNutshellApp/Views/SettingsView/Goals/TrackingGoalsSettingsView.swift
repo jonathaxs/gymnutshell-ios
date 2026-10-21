@@ -366,9 +366,10 @@ struct TrackingGoalsSettingsView: View {
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
-                        // Selo de meta padrão do app (fixas e opcionais adicionadas), no lugar do texto.
+                        // Selo de meta padrão do app no lugar do texto: preto (branco no escuro) nas fixas,
+                        // cinza nas opcionais adicionadas (Gordura boa, Creatina).
                         Image(systemName: "checkmark.seal.fill")
-                            .foregroundStyle(accentColor)
+                            .foregroundStyle(isRemovable ? Color(.systemGray) : Color.primary)
                             .accessibilityLabel(String(localized: "settings.goals.default.a11y",
                                                        bundle: .gymNutshellCore))
                     }

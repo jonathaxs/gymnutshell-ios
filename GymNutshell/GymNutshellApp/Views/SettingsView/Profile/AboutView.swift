@@ -21,6 +21,9 @@ struct AboutView: View {
     // Easter egg: toques seguidos no ícone do app.
     @State private var iconTapCount = 0
     @State private var lastIconTap: Date?
+    /// Escala do ícone no "pulinho" de cada toque.
+    @State private var iconScale: CGFloat = 1
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private static let feedbackURL = URL(string: "mailto:jonathaxs@icloud.com")!
     private static let iconTapGoal = 5
@@ -96,6 +99,7 @@ struct AboutView: View {
             .interpolation(.high)
             .frame(width: size, height: size)
             .clipShape(RoundedRectangle(cornerRadius: size * 0.22, style: .continuous))
+            .scaleEffect(iconScale)
             .accessibilityLabel(String(localized: "a11y.app.icon", bundle: .gymNutshellCore))
             .onTapGesture { registerIconTap() }
     }
@@ -105,6 +109,7 @@ struct AboutView: View {
     /// 5 toques seguidos no ícone (no máximo ~2 s entre eles) reabrem a Welcome View.
     /// Volta a flag do onboarding pra false e o app troca na hora pra WelcomeView.
     private func registerIconTap() {
+        bounceIcon()
         let now = Date()
         if let last = lastIconTap, now.timeIntervalSince(last) > Self.iconTapWindow {
             iconTapCount = 0
@@ -119,6 +124,15 @@ struct AboutView: View {
             UserDefaults.standard.set(false, forKey: UserProfile.didCompleteOnboardingKey)
         } else {
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
+    }
+
+    /// Cada toque dá um zoom rápido no ícone, que volta com mola.
+    private func bounceIcon() {
+        guard !reduceMotion else { return }
+        withAnimation(.spring(response: 0.18, dampingFraction: 0.6)) { iconScale = 1.18 }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.14) {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.55)) { iconScale = 1 }
         }
     }
 
