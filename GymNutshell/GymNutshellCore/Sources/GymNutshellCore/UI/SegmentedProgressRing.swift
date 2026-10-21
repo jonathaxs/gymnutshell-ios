@@ -37,7 +37,7 @@ public struct SegmentedProgressRing<Center: View>: View {
     var fillMode: RingFillMode = Self.defaultFillMode
     /// false em widgets e no Watch: sem animação de preenchimento, sem "pop" e sem haptics.
     var animated: Bool = true
-    /// Quando não-nil, desenha um contorno de 1pt nessa cor atrás dos segmentos, pra separar
+    /// Quando não-nil, desenha um contorno de 2pt nessa cor atrás dos segmentos, pra separar
     /// o anel de fundos coloridos (widgets com fundo customizado).
     var borderColor: Color? = nil
     /// true = trilho na cor do segmento, bem clara (hero da Today); false = trilho cinza.
@@ -101,7 +101,7 @@ public struct SegmentedProgressRing<Center: View>: View {
                         if let borderColor {
                             RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)
                                 .stroke(borderColor,
-                                        style: StrokeStyle(lineWidth: lineWidth + 2, lineCap: .round))
+                                        style: StrokeStyle(lineWidth: lineWidth + 4, lineCap: .round))
                         }
                         // Trilho do segmento: cinza ou a própria cor, lavada.
                         RingSegmentShape(startDegrees: start, endDegrees: end, fraction: 1)

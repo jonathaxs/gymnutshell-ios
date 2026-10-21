@@ -77,6 +77,11 @@ struct ThemeSettingsView: View {
                             .buttonBorderShape(.capsule)
                             .controlSize(.regular)
                             .tint(.gray)
+                            // Balão com os níveis logo abaixo do botão (o mesmo da grade da Hoje).
+                            .downwardPopover(isPresented: Binding(get: { infoTheme == theme },
+                                                                  set: { if !$0 { infoTheme = nil } })) {
+                                ThemeLevelsPopover(theme: theme, sex: sex, accentColor: accentColor)
+                            }
                             .accessibilityLabel(String(format: String(localized: "a11y.theme.info.label.format",
                                                                      bundle: .gymNutshellCore), themeName))
                             .accessibilityHint(String(localized: "a11y.theme.info.hint", bundle: .gymNutshellCore))
@@ -92,10 +97,5 @@ struct ThemeSettingsView: View {
         }
         .navigationTitle(String(localized: "settings.theme.title", bundle: .gymNutshellCore))
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(item: $infoTheme) { theme in
-            NavigationStack {
-                ThemeInfoView(theme: theme, sex: sex)
-            }
-        }
     }
 }

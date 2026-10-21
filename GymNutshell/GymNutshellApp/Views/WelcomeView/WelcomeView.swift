@@ -295,8 +295,8 @@ struct WelcomeView: View {
 
     // MARK: - Botões do rodapé
 
-    /// Um só par de botões pra todas as etapas. No Início eles ficam logo abaixo do "Olá" como
-    /// Começar / Restaurar backup e, ao avançar, descem pro rodapé virando Continuar / Voltar.
+    /// Um só par de botões pra todas as etapas. No Início eles ficam logo abaixo do "Olá", mais estreitos,
+    /// como Começar / Restaurar backup e, ao avançar, descem pro rodapé se alargando e viram Continuar / Voltar.
     /// No Tudo pronto sobem pra logo abaixo das permissões (o caminho inverso).
     private var footerButtons: some View {
         VStack(spacing: 10) {
@@ -319,6 +319,8 @@ struct WelcomeView: View {
             }
             .appSecondaryButton(continueButtonColor)
         }
+        // No Início ficam mais estreitos, na proporção do "Olá!"; ao descer pro rodapé se alargam.
+        .frame(maxWidth: currentStep == .start ? 260 : .infinity)
         .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { buttonsHeight = $0 }
         .offset(y: buttonsOffset)
         // Até saber onde fica o espaço do Início, os botões não aparecem (evita o pulo ao abrir).

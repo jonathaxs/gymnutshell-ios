@@ -225,7 +225,7 @@ private struct ProgressRingView: View {
     let emoji: String
     let lineWidth: CGFloat
     let emojiSize: CGFloat
-    /// Quando não-nil, desenha um contorno de 1pt nessa cor atrás do anel, pra separar
+    /// Quando não-nil, desenha um contorno de 2pt nessa cor atrás do anel, pra separar
     /// o anel de fundos coloridos.
     var borderColor: Color? = nil
 

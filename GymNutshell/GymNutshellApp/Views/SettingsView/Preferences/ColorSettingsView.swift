@@ -100,7 +100,8 @@ struct ColorSettingsView: View {
 
 // MARK: - Prévia
 
-/// Mini versão da Today com a cor escolhida: anel + %, dois botões de categoria e uma meta com − / +.
+/// Mini versão da Today só com o que recebe a cor escolhida: %, dois botões de categoria e uma meta com − / +.
+/// O anel fica de fora porque as cores dele são fixas.
 private struct ColorPreviewCard: View {
 
     let color: Color
@@ -108,11 +109,6 @@ private struct ColorPreviewCard: View {
     var body: some View {
         VStack(spacing: 18) {
             HStack(spacing: 18) {
-                SegmentedProgressRing(progress: 0.62, lineWidth: 10, animated: false) {
-                    Text("💪").font(.system(size: 28))
-                }
-                .frame(width: 84, height: 84)
-
                 VStack(alignment: .leading, spacing: 2) {
                     Text("62%")
                         .font(.system(size: 36, weight: .bold, design: .rounded))

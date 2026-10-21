@@ -11,7 +11,8 @@ import SwiftUI
 import GymNutshellCore
 
 /// Tela de settings pra editar o perfil básico do usuário.
-/// Salva ao sair da tela; trocar o sexo não mexe nas metas nem na cor de destaque.
+/// Salva ao sair da tela; trocar o sexo não mexe nas metas, mas leva a cor de destaque pra a padrão do sexo
+/// (feminino violeta, masculino azul), como na Welcome. Dá pra trocar de novo em Cor de destaque.
 struct ProfileSettingsView: View {
 
     @State private var name: String = ""
@@ -69,12 +70,18 @@ struct ProfileSettingsView: View {
             name = defaults.string(forKey: UserProfile.nameKey) ?? ""
             sex = UserProfile.normalizedSex(defaults.string(forKey: UserProfile.sexKey) ?? "")
         }
+        // Troca do sexo vale na hora (a cor de destaque muda junto, sem esperar sair da tela).
+        .onChange(of: sex) { save() }
         .onDisappear { save() }
     }
 
     private func save() {
         let defaults = UserDefaults.standard
+        let previousSex = UserProfile.normalizedSex(defaults.string(forKey: UserProfile.sexKey) ?? "")
         defaults.set(name.trimmingCharacters(in: .whitespacesAndNewlines), forKey: UserProfile.nameKey)
         defaults.set(sex, forKey: UserProfile.sexKey)
+        if sex != previousSex {
+            defaults.set(AppAccentColor.defaultForSex(sex).rawValue, forKey: AppAccentColor.storageKey)
+        }
     }
 }

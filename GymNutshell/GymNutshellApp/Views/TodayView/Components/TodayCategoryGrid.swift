@@ -160,7 +160,7 @@ struct TodayCategoryGrid: View {
         .buttonStyle(.plain)
         .pressScale(1.05, response: 0.25, dampingFraction: 0.6)
         // Balão abaixo do botão (seta no topo).
-        .categoryPopover(isPresented: isOpen) {
+        .downwardPopover(isPresented: isOpen) {
             popoverContent(tile)
         }
         .accessibilityElement(children: .ignore)
@@ -232,12 +232,13 @@ private struct TodayCategoryPopover: View {
 
 // MARK: - Balão abaixo do botão
 
-private extension View {
+/// Também usado no Visualizar das telas de Emoji (Welcome e Ajustes).
+extension View {
 
     /// iOS 26+: popover do SwiftUI, que respeita a seta no topo. iOS 18: o SwiftUI ignora o
     /// arrowEdge e abria o balão pra cima, então o UIKit apresenta com a seta só pra cima.
     @ViewBuilder
-    func categoryPopover<Content: View>(isPresented: Binding<Bool>,
+    func downwardPopover<Content: View>(isPresented: Binding<Bool>,
                                         @ViewBuilder content: @escaping () -> Content) -> some View {
         if #available(iOS 26.0, *) {
             self.popover(isPresented: isPresented, attachmentAnchor: .point(.bottom), arrowEdge: .top) {

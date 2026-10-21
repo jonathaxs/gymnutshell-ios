@@ -147,7 +147,7 @@ struct WidgetBackgroundSettingsView: View {
         let width: CGFloat = wide ? size * 2.1 : size
         let isSystem = mode == .system
         let sourceColor: Color = mode == .accent ? accentColor : pickedColor
-        let textColor: Color = isSystem ? .primary : .white
+        let textColor: Color = isSystem ? .primary : WidgetBackground.contrastingForegroundColor(for: sourceColor)
         RoundedRectangle(cornerRadius: 24, style: .continuous)
             .fill(isSystem
                   ? AnyShapeStyle(Color(.secondarySystemGroupedBackground))
@@ -155,7 +155,10 @@ struct WidgetBackgroundSettingsView: View {
             .frame(width: width, height: size)
             .overlay {
                 HStack(spacing: 12) {
-                    SegmentedProgressRing(progress: 0.62, lineWidth: size * 0.09, animated: false) {
+                    // Mesma borda do widget de verdade: separa o anel do fundo colorido (o azul do anel
+                    // some num fundo azul sem ela).
+                    SegmentedProgressRing(progress: 0.62, lineWidth: size * 0.09, animated: false,
+                                          borderColor: isSystem ? nil : textColor) {
                         Text("💪").font(.system(size: size * 0.26))
                     }
                     .frame(width: size * 0.62, height: size * 0.62)
