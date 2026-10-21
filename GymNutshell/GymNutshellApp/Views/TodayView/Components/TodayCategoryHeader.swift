@@ -10,7 +10,7 @@ import SwiftUI
 import GymNutshellCore
 
 extension EnvironmentValues {
-    /// Namespace da troca lista ↔ grade na Hoje (iPhone em retrato). nil = sem transformação.
+    /// Namespace da troca lista ↔ grade na Hoje. nil = sem transformação.
     @Entry var todayMorphNamespace: Namespace.ID? = nil
 }
 

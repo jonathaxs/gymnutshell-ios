@@ -3,8 +3,8 @@
 //
 //  Propósito: Bloco hero da tela Hoje, no topo (retrato) ou na coluna esquerda (landscape/iPad).
 //             Contém: data grande + sino e engrenagem (opcional), o anel de progresso com a % no centro,
-//             depois do primeiro registro a conquista do dia ao lado, a frase do próximo nível e os
-//             botões das páginas Histórico e Conquistas (+ troca lista/grade no iPhone em retrato).
+//             depois do primeiro registro a conquista do dia ao lado e a frase do próximo nível. Os botões
+//             das páginas (TodayPageButtons, no fim do arquivo) são posicionados pela TodayView.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -24,10 +24,6 @@ struct TodayHeroView: View {
     var verticalLayout: Bool = false
     /// false no iPhone em retrato: a data + sino + engrenagem ficam fixos no topo da tela, fora do hero.
     var showsHeader: Bool = true
-    /// true no iPhone em retrato: mostra ao lado de Conquistas o botão que alterna lista/grade das metas.
-    var showsViewModeToggle: Bool = false
-    /// false no iPhone em retrato: a TodayView posiciona os botões (acima ou abaixo da grade, conforme o modo).
-    var showsPageButtons: Bool = true
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -108,10 +104,6 @@ struct TodayHeroView: View {
                 .frame(maxWidth: .infinity)
 
                 caption
-
-                if showsPageButtons {
-                    TodayPageButtons(showsViewModeToggle: showsViewModeToggle)
-                }
             }
             .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.55, dampingFraction: 0.82),
                        value: hasStarted)
@@ -183,12 +175,9 @@ struct TodayHeroView: View {
 
 // MARK: - Botões das páginas
 
-/// Histórico (com texto) e Conquistas (só o troféu) abrem como páginas por cima da Hoje.
-/// Os botões abraçam o conteúdo: a linha fica estreita e centralizada, perto da largura da frase acima.
+/// Troca lista/grade das metas, Histórico (com texto) e Conquistas (só o troféu), que abrem como páginas por
+/// cima da Hoje. Os botões abraçam o conteúdo: a linha fica estreita e centralizada, perto da largura da frase acima.
 struct TodayPageButtons: View {
-
-    /// true no iPhone em retrato: mostra ao lado de Conquistas o botão que alterna lista/grade das metas.
-    var showsViewModeToggle: Bool = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(AppRouter.self) private var router
@@ -200,9 +189,7 @@ struct TodayPageButtons: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            if showsViewModeToggle {
-                viewModeButton
-            }
+            viewModeButton
             recordsButton
             achievementsButton
         }
@@ -239,7 +226,7 @@ struct TodayPageButtons: View {
         .accessibilityLabel(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
     }
 
-    /// Alterna entre lista e grade das metas (só no iPhone em retrato, onde o modo vale).
+    /// Alterna entre lista e grade das metas.
     private var viewModeButton: some View {
         let current = TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list
         let next: TodayGoalsViewMode = current == .list ? .grid : .list

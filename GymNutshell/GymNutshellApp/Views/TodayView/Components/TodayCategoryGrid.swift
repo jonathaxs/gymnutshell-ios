@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayCategoryGrid.swift
 //
-//  Propósito: Grade de categorias da tela Hoje (iPhone retrato, modo "Grade"). Cada categoria vira um botão redondo de
+//  Propósito: Grade de categorias da tela Hoje (modo "Grade", no retrato e no layout largo). Cada categoria vira um botão redondo de
 //             vidro (iOS 26+) com ícone e mini anel de progresso, nome e contagem embaixo; tocar abre
 //             um balão (popover) abaixo do botão com os controles das metas daquela categoria.
 //             4 por linha; a última linha incompleta fica centralizada. No iOS 18 o balão é
@@ -15,7 +15,7 @@ import GymNutshellCore
 
 // MARK: - Modo de visualização das metas
 
-/// Como a Hoje mostra as metas no iPhone em retrato: lista agrupada (padrão) ou grade de botões com balão.
+/// Como a Hoje mostra as metas: lista agrupada (padrão) ou grade de botões com balão.
 enum TodayGoalsViewMode: String, CaseIterable {
     case list
     case grid

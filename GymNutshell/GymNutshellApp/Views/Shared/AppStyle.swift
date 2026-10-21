@@ -142,8 +142,9 @@ extension View {
 
 /// Cabeçalho da Hoje: sino do histórico de notificações à esquerda, título grande (a data) no meio e
 /// engrenagem de Ajustes à direita. As outras páginas usam a barra de navegação nativa.
-/// Com a barra vertical do sistema (iPhone Duo dobrado), o sino e a engrenagem viram itens da toolbar e
-/// o sistema os põe na coluna lateral, abaixo da barra de status; aqui fica só a data.
+/// Com a barra vertical do sistema (iPhone Duo dobrado), Ajustes, sino, Histórico, Conquistas e a troca
+/// lista/grade viram itens da toolbar, nessa ordem, e o sistema os põe na coluna lateral abaixo da barra de
+/// status; aqui fica só a data.
 struct AppTabHeader: View {
 
     let title: String
@@ -153,6 +154,9 @@ struct AppTabHeader: View {
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
 
     @State private var showNotificationHistory = false
 
@@ -186,8 +190,14 @@ struct AppTabHeader: View {
         .accessibilityElement(children: .contain)
         .toolbar {
             if usesVerticalBar {
-                ToolbarItem(placement: .topBarLeading) { bellButton }
-                ToolbarItem(placement: .topBarTrailing) { settingsButton }
+                // Um grupo só, pra coluna seguir esta ordem de cima pra baixo.
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    settingsButton
+                    bellButton
+                    recordsButton
+                    achievementsButton
+                    viewModeButton
+                }
             }
         }
         .sheet(isPresented: $showNotificationHistory) {
@@ -218,6 +228,49 @@ struct AppTabHeader: View {
                 .frame(width: usesVerticalBar ? nil : Self.iconSize, height: usesVerticalBar ? nil : Self.iconSize)
         }
         .accessibilityLabel(String(localized: "settings.header.title", bundle: .gymNutshellCore))
+    }
+
+    // Os três abaixo só existem na coluna lateral; fora dela ficam nos botões abaixo do anel (TodayPageButtons).
+
+    private var recordsButton: some View {
+        Button {
+            router.open(.statistics)
+        } label: {
+            Image(systemName: "clock.arrow.trianglehead.counterclockwise.rotate.90")
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(accentColor)
+        }
+        .accessibilityLabel(String(localized: "statistics.title", bundle: .gymNutshellCore))
+    }
+
+    private var achievementsButton: some View {
+        Button {
+            router.open(.achievements)
+        } label: {
+            Image(systemName: "trophy.fill")
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(accentColor)
+        }
+        .accessibilityLabel(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
+    }
+
+    private var viewModeButton: some View {
+        let current = TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list
+        let next: TodayGoalsViewMode = current == .list ? .grid : .list
+        return Button {
+            UISelectionFeedbackGenerator().selectionChanged()
+            withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82)) {
+                goalsViewModeRaw = next.rawValue
+            }
+        } label: {
+            // Ícone do modo pra onde vai: em lista, o de grade; em grade, o de lista.
+            Image(systemName: next.symbolName)
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(accentColor)
+                .contentTransition(.symbolEffect(.replace))
+        }
+        .accessibilityLabel(String(format: String(localized: "today.goals.viewMode.switch.a11y",
+                                                  bundle: .gymNutshellCore), next.title))
     }
 }
 

@@ -21,6 +21,8 @@ struct TodayView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scenePhase
     @Environment(AppRouter.self) private var router
+    // Duo dobrado: os botões das páginas vão pra coluna lateral (ver AppTabHeader).
+    @Environment(\.usesVerticalBar) private var usesVerticalBar
 
     /// Sheet de Editar metas / Editar controles aberta agora (nil = nenhuma).
     @State private var editSheet: EditSheet?
@@ -77,7 +79,7 @@ struct TodayView: View {
     // Estado de colapso das categorias de metas na TodayView.
     @AppStorage("today.goal.collapsed") private var todayCollapsedRaw: String = ""
 
-    // Modo de visualização das metas no iPhone em retrato (lista ou grade com balão).
+    // Modo de visualização das metas (lista ou grade com balão), no retrato e no layout largo.
     @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
     private var goalsViewMode: TodayGoalsViewMode { TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list }
 
@@ -451,11 +453,10 @@ struct TodayView: View {
             dailyProgress: dailyProgress,
             selectedTheme: selectedTheme,
             verticalLayout: vertical,
-            showsHeader: showsHeader,
-            showsViewModeToggle: !showsHeader,
-            // No retrato os botões ficam na TodayView, acima ou abaixo da grade conforme o modo.
-            showsPageButtons: showsHeader
+            showsHeader: showsHeader
         )
+        // Os botões das páginas ficam na TodayView: no retrato acima ou abaixo da grade conforme o modo,
+        // no layout largo abaixo do hero junto dos atalhos de edição (ou na coluna lateral do Duo).
     }
 
     // MARK: - Conteúdo das metas (agrupado por categoria)
@@ -728,9 +729,12 @@ struct TodayView: View {
                         .transition(.opacity)
                 }
 
-                TodayPageButtons(showsViewModeToggle: true)
-                    // Mesmo respiro entre a frase do hero e os botões de antes (o hero usa 16 por dentro).
-                    .padding(.top, goalsViewMode == .list ? -4 : 0)
+                // Com a barra vertical (Duo dobrado) esses botões vão pra coluna lateral.
+                if !usesVerticalBar {
+                    TodayPageButtons()
+                        // Mesmo respiro entre a frase do hero e os botões de antes (o hero usa 16 por dentro).
+                        .padding(.top, goalsViewMode == .list ? -4 : 0)
+                }
 
                 if goalsViewMode == .list {
                     goalsListBody(maxWidth: 560)
@@ -741,7 +745,7 @@ struct TodayView: View {
                     // Na lista a última meta termina num card sem respiro embaixo; a grade já tem folga.
                     .padding(.top, goalsViewMode == .list ? 12 : 0)
             }
-            // Só no retrato: lista e grade trocam com transformação (ícone ↔ círculo, nome ↔ nome).
+            // Lista e grade trocam com transformação (ícone ↔ círculo, nome ↔ nome).
             .environment(\.todayMorphNamespace, goalsMorphNamespace)
             // O modo muda pelo @AppStorage (fora da transação do botão), então a animação fica aqui.
             .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82),
@@ -813,6 +817,17 @@ struct TodayView: View {
 
     // MARK: - Layout largo (paisagem / iPad)
 
+    /// Abaixo do hero no layout largo: Histórico, Conquistas e a troca lista/grade (como no iPhone) e, embaixo,
+    /// os atalhos de edição. Com a barra vertical (Duo) os primeiros vão pra coluna lateral e os atalhos sobem.
+    private var wideHeroButtons: some View {
+        VStack(spacing: 12) {
+            if !usesVerticalBar {
+                TodayPageButtons()
+            }
+            editShortcuts
+        }
+    }
+
     private func wideLayout(vertical: Bool) -> some View {
         VStack(spacing: 0) {
             Spacer(minLength: 0)
@@ -822,16 +837,33 @@ struct TodayView: View {
                     Spacer(minLength: 0)
                     heroBlock(vertical: vertical)
                         .frame(maxWidth: .infinity, alignment: .center)
+                    wideHeroButtons
                     Spacer(minLength: 0)
                 }
                 .frame(width: UI.heroColumnWidth)
 
-                if vertical {
+                if goalsViewMode == .grid {
+                    // Mesma grade de botões com balão do iPhone, centralizada na coluna das metas.
+                    GeometryReader { goalsProxy in
+                        ScrollView {
+                            VStack(spacing: 0) {
+                                Spacer(minLength: 0)
+                                TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
+                                    .frame(maxWidth: 560)
+                                Spacer(minLength: 0)
+                            }
+                            .frame(maxWidth: .infinity, minHeight: goalsProxy.size.height)
+                        }
+                    }
+                    .frame(maxWidth: vertical ? .infinity : UI.contentMaxWidth)
+                    .transition(.opacity)
+                } else if vertical {
                     // iPad com altura sobrando: metas em grid coluna-major, ocupa
                     // toda a largura disponível à direita do hero. O grid já tem
                     // GeometryReader+ScrollView internos, sem wrap extra aqui.
                     TodayGoalsGrid(cells: gridCells, animationKey: todayCollapsedRaw)
                         .frame(maxWidth: .infinity)
+                        .transition(.opacity)
                 } else {
                     // iPhone landscape / janela estreita: coluna única centralizada.
                     GeometryReader { goalsProxy in
@@ -845,8 +877,12 @@ struct TodayView: View {
                         }
                     }
                     .frame(width: UI.contentMaxWidth)
+                    .transition(.opacity)
                 }
             }
+            .environment(\.todayMorphNamespace, goalsMorphNamespace)
+            .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82),
+                       value: goalsViewModeRaw)
             // Em modo grid (iPad/macOS/Vision Pro com altura sobrando) cap o conjunto
             // hero + grid e centraliza no eixo horizontal, evita o conteúdo ficar
             // ancorado num canto quando a janela é estendida pra 4K.
