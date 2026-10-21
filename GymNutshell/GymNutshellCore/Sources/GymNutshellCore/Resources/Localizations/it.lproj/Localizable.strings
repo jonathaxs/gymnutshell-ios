@@ -280,7 +280,7 @@
 "appleWatch.sheet.intro" = "Per installare Gym Nutshell su Apple Watch, segui questi passaggi:";
 "appleWatch.sheet.step1" = "Apri l'app Watch su iPhone";
 "appleWatch.sheet.step2" = "Scorri fino alla sezione \"App disponibili\"";
-"appleWatch.sheet.step3" = "Tocca Installa accanto a Gym Nutshell";
+"appleWatch.sheet.step3" = "Tocca Installa accanto a Nutshell";
 "appleWatch.sheet.note" = "Se l'app è già installata, compare nella sezione \"Installate su Apple Watch\" in alto.";
 "settings.preference.language" = "Lingua";
 "settings.preference.measurementSystem" = "Unità di misura";
@@ -313,7 +313,6 @@
 "settings.tracking.goals.editMode" = "Modifica";
 "settings.goals.category.order.section" = "Ordine delle categorie";
 "settings.goal.water" = "Acqua";
-"settings.goal.calories" = "Calorie";
 "settings.goal.protein" = "Proteine";
 "settings.goal.carbs" = "Carboidrati";
 "settings.goal.fats" = "Grassi buoni";
@@ -346,7 +345,6 @@
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sonno";
 "today.metric.water" = "Acqua";
-"today.metric.calories" = "Calorie";
 "today.metric.protein" = "Proteine";
 "today.metric.carbs" = "Carboidrati";
 "today.metric.fats" = "Grassi buoni";
@@ -547,7 +545,7 @@
 "color.pink"   = "Rosa";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Colori in risalto";
+"settings.color.title"    = "Colore in risalto";
 "settings.color.subtitle" = "Colore principale usato in tutta l'app";
 "settings.color.preview" = "Anteprima";
 
@@ -641,10 +639,6 @@
 "notifications.kind.water.body"             = "Tempo per un bicchiere d'acqua? Continua ad avvicinarti al tuo obiettivo.";
 "notifications.kind.water.footer"           = "Ogni X minuti l'app ti ricorda di bere acqua. I promemoria si interrompono una volta raggiunto l'obiettivo giornaliero.";
 
-"notifications.kind.calories.title"         = "Calorie";
-"notifications.kind.calories.description"   = "Promemoria per raggiungere il tuo obiettivo calorico giornaliero.";
-"notifications.kind.calories.body"          = "È ora di registrare i pasti per raggiungere l'obiettivo calorico di oggi.";
-"notifications.kind.calories.footer"        = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo calorico.";
 "notifications.kind.protein.title"          = "Proteine";
 "notifications.kind.protein.description"    = "Promemoria per raggiungere il tuo obiettivo di proteine giornaliero.";
 "notifications.kind.protein.body"           = "È ora di fare il pieno di proteine per centrare l'obiettivo di oggi.";

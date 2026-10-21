@@ -50,7 +50,6 @@ public enum NotificationKind: String, CaseIterable, Identifiable, Sendable {
     // MARK: Metas
     case sleep
     case water
-    case calories
     case protein
     case carbs
     case goodFat
@@ -65,7 +64,7 @@ public enum NotificationKind: String, CaseIterable, Identifiable, Sendable {
     /// Todas as Metas + Progresso são editáveis; Conquista, Apple Saúde e Backup são eventos.
     public var isEditable: Bool {
         switch self {
-        case .progress, .sleep, .water, .calories, .protein, .carbs, .goodFat, .fiber,
+        case .progress, .sleep, .water, .protein, .carbs, .goodFat, .fiber,
              .workout, .cardio, .creatine:
             return true
         case .achievement, .appleHealth, .backup:
@@ -83,7 +82,7 @@ public enum NotificationKind: String, CaseIterable, Identifiable, Sendable {
         case .progress: return 150
         case .water:    return 120
         case .sleep:    return 180
-        case .calories, .protein, .carbs, .goodFat, .fiber, .workout, .cardio, .creatine:
+        case .protein, .carbs, .goodFat, .fiber, .workout, .cardio, .creatine:
             return 120
         default:
             return 0
@@ -129,7 +128,6 @@ public enum NotificationKind: String, CaseIterable, Identifiable, Sendable {
         case .cardio:   return "🏃"
         case .sleep:    return "💤"
         case .water:    return "💧"
-        case .calories: return "🔥"
         case .protein:  return "🍗"
         case .carbs:    return "🍞"
         case .goodFat:  return "🧈"
@@ -147,7 +145,6 @@ public enum NotificationKind: String, CaseIterable, Identifiable, Sendable {
         case .cardio:   return "tracking.cardio"
         case .sleep:    return "tracking.sleep"
         case .water:    return "tracking.water"
-        case .calories: return "tracking.calories"
         case .protein:  return "tracking.protein"
         case .carbs:    return "tracking.carbs"
         case .goodFat:  return "tracking.goodFat"

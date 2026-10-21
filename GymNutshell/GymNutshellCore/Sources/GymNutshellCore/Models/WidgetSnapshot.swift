@@ -212,7 +212,6 @@ extension WidgetSnapshot {
         case "tracking.cardio":   return "🏃"
         case "tracking.sleep":    return "💤"
         case "tracking.water":    return "💧"
-        case "tracking.calories": return "🔥"
         case "tracking.protein":  return "🍗"
         case "tracking.carbs":    return "🍞"
         case "tracking.goodFat":  return "🧈"
@@ -229,7 +228,6 @@ extension WidgetSnapshot {
         case "tracking.cardio":   locKey = "today.goals.cardio"
         case "tracking.sleep":    locKey = "today.metric.sleep"
         case "tracking.water":    locKey = "today.metric.water"
-        case "tracking.calories": locKey = "today.metric.calories"
         case "tracking.protein":  locKey = "today.metric.protein"
         case "tracking.carbs":    locKey = "today.metric.carbs"
         case "tracking.goodFat":  locKey = "today.metric.fats"
@@ -263,11 +261,6 @@ extension WidgetSnapshot {
             return ProgressHelpers.normalizedProgress(
                 current: defaults.integer(forKey: "waterIntake"),
                 goal: GoalsProvider.water
-            )
-        case "tracking.calories":
-            return ProgressHelpers.normalizedProgress(
-                current: defaults.integer(forKey: "caloriesIntake"),
-                goal: GoalsProvider.calories
             )
         case "tracking.protein":
             return ProgressHelpers.normalizedProgress(

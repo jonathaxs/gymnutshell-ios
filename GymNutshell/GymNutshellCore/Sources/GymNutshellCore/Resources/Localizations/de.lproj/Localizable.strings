@@ -263,7 +263,7 @@
 "appleWatch.sheet.intro" = "Um Gym Nutshell auf deiner Apple Watch zu installieren, befolge diese Schritte:";
 "appleWatch.sheet.step1" = "Öffne die Watch-App auf deinem iPhone";
 "appleWatch.sheet.step2" = "Scrolle zum Bereich \"Verfügbare Apps\"";
-"appleWatch.sheet.step3" = "Tippe neben Gym Nutshell auf Installieren";
+"appleWatch.sheet.step3" = "Tippe neben Nutshell auf Installieren";
 "appleWatch.sheet.note" = "Wenn die App bereits installiert ist, erscheint sie oben im Bereich \"Auf Apple Watch installiert\".";
 "settings.preference.language" = "Sprache";
 "settings.preference.measurementSystem" = "Einheiten";
@@ -296,7 +296,6 @@
 "settings.tracking.goals.editMode" = "Bearbeiten";
 "settings.goals.category.order.section" = "Kategoriereihenfolge";
 "settings.goal.water" = "Wasser";
-"settings.goal.calories" = "Kalorien";
 "settings.goal.protein" = "Protein";
 "settings.goal.carbs" = "Kohlenhydrate";
 "settings.goal.fats" = "Gute Fette";
@@ -329,7 +328,6 @@
 "today.restday.off" = "AUS";
 "today.metric.sleep" = "Schlaf";
 "today.metric.water" = "Wasser";
-"today.metric.calories" = "Kalorien";
 "today.metric.protein" = "Proteine";
 "today.metric.carbs" = "Kohlenhydrate";
 "today.metric.fats" = "Gute Fette";
@@ -528,7 +526,7 @@
 "color.pink"   = "Rosa";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Akzentfarben";
+"settings.color.title"    = "Akzentfarbe";
 "settings.color.subtitle" = "In der gesamten App verwendete Akzentfarbe";
 "settings.color.preview" = "Vorschau";
 
@@ -622,10 +620,6 @@
 "notifications.kind.water.body"             = "Zeit für ein Glas Wasser? Mach weiter in Richtung deines Tagesziels.";
 "notifications.kind.water.footer"           = "Alle X Minuten erinnert dich die App ans Trinken. Die Erinnerungen stoppen, sobald das Tagesziel erreicht ist.";
 
-"notifications.kind.calories.title"         = "Kalorien";
-"notifications.kind.calories.description"   = "Erinnerungen, um dein tägliches Kalorienziel zu erreichen.";
-"notifications.kind.calories.body"          = "Zeit, Mahlzeiten einzutragen, um dein heutiges Kalorienziel zu erreichen.";
-"notifications.kind.calories.footer"        = "Regelmäßige Erinnerungen stoppen, sobald du dein Kalorienziel erreicht hast.";
 
 "notifications.kind.protein.title"          = "Protein";
 "notifications.kind.protein.description"    = "Erinnerungen, um dein tägliches Proteinziel zu erreichen.";

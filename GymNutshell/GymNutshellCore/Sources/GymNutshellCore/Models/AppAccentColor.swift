@@ -12,14 +12,15 @@ import SwiftUI
 /// Cor de destaque configurável pelo usuário, usada em ícones de Settings,
 /// backgrounds de categoria na TodayView e seleções de tema no onboarding pós-conclusão.
 public enum AppAccentColor: String, CaseIterable, Sendable {
-    case red
-    case blue
+    // A ordem dos cases é a ordem da grade em Ajustes > Cor de destaque.
     case purple
+    case blue
     case green
+    case red
+    case pink
+    case cyan
     case yellow
     case orange
-    case cyan
-    case pink
 
     /// Chave de AppStorage usada pra persistir a escolha de cor do usuário.
     public static let storageKey = "profile.accentColor"

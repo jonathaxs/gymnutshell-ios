@@ -6,7 +6,6 @@ import Foundation
 
 @Test func metasMasculinasManutencao() {
     let r = GoalsCalculator.calculate(sex: "male", goal: .maintenance)
-    #expect(r.calories == 2650)
     #expect(r.water == 2750)
     #expect(r.protein == 150)
     #expect(r.carbs == 260)
@@ -16,7 +15,6 @@ import Foundation
 
 @Test func metasFemininasCutting() {
     let r = GoalsCalculator.calculate(sex: "female", goal: .cutting)
-    #expect(r.calories == 1650)
     #expect(r.water == 2250)
     #expect(r.protein == 135)
     #expect(r.carbs == 160)
@@ -49,7 +47,7 @@ import Foundation
     for sex in ["male", "female"] {
         let cut = GoalsCalculator.calculate(sex: sex, goal: .cutting)
         let bulk = GoalsCalculator.calculate(sex: sex, goal: .bulking)
-        #expect(bulk.calories > cut.calories)
+        #expect(bulk.carbs > cut.carbs)
     }
 }
 
@@ -62,7 +60,6 @@ import Foundation
         for goal in [UserGoal.bulking, .cutting] {
             let r = GoalsCalculator.rescale(current: base, sex: sex, from: .maintenance, to: goal)
             let t = GoalsCalculator.calculate(sex: sex, goal: goal)
-            #expect(r.calories == t.calories)
             #expect(r.protein == t.protein)
             #expect(r.carbs == t.carbs)
             #expect(r.goodFat == t.goodFat)
@@ -73,10 +70,10 @@ import Foundation
 
 @Test func recalculoRespeitaValorPersonalizado() {
     var mine = GoalsCalculator.calculate(sex: "male", goal: .maintenance)
-    mine.calories = 3000   // personalizado, acima da tabela
+    mine.carbs = 300   // personalizado, acima da tabela
     let r = GoalsCalculator.rescale(current: mine, sex: "male", from: .maintenance, to: .bulking)
-    // 3000 * 3050 / 2650 = 3452 -> 3450 (passo de 50)
-    #expect(r.calories == 3450)
+    // 300 * 340 / 260 = 392.3 -> 390 (passo de 10)
+    #expect(r.carbs == 390)
 }
 
 @Test func recalculoNaoMexeEmAguaSonoTreinoCardioCreatina() {
@@ -108,10 +105,10 @@ import Foundation
 
 @Test func recalculoLimitaAosRanges() {
     var mine = GoalsCalculator.calculate(sex: "male", goal: .maintenance)
-    mine.calories = 10000
+    mine.carbs = 1000
     mine.protein = 10
     let r = GoalsCalculator.rescale(current: mine, sex: "male", from: .maintenance, to: .bulking)
-    #expect(r.calories == 10000)
+    #expect(r.carbs == 1000)
     #expect(r.protein == 10)
 }
 
@@ -127,7 +124,7 @@ import Foundation
     defaults.set(30, forKey: "profile.age")
     defaults.set(1_000_000.0, forKey: "profile.birthday")
     defaults.set("other", forKey: UserProfile.sexKey)
-    defaults.set(2500, forKey: "tracking.calories")
+    defaults.set(180, forKey: "tracking.protein")
 
     UserProfile.migrateLegacyProfile(defaults: defaults)
 
@@ -137,7 +134,7 @@ import Foundation
     #expect(defaults.object(forKey: "profile.birthday") == nil)
     #expect(defaults.string(forKey: UserProfile.sexKey) == "male")
     // Metas já definidas na 1.0 continuam intactas.
-    #expect(defaults.integer(forKey: "tracking.calories") == 2500)
+    #expect(defaults.integer(forKey: "tracking.protein") == 180)
 }
 
 @Test func sexoFemininoSobreviveAMigracao() {
@@ -160,7 +157,16 @@ import Foundation
     """
     let payload = try BackupManager.decode(Data(json.utf8))
     #expect(payload.profile.name == "Ana")
-    #expect(payload.goals.calories == 2000)
+    #expect(payload.goals.protein == 150)
+}
+
+@Test func backupCodificadoMantemCampoCaloriesParaAndroid() throws {
+    let goals = BackupPayload.GoalsSnapshot(
+        sleep: 8, water: 2500, protein: 150, carbs: 260, goodFat: 70, fiber: 30
+    )
+    let data = try JSONEncoder().encode(goals)
+    let dict = try JSONSerialization.jsonObject(with: data) as? [String: Int]
+    #expect(dict?["calories"] == 2000)
 }
 
 // MARK: - Categoria personalizada (compat com a 1.0)

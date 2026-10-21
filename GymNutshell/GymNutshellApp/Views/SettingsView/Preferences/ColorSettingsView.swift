@@ -26,21 +26,21 @@ struct ColorSettingsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
 
-                // Prévia ao vivo: muda de cor assim que o usuário toca numa opção.
-                VStack(alignment: .leading, spacing: 8) {
-                    AppSectionLabel(text: String(localized: "settings.color.preview", bundle: .gymNutshellCore))
-                    ColorPreviewCard(color: selectedColor.color)
-                        .animation(.easeInOut(duration: 0.25), value: selectedColorRaw)
-                        // Prévia puramente visual, oculta do VoiceOver.
-                        .accessibilityHidden(true)
-                }
-
                 VStack(alignment: .leading, spacing: 8) {
                     AppSectionLabel(text: String(localized: "settings.color.subtitle", bundle: .gymNutshellCore))
                     grid
                         .padding(.vertical, 18)
                         .padding(.horizontal, 8)
                         .appCard()
+                }
+
+                // Prévia ao vivo, abaixo das cores: muda assim que o usuário toca numa opção.
+                VStack(alignment: .leading, spacing: 8) {
+                    AppSectionLabel(text: String(localized: "settings.color.preview", bundle: .gymNutshellCore))
+                    ColorPreviewCard(color: selectedColor.color)
+                        .animation(.easeInOut(duration: 0.25), value: selectedColorRaw)
+                        // Prévia puramente visual, oculta do VoiceOver.
+                        .accessibilityHidden(true)
                 }
             }
             .padding(.horizontal, AppStyle.horizontalPadding)

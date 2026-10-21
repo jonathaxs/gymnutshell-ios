@@ -285,7 +285,7 @@
 "appleWatch.sheet.intro" = "Para instalar Gym Nutshell en tu Apple Watch, sigue estos pasos:";
 "appleWatch.sheet.step1" = "Abre la app Watch en tu iPhone";
 "appleWatch.sheet.step2" = "Baja hasta la sección \"Apps disponibles\"";
-"appleWatch.sheet.step3" = "Toca Instalar junto a Gym Nutshell";
+"appleWatch.sheet.step3" = "Toca Instalar junto a Nutshell";
 "appleWatch.sheet.note" = "Si la app ya está instalada, aparecerá arriba en la sección \"Instaladas en el Apple Watch\".";
 "settings.preference.language" = "Idioma";
 "settings.preference.measurementSystem" = "Medidas";
@@ -318,7 +318,6 @@
 "settings.tracking.goals.editMode" = "Editar";
 "settings.goals.category.order.section" = "Orden de las categorías";
 "settings.goal.water" = "Agua";
-"settings.goal.calories" = "Calorías";
 "settings.goal.protein" = "Proteína";
 "settings.goal.carbs" = "Carbohidratos";
 "settings.goal.fats" = "Grasa buena";
@@ -351,7 +350,6 @@
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sueño";
 "today.metric.water" = "Agua";
-"today.metric.calories" = "Calorías";
 "today.metric.protein" = "Proteínas";
 "today.metric.carbs" = "Carbohidratos";
 "today.metric.fats" = "Grasa buena";
@@ -551,7 +549,7 @@
 "color.pink"   = "Rosa";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Colores de énfasis";
+"settings.color.title"    = "Color de énfasis";
 "settings.color.subtitle" = "Color de énfasis usado en toda la app";
 "settings.color.preview" = "Vista previa";
 
@@ -645,10 +643,6 @@
 "notifications.kind.water.body"             = "¿Momento de un vaso de agua? Sigue avanzando hacia tu meta diaria.";
 "notifications.kind.water.footer"           = "Cada X minutos la app te recuerda beber agua. Los recordatorios se detienen al alcanzar tu meta diaria.";
 
-"notifications.kind.calories.title"         = "Calorías";
-"notifications.kind.calories.description"   = "Recordatorios para cumplir tu meta diaria de calorías.";
-"notifications.kind.calories.body"          = "Momento de registrar tus comidas para alcanzar la meta de calorías de hoy.";
-"notifications.kind.calories.footer"        = "Los recordatorios periódicos se detienen al alcanzar tu meta de calorías.";
 
 "notifications.kind.protein.title"          = "Proteína";
 "notifications.kind.protein.description"    = "Recordatorios para cumplir tu meta diaria de proteína.";

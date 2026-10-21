@@ -39,9 +39,6 @@ struct TodayView: View {
     // Hidratação
     @AppStorage("waterIntake")    private var waterIntake:    Int = 0
 
-    // Energia
-    @AppStorage("caloriesIntake") private var caloriesIntake: Int = 0
-
     // Macros
     @AppStorage("proteinIntake")  private var proteinIntake:  Int = 0
     @AppStorage("carbIntake")     private var carbIntake:     Int = 0
@@ -112,7 +109,6 @@ struct TodayView: View {
     private let workoutGoal:  Int = GoalsProvider.workout
     private let cardioGoal:   Int = GoalsProvider.cardio
     private let sleepGoal:    Int = GoalsProvider.sleep
-    private let caloriesGoal: Int = GoalsProvider.calories
     private let proteinGoal:  Int = GoalsProvider.protein
     private let carbGoal:     Int = GoalsProvider.carbs
     private let goodFatGoal:  Int = GoalsProvider.goodFat
@@ -194,7 +190,6 @@ struct TodayView: View {
         case "tracking.cardio":   return cardioRestDay  ? 1.0 : ProgressHelpers.normalizedProgress(current: cardioIntake,   goal: cardioGoal)
         case "tracking.sleep":    return ProgressHelpers.normalizedProgress(current: sleepHours,     goal: sleepGoal)
         case "tracking.water":    return ProgressHelpers.normalizedProgress(current: waterIntake,    goal: waterGoal)
-        case "tracking.calories": return ProgressHelpers.normalizedProgress(current: caloriesIntake, goal: caloriesGoal)
         case "tracking.protein":  return ProgressHelpers.normalizedProgress(current: proteinIntake,  goal: proteinGoal)
         case "tracking.carbs":    return ProgressHelpers.normalizedProgress(current: carbIntake,     goal: carbGoal)
         case "tracking.goodFat":  return ProgressHelpers.normalizedProgress(current: goodFatIntake,  goal: goodFatGoal)
@@ -288,10 +283,6 @@ struct TodayView: View {
             TrackingGoalRowView(emoji: "💧", title: String(localized: "today.metric.water", bundle: .gymNutshellCore),
                                 unit: waterUnit, increment: waterIncrement,
                                 goal: waterGoalDisplay, value: waterIntakeBinding)
-        case "tracking.calories":
-            TrackingGoalRowView(emoji: "🔥", title: String(localized: "today.metric.calories", bundle: .gymNutshellCore),
-                                unit: "kcal", increment: DefaultGoals.caloriesIncrement,
-                                goal: caloriesGoal, value: $caloriesIntake)
         case "tracking.protein":
             TrackingGoalRowView(emoji: "🍗", title: String(localized: "today.metric.protein", bundle: .gymNutshellCore),
                                 unit: "g", increment: 20, goal: proteinGoal, value: $proteinIntake)
@@ -340,7 +331,6 @@ struct TodayView: View {
     private func finishSpecificDay(_ date: Date) {
         // Inclui os intakes das novas metas built-in no dicionário de valores customizados.
         var allIntakes = customTrackingIntakes
-        allIntakes["tracking.calories"] = caloriesIntake
         allIntakes["tracking.workout"]  = workoutIntake
         allIntakes["tracking.cardio"]   = cardioIntake
         allIntakes["tracking.creatine"] = creatineIntake
@@ -379,7 +369,6 @@ struct TodayView: View {
         cardioRestDay  = false
         sleepHours     = 0
         waterIntake    = 0
-        caloriesIntake = 0
         proteinIntake  = 0
         carbIntake     = 0
         goodFatIntake  = 0

@@ -262,7 +262,7 @@
 "appleWatch.sheet.intro" = "若要在 Apple Watch 上安装 Gym Nutshell，请按以下步骤操作：";
 "appleWatch.sheet.step1" = "在 iPhone 上打开 Watch App";
 "appleWatch.sheet.step2" = "滚动至“可用 App”部分";
-"appleWatch.sheet.step3" = "轻点 Gym Nutshell 旁边的“安装”";
+"appleWatch.sheet.step3" = "轻点 Nutshell 旁边的“安装”";
 "appleWatch.sheet.note" = "如果 App 已安装，它会显示在顶部的“已在 Apple Watch 上安装”部分。";
 "settings.preference.language" = "语言";
 "settings.preference.measurementSystem" = "度量衡单位";
@@ -295,7 +295,6 @@
 "settings.tracking.goals.editMode" = "编辑";
 "settings.goals.category.order.section" = "分类顺序";
 "settings.goal.water" = "水";
-"settings.goal.calories" = "热量";
 "settings.goal.protein" = "蛋白质";
 "settings.goal.carbs" = "碳水化合物";
 "settings.goal.fats" = "优质脂肪";
@@ -328,7 +327,6 @@
 "today.restday.off" = "关闭";
 "today.metric.sleep" = "睡眠";
 "today.metric.water" = "喝水";
-"today.metric.calories" = "热量";
 "today.metric.protein" = "蛋白质";
 "today.metric.carbs" = "碳水";
 "today.metric.fats" = "优质脂肪";
@@ -611,10 +609,6 @@
 "notifications.kind.water.body"             = "该喝杯水了？继续向每日目标迈进吧。";
 "notifications.kind.water.footer"           = "App 会定期提醒你喝水。达成每日目标后将停止提醒。";
 
-"notifications.kind.calories.title"         = "热量";
-"notifications.kind.calories.description"   = "提醒摄入足够热量以达成每日目标。";
-"notifications.kind.calories.body"          = "该记录饮食了，快来达成今天的热量目标吧。";
-"notifications.kind.calories.footer"        = "达成热量目标后将停止定期提醒。";
 
 "notifications.kind.protein.title"          = "蛋白质";
 "notifications.kind.protein.description"    = "提醒摄入蛋白质以达成每日目标。";

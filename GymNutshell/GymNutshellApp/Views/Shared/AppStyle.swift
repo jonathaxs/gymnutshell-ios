@@ -219,6 +219,27 @@ struct IconBadge: View {
     }
 }
 
+// MARK: - GlassIcon
+
+/// Ícone das linhas de Ajustes: símbolo na cor da página dentro de um círculo de vidro,
+/// no mesmo espírito dos botões redondos da Hoje (sino e engrenagem).
+struct GlassIcon: View {
+
+    let systemName: String
+    let color: Color
+    var size: CGFloat = 32
+
+    var body: some View {
+        Image(systemName: systemName)
+            .font(.system(size: size * 0.46, weight: .semibold))
+            .foregroundStyle(color)
+            .frame(width: size, height: size)
+            .background(Circle().fill(color.opacity(0.14)))
+            .appGlass(in: Circle())
+            .accessibilityHidden(true)
+    }
+}
+
 // MARK: - RoundStepButton
 
 /// Botão redondo de vidro com -, + ou lixeira, usado nas metas e nos controles de registro.

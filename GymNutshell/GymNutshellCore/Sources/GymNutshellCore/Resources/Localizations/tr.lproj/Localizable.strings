@@ -262,7 +262,7 @@
 "appleWatch.sheet.intro" = "Gym Nutshell'ı Apple Watch'una yüklemek için aşağıdaki adımları izle:";
 "appleWatch.sheet.step1" = "iPhone'undaki Watch uygulamasını aç";
 "appleWatch.sheet.step2" = "\"Kullanılabilir Uygulamalar\" bölümüne kaydır";
-"appleWatch.sheet.step3" = "Gym Nutshell'ın yanındaki Yükle'ye dokun";
+"appleWatch.sheet.step3" = "Nutshell'ın yanındaki Yükle'ye dokun";
 "appleWatch.sheet.note" = "Uygulama zaten yüklüyse yukarıdaki \"Apple Watch'ta Yüklü\" bölümünde görünür.";
 "settings.preference.language" = "Dil";
 "settings.preference.measurementSystem" = "Ölçü Birimleri";
@@ -295,7 +295,6 @@
 "settings.tracking.goals.editMode" = "Düzenle";
 "settings.goals.category.order.section" = "Kategori sırası";
 "settings.goal.water" = "Su";
-"settings.goal.calories" = "Kalori";
 "settings.goal.protein" = "Protein";
 "settings.goal.carbs" = "Karbonhidrat";
 "settings.goal.fats" = "Sağlıklı Yağ";
@@ -328,7 +327,6 @@
 "today.restday.off" = "KAPALI";
 "today.metric.sleep" = "Uyku";
 "today.metric.water" = "Su";
-"today.metric.calories" = "Kalori";
 "today.metric.protein" = "Protein";
 "today.metric.carbs" = "Karbonhidrat";
 "today.metric.fats" = "Sağlıklı Yağ";
@@ -519,7 +517,7 @@
 "color.pink"   = "Pembe";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Vurgu renkleri";
+"settings.color.title"    = "Vurgu rengi";
 "settings.color.subtitle" = "Uygulama genelinde kullanılan vurgu rengi";
 "settings.color.preview" = "Önizleme";
 
@@ -613,10 +611,6 @@
 "notifications.kind.water.body"             = "Bir bardak su zamanı geldi mi? Günlük hedefine doğru ilerlemeye devam et.";
 "notifications.kind.water.footer"           = "Uygulama her X dakikada bir su içmeni hatırlatır. Günlük hedefine ulaştığında hatırlatıcılar durur.";
 
-"notifications.kind.calories.title"         = "Kalori";
-"notifications.kind.calories.description"   = "Günlük kalori hedefine ulaşman için hatırlatıcılar.";
-"notifications.kind.calories.body"          = "Bugünkü kalori hedefine ulaşmak için öğünlerini kaydetme zamanı.";
-"notifications.kind.calories.footer"        = "Kalori hedefine ulaştığında periyodik hatırlatıcılar durur.";
 "notifications.kind.protein.title"          = "Protein";
 "notifications.kind.protein.description"    = "Günlük protein hedefine ulaşman için hatırlatıcılar.";
 "notifications.kind.protein.body"           = "Bugünkü hedefine ulaşmak için biraz protein alma zamanı.";

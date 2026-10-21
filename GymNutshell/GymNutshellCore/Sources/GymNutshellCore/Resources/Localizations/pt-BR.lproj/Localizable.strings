@@ -298,7 +298,7 @@
 "appleWatch.sheet.intro" = "Pra instalar o Gym Nutshell no seu Apple Watch, siga os passos abaixo:";
 "appleWatch.sheet.step1" = "Abra o app Watch no iPhone";
 "appleWatch.sheet.step2" = "Role até a seção \"Apps Disponíveis\"";
-"appleWatch.sheet.step3" = "Toque em Instalar ao lado do Gym Nutshell";
+"appleWatch.sheet.step3" = "Toque em Instalar no Nutshell";
 "appleWatch.sheet.note" = "Se o app já estiver instalado, ele aparece na seção \"Instalados no Apple Watch\" acima.";
 "settings.preference.language" = "Idioma";
 "settings.preference.measurementSystem" = "Medidas";
@@ -331,7 +331,6 @@
 "settings.tracking.goals.editMode" = "Editar";
 "settings.goals.category.order.section" = "Ordem das categorias";
 "settings.goal.water" = "Água";
-"settings.goal.calories" = "Calorias";
 "settings.goal.protein" = "Proteína";
 "settings.goal.carbs" = "Carboidratos";
 "settings.goal.fats" = "Gordura Boa";
@@ -364,7 +363,6 @@
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sono";
 "today.metric.water" = "Água";
-"today.metric.calories" = "Calorias";
 "today.metric.protein" = "Proteínas";
 "today.metric.carbs" = "Carboidratos";
 "today.metric.fats" = "Gordura Boa";
@@ -572,7 +570,7 @@
 "color.pink"   = "Rosa";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Cores de destaque";
+"settings.color.title"    = "Cor de destaque";
 "settings.color.subtitle" = "Cor de destaque usada em todo o app";
 "settings.color.preview" = "Prévia";
 
@@ -666,10 +664,6 @@
 "notifications.kind.water.body"             = "Bora tomar um copo de água? Continue rumo à sua meta do dia.";
 "notifications.kind.water.footer"           = "A cada X minutos o app te lembra de beber água. Os lembretes param assim que você atinge sua meta diária.";
 
-"notifications.kind.calories.title"         = "Calorias";
-"notifications.kind.calories.description"   = "Lembretes para bater a meta diária de calorias.";
-"notifications.kind.calories.body"          = "Hora de registrar suas refeições pra bater a meta de calorias do dia.";
-"notifications.kind.calories.footer"        = "Lembretes periódicos param quando você atinge a meta de calorias.";
 "notifications.kind.protein.title"          = "Proteínas";
 "notifications.kind.protein.description"    = "Lembretes para bater a meta diária de proteínas.";
 "notifications.kind.protein.body"           = "Hora de caprichar na proteína pra bater sua meta do dia.";

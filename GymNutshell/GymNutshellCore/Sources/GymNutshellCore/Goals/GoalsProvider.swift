@@ -30,11 +30,6 @@ public enum GoalsProvider {
         stored(key: "tracking.water", fallback: DefaultGoals.water)
     }
 
-    // MARK: - Energia
-    public static var calories: Int {
-        stored(key: "tracking.calories", fallback: DefaultGoals.calories)
-    }
-
     // MARK: - Macros
     public static var protein: Int {
         stored(key: "tracking.protein", fallback: DefaultGoals.protein)
@@ -63,7 +58,7 @@ public enum GoalsProvider {
     /// Metas atuais do usuário (ou o padrão, onde nada foi definido), no formato do `GoalsCalculator`.
     public static var current: GoalsCalculator.Result {
         GoalsCalculator.Result(
-            calories: calories, water: water, protein: protein, carbs: carbs,
+            water: water, protein: protein, carbs: carbs,
             goodFat: goodFat, fiber: fiber, sleep: sleep, creatine: creatine,
             workout: workout, cardio: cardio
         )
@@ -72,7 +67,6 @@ public enum GoalsProvider {
     // MARK: - Salvar
     public static func save(_ result: GoalsCalculator.Result) {
         let defaults = UserDefaults.standard
-        defaults.set(result.calories, forKey: "tracking.calories")
         defaults.set(result.water,    forKey: "tracking.water")
         defaults.set(result.protein,  forKey: "tracking.protein")
         defaults.set(result.carbs,    forKey: "tracking.carbs")

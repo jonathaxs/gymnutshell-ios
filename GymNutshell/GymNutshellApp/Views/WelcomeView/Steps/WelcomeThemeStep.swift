@@ -77,7 +77,7 @@ struct WelcomeThemeStep: View {
             // a11y; botão Visualizar FORA pra ficar focável separado.
             HStack(spacing: 14) {
                 // Nome em cima e os 5 emojis numa linha só embaixo, pra caber o Visualizar ao lado.
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text(themeName)
                         .font(.body.weight(isSelected ? .semibold : .regular))
                         .foregroundStyle(.primary)
@@ -111,15 +111,19 @@ struct WelcomeThemeStep: View {
                                 : String(localized: "a11y.not.selected", bundle: .gymNutshellCore))
             .accessibilityHint(String(localized: "a11y.theme.hint", bundle: .gymNutshellCore))
 
-            // Mesmo visual do Adicionar da etapa de metas.
+            // Cápsula do tamanho do Adicionar da etapa de metas, mas cinza: a cor de destaque fica só na seleção.
             Button {
                 infoTheme = theme
             } label: {
-                Label(String(localized: "welcome.theme.preview", bundle: .gymNutshellCore), systemImage: "eye")
+                Text(String(localized: "welcome.theme.preview", bundle: .gymNutshellCore))
                     .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(Color.primary)
                     .lineLimit(1)
             }
-            .appProminentButton(accentColor, size: .regular)
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.capsule)
+            .controlSize(.regular)
+            .tint(.gray)
             .accessibilityLabel(String(format: String(localized: "a11y.theme.info.label.format",
                                                      bundle: .gymNutshellCore), themeName))
             .accessibilityHint(String(localized: "a11y.theme.info.hint",
@@ -127,8 +131,8 @@ struct WelcomeThemeStep: View {
         }
         .padding(.leading, 16)
         .padding(.trailing, 12)
-        .padding(.vertical, 8)
-        .frame(minHeight: 60)
+        .padding(.vertical, 14)
+        .frame(minHeight: 72)
         .background(isSelected ? accentColor.opacity(0.10) : .clear)
     }
 }

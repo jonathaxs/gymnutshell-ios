@@ -29,25 +29,32 @@ struct ThemeSettingsView: View {
                     ForEach(AppTheme.themes(in: category), id: \.self) { theme in
                         let isSelected = selectedTheme == theme
                         let themeName = theme.displayName(sex: sex)
-                        HStack {
-                            // Bloco esquerdo (prévia + nome + check) = elemento único de a11y;
-                            // botão de info fica FORA do combine pra ser focável separado.
-                            HStack {
-                                Text(theme.themeEmojis(sex: sex))
-                                    .font(.title3)
-                                    .accessibilityHidden(true)
+                        HStack(spacing: 8) {
+                            // Bloco esquerdo (nome + emojis + check) = elemento único de a11y;
+                            // botão Visualizar fica FORA do combine pra ser focável separado.
+                            // Mesmo layout da etapa Emoji da Welcome.
+                            HStack(spacing: 14) {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text(themeName)
+                                        .font(.body.weight(isSelected ? .semibold : .regular))
+                                        .foregroundStyle(.primary)
+                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.8)
 
-                                Text(themeName)
-                                    .foregroundColor(isSelected ? .white : Color.primary)
-
-                                Spacer()
-
-                                if isSelected {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(.white)
-                                        .font(.subheadline.weight(.bold))
+                                    Text(theme.themeEmojis(sex: sex))
+                                        .font(.body)
+                                        .lineLimit(1)
+                                        .fixedSize()
                                         .accessibilityHidden(true)
                                 }
+
+                                Spacer(minLength: 0)
+
+                                Image(systemName: "checkmark")
+                                    .font(.body.weight(.bold))
+                                    .foregroundStyle(accentColor)
+                                    .opacity(isSelected ? 1 : 0)
+                                    .accessibilityHidden(true)
                             }
                             .contentShape(Rectangle())
                             .tapButton { selectedTheme = theme }
@@ -61,17 +68,24 @@ struct ThemeSettingsView: View {
                             Button {
                                 infoTheme = theme
                             } label: {
-                                Image(systemName: "info.circle")
-                                .font(.title2)
-                                .frame(minWidth: 44, minHeight: 44)
+                                Text(String(localized: "welcome.theme.preview", bundle: .gymNutshellCore))
+                                    .font(.subheadline.weight(.semibold))
+                                    .foregroundStyle(Color.primary)
+                                    .lineLimit(1)
                             }
-                            .buttonStyle(.borderless)
-                            .tint(isSelected ? .white : .accentColor)
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.capsule)
+                            .controlSize(.regular)
+                            .tint(.gray)
                             .accessibilityLabel(String(format: String(localized: "a11y.theme.info.label.format",
                                                                      bundle: .gymNutshellCore), themeName))
                             .accessibilityHint(String(localized: "a11y.theme.info.hint", bundle: .gymNutshellCore))
                         }
-                        .listRowBackground(isSelected ? accentColor : nil)
+                        .padding(.vertical, 8)
+                        // Selecionado: fundo do card com um véu da cor de destaque (o véu sozinho deixaria a linha transparente).
+                        .listRowBackground(isSelected
+                                           ? Color(.secondarySystemGroupedBackground).overlay(accentColor.opacity(0.12))
+                                           : nil)
                     }
                 }
             }

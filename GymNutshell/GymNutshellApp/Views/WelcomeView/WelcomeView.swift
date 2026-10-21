@@ -150,8 +150,6 @@ struct WelcomeView: View {
         }
 
         // Marca metas opcionais de rastreio como removidas se o usuário não incluiu.
-        // Calorias saiu do onboarding: perfil novo começa sem ela.
-        RemovedItemsStore.remove("tracking.calories")
         if !includeFats  { RemovedItemsStore.remove("tracking.goodFat") }
 
         // Marca metas opcionais de suplementos como removidas se o usuário não incluiu.

@@ -32,7 +32,7 @@ public final class WatchConnectivityManager: NSObject, @unchecked Sendable {
     /// Chaves de ingestão diária, sincronizadas em ambas as direções.
     private static let intakeKeys: [String] = [
         "workoutIntake", "cardioIntake", "sleepHours", "waterIntake",
-        "caloriesIntake", "proteinIntake", "carbIntake", "goodFatIntake",
+        "proteinIntake", "carbIntake", "goodFatIntake",
         "fiberIntake", "creatineIntake"
     ]
 
@@ -64,7 +64,6 @@ public final class WatchConnectivityManager: NSObject, @unchecked Sendable {
         "tracking.cardio",
         "tracking.sleep",
         "tracking.water",
-        "tracking.calories",
         "tracking.protein",
         "tracking.carbs",
         "tracking.goodFat",

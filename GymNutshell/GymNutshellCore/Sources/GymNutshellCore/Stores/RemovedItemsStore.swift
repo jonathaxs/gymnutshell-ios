@@ -11,7 +11,6 @@ import Foundation
 public enum RemovedItemsStore {
 
     public static let removableTrackingKeys: Set<String> = [
-        "tracking.calories",
         "tracking.goodFat",
         "tracking.creatine"
     ]

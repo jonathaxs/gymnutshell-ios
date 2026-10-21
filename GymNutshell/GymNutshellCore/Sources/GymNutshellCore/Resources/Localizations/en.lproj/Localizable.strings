@@ -262,7 +262,7 @@
 "appleWatch.sheet.intro" = "To install Gym Nutshell on your Apple Watch, follow the steps below:";
 "appleWatch.sheet.step1" = "Open the Watch app on your iPhone";
 "appleWatch.sheet.step2" = "Scroll to the \"Available Apps\" section";
-"appleWatch.sheet.step3" = "Tap Install next to Gym Nutshell";
+"appleWatch.sheet.step3" = "Tap Install next to Nutshell";
 "appleWatch.sheet.note" = "If the app is already installed, it appears in the \"Installed on Apple Watch\" section above.";
 "settings.preference.language" = "Language";
 "settings.preference.measurementSystem" = "Measurements";
@@ -295,7 +295,6 @@
 "settings.tracking.goals.editMode" = "Edit";
 "settings.goals.category.order.section" = "Category order";
 "settings.goal.water" = "Water";
-"settings.goal.calories" = "Calories";
 "settings.goal.protein" = "Protein";
 "settings.goal.carbs" = "Carbohydrates";
 "settings.goal.fats" = "Good Fat";
@@ -328,7 +327,6 @@
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sleep";
 "today.metric.water" = "Water";
-"today.metric.calories" = "Calories";
 "today.metric.protein" = "Proteins";
 "today.metric.carbs" = "Carbs";
 "today.metric.fats" = "Good Fat";
@@ -519,7 +517,7 @@
 "color.pink"   = "Pink";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Accent colors";
+"settings.color.title"    = "Accent color";
 "settings.color.subtitle" = "Accent color used throughout the app";
 "settings.color.preview" = "Preview";
 
@@ -613,10 +611,6 @@
 "notifications.kind.water.body"             = "Time for a glass of water? Keep moving toward your daily goal.";
 "notifications.kind.water.footer"           = "Every X minutes the app reminds you to drink water. Reminders stop once you reach your daily goal.";
 
-"notifications.kind.calories.title"         = "Calories";
-"notifications.kind.calories.description"   = "Reminders to meet your daily calorie goal.";
-"notifications.kind.calories.body"          = "Time to log your meals to reach today's calorie goal.";
-"notifications.kind.calories.footer"        = "Periodic reminders stop once you hit your calorie goal.";
 "notifications.kind.protein.title"          = "Protein";
 "notifications.kind.protein.description"    = "Reminders to meet your daily protein goal.";
 "notifications.kind.protein.body"           = "Time to add some protein to reach today's goal.";

@@ -24,10 +24,6 @@ public enum DefaultGoals {
     // MARK: - Hidratação
     public static let water: Int = 3000
 
-    // MARK: - Energia
-    public static let calories: Int = 2000
-    public static let caloriesIncrement: Int = 50
-
     // MARK: - Macros
     public static let protein: Int = 150
     public static let carbs: Int = 300

@@ -283,7 +283,7 @@
 "appleWatch.sheet.intro" = "Pour installer Gym Nutshell sur ton Apple Watch, suis les étapes ci-dessous :";
 "appleWatch.sheet.step1" = "Ouvre l'app Watch sur ton iPhone";
 "appleWatch.sheet.step2" = "Fais défiler jusqu'à la section \"Apps disponibles\"";
-"appleWatch.sheet.step3" = "Touche Installer à côté de Gym Nutshell";
+"appleWatch.sheet.step3" = "Touche Installer à côté de Nutshell";
 "appleWatch.sheet.note" = "Si l'app est déjà installée, elle apparaît dans la section \"Installées sur l'Apple Watch\" ci-dessus.";
 "settings.preference.language" = "Langue";
 "settings.preference.measurementSystem" = "Unités";
@@ -316,7 +316,6 @@
 "settings.tracking.goals.editMode" = "Modifier";
 "settings.goals.category.order.section" = "Ordre des catégories";
 "settings.goal.water" = "Eau";
-"settings.goal.calories" = "Calories";
 "settings.goal.protein" = "Protéines";
 "settings.goal.carbs" = "Glucides";
 "settings.goal.fats" = "Bons lipides";
@@ -349,7 +348,6 @@
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sommeil";
 "today.metric.water" = "Eau";
-"today.metric.calories" = "Calories";
 "today.metric.protein" = "Protéines";
 "today.metric.carbs" = "Glucides";
 "today.metric.fats" = "Bons lipides";
@@ -551,7 +549,7 @@
 "color.pink"   = "Rose";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Couleurs d'accentuation";
+"settings.color.title"    = "Couleur d'accentuation";
 "settings.color.subtitle" = "Couleur d'accentuation utilisée dans toute l'app";
 "settings.color.preview" = "Aperçu";
 
@@ -645,10 +643,6 @@
 "notifications.kind.water.body"             = "Envie d'un verre d'eau ? Continue d'avancer vers ton objectif du jour.";
 "notifications.kind.water.footer"           = "Toutes les X minutes, l'app te rappelle de boire de l'eau. Les rappels s'arrêtent dès que tu atteins ton objectif quotidien.";
 
-"notifications.kind.calories.title"         = "Calories";
-"notifications.kind.calories.description"   = "Rappels pour atteindre ton objectif quotidien de calories.";
-"notifications.kind.calories.body"          = "Pense à enregistrer tes repas pour atteindre ton objectif de calories du jour.";
-"notifications.kind.calories.footer"        = "Les rappels réguliers s'arrêtent une fois ton objectif de calories atteint.";
 "notifications.kind.protein.title"          = "Protéines";
 "notifications.kind.protein.description"    = "Rappels pour atteindre ton objectif quotidien en protéines.";
 "notifications.kind.protein.body"           = "C'est le moment d'ajouter des protéines pour atteindre ton objectif du jour.";

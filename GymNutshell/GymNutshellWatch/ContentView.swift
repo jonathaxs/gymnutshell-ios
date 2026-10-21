@@ -23,7 +23,6 @@ struct ContentView: View {
     @AppStorage("cardioIntake")   private var cardioIntake:   Int = 0
     @AppStorage("sleepHours")     private var sleepHours:     Int = 0
     @AppStorage("waterIntake")    private var waterIntake:    Int = 0
-    @AppStorage("caloriesIntake") private var caloriesIntake: Int = 0
     @AppStorage("proteinIntake")  private var proteinIntake:  Int = 0
     @AppStorage("carbIntake")     private var carbIntake:     Int = 0
     @AppStorage("goodFatIntake")  private var goodFatIntake:  Int = 0
@@ -42,7 +41,6 @@ struct ContentView: View {
     @AppStorage("tracking.cardio")   private var cardioGoalValue:   Int = DefaultGoals.cardio
     @AppStorage("tracking.sleep")    private var sleepGoalValue:    Int = DefaultGoals.sleep
     @AppStorage("tracking.water")    private var waterGoalValue:    Int = DefaultGoals.water
-    @AppStorage("tracking.calories") private var caloriesGoalValue: Int = DefaultGoals.calories
     @AppStorage("tracking.protein")  private var proteinGoalValue:  Int = DefaultGoals.protein
     @AppStorage("tracking.carbs")    private var carbsGoalValue:    Int = DefaultGoals.carbs
     @AppStorage("tracking.goodFat")  private var goodFatGoalValue:  Int = DefaultGoals.goodFat
@@ -100,14 +98,6 @@ struct ContentView: View {
                 current: waterIntake, goal: waterGoalValue,
                 unit: "ml", increment: 250,
                 update: { waterIntake = $0 }
-            )
-        case "tracking.calories":
-            return GoalEntry(
-                id: key, emoji: "🔥",
-                displayName: String(localized: "today.metric.calories", bundle: .gymNutshellCore),
-                current: caloriesIntake, goal: caloriesGoalValue,
-                unit: "kcal", increment: DefaultGoals.caloriesIncrement,
-                update: { caloriesIntake = $0 }
             )
         case "tracking.protein":
             return GoalEntry(
@@ -278,7 +268,6 @@ struct ContentView: View {
         case "tracking.cardio":   return "cardioIntake"
         case "tracking.sleep":    return "sleepHours"
         case "tracking.water":    return "waterIntake"
-        case "tracking.calories": return "caloriesIntake"
         case "tracking.protein":  return "proteinIntake"
         case "tracking.carbs":    return "carbIntake"
         case "tracking.goodFat":  return "goodFatIntake"

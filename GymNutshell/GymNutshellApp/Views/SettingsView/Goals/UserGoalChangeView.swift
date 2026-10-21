@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/SettingsView/Goals/UserGoalChangeView.swift
 //
-//  Propósito: Permite ao usuário trocar o objetivo fitness principal. As metas de calorias, proteína,
+//  Propósito: Permite ao usuário trocar o objetivo fitness principal. As metas de proteína,
 //             carboidrato, gordura boa e fibra podem ser recalculadas na mesma proporção da tabela
 //             (a partir dos valores atuais, que ele pode ter personalizado) ou mantidas como estão.
 //             Água, sono, treino, cardio, creatina e metas personalizadas nunca mudam.
@@ -64,7 +64,6 @@ struct UserGoalChangeView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         AppSectionLabel(text: String(localized: "settings.goalchange.section.preview", bundle: .gymNutshellCore))
                         AppGroupedCard(dividerInset: 16) {
-                            previewRow("settings.goal.calories", \.calories, unit: " kcal")
                             previewRow("settings.goal.protein", \.protein, unit: " g")
                             previewRow("settings.goal.carbs", \.carbs, unit: " g")
                             previewRow("settings.goal.fats", \.goodFat, unit: " g")
@@ -92,7 +91,7 @@ struct UserGoalChangeView: View {
 
     // MARK: - Prévia
 
-    /// Linha "Calorias   2650 → 3050 kcal  +15%".
+    /// Linha "Proteína   150 → 165 g  +10%".
     private func previewRow(_ labelKey: String, _ keyPath: KeyPath<GoalsCalculator.Result, Int>, unit: String) -> some View {
         let old = currentGoals[keyPath: keyPath]
         let new = rescaledGoals[keyPath: keyPath]

@@ -13,7 +13,7 @@ import Foundation
 /// Fornece as metas diárias padrão a partir do objetivo de fitness e do sexo.
 ///
 /// Base da tabela: corpo de referência (homem 75 kg / 175 cm / 30 anos; mulher 62 kg / 163 cm / 30 anos),
-/// atividade moderada (×1.55), cutting −20% / bulking +15% de calorias, proteína 2.0–2.2 g/kg,
+/// atividade moderada (×1.55), proteína 2.0–2.2 g/kg,
 /// água 35 ml/kg e fibra ~14 g por 1000 kcal. Referências: ISSN, EFSA, IOM/AHA, AASM/NSF.
 public enum GoalsCalculator {
 
@@ -21,7 +21,6 @@ public enum GoalsCalculator {
 
     /// Guarda todas as metas diárias de um perfil.
     public struct Result: Sendable, Equatable {
-        public var calories: Int   // kcal
         public var water: Int      // ml
         public var protein: Int    // g
         public var carbs: Int      // g
@@ -33,7 +32,6 @@ public enum GoalsCalculator {
         public var cardio: Int     // min (fixo = DefaultGoals.cardio)
 
         public init(
-            calories: Int,
             water: Int,
             protein: Int,
             carbs: Int,
@@ -44,7 +42,6 @@ public enum GoalsCalculator {
             workout: Int,
             cardio: Int
         ) {
-            self.calories = calories
             self.water = water
             self.protein = protein
             self.carbs = carbs
@@ -61,7 +58,6 @@ public enum GoalsCalculator {
 
     /// Valores variáveis de uma combinação objetivo × sexo.
     private struct Row {
-        let calories: Int
         let water: Int
         let protein: Int
         let carbs: Int
@@ -71,16 +67,16 @@ public enum GoalsCalculator {
 
     // Homem: cutting / manutenção / bulking.
     private static let male: [UserGoal: Row] = [
-        .cutting:     Row(calories: 2100, water: 2750, protein: 165, carbs: 190, goodFat: 55, fiber: 29),
-        .maintenance: Row(calories: 2650, water: 2750, protein: 150, carbs: 260, goodFat: 70, fiber: 37),
-        .bulking:     Row(calories: 3050, water: 2750, protein: 150, carbs: 340, goodFat: 85, fiber: 43)
+        .cutting:     Row(water: 2750, protein: 165, carbs: 190, goodFat: 55, fiber: 29),
+        .maintenance: Row(water: 2750, protein: 150, carbs: 260, goodFat: 70, fiber: 37),
+        .bulking:     Row(water: 2750, protein: 150, carbs: 340, goodFat: 85, fiber: 43)
     ]
 
     // Mulher: cutting / manutenção / bulking.
     private static let female: [UserGoal: Row] = [
-        .cutting:     Row(calories: 1650, water: 2250, protein: 135, carbs: 160, goodFat: 45, fiber: 23),
-        .maintenance: Row(calories: 2050, water: 2250, protein: 125, carbs: 220, goodFat: 55, fiber: 29),
-        .bulking:     Row(calories: 2350, water: 2250, protein: 125, carbs: 280, goodFat: 70, fiber: 33)
+        .cutting:     Row(water: 2250, protein: 135, carbs: 160, goodFat: 45, fiber: 23),
+        .maintenance: Row(water: 2250, protein: 125, carbs: 220, goodFat: 55, fiber: 29),
+        .bulking:     Row(water: 2250, protein: 125, carbs: 280, goodFat: 70, fiber: 33)
     ]
 
     // MARK: - Cálculo
@@ -93,7 +89,6 @@ public enum GoalsCalculator {
         let row = table[goal] ?? table[.maintenance]!
 
         return Result(
-            calories: row.calories,
             water: row.water,
             protein: row.protein,
             carbs: row.carbs,
@@ -108,7 +103,7 @@ public enum GoalsCalculator {
 
     // MARK: - Recálculo proporcional
 
-    /// Reescala as metas atuais do usuário ao trocar de objetivo. Cada meta (calorias, proteína, carbo,
+    /// Reescala as metas atuais do usuário ao trocar de objetivo. Cada meta (proteína, carbo,
     /// gordura boa e fibra) é multiplicada por `tabela(sexo, novo) / tabela(sexo, antigo)`, então o que o
     /// usuário personalizou continua proporcional. Arredonda ao passo da Welcome e respeita os mesmos
     /// limites. Água, sono, treino, cardio e creatina não mudam.
@@ -125,7 +120,6 @@ public enum GoalsCalculator {
         }
 
         var result = current
-        result.calories = scaled(current.calories, old.calories, new.calories, step: 50, range: 500...10000)
         result.protein = scaled(current.protein, old.protein, new.protein, step: 5, range: 10...500)
         result.carbs = scaled(current.carbs, old.carbs, new.carbs, step: 10, range: 10...1000)
         result.goodFat = scaled(current.goodFat, old.goodFat, new.goodFat, step: 5, range: 5...300)

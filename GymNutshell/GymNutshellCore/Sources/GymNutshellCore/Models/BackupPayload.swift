@@ -149,7 +149,9 @@ public struct BackupPayload: Codable, Sendable {
     }
 
     public struct GoalsSnapshot: Codable, Sendable {
-        public let calories: Int
+        // Só por compatibilidade com o Android, que ainda lê o campo.
+        private static let legacyCalories = 2000
+
         public let sleep: Int
         public let water: Int
         public let protein: Int
@@ -157,8 +159,7 @@ public struct BackupPayload: Codable, Sendable {
         public let goodFat: Int
         public let fiber: Int
 
-        public init(calories: Int, sleep: Int, water: Int, protein: Int, carbs: Int, goodFat: Int, fiber: Int) {
-            self.calories = calories
+        public init(sleep: Int, water: Int, protein: Int, carbs: Int, goodFat: Int, fiber: Int) {
             self.sleep = sleep
             self.water = water
             self.protein = protein
@@ -172,17 +173,26 @@ public struct BackupPayload: Codable, Sendable {
             case goodFat = "fats"
         }
 
-        /// Decodificação tolerante: backups v3 e anteriores não têm `calories`,
-        /// nesse caso caímos no default do app pra não quebrar a restauração.
+        /// Decodificação tolerante: ignora `calories` se vier no JSON.
         public init(from decoder: Decoder) throws {
             let c = try decoder.container(keyedBy: CodingKeys.self)
-            self.calories = try c.decodeIfPresent(Int.self, forKey: .calories) ?? DefaultGoals.calories
-            self.sleep    = try c.decode(Int.self, forKey: .sleep)
-            self.water    = try c.decode(Int.self, forKey: .water)
-            self.protein  = try c.decode(Int.self, forKey: .protein)
-            self.carbs    = try c.decode(Int.self, forKey: .carbs)
-            self.goodFat  = try c.decode(Int.self, forKey: .goodFat)
-            self.fiber    = try c.decode(Int.self, forKey: .fiber)
+            self.sleep   = try c.decode(Int.self, forKey: .sleep)
+            self.water   = try c.decode(Int.self, forKey: .water)
+            self.protein = try c.decode(Int.self, forKey: .protein)
+            self.carbs   = try c.decode(Int.self, forKey: .carbs)
+            self.goodFat = try c.decode(Int.self, forKey: .goodFat)
+            self.fiber   = try c.decode(Int.self, forKey: .fiber)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var c = encoder.container(keyedBy: CodingKeys.self)
+            try c.encode(Self.legacyCalories, forKey: .calories)
+            try c.encode(sleep,   forKey: .sleep)
+            try c.encode(water,   forKey: .water)
+            try c.encode(protein, forKey: .protein)
+            try c.encode(carbs,   forKey: .carbs)
+            try c.encode(goodFat, forKey: .goodFat)
+            try c.encode(fiber,   forKey: .fiber)
         }
     }
 

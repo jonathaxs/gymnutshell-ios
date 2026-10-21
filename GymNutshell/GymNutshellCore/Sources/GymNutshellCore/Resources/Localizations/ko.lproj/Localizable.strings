@@ -262,7 +262,7 @@
 "appleWatch.sheet.intro" = "Apple Watch에 Gym Nutshell을 설치하려면 아래 단계를 따르세요:";
 "appleWatch.sheet.step1" = "iPhone에서 Watch 앱을 엽니다";
 "appleWatch.sheet.step2" = "\"설치 가능한 앱\" 섹션으로 스크롤합니다";
-"appleWatch.sheet.step3" = "Gym Nutshell 옆의 설치를 탭합니다";
+"appleWatch.sheet.step3" = "Nutshell 옆의 설치를 탭합니다";
 "appleWatch.sheet.note" = "이미 설치되어 있다면 위의 \"Apple Watch에 설치됨\" 섹션에 표시됩니다.";
 "settings.preference.language" = "언어";
 "settings.preference.measurementSystem" = "측정 단위";
@@ -295,7 +295,6 @@
 "settings.tracking.goals.editMode" = "편집";
 "settings.goals.category.order.section" = "카테고리 순서";
 "settings.goal.water" = "물";
-"settings.goal.calories" = "칼로리";
 "settings.goal.protein" = "단백질";
 "settings.goal.carbs" = "탄수화물";
 "settings.goal.fats" = "착한 지방";
@@ -328,7 +327,6 @@
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "수면";
 "today.metric.water" = "물";
-"today.metric.calories" = "칼로리";
 "today.metric.protein" = "단백질";
 "today.metric.carbs" = "탄수화물";
 "today.metric.fats" = "착한 지방";
@@ -613,10 +611,6 @@
 "notifications.kind.water.body"             = "시원한 물 한 잔 어때요? 오늘의 목표를 향해 달려보세요.";
 "notifications.kind.water.footer"           = "정해진 시간마다 물 마시기를 알려줘요. 일일 목표를 달성하면 알림이 멈춥니다.";
 
-"notifications.kind.calories.title"         = "칼로리";
-"notifications.kind.calories.description"   = "일일 칼로리 목표 달성을 위한 알림이에요.";
-"notifications.kind.calories.body"          = "오늘의 칼로리 목표를 위해 식사를 기록할 시간이에요.";
-"notifications.kind.calories.footer"        = "칼로리 목표를 달성하면 정기 알림이 멈춥니다.";
 "notifications.kind.protein.title"          = "단백질";
 "notifications.kind.protein.description"    = "일일 단백질 목표 달성을 위한 알림이에요.";
 "notifications.kind.protein.body"           = "오늘의 목표를 채우기 위해 단백질을 챙겨 드세요.";

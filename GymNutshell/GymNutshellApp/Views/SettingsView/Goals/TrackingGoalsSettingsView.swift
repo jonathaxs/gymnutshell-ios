@@ -91,8 +91,6 @@ struct TrackingGoalsSettingsView: View {
                 return ("💧", "fl oz", DefaultGoals.water, storedIncrement(for: key, fallback: UnitConverter.flOzWaterStep))
             }
             return ("💧", "ml", DefaultGoals.water, storedIncrement(for: key, fallback: 250))
-        case "tracking.calories":
-            return ("🔥", "kcal", DefaultGoals.calories, storedIncrement(for: key, fallback: DefaultGoals.caloriesIncrement))
         case "tracking.protein":
             return ("🍗", "g", DefaultGoals.protein, storedIncrement(for: key, fallback: 20))
         case "tracking.carbs":
@@ -124,7 +122,6 @@ struct TrackingGoalsSettingsView: View {
         case "tracking.cardio":   return String(localized: "today.goals.cardio", bundle: .gymNutshellCore)
         case "tracking.sleep":    return String(localized: "settings.goal.sleep", bundle: .gymNutshellCore)
         case "tracking.water":    return String(localized: "settings.goal.water", bundle: .gymNutshellCore)
-        case "tracking.calories": return String(localized: "settings.goal.calories", bundle: .gymNutshellCore)
         case "tracking.protein":  return String(localized: "settings.goal.protein", bundle: .gymNutshellCore)
         case "tracking.carbs":    return String(localized: "settings.goal.carbs", bundle: .gymNutshellCore)
         case "tracking.goodFat":  return String(localized: "settings.goal.fats", bundle: .gymNutshellCore)

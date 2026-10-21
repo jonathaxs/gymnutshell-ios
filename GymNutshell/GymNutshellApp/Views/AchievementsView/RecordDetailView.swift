@@ -26,14 +26,7 @@ struct RecordDetailView: View {
     // Por enquanto usamos as metas padrão do app (provider fixo).
     // No futuro isso pode vir de Settings.
     private let waterGoal: Int = GoalsProvider.water
-    private let caloriesGoal: Int = GoalsProvider.calories
     private let proteinGoal: Int = GoalsProvider.protein
-
-    // Calorias vivem no dicionário customValues do record (como treino/creatina), não em coluna própria.
-    private var caloriesValue: Int {
-        let dict = (try? JSONDecoder().decode([String: Int].self, from: record.customValues)) ?? [:]
-        return dict["tracking.calories"] ?? 0
-    }
     private let carbGoal: Int = GoalsProvider.carbs
     private let goodFatGoal: Int = GoalsProvider.goodFat
     private let fiberGoal: Int = GoalsProvider.fiber
@@ -91,14 +84,6 @@ struct RecordDetailView: View {
                     unit: "ml",
                     goal: waterGoal,
                     value: record.water
-                )
-
-                TrackingGoalRow(
-                    icon: "🔥",
-                    title: String(localized: "today.metric.calories", bundle: .gymNutshellCore),
-                    unit: "kcal",
-                    goal: caloriesGoal,
-                    value: caloriesValue
                 )
 
                 TrackingGoalRow(

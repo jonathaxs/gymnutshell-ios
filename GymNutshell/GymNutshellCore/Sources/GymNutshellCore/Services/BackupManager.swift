@@ -41,7 +41,6 @@ public enum BackupManager {
         let builtinCategoryOrder = GoalCategoryOrderStore.load().map(\.rawValue)
 
         let goals = BackupPayload.GoalsSnapshot(
-            calories: GoalsProvider.calories,
             sleep:   GoalsProvider.sleep,
             water:   GoalsProvider.water,
             protein: GoalsProvider.protein,
@@ -201,7 +200,6 @@ public enum BackupManager {
         }
 
         let g = payload.goals
-        defaults.set(g.calories, forKey: "tracking.calories")
         defaults.set(g.sleep,   forKey: "tracking.sleep")
         defaults.set(g.water,   forKey: "tracking.water")
         defaults.set(g.protein, forKey: "tracking.protein")

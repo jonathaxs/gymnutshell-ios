@@ -262,7 +262,7 @@
 "appleWatch.sheet.intro" = "Apple WatchにGym Nutshellをインストールするには、以下の手順に従ってください:";
 "appleWatch.sheet.step1" = "iPhoneで「Watch」アプリを開きます";
 "appleWatch.sheet.step2" = "「利用可能なApp」セクションまでスクロールします";
-"appleWatch.sheet.step3" = "Gym Nutshellの横にある「インストール」をタップします";
+"appleWatch.sheet.step3" = "Nutshellの横にある「インストール」をタップします";
 "appleWatch.sheet.note" = "すでにインストールされている場合は、上部の「Apple Watchにインストール済み」セクションに表示されます。";
 "settings.preference.language" = "言語";
 "settings.preference.measurementSystem" = "単位";
@@ -295,7 +295,6 @@
 "settings.tracking.goals.editMode" = "編集";
 "settings.goals.category.order.section" = "カテゴリーの順序";
 "settings.goal.water" = "水分";
-"settings.goal.calories" = "カロリー";
 "settings.goal.protein" = "タンパク質";
 "settings.goal.carbs" = "炭水化物";
 "settings.goal.fats" = "良質な脂質";
@@ -328,7 +327,6 @@
 "today.restday.off" = "オフ";
 "today.metric.sleep" = "睡眠";
 "today.metric.water" = "水分";
-"today.metric.calories" = "カロリー";
 "today.metric.protein" = "タンパク質";
 "today.metric.carbs" = "炭水化物";
 "today.metric.fats" = "良質な脂質";
@@ -613,10 +611,6 @@
 "notifications.kind.water.body"             = "お水を1杯いかがですか？毎日の目標に向かって進みましょう。";
 "notifications.kind.water.footer"           = "一定の間隔で水分補給をリマインドします。毎日の目標を達成すると通知は止まります。";
 
-"notifications.kind.calories.title"         = "カロリー";
-"notifications.kind.calories.description"   = "毎日のカロリー目標を達成するためのリマインダー。";
-"notifications.kind.calories.body"          = "今日のカロリー目標に向けて、食事を記録しましょう。";
-"notifications.kind.calories.footer"        = "定期リマインダーは、カロリー目標を達成すると停止します。";
 "notifications.kind.protein.title"          = "タンパク質";
 "notifications.kind.protein.description"    = "毎日のタンパク質目標を達成するためのリマインダー。";
 "notifications.kind.protein.body"           = "今日の目標達成に向けて、タンパク質を補給しましょう。";
