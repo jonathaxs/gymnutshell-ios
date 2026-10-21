@@ -201,8 +201,8 @@
 "settings.backup.icloud.auto.footer" = "\n새로운 업적이 업데이트될 때 백업이 자동으로 저장돼요.\n업적은 자정 이후 앱을 열 때 업데이트돼요.";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "기본";
-"settings.goals.optional.badge" = "추천";
+"settings.goals.remove" = "목표 삭제";
+"settings.goals.default.a11y" = "기본 목표";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "운동 목표";

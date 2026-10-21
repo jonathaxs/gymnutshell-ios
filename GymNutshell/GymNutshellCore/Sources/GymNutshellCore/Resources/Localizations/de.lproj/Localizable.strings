@@ -202,8 +202,8 @@
 "settings.backup.icloud.auto.footer" = "\nDas Backup wird automatisch gesichert, wenn ein neuer Erfolg aktualisiert wird.\nErfolge werden aktualisiert, wenn du die App nach Mitternacht öffnest.";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "Standard";
-"settings.goals.optional.badge" = "Empfohlen";
+"settings.goals.remove" = "Ziel löschen";
+"settings.goals.default.a11y" = "Standardziel";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Ziel";

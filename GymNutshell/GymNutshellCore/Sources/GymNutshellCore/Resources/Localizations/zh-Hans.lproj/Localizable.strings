@@ -201,8 +201,8 @@
 "settings.backup.icloud.auto.footer" = "\n新成就更新时会自动保存备份。\n成就将在午夜过后打开 App 时更新。";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "标准";
-"settings.goals.optional.badge" = "推荐";
+"settings.goals.remove" = "删除目标";
+"settings.goals.default.a11y" = "默认目标";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "健身目标";

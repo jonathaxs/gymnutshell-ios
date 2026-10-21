@@ -222,8 +222,8 @@
 "settings.backup.icloud.auto.footer" = "\nLa sauvegarde sera enregistrée automatiquement lors de la mise à jour d'un nouveau succès.\nLes succès sont mis à jour lorsque tu ouvres l'app après minuit.";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "Standard";
-"settings.goals.optional.badge" = "Recommandé";
+"settings.goals.remove" = "Supprimer l’objectif";
+"settings.goals.default.a11y" = "Objectif par défaut";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Objectif";

@@ -201,8 +201,8 @@
 "settings.backup.icloud.auto.footer" = "\n新しい成果が更新されたときに、バックアップが自動的に保存されます。\n成果は午前0時以降にアプリを開いたときに更新されます。";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "標準";
-"settings.goals.optional.badge" = "おすすめ";
+"settings.goals.remove" = "目標を削除";
+"settings.goals.default.a11y" = "標準の目標";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "目標";

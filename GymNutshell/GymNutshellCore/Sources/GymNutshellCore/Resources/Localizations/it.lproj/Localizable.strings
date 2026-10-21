@@ -219,8 +219,8 @@
 "settings.backup.icloud.auto.footer" = "\nIl backup verrà salvato automaticamente quando viene aggiornato un nuovo traguardo.\nI traguardi si aggiornano quando apri l'app dopo mezzanotte.";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "Standard";
-"settings.goals.optional.badge" = "Consigliato";
+"settings.goals.remove" = "Elimina obiettivo";
+"settings.goals.default.a11y" = "Obiettivo predefinito";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Obiettivo";

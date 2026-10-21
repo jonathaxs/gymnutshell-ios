@@ -237,8 +237,8 @@
 "settings.backup.icloud.auto.footer" = "\nO backup será salvo automaticamente quando uma nova conquista é atualizada.\nConquistas são atualizadas quando você abre o App após meia-noite.";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "Padrão";
-"settings.goals.optional.badge" = "Recomendado";
+"settings.goals.remove" = "Excluir meta";
+"settings.goals.default.a11y" = "Meta padrão";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Objetivo";

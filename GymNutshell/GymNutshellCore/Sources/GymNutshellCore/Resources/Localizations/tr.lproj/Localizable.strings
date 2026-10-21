@@ -201,8 +201,8 @@
 "settings.backup.icloud.auto.footer" = "\nYeni bir başarı güncellendiğinde yedek otomatik olarak kaydedilir.\nBaşarılar, gece yarısından sonra uygulamayı açtığında güncellenir.";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "Standart";
-"settings.goals.optional.badge" = "Önerilen";
+"settings.goals.remove" = "Hedefi sil";
+"settings.goals.default.a11y" = "Varsayılan hedef";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Hedef";

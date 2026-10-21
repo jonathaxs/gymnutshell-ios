@@ -13,7 +13,8 @@ import GymNutshellCore
 
 /// Exibe e gerencia todas as metas diárias agrupadas por categoria.
 /// Cada categoria é colapsável via chevron no header da seção.
-/// Metas opcionais removidas aparecem acinzentadas com botão + verde pra restaurar.
+/// Metas opcionais removidas aparecem acinzentadas com o botão Adicionar; segurar uma opcional
+/// incluída abre o balão com Excluir meta.
 struct TrackingGoalsSettingsView: View {
 
     // MARK: - Estado
@@ -110,10 +111,6 @@ struct TrackingGoalsSettingsView: View {
         return stored > 0 ? stored : fallback
     }
 
-    // Se uma chave de meta é obrigatória (não removível) ou opcional.
-    private static func isMandatory(_ key: String) -> Bool {
-        !RemovedItemsStore.removableTrackingKeys.contains(key)
-    }
 
     // Retorna o título de exibição localizado pra uma chave de meta fixa.
     private static func title(for key: String) -> String {
@@ -328,15 +325,23 @@ struct TrackingGoalsSettingsView: View {
                     .foregroundStyle(.secondary)
                     .opacity(0.6)
                 Spacer()
+                // Mesmo botão Adicionar da tela Suas metas da Welcome.
                 Button {
-                    RemovedItemsStore.restore(key)
-                    removedItems = RemovedItemsStore.load()
+                    UISelectionFeedbackGenerator().selectionChanged()
+                    withAnimation(.snappy(duration: 0.25)) {
+                        RemovedItemsStore.restore(key)
+                        removedItems = RemovedItemsStore.load()
+                    }
                 } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .foregroundStyle(.green)
-                        .font(.title3)
+                    // HStack em vez de Label: dentro da List o Label perde o ícone.
+                    HStack(spacing: 6) {
+                        Image(systemName: "plus")
+                        Text(String(localized: "welcome.option.add", bundle: .gymNutshellCore))
+                    }
+                    .font(.subheadline.weight(.semibold))
                 }
-                .buttonStyle(.plain)
+                .appProminentButton(accentColor, size: .regular)
+                .fixedSize()
                 .accessibilityLabel(String(localized: "a11y.button.restore.goal.label",
                                            bundle: .gymNutshellCore))
             }
@@ -361,12 +366,25 @@ struct TrackingGoalsSettingsView: View {
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Text(String(localized: Self.isMandatory(key)
-                            ? "settings.goals.mandatory.badge"
-                            : "settings.goals.optional.badge",
-                            bundle: .gymNutshellCore))
-                            .font(.caption)
-                            .foregroundStyle(.primary)
+                        // Selo de meta padrão do app (fixas e opcionais adicionadas), no lugar do texto.
+                        Image(systemName: "checkmark.seal.fill")
+                            .foregroundStyle(accentColor)
+                            .accessibilityLabel(String(localized: "settings.goals.default.a11y",
+                                                       bundle: .gymNutshellCore))
+                    }
+                }
+                // Segurar a meta opcional abre o balão com Excluir meta.
+                .contextMenu {
+                    if isRemovable {
+                        Button(role: .destructive) {
+                            withAnimation(.snappy(duration: 0.25)) {
+                                RemovedItemsStore.remove(key)
+                                removedItems = RemovedItemsStore.load()
+                            }
+                        } label: {
+                            Label(String(localized: "settings.goals.remove", bundle: .gymNutshellCore),
+                                  systemImage: "trash")
+                        }
                     }
                 }
                 // Botão remover pra metas opcionais no modo editar.

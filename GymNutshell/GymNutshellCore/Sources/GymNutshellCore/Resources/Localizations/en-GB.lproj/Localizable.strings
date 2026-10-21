@@ -201,8 +201,8 @@
 "settings.backup.icloud.auto.footer" = "\nThe backup will be saved automatically when a new achievement is updated.\nAchievements are updated when you open the app after midnight.";
 
 /* CheckinGoalsSettingsView.swift */
-"settings.goals.mandatory.badge" = "Standard";
-"settings.goals.optional.badge" = "Recommended";
+"settings.goals.remove" = "Delete Goal";
+"settings.goals.default.a11y" = "Default goal";
 
 /* FitnessGoalChangeView.swift */
 "settings.goalchange.title" = "Goal";
