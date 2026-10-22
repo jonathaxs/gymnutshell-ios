@@ -29,6 +29,8 @@ struct TodayView: View {
     @State private var editSheet: EditSheet?
     /// Balão do "Edição rápida" aberto.
     @State private var showQuickEdit = false
+    /// Dobra do iPhone Duo meio aberto usada no layout; segue a dobra real com animação.
+    @State private var displayedFold: TodayFold?
 
     // Metas de treino
     @AppStorage("workoutIntake")  private var workoutIntake:  Int = 0
@@ -813,15 +815,52 @@ struct TodayView: View {
             .matchedGeometryEffect(id: "editShortcuts", in: goalsMorphNamespace)
     }
 
-    private func wideLayout(vertical: Bool, buttonsInRail: Bool, compact: Bool) -> some View {
-        VStack(spacing: 0) {
+    /// Layout largo: hero e metas lado a lado. Com o iPhone Duo meio aberto os dois se afastam da dobra: como livro
+    /// (dobra vertical) o hero fica na metade esquerda e as metas na direita; como mesa (dobra horizontal) o hero
+    /// fica na metade de cima e as metas na de baixo. É o mesmo par de views nos três casos (o AnyLayout troca só o
+    /// arranjo), então abrir e fechar a dobra anima: as colunas esticam, encolhem e deslizam.
+    private func wideLayout(vertical: Bool, buttonsInRail: Bool, compact: Bool, fold: TodayFold?) -> some View {
+        let layout: AnyLayout
+        var heroWidth: CGFloat? = compact ? UI.compactHeroColumnWidth : UI.heroColumnWidth
+        var heroHeight: CGFloat? = nil
+        // Metas ao lado (grid coluna-major com altura sobrando) ou embaixo (lista, como no iPhone).
+        var goalsVertical = vertical
+        // Mesa: o hero sobe pro topo da metade de cima, longe da dobra; aberto reto fica centralizado nela.
+        var heroTopAligned = false
+        switch fold {
+        case .book(let band):
+            layout = AnyLayout(HStackLayout(alignment: .top, spacing: band.width))
+            heroWidth = max(band.minX, 0)
+        case .tabletop(let band):
+            layout = AnyLayout(VStackLayout(spacing: band.height))
+            heroWidth = nil
+            // O .padding(.vertical) de fora desloca tudo 16 pt pra baixo.
+            heroHeight = max(band.minY - 16, 0)
+            heroTopAligned = true
+            goalsVertical = false
+        case .flatPortrait(let splitY):
+            // Mesmo arranjo da mesa, pra abrir e fechar a dobra ser só uma separação animada.
+            layout = AnyLayout(VStackLayout(spacing: 16))
+            heroWidth = nil
+            heroHeight = max(splitY - 16, 0)
+            goalsVertical = false
+        case nil:
+            layout = AnyLayout(HStackLayout(alignment: .top, spacing: compact ? 16 : UI.wideHStackSpacing))
+        }
+        let centered = vertical && fold == nil
+
+        return VStack(spacing: 0) {
             Spacer(minLength: 0)
 
-            HStack(alignment: .top, spacing: compact ? 16 : UI.wideHStackSpacing) {
-                wideHeroColumn(vertical: vertical, buttonsInRail: buttonsInRail, compact: compact)
-                    .frame(width: compact ? UI.compactHeroColumnWidth : UI.heroColumnWidth)
+            layout {
+                wideHeroColumn(vertical: vertical && !compact && !isStacked(fold), buttonsInRail: buttonsInRail,
+                               compact: compact && fold == nil, topAligned: heroTopAligned)
+                    .padding(.horizontal, fold == nil ? 0 : 16)
+                    .frame(width: heroWidth, height: heroHeight)
+                    .frame(maxWidth: heroWidth == nil ? .infinity : nil)
 
-                wideGoalsColumn(vertical: vertical)
+                // Empilhadas embaixo do hero, as metas ficam na largura de lista do layout largo (perto da do hero).
+                wideGoalsColumn(vertical: goalsVertical)
             }
             .environment(\.todayMorphNamespace, goalsMorphNamespace)
             .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82),
@@ -830,10 +869,10 @@ struct TodayView: View {
             // hero + grid e centraliza no eixo horizontal, evita o conteúdo ficar
             // ancorado num canto quando a janela é estendida pra 4K.
             // No iPhone landscape (vertical=false) mantém leading pra hero colar
-            // na borda esquerda como o usuário pediu.
-            .frame(maxWidth: vertical ? 1400 : .infinity, alignment: vertical ? .center : .leading)
+            // na borda esquerda como o usuário pediu. Com a dobra, cola na borda pra bater com a faixa.
+            .frame(maxWidth: centered ? 1400 : .infinity, alignment: centered ? .center : .leading)
             .frame(maxWidth: .infinity, alignment: .center)
-            .padding(.horizontal, vertical && !compact ? 24 : 0)
+            .padding(.horizontal, centered && !compact ? 24 : 0)
 
             Spacer(minLength: 0)
         }
@@ -842,35 +881,23 @@ struct TodayView: View {
         .padding(.trailing)
     }
 
-    /// iPhone Duo meio aberto como livro (dobra vertical no meio da tela): o hero fica centralizado na metade
-    /// esquerda e as metas na direita, com a faixa da dobra (já com as margens do sistema) vazia entre os dois.
-    /// Assim nenhum controle (anel, botões, início dos sliders) fica em cima da dobra.
-    private func foldLayout(fold: CGRect, vertical: Bool, buttonsInRail: Bool) -> some View {
-        HStack(spacing: 0) {
-            wideHeroColumn(vertical: vertical, buttonsInRail: buttonsInRail, compact: false)
-                .padding(.horizontal)
-                .frame(width: max(fold.minX, 0))
-
-            Color.clear
-                .frame(width: fold.width)
-                .accessibilityHidden(true)
-
-            wideGoalsColumn(vertical: vertical)
-                .padding(.trailing)
-                .frame(maxWidth: .infinity)
+    /// Hero em cima e metas embaixo (Duo em pé, meio aberto ou reto).
+    private func isStacked(_ fold: TodayFold?) -> Bool {
+        switch fold {
+        case .tabletop, .flatPortrait: return true
+        case .book, nil:               return false
         }
-        .environment(\.todayMorphNamespace, goalsMorphNamespace)
-        .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82),
-                   value: goalsViewModeRaw)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.vertical)
     }
 
     /// Coluna do hero no layout largo: botões das páginas (sem coluna lateral), data, anel e conquista e, na lista,
     /// a Edição rápida.
-    private func wideHeroColumn(vertical: Bool, buttonsInRail: Bool, compact: Bool) -> some View {
+    private func wideHeroColumn(vertical: Bool, buttonsInRail: Bool, compact: Bool,
+                                topAligned: Bool = false) -> some View {
         VStack(alignment: .center, spacing: UI.heroInnerSpacing) {
-            Spacer(minLength: 0)
+            // Colado no topo, a sobra vai toda pra baixo (Duo meio aberto em pé: longe da dobra).
+            if !topAligned {
+                Spacer(minLength: 0)
+            }
             // Sem coluna lateral (iPad e Duo aberto em pé): a linha de botões fica acima da data.
             // Com a coluna (barra vertical do Duo ou a do iPad deitado) ela vai pra lá.
             if !buttonsInRail {
@@ -890,7 +917,7 @@ struct TodayView: View {
 
     /// Coluna das metas no layout largo: grade de categorias, metas em grid (altura sobrando) ou lista.
     @ViewBuilder
-    private func wideGoalsColumn(vertical: Bool) -> some View {
+    private func wideGoalsColumn(vertical: Bool, listWidth: CGFloat = UI.contentMaxWidth) -> some View {
         if goalsViewMode == .grid {
             // Mesma grade de botões com balão do iPhone, centralizada na coluna das metas.
             GeometryReader { goalsProxy in
@@ -923,24 +950,31 @@ struct TodayView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         Spacer(minLength: 0)
-                        goalsListBody()
+                        goalsListBody(maxWidth: listWidth)
                         Spacer(minLength: 0)
                     }
                     .frame(minHeight: goalsProxy.size.height)
                 }
             }
-            .frame(width: UI.contentMaxWidth)
+            .frame(maxWidth: listWidth)
+            .frame(maxWidth: .infinity)
             .transition(.opacity)
         }
     }
 
-    /// Faixa da dobra do iPhone Duo quando ele está meio aberto como livro (dobra vertical), já com as margens que
-    /// o sistema pede. Nil fora do Duo, aberto/fechado de vez ou com a dobra na horizontal.
-    private func activeVerticalFold(in proxy: GeometryProxy) -> CGRect? {
+    /// Dobra do iPhone Duo: a faixa ativa (meio aberto, já com as margens que o sistema pede) ou, aberto reto em
+    /// pé, só onde fica o meio da tela. A região inativa (que existe só no Duo) serve pra essa decisão estável.
+    /// Nil fora do Duo e no Duo aberto reto deitado.
+    private func activeFold(in proxy: GeometryProxy) -> TodayFold? {
         guard #available(iOS 27.1, *) else { return nil }
-        return proxy.reservedRegions(kind: .division)
-            .first { $0.isActive && $0.frame.height > $0.frame.width }?
-            .frame
+        let regions = proxy.reservedRegions(kind: .division, options: [.includeInactive])
+        if let band = regions.first(where: \.isActive)?.frame {
+            return band.height > band.width ? .book(band) : .tabletop(band)
+        }
+        if !regions.isEmpty && proxy.size.height > proxy.size.width {
+            return .flatPortrait(proxy.size.height / 2)
+        }
+        return nil
     }
 
     // MARK: - Corpo
@@ -962,15 +996,13 @@ struct TodayView: View {
             // iPad deitado (largo e mais largo que alto, sem a barra vertical do sistema): os botões de navegação
             // vão pra coluna de vidro à direita, no estilo da barra vertical do iPhone Duo.
             let sideRail = isWide && !usesVerticalBar && proxy.size.width > proxy.size.height
-            // Duo meio aberto como livro: dobra vertical no meio; hero de um lado e metas do outro.
-            let fold = isWide ? activeVerticalFold(in: proxy) : nil
+            // Duo meio aberto: hero e metas se afastam da dobra (ver wideLayout).
+            let fold = isWide ? activeFold(in: proxy) : nil
             Group {
-                if let fold {
-                    foldLayout(fold: fold, vertical: isTall, buttonsInRail: usesVerticalBar || sideRail)
-                } else if isWide {
+                if isWide {
                     HStack(alignment: .center, spacing: 0) {
                         wideLayout(vertical: isTall, buttonsInRail: usesVerticalBar || sideRail,
-                                   compact: compactWide)
+                                   compact: compactWide, fold: displayedFold)
                         if sideRail {
                             // Centralizada na altura, junto com o anel e as metas.
                             TodaySideRail()
@@ -980,6 +1012,13 @@ struct TodayView: View {
                     }
                 } else {
                     portraitLayout
+                }
+            }
+            // A dobra muda fora de qualquer transação (o sistema não anima); a animação vem daqui.
+            .onChange(of: fold, initial: true) { oldFold, newFold in
+                guard oldFold != newFold else { displayedFold = newFold; return }
+                withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.55, dampingFraction: 0.85)) {
+                    displayedFold = newFold
                 }
             }
         }
@@ -1067,6 +1106,18 @@ private extension View {
             .opacity(hidden ? 0 : 1)
             .animation(.spring(response: 0.75, dampingFraction: 0.8).delay(Double(index) * 0.12), value: hidden)
     }
+}
+
+// MARK: - Dobra do iPhone Duo
+
+/// Postura do iPhone Duo meio aberto, com a faixa da dobra (margens incluídas) no espaço da TodayView.
+fileprivate enum TodayFold: Equatable {
+    /// Dobra vertical: metades esquerda e direita.
+    case book(CGRect)
+    /// Dobra horizontal: metade de cima em pé, de baixo apoiada.
+    case tabletop(CGRect)
+    /// Aberto reto em pé: mesmo arranjo da mesa, dividido no meio da tela (y).
+    case flatPortrait(CGFloat)
 }
 
 // MARK: - Balão da edição rápida
