@@ -817,18 +817,28 @@ struct TodayView: View {
 
     // MARK: - Layout largo (paisagem / iPad)
 
-    /// Abaixo do hero no layout largo: Histórico, Conquistas e a troca lista/grade (como no iPhone) e, embaixo,
-    /// os atalhos de edição. Com a barra vertical (Duo) os primeiros vão pra coluna lateral e os atalhos sobem.
-    private var wideHeroButtons: some View {
+    /// Abaixo do hero no layout largo: troca lista/grade, Histórico e Conquistas (como no iPhone) e, na lista, os
+    /// atalhos de edição. Na grade os atalhos sobem pra cima dos botões das categorias. Com a coluna lateral
+    /// (barra vertical do Duo ou a coluna própria do iPad deitado) os três primeiros vão pra ela.
+    private func wideHeroButtons(buttonsInRail: Bool) -> some View {
         VStack(spacing: 12) {
-            if !usesVerticalBar {
+            if !buttonsInRail {
                 TodayPageButtons()
             }
-            editShortcuts
+            if goalsViewMode == .list {
+                wideEditShortcuts
+            }
         }
     }
 
-    private func wideLayout(vertical: Bool) -> some View {
+    /// Mesmos atalhos, com a mesma identidade nas duas posições: na troca lista ↔ grade eles deslizam entre o
+    /// hero e o topo da grade.
+    private var wideEditShortcuts: some View {
+        editShortcuts
+            .matchedGeometryEffect(id: "editShortcuts", in: goalsMorphNamespace)
+    }
+
+    private func wideLayout(vertical: Bool, buttonsInRail: Bool) -> some View {
         VStack(spacing: 0) {
             Spacer(minLength: 0)
 
@@ -837,7 +847,7 @@ struct TodayView: View {
                     Spacer(minLength: 0)
                     heroBlock(vertical: vertical)
                         .frame(maxWidth: .infinity, alignment: .center)
-                    wideHeroButtons
+                    wideHeroButtons(buttonsInRail: buttonsInRail)
                     Spacer(minLength: 0)
                 }
                 .frame(width: UI.heroColumnWidth)
@@ -848,8 +858,11 @@ struct TodayView: View {
                         ScrollView {
                             VStack(spacing: 0) {
                                 Spacer(minLength: 0)
-                                TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
-                                    .frame(maxWidth: 560)
+                                VStack(spacing: 24) {
+                                    wideEditShortcuts
+                                    TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
+                                        .frame(maxWidth: 560)
+                                }
                                 Spacer(minLength: 0)
                             }
                             .frame(maxWidth: .infinity, minHeight: goalsProxy.size.height)
@@ -910,13 +923,25 @@ struct TodayView: View {
             // Threshold de altura menor que o de largura, iPad em landscape ainda
             // tem altura de sobra pro empilhamento.
             let isTall = proxy.size.height >= 500
+            // iPad deitado (largo e mais largo que alto, sem a barra vertical do sistema): os botões de navegação
+            // vão pra coluna de vidro à direita, no estilo da barra vertical do iPhone Duo.
+            let sideRail = isWide && !usesVerticalBar && proxy.size.width > proxy.size.height
             Group {
                 if isWide {
-                    wideLayout(vertical: isTall)
+                    HStack(alignment: .top, spacing: 0) {
+                        wideLayout(vertical: isTall, buttonsInRail: usesVerticalBar || sideRail)
+                        if sideRail {
+                            TodaySideRail()
+                                .padding(.top)
+                                .padding(.trailing)
+                                .transition(.move(edge: .trailing).combined(with: .opacity))
+                        }
+                    }
                 } else {
                     portraitLayout
                 }
             }
+            .environment(\.todaySideRail, sideRail)
         }
         .background(Color(.systemGroupedBackground))
         .onAppear {

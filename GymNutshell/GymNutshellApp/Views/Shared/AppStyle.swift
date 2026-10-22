@@ -144,19 +144,20 @@ extension View {
 /// engrenagem de Ajustes à direita. As outras páginas usam a barra de navegação nativa.
 /// Com a barra vertical do sistema (iPhone Duo dobrado), Ajustes, sino, Histórico, Conquistas e a troca
 /// lista/grade viram itens da toolbar, nessa ordem, e o sistema os põe na coluna lateral abaixo da barra de
-/// status; aqui fica só a data.
+/// status; aqui fica só a data. No iPad deitado esses botões vão pra coluna própria da Hoje (TodaySideRail).
 struct AppTabHeader: View {
 
     let title: String
 
     @Environment(AppRouter.self) private var router
     @Environment(\.usesVerticalBar) private var usesVerticalBar
+    @Environment(\.todaySideRail) private var todaySideRail
+
+    /// Sino e engrenagem saem do cabeçalho quando vão pra barra vertical ou pra coluna da Hoje.
+    private var buttonsElsewhere: Bool { usesVerticalBar || todaySideRail }
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
-
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
 
     @State private var showNotificationHistory = false
 
@@ -167,7 +168,7 @@ struct AppTabHeader: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
-            if !usesVerticalBar {
+            if !buttonsElsewhere {
                 bellButton
                     .appCircleButton(fallbackPadding: Self.fallbackPadding)
             }
@@ -182,7 +183,7 @@ struct AppTabHeader: View {
                 // O VoiceOver lê a data antes dos botões, mesmo com o sino à esquerda.
                 .accessibilitySortPriority(1)
 
-            if !usesVerticalBar {
+            if !buttonsElsewhere {
                 settingsButton
                     .appCircleButton(fallbackPadding: Self.fallbackPadding)
             }
@@ -192,11 +193,9 @@ struct AppTabHeader: View {
             if usesVerticalBar {
                 // Um grupo só, pra coluna seguir esta ordem de cima pra baixo.
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    settingsButton
-                    bellButton
-                    recordsButton
-                    achievementsButton
-                    viewModeButton
+                    ForEach(TodayRailItem.allCases) { item in
+                        TodayRailButton(item: item) { showNotificationHistory = true }
+                    }
                 }
             }
         }
@@ -212,7 +211,7 @@ struct AppTabHeader: View {
             Image(systemName: "bell.fill")
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(accentColor)
-                .frame(width: usesVerticalBar ? nil : Self.iconSize, height: usesVerticalBar ? nil : Self.iconSize)
+                .frame(width: Self.iconSize, height: Self.iconSize)
         }
         .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
         .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
@@ -225,52 +224,9 @@ struct AppTabHeader: View {
             Image(systemName: "gearshape.fill")
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(accentColor)
-                .frame(width: usesVerticalBar ? nil : Self.iconSize, height: usesVerticalBar ? nil : Self.iconSize)
+                .frame(width: Self.iconSize, height: Self.iconSize)
         }
         .accessibilityLabel(String(localized: "settings.header.title", bundle: .gymNutshellCore))
-    }
-
-    // Os três abaixo só existem na coluna lateral; fora dela ficam nos botões abaixo do anel (TodayPageButtons).
-
-    private var recordsButton: some View {
-        Button {
-            router.open(.statistics)
-        } label: {
-            Image(systemName: "clock.arrow.trianglehead.counterclockwise.rotate.90")
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(accentColor)
-        }
-        .accessibilityLabel(String(localized: "statistics.title", bundle: .gymNutshellCore))
-    }
-
-    private var achievementsButton: some View {
-        Button {
-            router.open(.achievements)
-        } label: {
-            Image(systemName: "trophy.fill")
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(accentColor)
-        }
-        .accessibilityLabel(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
-    }
-
-    private var viewModeButton: some View {
-        let current = TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list
-        let next: TodayGoalsViewMode = current == .list ? .grid : .list
-        return Button {
-            UISelectionFeedbackGenerator().selectionChanged()
-            withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82)) {
-                goalsViewModeRaw = next.rawValue
-            }
-        } label: {
-            // Ícone do modo pra onde vai: em lista, o de grade; em grade, o de lista.
-            Image(systemName: next.symbolName)
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(accentColor)
-                .contentTransition(.symbolEffect(.replace))
-        }
-        .accessibilityLabel(String(format: String(localized: "today.goals.viewMode.switch.a11y",
-                                                  bundle: .gymNutshellCore), next.title))
     }
 }
 
