@@ -27,6 +27,8 @@ struct TodayView: View {
 
     /// Sheet de Editar metas / Editar controles aberta agora (nil = nenhuma).
     @State private var editSheet: EditSheet?
+    /// Balão do "Edição rápida" aberto.
+    @State private var showQuickEdit = false
 
     // Metas de treino
     @AppStorage("workoutIntake")  private var workoutIntake:  Int = 0
@@ -745,7 +747,7 @@ struct TodayView: View {
                         .transition(.opacity)
                 }
 
-                editShortcuts(captionOnTop: true)
+                editShortcuts
                     // Na lista a última meta termina num card sem respiro embaixo; a grade já tem folga.
                     .padding(.top, goalsViewMode == .list ? 12 : 0)
             }
@@ -773,49 +775,32 @@ struct TodayView: View {
     // MARK: - Atalhos pra Ajustes
 
     /// Sheets de edição rápida, com as mesmas telas de Ajustes > Tema, Cores de destaque, Controles e Metas.
-    private enum EditSheet: String, Identifiable {
+    fileprivate enum EditSheet: String, Identifiable {
         case theme, colors, controls, goals
         var id: String { rawValue }
     }
 
-    /// Botões pequenos abaixo das metas, centralizados, só com o ícone: Tema (máscaras, como no Welcome), Cores de
-    /// destaque (paleta), Controles (os tracinhos dos Ajustes) e Metas (o alvo dos Ajustes). Uma legenda
-    /// pequena "Edição rápida" diz o que é o grupo. Cada um abre a tela dos Ajustes numa sheet, sem sair da Hoje.
-    /// No iPhone a legenda vem acima dos ícones (os botões fecham a tela); no layout largo, embaixo.
-    private func editShortcuts(captionOnTop: Bool) -> some View {
-        VStack(spacing: 6) {
-            if captionOnTop { editShortcutsCaption }
-            HStack(spacing: 8) {
-                shortcutIconButton(systemImage: "theatermasks", a11yKey: "today.edit.theme", sheet: .theme)
-                shortcutIconButton(systemImage: "paintpalette", a11yKey: "today.edit.colors", sheet: .colors)
-                shortcutIconButton(systemImage: "slider.horizontal.3", a11yKey: "today.edit.controls", sheet: .controls)
-                shortcutIconButton(systemImage: "target", a11yKey: "today.edit.goals", sheet: .goals)
-            }
-            if !captionOnTop { editShortcutsCaption }
-        }
-    }
-
-    private var editShortcutsCaption: some View {
-        Text(String(localized: "today.edit.quick", bundle: .gymNutshellCore))
-            .font(.caption2.weight(.medium))
-            .foregroundStyle(.secondary)
-            // Os botões já dizem o que fazem pro VoiceOver; a legenda é só visual.
-            .accessibilityHidden(true)
-    }
-
-    /// Só o ícone, maior que o texto (como os botões de ícone do hero), mas com o frame travado no tamanho
-    /// antigo: o ícone ocupa parte da margem interna do vidro, sem aumentar o botão.
-    private func shortcutIconButton(systemImage: String, a11yKey: String, sheet: EditSheet) -> some View {
+    /// Um botão só, "Edição rápida", abaixo das metas e centralizado. Abre um balão com Metas, Controles, Emojis e
+    /// Cores; cada opção abre a tela dos Ajustes numa sheet, sem sair da Hoje.
+    private var editShortcuts: some View {
         Button {
-            editSheet = sheet
+            showQuickEdit = true
         } label: {
-            Image(systemName: systemImage)
-                .font(.title3.weight(.semibold))
-                .frame(width: 22, height: 16)
+            Label(String(localized: "today.edit.quick", bundle: .gymNutshellCore), systemImage: "pencil")
+                .font(.footnote.weight(.semibold))
+                .lineLimit(1)
         }
-        .appSecondaryButton(todayAccentColor, circle: true)
+        .appSecondaryButton(todayAccentColor)
         .controlSize(.small)
-        .accessibilityLabel(String(localized: String.LocalizationValue(a11yKey), bundle: .gymNutshellCore))
+        .popover(isPresented: $showQuickEdit) {
+            TodayQuickEditPopover(accentColor: todayAccentColor) { sheet in
+                showQuickEdit = false
+                // Espera o balão terminar de fechar antes de abrir a sheet.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { editSheet = sheet }
+            }
+            // Balão de verdade no iPhone, em vez de virar sheet.
+            .presentationCompactAdaptation(.popover)
+        }
     }
 
     // MARK: - Layout largo (paisagem / iPad)
@@ -824,7 +809,7 @@ struct TodayView: View {
     /// Mesmos atalhos, com a mesma identidade nas duas posições: na troca lista ↔ grade eles deslizam entre o
     /// hero e o pé da grade.
     private var wideEditShortcuts: some View {
-        editShortcuts(captionOnTop: false)
+        editShortcuts
             .matchedGeometryEffect(id: "editShortcuts", in: goalsMorphNamespace)
     }
 
@@ -833,66 +818,10 @@ struct TodayView: View {
             Spacer(minLength: 0)
 
             HStack(alignment: .top, spacing: compact ? 16 : UI.wideHStackSpacing) {
-                VStack(alignment: .center, spacing: UI.heroInnerSpacing) {
-                    Spacer(minLength: 0)
-                    // Sem coluna lateral (iPad e Duo aberto em pé): a linha de botões fica acima da data, com os
-                    // Ajustes primeiro. Com a coluna (barra vertical do Duo ou a do iPad deitado) ela vai pra lá.
-                    if !buttonsInRail {
-                        TodayPageButtons(items: TodayPageButtons.wideOrder)
-                            .padding(.bottom, 8)
-                    }
-                    // Compacto: anel menor (o de 170 + conquista não cabe na coluna estreita).
-                    heroBlock(vertical: vertical && !compact)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                    // Na lista os atalhos de edição ficam abaixo do hero; na grade vão pra baixo das categorias.
-                    if goalsViewMode == .list {
-                        wideEditShortcuts
-                    }
-                    Spacer(minLength: 0)
-                }
-                .frame(width: compact ? UI.compactHeroColumnWidth : UI.heroColumnWidth)
+                wideHeroColumn(vertical: vertical, buttonsInRail: buttonsInRail, compact: compact)
+                    .frame(width: compact ? UI.compactHeroColumnWidth : UI.heroColumnWidth)
 
-                if goalsViewMode == .grid {
-                    // Mesma grade de botões com balão do iPhone, centralizada na coluna das metas.
-                    GeometryReader { goalsProxy in
-                        ScrollView {
-                            VStack(spacing: 0) {
-                                Spacer(minLength: 0)
-                                // Categorias em cima e atalhos embaixo: o balão aberto pra baixo ganha espaço.
-                                VStack(spacing: 24) {
-                                    TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
-                                        .frame(maxWidth: 560)
-                                    wideEditShortcuts
-                                }
-                                Spacer(minLength: 0)
-                            }
-                            .frame(maxWidth: .infinity, minHeight: goalsProxy.size.height)
-                        }
-                    }
-                    .frame(maxWidth: vertical ? .infinity : UI.contentMaxWidth)
-                    .transition(.opacity)
-                } else if vertical {
-                    // iPad com altura sobrando: metas em grid coluna-major, ocupa
-                    // toda a largura disponível à direita do hero. O grid já tem
-                    // GeometryReader+ScrollView internos, sem wrap extra aqui.
-                    TodayGoalsGrid(cells: gridCells, animationKey: todayCollapsedRaw)
-                        .frame(maxWidth: .infinity)
-                        .transition(.opacity)
-                } else {
-                    // iPhone landscape / janela estreita: coluna única centralizada.
-                    GeometryReader { goalsProxy in
-                        ScrollView {
-                            VStack(spacing: 0) {
-                                Spacer(minLength: 0)
-                                goalsListBody()
-                                Spacer(minLength: 0)
-                            }
-                            .frame(minHeight: goalsProxy.size.height)
-                        }
-                    }
-                    .frame(width: UI.contentMaxWidth)
-                    .transition(.opacity)
-                }
+                wideGoalsColumn(vertical: vertical)
             }
             .environment(\.todayMorphNamespace, goalsMorphNamespace)
             .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82),
@@ -911,6 +840,107 @@ struct TodayView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.vertical)
         .padding(.trailing)
+    }
+
+    /// iPhone Duo meio aberto como livro (dobra vertical no meio da tela): o hero fica centralizado na metade
+    /// esquerda e as metas na direita, com a faixa da dobra (já com as margens do sistema) vazia entre os dois.
+    /// Assim nenhum controle (anel, botões, início dos sliders) fica em cima da dobra.
+    private func foldLayout(fold: CGRect, vertical: Bool, buttonsInRail: Bool) -> some View {
+        HStack(spacing: 0) {
+            wideHeroColumn(vertical: vertical, buttonsInRail: buttonsInRail, compact: false)
+                .padding(.horizontal)
+                .frame(width: max(fold.minX, 0))
+
+            Color.clear
+                .frame(width: fold.width)
+                .accessibilityHidden(true)
+
+            wideGoalsColumn(vertical: vertical)
+                .padding(.trailing)
+                .frame(maxWidth: .infinity)
+        }
+        .environment(\.todayMorphNamespace, goalsMorphNamespace)
+        .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82),
+                   value: goalsViewModeRaw)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.vertical)
+    }
+
+    /// Coluna do hero no layout largo: botões das páginas (sem coluna lateral), data, anel e conquista e, na lista,
+    /// a Edição rápida.
+    private func wideHeroColumn(vertical: Bool, buttonsInRail: Bool, compact: Bool) -> some View {
+        VStack(alignment: .center, spacing: UI.heroInnerSpacing) {
+            Spacer(minLength: 0)
+            // Sem coluna lateral (iPad e Duo aberto em pé): a linha de botões fica acima da data.
+            // Com a coluna (barra vertical do Duo ou a do iPad deitado) ela vai pra lá.
+            if !buttonsInRail {
+                TodayPageButtons()
+                    .padding(.bottom, 8)
+            }
+            // Compacto: anel menor (o de 170 + conquista não cabe na coluna estreita).
+            heroBlock(vertical: vertical && !compact)
+                .frame(maxWidth: .infinity, alignment: .center)
+            // Na lista os atalhos de edição ficam abaixo do hero; na grade vão pra baixo das categorias.
+            if goalsViewMode == .list {
+                wideEditShortcuts
+            }
+            Spacer(minLength: 0)
+        }
+    }
+
+    /// Coluna das metas no layout largo: grade de categorias, metas em grid (altura sobrando) ou lista.
+    @ViewBuilder
+    private func wideGoalsColumn(vertical: Bool) -> some View {
+        if goalsViewMode == .grid {
+            // Mesma grade de botões com balão do iPhone, centralizada na coluna das metas.
+            GeometryReader { goalsProxy in
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Spacer(minLength: 0)
+                        // Categorias em cima e atalhos embaixo: o balão aberto pra baixo ganha espaço.
+                        VStack(spacing: 24) {
+                            TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
+                                .frame(maxWidth: 560)
+                            wideEditShortcuts
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .frame(maxWidth: .infinity, minHeight: goalsProxy.size.height)
+                }
+            }
+            .frame(maxWidth: vertical ? .infinity : UI.contentMaxWidth)
+            .transition(.opacity)
+        } else if vertical {
+            // iPad com altura sobrando: metas em grid coluna-major, ocupa
+            // toda a largura disponível à direita do hero. O grid já tem
+            // GeometryReader+ScrollView internos, sem wrap extra aqui.
+            TodayGoalsGrid(cells: gridCells, animationKey: todayCollapsedRaw)
+                .frame(maxWidth: .infinity)
+                .transition(.opacity)
+        } else {
+            // iPhone landscape / janela estreita: coluna única centralizada.
+            GeometryReader { goalsProxy in
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Spacer(minLength: 0)
+                        goalsListBody()
+                        Spacer(minLength: 0)
+                    }
+                    .frame(minHeight: goalsProxy.size.height)
+                }
+            }
+            .frame(width: UI.contentMaxWidth)
+            .transition(.opacity)
+        }
+    }
+
+    /// Faixa da dobra do iPhone Duo quando ele está meio aberto como livro (dobra vertical), já com as margens que
+    /// o sistema pede. Nil fora do Duo, aberto/fechado de vez ou com a dobra na horizontal.
+    private func activeVerticalFold(in proxy: GeometryProxy) -> CGRect? {
+        guard #available(iOS 27.1, *) else { return nil }
+        return proxy.reservedRegions(kind: .division)
+            .first { $0.isActive && $0.frame.height > $0.frame.width }?
+            .frame
     }
 
     // MARK: - Corpo
@@ -932,8 +962,12 @@ struct TodayView: View {
             // iPad deitado (largo e mais largo que alto, sem a barra vertical do sistema): os botões de navegação
             // vão pra coluna de vidro à direita, no estilo da barra vertical do iPhone Duo.
             let sideRail = isWide && !usesVerticalBar && proxy.size.width > proxy.size.height
+            // Duo meio aberto como livro: dobra vertical no meio; hero de um lado e metas do outro.
+            let fold = isWide ? activeVerticalFold(in: proxy) : nil
             Group {
-                if isWide {
+                if let fold {
+                    foldLayout(fold: fold, vertical: isTall, buttonsInRail: usesVerticalBar || sideRail)
+                } else if isWide {
                     HStack(alignment: .center, spacing: 0) {
                         wideLayout(vertical: isTall, buttonsInRail: usesVerticalBar || sideRail,
                                    compact: compactWide)
@@ -1032,5 +1066,62 @@ private extension View {
             .offset(y: hidden ? 140 : 0)
             .opacity(hidden ? 0 : 1)
             .animation(.spring(response: 0.75, dampingFraction: 0.8).delay(Double(index) * 0.12), value: hidden)
+    }
+}
+
+// MARK: - Balão da edição rápida
+
+/// Opções do "Edição rápida", no mesmo estilo do balão de Restaurar backup do Welcome.
+private struct TodayQuickEditPopover: View {
+
+    var accentColor: Color
+    let onPick: (TodayView.EditSheet) -> Void
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Text(String(localized: "today.edit.quick", bundle: .gymNutshellCore))
+                .font(.headline)
+                .accessibilityAddTraits(.isHeader)
+                .frame(maxWidth: .infinity)
+                .frame(height: 48)
+
+            VStack(spacing: 0) {
+                row("today.edit.goals", systemImage: "target", sheet: .goals)
+                Divider().padding(.leading, 52)
+                row("today.edit.controls", systemImage: "slider.horizontal.3", sheet: .controls)
+                Divider().padding(.leading, 52)
+                row("today.edit.theme", systemImage: "theatermasks", sheet: .theme)
+                Divider().padding(.leading, 52)
+                row("today.edit.colors", systemImage: "paintpalette", sheet: .colors)
+            }
+            .background(Color(.secondarySystemGroupedBackground),
+                        in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .padding(.horizontal, 12)
+            .padding(.bottom, 12)
+        }
+        .frame(width: 300)
+        .fixedSize(horizontal: false, vertical: true)
+        .background(Color(.systemGroupedBackground))
+    }
+
+    private func row(_ titleKey: String, systemImage: String, sheet: TodayView.EditSheet) -> some View {
+        Button {
+            onPick(sheet)
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: systemImage)
+                    .font(.title3)
+                    .foregroundStyle(accentColor)
+                    .frame(width: 28)
+                Text(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore))
+                    .font(.body)
+                    .foregroundStyle(Color.primary)
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 14)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 }

@@ -111,14 +111,9 @@ struct TodaySideRail: View {
     }
 }
 
-/// Os mesmos botões numa linha de botões redondos de vidro. No iPhone fica abaixo do anel, com a troca
-/// lista/grade primeiro; no layout largo em pé fica acima da data, com os Ajustes primeiro.
+/// Os mesmos botões numa linha de botões redondos de vidro, na mesma ordem da coluna (Ajustes primeiro). No iPhone
+/// fica abaixo do anel; no layout largo em pé, acima da data.
 struct TodayPageButtons: View {
-
-    var items: [TodayRailItem] = Self.phoneOrder
-
-    static let phoneOrder: [TodayRailItem] = [.viewMode, .records, .achievements, .settings]
-    static let wideOrder: [TodayRailItem] = [.settings, .records, .achievements, .viewMode]
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
@@ -128,7 +123,7 @@ struct TodayPageButtons: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            ForEach(items) { item in
+            ForEach(TodayRailItem.allCases) { item in
                 TodayRailButton(item: item, filled: false, iconSize: Self.iconSize)
                     .appSecondaryButton(accentColor, circle: true)
                     .controlSize(.regular)
