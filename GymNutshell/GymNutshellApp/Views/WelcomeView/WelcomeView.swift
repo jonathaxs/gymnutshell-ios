@@ -24,9 +24,6 @@ struct WelcomeView: View {
     /// Chamado quando o usuário termina o onboarding pra o GymNutshellApp trocar pra MainView.
     let onComplete: () -> Void
 
-    // Contexto de dados, necessário pra restauração de backup via painel esquerdo no modo wide.
-    @Environment(\.modelContext) private var modelContext
-
     // MARK: - Controle de etapas
     // O enum WelcomeStep + textos de painel ficam em WelcomeStep.swift.
 
@@ -182,8 +179,7 @@ struct WelcomeView: View {
                         isCurrentStepValid: isCurrentStepValid,
                         onAdvance: advance,
                         onGoBack: goBack,
-                        onRestoreComplete: onComplete,
-                        modelContext: modelContext
+                        restoreRequest: $restoreRequest
                     )
                     .frame(width: 340)
                     Divider()

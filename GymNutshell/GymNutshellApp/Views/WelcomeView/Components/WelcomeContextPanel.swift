@@ -3,12 +3,10 @@
 //
 //  Propósito: Painel contextual à esquerda no layout wide do onboarding ,
 //             emoji + título + subtítulo da etapa atual, botões de ação no rodapé.
-//             Owns o estado de restauração de backup via fileImporter.
+//             No Início só os botões, centralizados; ao avançar eles descem pro rodapé e o título entra.
 // ⌘
 
 import SwiftUI
-import SwiftData
-import UniformTypeIdentifiers
 import GymNutshellCore
 
 struct WelcomeContextPanel: View {
@@ -19,105 +17,94 @@ struct WelcomeContextPanel: View {
     let isCurrentStepValid: Bool
     let onAdvance: () -> Void
     let onGoBack: () -> Void
-    let onRestoreComplete: () -> Void
-    let modelContext: ModelContext
+    /// Opção escolhida no balão de Restaurar backup; quem restaura é a WelcomeStartStep (à direita).
+    @Binding var restoreRequest: WelcomeRestoreSource?
 
-    @State private var isPanelImporting: Bool = false
-    @State private var panelRestoreError: String? = nil
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var showRestoreOptions = false
+
+    private var isStart: Bool { currentStep == .start }
 
     var body: some View {
         VStack(spacing: 0) {
-            // Emoji + título, anima junto com a transição de etapa.
-            VStack(spacing: 16) {
-                Spacer()
-                Text(currentStep.panelEmoji)
-                    .font(.system(size: 64))
-                    .animation(.easeInOut(duration: 0.3), value: currentStep)
-                    // Emoji decorativo, título logo abaixo já comunica a etapa.
-                    .accessibilityHidden(true)
-                Text(currentStep.panelTitle)
-                    .font(.title.bold())
-                    .multilineTextAlignment(.center)
-                    .animation(.easeInOut(duration: 0.3), value: currentStep)
-                if let subtitle = currentStep.panelSubtitle {
-                    Text(subtitle)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .animation(.easeInOut(duration: 0.3), value: currentStep)
+            // Emoji + título da etapa. No Início fica vazio: o "Olá" e o esquilo já estão no conteúdo à direita.
+            ZStack {
+                if !isStart {
+                    header
+                        .transition(.opacity)
                 }
-                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.horizontal)
 
-            // Botões de ação, variam conforme a etapa.
-            VStack(spacing: 12) {
-                if currentStep == .start {
-                    Button(action: onAdvance) {
-                        Text(String(localized: "welcome.start.new", bundle: .gymNutshellCore))
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 4)
-                    }
-                    .appProminentButton(sexColor)
-                    Button { isPanelImporting = true } label: {
-                        Text(String(localized: "welcome.start.restore", bundle: .gymNutshellCore))
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 4)
-                    }
-                    .appSecondaryButton(sexColor)
-                } else {
-                    WelcomeContinueButton(
-                        label: continueButtonLabel,
-                        color: continueButtonColor,
-                        isEnabled: isCurrentStepValid,
-                        action: onAdvance
-                    )
+            buttons
+                .frame(maxWidth: isStart ? 260 : .infinity)
+                .padding(.horizontal)
+                .padding(.bottom, isStart ? 0 : 32)
 
-                    Button(action: onGoBack) {
-                        Text(String(localized: "welcome.button.back", bundle: .gymNutshellCore))
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 4)
-                    }
-                    .appSecondaryButton(.secondary)
-                }
+            // No Início um espaço igual ao de cima centraliza os botões; ao avançar ele some e os botões descem
+            // pro rodapé.
+            if isStart {
+                Spacer(minLength: 0)
+                    .frame(maxHeight: .infinity)
             }
-            .padding(.horizontal)
-            .padding(.bottom, 32)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.secondarySystemGroupedBackground))
-        .fileImporter(isPresented: $isPanelImporting, allowedContentTypes: [.json]) { result in
-            if case .success(let url) = result { performRestore(from: url) }
-        }
-        .alert(
-            String(localized: "settings.backup.error.title", bundle: .gymNutshellCore),
-            isPresented: .init(get: { panelRestoreError != nil }, set: { if !$0 { panelRestoreError = nil } })
-        ) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            if let msg = panelRestoreError { Text(msg) }
+        .animation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.55, dampingFraction: 0.85),
+                   value: isStart)
+    }
+
+    private var header: some View {
+        VStack(spacing: 16) {
+            Text(currentStep.panelEmoji)
+                .font(.system(size: 64))
+                .animation(.easeInOut(duration: 0.3), value: currentStep)
+                // Emoji decorativo, título logo abaixo já comunica a etapa.
+                .accessibilityHidden(true)
+            Text(currentStep.panelTitle)
+                .font(.title.bold())
+                .multilineTextAlignment(.center)
+                .animation(.easeInOut(duration: 0.3), value: currentStep)
+            if let subtitle = currentStep.panelSubtitle {
+                Text(subtitle)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .animation(.easeInOut(duration: 0.3), value: currentStep)
+            }
         }
     }
 
-    // Restaura backup a partir de um arquivo selecionado no painel wide.
-    private func performRestore(from url: URL) {
-        guard url.startAccessingSecurityScopedResource() else {
-            panelRestoreError = "Could not access the selected file."
-            return
-        }
-        defer { url.stopAccessingSecurityScopedResource() }
-        do {
-            let data = try Data(contentsOf: url)
-            let payload = try BackupManager.decode(data)
-            try BackupManager.applyPayload(payload, into: modelContext)
-            UserDefaults.standard.set(true, forKey: UserProfile.didCompleteOnboardingKey)
-            onRestoreComplete()
-        } catch {
-            panelRestoreError = error.localizedDescription
+    /// Um só par de botões pra todas as etapas (como no rodapé do iPhone): Começar / Restaurar backup no Início,
+    /// Continuar / Voltar nas demais.
+    private var buttons: some View {
+        VStack(spacing: 12) {
+            WelcomeContinueButton(
+                label: continueButtonLabel,
+                color: continueButtonColor,
+                isEnabled: isCurrentStepValid,
+                action: onAdvance
+            )
+
+            Button {
+                if isStart { showRestoreOptions = true } else { onGoBack() }
+            } label: {
+                Text(isStart
+                     ? String(localized: "welcome.start.restore", bundle: .gymNutshellCore)
+                     : String(localized: "welcome.button.back", bundle: .gymNutshellCore))
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
+            }
+            .appSecondaryButton(isStart ? sexColor : .secondary)
+            // Restaurar backup abre um balão logo abaixo, como no iPhone.
+            .downwardPopover(isPresented: $showRestoreOptions) {
+                WelcomeRestorePopover(accentColor: sexColor) { source in
+                    showRestoreOptions = false
+                    restoreRequest = source
+                }
+            }
         }
     }
 }
