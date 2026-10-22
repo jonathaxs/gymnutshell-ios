@@ -119,7 +119,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "履歴";
+"statistics.title" = "記録";
 "statistics.section.tiers" = "レベル別の内訳";
 "statistics.section.activity" = "ジムのアクティビティ";
 "statistics.section.goals" = "目標";

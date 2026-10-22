@@ -19,6 +19,9 @@ struct SettingsView: View {
     // Usado pelo botão "Idioma" pra abrir Ajustes do iOS na página do Gym Nutshell.
     @Environment(\.openURL) private var openURL
 
+    // Histórico de notificações, aberto pelo sino no canto superior direito (antes ficava na Hoje).
+    @State private var showNotificationHistory = false
+
     private var accentColor: AppAccentColor {
         AppAccentColor(rawValue: storedColorRaw) ?? .blue
     }
@@ -169,6 +172,20 @@ struct SettingsView: View {
         .frame(maxWidth: .infinity)
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle(String(localized: "settings.header.title", bundle: .gymNutshellCore))
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showNotificationHistory = true
+                } label: {
+                    Image(systemName: "bell")
+                }
+                .accessibilityLabel(String(localized: "a11y.notification.history.bell", bundle: .gymNutshellCore))
+                .accessibilityHint(String(localized: "a11y.notification.history.bell.hint", bundle: .gymNutshellCore))
+            }
+        }
+        .sheet(isPresented: $showNotificationHistory) {
+            NotificationHistorySheet()
+        }
     }
 }
 

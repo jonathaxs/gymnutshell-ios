@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/MainView.swift
 //
 //  Propósito: Hospeda o NavigationStack raiz (Hoje de raiz) e roteia o usuário pras páginas do app
-//             pelo AppRouter: Histórico e Conquistas em sheet, Ajustes como página. Inclui os
+//             pelo AppRouter: Registros e Conquistas em sheet, Ajustes como página. Inclui os
 //             deep-links de widgets e notificações.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-15.
@@ -13,7 +13,7 @@ import GymNutshellCore
 import SwiftData
 
 // MARK: - Tela principal
-// Raiz do app: um NavigationStack com a Hoje de raiz. Histórico e Conquistas abrem em sheet e os Ajustes
+// Raiz do app: um NavigationStack com a Hoje de raiz. Registros e Conquistas abrem em sheet e os Ajustes
 // como página, pelo AppRouter (botões da Hoje, widgets e notificações).
 struct MainView: View {
 
@@ -43,7 +43,7 @@ struct MainView: View {
                 }
         }
         .background(VerticalBarReader(isActive: $usesVerticalBar))
-        // Histórico / Conquistas: cada sheet tem seu próprio stack (Histórico → dia nas Conquistas).
+        // Registros / Conquistas: cada sheet tem seu próprio stack (Registros → dia nas Conquistas).
         .sheet(item: $router.sheet) { sheet in
             NavigationStack(path: $router.sheetPath) {
                 sheetRoot(sheet)

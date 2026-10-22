@@ -120,7 +120,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Verlauf";
+"statistics.title" = "Aufzeichnungen";
 "statistics.section.tiers" = "Stufenübersicht";
 "statistics.section.activity" = "Training-Aktivität";
 "statistics.section.goals" = "Ziele";

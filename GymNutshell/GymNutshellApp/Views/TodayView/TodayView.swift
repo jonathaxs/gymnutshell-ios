@@ -23,6 +23,7 @@ struct TodayView: View {
     @Environment(AppRouter.self) private var router
     // Duo dobrado: os botões das páginas vão pra coluna lateral (ver AppTabHeader).
     @Environment(\.usesVerticalBar) private var usesVerticalBar
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     /// Sheet de Editar metas / Editar controles aberta agora (nil = nenhuma).
     @State private var editSheet: EditSheet?
@@ -99,6 +100,9 @@ struct TodayView: View {
 
     private enum UI {
         static let wideThreshold: CGFloat    = 700
+        static let regularWideMinWidth: CGFloat = 560
+        static let compactWideLimit: CGFloat = 744
+        static let compactHeroColumnWidth: CGFloat = 320
         static let heroColumnWidth: CGFloat  = 360
         static let contentMaxWidth: CGFloat  = 330
         static let heroAreaMinHeight: CGFloat = 250
@@ -756,6 +760,7 @@ struct TodayView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .safeAreaInset(edge: .top, spacing: 0) {
+            // Só a data: os Ajustes ficam na linha de botões abaixo do anel.
             AppTabHeader(title: formattedDate)
                 .padding(.horizontal)
                 .padding(.horizontal, 4)
@@ -817,40 +822,37 @@ struct TodayView: View {
 
     // MARK: - Layout largo (paisagem / iPad)
 
-    /// Abaixo do hero no layout largo: troca lista/grade, Histórico e Conquistas (como no iPhone) e, na lista, os
-    /// atalhos de edição. Na grade os atalhos sobem pra cima dos botões das categorias. Com a coluna lateral
-    /// (barra vertical do Duo ou a coluna própria do iPad deitado) os três primeiros vão pra ela.
-    private func wideHeroButtons(buttonsInRail: Bool) -> some View {
-        VStack(spacing: 12) {
-            if !buttonsInRail {
-                TodayPageButtons()
-            }
-            if goalsViewMode == .list {
-                wideEditShortcuts
-            }
-        }
-    }
 
     /// Mesmos atalhos, com a mesma identidade nas duas posições: na troca lista ↔ grade eles deslizam entre o
-    /// hero e o topo da grade.
+    /// hero e o pé da grade.
     private var wideEditShortcuts: some View {
         editShortcuts
             .matchedGeometryEffect(id: "editShortcuts", in: goalsMorphNamespace)
     }
 
-    private func wideLayout(vertical: Bool, buttonsInRail: Bool) -> some View {
+    private func wideLayout(vertical: Bool, buttonsInRail: Bool, compact: Bool) -> some View {
         VStack(spacing: 0) {
             Spacer(minLength: 0)
 
-            HStack(alignment: .top, spacing: UI.wideHStackSpacing) {
+            HStack(alignment: .top, spacing: compact ? 16 : UI.wideHStackSpacing) {
                 VStack(alignment: .center, spacing: UI.heroInnerSpacing) {
                     Spacer(minLength: 0)
-                    heroBlock(vertical: vertical)
+                    // Sem coluna lateral (iPad e Duo aberto em pé): a linha de botões fica acima da data, com os
+                    // Ajustes primeiro. Com a coluna (barra vertical do Duo ou a do iPad deitado) ela vai pra lá.
+                    if !buttonsInRail {
+                        TodayPageButtons(items: TodayPageButtons.wideOrder)
+                            .padding(.bottom, 8)
+                    }
+                    // Compacto: anel menor (o de 170 + conquista não cabe na coluna estreita).
+                    heroBlock(vertical: vertical && !compact)
                         .frame(maxWidth: .infinity, alignment: .center)
-                    wideHeroButtons(buttonsInRail: buttonsInRail)
+                    // Na lista os atalhos de edição ficam abaixo do hero; na grade vão pra baixo das categorias.
+                    if goalsViewMode == .list {
+                        wideEditShortcuts
+                    }
                     Spacer(minLength: 0)
                 }
-                .frame(width: UI.heroColumnWidth)
+                .frame(width: compact ? UI.compactHeroColumnWidth : UI.heroColumnWidth)
 
                 if goalsViewMode == .grid {
                     // Mesma grade de botões com balão do iPhone, centralizada na coluna das metas.
@@ -858,10 +860,11 @@ struct TodayView: View {
                         ScrollView {
                             VStack(spacing: 0) {
                                 Spacer(minLength: 0)
+                                // Categorias em cima e atalhos embaixo: o balão aberto pra baixo ganha espaço.
                                 VStack(spacing: 24) {
-                                    wideEditShortcuts
                                     TodayCategoryGrid(tiles: categoryTiles, accentColor: todayAccentColor)
                                         .frame(maxWidth: 560)
+                                    wideEditShortcuts
                                 }
                                 Spacer(minLength: 0)
                             }
@@ -903,7 +906,7 @@ struct TodayView: View {
             // na borda esquerda como o usuário pediu.
             .frame(maxWidth: vertical ? 1400 : .infinity, alignment: vertical ? .center : .leading)
             .frame(maxWidth: .infinity, alignment: .center)
-            .padding(.horizontal, vertical ? 24 : 0)
+            .padding(.horizontal, vertical && !compact ? 24 : 0)
 
             Spacer(minLength: 0)
         }
@@ -916,7 +919,12 @@ struct TodayView: View {
 
     var body: some View {
         GeometryReader { proxy in
+            // Largo a partir de 700 pt, ou já a partir de 560 pt quando o sistema diz que a largura é regular
+            // (iPhone Duo aberto em pé, ~669 pt, fica igual ao iPad mini em vez do layout de iPhone esticado).
             let isWide = proxy.size.width >= UI.wideThreshold
+                || (horizontalSizeClass == .regular && proxy.size.width >= UI.regularWideMinWidth)
+            // Abaixo da largura do iPad mini em pé o hero encolhe e as margens somem, pra sobrar espaço pras metas.
+            let compactWide = proxy.size.width < UI.compactWideLimit
             // Hero vertical (progresso/conquista empilhados) exige largura E altura
             // generosas, caso contrário (iPhone landscape, iPad em janela pequena do iOS 26)
             // usamos o hero horizontal pra não tampar as metas.
@@ -928,11 +936,12 @@ struct TodayView: View {
             let sideRail = isWide && !usesVerticalBar && proxy.size.width > proxy.size.height
             Group {
                 if isWide {
-                    HStack(alignment: .top, spacing: 0) {
-                        wideLayout(vertical: isTall, buttonsInRail: usesVerticalBar || sideRail)
+                    HStack(alignment: .center, spacing: 0) {
+                        wideLayout(vertical: isTall, buttonsInRail: usesVerticalBar || sideRail,
+                                   compact: compactWide)
                         if sideRail {
+                            // Centralizada na altura, junto com o anel e as metas.
                             TodaySideRail()
-                                .padding(.top)
                                 .padding(.trailing)
                                 .transition(.move(edge: .trailing).combined(with: .opacity))
                         }
@@ -941,7 +950,6 @@ struct TodayView: View {
                     portraitLayout
                 }
             }
-            .environment(\.todaySideRail, sideRail)
         }
         .background(Color(.systemGroupedBackground))
         .onAppear {
@@ -973,7 +981,7 @@ struct TodayView: View {
         .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
             checkIfNewDay()
         }
-        // Histórico (sheet do MainView) também edita metas e objetivo; ao fechar, recarrega.
+        // Registros (sheet do MainView) também edita metas e objetivo; ao fechar, recarrega.
         .onChange(of: router.sheet) { _, newSheet in
             if newSheet == nil { reloadGoalStores() }
         }

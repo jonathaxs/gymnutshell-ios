@@ -119,7 +119,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "历史记录";
+"statistics.title" = "记录";
 "statistics.section.tiers" = "等级分布";
 "statistics.section.activity" = "健身活动";
 "statistics.section.goals" = "目标";

@@ -1,9 +1,11 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodaySideRail.swift
 //
-//  Propósito: Botões de navegação da Hoje numa coluna à direita: Ajustes, sino, Histórico, Conquistas e a
-//             troca lista/grade, nessa ordem. No iPhone Duo dobrado viram itens da barra vertical do sistema
-//             (AppTabHeader); no iPad deitado a TodayView mostra esta coluna própria, de vidro, no mesmo estilo.
+//  Propósito: Botões de navegação da Hoje: Ajustes, Registros, Conquistas e a troca lista/grade. No iPhone
+//             Duo viram itens da barra vertical do sistema (AppTabHeader); no iPad deitado a TodayView mostra
+//             a coluna própria de vidro daqui (TodaySideRail), no mesmo estilo. Sem coluna, os mesmos botões
+//             ficam numa linha (TodayPageButtons): abaixo do anel no iPhone, acima da data no iPad em pé.
+//             O histórico de notificações saiu da Hoje e fica no sino dos Ajustes.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-21.
 // ⌘
@@ -11,22 +13,23 @@
 import SwiftUI
 import GymNutshellCore
 
-extension EnvironmentValues {
-    /// True quando a Hoje mostra a coluna própria à direita (iPad deitado). O cabeçalho esconde o sino e a engrenagem.
-    @Entry var todaySideRail: Bool = false
-}
-
-/// Os botões da coluna, de cima pra baixo.
+/// Os botões de navegação da Hoje. A ordem dos casos é a da coluna, de cima pra baixo.
 enum TodayRailItem: CaseIterable, Identifiable {
-    case settings, notifications, records, achievements, viewMode
+    case settings, records, achievements, viewMode
     var id: Self { self }
+
+    /// Ícone da página Registros (prancheta).
+    static let recordsSymbol = "list.clipboard"
 }
 
-/// Um botão da coluna, só o ícone na cor de destaque. O sino só avisa quem mostra o histórico de notificações.
+/// Um botão de navegação, só o ícone na cor de destaque.
 struct TodayRailButton: View {
 
     let item: TodayRailItem
-    let onNotifications: () -> Void
+    /// Cheio na coluna (como a barra do sistema); só o contorno na linha de botões redondos.
+    var filled: Bool = true
+    /// Tamanho travado do ícone na linha de botões redondos (nil na coluna).
+    var iconSize: CGSize? = nil
 
     @Environment(AppRouter.self) private var router
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -46,27 +49,28 @@ struct TodayRailButton: View {
             Image(systemName: symbolName)
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(accentColor)
+                .frame(width: iconSize?.width, height: iconSize?.height)
                 .contentTransition(.symbolEffect(.replace))
         }
         .accessibilityLabel(a11yLabel)
     }
 
     private var symbolName: String {
+        let fill = filled ? ".fill" : ""
         switch item {
-        case .settings:      return "gearshape.fill"
-        case .notifications: return "bell.fill"
-        case .records:       return "clock.arrow.trianglehead.counterclockwise.rotate.90"
-        case .achievements:  return "trophy.fill"
-        case .viewMode:      return nextViewMode.symbolName
+        case .settings:     return "gearshape" + fill
+        case .records:      return TodayRailItem.recordsSymbol + fill
+        case .achievements: return "trophy" + fill
+        // Ícone do modo pra onde vai: em lista, o de grade; em grade, o de lista.
+        case .viewMode:     return nextViewMode.symbolName
         }
     }
 
     private var a11yLabel: String {
         switch item {
-        case .settings:      return String(localized: "settings.header.title", bundle: .gymNutshellCore)
-        case .notifications: return String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore)
-        case .records:       return String(localized: "statistics.title", bundle: .gymNutshellCore)
-        case .achievements:  return String(localized: "achievements.header.title", bundle: .gymNutshellCore)
+        case .settings:     return String(localized: "settings.header.title", bundle: .gymNutshellCore)
+        case .records:      return String(localized: "statistics.title", bundle: .gymNutshellCore)
+        case .achievements: return String(localized: "achievements.header.title", bundle: .gymNutshellCore)
         case .viewMode:
             return String(format: String(localized: "today.goals.viewMode.switch.a11y", bundle: .gymNutshellCore),
                           nextViewMode.title)
@@ -75,13 +79,13 @@ struct TodayRailButton: View {
 
     private func action() {
         switch item {
-        case .settings:      router.open(.settings)
-        case .notifications: onNotifications()
-        case .records:       router.open(.statistics)
-        case .achievements:  router.open(.achievements)
+        case .settings:     router.open(.settings)
+        case .records:      router.open(.statistics)
+        case .achievements: router.open(.achievements)
         case .viewMode:
             UISelectionFeedbackGenerator().selectionChanged()
             let next = nextViewMode
+            // Mola: os ícones da lista viram os círculos da grade (e voltam), o resto esmaece.
             withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82)) {
                 goalsViewModeRaw = next.rawValue
             }
@@ -89,16 +93,14 @@ struct TodayRailButton: View {
     }
 }
 
-/// Coluna própria da Hoje no iPad deitado: os cinco botões empilhados numa cápsula de vidro, como a barra
-/// vertical do iPhone Duo.
+/// Coluna própria da Hoje no iPad deitado: os botões empilhados numa cápsula de vidro, como a barra vertical
+/// do iPhone Duo.
 struct TodaySideRail: View {
-
-    @State private var showNotificationHistory = false
 
     var body: some View {
         VStack(spacing: 4) {
             ForEach(TodayRailItem.allCases) { item in
-                TodayRailButton(item: item) { showNotificationHistory = true }
+                TodayRailButton(item: item)
                     .buttonStyle(.plain)
                     .frame(width: 48, height: 48)
                     .contentShape(Circle())
@@ -106,8 +108,31 @@ struct TodaySideRail: View {
         }
         .padding(6)
         .appGlass(in: Capsule())
-        .sheet(isPresented: $showNotificationHistory) {
-            NotificationHistorySheet()
+    }
+}
+
+/// Os mesmos botões numa linha de botões redondos de vidro. No iPhone fica abaixo do anel, com a troca
+/// lista/grade primeiro; no layout largo em pé fica acima da data, com os Ajustes primeiro.
+struct TodayPageButtons: View {
+
+    var items: [TodayRailItem] = Self.phoneOrder
+
+    static let phoneOrder: [TodayRailItem] = [.viewMode, .records, .achievements, .settings]
+    static let wideOrder: [TodayRailItem] = [.settings, .records, .achievements, .viewMode]
+
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
+    /// Conteúdo de cada botão. Com quatro botões cabe folgado no 13 mini (~311 pt úteis).
+    private static let iconSize = CGSize(width: 30, height: 20)
+
+    var body: some View {
+        HStack(spacing: 10) {
+            ForEach(items) { item in
+                TodayRailButton(item: item, filled: false, iconSize: Self.iconSize)
+                    .appSecondaryButton(accentColor, circle: true)
+                    .controlSize(.regular)
+            }
         }
     }
 }

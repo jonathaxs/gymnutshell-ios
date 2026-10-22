@@ -137,7 +137,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Cronologia";
+"statistics.title" = "Registri";
 "statistics.section.tiers" = "Traguardi per livello";
 "statistics.section.activity" = "Attività in palestra";
 "statistics.section.goals" = "Obiettivi";

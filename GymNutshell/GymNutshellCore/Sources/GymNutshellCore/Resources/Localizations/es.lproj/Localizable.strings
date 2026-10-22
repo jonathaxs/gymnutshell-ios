@@ -142,7 +142,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Historial";
+"statistics.title" = "Registros";
 "statistics.section.tiers" = "Logros por niveles";
 "statistics.section.activity" = "Actividad en el gimnasio";
 "statistics.section.goals" = "Metas";

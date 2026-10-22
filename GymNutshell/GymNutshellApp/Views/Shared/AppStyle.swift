@@ -140,93 +140,33 @@ extension View {
 
 // MARK: - AppTabHeader
 
-/// Cabeçalho da Hoje: sino do histórico de notificações à esquerda, título grande (a data) no meio e
-/// engrenagem de Ajustes à direita. As outras páginas usam a barra de navegação nativa.
-/// Com a barra vertical do sistema (iPhone Duo dobrado), Ajustes, sino, Histórico, Conquistas e a troca
-/// lista/grade viram itens da toolbar, nessa ordem, e o sistema os põe na coluna lateral abaixo da barra de
-/// status; aqui fica só a data. No iPad deitado esses botões vão pra coluna própria da Hoje (TodaySideRail).
+/// Cabeçalho da Hoje: só o título grande (a data). Os botões de navegação ficam na linha de botões (TodayPageButtons).
+/// As outras páginas usam a barra de navegação nativa.
+/// Com a barra vertical do sistema (iPhone Duo), Ajustes, Registros, Conquistas e a troca lista/grade viram
+/// itens da toolbar, nessa ordem, e o sistema os põe na coluna lateral abaixo da barra de status.
 struct AppTabHeader: View {
 
     let title: String
 
-    @Environment(AppRouter.self) private var router
     @Environment(\.usesVerticalBar) private var usesVerticalBar
-    @Environment(\.todaySideRail) private var todaySideRail
-
-    /// Sino e engrenagem saem do cabeçalho quando vão pra barra vertical ou pra coluna da Hoje.
-    private var buttonsElsewhere: Bool { usesVerticalBar || todaySideRail }
-
-    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
-    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
-
-    @State private var showNotificationHistory = false
-
-    /// Ícone de 35 pt + a borda do vidro (~7,5 pt de cada lado) dá ~50 pt, a mesma altura dos botões
-    /// Histórico, grade e troféu logo abaixo do anel.
-    private static let iconSize: CGFloat = 35
-    private static let fallbackPadding: CGFloat = 7.5
 
     var body: some View {
-        HStack(alignment: .center, spacing: 10) {
-            if !buttonsElsewhere {
-                bellButton
-                    .appCircleButton(fallbackPadding: Self.fallbackPadding)
-            }
-
-            Text(title)
-                .font(.title.weight(.bold))
-                .lineLimit(1)
-                .minimumScaleFactor(0.6)
-                // Centralizada entre o sino e a engrenagem, que têm a mesma largura.
-                .frame(maxWidth: .infinity, alignment: .center)
-                .accessibilityAddTraits(.isHeader)
-                // O VoiceOver lê a data antes dos botões, mesmo com o sino à esquerda.
-                .accessibilitySortPriority(1)
-
-            if !buttonsElsewhere {
-                settingsButton
-                    .appCircleButton(fallbackPadding: Self.fallbackPadding)
-            }
-        }
-        .accessibilityElement(children: .contain)
-        .toolbar {
-            if usesVerticalBar {
-                // Um grupo só, pra coluna seguir esta ordem de cima pra baixo.
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    ForEach(TodayRailItem.allCases) { item in
-                        TodayRailButton(item: item) { showNotificationHistory = true }
+        Text(title)
+            .font(.title.weight(.bold))
+            .lineLimit(1)
+            .minimumScaleFactor(0.6)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .accessibilityAddTraits(.isHeader)
+            .toolbar {
+                if usesVerticalBar {
+                    // Um grupo só, pra coluna seguir esta ordem de cima pra baixo.
+                    ToolbarItemGroup(placement: .topBarTrailing) {
+                        ForEach(TodayRailItem.allCases) { item in
+                            TodayRailButton(item: item)
+                        }
                     }
                 }
             }
-        }
-        .sheet(isPresented: $showNotificationHistory) {
-            NotificationHistorySheet()
-        }
-    }
-
-    private var bellButton: some View {
-        Button {
-            showNotificationHistory = true
-        } label: {
-            Image(systemName: "bell.fill")
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(accentColor)
-                .frame(width: Self.iconSize, height: Self.iconSize)
-        }
-        .accessibilityLabel(String(localized: "today.hero.bell.a11y.label", bundle: .gymNutshellCore))
-        .accessibilityHint(String(localized: "today.hero.bell.a11y.hint", bundle: .gymNutshellCore))
-    }
-
-    private var settingsButton: some View {
-        Button {
-            router.open(.settings)
-        } label: {
-            Image(systemName: "gearshape.fill")
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(accentColor)
-                .frame(width: Self.iconSize, height: Self.iconSize)
-        }
-        .accessibilityLabel(String(localized: "settings.header.title", bundle: .gymNutshellCore))
     }
 }
 

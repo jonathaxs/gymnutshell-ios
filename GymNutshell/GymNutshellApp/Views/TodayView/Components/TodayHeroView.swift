@@ -3,8 +3,8 @@
 //
 //  Propósito: Bloco hero da tela Hoje, no topo (retrato) ou na coluna esquerda (landscape/iPad).
 //             Contém: data grande + sino e engrenagem (opcional), o anel de progresso com a % no centro,
-//             depois do primeiro registro a conquista do dia ao lado e a frase do próximo nível. Os botões
-//             das páginas (TodayPageButtons, no fim do arquivo) são posicionados pela TodayView.
+//             depois do primeiro registro a conquista do dia ao lado e a frase do próximo nível. A linha de
+//             botões (TodayPageButtons, em TodaySideRail.swift) é posicionada pela TodayView.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
 // ⌘
@@ -170,83 +170,5 @@ struct TodayHeroView: View {
         .transition(.opacity)
         .contentShape(Rectangle())
         .onTapGesture { showTierSheet = true }
-    }
-}
-
-// MARK: - Botões das páginas
-
-/// Troca lista/grade das metas, Histórico (com texto) e Conquistas (só o troféu), que abrem como páginas por
-/// cima da Hoje. Os botões abraçam o conteúdo: a linha fica estreita e centralizada, perto da largura da frase acima.
-struct TodayPageButtons: View {
-
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(AppRouter.self) private var router
-
-    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
-    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
-
-    @AppStorage(TodayGoalsViewMode.storageKey) private var goalsViewModeRaw: String = TodayGoalsViewMode.list.rawValue
-
-    var body: some View {
-        HStack(spacing: 10) {
-            viewModeButton
-            recordsButton
-            achievementsButton
-        }
-    }
-
-    private var recordsButton: some View {
-        Button {
-            router.open(.statistics)
-        } label: {
-            Label(String(localized: "statistics.title", bundle: .gymNutshellCore),
-                  systemImage: "clock.arrow.trianglehead.counterclockwise.rotate.90")
-                .font(.subheadline.weight(.semibold))
-                .lineLimit(1)
-        }
-        .appSecondaryButton(accentColor)
-        .controlSize(.regular)
-    }
-
-    /// Largura do conteúdo dos botões só de ícone (redondos), enxuta pra linha ficar estreita e centralizada.
-    private static let iconButtonWidth: CGFloat = 30
-    private static let iconButtonHeight: CGFloat = 20
-
-    private var achievementsButton: some View {
-        Button {
-            router.open(.achievements)
-        } label: {
-            Image(systemName: "trophy")
-                .font(.title3.weight(.semibold))
-                // Altura travada na do texto do Histórico: ícone maior sem aumentar o botão.
-                .frame(width: Self.iconButtonWidth, height: Self.iconButtonHeight)
-        }
-        .appSecondaryButton(accentColor, circle: true)
-        .controlSize(.regular)
-        .accessibilityLabel(String(localized: "achievements.header.title", bundle: .gymNutshellCore))
-    }
-
-    /// Alterna entre lista e grade das metas.
-    private var viewModeButton: some View {
-        let current = TodayGoalsViewMode(rawValue: goalsViewModeRaw) ?? .list
-        let next: TodayGoalsViewMode = current == .list ? .grid : .list
-        return Button {
-            UISelectionFeedbackGenerator().selectionChanged()
-            // Mola: os ícones da lista viram os círculos da grade (e voltam), o resto esmaece.
-            withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.5, dampingFraction: 0.82)) {
-                goalsViewModeRaw = next.rawValue
-            }
-        } label: {
-            // Ícone do modo pra onde vai: em lista, o de grade; em grade, o de lista.
-            Image(systemName: next.symbolName)
-                .font(.title3.weight(.semibold))
-                // Altura travada na do texto do Histórico: ícone maior sem aumentar o botão.
-                .frame(width: Self.iconButtonWidth, height: Self.iconButtonHeight)
-                .contentTransition(.symbolEffect(.replace))
-        }
-        .appSecondaryButton(accentColor, circle: true)
-        .controlSize(.regular)
-        .accessibilityLabel(String(format: String(localized: "today.goals.viewMode.switch.a11y",
-                                                  bundle: .gymNutshellCore), next.title))
     }
 }

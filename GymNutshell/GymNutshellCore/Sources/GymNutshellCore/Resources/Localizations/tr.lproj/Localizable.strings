@@ -119,7 +119,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Geçmiş";
+"statistics.title" = "Kayıtlar";
 "statistics.section.tiers" = "Seviye Dağılımı";
 "statistics.section.activity" = "Antrenman Aktivitesi";
 "statistics.section.goals" = "Hedefler";

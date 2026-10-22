@@ -155,7 +155,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Histórico";
+"statistics.title" = "Registros";
 "statistics.section.tiers" = "Conquistas por Níveis";
 "statistics.section.activity" = "Atividade nos Treinos";
 "statistics.section.goals" = "Metas";
