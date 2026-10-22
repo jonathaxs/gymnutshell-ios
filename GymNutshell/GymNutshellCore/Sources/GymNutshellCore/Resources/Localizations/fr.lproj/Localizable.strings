@@ -894,6 +894,7 @@
 "today.edit.controls" = "Modifier les commandes";
 "today.edit.theme" = "Modifier l’emoji";
 "today.edit.colors" = "Modifier les couleurs d'accentuation";
+"today.edit.quick" = "Modification rapide";
 
 "welcome.step.units.title" = "Tes unités";
 "welcome.step.units.subtitle" = "Comment préfères-tu mesurer l'eau ?";

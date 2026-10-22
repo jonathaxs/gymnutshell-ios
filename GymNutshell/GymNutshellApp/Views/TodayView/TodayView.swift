@@ -745,7 +745,7 @@ struct TodayView: View {
                         .transition(.opacity)
                 }
 
-                editShortcuts
+                editShortcuts(captionOnTop: true)
                     // Na lista a última meta termina num card sem respiro embaixo; a grade já tem folga.
                     .padding(.top, goalsViewMode == .list ? 12 : 0)
             }
@@ -778,35 +778,33 @@ struct TodayView: View {
         var id: String { rawValue }
     }
 
-    /// Botões pequenos abaixo das metas, centralizados: Tema (máscaras, como no Welcome), Cores de destaque (paleta) e
-    /// Controles (os tracinhos dos Ajustes) só com o ícone e, por último, "Editar metas" com texto. Cada um abre a tela
-    /// dos Ajustes numa sheet, sem sair da Hoje. Os ícones daqui são só desses atalhos; os Ajustes têm os seus.
-    private var editShortcuts: some View {
-        HStack(spacing: 8) {
-            shortcutIconButton(systemImage: "theatermasks", a11yKey: "today.edit.theme", sheet: .theme)
-            shortcutIconButton(systemImage: "paintpalette", a11yKey: "today.edit.colors", sheet: .colors)
-            shortcutIconButton(systemImage: "slider.horizontal.3", a11yKey: "today.edit.controls", sheet: .controls)
-            shortcutButton(titleKey: "today.edit.goals", sheet: .goals)
+    /// Botões pequenos abaixo das metas, centralizados, só com o ícone: Tema (máscaras, como no Welcome), Cores de
+    /// destaque (paleta), Controles (os tracinhos dos Ajustes) e Metas (o alvo dos Ajustes). Uma legenda
+    /// pequena "Edição rápida" diz o que é o grupo. Cada um abre a tela dos Ajustes numa sheet, sem sair da Hoje.
+    /// No iPhone a legenda vem acima dos ícones (os botões fecham a tela); no layout largo, embaixo.
+    private func editShortcuts(captionOnTop: Bool) -> some View {
+        VStack(spacing: 6) {
+            if captionOnTop { editShortcutsCaption }
+            HStack(spacing: 8) {
+                shortcutIconButton(systemImage: "theatermasks", a11yKey: "today.edit.theme", sheet: .theme)
+                shortcutIconButton(systemImage: "paintpalette", a11yKey: "today.edit.colors", sheet: .colors)
+                shortcutIconButton(systemImage: "slider.horizontal.3", a11yKey: "today.edit.controls", sheet: .controls)
+                shortcutIconButton(systemImage: "target", a11yKey: "today.edit.goals", sheet: .goals)
+            }
+            if !captionOnTop { editShortcutsCaption }
         }
     }
 
-    private func shortcutButton(titleKey: String, sheet: EditSheet) -> some View {
-        Button {
-            editSheet = sheet
-        } label: {
-            Text(String(localized: String.LocalizationValue(titleKey), bundle: .gymNutshellCore))
-                .font(.footnote.weight(.semibold))
-                // Numa linha só; nos iPhones mais estreitos encolhe um pouco em vez de quebrar.
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
-        }
-        .appSecondaryButton(todayAccentColor)
-        .controlSize(.small)
+    private var editShortcutsCaption: some View {
+        Text(String(localized: "today.edit.quick", bundle: .gymNutshellCore))
+            .font(.caption2.weight(.medium))
+            .foregroundStyle(.secondary)
+            // Os botões já dizem o que fazem pro VoiceOver; a legenda é só visual.
+            .accessibilityHidden(true)
     }
 
     /// Só o ícone, maior que o texto (como os botões de ícone do hero), mas com o frame travado no tamanho
-    /// antigo: o ícone ocupa parte da margem interna do vidro, sem aumentar o botão. Com um frame mais largo,
-    /// o "Editar metas" quebrava em duas linhas no iPhone de 6,3".
+    /// antigo: o ícone ocupa parte da margem interna do vidro, sem aumentar o botão.
     private func shortcutIconButton(systemImage: String, a11yKey: String, sheet: EditSheet) -> some View {
         Button {
             editSheet = sheet
@@ -826,7 +824,7 @@ struct TodayView: View {
     /// Mesmos atalhos, com a mesma identidade nas duas posições: na troca lista ↔ grade eles deslizam entre o
     /// hero e o pé da grade.
     private var wideEditShortcuts: some View {
-        editShortcuts
+        editShortcuts(captionOnTop: false)
             .matchedGeometryEffect(id: "editShortcuts", in: goalsMorphNamespace)
     }
 

@@ -862,6 +862,7 @@
 "today.edit.controls" = "Denetimleri düzenle";
 "today.edit.theme" = "Emojiyi düzenle";
 "today.edit.colors" = "Vurgu renklerini düzenle";
+"today.edit.quick" = "Hızlı düzenleme";
 
 "welcome.step.units.title" = "Ölçü birimlerin";
 "welcome.step.units.subtitle" = "Suyu nasıl ölçmeyi tercih edersin?";

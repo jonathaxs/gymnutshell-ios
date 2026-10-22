@@ -86,7 +86,8 @@ struct TodayHeroView: View {
 
             VStack(spacing: 16) {
                 // O anel mantém a identidade no HStack: quando a conquista entra, ele só desliza.
-                HStack(spacing: 36) {
+                // Espaço curto: o emoji fica perto do anel e os dois juntos, centralizados com o resto da tela.
+                HStack(spacing: 8) {
                     TodayProgressRingView(progress: dailyProgress,
                                           onTap: { showRingSheet = true },
                                           size: ringSize,
@@ -131,7 +132,8 @@ struct TodayHeroView: View {
                 .id(tierName)
                 .transition(.opacity)
         }
-        .frame(width: 130, height: ringSize)
+        // Largura só pro nome do nível caber; mais larga, sobra vão em volta do emoji e ele se afasta do anel.
+        .frame(width: 116, height: ringSize)
         .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.6), value: tierEmoji)
         .contentShape(Rectangle())
         .onTapGesture { showTierSheet = true }

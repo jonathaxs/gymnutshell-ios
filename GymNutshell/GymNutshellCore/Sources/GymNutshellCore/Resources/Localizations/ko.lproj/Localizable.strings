@@ -862,6 +862,7 @@
 "today.edit.controls" = "입력 방식 변경";
 "today.edit.theme" = "이모지 변경";
 "today.edit.colors" = "포인트 색상 변경";
+"today.edit.quick" = "빠른 편집";
 
 "welcome.step.units.title" = "측정 단위";
 "welcome.step.units.subtitle" = "물 섭취량을 어떤 단위로 측정하고 싶으신가요?";

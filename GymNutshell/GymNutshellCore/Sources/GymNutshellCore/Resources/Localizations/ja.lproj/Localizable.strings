@@ -862,6 +862,7 @@
 "today.edit.controls" = "操作方法を編集";
 "today.edit.theme" = "絵文字を編集";
 "today.edit.colors" = "アクセントカラーを編集";
+"today.edit.quick" = "クイック編集";
 
 "welcome.step.units.title" = "単位の設定";
 "welcome.step.units.subtitle" = "水分の単位はどちらを使用しますか？";

@@ -890,6 +890,7 @@
 "today.edit.controls" = "Modifica controlli";
 "today.edit.theme" = "Modifica emoji";
 "today.edit.colors" = "Modifica colori in risalto";
+"today.edit.quick" = "Modifica rapida";
 
 "welcome.step.units.title" = "Le tue unità";
 "welcome.step.units.subtitle" = "Come preferisci misurare l'acqua?";

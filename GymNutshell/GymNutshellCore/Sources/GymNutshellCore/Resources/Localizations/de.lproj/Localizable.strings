@@ -872,6 +872,7 @@
 "today.edit.controls" = "Steuerung bearbeiten";
 "today.edit.theme" = "Emoji bearbeiten";
 "today.edit.colors" = "Akzentfarben bearbeiten";
+"today.edit.quick" = "Schnell bearbeiten";
 
 "welcome.step.units.title" = "Deine Einheiten";
 "welcome.step.units.subtitle" = "Wie möchtest du Wasser messen?";

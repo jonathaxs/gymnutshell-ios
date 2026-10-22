@@ -861,6 +861,7 @@
 "today.edit.controls" = "编辑记录方式";
 "today.edit.theme" = "编辑表情";
 "today.edit.colors" = "编辑强调色";
+"today.edit.quick" = "快速编辑";
 
 "welcome.step.units.title" = "度量单位";
 "welcome.step.units.subtitle" = "你习惯如何计量饮水量？";
