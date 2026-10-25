@@ -1,5 +1,7 @@
 # <img src="appicons/gymnutshell-tinted-rounded.png" width="56" align="absmiddle" alt="Ícone do Gym Nutshell">&nbsp;&nbsp;Gym&nbsp;Nutshell&nbsp;&nbsp;<img src="appicons/apple.svg" width="28" height="28" align="absmiddle" alt="Apple">
 
+**[Read in English](#en-gymnutshell)**
+
 _Rastreie metas de nutrição, sono, suplementos e libere conquistas._
 
 O Nutshell nasceu da minha rotina de academia. Eu precisava lembrar de bater as metas de proteínas, carboidratos, água, sono e outros em um só lugar, mas não achei nenhum app que fizesse tudo isso junto.
@@ -152,3 +154,162 @@ Existe também uma versão nativa para Android, feita em Kotlin e Jetpack Compos
 ## Autor
 
 Desenvolvido por **Jonathas Motta** ([@jonathaxs](https://github.com/jonathaxs)).
+
+---
+
+# <img src="appicons/gymnutshell-tinted-rounded.png" width="56" align="absmiddle" alt="Gym Nutshell icon">&nbsp;&nbsp;(EN) Gym&nbsp;Nutshell&nbsp;&nbsp;<img src="appicons/apple.svg" width="28" height="28" align="absmiddle" alt="Apple">
+
+**[Leia em português](#gymnutshell)**
+
+_Track nutrition, sleep and supplement goals and unlock achievements._
+
+Nutshell grew out of my gym routine. I needed to remember to hit my protein, carbs, water, sleep and other goals in one place, but I couldn't find an app that did all of that together.
+
+During the day, you track each goal with a simple slider, including the default goals and your own custom ones, and get notifications throughout the day.
+
+To make the app a bit more fun, every completed day becomes a themed achievement, with streaks and a calendar of your progress.
+
+It's free, with no ads, no subscription and no sign-up.
+
+**Available on the [App Store](https://apps.apple.com/us/app/gym-nutshell/id6774739305)** for iPhone, iPad, Apple Watch and Macs with Apple Silicon.
+
+## Features - Version 1.0
+_(Some features are being removed and others improved in the upcoming Version 2.0. For questions or suggestions, [get in touch](https://jonathasmotta.com).)_
+
+**Today**
+- The day's goals with quick logging and an overall progress ring.
+- Rest day button, which counts the goal as done on days off.
+- Goals in the Essential, Nutrition, Training and Supplement categories, in an order you choose.
+
+**Goals**
+- Ready-made goals: weight training, cardio, sleep, water, calories, protein, carbs, healthy fats, fiber and creatine.
+- Recommended values calculated from weight, height, age, sex and goal, with calories from the Mifflin-St Jeor equation.
+- Custom goals and categories created by the user.
+- Metric or imperial units.
+
+**Achievements and themes**
+- Four achievement levels per day, based on the average progress of the goals.
+- 19 themes in six categories (sports, animals, fighters, elements, space and competition), each with its own emojis and level names, including feminine versions.
+- Monthly achievement calendar, with editable history.
+- Weekly and monthly streak bonuses for keeping the highest levels every day.
+
+**Progress**
+- Logged days, points and bonuses earned.
+- Number of days at each level, recent activity and a summary of goals and body data.
+
+**Apple Watch**
+- Its own app with the day's progress, goals, stats and notification history.
+- Two-way sync with the iPhone.
+- Watch face complications in circular, rectangular, corner and inline styles.
+
+**Widgets**
+- Progress (small, medium and Lock Screen), Calendar and Goals (large).
+- Configurable widget background.
+
+**Apple Health**
+- Reads workouts to check off weight training and cardio automatically.
+- Saves sleep hours to the Health app.
+- Permissions are requested on demand, only for what the user turns on.
+
+**Reminders**
+- Local notifications per goal, with a configurable interval and limited to daytime hours.
+- History of received notifications.
+
+**Data and personalization**
+- JSON backup to export and import, compatible with the Android version.
+- Automatic daily backup to iCloud Drive.
+- Configurable accent colors and screen orientation lock.
+- Interface in Brazilian Portuguese and English, following the system language.
+- Support for VoiceOver, light mode and dark mode.
+- Available for iPhone, iPad and Macs with Apple Silicon.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph Apps["Apps and extensions"]
+        Phone["iPhone and iPad app (SwiftUI)"]
+        Watch["Apple Watch app"]
+        Widgets["iOS and watchOS widgets"]
+    end
+
+    subgraph Core["GymNutshellCore (Swift Package)"]
+        Models["SwiftData models"]
+        Goals["Goals, progress and achievements"]
+        Services["Services: Health, notifications, backup and sync"]
+        Loc["Localization en / pt-BR"]
+    end
+
+    Phone --> Services
+    Phone --> Goals
+    Watch --> Goals
+    Widgets --> Goals
+    Phone <-->|WatchConnectivity| Watch
+    Services --> Models
+    Models --> Store[("SwiftData")]
+    Services <--> Health[("Apple Health")]
+    Services --> Backup["JSON backup and iCloud Drive"]
+```
+
+- **SwiftUI** throughout the interface, using the **MV** (Model-View) pattern: state lives in the views themselves and in a few `@Observable` stores per domain, with no ViewModel layer.
+- **SwiftData** for local persistence.
+- **GymNutshellCore**: a local Swift Package shared by the five targets (iOS app, watchOS app, iOS widgets, watchOS widgets and tests). It holds the models, goal calculation, achievements, services and localization, which is a single catalog for every target.
+- **HealthKit**, **WidgetKit**, **WatchConnectivity**, **AppIntents** and **UserNotifications** for system integration.
+- Progress rings and bars drawn with SwiftUI shapes, with no chart libraries.
+- No external dependencies: only Apple's native frameworks.
+
+### From check-in to achievement
+
+```mermaid
+flowchart LR
+    Metas["Active goals for the day"] --> Media["Average progress"]
+    Media --> N1["Level 1: up to 33%"]
+    Media --> N2["Level 2: up to 66%"]
+    Media --> N3["Level 3: up to 90%"]
+    Media --> N4["Level 4: above 90%"]
+    N1 & N2 & N3 & N4 --> Emoji["Theme emoji on the calendar"]
+    Emoji --> Bonus["Weekly and monthly streak bonus"]
+```
+
+## Repository structure
+
+```text
+GymNutshell/
+├── GymNutshellApp/            iPhone and iPad app
+│   ├── Views/                 Screens by area: Today, Achievements, Progress, Settings and welcome
+│   ├── Helpers/               App delegate and orientation lock
+│   └── Resources/             Assets, Info.plist and localized system strings
+├── GymNutshellWatch/          Apple Watch app
+├── GymNutshellWidget/         iPhone widgets
+├── GymNutshellWatchWidget/    Apple Watch complications
+├── GymNutshellCore/           Swift Package with the app's domain
+│   ├── Sources/GymNutshellCore/
+│   │   ├── Models/            Daily records, bonuses, themes, profile and backup
+│   │   ├── Goals/             Default goals, goal calculation and display order
+│   │   ├── Services/          Health, notifications, backup, iCloud and Watch sync
+│   │   ├── Stores/            Custom goals, categories, preferences and widget data
+│   │   ├── Migrations/        Data migrations
+│   │   ├── Accessibility/     VoiceOver support
+│   │   └── Resources/         en and pt-BR localization
+│   └── Tests/                 Core tests
+└── GymNutshell.xcodeproj
+```
+
+## Requirements
+
+- iOS 18 or later and watchOS 11 or later.
+- Xcode with Swift 6.3 or later.
+
+To run it on a device, select your Team and set up HealthKit, the iCloud container and the App Group used by the widgets in **Signing & Capabilities**.
+
+## Privacy
+
+Gym Nutshell requires no sign-up and collects no data. Information stays on the device and, when backup is on, in the user's iCloud Drive. Health data stays in the Health app and is only read or written with the user's permission. There are no servers of its own, no analytics and no ads.
+
+## Android
+
+There is also a native Android version, built with Kotlin and Jetpack Compose: [gymnutshell-android](https://github.com/jonathaxs/gymnutshell-android).
+
+## Author
+
+Developed by **Jonathas Motta** ([@jonathaxs](https://github.com/jonathaxs)).
