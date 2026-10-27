@@ -353,6 +353,10 @@
 "today.category.other" = "Autres";
 "today.category.a11y.value" = "%d sur %d objectifs atteints";
 "today.restday.label" = "Jour de repos";
+"today.checkin.pending" = "En attente";
+"today.checkin.done" = "Fait";
+"a11y.checkin.hint.markDone" = "Touche pour marquer comme fait.";
+"a11y.checkin.hint.markPending" = "Touche pour remettre en attente.";
 "today.restday.on" = "ON";
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sommeil";

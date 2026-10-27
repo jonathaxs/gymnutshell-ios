@@ -57,3 +57,16 @@ public enum CategoryKind: String, Codable, CaseIterable, Identifiable, Sendable 
         current > 0 && current >= goal
     }
 }
+
+// MARK: - Tipo de uma meta personalizada
+
+public extension CustomTrackingGoal {
+    /// Tipo herdado da categoria da meta: fixa (`GoalCategory.kind`) ou personalizada (procurada em `categories`).
+    /// Sem categoria, ou categoria personalizada que sumiu, cai no padrão.
+    func kind(in categories: [CustomGoalCategory]) -> CategoryKind {
+        if let customId = customCategoryId {
+            return categories.first { $0.id == customId }?.kind ?? .standard
+        }
+        return category?.kind ?? .standard
+    }
+}

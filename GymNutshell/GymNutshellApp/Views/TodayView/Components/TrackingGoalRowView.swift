@@ -2,7 +2,8 @@
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TrackingGoalRowView.swift
 //
 //  Propósito: Linha em estilo de card pras metas de rastreio (acumulação numérica).
-//             Mostra um slider pra entrada. Os tons de cor refletem o nível de progresso.
+//             Mostra um slider (ou − / +) pra entrada; em categoria check-in, o seletor Pendente | Feito.
+//             Os tons de cor refletem o nível de progresso.
 //             Dentro de um card agrupado (Hoje, por categoria) perde o card próprio e vira só a linha.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-19.
@@ -35,6 +36,10 @@ struct TrackingGoalRowView: View {
     // ON = dia de descanso: slider é substituído por texto "Dia de descanso" e conta como meta cumprida.
     var isRestDay: Binding<Bool>? = nil
 
+    // Categoria check-in (ex: Suplemento): seletor Pendente | Feito no lugar do slider ou − / +.
+    // Feito grava a meta inteira (a dose); Pendente grava 0.
+    var isCheckIn: Bool = false
+
     // Estilo global dos controles (slider ou − / +), escolhido na Welcome e editável em Ajustes.
     @AppStorage(ControlStyle.storageKey) private var controlStyleRaw: String = ControlStyle.default.rawValue
     private var controlStyle: ControlStyle { ControlStyle(rawValue: controlStyleRaw) ?? .default }
@@ -43,6 +48,8 @@ struct TrackingGoalRowView: View {
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
     @Environment(\.goalRowGrouped) private var isGrouped
+
+    @Namespace private var checkInNamespace
 
     // MARK: - Valores derivados
 
@@ -110,7 +117,8 @@ struct TrackingGoalRowView: View {
                         .lineLimit(1)
                         .layoutPriority(1)
                     Spacer(minLength: 6)
-                    Text("\(value) / \(safeGoal) \(unit)")
+                    // Check-in mostra só a dose; o estado já aparece no seletor.
+                    Text(isCheckIn ? "\(safeGoal) \(unit)" : "\(value) / \(safeGoal) \(unit)")
                         .font(.subheadline.monospacedDigit())
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
@@ -122,6 +130,8 @@ struct TrackingGoalRowView: View {
                 .accessibilityValue(
                     isRestDay?.wrappedValue == true
                     ? A11y.goalRowRestDayValue()
+                    : isCheckIn
+                    ? "\(checkInStateText), \(safeGoal) \(unit)"
                     : A11y.goalRowValue(current: value, goal: safeGoal, unit: unit)
                 )
 
@@ -169,7 +179,9 @@ struct TrackingGoalRowView: View {
     /// custom porque o sistema já anuncia "ajustável, deslize para cima ou para baixo".
     @ViewBuilder
     private var control: some View {
-        if controlStyle == .stepper {
+        if isCheckIn {
+            checkInControl
+        } else if controlStyle == .stepper {
             stepperControl
         } else {
             Slider(
@@ -191,6 +203,74 @@ struct TrackingGoalRowView: View {
             // Já comunicado pelo value do header, esconde para não
             // duplicar "dia de descanso" no VoiceOver.
             .accessibilityHidden(true)
+    }
+
+    // MARK: - Check-in (Pendente | Feito)
+
+    private var isDone: Bool { CategoryKind.isCheckInDone(current: value, goal: safeGoal) }
+
+    private var checkInStateText: String {
+        String(localized: isDone ? "today.checkin.done" : "today.checkin.pending", bundle: .gymNutshellCore)
+    }
+
+    /// Seletor de 2 opções com uma pílula que desliza até a escolhida: vidro no iOS 26+ (com a cor de
+    /// destaque em Feito), sólida no iOS 18. Feito com botões, cada um com o traço "selecionado" no VoiceOver.
+    private var checkInControl: some View {
+        HStack(spacing: 0) {
+            checkInSegment(done: false)
+            checkInSegment(done: true)
+        }
+        .padding(4)
+        .background(Capsule().fill(Color(.tertiarySystemFill)))
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(title)
+    }
+
+    private func checkInSegment(done: Bool) -> some View {
+        let selected = isDone == done
+        return Button {
+            setCheckIn(done)
+        } label: {
+            Text(String(localized: done ? "today.checkin.done" : "today.checkin.pending", bundle: .gymNutshellCore))
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(selected ? (done ? Color.white : Color.primary) : Color.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(maxWidth: .infinity, minHeight: 40)
+                .background {
+                    if selected {
+                        checkInThumb(done: done)
+                            .matchedGeometryEffect(id: "thumb", in: checkInNamespace)
+                    }
+                }
+                .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .accessibilityAddTraits(selected ? .isSelected : [])
+    }
+
+    @ViewBuilder
+    private func checkInThumb(done: Bool) -> some View {
+        if #available(iOS 26.0, *) {
+            Color.clear
+                .glassEffect(done ? .regular.tint(accentColor) : .regular, in: Capsule())
+        } else {
+            Capsule()
+                .fill(done ? accentColor : Color(.secondarySystemGroupedBackground))
+                .shadow(color: .black.opacity(0.12), radius: 3, y: 1)
+        }
+    }
+
+    private func setCheckIn(_ done: Bool) {
+        guard done != isDone else { return }
+        if done {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        } else {
+            UISelectionFeedbackGenerator().selectionChanged()
+        }
+        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+            value = CategoryKind.checkInValue(done: done, goal: safeGoal)
+        }
     }
 
     // MARK: - Controle − / +

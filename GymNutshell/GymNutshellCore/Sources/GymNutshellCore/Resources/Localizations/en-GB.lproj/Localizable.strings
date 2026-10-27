@@ -332,6 +332,10 @@
 "today.category.other" = "Other";
 "today.category.a11y.value" = "%d of %d goals completed";
 "today.restday.label" = "Day off";
+"today.checkin.pending" = "Pending";
+"today.checkin.done" = "Done";
+"a11y.checkin.hint.markDone" = "Tap to mark as done.";
+"a11y.checkin.hint.markPending" = "Tap to mark as pending.";
 "today.restday.on" = "ON";
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sleep";

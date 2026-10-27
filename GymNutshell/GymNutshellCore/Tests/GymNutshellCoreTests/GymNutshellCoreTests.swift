@@ -225,6 +225,21 @@ import Foundation
     #expect(GoalCategory.nutricao.kind == .standard)
 }
 
+@Test func metaHerdaTipoDaCategoria() {
+    let vitaminas = CustomGoalCategory(id: "v", name: "Vitaminas", kind: .checkIn)
+    let emSuplemento = CustomTrackingGoal(emoji: "💊", name: "Vitamina D", unit: "UI", goal: 2000, increment: 2000,
+                                          category: .suplemento)
+    let emPersonalizada = CustomTrackingGoal(emoji: "🧠", name: "5-HTP", unit: "mg", goal: 100, increment: 100,
+                                             customCategoryId: "v")
+    let semCategoria = CustomTrackingGoal(emoji: "📖", name: "Ler", unit: "pág", goal: 10, increment: 1)
+    let categoriaApagada = CustomTrackingGoal(emoji: "🧘", name: "Meditar", unit: "min", goal: 10, increment: 5,
+                                              customCategoryId: "sumiu")
+    #expect(emSuplemento.kind(in: []) == .checkIn)
+    #expect(emPersonalizada.kind(in: [vitaminas]) == .checkIn)
+    #expect(semCategoria.kind(in: [vitaminas]) == .standard)
+    #expect(categoriaApagada.kind(in: [vitaminas]) == .standard)
+}
+
 @Test func checkInGravaMetaOuZero() {
     #expect(CategoryKind.checkInValue(done: true, goal: 5) == 5)
     #expect(CategoryKind.checkInValue(done: false, goal: 5) == 0)

@@ -350,6 +350,10 @@
 "today.category.other" = "Altro";
 "today.category.a11y.value" = "%d di %d obiettivi completati";
 "today.restday.label" = "Giorno di riposo";
+"today.checkin.pending" = "In sospeso";
+"today.checkin.done" = "Fatto";
+"a11y.checkin.hint.markDone" = "Tocca per segnare come fatto.";
+"a11y.checkin.hint.markPending" = "Tocca per rimettere in sospeso.";
 "today.restday.on" = "ON";
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sonno";

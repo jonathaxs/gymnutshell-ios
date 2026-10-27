@@ -332,6 +332,10 @@
 "today.category.other" = "其他";
 "today.category.a11y.value" = "已完成 %d 个目标（共 %d 个）";
 "today.restday.label" = "休息日";
+"today.checkin.pending" = "待完成";
+"today.checkin.done" = "已完成";
+"a11y.checkin.hint.markDone" = "轻点标记为已完成。";
+"a11y.checkin.hint.markPending" = "轻点改回待完成。";
 "today.restday.on" = "开启";
 "today.restday.off" = "关闭";
 "today.metric.sleep" = "睡眠";

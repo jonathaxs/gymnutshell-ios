@@ -333,6 +333,10 @@
 "today.category.other" = "Sonstige";
 "today.category.a11y.value" = "%d von %d Zielen erreicht";
 "today.restday.label" = "Ruhetag";
+"today.checkin.pending" = "Offen";
+"today.checkin.done" = "Erledigt";
+"a11y.checkin.hint.markDone" = "Tippen, um als erledigt zu markieren.";
+"a11y.checkin.hint.markPending" = "Tippen, um wieder auf offen zu setzen.";
 "today.restday.on" = "AN";
 "today.restday.off" = "AUS";
 "today.metric.sleep" = "Schlaf";

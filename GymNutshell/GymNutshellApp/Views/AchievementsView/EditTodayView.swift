@@ -127,12 +127,7 @@ struct EditTodayView: View {
     }
 
     private func supportsRestDay(for goal: CustomTrackingGoal) -> Bool {
-        if goal.category == .treino { return true }
-        if let customId = goal.customCategoryId,
-           let found = userCategories.first(where: { $0.id == customId }) {
-            return found.supportsRestDay
-        }
-        return false
+        goal.kind(in: userCategories) == .restDay
     }
 
     private func restDayBinding(for trackingGoal: CustomTrackingGoal) -> Binding<Bool>? {
@@ -192,7 +187,8 @@ struct EditTodayView: View {
         case "tracking.creatine":
             TrackingGoalRowView(emoji: "🧪", title: String(localized: "today.goals.creatine", bundle: .gymNutshellCore),
                                 unit: "g", increment: DefaultGoals.creatineIncrement,
-                                goal: creatineGoal, value: $creatineIntake)
+                                goal: creatineGoal, value: $creatineIntake,
+                                isCheckIn: GoalCategory.suplemento.kind == .checkIn)
         default:
             EmptyView()
         }
@@ -273,7 +269,8 @@ struct EditTodayView: View {
                             increment: trackingGoal.increment,
                             goal: trackingGoal.goal,
                             value: intakeBinding(for: trackingGoal),
-                            isRestDay: restDayBinding(for: trackingGoal)
+                            isRestDay: restDayBinding(for: trackingGoal),
+                            isCheckIn: trackingGoal.kind(in: userCategories) == .checkIn
                         )
                     }
 

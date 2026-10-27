@@ -355,6 +355,10 @@
 "today.category.other" = "Otras";
 "today.category.a11y.value" = "%d de %d metas completadas";
 "today.restday.label" = "Día de descanso";
+"today.checkin.pending" = "Pendiente";
+"today.checkin.done" = "Hecho";
+"a11y.checkin.hint.markDone" = "Toca para marcar como hecho.";
+"a11y.checkin.hint.markPending" = "Toca para volver a pendiente.";
 "today.restday.on" = "ON";
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sueño";

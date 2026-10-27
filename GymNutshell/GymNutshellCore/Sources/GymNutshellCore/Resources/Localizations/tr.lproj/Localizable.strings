@@ -332,6 +332,10 @@
 "today.category.other" = "Diğer";
 "today.category.a11y.value" = "%2$d hedeften %1$d tanesi tamamlandı";
 "today.restday.label" = "Dinlenme günü";
+"today.checkin.pending" = "Bekliyor";
+"today.checkin.done" = "Yapıldı";
+"a11y.checkin.hint.markDone" = "Yapıldı olarak işaretlemek için dokun.";
+"a11y.checkin.hint.markPending" = "Bekliyor durumuna döndürmek için dokun.";
 "today.restday.on" = "AÇIK";
 "today.restday.off" = "KAPALI";
 "today.metric.sleep" = "Uyku";

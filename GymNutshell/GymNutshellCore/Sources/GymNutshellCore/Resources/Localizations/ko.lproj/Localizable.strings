@@ -332,6 +332,10 @@
 "today.category.other" = "기타";
 "today.category.a11y.value" = "목표 %d개 완료 (총 %d개)";
 "today.restday.label" = "휴식일";
+"today.checkin.pending" = "대기";
+"today.checkin.done" = "완료";
+"a11y.checkin.hint.markDone" = "탭하여 완료로 표시합니다.";
+"a11y.checkin.hint.markPending" = "탭하여 대기로 되돌립니다.";
 "today.restday.on" = "ON";
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "수면";

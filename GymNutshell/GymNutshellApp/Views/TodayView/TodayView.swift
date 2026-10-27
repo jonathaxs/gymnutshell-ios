@@ -182,12 +182,7 @@ struct TodayView: View {
 
     // Retorna se a categoria (fixa ou customizada) aceita dia de descanso.
     private func supportsRestDay(for goal: CustomTrackingGoal) -> Bool {
-        if goal.category == .treino { return true }
-        if let customId = goal.customCategoryId,
-           let found = userCategories.first(where: { $0.id == customId }) {
-            return found.supportsRestDay
-        }
-        return false
+        goal.kind(in: userCategories) == .restDay
     }
 
     // MARK: - Chaves ativas
@@ -312,7 +307,8 @@ struct TodayView: View {
         case "tracking.creatine":
             TrackingGoalRowView(emoji: "🧪", title: String(localized: "today.goals.creatine", bundle: .gymNutshellCore),
                                 unit: "g", increment: DefaultGoals.creatineIncrement,
-                                goal: creatineGoal, value: $creatineIntake)
+                                goal: creatineGoal, value: $creatineIntake,
+                                isCheckIn: GoalCategory.suplemento.kind == .checkIn)
         default:
             EmptyView()
         }
@@ -518,7 +514,8 @@ struct TodayView: View {
             increment: goal.increment,
             goal: goal.goal,
             value: intakeBinding(for: goal),
-            isRestDay: restDayBinding(for: goal)
+            isRestDay: restDayBinding(for: goal),
+            isCheckIn: goal.kind(in: userCategories) == .checkIn
         )
     }
 

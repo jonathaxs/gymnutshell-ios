@@ -3,7 +3,8 @@
 //
 //  Propósito: Card de meta do Watch, pílula com preenchimento proporcional ao
 //             progresso. Tap expande os controles −/+ e (quando aplicável) o
-//             toggle ON/OFF de dia de descanso.
+//             toggle ON/OFF de dia de descanso. Em meta check-in o tap alterna
+//             Pendente ↔ Feito direto, sem expandir.
 // ⌘
 
 import SwiftUI
@@ -60,15 +61,28 @@ struct WatchGoalCard: View {
                     Text(String(localized: "today.restday.label", bundle: .gymNutshellCore))
                         .font(.caption.weight(.semibold))
                         .foregroundStyle(.secondary)
+                } else if entry.isCheckIn {
+                    Text(checkInStateText)
+                        .font(.caption.weight(.semibold))
+                    Text("\(entry.goal) \(entry.unit)")
+                        .font(.caption2.monospacedDigit())
+                        .foregroundStyle(.secondary)
                 } else {
                     Text("\(entry.current) / \(entry.goal) \(entry.unit)")
                         .font(.caption.monospacedDigit().weight(.semibold))
                 }
                 Spacer()
-                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                    .font(.caption2.weight(.semibold))
-                    .foregroundStyle(.secondary)
-                    .accessibilityHidden(true)
+                if entry.isCheckIn {
+                    Image(systemName: isDone ? "checkmark.circle.fill" : "circle")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(isDone ? accentColor : .secondary)
+                        .accessibilityHidden(true)
+                } else {
+                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                        .accessibilityHidden(true)
+                }
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 10)
@@ -78,14 +92,21 @@ struct WatchGoalCard: View {
         .clipShape(Capsule())
         .contentShape(Capsule())
         .tapButton {
-            withAnimation(.easeInOut(duration: 0.22)) {
-                onToggleExpand()
+            if entry.isCheckIn {
+                toggleCheckIn()
+            } else {
+                withAnimation(.easeInOut(duration: 0.22)) {
+                    onToggleExpand()
+                }
             }
         }
         // Header inteiro = 1 botão: "Treino, 0 de 50 minutos, recolhido".
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(entry.displayName)
         .accessibilityValue({
+            if entry.isCheckIn {
+                return "\(checkInStateText), \(entry.goal) \(entry.unit)"
+            }
             let state = isExpanded
                 ? String(localized: "a11y.watch.card.expanded", bundle: .gymNutshellCore)
                 : String(localized: "a11y.watch.card.collapsed", bundle: .gymNutshellCore)
@@ -95,9 +116,26 @@ struct WatchGoalCard: View {
             return A11y.goalRowValue(current: entry.current, goal: entry.goal, unit: entry.unit)
                 + ", " + state
         }())
-        .accessibilityHint(String(localized: isExpanded
-            ? "a11y.watch.card.hint.collapse"
-            : "a11y.watch.card.hint.expand", bundle: .gymNutshellCore))
+        .accessibilityHint(String(localized: entry.isCheckIn
+            ? (isDone ? "a11y.checkin.hint.markPending" : "a11y.checkin.hint.markDone")
+            : (isExpanded ? "a11y.watch.card.hint.collapse" : "a11y.watch.card.hint.expand"),
+            bundle: .gymNutshellCore))
+    }
+
+    // MARK: - Check-in
+
+    private var isDone: Bool { CategoryKind.isCheckInDone(current: entry.current, goal: entry.goal) }
+
+    private var checkInStateText: String {
+        String(localized: isDone ? "today.checkin.done" : "today.checkin.pending", bundle: .gymNutshellCore)
+    }
+
+    /// Feito grava a dose inteira; Pendente volta pra 0. Sincroniza com o iPhone igual ao − / +.
+    private func toggleCheckIn() {
+        let next = CategoryKind.checkInValue(done: !isDone, goal: entry.goal)
+        entry.update(next)
+        WKInterfaceDevice.current().play(next > 0 ? .success : .click)
+        WatchConnectivityManager.shared.sendIntakeUpdate(key: storageKeyForId(entry.id), value: next)
     }
 
     // MARK: - Controls (−/+ e ON/OFF)

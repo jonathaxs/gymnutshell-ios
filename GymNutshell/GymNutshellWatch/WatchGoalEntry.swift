@@ -20,4 +20,6 @@ struct GoalEntry: Identifiable {
     let unit: String
     let increment: Int
     let update: (Int) -> Void
+    /// Categoria check-in (ex: Creatina em Suplemento): um toque alterna Pendente ↔ Feito, sem − / +.
+    var isCheckIn: Bool = false
 }

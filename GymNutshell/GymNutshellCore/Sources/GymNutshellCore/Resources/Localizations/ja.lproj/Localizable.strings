@@ -332,6 +332,10 @@
 "today.category.other" = "その他";
 "today.category.a11y.value" = "%2$d件中%1$d件の目標を達成";
 "today.restday.label" = "休息日";
+"today.checkin.pending" = "未完了";
+"today.checkin.done" = "完了";
+"a11y.checkin.hint.markDone" = "タップして完了にします。";
+"a11y.checkin.hint.markPending" = "タップして未完了に戻します。";
 "today.restday.on" = "オン";
 "today.restday.off" = "オフ";
 "today.metric.sleep" = "睡眠";

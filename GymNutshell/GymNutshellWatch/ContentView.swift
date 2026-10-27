@@ -137,7 +137,8 @@ struct ContentView: View {
                 displayName: String(localized: "today.goals.creatine", bundle: .gymNutshellCore),
                 current: creatineIntake, goal: creatineGoalValue,
                 unit: "g", increment: DefaultGoals.creatineIncrement,
-                update: { creatineIntake = $0 }
+                update: { creatineIntake = $0 },
+                isCheckIn: GoalCategory.suplemento.kind == .checkIn
             )
         default:
             return nil
