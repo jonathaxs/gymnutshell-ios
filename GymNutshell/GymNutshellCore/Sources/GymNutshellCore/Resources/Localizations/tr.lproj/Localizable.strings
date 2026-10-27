@@ -169,6 +169,15 @@
 "settings.addgoal.category.new.section" = "Özel kategori";
 "settings.addgoal.category.new.name.placeholder" = "örnek: Esneme";
 "settings.addgoal.category.new.restDay" = "Dinlenme günü anahtarı (AÇIK/KAPALI)";
+"settings.category.kind" = "Tür";
+"category.kind.standard" = "Standart";
+"category.kind.restDay" = "Dinlenme günlü";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "Hedefleri kaydırıcı veya − / + düğmeleriyle azar azar kaydedin.";
+"category.kind.restDay.footer" = "Standart gibi, dinlenme günü için AÇIK/KAPALI düğmesiyle.";
+"category.kind.checkIn.footer" = "Her hedef günde bir kez işaretlenir: Bekliyor veya Yapıldı.";
+"settings.addgoal.section.dose" = "Doz";
+"settings.addgoal.dose.footer" = "Yapıldı olarak işaretlenince günün hedefi bu miktarla tamamlanır.";
 "settings.goals.custom.badge" = "Özel";
 "settings.goals.categories.title" = "Kategoriler";
 

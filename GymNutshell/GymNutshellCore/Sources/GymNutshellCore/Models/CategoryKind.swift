@@ -25,6 +25,25 @@ public enum CategoryKind: String, Codable, CaseIterable, Identifiable, Sendable 
         self = CategoryKind(rawValue: raw) ?? .standard
     }
 
+    // MARK: - Textos
+
+    public var displayName: String {
+        switch self {
+        case .standard: return String(localized: "category.kind.standard", bundle: .gymNutshellCore)
+        case .restDay:  return String(localized: "category.kind.restDay", bundle: .gymNutshellCore)
+        case .checkIn:  return String(localized: "category.kind.checkIn", bundle: .gymNutshellCore)
+        }
+    }
+
+    /// Explicação curta do tipo, mostrada abaixo do seletor em Ajustes.
+    public var settingsFooter: String {
+        switch self {
+        case .standard: return String(localized: "category.kind.standard.footer", bundle: .gymNutshellCore)
+        case .restDay:  return String(localized: "category.kind.restDay.footer", bundle: .gymNutshellCore)
+        case .checkIn:  return String(localized: "category.kind.checkIn.footer", bundle: .gymNutshellCore)
+        }
+    }
+
     // MARK: - Check-in
 
     /// Valor gravado ao marcar Feito/Pendente numa meta check-in.

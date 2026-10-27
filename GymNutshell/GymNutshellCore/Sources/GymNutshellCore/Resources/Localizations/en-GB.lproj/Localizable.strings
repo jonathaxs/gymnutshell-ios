@@ -169,6 +169,15 @@
 "settings.addgoal.category.new.section" = "Custom category";
 "settings.addgoal.category.new.name.placeholder" = "example: Stretching";
 "settings.addgoal.category.new.restDay" = "Day off toggle (ON/OFF)";
+"settings.category.kind" = "Type";
+"category.kind.standard" = "Standard";
+"category.kind.restDay" = "With day off";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "Log goals bit by bit with the slider or the − / + buttons.";
+"category.kind.restDay.footer" = "Like Standard, plus an ON/OFF button to mark a day off.";
+"category.kind.checkIn.footer" = "Each goal is checked once a day: Pending or Done.";
+"settings.addgoal.section.dose" = "Dose";
+"settings.addgoal.dose.footer" = "Marking Done completes the day's goal with this amount.";
 "settings.goals.custom.badge" = "Custom";
 "settings.goals.categories.title" = "Categories";
 

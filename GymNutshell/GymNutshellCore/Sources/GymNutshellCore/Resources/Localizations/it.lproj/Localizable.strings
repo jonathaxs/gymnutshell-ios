@@ -187,6 +187,15 @@
 "settings.addgoal.category.new.section" = "Categoria personalizzata";
 "settings.addgoal.category.new.name.placeholder" = "es: Stretching";
 "settings.addgoal.category.new.restDay" = "Pulsante giorno di riposo (ON/OFF)";
+"settings.category.kind" = "Tipo";
+"category.kind.standard" = "Standard";
+"category.kind.restDay" = "Con riposo";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "Registra gli obiettivi poco a poco con lo slider o i pulsanti − / +.";
+"category.kind.restDay.footer" = "Come Standard, con un pulsante ON/OFF per segnare il giorno di riposo.";
+"category.kind.checkIn.footer" = "Ogni obiettivo si spunta una volta al giorno: In sospeso o Fatto.";
+"settings.addgoal.section.dose" = "Dose";
+"settings.addgoal.dose.footer" = "Segnando Fatto, l'obiettivo del giorno è completato con questa quantità.";
 "settings.goals.custom.badge" = "Personalizzato";
 "settings.goals.categories.title" = "Categorie";
 

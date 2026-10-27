@@ -55,7 +55,7 @@ struct AddTrackingGoalView: View {
     @State private var existingGoals: [CustomTrackingGoal] = []
     @State private var isCreatingNewCategory: Bool = false
     @State private var newCategoryName: String = ""
-    @State private var newCategorySupportsRestDay: Bool = false
+    @State private var newCategoryKind: CategoryKind = .standard
     @State private var newCategorySymbol: String = CustomGoalCategory.defaultSymbolName
 
     // True quando o usuário digitou algo que não é emoji, significa que o teclado
@@ -107,9 +107,21 @@ struct AddTrackingGoalView: View {
         return customCategories.contains { $0.name.lowercased() == lower }
     }
 
+    /// Tipo da categoria escolhida (ou da que está sendo criada). Check-in troca meta + passo por dose.
+    private var selectedKind: CategoryKind {
+        if isCreatingNewCategory { return newCategoryKind }
+        switch selectedCategory {
+        case .builtin(let category): return category.kind
+        case .custom(let id):        return customCategories.first { $0.id == id }?.kind ?? .standard
+        case .none:                  return .standard
+        }
+    }
+
+    private var isCheckIn: Bool { selectedKind == .checkIn }
+
     /// True quando o passo é maior que o alvo (ambos já digitados como inteiros válidos).
     private var isStepTooLarge: Bool {
-        guard let goal = Int(goalText), goal > 0,
+        guard !isCheckIn, let goal = Int(goalText), goal > 0,
               let step = Int(incrementText), step > 0 else { return false }
         return step > goal
     }
@@ -120,7 +132,10 @@ struct AddTrackingGoalView: View {
         guard !isEmojiConflict, !isNameConflict else { return false }
         guard !unit.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return false }
         guard let goal = Int(goalText), goal > 0 else { return false }
-        guard let step = Int(incrementText), step > 0, step <= goal else { return false }
+        // Check-in não tem passo: a dose é registrada inteira ao marcar Feito.
+        if !isCheckIn {
+            guard let step = Int(incrementText), step > 0, step <= goal else { return false }
+        }
         // Se o usuário optou por criar nova categoria, o nome é obrigatório e único.
         if isCreatingNewCategory {
             if trimmedNewCategoryName.isEmpty { return false }
@@ -163,7 +178,7 @@ struct AddTrackingGoalView: View {
                         isCreatingNewCategory.toggle()
                         if !isCreatingNewCategory {
                             newCategoryName = ""
-                            newCategorySupportsRestDay = false
+                            newCategoryKind = .standard
                             newCategorySymbol = CustomGoalCategory.defaultSymbolName
                         }
                     }
@@ -179,10 +194,9 @@ struct AddTrackingGoalView: View {
             // Nova categoria, aparece acima da seção Ícone quando ativada.
             if isCreatingNewCategory {
                 Section {
-                    Toggle(String(localized: "settings.addgoal.category.new.restDay", bundle: .gymNutshellCore),
-                           isOn: $newCategorySupportsRestDay)
                     TextField(String(localized: "settings.addgoal.category.new.name.placeholder", bundle: .gymNutshellCore),
                               text: $newCategoryName)
+                    CategoryKindPicker(selection: $newCategoryKind)
                     CategorySymbolPicker(selection: $newCategorySymbol)
                 } header: {
                     Text(String(localized: "settings.addgoal.category.new.section", bundle: .gymNutshellCore))
@@ -190,6 +204,8 @@ struct AddTrackingGoalView: View {
                     if isCategoryNameConflict {
                         Text(String(localized: "settings.addgoal.warning.category.duplicate", bundle: .gymNutshellCore))
                             .foregroundStyle(.red)
+                    } else {
+                        Text(newCategoryKind.settingsFooter)
                     }
                 }
             }
@@ -234,20 +250,30 @@ struct AddTrackingGoalView: View {
                     }
             }
 
-            Section(String(localized: "settings.addgoal.section.goal", bundle: .gymNutshellCore)) {
+            Section {
                 TextField(String(localized: "settings.addgoal.goal.placeholder", bundle: .gymNutshellCore), text: $goalText)
                     .keyboardType(.numberPad)
+            } header: {
+                Text(String(localized: isCheckIn ? "settings.addgoal.section.dose" : "settings.addgoal.section.goal",
+                             bundle: .gymNutshellCore))
+            } footer: {
+                if isCheckIn {
+                    Text(String(localized: "settings.addgoal.dose.footer", bundle: .gymNutshellCore))
+                }
             }
 
-            Section {
-                TextField(String(localized: "settings.addgoal.increment.placeholder", bundle: .gymNutshellCore), text: $incrementText)
-                    .keyboardType(.numberPad)
-            } header: {
-                Text(String(localized: "settings.addgoal.section.increment", bundle: .gymNutshellCore))
-            } footer: {
-                if isStepTooLarge {
-                    Text(String(localized: "settings.addgoal.warning.step", bundle: .gymNutshellCore))
-                        .foregroundStyle(.red)
+            // Passo só faz sentido no slider / − +; check-in registra a dose inteira.
+            if !isCheckIn {
+                Section {
+                    TextField(String(localized: "settings.addgoal.increment.placeholder", bundle: .gymNutshellCore), text: $incrementText)
+                        .keyboardType(.numberPad)
+                } header: {
+                    Text(String(localized: "settings.addgoal.section.increment", bundle: .gymNutshellCore))
+                } footer: {
+                    if isStepTooLarge {
+                        Text(String(localized: "settings.addgoal.warning.step", bundle: .gymNutshellCore))
+                            .foregroundStyle(.red)
+                    }
                 }
             }
         }
@@ -301,7 +327,7 @@ struct AddTrackingGoalView: View {
         if isCreatingNewCategory, !trimmedNewCategoryName.isEmpty {
             let newCategory = CustomGoalCategory(
                 name: trimmedNewCategoryName,
-                supportsRestDay: newCategorySupportsRestDay,
+                kind: newCategoryKind,
                 symbolName: newCategorySymbol
             )
             CustomGoalCategoriesStore.upsert(newCategory)
@@ -322,7 +348,8 @@ struct AddTrackingGoalView: View {
             name: name.trimmingCharacters(in: .whitespacesAndNewlines),
             unit: unit.trimmingCharacters(in: .whitespacesAndNewlines),
             goal: Int(goalText) ?? 1,
-            increment: Int(incrementText) ?? 1,
+            // Check-in guarda o passo igual à dose, pra continuar coerente se a categoria virar padrão.
+            increment: isCheckIn ? (Int(goalText) ?? 1) : (Int(incrementText) ?? 1),
             category: builtin,
             customCategoryId: customId
         )

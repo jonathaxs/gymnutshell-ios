@@ -169,6 +169,15 @@
 "settings.addgoal.category.new.section" = "自定义分类";
 "settings.addgoal.category.new.name.placeholder" = "例如：拉伸";
 "settings.addgoal.category.new.restDay" = "休息日开关（开/关）";
+"settings.category.kind" = "类型";
+"category.kind.standard" = "标准";
+"category.kind.restDay" = "含休息日";
+"category.kind.checkIn" = "打卡";
+"category.kind.standard.footer" = "用滑块或 − / + 按钮逐步记录。";
+"category.kind.restDay.footer" = "与标准相同，另有标记休息日的开/关按钮。";
+"category.kind.checkIn.footer" = "每个目标每天打卡一次：待完成 或 已完成。";
+"settings.addgoal.section.dose" = "剂量";
+"settings.addgoal.dose.footer" = "标记为已完成后，当天目标即以此用量完成。";
 "settings.goals.custom.badge" = "自定义";
 "settings.goals.categories.title" = "分类";
 

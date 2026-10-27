@@ -190,6 +190,15 @@
 "settings.addgoal.category.new.section" = "Catégorie personnalisée";
 "settings.addgoal.category.new.name.placeholder" = "ex. : Étirements";
 "settings.addgoal.category.new.restDay" = "Bouton jour de repos (ON/OFF)";
+"settings.category.kind" = "Type";
+"category.kind.standard" = "Standard";
+"category.kind.restDay" = "Avec repos";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "Enregistrez les objectifs petit à petit avec le curseur ou les boutons − / +.";
+"category.kind.restDay.footer" = "Comme Standard, avec un bouton ON/OFF pour marquer un jour de repos.";
+"category.kind.checkIn.footer" = "Chaque objectif se coche une fois par jour : En attente ou Fait.";
+"settings.addgoal.section.dose" = "Dose";
+"settings.addgoal.dose.footer" = "En marquant Fait, l'objectif du jour est atteint avec cette quantité.";
 "settings.goals.custom.badge" = "Personnalisé";
 "settings.goals.categories.title" = "Catégories";
 

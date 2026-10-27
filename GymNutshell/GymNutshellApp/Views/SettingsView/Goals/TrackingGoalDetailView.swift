@@ -33,6 +33,11 @@ struct TrackingGoalDetailView: View {
         key == "tracking.water" && measurementSystem == .us
     }
 
+    /// Meta de categoria check-in (ex: Creatina em Suplemento): só a dose, sem passo.
+    private var isCheckIn: Bool {
+        GoalCategory.defaultCategory(for: key)?.kind == .checkIn
+    }
+
     // MARK: - Estado
 
     @State private var value: Int = 0
@@ -43,23 +48,37 @@ struct TrackingGoalDetailView: View {
     var body: some View {
         Form {
             Section {
-                stepRow(title: String(localized: "settings.goaldetail.stepper", bundle: .gymNutshellCore),
-                        valueText: "\(value) \(unit)",
-                        canDecrease: value - currentIncrement >= currentIncrement,
-                        canIncrease: value + currentIncrement <= 99999,
-                        onDecrease: { value -= currentIncrement },
-                        onIncrease: { value += currentIncrement })
+                if isCheckIn {
+                    // Dose muda de 1 em 1; o passo não é usado no check-in.
+                    stepRow(title: String(localized: "settings.addgoal.section.dose", bundle: .gymNutshellCore),
+                            valueText: "\(value) \(unit)",
+                            canDecrease: value > 1,
+                            canIncrease: value < 99999,
+                            onDecrease: { value -= 1 },
+                            onIncrease: { value += 1 })
+                } else {
+                    stepRow(title: String(localized: "settings.goaldetail.stepper", bundle: .gymNutshellCore),
+                            valueText: "\(value) \(unit)",
+                            canDecrease: value - currentIncrement >= currentIncrement,
+                            canIncrease: value + currentIncrement <= 99999,
+                            onDecrease: { value -= currentIncrement },
+                            onIncrease: { value += currentIncrement })
 
-                stepRow(title: String(localized: "settings.goaldetail.increment.stepper", bundle: .gymNutshellCore),
-                        valueText: "\(currentIncrement) \(unit)",
-                        canDecrease: currentIncrement > 1,
-                        canIncrease: currentIncrement < 99999,
-                        onDecrease: { currentIncrement -= 1 },
-                        onIncrease: { currentIncrement += 1 })
+                    stepRow(title: String(localized: "settings.goaldetail.increment.stepper", bundle: .gymNutshellCore),
+                            valueText: "\(currentIncrement) \(unit)",
+                            canDecrease: currentIncrement > 1,
+                            canIncrease: currentIncrement < 99999,
+                            onDecrease: { currentIncrement -= 1 },
+                            onIncrease: { currentIncrement += 1 })
+                }
             } footer: {
-                Text(String(localized: "settings.goaldetail.footer", bundle: .gymNutshellCore))
-                + Text("\n")
-                + Text(String(localized: "settings.goaldetail.increment.footer", bundle: .gymNutshellCore))
+                if isCheckIn {
+                    Text(String(localized: "settings.addgoal.dose.footer", bundle: .gymNutshellCore))
+                } else {
+                    Text(String(localized: "settings.goaldetail.footer", bundle: .gymNutshellCore))
+                    + Text("\n")
+                    + Text(String(localized: "settings.goaldetail.increment.footer", bundle: .gymNutshellCore))
+                }
             }
         }
         .scrollContentBackground(.hidden)
@@ -74,7 +93,7 @@ struct TrackingGoalDetailView: View {
                     save()
                     dismiss()
                 }
-                .disabled(value < currentIncrement || currentIncrement < 1)
+                .disabled(isCheckIn ? value < 1 : (value < currentIncrement || currentIncrement < 1))
             }
         }
         .onAppear {
@@ -123,6 +142,8 @@ struct TrackingGoalDetailView: View {
         } else {
             UserDefaults.standard.set(value, forKey: key)
         }
-        UserDefaults.standard.set(currentIncrement, forKey: "\(key).increment")
+        if !isCheckIn {
+            UserDefaults.standard.set(currentIncrement, forKey: "\(key).increment")
+        }
     }
 }

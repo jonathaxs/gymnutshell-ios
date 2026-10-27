@@ -170,6 +170,15 @@
 "settings.addgoal.category.new.section" = "Eigene Kategorie";
 "settings.addgoal.category.new.name.placeholder" = "z. B.: Dehnen";
 "settings.addgoal.category.new.restDay" = "Ruhetag-Schalter (AN/AUS)";
+"settings.category.kind" = "Typ";
+"category.kind.standard" = "Standard";
+"category.kind.restDay" = "Mit Ruhetag";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "Ziele schrittweise mit dem Schieberegler oder den Tasten − / + erfassen.";
+"category.kind.restDay.footer" = "Wie Standard, mit einem AN/AUS-Schalter für Ruhetage.";
+"category.kind.checkIn.footer" = "Jedes Ziel wird einmal täglich abgehakt: Offen oder Erledigt.";
+"settings.addgoal.section.dose" = "Dosis";
+"settings.addgoal.dose.footer" = "Mit „Erledigt“ ist das Tagesziel mit dieser Menge erreicht.";
 "settings.goals.custom.badge" = "Eigen";
 "settings.goals.categories.title" = "Kategorien";
 

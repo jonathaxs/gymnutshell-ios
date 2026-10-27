@@ -169,6 +169,15 @@
 "settings.addgoal.category.new.section" = "カスタムカテゴリー";
 "settings.addgoal.category.new.name.placeholder" = "例: ストレッチ";
 "settings.addgoal.category.new.restDay" = "休息日切り替え (ON/OFF)";
+"settings.category.kind" = "種類";
+"category.kind.standard" = "標準";
+"category.kind.restDay" = "休息日あり";
+"category.kind.checkIn" = "チェックイン";
+"category.kind.standard.footer" = "スライダーまたは − / + ボタンで少しずつ記録します。";
+"category.kind.restDay.footer" = "標準と同じで、休息日を記録する ON/OFF ボタン付き。";
+"category.kind.checkIn.footer" = "各目標は1日1回チェック：未完了 または 完了。";
+"settings.addgoal.section.dose" = "用量";
+"settings.addgoal.dose.footer" = "完了にすると、この量でその日の目標が達成されます。";
 "settings.goals.custom.badge" = "カスタム";
 "settings.goals.categories.title" = "カテゴリー";
 

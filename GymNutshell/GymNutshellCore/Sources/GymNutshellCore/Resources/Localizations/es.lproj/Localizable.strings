@@ -192,6 +192,15 @@
 "settings.addgoal.category.new.section" = "Categoría personalizada";
 "settings.addgoal.category.new.name.placeholder" = "ejemplo: Estiramiento";
 "settings.addgoal.category.new.restDay" = "Botón de descanso (ON/OFF)";
+"settings.category.kind" = "Tipo";
+"category.kind.standard" = "Estándar";
+"category.kind.restDay" = "Con descanso";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "Registra las metas poco a poco con el control deslizante o los botones − / +.";
+"category.kind.restDay.footer" = "Como Estándar, con un botón ON/OFF para marcar el día de descanso.";
+"category.kind.checkIn.footer" = "Cada meta se marca una vez al día: Pendiente o Hecho.";
+"settings.addgoal.section.dose" = "Dosis";
+"settings.addgoal.dose.footer" = "Al marcar Hecho, la meta del día se completa con esta cantidad.";
 "settings.goals.custom.badge" = "Personalizada";
 "settings.goals.categories.title" = "Categorías";
 

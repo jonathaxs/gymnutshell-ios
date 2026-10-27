@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/SettingsView/Goals/EditCustomGoalCategoryView.swift
 //
-//  Propósito: Formulário em sheet pra editar o nome e o toggle ON/OFF de uma categoria criada pelo usuário.
+//  Propósito: Formulário em sheet pra editar o nome, o tipo e o ícone de uma categoria criada pelo usuário.
 //             Aberto pela TrackingGoalsSettingsView quando o usuário toca numa categoria personalizada
 //             na seção de reordenação.
 //
@@ -19,14 +19,14 @@ struct EditCustomGoalCategoryView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var name: String
-    @State private var supportsRestDay: Bool
+    @State private var kind: CategoryKind
     @State private var symbolName: String
 
     init(category: CustomGoalCategory, onSave: @escaping (CustomGoalCategory) -> Void) {
         self.original = category
         self.onSave = onSave
         _name = State(initialValue: category.name)
-        _supportsRestDay = State(initialValue: category.supportsRestDay)
+        _kind = State(initialValue: category.kind)
         _symbolName = State(initialValue: category.symbolName)
     }
 
@@ -37,11 +37,15 @@ struct EditCustomGoalCategoryView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section(String(localized: "settings.addgoal.category.new.section", bundle: .gymNutshellCore)) {
-                    Toggle(String(localized: "settings.addgoal.category.new.restDay", bundle: .gymNutshellCore),
-                           isOn: $supportsRestDay)
+                Section {
                     TextField(String(localized: "settings.addgoal.category.new.name.placeholder", bundle: .gymNutshellCore),
                               text: $name)
+                    // Categoria personalizada pode trocar de tipo a qualquer momento; os valores do dia ficam.
+                    CategoryKindPicker(selection: $kind)
+                } header: {
+                    Text(String(localized: "settings.addgoal.category.new.section", bundle: .gymNutshellCore))
+                } footer: {
+                    Text(kind.settingsFooter)
                 }
 
                 Section(String(localized: "settings.category.icon.section", bundle: .gymNutshellCore)) {
@@ -63,7 +67,7 @@ struct EditCustomGoalCategoryView: View {
                         let updated = CustomGoalCategory(
                             id: original.id,
                             name: trimmedName,
-                            supportsRestDay: supportsRestDay,
+                            kind: kind,
                             symbolName: symbolName
                         )
                         CustomGoalCategoriesStore.upsert(updated)

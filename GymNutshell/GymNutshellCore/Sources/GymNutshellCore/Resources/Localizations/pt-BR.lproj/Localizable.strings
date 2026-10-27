@@ -205,6 +205,15 @@
 "settings.addgoal.category.new.section" = "Categoria personalizada";
 "settings.addgoal.category.new.name.placeholder" = "ex: Alongamento";
 "settings.addgoal.category.new.restDay" = "Botão de descanso (ON/OFF)";
+"settings.category.kind" = "Tipo";
+"category.kind.standard" = "Padrão";
+"category.kind.restDay" = "Com descanso";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "As metas são registradas aos poucos, com o slider ou os botões − / +.";
+"category.kind.restDay.footer" = "Igual ao padrão, com um botão ON/OFF pra marcar dia de descanso.";
+"category.kind.checkIn.footer" = "Cada meta é marcada uma vez por dia: Pendente ou Feito.";
+"settings.addgoal.section.dose" = "Dose";
+"settings.addgoal.dose.footer" = "Ao marcar Feito, a meta do dia fica completa com esse valor.";
 "settings.goals.custom.badge" = "Personalizada";
 "settings.goals.categories.title" = "Categorias";
 

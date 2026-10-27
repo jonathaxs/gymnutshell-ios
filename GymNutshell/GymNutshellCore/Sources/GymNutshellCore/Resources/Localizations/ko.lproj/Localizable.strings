@@ -169,6 +169,15 @@
 "settings.addgoal.category.new.section" = "사용자 지정 카테고리";
 "settings.addgoal.category.new.name.placeholder" = "예: 스트레칭";
 "settings.addgoal.category.new.restDay" = "휴식일 토글 (ON/OFF)";
+"settings.category.kind" = "유형";
+"category.kind.standard" = "기본";
+"category.kind.restDay" = "휴식일 포함";
+"category.kind.checkIn" = "체크인";
+"category.kind.standard.footer" = "슬라이더나 − / + 버튼으로 조금씩 기록합니다.";
+"category.kind.restDay.footer" = "기본과 같고, 휴식일을 표시하는 ON/OFF 버튼이 있습니다.";
+"category.kind.checkIn.footer" = "각 목표는 하루 한 번 체크합니다: 대기 또는 완료.";
+"settings.addgoal.section.dose" = "용량";
+"settings.addgoal.dose.footer" = "완료로 표시하면 이 양으로 오늘 목표가 달성됩니다.";
 "settings.goals.custom.badge" = "사용자 지정";
 "settings.goals.categories.title" = "카테고리";
 
