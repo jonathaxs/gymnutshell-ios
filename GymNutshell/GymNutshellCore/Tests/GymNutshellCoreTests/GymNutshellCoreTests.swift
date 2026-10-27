@@ -185,6 +185,54 @@ import Foundation
     #expect(decoded.symbolName == "figure.yoga")
 }
 
+// MARK: - Tipo de categoria (2.0)
+
+@Test func categoriaDaV10ViraTipoPeloDescanso() throws {
+    let comDescanso = #"{"id":"a","name":"Corrida","supportsRestDay":true}"#.data(using: .utf8)!
+    let semDescanso = #"{"id":"b","name":"Leitura","supportsRestDay":false}"#.data(using: .utf8)!
+    #expect(try JSONDecoder().decode(CustomGoalCategory.self, from: comDescanso).kind == .restDay)
+    #expect(try JSONDecoder().decode(CustomGoalCategory.self, from: semDescanso).kind == .standard)
+}
+
+@Test func categoriaCheckInViajaNoJSONComCampoAntigo() throws {
+    let original = CustomGoalCategory(name: "Vitaminas", kind: .checkIn)
+    let data = try JSONEncoder().encode(original)
+    let dict = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+    #expect(dict?["kind"] as? String == "checkIn")
+    #expect(dict?["supportsRestDay"] as? Bool == false)
+    #expect(try JSONDecoder().decode(CustomGoalCategory.self, from: data).kind == .checkIn)
+}
+
+@Test func tipoDesconhecidoCaiNoPadrao() throws {
+    let json = #"{"id":"c","name":"X","kind":"futuro","supportsRestDay":false}"#.data(using: .utf8)!
+    #expect(try JSONDecoder().decode(CustomGoalCategory.self, from: json).kind == .standard)
+}
+
+@Test func atalhoDeDescansoNaoMexeNoCheckIn() {
+    var c = CustomGoalCategory(name: "Meditar", kind: .checkIn)
+    c.supportsRestDay = false
+    #expect(c.kind == .checkIn)
+    c.supportsRestDay = true
+    #expect(c.kind == .restDay)
+    c.supportsRestDay = false
+    #expect(c.kind == .standard)
+}
+
+@Test func categoriasFixasTemTipoFixo() {
+    #expect(GoalCategory.treino.kind == .restDay)
+    #expect(GoalCategory.suplemento.kind == .checkIn)
+    #expect(GoalCategory.essencial.kind == .standard)
+    #expect(GoalCategory.nutricao.kind == .standard)
+}
+
+@Test func checkInGravaMetaOuZero() {
+    #expect(CategoryKind.checkInValue(done: true, goal: 5) == 5)
+    #expect(CategoryKind.checkInValue(done: false, goal: 5) == 0)
+    #expect(CategoryKind.isCheckInDone(current: 5, goal: 5))
+    #expect(!CategoryKind.isCheckInDone(current: 3, goal: 5))
+    #expect(!CategoryKind.isCheckInDone(current: 0, goal: 0))
+}
+
 // MARK: - Estilo de controle no backup (2.0)
 
 @Test func estiloDeControleViajaNoBackup() throws {

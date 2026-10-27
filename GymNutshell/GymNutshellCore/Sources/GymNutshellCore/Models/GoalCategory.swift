@@ -40,6 +40,17 @@ public enum GoalCategory: String, Codable, CaseIterable, Sendable {
         }
     }
 
+    // MARK: - Tipo (fixo)
+
+    /// Tipo da categoria fixa — não pode ser trocado. Treino sempre tem descanso; Suplemento sempre é check-in.
+    public var kind: CategoryKind {
+        switch self {
+        case .essencial, .nutricao: return .standard
+        case .treino:               return .restDay
+        case .suplemento:           return .checkIn
+        }
+    }
+
     // MARK: - Mapeamento de chaves fixas
 
     /// Categoria padrão de uma chave de meta fixa.
