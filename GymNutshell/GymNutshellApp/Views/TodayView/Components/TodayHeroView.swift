@@ -3,7 +3,8 @@
 //
 //  Propósito: Bloco hero da tela Hoje, no topo (retrato) ou na coluna esquerda (landscape/iPad).
 //             Contém: data grande + sino e engrenagem (opcional), o anel de progresso com a % no centro,
-//             depois do primeiro registro a conquista do dia ao lado e a frase do próximo nível. A linha de
+//             depois do primeiro registro a conquista do dia ao lado e a frase do próximo nível.
+//             Toques no anel, na conquista e na data abrem balões informativos (TodayInfoPopovers.swift). A linha de
 //             botões (TodayPageButtons, em TodaySideRail.swift) é posicionada pela TodayView.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-29.
@@ -30,9 +31,13 @@ struct TodayHeroView: View {
     // Sexo do usuário, usado pra nomes e emojis de tier com gênero correto.
     @AppStorage(UserProfile.sexKey) private var sex: String = "male"
 
-    // Sheets de informação do tier e do anel de progresso.
-    @State private var showTierSheet = false
-    @State private var showRingSheet = false
+    // Balões de informação da conquista e do anel; o tema abre numa sheet a partir do balão da conquista.
+    @State private var showTierInfo = false
+    @State private var showRingInfo = false
+    @State private var showThemeSheet = false
+
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
     // Percentual inteiro (0-100) calculado a partir do progresso normalizado.
     private var dailyPercentage: Int {
@@ -50,29 +55,34 @@ struct TodayHeroView: View {
         return (next.minPercent - dailyPercentage, next)
     }
 
-    private var nextLevelNumber: Int? { nextLevel?.tier.number }
-
     private var tierEmoji: String { selectedTheme.emoji(for: dailyAchievement, sex: sex) }
     private var tierName: String { selectedTheme.name(for: dailyAchievement, sex: sex) }
 
     var body: some View {
         content
-            .sheet(isPresented: $showTierSheet) {
+            .sheet(isPresented: $showThemeSheet) {
                 NavigationStack {
-                    TierInfoView(
-                        theme: selectedTheme, sex: sex, isSheet: true,
-                        nextLevelPercent: nextLevel?.percent,
-                        nextLevelName: nextLevel.map { selectedTheme.name(for: $0.tier, sex: sex) } ?? "",
-                        nextLevelNumber: nextLevelNumber,
-                        isAtMaxLevel: nextLevel == nil
-                    )
+                    ThemeSettingsView()
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                Button {
+                                    showThemeSheet = false
+                                } label: {
+                                    Text(String(localized: "common.close", bundle: .gymNutshellCore))
+                                        .foregroundStyle(accentColor)
+                                }
+                            }
+                        }
                 }
             }
-            .sheet(isPresented: $showRingSheet) {
-                NavigationStack {
-                    ProgressRingInfoView(isSheet: true, currentPercent: dailyPercentage)
-                }
-            }
+    }
+
+    /// Fecha o balão e, depois que ele some, abre o tema (duas apresentações juntas falham).
+    private func openThemeFromTierInfo() {
+        showTierInfo = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
+            showThemeSheet = true
+        }
     }
 
     private var content: some View {
@@ -80,7 +90,7 @@ struct TodayHeroView: View {
 
             // Topo: sino à esquerda, a data em fonte grande no meio e a engrenagem à direita.
             if showsHeader {
-                AppTabHeader(title: formattedDate)
+                AppTabHeader(title: formattedDate, showsDayInfo: true)
                     .padding(.horizontal, 4)
             }
 
@@ -89,9 +99,12 @@ struct TodayHeroView: View {
                 // Espaço curto: o emoji fica perto do anel e os dois juntos, centralizados com o resto da tela.
                 HStack(spacing: 8) {
                     TodayProgressRingView(progress: dailyProgress,
-                                          onTap: { showRingSheet = true },
+                                          onTap: { showRingInfo = true },
                                           size: ringSize,
                                           celebratesAfterOnboarding: true)
+                        .downwardPopover(isPresented: $showRingInfo) {
+                            RingInfoPopover()
+                        }
 
                     if hasStarted {
                         achievementPanel
@@ -136,7 +149,11 @@ struct TodayHeroView: View {
         .frame(width: 116, height: ringSize)
         .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.6), value: tierEmoji)
         .contentShape(Rectangle())
-        .onTapGesture { showTierSheet = true }
+        .onTapGesture { showTierInfo = true }
+        .downwardPopover(isPresented: $showTierInfo) {
+            TierInfoPopover(theme: selectedTheme, sex: sex, accentColor: accentColor,
+                            onChangeTheme: openThemeFromTierInfo)
+        }
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(String(format: String(localized: "today.tier.a11y.label", bundle: .gymNutshellCore),
@@ -171,6 +188,7 @@ struct TodayHeroView: View {
         .frame(maxWidth: .infinity)
         .transition(.opacity)
         .contentShape(Rectangle())
-        .onTapGesture { showTierSheet = true }
+        // Antes de começar não há emoji pra ancorar o balão.
+        .onTapGesture { if hasStarted { showTierInfo = true } }
     }
 }

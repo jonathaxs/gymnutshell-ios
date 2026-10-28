@@ -890,3 +890,6 @@
 
 /* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
 "date.weekdayDay.format" = "%2$d日 %1$@";
+
+// Balão da data na Hoje
+"today.day.remaining" = "距离今天结束还有%@";

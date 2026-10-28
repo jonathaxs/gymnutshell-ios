@@ -147,16 +147,15 @@ extension View {
 struct AppTabHeader: View {
 
     let title: String
+    /// true na Hoje: tocar na data abre o balão com a data completa e quanto falta pro fim do dia.
+    var showsDayInfo: Bool = false
 
     @Environment(\.usesVerticalBar) private var usesVerticalBar
+    @State private var showDayInfo = false
 
     var body: some View {
-        Text(title)
-            .font(.title.weight(.bold))
-            .lineLimit(1)
-            .minimumScaleFactor(0.6)
+        titleView
             .frame(maxWidth: .infinity, alignment: .center)
-            .accessibilityAddTraits(.isHeader)
             .toolbar {
                 if usesVerticalBar {
                     // Um grupo só, pra coluna seguir esta ordem de cima pra baixo.
@@ -167,6 +166,27 @@ struct AppTabHeader: View {
                     }
                 }
             }
+    }
+
+    @ViewBuilder
+    private var titleView: some View {
+        let text = Text(title)
+            .font(.title.weight(.bold))
+            .lineLimit(1)
+            .minimumScaleFactor(0.6)
+
+        if showsDayInfo {
+            Button { showDayInfo = true } label: { text }
+                .buttonStyle(.plain)
+                .downwardPopover(isPresented: $showDayInfo) {
+                    DayInfoPopover()
+                }
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityHint(A11y.moreInfoHint())
+        } else {
+            text
+                .accessibilityAddTraits(.isHeader)
+        }
     }
 }
 

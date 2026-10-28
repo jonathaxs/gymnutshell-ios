@@ -762,7 +762,7 @@ struct TodayView: View {
         .scrollBounceBehavior(.basedOnSize)
         .safeAreaInset(edge: .top, spacing: 0) {
             // Só a data: os Ajustes ficam na linha de botões abaixo do anel.
-            AppTabHeader(title: formattedDate)
+            AppTabHeader(title: formattedDate, showsDayInfo: true)
                 .padding(.horizontal)
                 .padding(.horizontal, 4)
                 .padding(.top, 16)

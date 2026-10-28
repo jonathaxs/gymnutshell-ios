@@ -17,7 +17,7 @@ import GymNutshellCore
 struct TodayProgressRingView: View {
 
     let progress: Double
-    /// Toque no anel: abre a sheet de informação do anel.
+    /// Toque no anel: abre o balão de informação do anel.
     var onTap: (() -> Void)? = nil
 
     var size: CGFloat = 150
@@ -27,8 +27,6 @@ struct TodayProgressRingView: View {
     var celebratesAfterOnboarding: Bool = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    @GestureState private var isPressed: Bool = false
 
     // Progresso forçado durante a comemoração (nil = mostra o progresso real).
     @State private var celebrationProgress: Double? = nil
@@ -67,6 +65,21 @@ struct TodayProgressRingView: View {
     // MARK: - Body
 
     var body: some View {
+        // Botão (e não onTapGesture + DragGesture no mesmo anel): o toque abre o balão de forma confiável.
+        Button { onTap?() } label: { ring }
+            .buttonStyle(.plain)
+            // Expande ao pressionar, puramente visual.
+            .pressScale(1.06, response: 0.25, dampingFraction: 0.50)
+            .onAppear(perform: celebrateIfNeeded)
+            .accessibilityElement(children: .ignore)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityLabel(String(localized: "today.ring.a11y.label", bundle: .gymNutshellCore))
+            .accessibilityValue(String(format: String(localized: "today.ring.a11y.value",
+                                                      bundle: .gymNutshellCore), percentage))
+            .accessibilityHint(String(localized: "today.ring.a11y.hint", bundle: .gymNutshellCore))
+    }
+
+    private var ring: some View {
         SegmentedProgressRing(progress: celebrationProgress ?? clampedProgress,
                               lineWidth: lineWidth,
                               tintedTrack: true) {
@@ -80,20 +93,6 @@ struct TodayProgressRingView: View {
                 .padding(lineWidth)
         }
         .frame(width: size, height: size)
-        // Expande ao pressionar, puramente visual.
-        .scaleEffect(isPressed ? 1.06 : 1.0)
-        .animation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.50), value: isPressed)
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .updating($isPressed) { _, state, _ in state = true }
-        )
-        .onTapGesture { onTap?() }
-        .onAppear(perform: celebrateIfNeeded)
-        .accessibilityElement(children: .ignore)
-        .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(String(localized: "today.ring.a11y.label", bundle: .gymNutshellCore))
-        .accessibilityValue(String(format: String(localized: "today.ring.a11y.value",
-                                                  bundle: .gymNutshellCore), percentage))
-        .accessibilityHint(String(localized: "today.ring.a11y.hint", bundle: .gymNutshellCore))
+        .contentShape(Circle())
     }
 }
