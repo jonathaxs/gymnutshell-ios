@@ -122,12 +122,7 @@ struct TierInfoView: View {
         .toolbar {
             if isSheet {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text(String(localized: "common.close", bundle: .gymNutshellCore))
-                            .foregroundStyle(accentColor)
-                    }
+                    SheetCloseButton { dismiss() }
                 }
             }
         }

@@ -75,12 +75,7 @@ struct ThemeInfoView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Text(String(localized: "common.close", bundle: .gymNutshellCore))
-                        .foregroundStyle(accentColor)
-                }
+                SheetCloseButton { dismiss() }
             }
         }
     }

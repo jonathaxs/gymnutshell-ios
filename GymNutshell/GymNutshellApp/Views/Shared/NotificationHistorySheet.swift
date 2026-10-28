@@ -84,16 +84,17 @@ struct NotificationHistorySheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(String(localized: "common.close", bundle: .gymNutshellCore)) { dismiss() }
+                    SheetCloseButton { dismiss() }
                 }
                 // Edit button manual, EditButton() do sistema não dispara o
                 // binding de editMode de forma confiável dentro de sheet+NavigationStack.
                 // Botão custom replicando o padrão da TrackingGoalsSettingsView.
                 if !store.entries.isEmpty {
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button(editMode.isEditing
-                               ? String(localized: "common.done", bundle: .gymNutshellCore)
-                               : String(localized: "common.edit", bundle: .gymNutshellCore)) {
+                        SheetToolbarButton(title: editMode.isEditing
+                                           ? String(localized: "common.done", bundle: .gymNutshellCore)
+                                           : String(localized: "common.edit", bundle: .gymNutshellCore),
+                                           systemImage: editMode.isEditing ? "checkmark" : "pencil") {
                             withAnimation(.easeInOut(duration: 0.15)) {
                                 editMode = editMode.isEditing ? .inactive : .active
                             }

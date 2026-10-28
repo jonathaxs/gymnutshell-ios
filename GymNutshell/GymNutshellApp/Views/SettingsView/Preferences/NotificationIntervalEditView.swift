@@ -123,10 +123,10 @@ struct NotificationIntervalEditView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button(String(localized: "common.cancel", bundle: .gymNutshellCore)) { dismiss() }
+                SheetCloseButton(title: String(localized: "common.cancel", bundle: .gymNutshellCore)) { dismiss() }
             }
             ToolbarItem(placement: .confirmationAction) {
-                Button(String(localized: "settings.goaldetail.save", bundle: .gymNutshellCore)) {
+                SheetConfirmButton(title: String(localized: "settings.goaldetail.save", bundle: .gymNutshellCore)) {
                     save()
                     dismiss()
                 }

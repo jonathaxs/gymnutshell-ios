@@ -50,9 +50,7 @@ struct MainView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
-                            Button(String(localized: "common.close", bundle: .gymNutshellCore)) {
-                                router.sheet = nil
-                            }
+                            SheetCloseButton { router.sheet = nil }
                         }
                     }
                     .navigationDestination(for: AppRoute.self) { route in

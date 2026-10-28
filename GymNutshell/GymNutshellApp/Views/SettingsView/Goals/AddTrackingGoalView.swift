@@ -285,13 +285,13 @@ struct AddTrackingGoalView: View {
         .toolbar {
             if isSheet {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(String(localized: "settings.addgoal.cancel", bundle: .gymNutshellCore)) {
+                    SheetCloseButton(title: String(localized: "settings.addgoal.cancel", bundle: .gymNutshellCore)) {
                         dismiss()
                     }
                 }
             }
             ToolbarItem(placement: .confirmationAction) {
-                Button(String(localized: "settings.addgoal.save", bundle: .gymNutshellCore)) {
+                SheetConfirmButton(title: String(localized: "settings.addgoal.save", bundle: .gymNutshellCore)) {
                     save()
                     dismiss()
                 }

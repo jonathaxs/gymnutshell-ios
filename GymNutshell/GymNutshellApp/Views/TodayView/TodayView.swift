@@ -1066,7 +1066,7 @@ struct TodayView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Button(String(localized: "common.close", bundle: .gymNutshellCore)) { editSheet = nil }
+                        SheetCloseButton { editSheet = nil }
                     }
                 }
             }

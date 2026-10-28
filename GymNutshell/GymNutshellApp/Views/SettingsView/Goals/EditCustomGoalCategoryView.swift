@@ -58,12 +58,12 @@ struct EditCustomGoalCategoryView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(String(localized: "settings.addgoal.cancel", bundle: .gymNutshellCore)) {
+                    SheetCloseButton(title: String(localized: "settings.addgoal.cancel", bundle: .gymNutshellCore)) {
                         dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(String(localized: "settings.addgoal.save", bundle: .gymNutshellCore)) {
+                    SheetConfirmButton(title: String(localized: "settings.addgoal.save", bundle: .gymNutshellCore)) {
                         let updated = CustomGoalCategory(
                             id: original.id,
                             name: trimmedName,

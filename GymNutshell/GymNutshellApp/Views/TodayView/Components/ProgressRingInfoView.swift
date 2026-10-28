@@ -21,8 +21,6 @@ struct ProgressRingInfoView: View {
     var currentPercent: Int? = nil
 
     @Environment(\.dismiss) private var dismiss
-    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
-    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
     // Próximo segmento do anel a alcançar, com nome, cor e distância em pontos percentuais.
     // nil quando o anel já está em 100% (completo).
@@ -118,12 +116,7 @@ struct ProgressRingInfoView: View {
         .toolbar {
             if isSheet {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text(String(localized: "common.close", bundle: .gymNutshellCore))
-                            .foregroundStyle(accentColor)
-                    }
+                    SheetCloseButton { dismiss() }
                 }
             }
         }

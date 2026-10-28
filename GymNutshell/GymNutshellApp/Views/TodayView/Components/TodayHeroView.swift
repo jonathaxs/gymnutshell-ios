@@ -65,12 +65,7 @@ struct TodayHeroView: View {
                     ThemeSettingsView()
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
-                                Button {
-                                    showThemeSheet = false
-                                } label: {
-                                    Text(String(localized: "common.close", bundle: .gymNutshellCore))
-                                        .foregroundStyle(accentColor)
-                                }
+                                SheetCloseButton { showThemeSheet = false }
                             }
                         }
                 }

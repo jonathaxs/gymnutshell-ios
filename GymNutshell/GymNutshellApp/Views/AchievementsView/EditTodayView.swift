@@ -281,13 +281,13 @@ struct EditTodayView: View {
             .background(Color(.systemGroupedBackground))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(String(localized: "edit.record.cancel", bundle: .gymNutshellCore)) {
+                    SheetCloseButton(title: String(localized: "edit.record.cancel", bundle: .gymNutshellCore)) {
                         dismiss()
                     }
                 }
 
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(String(localized: "edit.record.save", bundle: .gymNutshellCore)) {
+                    SheetConfirmButton(title: String(localized: "edit.record.save", bundle: .gymNutshellCore)) {
                         saveChanges()
                     }
                 }

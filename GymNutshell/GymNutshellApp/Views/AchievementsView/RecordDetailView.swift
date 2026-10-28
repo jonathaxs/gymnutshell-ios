@@ -127,14 +127,15 @@ struct RecordDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button(String(localized: "record.detail.back", bundle: .gymNutshellCore)) {
+                SheetCloseButton(title: String(localized: "record.detail.back", bundle: .gymNutshellCore)) {
                     dismiss()
                 }
             }
 
             if canEdit {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(String(localized: "record.detail.edit", bundle: .gymNutshellCore)) {
+                    SheetToolbarButton(title: String(localized: "record.detail.edit", bundle: .gymNutshellCore),
+                                       systemImage: "pencil") {
                         onEdit()
                     }
                 }
