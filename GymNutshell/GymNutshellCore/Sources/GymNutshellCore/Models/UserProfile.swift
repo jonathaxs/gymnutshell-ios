@@ -19,8 +19,6 @@ public enum UserProfile {
     public static let favoriteExerciseKey       = "profile.favoriteExercise"
     public static let didCompleteOnboardingKey  = "profile.didCompleteOnboarding"
     public static let measurementSystemKey      = "profile.measurementSystem"
-    public static let themeKey                  = AppTheme.storageKey
-    public static let colorKey                  = AppAccentColor.storageKey
 
     // MARK: - Chaves de navegação
     /// Marcada ao fim da Welcome: a Today faz a comemoração do anel uma vez e apaga a marca.

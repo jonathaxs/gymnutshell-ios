@@ -109,11 +109,6 @@ struct TodayView: View {
         static let compactHeroColumnWidth: CGFloat = 320
         static let heroColumnWidth: CGFloat  = 360
         static let contentMaxWidth: CGFloat  = 330
-        static let heroAreaMinHeight: CGFloat = 250
-        static let heroAreaMaxHeight: CGFloat = 310
-        static let heroAreaRatio: CGFloat    = 0.32
-        static let sectionSpacing: CGFloat   = 15
-        static let rowSpacing: CGFloat       = 10
         static let heroInnerSpacing: CGFloat = 12
         static let wideHStackSpacing: CGFloat = 24
     }

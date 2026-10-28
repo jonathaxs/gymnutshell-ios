@@ -100,8 +100,6 @@
 "achievements.filter.list" = "목록";
 "achievements.filter.calendar" = "캘린더";
 "achievements.filter.title" = "보기";
-"achievements.filter.all" = "목록";
-"achievements.filter.day" = "캘린더";
 "achievements.empty.title" = "아직 달성한 업적이 없어요";
 "achievements.empty.description" = "하루가 끝나면 이곳에 오늘의 업적이 잠금 해제돼요.";
 
@@ -129,12 +127,10 @@
 "statistics.goals.active.label" = "진행 중인 목표";
 "statistics.goals.active" = "%d개 진행 중";
 "statistics.fitness.goal" = "목표";
-"watch.stats.days" = "일수";
 "watch.stats.syncing" = "통계를 보려면 iPhone에서 Gym Nutshell을 열어주세요.";
 "watch.stats.recent" = "최근";
 
 /* ProgressOverView.swift, stats rows and physical data */
-"profile.stats.days" = "일수";
 "profile.recent.section" = "최근 7일";
 
 /* MARK: - Views/SettingsView */
@@ -168,7 +164,6 @@
 "settings.addgoal.category.new.button" = "새 카테고리";
 "settings.addgoal.category.new.section" = "사용자 지정 카테고리";
 "settings.addgoal.category.new.name.placeholder" = "예: 스트레칭";
-"settings.addgoal.category.new.restDay" = "휴식일 토글 (ON/OFF)";
 "settings.category.kind" = "유형";
 "category.kind.standard" = "기본";
 "category.kind.restDay" = "휴식일 포함";
@@ -221,7 +216,6 @@
 "settings.goalchange.save.keep" = "다시 계산하지 않고 저장";
 
 /* ProfileSettingsView.swift */
-"settings.profile.section.personal" = "개인 정보";
 "settings.profile.section.optional" = "선택 사항";
 "settings.profile.name" = "이름";
 "settings.profile.name.placeholder" = "이름 입력";
@@ -242,13 +236,9 @@
 "favoriteExercise.traps"      = "승모근";
 "favoriteExercise.forearms"   = "전완근";
 "favoriteExercise.calves"     = "종아리";
-"settings.profile.sex" = "성별";
-"profile.sex.male" = "남성";
-"profile.sex.female" = "여성";
 
 /* SettingsView.swift */
 "settings.header.title" = "앱 설정";
-"settings.detail.placeholder" = "항목을 선택하세요";
 "settings.section.edit" = "내 데이터";
 "settings.theme.title" = "이모지";
 "settings.section.preferences" = "화면 스타일";
@@ -349,10 +339,6 @@
 "today.max.level" = "오늘 최고 레벨에 도달했어요!";
 
 /* DailyTierView.swift */
-"today.tier.level.1" = "티어 1";
-"today.tier.level.2" = "티어 2";
-"today.tier.level.3" = "티어 3";
-"today.tier.level.4" = "티어 4";
 /* Tier button label combines the "Today's achievement" header phrase with the
    tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
    duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
@@ -364,14 +350,9 @@
 "today.ring.a11y.value" = "%d퍼센트 완료";
 
 /* TodayView.swift, date hero button */
-"today.hero.bell.a11y.label" = "알림";
-"today.hero.bell.a11y.hint" = "알림을 열려면 탭하세요.";
 "today.hero.caption.start" = "목표를 기록하고 시작해보세요";
 "today.hero.caption.nextLevel" = "다음 레벨까지 %d%% 남았어요";
 "today.hero.caption.max" = "오늘의 최고 업적 달성!";
-"today.greeting.morning"   = "좋은 아침이에요!";
-"today.greeting.afternoon" = "좋은 오후예요!";
-"today.greeting.night"     = "좋은 저녁이에요!";
 
 /* MARK: - Views/WelcomeView */
 
@@ -717,10 +698,6 @@
 "a11y.calendar.day.tier.format"        = "%1$@, 달성: %2$@";
 "a11y.calendar.day.today.tier.format"  = "오늘, %1$@, 달성: %2$@";
 
-/* Achievements view-mode segmented picker (List / Calendar) */
-
-/* Calendar section header */
-
 /* Month navigation chevrons */
 "a11y.month.previous" = "이전 달";
 "a11y.month.next"     = "다음 달";
@@ -734,15 +711,9 @@
 /* RecordDetail / EditToday header card */
 "a11y.record.header.format"     = "%1$@, %2$@, %3$d퍼센트, 레벨 %4$d";
 
-/* ProgressOverView, stats cards */
-"a11y.stats.days.label"            = "일수";
-"a11y.stats.days.value.format"     = "%d일";
-"a11y.stats.days.hint" = "오늘 캘린더를 열려면 탭하세요.";
-
 /* ProgressOverView, list rows inside cards */
 "a11y.stats.tier.row.format"     = "%1$@, %2$d일";
 "a11y.stats.activity.row.format" = "%1$@, %2$d일";
-"a11y.stats.goals.row.format"    = "%1$@, %2$d개 진행 중";
 
 /* ProgressOverView, whole-card tap hints */
 "a11y.stats.card.usergoal.hint" = "목표를 변경하려면 탭하세요.";
@@ -843,8 +814,6 @@
 /* iPhone large widgets */
 "a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d퍼센트";
 "a11y.widget.calendar.month.format" = "%@";
-
-/* Watch widget, corner and inline don't need extra labels (text already speaks) */
 
 "a11y.welcome.goal.decrease.format" = "%@ 감소";
 "a11y.welcome.goal.increase.format" = "%@ 증가";

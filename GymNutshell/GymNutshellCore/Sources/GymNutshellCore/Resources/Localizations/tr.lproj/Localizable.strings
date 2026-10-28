@@ -100,8 +100,6 @@
 "achievements.filter.list" = "Liste";
 "achievements.filter.calendar" = "Takvim";
 "achievements.filter.title" = "Görünüm";
-"achievements.filter.all" = "Liste";
-"achievements.filter.day" = "Takvim";
 "achievements.empty.title" = "Henüz başarı yok";
 "achievements.empty.description" = "Günün sonunda başarın burada açılacak.";
 
@@ -129,12 +127,10 @@
 "statistics.goals.active.label" = "Aktif hedefler";
 "statistics.goals.active" = "%d aktif";
 "statistics.fitness.goal" = "Hedef";
-"watch.stats.days" = "Gün";
 "watch.stats.syncing" = "İstatistikleri görmek için iPhone'da Gym Nutshell'i aç.";
 "watch.stats.recent" = "Son";
 
 /* ProgressOverView.swift, stats rows and physical data */
-"profile.stats.days" = "Gün";
 "profile.recent.section" = "Son 7 gün";
 
 /* MARK: - Views/SettingsView */
@@ -168,7 +164,6 @@
 "settings.addgoal.category.new.button" = "Yeni kategori";
 "settings.addgoal.category.new.section" = "Özel kategori";
 "settings.addgoal.category.new.name.placeholder" = "örnek: Esneme";
-"settings.addgoal.category.new.restDay" = "Dinlenme günü anahtarı (AÇIK/KAPALI)";
 "settings.category.kind" = "Tür";
 "category.kind.standard" = "Standart";
 "category.kind.restDay" = "Dinlenme günlü";
@@ -221,7 +216,6 @@
 "settings.goalchange.save.keep" = "Yeniden hesaplamadan kaydet";
 
 /* ProfileSettingsView.swift */
-"settings.profile.section.personal" = "Kişisel";
 "settings.profile.section.optional" = "İsteğe Bağlı";
 "settings.profile.name" = "Ad";
 "settings.profile.name.placeholder" = "Adın";
@@ -242,13 +236,9 @@
 "favoriteExercise.traps"      = "Trapez";
 "favoriteExercise.forearms"   = "Ön Kol";
 "favoriteExercise.calves"     = "Kalf";
-"settings.profile.sex" = "Cinsiyet";
-"profile.sex.male" = "Erkek";
-"profile.sex.female" = "Kadın";
 
 /* SettingsView.swift */
 "settings.header.title" = "Uygulama Ayarları";
-"settings.detail.placeholder" = "Bir sayfa seç";
 "settings.section.edit" = "Verilerin";
 "settings.theme.title" = "Emojiler";
 "settings.section.preferences" = "Görünüş";
@@ -349,10 +339,6 @@
 "today.max.level" = "Bugün maksimum seviyeye ulaşıldı!";
 
 /* DailyTierView.swift */
-"today.tier.level.1" = "1. Seviye";
-"today.tier.level.2" = "2. Seviye";
-"today.tier.level.3" = "3. Seviye";
-"today.tier.level.4" = "4. Seviye";
 /* Tier button label combines the "Today's achievement" header phrase with the
    tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
    duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
@@ -364,14 +350,9 @@
 "today.ring.a11y.value" = "yüzde %d tamamlandı";
 
 /* TodayView.swift, date hero button */
-"today.hero.bell.a11y.label" = "Bildirimler";
-"today.hero.bell.a11y.hint" = "Bildirimlerini açmak için dokun.";
 "today.hero.caption.start" = "Başlamak için bir hedefi takip et";
 "today.hero.caption.nextLevel" = "Sonraki seviye için %%%d kaldı";
 "today.hero.caption.max" = "Günün en yüksek başarısı!";
-"today.greeting.morning"   = "Günaydın!";
-"today.greeting.afternoon" = "İyi günler!";
-"today.greeting.night"     = "İyi akşamlar!";
 
 /* MARK: - Views/WelcomeView */
 
@@ -717,10 +698,6 @@
 "a11y.calendar.day.tier.format"        = "%1$@, kazanılan: %2$@";
 "a11y.calendar.day.today.tier.format"  = "bugün, %1$@, kazanılan: %2$@";
 
-/* Achievements view-mode segmented picker (List / Calendar) */
-
-/* Calendar section header */
-
 /* Month navigation chevrons */
 "a11y.month.previous" = "Önceki ay";
 "a11y.month.next"     = "Sonraki ay";
@@ -734,15 +711,9 @@
 /* RecordDetail / EditToday header card */
 "a11y.record.header.format"     = "%1$@, %2$@, yüzde %3$d, seviye %4$d";
 
-/* ProgressOverView, stats cards */
-"a11y.stats.days.label"            = "Gün";
-"a11y.stats.days.value.format"     = "%d gün";
-"a11y.stats.days.hint" = "Bugünün takvimini açmak için dokun.";
-
 /* ProgressOverView, list rows inside cards */
 "a11y.stats.tier.row.format"     = "%1$@, %2$d gün";
 "a11y.stats.activity.row.format" = "%1$@, %2$d gün";
-"a11y.stats.goals.row.format"    = "%1$@, %2$d aktif";
 
 /* ProgressOverView, whole-card tap hints */
 "a11y.stats.card.usergoal.hint" = "Hedefi değiştirmek için dokun.";
@@ -843,8 +814,6 @@
 /* iPhone large widgets */
 "a11y.widget.large.header.format"  = "%1$@, %2$@, yüzde %3$d";
 "a11y.widget.calendar.month.format" = "%@";
-
-/* Watch widget, corner and inline don't need extra labels (text already speaks) */
 
 "a11y.welcome.goal.decrease.format" = "%@ azalt";
 "a11y.welcome.goal.increase.format" = "%@ artır";

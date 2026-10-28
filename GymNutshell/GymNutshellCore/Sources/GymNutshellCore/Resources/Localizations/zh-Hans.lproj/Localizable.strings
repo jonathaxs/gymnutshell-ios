@@ -100,8 +100,6 @@
 "achievements.filter.list" = "列表";
 "achievements.filter.calendar" = "日历";
 "achievements.filter.title" = "视图";
-"achievements.filter.all" = "列表";
-"achievements.filter.day" = "日历";
 "achievements.empty.title" = "暂无成就";
 "achievements.empty.description" = "每天结束时，你解锁的成就将显示在这里。";
 
@@ -129,12 +127,10 @@
 "statistics.goals.active.label" = "进行中的目标";
 "statistics.goals.active" = "%d 个进行中";
 "statistics.fitness.goal" = "健身目标";
-"watch.stats.days" = "天数";
 "watch.stats.syncing" = "在 iPhone 上打开 Gym Nutshell 查看统计数据。";
 "watch.stats.recent" = "近期";
 
 /* ProgressOverView.swift, stats rows and physical data */
-"profile.stats.days" = "天数";
 "profile.recent.section" = "最近 7 天";
 
 /* MARK: - Views/SettingsView */
@@ -168,7 +164,6 @@
 "settings.addgoal.category.new.button" = "新建分类";
 "settings.addgoal.category.new.section" = "自定义分类";
 "settings.addgoal.category.new.name.placeholder" = "例如：拉伸";
-"settings.addgoal.category.new.restDay" = "休息日开关（开/关）";
 "settings.category.kind" = "类型";
 "category.kind.standard" = "标准";
 "category.kind.restDay" = "含休息日";
@@ -221,7 +216,6 @@
 "settings.goalchange.save.keep" = "保存但不重新计算";
 
 /* ProfileSettingsView.swift */
-"settings.profile.section.personal" = "个人信息";
 "settings.profile.section.optional" = "选填";
 "settings.profile.name" = "名字";
 "settings.profile.name.placeholder" = "你的名字";
@@ -242,13 +236,9 @@
 "favoriteExercise.traps"      = "斜方肌";
 "favoriteExercise.forearms"   = "前臂";
 "favoriteExercise.calves"     = "小腿";
-"settings.profile.sex" = "性别";
-"profile.sex.male" = "男";
-"profile.sex.female" = "女";
 
 /* SettingsView.swift */
 "settings.header.title" = "App 设置";
-"settings.detail.placeholder" = "选择一个页面";
 "settings.section.edit" = "你的数据";
 "settings.theme.title" = "表情";
 "settings.section.preferences" = "外观";
@@ -349,10 +339,6 @@
 "today.max.level" = "今天已达到最高等级！";
 
 /* DailyTierView.swift */
-"today.tier.level.1" = "等级 1";
-"today.tier.level.2" = "等级 2";
-"today.tier.level.3" = "等级 3";
-"today.tier.level.4" = "等级 4";
 /* 旁白标签结合了“今日成就”标题短语与等级名称。表情符号仅作装饰并已隐藏，避免重复播报。%1$@ = 表情符号（忽略），%2$@ = 等级名称。 */
 "today.tier.a11y.label" = "今日成就：%2$@";
 
@@ -362,14 +348,9 @@
 "today.ring.a11y.value" = "已完成百分之%d";
 
 /* TodayView.swift, date hero button */
-"today.hero.bell.a11y.label" = "通知";
-"today.hero.bell.a11y.hint" = "轻点打开通知。";
 "today.hero.caption.start" = "记录一个目标以开启今天";
 "today.hero.caption.nextLevel" = "还差 %d%% 即可升级";
 "today.hero.caption.max" = "已达成今日最高成就！";
-"today.greeting.morning"   = "早上好！";
-"today.greeting.afternoon" = "下午好！";
-"today.greeting.night"     = "晚上好！";
 
 /* MARK: - Views/WelcomeView */
 
@@ -716,10 +697,6 @@
 "a11y.calendar.day.tier.format"        = "%1$@，已达成：%2$@";
 "a11y.calendar.day.today.tier.format"  = "今天，%1$@，已达成：%2$@";
 
-/* Achievements view-mode segmented picker (List / Calendar) */
-
-/* Calendar section header */
-
 /* 月份切换箭头 */
 "a11y.month.previous" = "上个月";
 "a11y.month.next"     = "下个月";
@@ -733,15 +710,9 @@
 /* RecordDetail / EditToday 顶部卡片 */
 "a11y.record.header.format"     = "%1$@，%2$@，百分之%3$d，等级 %4$d";
 
-/* ProgressOverView, 统计卡片 */
-"a11y.stats.days.label"            = "天数";
-"a11y.stats.days.value.format"     = "%d 天";
-"a11y.stats.days.hint" = "轻点打开今天的日历。";
-
 /* ProgressOverView, 卡片内的列表行 */
 "a11y.stats.tier.row.format"     = "%1$@，%2$d 天";
 "a11y.stats.activity.row.format" = "%1$@，%2$d 天";
-"a11y.stats.goals.row.format"    = "%1$@，%2$d 个进行中";
 
 /* ProgressOverView, 整张卡片轻点提示 */
 "a11y.stats.card.usergoal.hint" = "轻点修改目标。";
@@ -842,8 +813,6 @@
 /* iPhone 大尺寸小组件 */
 "a11y.widget.large.header.format"  = "%1$@，%2$@，百分之%3$d";
 "a11y.widget.calendar.month.format" = "%@";
-
-/* Watch 小组件，角落和内联无需额外标签（文本已可朗读） */
 
 "a11y.welcome.goal.decrease.format" = "减少%@";
 "a11y.welcome.goal.increase.format" = "增加%@";

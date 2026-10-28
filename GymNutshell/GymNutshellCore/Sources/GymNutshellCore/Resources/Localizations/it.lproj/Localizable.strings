@@ -118,8 +118,6 @@
 "achievements.filter.list" = "Elenco";
 "achievements.filter.calendar" = "Calendario";
 "achievements.filter.title" = "Vista";
-"achievements.filter.all" = "Elenco";
-"achievements.filter.day" = "Calendario";
 "achievements.empty.title" = "Ancora nessun traguardo";
 "achievements.empty.description" = "A fine giornata sbloccherai qui il tuo traguardo.";
 
@@ -147,12 +145,10 @@
 "statistics.goals.active.label" = "Obiettivi attivi";
 "statistics.goals.active" = "%d attivi";
 "statistics.fitness.goal" = "Obiettivo";
-"watch.stats.days" = "Giorni";
 "watch.stats.syncing" = "Apri Gym Nutshell su iPhone per visualizzare le statistiche.";
 "watch.stats.recent" = "Recenti";
 
 /* ProgressOverView.swift, stats rows and physical data */
-"profile.stats.days" = "Giorni";
 "profile.recent.section" = "Ultimi 7 giorni";
 
 /* MARK: - Views/SettingsView */
@@ -186,7 +182,6 @@
 "settings.addgoal.category.new.button" = "Nuova categoria";
 "settings.addgoal.category.new.section" = "Categoria personalizzata";
 "settings.addgoal.category.new.name.placeholder" = "es: Stretching";
-"settings.addgoal.category.new.restDay" = "Pulsante giorno di riposo (ON/OFF)";
 "settings.category.kind" = "Tipo";
 "category.kind.standard" = "Standard";
 "category.kind.restDay" = "Con riposo";
@@ -239,7 +234,6 @@
 "settings.goalchange.save.keep" = "Salva senza ricalcolare";
 
 /* ProfileSettingsView.swift */
-"settings.profile.section.personal" = "Personali";
 "settings.profile.section.optional" = "Facoltativo";
 "settings.profile.name" = "Nome";
 "settings.profile.name.placeholder" = "Il tuo nome";
@@ -260,13 +254,9 @@
 "favoriteExercise.traps"      = "Trapezi";
 "favoriteExercise.forearms"   = "Avambracci";
 "favoriteExercise.calves"     = "Polpacci";
-"settings.profile.sex" = "Sesso";
-"profile.sex.male" = "Maschile";
-"profile.sex.female" = "Femminile";
 
 /* SettingsView.swift */
 "settings.header.title" = "Impostazioni";
-"settings.detail.placeholder" = "Seleziona una voce";
 "settings.section.edit" = "I tuoi dati";
 "settings.theme.title" = "Emoji";
 "settings.section.preferences" = "Aspetto";
@@ -367,10 +357,6 @@
 "today.max.level" = "Livello massimo raggiunto oggi!";
 
 /* DailyTierView.swift */
-"today.tier.level.1" = "Livello 1";
-"today.tier.level.2" = "Livello 2";
-"today.tier.level.3" = "Livello 3";
-"today.tier.level.4" = "Livello 4";
 /* Tier button label combines the "Today's achievement" header phrase with the
    tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
    duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
@@ -382,14 +368,9 @@
 "today.ring.a11y.value" = "%d per cento completato";
 
 /* TodayView.swift, date hero button */
-"today.hero.bell.a11y.label" = "Notifiche";
-"today.hero.bell.a11y.hint" = "Tocca per aprire le notifiche.";
 "today.hero.caption.start" = "Monitora un obiettivo per iniziare";
 "today.hero.caption.nextLevel" = "Manca il %d%% al prossimo livello";
 "today.hero.caption.max" = "Massimo traguardo del giorno!";
-"today.greeting.morning"   = "Buongiorno!";
-"today.greeting.afternoon" = "Buon pomeriggio!";
-"today.greeting.night"     = "Buonasera!";
 
 /* MARK: - Views/WelcomeView */
 
@@ -745,10 +726,6 @@
 "a11y.calendar.day.tier.format"        = "%1$@, traguardo: %2$@";
 "a11y.calendar.day.today.tier.format"  = "oggi, %1$@, traguardo: %2$@";
 
-/* Achievements view-mode segmented picker (List / Calendar) */
-
-/* Calendar section header */
-
 /* Month navigation chevrons */
 "a11y.month.previous" = "Mese precedente";
 "a11y.month.next"     = "Mese successivo";
@@ -762,15 +739,9 @@
 /* RecordDetail / EditToday header card */
 "a11y.record.header.format"     = "%1$@, %2$@, %3$d per cento, livello %4$d";
 
-/* ProgressOverView, stats cards */
-"a11y.stats.days.label"            = "Giorni";
-"a11y.stats.days.value.format"     = "%d giorni";
-"a11y.stats.days.hint" = "Tocca per aprire il calendario di oggi.";
-
 /* ProgressOverView, list rows inside cards */
 "a11y.stats.tier.row.format"     = "%1$@, %2$d giorni";
 "a11y.stats.activity.row.format" = "%1$@, %2$d giorni";
-"a11y.stats.goals.row.format"    = "%1$@, %2$d attivi";
 
 /* ProgressOverView, whole-card tap hints */
 "a11y.stats.card.usergoal.hint" = "Tocca per cambiare obiettivo.";
@@ -871,8 +842,6 @@
 /* iPhone large widgets */
 "a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d per cento";
 "a11y.widget.calendar.month.format" = "%@";
-
-/* Watch widget, corner and inline don't need extra labels (text already speaks) */
 
 "a11y.welcome.goal.decrease.format" = "Diminuisci %@";
 "a11y.welcome.goal.increase.format" = "Aumenta %@";

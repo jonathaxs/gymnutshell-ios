@@ -100,8 +100,6 @@
 "achievements.filter.list" = "リスト";
 "achievements.filter.calendar" = "カレンダー";
 "achievements.filter.title" = "表示";
-"achievements.filter.all" = "リスト";
-"achievements.filter.day" = "カレンダー";
 "achievements.empty.title" = "まだ成果がありません";
 "achievements.empty.description" = "1日の終わりに、ここで成果がアンロックされます。";
 
@@ -129,12 +127,10 @@
 "statistics.goals.active.label" = "アクティブな目標";
 "statistics.goals.active" = "進行中 %d件";
 "statistics.fitness.goal" = "目標";
-"watch.stats.days" = "日数";
 "watch.stats.syncing" = "iPhoneでGym Nutshellを開いて統計を確認してください。";
 "watch.stats.recent" = "最近";
 
 /* ProgressOverView.swift, stats rows and physical data */
-"profile.stats.days" = "日数";
 "profile.recent.section" = "過去7日間";
 
 /* MARK: - Views/SettingsView */
@@ -168,7 +164,6 @@
 "settings.addgoal.category.new.button" = "新しいカテゴリー";
 "settings.addgoal.category.new.section" = "カスタムカテゴリー";
 "settings.addgoal.category.new.name.placeholder" = "例: ストレッチ";
-"settings.addgoal.category.new.restDay" = "休息日切り替え (ON/OFF)";
 "settings.category.kind" = "種類";
 "category.kind.standard" = "標準";
 "category.kind.restDay" = "休息日あり";
@@ -221,7 +216,6 @@
 "settings.goalchange.save.keep" = "再計算せずに保存";
 
 /* ProfileSettingsView.swift */
-"settings.profile.section.personal" = "個人情報";
 "settings.profile.section.optional" = "任意";
 "settings.profile.name" = "名前";
 "settings.profile.name.placeholder" = "お名前";
@@ -242,13 +236,9 @@
 "favoriteExercise.traps"      = "僧帽筋";
 "favoriteExercise.forearms"   = "前腕";
 "favoriteExercise.calves"     = "ふくらはぎ";
-"settings.profile.sex" = "性別";
-"profile.sex.male" = "男性";
-"profile.sex.female" = "女性";
 
 /* SettingsView.swift */
 "settings.header.title" = "アプリ設定";
-"settings.detail.placeholder" = "ページを選択";
 "settings.section.edit" = "ユーザーデータ";
 "settings.theme.title" = "絵文字";
 "settings.section.preferences" = "外観";
@@ -349,10 +339,6 @@
 "today.max.level" = "本日の最高レベルに到達しました！";
 
 /* DailyTierView.swift */
-"today.tier.level.1" = "レベル1";
-"today.tier.level.2" = "レベル2";
-"today.tier.level.3" = "レベル3";
-"today.tier.level.4" = "レベル4";
 /* Tier button label combines the "Today's achievement" header phrase with the
    tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
    duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
@@ -364,14 +350,9 @@
 "today.ring.a11y.value" = "%dパーセント達成";
 
 /* TodayView.swift, date hero button */
-"today.hero.bell.a11y.label" = "通知";
-"today.hero.bell.a11y.hint" = "タップして通知を開く。";
 "today.hero.caption.start" = "目標を記録してスタートしましょう";
 "today.hero.caption.nextLevel" = "次のレベルまであと%d%%";
 "today.hero.caption.max" = "本日のトップ達成！";
-"today.greeting.morning"   = "おはようございます！";
-"today.greeting.afternoon" = "こんにちは！";
-"today.greeting.night"     = "こんばんは！";
 
 /* MARK: - Views/WelcomeView */
 
@@ -717,10 +698,6 @@
 "a11y.calendar.day.tier.format"        = "%1$@、達成: %2$@";
 "a11y.calendar.day.today.tier.format"  = "今日、%1$@、達成: %2$@";
 
-/* Achievements view-mode segmented picker (List / Calendar) */
-
-/* Calendar section header */
-
 /* Month navigation chevrons */
 "a11y.month.previous" = "前月";
 "a11y.month.next"     = "翌月";
@@ -734,15 +711,9 @@
 /* RecordDetail / EditToday header card */
 "a11y.record.header.format"     = "%1$@、%2$@、%3$dパーセント、レベル %4$d";
 
-/* ProgressOverView, stats cards */
-"a11y.stats.days.label"            = "日数";
-"a11y.stats.days.value.format"     = "%d日";
-"a11y.stats.days.hint" = "タップして今日のカレンダーを開く。";
-
 /* ProgressOverView, list rows inside cards */
 "a11y.stats.tier.row.format"     = "%1$@、%2$d日";
 "a11y.stats.activity.row.format" = "%1$@、%2$d日";
-"a11y.stats.goals.row.format"    = "%1$@、進行中 %2$d件";
 
 /* ProgressOverView, whole-card tap hints */
 "a11y.stats.card.usergoal.hint" = "タップして目標を変更。";
@@ -843,8 +814,6 @@
 /* iPhone large widgets */
 "a11y.widget.large.header.format"  = "%1$@、%2$@、%3$dパーセント";
 "a11y.widget.calendar.month.format" = "%@";
-
-/* Watch widget, corner and inline don't need extra labels (text already speaks) */
 
 "a11y.welcome.goal.decrease.format" = "%@を減らす";
 "a11y.welcome.goal.increase.format" = "%@を増やす";

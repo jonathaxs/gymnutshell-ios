@@ -35,10 +35,6 @@ public enum CustomGoalCategoriesStore {
         save(all)
     }
 
-    public static func find(id: String) -> CustomGoalCategory? {
-        load().first { $0.id == id }
-    }
-
     public static func delete(id: String) {
         var all = load()
         all.removeAll { $0.id == id }
