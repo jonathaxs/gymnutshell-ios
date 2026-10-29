@@ -304,3 +304,26 @@ import Foundation
     #expect(record.achievementEmoji == AppTheme.dog.emoji(for: .level4))
     #expect(record.points == DailyAchievement.level4.points)
 }
+
+// MARK: - Plurais (Localizable.stringsdict)
+
+/// Formata uma chave com plural no idioma pedido, do mesmo jeito que as telas fazem (String(format:)).
+private func plural(_ key: String, _ lang: String, _ args: CVarArg...) -> String {
+    let path = Bundle.gymNutshellCore.path(forResource: lang, ofType: "lproj")!
+    let format = Bundle(path: path)!.localizedString(forKey: key, value: nil, table: nil)
+    return String(format: format, arguments: args)
+}
+
+@Test func pluralDosDiasEmPortugues() {
+    // O zero fica no plural ("0 dias"), mesmo a regra oficial tratando o 0 como singular.
+    #expect(plural("statistics.tier.days", "pt-BR", 0) == "0 dias")
+    #expect(plural("statistics.tier.days", "pt-BR", 1) == "1 dia")
+    #expect(plural("statistics.tier.days", "pt-BR", 5) == "5 dias")
+    #expect(plural("statistics.goals.active", "pt-BR", 1) == "1 ativa")
+}
+
+@Test func pluralPeloTotalQuandoONumeroVemEmSegundo() {
+    #expect(plural("today.category.a11y.value", "pt-BR", 0, 1) == "0 de 1 meta concluída")
+    #expect(plural("today.category.a11y.value", "en", 2, 3) == "2 of 3 goals completed")
+    #expect(plural("a11y.stats.tier.row.format", "en", "Rooster", 1) == "Rooster, 1 day")
+}

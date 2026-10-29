@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>statistics.tier.days</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%d dias</string>
+			<key>one</key>
+			<string>%d dia</string>
+			<key>other</key>
+			<string>%d dias</string>
+		</dict>
+	</dict>
+	<key>statistics.goals.active</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@goals@</string>
+		<key>goals</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%d ativas</string>
+			<key>one</key>
+			<string>%d ativa</string>
+			<key>other</key>
+			<string>%d ativas</string>
+		</dict>
+	</dict>
+	<key>today.category.a11y.value</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$d de %2$#@goals@</string>
+		<key>goals</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%2$d metas concluídas</string>
+			<key>one</key>
+			<string>%2$d meta concluída</string>
+			<key>other</key>
+			<string>%2$d metas concluídas</string>
+		</dict>
+	</dict>
+	<key>today.category.tile.a11y.value</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$d de %2$#@goals@</string>
+		<key>goals</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%2$d concluídas</string>
+			<key>one</key>
+			<string>%2$d concluída</string>
+			<key>other</key>
+			<string>%2$d concluídas</string>
+		</dict>
+	</dict>
+	<key>a11y.stats.tier.row.format</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@, %2$#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%2$d dias</string>
+			<key>one</key>
+			<string>%2$d dia</string>
+			<key>other</key>
+			<string>%2$d dias</string>
+		</dict>
+	</dict>
+	<key>a11y.stats.activity.row.format</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@, %2$#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%2$d dias</string>
+			<key>one</key>
+			<string>%2$d dia</string>
+			<key>other</key>
+			<string>%2$d dias</string>
+		</dict>
+	</dict>
+	<key>a11y.watch.recent.summary.format</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@: %2$#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%2$d dias com conquistas em 7.</string>
+			<key>one</key>
+			<string>%2$d dia com conquista em 7.</string>
+			<key>other</key>
+			<string>%2$d dias com conquistas em 7.</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

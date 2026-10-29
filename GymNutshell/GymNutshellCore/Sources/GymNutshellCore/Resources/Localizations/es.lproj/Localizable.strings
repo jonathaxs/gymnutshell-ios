@@ -144,11 +144,9 @@
 "statistics.section.tiers" = "Logros por niveles";
 "statistics.section.activity" = "Actividad en el gimnasio";
 "statistics.section.goals" = "Metas";
-"statistics.tier.days" = "%d días";
 "statistics.activity.workout" = "Días de musculación";
 "statistics.activity.cardio" = "Días de cardio";
 "statistics.goals.active.label" = "Metas activas";
-"statistics.goals.active" = "%d activas";
 "statistics.fitness.goal" = "Objetivo";
 "watch.stats.syncing" = "Abre Gym Nutshell en el iPhone para ver las estadísticas.";
 "watch.stats.recent" = "Recientes";
@@ -343,7 +341,6 @@
 "today.goals.cardio" = "Cardio";
 "today.goals.creatine" = "Creatina";
 "today.category.other" = "Otras";
-"today.category.a11y.value" = "%d de %d metas completadas";
 "today.restday.label" = "Día de descanso";
 "today.checkin.pending" = "Pendiente";
 "today.checkin.done" = "Hecho";
@@ -744,10 +741,6 @@
 /* RecordDetail / EditToday header card */
 "a11y.record.header.format"     = "%1$@, %2$@, %3$d por ciento, nivel %4$d";
 
-/* ProgressOverView, list rows inside cards */
-"a11y.stats.tier.row.format"     = "%1$@, %2$d días";
-"a11y.stats.activity.row.format" = "%1$@, %2$d días";
-
 /* ProgressOverView, whole-card tap hints */
 "a11y.stats.card.usergoal.hint" = "Toca para cambiar de objetivo.";
 "a11y.stats.card.tiers.hint"    = "Toca para ver cómo funcionan los niveles.";
@@ -832,9 +825,6 @@
 "a11y.watch.increase.label.format" = "Aumentar %@";
 "a11y.watch.decrease.label.format" = "Disminuir %@";
 
-/* Watch recent strip, collapsed into a single summary */
-"a11y.watch.recent.summary.format" = "%1$@: %2$d días con logros de 7.";
-
 /* Watch notification row */
 "a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
 
@@ -888,7 +878,6 @@
 "today.goals.viewMode.list" = "Lista";
 "today.goals.viewMode.grid" = "Cuadrícula";
 "today.goals.viewMode.switch.a11y" = "Cambiar a vista de %@";
-"today.category.tile.a11y.value" = "%d de %d completadas";
 "today.category.tile.a11y.hint" = "Toca para abrir las metas de la categoría.";
 
 /* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */

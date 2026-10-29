@@ -121,11 +121,9 @@
 "statistics.section.tiers" = "Tier Breakdown";
 "statistics.section.activity" = "Gym Activity";
 "statistics.section.goals" = "Goals";
-"statistics.tier.days" = "%d days";
 "statistics.activity.workout" = "Workout Days";
 "statistics.activity.cardio" = "Cardio Days";
 "statistics.goals.active.label" = "Active goals";
-"statistics.goals.active" = "%d active";
 "statistics.fitness.goal" = "Goal";
 "watch.stats.syncing" = "Open Gym Nutshell on iPhone to see statistics.";
 "watch.stats.recent" = "Recent";
@@ -320,7 +318,6 @@
 "today.goals.cardio" = "Cardio";
 "today.goals.creatine" = "Creatine";
 "today.category.other" = "Other";
-"today.category.a11y.value" = "%d of %d goals completed";
 "today.restday.label" = "Day off";
 "today.checkin.pending" = "Pending";
 "today.checkin.done" = "Done";
@@ -711,10 +708,6 @@
 /* RecordDetail / EditToday header card */
 "a11y.record.header.format"     = "%1$@, %2$@, %3$d percent, level %4$d";
 
-/* ProgressOverView, list rows inside cards */
-"a11y.stats.tier.row.format"     = "%1$@, %2$d days";
-"a11y.stats.activity.row.format" = "%1$@, %2$d days";
-
 /* ProgressOverView, whole-card tap hints */
 "a11y.stats.card.usergoal.hint" = "Tap to change goal.";
 "a11y.stats.card.tiers.hint"    = "Tap to see how tiers work.";
@@ -799,9 +792,6 @@
 "a11y.watch.increase.label.format" = "Increase %@";
 "a11y.watch.decrease.label.format" = "Decrease %@";
 
-/* Watch recent strip, collapsed into a single summary */
-"a11y.watch.recent.summary.format" = "%1$@: %2$d days with achievements out of 7.";
-
 /* Watch notification row */
 "a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
 
@@ -855,7 +845,6 @@
 "today.goals.viewMode.list" = "List";
 "today.goals.viewMode.grid" = "Grid";
 "today.goals.viewMode.switch.a11y" = "Switch to %@ view";
-"today.category.tile.a11y.value" = "%d of %d completed";
 "today.category.tile.a11y.hint" = "Tap to open the category goals.";
 
 /* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */

@@ -122,11 +122,9 @@
 "statistics.section.tiers" = "Stufenübersicht";
 "statistics.section.activity" = "Training-Aktivität";
 "statistics.section.goals" = "Ziele";
-"statistics.tier.days" = "%d Tage";
 "statistics.activity.workout" = "Krafttrainingstage";
 "statistics.activity.cardio" = "Cardio-Tage";
 "statistics.goals.active.label" = "Aktive Ziele";
-"statistics.goals.active" = "%d aktiv";
 "statistics.fitness.goal" = "Ziel";
 "watch.stats.syncing" = "Öffne Gym Nutshell auf dem iPhone, um Statistiken zu sehen.";
 "watch.stats.recent" = "Zuletzt";
@@ -321,7 +319,6 @@
 "today.goals.cardio" = "Cardio";
 "today.goals.creatine" = "Kreatin";
 "today.category.other" = "Sonstige";
-"today.category.a11y.value" = "%d von %d Zielen erreicht";
 "today.restday.label" = "Ruhetag";
 "today.checkin.pending" = "Offen";
 "today.checkin.done" = "Erledigt";
@@ -721,10 +718,6 @@
 /* RecordDetail / EditToday header card */
 "a11y.record.header.format"     = "%1$@, %2$@, %3$d Prozent, Stufe %4$d";
 
-/* ProgressOverView, list rows inside cards */
-"a11y.stats.tier.row.format"     = "%1$@, %2$d Tage";
-"a11y.stats.activity.row.format" = "%1$@, %2$d Tage";
-
 /* ProgressOverView, whole-card tap hints */
 "a11y.stats.card.usergoal.hint" = "Tippen, um Ziel zu ändern.";
 "a11y.stats.card.tiers.hint"    = "Tippen, um zu sehen, wie Stufen funktionieren.";
@@ -809,9 +802,6 @@
 "a11y.watch.increase.label.format" = "%@ erhöhen";
 "a11y.watch.decrease.label.format" = "%@ verringern";
 
-/* Watch recent strip, collapsed into a single summary */
-"a11y.watch.recent.summary.format" = "%1$@: %2$d von 7 Tagen mit Erfolgen.";
-
 /* Watch notification row */
 "a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
 
@@ -865,7 +855,6 @@
 "today.goals.viewMode.list" = "Liste";
 "today.goals.viewMode.grid" = "Raster";
 "today.goals.viewMode.switch.a11y" = "Zur Ansicht „%@“ wechseln";
-"today.category.tile.a11y.value" = "%d von %d abgeschlossen";
 "today.category.tile.a11y.hint" = "Tippen, um die Ziele der Kategorie zu öffnen.";
 
 /* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
