@@ -42,6 +42,13 @@ struct TrackingGoalDetailView: View {
 
     @State private var value: Int = 0
     @State private var currentIncrement: Int = 0
+    @State private var reminderTimes: [ReminderTime] = []
+    @State private var loadedReminderTimes: [ReminderTime] = []
+
+    /// Id dos lembretes por horário, só a Creatina tem (é a única meta fixa check-in).
+    private var reminderKind: NotificationKind? {
+        isCheckIn ? NotificationKind.from(trackingOrderKey: key) : nil
+    }
 
     // MARK: - Body
 
@@ -79,6 +86,10 @@ struct TrackingGoalDetailView: View {
                     + Text("\n")
                     + Text(String(localized: "settings.goaldetail.increment.footer", bundle: .gymNutshellCore))
                 }
+            }
+
+            if reminderKind != nil {
+                ReminderTimesSection(times: $reminderTimes)
             }
         }
         .scrollContentBackground(.hidden)
@@ -134,6 +145,10 @@ struct TrackingGoalDetailView: View {
         }
         let storedIncrement = UserDefaults.standard.integer(forKey: "\(key).increment")
         currentIncrement = storedIncrement > 0 ? storedIncrement : increment
+        if let kind = reminderKind {
+            reminderTimes = NotificationPreferences.reminderTimes(id: kind.rawValue)
+            loadedReminderTimes = reminderTimes
+        }
     }
 
     private func save() {
@@ -144,6 +159,11 @@ struct TrackingGoalDetailView: View {
         }
         if !isCheckIn {
             UserDefaults.standard.set(currentIncrement, forKey: "\(key).increment")
+        }
+        // Lembretes: só grava quando mudou, pra não religar o que foi desligado em Notificações.
+        if let kind = reminderKind, reminderTimes.sorted() != loadedReminderTimes.sorted() {
+            NotificationPreferences.setReminderTimes(reminderTimes, id: kind.rawValue)
+            NotificationPreferences.setEnabled(!reminderTimes.isEmpty, for: kind)
         }
     }
 }

@@ -16,6 +16,9 @@ struct GoalsNotificationsSettingsView: View {
     @State private var customGoals: [CustomTrackingGoal] = []
     @State private var categorySections: [MetaCategorySection] = []
     @State private var unassignedCustomGoals: [CustomTrackingGoal] = []
+    @State private var hasCheckInGoals: Bool = false
+
+    @AppStorage(NotificationPreferences.groupSupplementsKey) private var groupSupplements: Bool = false
 
     // Estado de colapso das categorias, chave separada das Metas pra não conflitar
     // com `settings.goal.collapsed` (usado em TrackingGoalsSettingsView).
@@ -31,6 +34,16 @@ struct GoalsNotificationsSettingsView: View {
 
     var body: some View {
         List {
+            // Suplementos no mesmo horário: um aviso por suplemento (padrão) ou um só, agrupado.
+            if hasCheckInGoals {
+                Section {
+                    Toggle(String(localized: "settings.notifications.group.title", bundle: .gymNutshellCore),
+                           isOn: $groupSupplements)
+                } footer: {
+                    Text(String(localized: "settings.notifications.group.footer", bundle: .gymNutshellCore))
+                }
+            }
+
             ForEach(categorySections) { section in
                 Section {
                     if !isCollapsed(section.id) {
@@ -175,5 +188,9 @@ struct GoalsNotificationsSettingsView: View {
         }
         categorySections = sections
         unassignedCustomGoals = unassigned
+
+        let categories = CustomGoalCategoriesStore.load()
+        hasCheckInGoals = !removed.contains("tracking.creatine")
+            || customGoals.contains { $0.kind(in: categories) == .checkIn }
     }
 }

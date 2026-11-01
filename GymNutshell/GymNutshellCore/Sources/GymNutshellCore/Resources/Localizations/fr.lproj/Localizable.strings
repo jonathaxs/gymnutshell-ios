@@ -884,3 +884,20 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Fin de la journée dans %@";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "C'est l'heure de prendre %@.";
+"notifications.supplement.group.title" = "💊 L'heure des compléments";
+"notifications.supplement.action.done" = "Pris";
+"notifications.supplement.preset.morning" = "Matin";
+"notifications.supplement.preset.lunch" = "Déjeuner";
+"notifications.supplement.preset.afternoon" = "Fin d'après-midi";
+"notifications.supplement.preset.night" = "Soir";
+"notifications.supplement.preset.bedtime" = "Au coucher";
+"settings.notifications.times.header" = "Rappels";
+"settings.notifications.times.row" = "Heure";
+"settings.notifications.times.add" = "Ajouter une heure";
+"settings.notifications.times.empty" = "Aucune heure";
+"settings.notifications.times.footer" = "Un rappel par jour à chaque heure. Les rappels du jour s'arrêtent quand vous marquez Fait sur Aujourd'hui ou touchez Pris dans la notification.";
+"settings.notifications.group.title" = "Regrouper les compléments à la même heure";
+"settings.notifications.group.footer" = "Réunit en un seul rappel les compléments prévus à la même heure. Désactivé, chaque complément a son rappel.";

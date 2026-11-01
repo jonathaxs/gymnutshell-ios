@@ -3,6 +3,7 @@
 //
 //  Propósito: Sheet que permite editar o intervalo (em minutos) entre notificações
 //             recorrentes de um kind editável (Progresso, Metas fixas e personalizadas).
+//             Metas check-in (suplementos) editam horários fixos no lugar do intervalo.
 //             Padrão visual inspirado em TrackingGoalDetailView, Form + Stepper + toolbar.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-04-23.
@@ -26,6 +27,7 @@ struct NotificationIntervalEditView: View {
 
     @State private var minutes: Int = 120
     @State private var sound: NotificationSound = .default
+    @State private var times: [ReminderTime] = []
 
     @Environment(\.openURL) private var openURL
 
@@ -41,8 +43,25 @@ struct NotificationIntervalEditView: View {
         NSLocalizedString(s.titleKey, bundle: .gymNutshellCore, comment: "")
     }
 
+    /// Meta check-in (Creatina e suplementos): avisa por horário, sem intervalo.
+    private var isCheckIn: Bool {
+        switch target {
+        case .fixed(let k):  return k == .creatine
+        case .custom(let g): return g.kind(in: CustomGoalCategoriesStore.load()) == .checkIn
+        }
+    }
+
+    /// Id usado nas preferências de horário ("creatine" ou "custom.<uuid>").
+    private var reminderId: String {
+        switch target {
+        case .fixed(let k):  return k.rawValue
+        case .custom(let g): return NotificationPreferences.customReminderId(g.id)
+        }
+    }
+
     /// Intervalo só aparece para kinds editáveis (Metas + Progresso) e metas personalizadas.
     private var showsInterval: Bool {
+        if isCheckIn { return false }
         switch target {
         case .fixed(let k): return k.isEditable
         case .custom:       return true
@@ -74,6 +93,10 @@ struct NotificationIntervalEditView: View {
 
     var body: some View {
         Form {
+            if isCheckIn {
+                ReminderTimesSection(times: $times)
+            }
+
             if showsInterval {
                 Section {
                     Stepper(value: $minutes, in: 15...600, step: 15) {
@@ -137,6 +160,7 @@ struct NotificationIntervalEditView: View {
     }
 
     private func load() {
+        times = NotificationPreferences.reminderTimes(id: reminderId)
         switch target {
         case .fixed(let k):
             minutes = NotificationPreferences.intervalMinutes(k)
@@ -148,6 +172,11 @@ struct NotificationIntervalEditView: View {
     }
 
     private func save() {
+        if isCheckIn {
+            NotificationPreferences.setReminderTimes(times, id: reminderId)
+            // Com horário, o lembrete fica ligado; sem nenhum, desliga.
+            UserDefaults.standard.set(!times.isEmpty, forKey: "notifications.enabled.\(reminderId)")
+        }
         switch target {
         case .fixed(let k):
             if k.isEditable {

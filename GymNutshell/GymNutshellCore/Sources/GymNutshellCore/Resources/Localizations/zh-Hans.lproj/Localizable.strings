@@ -862,3 +862,20 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "距离今天结束还有%@";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "该吃%@了。";
+"notifications.supplement.group.title" = "💊 补剂时间";
+"notifications.supplement.action.done" = "已服用";
+"notifications.supplement.preset.morning" = "早上";
+"notifications.supplement.preset.lunch" = "午饭";
+"notifications.supplement.preset.afternoon" = "傍晚";
+"notifications.supplement.preset.night" = "晚上";
+"notifications.supplement.preset.bedtime" = "睡前";
+"settings.notifications.times.header" = "提醒";
+"settings.notifications.times.row" = "时间";
+"settings.notifications.times.add" = "添加时间";
+"settings.notifications.times.empty" = "未设置时间";
+"settings.notifications.times.footer" = "每个时间每天提醒一次。在“今天”中标记为完成，或在通知中轻点“已服用”后，当天的提醒会停止。";
+"settings.notifications.group.title" = "合并同一时间的补剂";
+"settings.notifications.group.footer" = "将同一时间的补剂合并为一条提醒。关闭时，每种补剂单独提醒。";

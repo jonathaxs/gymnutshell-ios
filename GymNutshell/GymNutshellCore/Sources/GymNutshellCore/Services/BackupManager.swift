@@ -115,7 +115,12 @@ public enum BackupManager {
         var enabled:  [String: Bool]   = [:]
         var interval: [String: Int]    = [:]
         var sound:    [String: String] = [:]
+        var times:    [String: [String]] = [:]
         for id in notifIds {
+            let reminderTimes = NotificationPreferences.reminderTimes(id: id)
+            if !reminderTimes.isEmpty {
+                times[id] = reminderTimes.map(\.storageString)
+            }
             if defaults.object(forKey: "notifications.enabled.\(id)") != nil {
                 enabled[id] = defaults.bool(forKey: "notifications.enabled.\(id)")
             }
@@ -149,7 +154,11 @@ public enum BackupManager {
             notificationEnabled:  enabled.isEmpty   ? nil : enabled,
             notificationInterval: interval.isEmpty  ? nil : interval,
             notificationSound:    sound.isEmpty     ? nil : sound,
-            goalIncrements:       increments.isEmpty ? nil : increments
+            goalIncrements:       increments.isEmpty ? nil : increments,
+            notificationTimes:    times.isEmpty     ? nil : times,
+            groupSupplements:     defaults.object(forKey: NotificationPreferences.groupSupplementsKey) != nil
+                ? defaults.bool(forKey: NotificationPreferences.groupSupplementsKey)
+                : nil
         )
     }
 
@@ -175,6 +184,12 @@ public enum BackupManager {
         if let map = prefs.goalIncrements {
             for (key, val) in map { defaults.set(val, forKey: key) }
         }
+        if let map = prefs.notificationTimes {
+            for (id, val) in map {
+                NotificationPreferences.setReminderTimes(val.compactMap(ReminderTime.init(storageString:)), id: id)
+            }
+        }
+        if let v = prefs.groupSupplements { defaults.set(v, forKey: NotificationPreferences.groupSupplementsKey) }
     }
 
     // MARK: - Decodificar

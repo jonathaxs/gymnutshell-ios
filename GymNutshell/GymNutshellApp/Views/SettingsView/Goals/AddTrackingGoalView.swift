@@ -48,6 +48,9 @@ struct AddTrackingGoalView: View {
     @State private var unit: String = ""
     @State private var goalText: String = ""
     @State private var incrementText: String = ""
+    // Horários dos lembretes, só pra metas check-in (suplementos).
+    @State private var reminderTimes: [ReminderTime] = []
+    @State private var loadedReminderTimes: [ReminderTime] = []
 
     // MARK: - Estado da nova categoria
 
@@ -262,6 +265,10 @@ struct AddTrackingGoalView: View {
                 }
             }
 
+            if isCheckIn {
+                ReminderTimesSection(times: $reminderTimes)
+            }
+
             // Passo só faz sentido no slider / − +; check-in registra a dose inteira.
             if !isCheckIn {
                 Section {
@@ -319,6 +326,8 @@ struct AddTrackingGoalView: View {
         unit = trackingGoal.unit
         goalText = "\(trackingGoal.goal)"
         incrementText = "\(trackingGoal.increment)"
+        reminderTimes = NotificationPreferences.reminderTimes(id: NotificationPreferences.customReminderId(trackingGoal.id))
+        loadedReminderTimes = reminderTimes
     }
 
     private func save() {
@@ -354,6 +363,12 @@ struct AddTrackingGoalView: View {
             customCategoryId: customId
         )
         CustomTrackingGoalsStore.upsert(trackingGoal)
+
+        // Lembretes: só grava quando mudou, pra não religar o que foi desligado em Notificações.
+        if isCheckIn, reminderTimes.sorted() != loadedReminderTimes.sorted() {
+            NotificationPreferences.setReminderTimes(reminderTimes, id: NotificationPreferences.customReminderId(trackingGoal.id))
+            NotificationPreferences.setCustomEnabled(!reminderTimes.isEmpty, id: trackingGoal.id)
+        }
     }
 }
 

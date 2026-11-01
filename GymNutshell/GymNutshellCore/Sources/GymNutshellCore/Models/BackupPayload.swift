@@ -113,6 +113,10 @@ public struct BackupPayload: Codable, Sendable {
         public let notificationSound: [String: String]?
         /// Chave completa do incremento ("tracking.X.increment") → passo.
         public let goalIncrements: [String: Int]?
+        /// id da notificação → horários "HH:mm" dos lembretes por horário (suplementos), novo na 2.0.
+        public let notificationTimes: [String: [String]]?
+        /// Agrupar suplementos do mesmo horário num aviso só, novo na 2.0.
+        public let groupSupplements: Bool?
 
         public init(
             widgetBackground: String?,
@@ -123,7 +127,9 @@ public struct BackupPayload: Codable, Sendable {
             notificationEnabled: [String: Bool]?,
             notificationInterval: [String: Int]?,
             notificationSound: [String: String]?,
-            goalIncrements: [String: Int]?
+            goalIncrements: [String: Int]?,
+            notificationTimes: [String: [String]]? = nil,
+            groupSupplements: Bool? = nil
         ) {
             self.widgetBackground = widgetBackground
             self.widgetBackgroundMode = widgetBackgroundMode
@@ -134,6 +140,8 @@ public struct BackupPayload: Codable, Sendable {
             self.notificationInterval = notificationInterval
             self.notificationSound = notificationSound
             self.goalIncrements = goalIncrements
+            self.notificationTimes = notificationTimes
+            self.groupSupplements = groupSupplements
         }
     }
 

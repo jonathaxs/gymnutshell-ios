@@ -885,3 +885,20 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "El día termina en %@";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "Hora de tomar %@.";
+"notifications.supplement.group.title" = "💊 Hora de los suplementos";
+"notifications.supplement.action.done" = "Tomado";
+"notifications.supplement.preset.morning" = "Mañana";
+"notifications.supplement.preset.lunch" = "Almuerzo";
+"notifications.supplement.preset.afternoon" = "Final de la tarde";
+"notifications.supplement.preset.night" = "Noche";
+"notifications.supplement.preset.bedtime" = "Antes de dormir";
+"settings.notifications.times.header" = "Recordatorios";
+"settings.notifications.times.row" = "Hora";
+"settings.notifications.times.add" = "Añadir hora";
+"settings.notifications.times.empty" = "Sin horas";
+"settings.notifications.times.footer" = "Un aviso al día en cada hora. Los avisos del día se detienen cuando marcas Hecho en Hoy o tocas Tomado en la notificación.";
+"settings.notifications.group.title" = "Agrupar suplementos a la misma hora";
+"settings.notifications.group.footer" = "Junta en un solo aviso los suplementos de la misma hora. Desactivado, cada suplemento tiene su aviso.";

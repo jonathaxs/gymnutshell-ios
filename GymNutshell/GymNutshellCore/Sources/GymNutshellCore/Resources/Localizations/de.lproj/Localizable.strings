@@ -862,3 +862,20 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Der Tag endet in %@";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "Zeit für %@.";
+"notifications.supplement.group.title" = "💊 Zeit für Supplements";
+"notifications.supplement.action.done" = "Genommen";
+"notifications.supplement.preset.morning" = "Morgens";
+"notifications.supplement.preset.lunch" = "Mittags";
+"notifications.supplement.preset.afternoon" = "Später Nachmittag";
+"notifications.supplement.preset.night" = "Abends";
+"notifications.supplement.preset.bedtime" = "Vor dem Schlafen";
+"settings.notifications.times.header" = "Erinnerungen";
+"settings.notifications.times.row" = "Uhrzeit";
+"settings.notifications.times.add" = "Uhrzeit hinzufügen";
+"settings.notifications.times.empty" = "Keine Uhrzeit";
+"settings.notifications.times.footer" = "Eine Erinnerung pro Tag zu jeder Uhrzeit. Die Erinnerungen des Tages enden, wenn du auf Heute Erledigt markierst oder in der Mitteilung auf Genommen tippst.";
+"settings.notifications.group.title" = "Supplements zur gleichen Zeit bündeln";
+"settings.notifications.group.footer" = "Fasst Supplements mit derselben Uhrzeit in einer Erinnerung zusammen. Aus: jedes Supplement hat seine eigene.";

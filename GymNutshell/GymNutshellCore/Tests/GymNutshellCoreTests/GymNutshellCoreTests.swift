@@ -327,3 +327,62 @@ private func plural(_ key: String, _ lang: String, _ args: CVarArg...) -> String
     #expect(plural("today.category.a11y.value", "en", 2, 3) == "2 of 3 goals completed")
     #expect(plural("a11y.stats.tier.row.format", "en", "Rooster", 1) == "Rooster, 1 day")
 }
+
+// MARK: - Lembretes por horário (suplementos)
+
+private func dataFixa(_ dia: Int, _ hora: Int, _ minuto: Int) -> Date {
+    var c = DateComponents()
+    c.year = 2026; c.month = 11; c.day = dia; c.hour = hora; c.minute = minuto
+    return Calendar.current.date(from: c)!
+}
+
+private let manha = ReminderTime(hour: 8, minute: 0)
+private let noite = ReminderTime(hour: 22, minute: 30)
+
+@Test func lembretePulaHorariosQueJaPassaram() {
+    let creatina = SupplementReminderEntry(id: "creatine", emoji: "🧪", name: "Creatina",
+                                           times: [manha, noite], doneToday: false)
+    let plano = SupplementReminderPlanner.plan(entries: [creatina], now: dataFixa(1, 10, 0), grouped: false)
+    // Hoje só as 22:30; amanhã e depois, os dois horários.
+    #expect(plano.count == 5)
+    #expect(plano.first?.fireDate == dataFixa(1, 22, 30))
+    #expect(plano.allSatisfy { $0.fireDate > dataFixa(1, 10, 0) })
+}
+
+@Test func lembretePulaHojeQuandoJaFeito() {
+    let creatina = SupplementReminderEntry(id: "creatine", emoji: "🧪", name: "Creatina",
+                                           times: [noite], doneToday: true)
+    let plano = SupplementReminderPlanner.plan(entries: [creatina], now: dataFixa(1, 10, 0), grouped: false)
+    #expect(plano.map(\.fireDate) == [dataFixa(2, 22, 30), dataFixa(3, 22, 30)])
+}
+
+@Test func lembreteUmAvisoPorSuplementoPorPadrao() {
+    let a = SupplementReminderEntry(id: "a", emoji: "🧪", name: "Creatina", times: [manha], doneToday: false)
+    let b = SupplementReminderEntry(id: "b", emoji: "🐟", name: "Ômega 3", times: [manha], doneToday: false)
+    let plano = SupplementReminderPlanner.plan(entries: [a, b], now: dataFixa(1, 6, 0), grouped: false, days: 1)
+    #expect(plano.count == 2)
+    #expect(Set(plano.map(\.identifier)).count == 2)
+}
+
+@Test func lembreteAgrupadoJuntaMesmoHorario() {
+    let a = SupplementReminderEntry(id: "a", emoji: "🧪", name: "Creatina", times: [manha, noite], doneToday: false)
+    let b = SupplementReminderEntry(id: "b", emoji: "🐟", name: "Ômega 3", times: [manha], doneToday: false)
+    let plano = SupplementReminderPlanner.plan(entries: [a, b], now: dataFixa(1, 6, 0), grouped: true, days: 1)
+    #expect(plano.count == 2)
+    #expect(plano[0].entryIds == ["a", "b"])
+    #expect(plano[1].entryIds == ["a"])
+}
+
+@Test func lembreteRespeitaOTeto() {
+    let horarios = (0..<24).map { ReminderTime(hour: $0, minute: 0) }
+    let a = SupplementReminderEntry(id: "a", emoji: "🧪", name: "A", times: horarios, doneToday: false)
+    let plano = SupplementReminderPlanner.plan(entries: [a], now: dataFixa(1, 0, 30), grouped: false)
+    #expect(plano.count == SupplementReminderPlanner.maxPending)
+    #expect(plano.map(\.fireDate) == plano.map(\.fireDate).sorted())
+}
+
+@Test func horarioDoLembreteIdaEVoltaNoBackup() {
+    #expect(ReminderTime(storageString: "08:05") == ReminderTime(hour: 8, minute: 5))
+    #expect(ReminderTime(hour: 22, minute: 30).storageString == "22:30")
+    #expect(ReminderTime(storageString: "25:00") == nil)
+}

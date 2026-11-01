@@ -863,3 +863,20 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "今日の終わりまで%@";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "%@を飲む時間です。";
+"notifications.supplement.group.title" = "💊 サプリの時間";
+"notifications.supplement.action.done" = "飲んだ";
+"notifications.supplement.preset.morning" = "朝";
+"notifications.supplement.preset.lunch" = "昼";
+"notifications.supplement.preset.afternoon" = "夕方";
+"notifications.supplement.preset.night" = "夜";
+"notifications.supplement.preset.bedtime" = "寝る前";
+"settings.notifications.times.header" = "リマインダー";
+"settings.notifications.times.row" = "時刻";
+"settings.notifications.times.add" = "時刻を追加";
+"settings.notifications.times.empty" = "時刻なし";
+"settings.notifications.times.footer" = "各時刻に1日1回通知します。「今日」で完了にするか、通知の「飲んだ」をタップすると、その日の通知は止まります。";
+"settings.notifications.group.title" = "同じ時刻のサプリをまとめる";
+"settings.notifications.group.footer" = "同じ時刻のサプリを1つの通知にまとめます。オフの場合はサプリごとに通知します。";

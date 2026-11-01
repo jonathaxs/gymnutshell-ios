@@ -863,3 +863,20 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Günün bitmesine %@ kaldı";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "%@ alma zamanı.";
+"notifications.supplement.group.title" = "💊 Takviye zamanı";
+"notifications.supplement.action.done" = "Aldım";
+"notifications.supplement.preset.morning" = "Sabah";
+"notifications.supplement.preset.lunch" = "Öğle";
+"notifications.supplement.preset.afternoon" = "Akşamüstü";
+"notifications.supplement.preset.night" = "Akşam";
+"notifications.supplement.preset.bedtime" = "Yatmadan önce";
+"settings.notifications.times.header" = "Hatırlatıcılar";
+"settings.notifications.times.row" = "Saat";
+"settings.notifications.times.add" = "Saat ekle";
+"settings.notifications.times.empty" = "Saat yok";
+"settings.notifications.times.footer" = "Her saatte günde bir hatırlatma. Bugün'de Yapıldı olarak işaretlediğinde veya bildirimde Aldım'a dokunduğunda günün hatırlatmaları durur.";
+"settings.notifications.group.title" = "Aynı saatteki takviyeleri grupla";
+"settings.notifications.group.footer" = "Aynı saatteki takviyeleri tek hatırlatmada birleştirir. Kapalıyken her takviyenin kendi hatırlatması olur.";

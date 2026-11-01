@@ -1021,6 +1021,7 @@ struct TodayView: View {
             // DailyRecord salvo fica com tier "level1" mesmo quando o usuário tinha conquistas.
             reloadGoalStores()
             checkIfNewDay()
+            applyPendingSupplementCheckIns()
             checkWorkoutsFromHealth()
             playGoalsEntranceIfNeeded()
         }
@@ -1028,6 +1029,7 @@ struct TodayView: View {
             if newPhase == .active {
                 reloadGoalStores()
                 checkIfNewDay()
+                applyPendingSupplementCheckIns()
                 checkWorkoutsFromHealth()
             } else if newPhase == .background {
                 // Reagenda a notificação de conquista de meia-noite com o estado atual ,
@@ -1043,6 +1045,11 @@ struct TodayView: View {
         }
         .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
             checkIfNewDay()
+        }
+        // "Tomei" na notificação de suplemento com o app aberto: mostra o check-in na hora.
+        .onReceive(NotificationCenter.default.publisher(for: .gaSupplementCheckedIn).receive(on: RunLoop.main)) { _ in
+            checkIfNewDay()
+            applyPendingSupplementCheckIns()
         }
         // Registros (sheet do MainView) também edita metas e objetivo; ao fechar, recarrega.
         .onChange(of: router.sheet) { _, newSheet in
@@ -1066,6 +1073,12 @@ struct TodayView: View {
                 }
             }
         }
+    }
+
+    /// Aplica os "Tomei" das notificações que chegaram antes do app virar o dia.
+    private func applyPendingSupplementCheckIns() {
+        SupplementCheckIn.applyPending()
+        customTrackingIntakes = CustomTrackingIntakesStore.load()
     }
 
     /// Lê de novo as metas, categorias e ordens salvas (ao abrir, voltar pro app e fechar as sheets de edição).

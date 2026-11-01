@@ -880,3 +880,20 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Il giorno finisce tra %@";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "È ora di prendere %@.";
+"notifications.supplement.group.title" = "💊 Ora degli integratori";
+"notifications.supplement.action.done" = "Preso";
+"notifications.supplement.preset.morning" = "Mattina";
+"notifications.supplement.preset.lunch" = "Pranzo";
+"notifications.supplement.preset.afternoon" = "Tardo pomeriggio";
+"notifications.supplement.preset.night" = "Sera";
+"notifications.supplement.preset.bedtime" = "Prima di dormire";
+"settings.notifications.times.header" = "Promemoria";
+"settings.notifications.times.row" = "Orario";
+"settings.notifications.times.add" = "Aggiungi orario";
+"settings.notifications.times.empty" = "Nessun orario";
+"settings.notifications.times.footer" = "Un promemoria al giorno per ogni orario. I promemoria del giorno si fermano quando segni Fatto in Oggi o tocchi Preso nella notifica.";
+"settings.notifications.group.title" = "Raggruppa integratori allo stesso orario";
+"settings.notifications.group.footer" = "Unisce in un solo promemoria gli integratori dello stesso orario. Disattivato, ogni integratore ha il suo.";

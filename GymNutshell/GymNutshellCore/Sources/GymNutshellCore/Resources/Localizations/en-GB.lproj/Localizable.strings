@@ -852,3 +852,20 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Day ends in %@";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "Time to take %@.";
+"notifications.supplement.group.title" = "💊 Supplement time";
+"notifications.supplement.action.done" = "Taken";
+"notifications.supplement.preset.morning" = "Morning";
+"notifications.supplement.preset.lunch" = "Lunch";
+"notifications.supplement.preset.afternoon" = "Late afternoon";
+"notifications.supplement.preset.night" = "Evening";
+"notifications.supplement.preset.bedtime" = "Bedtime";
+"settings.notifications.times.header" = "Reminders";
+"settings.notifications.times.row" = "Time";
+"settings.notifications.times.add" = "Add time";
+"settings.notifications.times.empty" = "No times set";
+"settings.notifications.times.footer" = "One reminder a day at each time. The day's reminders stop when you mark Done on Today or tap Taken on the notification.";
+"settings.notifications.group.title" = "Group supplements at the same time";
+"settings.notifications.group.footer" = "Combines supplements set for the same time into one reminder. When off, each supplement gets its own.";

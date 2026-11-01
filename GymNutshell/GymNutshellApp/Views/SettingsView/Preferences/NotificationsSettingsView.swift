@@ -118,6 +118,8 @@ struct NotificationRow: View {
     let kind: NotificationKind
 
     @AppStorage private var isEnabled: Bool
+    // Horários da Creatina (check-in), lidos daqui pra o resumo atualizar ao salvar a sheet.
+    @AppStorage private var timesData: Data?
     @State private var showEditSheet: Bool = false
 
     init(kind: NotificationKind) {
@@ -126,13 +128,18 @@ struct NotificationRow: View {
             wrappedValue: false,
             "notifications.enabled.\(kind.rawValue)"
         )
+        self._timesData = AppStorage("notifications.times.\(kind.rawValue)")
     }
+
+    private var isCheckIn: Bool { kind == .creatine }
 
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
                 titleLabel
-                Text(NSLocalizedString(kind.descriptionKey, bundle: .gymNutshellCore, comment: ""))
+                Text(isCheckIn
+                     ? ReminderTime.summary(NotificationPreferences.reminderTimes(id: kind.rawValue))
+                     : NSLocalizedString(kind.descriptionKey, bundle: .gymNutshellCore, comment: ""))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -154,6 +161,10 @@ struct NotificationRow: View {
         .onChange(of: isEnabled) { _, newValue in
             if newValue {
                 NotificationManager.shared.reschedule(kind: kind)
+                // Ligou sem nenhum horário: abre a edição pra escolher.
+                if isCheckIn && NotificationPreferences.reminderTimes(id: kind.rawValue).isEmpty {
+                    showEditSheet = true
+                }
             } else {
                 NotificationManager.shared.cancel(kind: kind)
             }
@@ -188,6 +199,7 @@ struct CustomNotificationRow: View {
     let goal: CustomTrackingGoal
 
     @AppStorage private var isEnabled: Bool
+    @AppStorage private var timesData: Data?
     @State private var showEditSheet: Bool = false
 
     init(goal: CustomTrackingGoal) {
@@ -196,13 +208,23 @@ struct CustomNotificationRow: View {
             wrappedValue: false,
             "notifications.enabled.custom.\(goal.id.uuidString)"
         )
+        self._timesData = AppStorage("notifications.times.custom.\(goal.id.uuidString)")
+    }
+
+    private var reminderId: String { NotificationPreferences.customReminderId(goal.id) }
+
+    /// Meta de categoria check-in: avisa por horário.
+    private var isCheckIn: Bool {
+        goal.kind(in: CustomGoalCategoriesStore.load()) == .checkIn
     }
 
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(goal.emoji) \(goal.name)")
-                Text(String(localized: "notifications.custom.description", bundle: .gymNutshellCore))
+                Text(isCheckIn
+                     ? ReminderTime.summary(NotificationPreferences.reminderTimes(id: reminderId))
+                     : String(localized: "notifications.custom.description", bundle: .gymNutshellCore))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -224,6 +246,9 @@ struct CustomNotificationRow: View {
         .onChange(of: isEnabled) { _, newValue in
             if newValue {
                 NotificationManager.shared.rescheduleCustom(goal: goal, currentIntake: nil)
+                if isCheckIn && NotificationPreferences.reminderTimes(id: reminderId).isEmpty {
+                    showEditSheet = true
+                }
             } else {
                 NotificationManager.shared.cancelCustom(id: goal.id)
             }

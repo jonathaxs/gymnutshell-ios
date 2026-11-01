@@ -38,6 +38,15 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
 
     public func configure() {
         center.delegate = self
+        registerSupplementCategory()
+        // Check-in, horários e metas moram no UserDefaults: qualquer mudança (Hoje, Watch,
+        // Ajustes, backup) reavalia os lembretes dos suplementos.
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(userDefaultsDidChange),
+            name: UserDefaults.didChangeNotification,
+            object: UserDefaults.standard
+        )
     }
 
     // MARK: - Delegate
@@ -57,6 +66,13 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         let request = response.notification.request
+        // "Tomei" marca o check-in sem abrir o app.
+        if response.actionIdentifier == Self.supplementDoneAction,
+           let ids = request.content.userInfo["supplementIds"] as? [String] {
+            SupplementCheckIn.markDone(ids: ids, on: response.notification.date)
+            completionHandler()
+            return
+        }
         if let raw = request.content.userInfo["route"] as? String,
            let route = NotificationRoute(rawValue: raw) {
             var userInfo: [String: Any] = ["route": route.rawValue]
@@ -159,6 +175,13 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
     public func reschedule(kind: NotificationKind, currentIntake: Int? = nil, goal: Int? = nil) {
         guard kind.isIntervalBased else { return }
 
+        // Creatina é check-in: avisa por horário, não por intervalo.
+        if kind == .creatine {
+            cancel(kind: kind)
+            Task { @MainActor in self.rescheduleSupplementReminders(force: true) }
+            return
+        }
+
         guard NotificationPreferences.isEnabled(kind) else {
             cancel(kind: kind)
             return
@@ -183,6 +206,12 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
     }
 
     public func rescheduleCustom(goal: CustomTrackingGoal, currentIntake: Int?) {
+        // Meta check-in avisa por horário, não por intervalo.
+        if goal.kind(in: CustomGoalCategoriesStore.load()) == .checkIn {
+            cancelCustom(id: goal.id)
+            Task { @MainActor in self.rescheduleSupplementReminders(force: true) }
+            return
+        }
         guard NotificationPreferences.isCustomEnabled(id: goal.id) else {
             cancelCustom(id: goal.id)
             return
@@ -222,7 +251,108 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
             for kind in NotificationKind.allCases where kind.isIntervalBased {
                 reschedule(kind: kind)
             }
+            for goal in CustomTrackingGoalsStore.load() {
+                rescheduleCustom(goal: goal, currentIntake: nil)
+            }
+            await MainActor.run { rescheduleSupplementReminders(force: true) }
         }
+    }
+
+    // MARK: - Lembretes por horário (suplementos)
+
+    private static let supplementCategory   = "supplement.reminder"
+    private static let supplementDoneAction = "supplement.done"
+
+    /// Assinatura do último plano agendado, evita reagendar quando nada mudou.
+    @MainActor private var lastSupplementSignature: String?
+    @MainActor private var supplementDebounce: Task<Void, Never>?
+    @MainActor private var supplementTask: Task<Void, Never>?
+
+    private func registerSupplementCategory() {
+        let done = UNNotificationAction(
+            identifier: Self.supplementDoneAction,
+            title: String(localized: "notifications.supplement.action.done", bundle: .gymNutshellCore),
+            options: [],
+            icon: UNNotificationActionIcon(systemImageName: "checkmark.circle")
+        )
+        let category = UNNotificationCategory(
+            identifier: Self.supplementCategory,
+            actions: [done],
+            intentIdentifiers: [],
+            options: []
+        )
+        center.setNotificationCategories([category])
+    }
+
+    @objc private func userDefaultsDidChange() {
+        Task { @MainActor in
+            // Junta várias gravações seguidas (slider, restore de backup) num reagendamento só.
+            self.supplementDebounce?.cancel()
+            self.supplementDebounce = Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(600))
+                guard !Task.isCancelled else { return }
+                self.rescheduleSupplementReminders()
+            }
+        }
+    }
+
+    /// Reagenda os avisos por horário das metas check-in dos próximos dias.
+    /// Só mexe nos pendentes quando o plano muda, a não ser com `force`.
+    @MainActor
+    public func rescheduleSupplementReminders(force: Bool = false) {
+        let plan = SupplementReminderPlanner.plan(
+            entries: SupplementReminderState.entries(),
+            grouped: NotificationPreferences.groupSupplements
+        )
+        let signature = plan.map { "\($0.identifier)|\($0.title)|\($0.body)" }.joined(separator: "\n")
+        guard force || signature != lastSupplementSignature else { return }
+        lastSupplementSignature = signature
+
+        // Em fila: cada reagendamento espera o anterior terminar de remover e adicionar.
+        let previous = supplementTask
+        supplementTask = Task {
+            await previous?.value
+            await self.applySupplementPlan(plan)
+        }
+    }
+
+    private func applySupplementPlan(_ plan: [PlannedSupplementReminder]) async {
+        let pending = await center.pendingNotificationRequests()
+        let old = pending.map(\.identifier).filter { $0.hasPrefix(SupplementReminderPlanner.identifierPrefix) }
+        center.removePendingNotificationRequests(withIdentifiers: old)
+
+        let status = await authorizationStatus()
+        guard status == .authorized || status == .provisional else { return }
+
+        let calendar = Calendar.current
+        for item in plan {
+            let content = UNMutableNotificationContent()
+            content.title = item.title
+            content.body = item.body
+            content.sound = sound(forSupplements: item.entryIds)
+            content.categoryIdentifier = Self.supplementCategory
+            content.threadIdentifier = "supplements"
+            content.userInfo = [
+                "route": NotificationRoute.today.rawValue,
+                "supplementIds": item.entryIds
+            ]
+            let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: item.fireDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+            let request = UNNotificationRequest(identifier: item.identifier, content: content, trigger: trigger)
+            try? await center.add(request)
+        }
+    }
+
+    // Silencioso só se todas as metas do aviso estão no silencioso.
+    private func sound(forSupplements ids: [String]) -> UNNotificationSound? {
+        let sounds = ids.map { id -> NotificationSound in
+            if id == NotificationPreferences.creatineReminderId {
+                return NotificationPreferences.sound(for: .creatine)
+            }
+            let raw = UserDefaults.standard.string(forKey: "notifications.sound.\(id)") ?? ""
+            return NotificationSound(rawValue: raw) ?? .default
+        }
+        return sounds.contains(.default) ? .default : nil
     }
 
     // MARK: - Eventos
