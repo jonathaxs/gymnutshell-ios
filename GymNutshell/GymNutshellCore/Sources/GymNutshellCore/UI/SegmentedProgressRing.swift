@@ -73,7 +73,12 @@ public struct SegmentedProgressRing<Center: View>: View {
 
     private var segmentCount: Int { Self.segmentColors.count }
 
-    private var clampedProgress: Double { min(max(progress, 0), 1) }
+    /// Progresso na % inteira (arredondada pra baixo), a mesma do número e do nível. Sem isso, em 80,4%
+    /// o segmento roxo já começava a encher enquanto o número dizia 80% e o emoji ainda era o do nível 4.
+    private var clampedProgress: Double {
+        let percent = (min(max(progress, 0), 1) * 100).rounded(.down)
+        return percent / 100
+    }
 
     /// Quantos segmentos estão completos (0...5).
     private var completedCount: Int {
