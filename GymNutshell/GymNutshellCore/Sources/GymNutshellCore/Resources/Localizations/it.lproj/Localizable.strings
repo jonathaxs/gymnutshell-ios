@@ -610,7 +610,7 @@
 
 "notifications.kind.achievement.title"      = "Traguardo del giorno";
 "notifications.kind.achievement.description" = "Notifica, a mezzanotte, il traguardo sbloccato per la giornata.";
-"notifications.kind.achievement.body"       = "%@ Hai concluso la giornata come %@!";
+"notifications.kind.achievement.body"       = "Hai concluso la giornata come %@!";
 
 "notifications.kind.appleHealth.title"      = "Apple Salute";
 "notifications.kind.appleHealth.description" = "Conferma le voci sincronizzate con Apple Salute.";
@@ -888,7 +888,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "È ora di prendere %@.";
-"notifications.supplement.group.title" = "⏰ Ora del check-in";
+"notifications.supplement.group.title" = "Ora del check-in";
 "notifications.supplement.action.done" = "Preso";
 "notifications.supplement.preset.morning" = "Mattina";
 "notifications.supplement.preset.lunch" = "Pranzo";
@@ -902,3 +902,5 @@
 "settings.notifications.times.footer" = "Un promemoria al giorno per ogni orario. I promemoria del giorno si fermano quando segni Fatto in Oggi o tocchi Preso nella notifica.";
 "settings.notifications.group.title" = "Raggruppa obiettivi check-in allo stesso orario";
 "settings.notifications.group.footer" = "Unisce in un solo promemoria gli obiettivi check-in dello stesso orario. Disattivato, ogni obiettivo ha il suo.";
+"settings.notifications.emoji.title" = "Emoji nelle notifiche";
+"settings.notifications.emoji.footer" = "Mostra l'emoji di ogni obiettivo e del traguardo del giorno nel testo delle notifiche.";

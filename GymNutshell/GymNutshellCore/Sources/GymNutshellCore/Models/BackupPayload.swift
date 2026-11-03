@@ -117,6 +117,8 @@ public struct BackupPayload: Codable, Sendable {
         public let notificationTimes: [String: [String]]?
         /// Agrupar suplementos do mesmo horário num aviso só, novo na 2.0.
         public let groupSupplements: Bool?
+        /// Emoji no texto das notificações, novo na 2.0.
+        public let notificationEmoji: Bool?
 
         public init(
             widgetBackground: String?,
@@ -129,7 +131,8 @@ public struct BackupPayload: Codable, Sendable {
             notificationSound: [String: String]?,
             goalIncrements: [String: Int]?,
             notificationTimes: [String: [String]]? = nil,
-            groupSupplements: Bool? = nil
+            groupSupplements: Bool? = nil,
+            notificationEmoji: Bool? = nil
         ) {
             self.widgetBackground = widgetBackground
             self.widgetBackgroundMode = widgetBackgroundMode
@@ -142,6 +145,7 @@ public struct BackupPayload: Codable, Sendable {
             self.goalIncrements = goalIncrements
             self.notificationTimes = notificationTimes
             self.groupSupplements = groupSupplements
+            self.notificationEmoji = notificationEmoji
         }
     }
 

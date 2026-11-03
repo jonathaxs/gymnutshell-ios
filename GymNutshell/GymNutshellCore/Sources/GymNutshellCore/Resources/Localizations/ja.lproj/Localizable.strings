@@ -585,7 +585,7 @@
 
 "notifications.kind.achievement.title"      = "毎日の成果";
 "notifications.kind.achievement.description" = "深夜0時に、その日にアンロックされた成果を通知します。";
-"notifications.kind.achievement.body"       = "%@ 今日は「%@」を達成しました！";
+"notifications.kind.achievement.body"       = "今日は「%@」を達成しました！";
 
 "notifications.kind.appleHealth.title"      = "ヘルスケア";
 "notifications.kind.appleHealth.description" = "ヘルスケアと同期された記録を確認します。";
@@ -871,7 +871,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@を飲む時間です。";
-"notifications.supplement.group.title" = "⏰ チェックインの時間";
+"notifications.supplement.group.title" = "チェックインの時間";
 "notifications.supplement.action.done" = "飲んだ";
 "notifications.supplement.preset.morning" = "朝";
 "notifications.supplement.preset.lunch" = "昼";
@@ -885,3 +885,5 @@
 "settings.notifications.times.footer" = "各時刻に1日1回通知します。「今日」で完了にするか、通知の「飲んだ」をタップすると、その日の通知は止まります。";
 "settings.notifications.group.title" = "同じ時刻のチェックイン目標をまとめる";
 "settings.notifications.group.footer" = "同じ時刻のチェックイン目標を1つの通知にまとめます。オフの場合は目標ごとに通知します。";
+"settings.notifications.emoji.title" = "通知に絵文字を表示";
+"settings.notifications.emoji.footer" = "各目標と毎日の成果の絵文字を通知の文に表示します。";

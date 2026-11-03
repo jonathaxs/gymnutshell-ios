@@ -633,7 +633,7 @@
 
 "notifications.kind.achievement.title"      = "Conquista do dia";
 "notifications.kind.achievement.description" = "Notifica, à meia-noite, a conquista desbloqueada no dia.";
-"notifications.kind.achievement.body"       = "%@ Você fechou o dia como %@!";
+"notifications.kind.achievement.body"       = "Você fechou o dia como %@!";
 
 "notifications.kind.appleHealth.title"      = "Apple Saúde";
 "notifications.kind.appleHealth.description" = "Confirma registros sincronizados com o Apple Saúde.";
@@ -911,7 +911,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "Hora de tomar %@.";
-"notifications.supplement.group.title" = "⏰ Hora do check-in";
+"notifications.supplement.group.title" = "Hora do check-in";
 "notifications.supplement.action.done" = "Tomei";
 "notifications.supplement.preset.morning" = "Manhã";
 "notifications.supplement.preset.lunch" = "Almoço";
@@ -925,3 +925,5 @@
 "settings.notifications.times.footer" = "Um aviso por dia em cada horário. Os avisos do dia param quando você marca Feito na Hoje ou toca em Tomei na notificação.";
 "settings.notifications.group.title" = "Agrupar metas de check-in do mesmo horário";
 "settings.notifications.group.footer" = "Junta num aviso só as metas de check-in marcadas no mesmo horário. Desligado, cada meta tem o seu aviso.";
+"settings.notifications.emoji.title" = "Emojis nas notificações";
+"settings.notifications.emoji.footer" = "Mostra o emoji de cada meta e da conquista do dia no texto das notificações.";

@@ -614,7 +614,7 @@
 
 "notifications.kind.achievement.title"      = "Succès du jour";
 "notifications.kind.achievement.description" = "Notifie, à minuit, le succès débloqué dans la journée.";
-"notifications.kind.achievement.body"       = "%@ Tu as terminé la journée en %@ !";
+"notifications.kind.achievement.body"       = "Tu as terminé la journée en %@ !";
 
 "notifications.kind.appleHealth.title"      = "Apple Santé";
 "notifications.kind.appleHealth.description" = "Confirme les données synchronisées avec Apple Santé.";
@@ -892,7 +892,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "C'est l'heure de prendre %@.";
-"notifications.supplement.group.title" = "⏰ L'heure du check-in";
+"notifications.supplement.group.title" = "L'heure du check-in";
 "notifications.supplement.action.done" = "Pris";
 "notifications.supplement.preset.morning" = "Matin";
 "notifications.supplement.preset.lunch" = "Déjeuner";
@@ -906,3 +906,5 @@
 "settings.notifications.times.footer" = "Un rappel par jour à chaque heure. Les rappels du jour s'arrêtent quand vous marquez Fait sur Aujourd'hui ou touchez Pris dans la notification.";
 "settings.notifications.group.title" = "Regrouper les objectifs check-in à la même heure";
 "settings.notifications.group.footer" = "Réunit en un seul rappel les objectifs check-in prévus à la même heure. Désactivé, chaque objectif a son rappel.";
+"settings.notifications.emoji.title" = "Emojis dans les notifications";
+"settings.notifications.emoji.footer" = "Affiche l'emoji de chaque objectif et du succès du jour dans le texte des notifications.";

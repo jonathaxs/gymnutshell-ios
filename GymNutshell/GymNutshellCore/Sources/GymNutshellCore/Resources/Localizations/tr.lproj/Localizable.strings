@@ -585,7 +585,7 @@
 
 "notifications.kind.achievement.title"      = "Günlük başarı";
 "notifications.kind.achievement.description" = "Gece yarısı, gün boyunca açılan başarıyı bildirir.";
-"notifications.kind.achievement.body"       = "%@ Günü %@ olarak tamamladın!";
+"notifications.kind.achievement.body"       = "Günü %@ olarak tamamladın!";
 
 "notifications.kind.appleHealth.title"      = "Apple Sağlık";
 "notifications.kind.appleHealth.description" = "Apple Sağlık ile senkronize edilen kayıtları doğrular.";
@@ -871,7 +871,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@ alma zamanı.";
-"notifications.supplement.group.title" = "⏰ Check-in zamanı";
+"notifications.supplement.group.title" = "Check-in zamanı";
 "notifications.supplement.action.done" = "Aldım";
 "notifications.supplement.preset.morning" = "Sabah";
 "notifications.supplement.preset.lunch" = "Öğle";
@@ -885,3 +885,5 @@
 "settings.notifications.times.footer" = "Her saatte günde bir hatırlatma. Bugün'de Yapıldı olarak işaretlediğinde veya bildirimde Aldım'a dokunduğunda günün hatırlatmaları durur.";
 "settings.notifications.group.title" = "Aynı saatteki check-in hedeflerini grupla";
 "settings.notifications.group.footer" = "Aynı saatteki check-in hedeflerini tek hatırlatmada birleştirir. Kapalıyken her hedefin kendi hatırlatması olur.";
+"settings.notifications.emoji.title" = "Bildirimlerde emoji";
+"settings.notifications.emoji.footer" = "Her hedefin ve günlük başarının emojisini bildirim metninde gösterir.";

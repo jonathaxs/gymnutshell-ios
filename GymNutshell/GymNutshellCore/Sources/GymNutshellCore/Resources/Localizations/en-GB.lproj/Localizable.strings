@@ -582,7 +582,7 @@
 
 "notifications.kind.achievement.title"      = "Daily achievement";
 "notifications.kind.achievement.description" = "Notifies, at midnight, the achievement unlocked for the day.";
-"notifications.kind.achievement.body"       = "%@ You finished the day as %@!";
+"notifications.kind.achievement.body"       = "You finished the day as %@!";
 
 "notifications.kind.appleHealth.title"      = "Apple Health";
 "notifications.kind.appleHealth.description" = "Confirms entries synced with Apple Health.";
@@ -860,7 +860,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "Time to take %@.";
-"notifications.supplement.group.title" = "⏰ Check-in time";
+"notifications.supplement.group.title" = "Check-in time";
 "notifications.supplement.action.done" = "Taken";
 "notifications.supplement.preset.morning" = "Morning";
 "notifications.supplement.preset.lunch" = "Lunch";
@@ -874,3 +874,5 @@
 "settings.notifications.times.footer" = "One reminder a day at each time. The day's reminders stop when you mark Done on Today or tap Taken on the notification.";
 "settings.notifications.group.title" = "Group check-in goals at the same time";
 "settings.notifications.group.footer" = "Combines check-in goals set for the same time into one reminder. When off, each goal gets its own.";
+"settings.notifications.emoji.title" = "Emojis in notifications";
+"settings.notifications.emoji.footer" = "Shows each goal's emoji and the daily achievement emoji in notification text.";

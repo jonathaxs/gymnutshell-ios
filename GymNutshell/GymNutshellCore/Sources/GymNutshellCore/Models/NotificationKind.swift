@@ -206,6 +206,21 @@ public enum NotificationPreferences {
         UserDefaults.standard.set(sound.rawValue, forKey: "notifications.sound.\(kind.rawValue)")
     }
 
+    // MARK: Emoji nos avisos
+
+    public static let showEmojiKey = "notifications.showEmoji"
+
+    /// Emoji da meta, do suplemento ou da conquista no texto dos avisos. Desligado por padrão.
+    public static var showEmoji: Bool {
+        UserDefaults.standard.bool(forKey: showEmojiKey)
+    }
+
+    /// Põe o emoji na frente do texto só quando a opção está ligada.
+    public static func withEmoji(_ emoji: String?, _ text: String) -> String {
+        guard showEmoji, let emoji, !emoji.isEmpty else { return text }
+        return "\(emoji) \(text)"
+    }
+
     // MARK: Metas personalizadas
 
     public static func isCustomEnabled(id: UUID) -> Bool {

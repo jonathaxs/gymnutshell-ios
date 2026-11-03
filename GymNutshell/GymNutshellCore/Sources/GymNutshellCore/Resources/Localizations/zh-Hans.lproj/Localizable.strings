@@ -583,7 +583,7 @@
 
 "notifications.kind.achievement.title"      = "每日成就";
 "notifications.kind.achievement.description" = "在午夜通知当天解锁的成就。";
-"notifications.kind.achievement.body"       = "%@ 你今天达成了“%@”！";
+"notifications.kind.achievement.body"       = "你今天达成了“%@”！";
 
 "notifications.kind.appleHealth.title"      = "Apple 健康";
 "notifications.kind.appleHealth.description" = "确认已与 Apple 健康同步的记录。";
@@ -870,7 +870,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "该吃%@了。";
-"notifications.supplement.group.title" = "⏰ 打卡时间";
+"notifications.supplement.group.title" = "打卡时间";
 "notifications.supplement.action.done" = "已服用";
 "notifications.supplement.preset.morning" = "早上";
 "notifications.supplement.preset.lunch" = "午饭";
@@ -884,3 +884,5 @@
 "settings.notifications.times.footer" = "每个时间每天提醒一次。在“今天”中标记为完成，或在通知中轻点“已服用”后，当天的提醒会停止。";
 "settings.notifications.group.title" = "合并同一时间的打卡目标";
 "settings.notifications.group.footer" = "将同一时间的打卡目标合并为一条提醒。关闭时，每个目标单独提醒。";
+"settings.notifications.emoji.title" = "通知中显示表情";
+"settings.notifications.emoji.footer" = "在通知文字中显示每个目标和每日成就的表情。";

@@ -373,6 +373,28 @@ private let noite = ReminderTime(hour: 22, minute: 30)
     #expect(plano[1].entryIds == ["a"])
 }
 
+@Test func lembreteSemEmojiPorPadrao() {
+    let a = SupplementReminderEntry(id: "a", emoji: "🧪", name: "Creatina", times: [manha], doneToday: false)
+    let b = SupplementReminderEntry(id: "b", emoji: "🐟", name: "Ômega 3", times: [manha], doneToday: false)
+    let sozinho = SupplementReminderPlanner.plan(entries: [a], now: dataFixa(1, 6, 0), grouped: false, days: 1)
+    #expect(sozinho.first?.title == "Creatina")
+    let agrupado = SupplementReminderPlanner.plan(entries: [a, b], now: dataFixa(1, 6, 0), grouped: true, days: 1)
+    #expect(agrupado.first?.body.contains("🧪") == false)
+    #expect(agrupado.first?.title.hasPrefix("⏰") == false)
+}
+
+@Test func lembreteComEmojiQuandoLigado() {
+    let a = SupplementReminderEntry(id: "a", emoji: "🧪", name: "Creatina", times: [manha], doneToday: false)
+    let b = SupplementReminderEntry(id: "b", emoji: "🐟", name: "Ômega 3", times: [manha], doneToday: false)
+    let sozinho = SupplementReminderPlanner.plan(entries: [a], now: dataFixa(1, 6, 0), grouped: false,
+                                                 showEmoji: true, days: 1)
+    #expect(sozinho.first?.title == "🧪 Creatina")
+    let agrupado = SupplementReminderPlanner.plan(entries: [a, b], now: dataFixa(1, 6, 0), grouped: true,
+                                                  showEmoji: true, days: 1)
+    #expect(agrupado.first?.body.contains("🐟 Ômega 3") == true)
+    #expect(agrupado.first?.title.hasPrefix("⏰ ") == true)
+}
+
 @Test func lembreteRespeitaOTeto() {
     let horarios = (0..<24).map { ReminderTime(hour: $0, minute: 0) }
     let a = SupplementReminderEntry(id: "a", emoji: "🧪", name: "A", times: horarios, doneToday: false)

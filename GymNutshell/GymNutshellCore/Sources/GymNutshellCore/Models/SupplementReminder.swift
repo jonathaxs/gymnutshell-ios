@@ -160,11 +160,13 @@ public enum SupplementReminderPlanner {
 
     /// Monta os avisos dos próximos dias. Pula horários que já passaram e, hoje,
     /// as metas já feitas. Agrupado: um aviso por horário com todas as metas dele.
+    /// `showEmoji` põe o emoji de cada meta (e o ⏰ do agrupado) no texto do aviso.
     public static func plan(
         entries: [SupplementReminderEntry],
         now: Date = Date(),
         calendar: Calendar = .current,
         grouped: Bool,
+        showEmoji: Bool = false,
         days: Int = daysAhead
     ) -> [PlannedSupplementReminder] {
         let today = calendar.startOfDay(for: now)
@@ -187,10 +189,10 @@ public enum SupplementReminderPlanner {
             let byDate = Dictionary(grouping: slots, by: \.date)
             for date in byDate.keys {
                 let group = byDate[date, default: []].map(\.entry).sorted { $0.name < $1.name }
-                result.append(reminder(for: group, at: date))
+                result.append(reminder(for: group, at: date, showEmoji: showEmoji))
             }
         } else {
-            result = slots.map { reminder(for: [$0.entry], at: $0.date) }
+            result = slots.map { reminder(for: [$0.entry], at: $0.date, showEmoji: showEmoji) }
         }
 
         return Array(
@@ -200,24 +202,29 @@ public enum SupplementReminderPlanner {
         )
     }
 
-    private static func reminder(for group: [SupplementReminderEntry], at date: Date) -> PlannedSupplementReminder {
+    private static func reminder(for group: [SupplementReminderEntry], at date: Date,
+                                 showEmoji: Bool) -> PlannedSupplementReminder {
         let stamp = stampFormatter.string(from: date)
+        func label(_ entry: SupplementReminderEntry) -> String {
+            showEmoji && !entry.emoji.isEmpty ? "\(entry.emoji) \(entry.name)" : entry.name
+        }
         if group.count == 1, let entry = group.first {
             return PlannedSupplementReminder(
                 identifier: "\(identifierPrefix)\(stamp).\(entry.id)",
                 fireDate: date,
                 entryIds: [entry.id],
-                title: "\(entry.emoji) \(entry.name)",
+                title: label(entry),
                 body: String(format: NSLocalizedString("notifications.supplement.body", bundle: .gymNutshellCore, comment: ""),
                              entry.name)
             )
         }
-        let names = group.map { "\($0.emoji) \($0.name)" }
+        let names = group.map(label)
+        let groupTitle = NSLocalizedString("notifications.supplement.group.title", bundle: .gymNutshellCore, comment: "")
         return PlannedSupplementReminder(
             identifier: "\(identifierPrefix)\(stamp).group",
             fireDate: date,
             entryIds: group.map(\.id),
-            title: NSLocalizedString("notifications.supplement.group.title", bundle: .gymNutshellCore, comment: ""),
+            title: showEmoji ? "⏰ \(groupTitle)" : groupTitle,
             body: ListFormatter.localizedString(byJoining: names)
         )
     }

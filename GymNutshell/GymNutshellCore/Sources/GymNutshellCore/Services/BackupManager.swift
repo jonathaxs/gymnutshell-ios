@@ -158,6 +158,9 @@ public enum BackupManager {
             notificationTimes:    times.isEmpty     ? nil : times,
             groupSupplements:     defaults.object(forKey: NotificationPreferences.groupSupplementsKey) != nil
                 ? defaults.bool(forKey: NotificationPreferences.groupSupplementsKey)
+                : nil,
+            notificationEmoji:    defaults.object(forKey: NotificationPreferences.showEmojiKey) != nil
+                ? defaults.bool(forKey: NotificationPreferences.showEmojiKey)
                 : nil
         )
     }
@@ -190,6 +193,7 @@ public enum BackupManager {
             }
         }
         if let v = prefs.groupSupplements { defaults.set(v, forKey: NotificationPreferences.groupSupplementsKey) }
+        if let v = prefs.notificationEmoji { defaults.set(v, forKey: NotificationPreferences.showEmojiKey) }
     }
 
     // MARK: - Decodificar

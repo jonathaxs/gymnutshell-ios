@@ -195,7 +195,9 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
         let interval = NotificationPreferences.intervalMinutes(kind)
         scheduleInterval(
             kindId: kind.rawValue,
-            titleKey: kind.titleKey,
+            title: NotificationPreferences.withEmoji(
+                kind.emoji, NSLocalizedString(kind.titleKey, bundle: .gymNutshellCore, comment: "")
+            ),
             bodyKey: "notifications.kind.\(kind.rawValue).body",
             intervalMinutes: interval,
             startHour: kind.dailyStartHour,
@@ -223,7 +225,7 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
         let interval = NotificationPreferences.customIntervalMinutes(id: goal.id, fallback: goal.increment > 0 ? 120 : 120)
         scheduleInterval(
             kindId: "custom.\(goal.id.uuidString)",
-            title: "\(goal.emoji) \(goal.name)",
+            title: NotificationPreferences.withEmoji(goal.emoji, goal.name),
             body: String(format: String(localized: "notifications.custom.body", bundle: .gymNutshellCore), goal.name),
             intervalMinutes: interval,
             startHour: 6,
@@ -302,7 +304,8 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
     public func rescheduleSupplementReminders(force: Bool = false) {
         let plan = SupplementReminderPlanner.plan(
             entries: SupplementReminderState.entries(),
-            grouped: NotificationPreferences.groupSupplements
+            grouped: NotificationPreferences.groupSupplements,
+            showEmoji: NotificationPreferences.showEmoji
         )
         let signature = plan.map { "\($0.identifier)|\($0.title)|\($0.body)" }.joined(separator: "\n")
         guard force || signature != lastSupplementSignature else { return }
@@ -360,7 +363,7 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
     public func fireAchievementUnlocked(tierName: String, emoji: String, date: Date = Date()) {
         guard NotificationPreferences.isEnabled(.achievement) else { return }
         let title = String(localized: "notifications.kind.achievement.title", bundle: .gymNutshellCore)
-        let body = String(format: String(localized: "notifications.kind.achievement.body", bundle: .gymNutshellCore), emoji, tierName)
+        let body = achievementBody(tierName: tierName, emoji: emoji)
         scheduleImmediate(
             identifier: "notif.achievement.\(Int(Date().timeIntervalSince1970))",
             title: title,
@@ -375,6 +378,14 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
                 route: .achievementsToday, achievementDate: date
             )
         }
+    }
+
+    /// "Você fechou o dia como Monstro!", com o emoji do nível na frente só se a opção estiver ligada.
+    private func achievementBody(tierName: String, emoji: String) -> String {
+        NotificationPreferences.withEmoji(emoji, String(
+            format: String(localized: "notifications.kind.achievement.body", bundle: .gymNutshellCore),
+            tierName
+        ))
     }
 
     public enum HealthLogKind: Sendable { case cardio, workout, sleep }
@@ -453,7 +464,7 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
 
         let content = UNMutableNotificationContent()
         content.title = String(localized: "notifications.kind.achievement.title", bundle: .gymNutshellCore)
-        content.body = String(format: String(localized: "notifications.kind.achievement.body", bundle: .gymNutshellCore), emoji, tierName)
+        content.body = achievementBody(tierName: tierName, emoji: emoji)
         content.sound = NotificationPreferences.sound(for: .achievement).systemSound
         content.userInfo = [
             "route": NotificationRoute.achievementsToday.rawValue,

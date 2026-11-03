@@ -585,7 +585,7 @@
 
 "notifications.kind.achievement.title"      = "오늘의 업적";
 "notifications.kind.achievement.description" = "자정에 오늘 잠금 해제된 업적을 알려줘요.";
-"notifications.kind.achievement.body"       = "%@ 오늘 하루를 %@ 등급으로 마무리했어요!";
+"notifications.kind.achievement.body"       = "오늘 하루를 %@ 등급으로 마무리했어요!";
 
 "notifications.kind.appleHealth.title"      = "Apple 건강";
 "notifications.kind.appleHealth.description" = "Apple 건강과 동기화된 기록을 알려줘요.";
@@ -871,7 +871,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@ 먹을 시간이에요.";
-"notifications.supplement.group.title" = "⏰ 체크인 시간";
+"notifications.supplement.group.title" = "체크인 시간";
 "notifications.supplement.action.done" = "먹었어요";
 "notifications.supplement.preset.morning" = "아침";
 "notifications.supplement.preset.lunch" = "점심";
@@ -885,3 +885,5 @@
 "settings.notifications.times.footer" = "각 시간마다 하루에 한 번 알려요. 오늘에서 완료로 표시하거나 알림에서 먹었어요를 누르면 그날 알림이 멈춰요.";
 "settings.notifications.group.title" = "같은 시간 체크인 목표 묶기";
 "settings.notifications.group.footer" = "같은 시간의 체크인 목표를 알림 하나로 묶어요. 끄면 목표마다 따로 알려요.";
+"settings.notifications.emoji.title" = "알림에 이모지 표시";
+"settings.notifications.emoji.footer" = "각 목표와 오늘의 업적 이모지를 알림 문구에 표시해요.";

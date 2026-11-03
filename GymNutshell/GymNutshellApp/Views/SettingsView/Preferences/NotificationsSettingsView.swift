@@ -24,6 +24,7 @@ struct NotificationsSettingsView: View {
     @State private var showDeniedAlert = false
 
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    @AppStorage(NotificationPreferences.showEmojiKey) private var showEmoji: Bool = false
     private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
 
     private var isAuthorized: Bool {
@@ -73,11 +74,24 @@ struct NotificationsSettingsView: View {
                 Text(String(localized: "settings.notifications.section.system", bundle: .gymNutshellCore))
             }
             .disabled(!isAuthorized)
+
+            // MARK: Emoji, desligado por padrão: as notificações saem só com texto.
+            Section {
+                Toggle(String(localized: "settings.notifications.emoji.title", bundle: .gymNutshellCore),
+                       isOn: $showEmoji)
+            } footer: {
+                Text(String(localized: "settings.notifications.emoji.footer", bundle: .gymNutshellCore))
+            }
+            .disabled(!isAuthorized)
         }
         .navigationTitle(String(localized: "settings.preference.notifications", bundle: .gymNutshellCore))
         .navigationBarTitleDisplayMode(.inline)
         .task {
             authStatus = await NotificationManager.shared.authorizationStatus()
+        }
+        // Refaz os avisos já agendados com ou sem emoji.
+        .onChange(of: showEmoji) { _, _ in
+            NotificationManager.shared.rescheduleAllActive()
         }
         .alert(String(localized: "settings.notifications.denied.title", bundle: .gymNutshellCore), isPresented: $showDeniedAlert) {
             Button(String(localized: "common.cancel", bundle: .gymNutshellCore), role: .cancel) {}

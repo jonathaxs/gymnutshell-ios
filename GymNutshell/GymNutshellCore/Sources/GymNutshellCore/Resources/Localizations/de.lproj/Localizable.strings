@@ -591,7 +591,7 @@
 
 "notifications.kind.achievement.title"      = "Tageserfolg";
 "notifications.kind.achievement.description" = "Informiert um Mitternacht über den erreichten Erfolg des Tages.";
-"notifications.kind.achievement.body"       = "%@ Du hast den Tag als %@ abgeschlossen!";
+"notifications.kind.achievement.body"       = "Du hast den Tag als %@ abgeschlossen!";
 
 "notifications.kind.appleHealth.title"      = "Apple Health";
 "notifications.kind.appleHealth.description" = "Bestätigt mit Apple Health synchronisierte Einträge.";
@@ -870,7 +870,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "Zeit für %@.";
-"notifications.supplement.group.title" = "⏰ Zeit für den Check-in";
+"notifications.supplement.group.title" = "Zeit für den Check-in";
 "notifications.supplement.action.done" = "Genommen";
 "notifications.supplement.preset.morning" = "Morgens";
 "notifications.supplement.preset.lunch" = "Mittags";
@@ -884,3 +884,5 @@
 "settings.notifications.times.footer" = "Eine Erinnerung pro Tag zu jeder Uhrzeit. Die Erinnerungen des Tages enden, wenn du auf Heute Erledigt markierst oder in der Mitteilung auf Genommen tippst.";
 "settings.notifications.group.title" = "Check-in-Ziele zur gleichen Zeit bündeln";
 "settings.notifications.group.footer" = "Fasst Check-in-Ziele mit derselben Uhrzeit in einer Erinnerung zusammen. Aus: jedes Ziel hat seine eigene.";
+"settings.notifications.emoji.title" = "Emojis in Mitteilungen";
+"settings.notifications.emoji.footer" = "Zeigt das Emoji jedes Ziels und des Tageserfolgs im Text der Mitteilungen.";
