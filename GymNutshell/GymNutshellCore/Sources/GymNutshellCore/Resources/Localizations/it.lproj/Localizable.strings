@@ -187,6 +187,8 @@
 "category.kind.standard.footer" = "Registra gli obiettivi poco a poco con lo slider o i pulsanti − / +.";
 "category.kind.restDay.footer" = "Come Standard, con un pulsante ON/OFF per segnare il giorno di riposo.";
 "category.kind.checkIn.footer" = "Ogni obiettivo si spunta una volta al giorno: In sospeso o Fatto.";
+"settings.addgoal.category.kind.footer" = "Questa categoria è del tipo «%1$@». %2$@";
+"settings.goals.addToCategory" = "Aggiungi obiettivo";
 "settings.addgoal.section.dose" = "Dose";
 "settings.addgoal.dose.footer" = "Segnando Fatto, l'obiettivo del giorno è completato con questa quantità.";
 "settings.goals.custom.badge" = "Personalizzato";
@@ -255,7 +257,7 @@
 
 /* SettingsView.swift */
 "settings.header.title" = "Impostazioni";
-"settings.section.edit" = "I tuoi dati";
+"settings.section.edit" = "Profilo";
 "settings.theme.title" = "Emoji";
 "settings.section.preferences" = "Aspetto";
 "settings.section.system" = "Sistema";
@@ -265,7 +267,7 @@
 "app.error.dataStore.title" = "Qualcosa è andato storto";
 "app.error.dataStore.message" = "Gym Nutshell non è riuscito a caricare i tuoi dati.\nForza la chiusura dell'app e riaprila per riprovare.";
 "settings.about.link" = "Gym Nutshell";
-"settings.section.physicaldata" = "Profilo";
+"settings.section.physicaldata" = "I tuoi dati";
 "settings.fitness.goal.edit" = "Obiettivo fitness";
 "settings.goals.edit" = "Obiettivi giornalieri";
 "settings.preference.appleHealth" = "Apple Salute";
@@ -767,8 +769,8 @@
 "a11y.usergoal.hint" = "Tocca per selezionare questo obiettivo.";
 
 /* Tracking goals settings, image-only buttons */
-"a11y.button.add.goal.label"     = "Nuovo obiettivo di monitoraggio";
-"a11y.button.add.goal.hint" = "Tocca per creare un nuovo obiettivo.";
+"a11y.button.add.goal.label"     = "Aggiungi";
+"a11y.button.add.goal.hint" = "Tocca per creare un obiettivo o una categoria.";
 "a11y.button.remove.goal.label"  = "Rimuovi obiettivo";
 "a11y.button.restore.goal.label" = "Ripristina obiettivo";
 

@@ -171,6 +171,8 @@
 "category.kind.standard.footer" = "用滑块或 − / + 按钮逐步记录。";
 "category.kind.restDay.footer" = "与标准相同，另有标记休息日的开/关按钮。";
 "category.kind.checkIn.footer" = "每个目标每天打卡一次：待完成 或 已完成。";
+"settings.addgoal.category.kind.footer" = "此类别为“%1$@”类型。%2$@";
+"settings.goals.addToCategory" = "添加目标";
 "settings.addgoal.section.dose" = "剂量";
 "settings.addgoal.dose.footer" = "标记为已完成后，当天目标即以此用量完成。";
 "settings.goals.custom.badge" = "自定义";
@@ -239,7 +241,7 @@
 
 /* SettingsView.swift */
 "settings.header.title" = "App 设置";
-"settings.section.edit" = "你的数据";
+"settings.section.edit" = "个人资料";
 "settings.theme.title" = "表情";
 "settings.section.preferences" = "外观";
 "settings.section.system" = "系统";
@@ -249,7 +251,7 @@
 "app.error.dataStore.title" = "出错了";
 "app.error.dataStore.message" = "Gym Nutshell 无法载入你的数据。\n请强制关闭 App 并重新打开重试。";
 "settings.about.link" = "Gym Nutshell";
-"settings.section.physicaldata" = "个人资料";
+"settings.section.physicaldata" = "你的数据";
 "settings.fitness.goal.edit" = "健身目标";
 "settings.goals.edit" = "每日目标";
 "settings.preference.appleHealth" = "Apple 健康";
@@ -745,8 +747,8 @@
 "a11y.usergoal.hint" = "轻点选取此目标。";
 
 /* 目标设置，纯图标按钮 */
-"a11y.button.add.goal.label"     = "新建打卡目标";
-"a11y.button.add.goal.hint" = "轻点创建新目标。";
+"a11y.button.add.goal.label"     = "添加";
+"a11y.button.add.goal.hint" = "轻点以创建目标或类别。";
 "a11y.button.remove.goal.label"  = "移除目标";
 "a11y.button.restore.goal.label" = "恢复目标";
 

@@ -205,6 +205,8 @@
 "category.kind.standard.footer" = "As metas são registradas aos poucos, com o slider ou os botões − / +.";
 "category.kind.restDay.footer" = "Igual ao padrão, com um botão ON/OFF pra marcar dia de descanso.";
 "category.kind.checkIn.footer" = "Cada meta é marcada uma vez por dia: Pendente ou Feito.";
+"settings.addgoal.category.kind.footer" = "Esta categoria é do tipo “%1$@”. %2$@";
+"settings.goals.addToCategory" = "Adicionar meta";
 "settings.addgoal.section.dose" = "Dose";
 "settings.addgoal.dose.footer" = "Ao marcar Feito, a meta do dia fica completa com esse valor.";
 "settings.goals.custom.badge" = "Personalizada";
@@ -273,8 +275,8 @@
 
 /* SettingsView.swift */
 "settings.header.title" = "Ajustes do App";
-"settings.section.edit" = "Seus dados";
-"settings.theme.title" = "Emojis";
+"settings.section.edit" = "Perfil";
+"settings.theme.title" = "Emoji";
 "settings.section.preferences" = "Aparência";
 "settings.section.system" = "Sistema";
 "settings.section.about" = "Sobre";
@@ -283,7 +285,7 @@
 "app.error.dataStore.title" = "Algo deu errado";
 "app.error.dataStore.message" = "O Gym Nutshell não conseguiu carregar seus dados.\nForce o fechamento do app e abra novamente.";
 "settings.about.link" = "Gym Nutshell";
-"settings.section.physicaldata" = "Perfil";
+"settings.section.physicaldata" = "Seus dados";
 "settings.fitness.goal.edit" = "Objetivo";
 "settings.goals.edit" = "Metas";
 "settings.preference.appleHealth" = "Apple Saúde";
@@ -790,8 +792,8 @@
 "a11y.usergoal.hint" = "Toque para escolher este objetivo.";
 
 /* Tracking goals, botões só-ícone */
-"a11y.button.add.goal.label"     = "Nova meta de rastreio";
-"a11y.button.add.goal.hint" = "Toque para criar uma nova meta.";
+"a11y.button.add.goal.label"     = "Adicionar";
+"a11y.button.add.goal.hint" = "Toque para criar uma meta ou uma categoria.";
 "a11y.button.remove.goal.label"  = "Remover meta";
 "a11y.button.restore.goal.label" = "Restaurar meta";
 

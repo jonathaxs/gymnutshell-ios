@@ -26,6 +26,9 @@ struct TrackingGoalsSettingsView: View {
     @State private var removedItems: Set<String> = []
     @State private var editMode: EditMode = .inactive
     @State private var isPresentingAddGoal: Bool = false
+    @State private var isPresentingAddCategory: Bool = false
+    /// Categoria já escolhida na Nova meta (aberta pelo "Adicionar meta" de uma categoria vazia).
+    @State private var addGoalCategory: CategorySelection? = nil
 
     // Cor de destaque, usada nos badges de obrigatoriedade das metas.
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
@@ -191,7 +194,18 @@ struct TrackingGoalsSettingsView: View {
             // Categorias criadas pelo usuário, cada uma vira uma seção abaixo das fixas.
             ForEach(customCategories) { customCategory in
                 let goalsInCategory = customGoalsFor(customCategoryId: customCategory.id)
-                if !goalsInCategory.isEmpty {
+                if goalsInCategory.isEmpty {
+                    // Categoria recém-criada (ou esvaziada): aparece com o atalho pra primeira meta.
+                    Section(customCategory.name) {
+                        Button {
+                            presentAddGoal(category: .custom(customCategory.id))
+                        } label: {
+                            Label(String(localized: "settings.goals.addToCategory", bundle: .gymNutshellCore),
+                                  systemImage: "plus.circle.fill")
+                                .foregroundStyle(accentColor)
+                        }
+                    }
+                } else {
                     Section(customCategory.name) {
                         ForEach(goalsInCategory) { trackingGoal in
                             customGoalRow(trackingGoal)
@@ -224,15 +238,25 @@ struct TrackingGoalsSettingsView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 16) {
-                    Button {
-                        isPresentingAddGoal = true
+                    // Balão com Nova meta e Nova categoria; cada uma abre a sua sheet.
+                    Menu {
+                        Button {
+                            presentAddGoal(category: nil)
+                        } label: {
+                            Label(String(localized: "settings.addgoal.title.new", bundle: .gymNutshellCore),
+                                  systemImage: "target")
+                        }
+                        Button {
+                            isPresentingAddCategory = true
+                        } label: {
+                            Label(String(localized: "settings.addgoal.category.new.button", bundle: .gymNutshellCore),
+                                  systemImage: "square.grid.2x2")
+                        }
                     } label: {
                         Image(systemName: "plus")
                     }
-                    .accessibilityLabel(String(localized: "a11y.button.add.goal.label",
-                                               bundle: .gymNutshellCore))
-                    .accessibilityHint(String(localized: "a11y.button.add.goal.hint",
-                                              bundle: .gymNutshellCore))
+                    .accessibilityLabel(String(localized: "a11y.button.add.goal.label", bundle: .gymNutshellCore))
+                    .accessibilityHint(String(localized: "a11y.button.add.goal.hint", bundle: .gymNutshellCore))
 
                     Button(editMode.isEditing
                            ? String(localized: "settings.tracking.goals.done", bundle: .gymNutshellCore)
@@ -245,7 +269,12 @@ struct TrackingGoalsSettingsView: View {
             }
         }
         .sheet(isPresented: $isPresentingAddGoal) {
-            AddTrackingGoalView()
+            AddTrackingGoalView(initialCategory: addGoalCategory)
+        }
+        .sheet(isPresented: $isPresentingAddCategory) {
+            EditCustomGoalCategoryView { _ in
+                customCategories = CustomGoalCategoriesStore.load()
+            }
         }
         .onAppear {
             orderedGoalKeys = GoalOrderStore.load()
@@ -260,6 +289,11 @@ struct TrackingGoalsSettingsView: View {
                 customCategories = CustomGoalCategoriesStore.load()
             }
         }
+    }
+
+    private func presentAddGoal(category: CategorySelection?) {
+        addGoalCategory = category
+        isPresentingAddGoal = true
     }
 
     // MARK: - Linha de meta personalizada

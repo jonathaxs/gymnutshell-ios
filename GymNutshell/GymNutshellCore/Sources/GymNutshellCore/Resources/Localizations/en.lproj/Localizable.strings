@@ -169,6 +169,8 @@
 "category.kind.standard.footer" = "Log goals bit by bit with the slider or the − / + buttons.";
 "category.kind.restDay.footer" = "Like Standard, plus an ON/OFF button to mark a day off.";
 "category.kind.checkIn.footer" = "Each goal is checked once a day: Pending or Done.";
+"settings.addgoal.category.kind.footer" = "This category's type is “%1$@”. %2$@";
+"settings.goals.addToCategory" = "Add goal";
 "settings.addgoal.section.dose" = "Dose";
 "settings.addgoal.dose.footer" = "Marking Done completes the day's goal with this amount.";
 "settings.goals.custom.badge" = "Custom";
@@ -237,8 +239,8 @@
 
 /* SettingsView.swift */
 "settings.header.title" = "App Settings";
-"settings.section.edit" = "Your data";
-"settings.theme.title" = "Emojis";
+"settings.section.edit" = "Profile";
+"settings.theme.title" = "Emoji";
 "settings.section.preferences" = "Appearance";
 "settings.section.system" = "System";
 "settings.section.about" = "About";
@@ -247,7 +249,7 @@
 "app.error.dataStore.title" = "Something went wrong";
 "app.error.dataStore.message" = "Gym Nutshell could not load your data.\nForce-close the app and reopen it to try again.";
 "settings.about.link" = "Gym Nutshell";
-"settings.section.physicaldata" = "Profile";
+"settings.section.physicaldata" = "Your data";
 "settings.fitness.goal.edit" = "Fitness Goal";
 "settings.goals.edit" = "Daily Goals";
 "settings.preference.appleHealth" = "Apple Health";
@@ -739,8 +741,8 @@
 "a11y.usergoal.hint" = "Tap to select this goal.";
 
 /* Tracking goals settings, image-only buttons */
-"a11y.button.add.goal.label"     = "New tracking goal";
-"a11y.button.add.goal.hint" = "Tap to create a new goal.";
+"a11y.button.add.goal.label"     = "Add";
+"a11y.button.add.goal.hint" = "Tap to create a goal or a category.";
 "a11y.button.remove.goal.label"  = "Remove goal";
 "a11y.button.restore.goal.label" = "Restore goal";
 

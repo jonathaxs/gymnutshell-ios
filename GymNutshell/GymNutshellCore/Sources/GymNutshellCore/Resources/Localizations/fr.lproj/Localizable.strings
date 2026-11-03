@@ -190,6 +190,8 @@
 "category.kind.standard.footer" = "Enregistrez les objectifs petit à petit avec le curseur ou les boutons − / +.";
 "category.kind.restDay.footer" = "Comme Standard, avec un bouton ON/OFF pour marquer un jour de repos.";
 "category.kind.checkIn.footer" = "Chaque objectif se coche une fois par jour : En attente ou Fait.";
+"settings.addgoal.category.kind.footer" = "Cette catégorie est du type « %1$@ ». %2$@";
+"settings.goals.addToCategory" = "Ajouter un objectif";
 "settings.addgoal.section.dose" = "Dose";
 "settings.addgoal.dose.footer" = "En marquant Fait, l'objectif du jour est atteint avec cette quantité.";
 "settings.goals.custom.badge" = "Personnalisé";
@@ -258,8 +260,8 @@
 
 /* SettingsView.swift */
 "settings.header.title" = "Réglages de l'app";
-"settings.section.edit" = "Tes données";
-"settings.theme.title" = "Emojis";
+"settings.section.edit" = "Profil";
+"settings.theme.title" = "Emoji";
 "settings.section.preferences" = "Apparence";
 "settings.section.system" = "Système";
 "settings.section.about" = "À propos";
@@ -268,7 +270,7 @@
 "app.error.dataStore.title" = "Une erreur est survenue";
 "app.error.dataStore.message" = "Gym Nutshell n'a pas pu charger tes données.\nFerme l'application et rouvre-la pour réessayer.";
 "settings.about.link" = "Gym Nutshell";
-"settings.section.physicaldata" = "Profil";
+"settings.section.physicaldata" = "Tes données";
 "settings.fitness.goal.edit" = "Objectif fitness";
 "settings.goals.edit" = "Objectifs quotidiens";
 "settings.preference.appleHealth" = "Apple Santé";
@@ -771,8 +773,8 @@
 "a11y.usergoal.hint" = "Touche pour choisir cet objectif.";
 
 /* Tracking goals settings, image-only buttons */
-"a11y.button.add.goal.label"     = "Nouvel objectif de suivi";
-"a11y.button.add.goal.hint" = "Touche pour créer un nouvel objectif.";
+"a11y.button.add.goal.label"     = "Ajouter";
+"a11y.button.add.goal.hint" = "Touchez pour créer un objectif ou une catégorie.";
 "a11y.button.remove.goal.label"  = "Supprimer l'objectif";
 "a11y.button.restore.goal.label" = "Restaurer l'objectif";
 

@@ -171,6 +171,8 @@
 "category.kind.standard.footer" = "スライダーまたは − / + ボタンで少しずつ記録します。";
 "category.kind.restDay.footer" = "標準と同じで、休息日を記録する ON/OFF ボタン付き。";
 "category.kind.checkIn.footer" = "各目標は1日1回チェック：未完了 または 完了。";
+"settings.addgoal.category.kind.footer" = "このカテゴリは「%1$@」タイプです。%2$@";
+"settings.goals.addToCategory" = "目標を追加";
 "settings.addgoal.section.dose" = "用量";
 "settings.addgoal.dose.footer" = "完了にすると、この量でその日の目標が達成されます。";
 "settings.goals.custom.badge" = "カスタム";
@@ -239,7 +241,7 @@
 
 /* SettingsView.swift */
 "settings.header.title" = "アプリ設定";
-"settings.section.edit" = "ユーザーデータ";
+"settings.section.edit" = "プロフィール";
 "settings.theme.title" = "絵文字";
 "settings.section.preferences" = "外観";
 "settings.section.system" = "システム";
@@ -249,7 +251,7 @@
 "app.error.dataStore.title" = "問題が発生しました";
 "app.error.dataStore.message" = "Gym Nutshellでデータを読み込めませんでした。\nアプリを強制終了して再度開いてください。";
 "settings.about.link" = "Gym Nutshell";
-"settings.section.physicaldata" = "プロフィール";
+"settings.section.physicaldata" = "ユーザーデータ";
 "settings.fitness.goal.edit" = "フィットネス目標";
 "settings.goals.edit" = "毎日の目標";
 "settings.preference.appleHealth" = "ヘルスケア";
@@ -746,8 +748,8 @@
 "a11y.usergoal.hint" = "タップしてこの目標を選択。";
 
 /* Tracking goals settings, image-only buttons */
-"a11y.button.add.goal.label"     = "新しい記録目標";
-"a11y.button.add.goal.hint" = "タップして新しい目標を作成。";
+"a11y.button.add.goal.label"     = "追加";
+"a11y.button.add.goal.hint" = "タップして目標またはカテゴリを作成します。";
 "a11y.button.remove.goal.label"  = "目標を削除";
 "a11y.button.restore.goal.label" = "目標を復元";
 

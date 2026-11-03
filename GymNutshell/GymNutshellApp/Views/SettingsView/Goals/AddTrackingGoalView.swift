@@ -30,19 +30,19 @@ struct AddTrackingGoalView: View {
     let editingGoal: CustomTrackingGoal?
     let isSheet: Bool
 
-    init(editingGoal: CustomTrackingGoal? = nil, isSheet: Bool = true) {
+    init(editingGoal: CustomTrackingGoal? = nil, isSheet: Bool = true,
+         initialCategory: CategorySelection? = nil) {
         self.editingGoal = editingGoal
         self.isSheet = isSheet
+        // Nova meta aberta por uma categoria (ex: "Adicionar meta" numa categoria vazia) já vem com ela.
+        _selectedCategory = State(initialValue: initialCategory ?? .builtin(.essencial))
     }
 
     @Environment(\.dismiss) private var dismiss
 
-    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
-    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
-
     // MARK: - Campos de rascunho
 
-    @State private var selectedCategory: CategorySelection? = .builtin(.essencial)
+    @State private var selectedCategory: CategorySelection?
     @State private var emoji: String = ""
     @State private var name: String = ""
     @State private var unit: String = ""
@@ -52,14 +52,10 @@ struct AddTrackingGoalView: View {
     @State private var reminderTimes: [ReminderTime] = []
     @State private var loadedReminderTimes: [ReminderTime] = []
 
-    // MARK: - Estado da nova categoria
+    // MARK: - Categorias e metas existentes
 
     @State private var customCategories: [CustomGoalCategory] = []
     @State private var existingGoals: [CustomTrackingGoal] = []
-    @State private var isCreatingNewCategory: Bool = false
-    @State private var newCategoryName: String = ""
-    @State private var newCategoryKind: CategoryKind = .standard
-    @State private var newCategorySymbol: String = CustomGoalCategory.defaultSymbolName
 
     // True quando o usuário digitou algo que não é emoji, significa que o teclado
     // de emoji não está habilitado no iPhone/iPad (iOS cai no teclado padrão).
@@ -71,10 +67,6 @@ struct AddTrackingGoalView: View {
 
     private var trimmedEmoji: String {
         String(emoji.trimmingCharacters(in: .whitespacesAndNewlines).prefix(1))
-    }
-
-    private var trimmedNewCategoryName: String {
-        newCategoryName.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private static let reservedEmojis: Set<String> = ["🏋️","🏃","💤","💧","🍗","🍞","🧈","🌾","🧪"]
@@ -102,17 +94,8 @@ struct AddTrackingGoalView: View {
         }
     }
 
-    /// True quando o nome digitado pra nova categoria bate com uma categoria fixa ou personalizada existente.
-    private var isCategoryNameConflict: Bool {
-        guard isCreatingNewCategory, !trimmedNewCategoryName.isEmpty else { return false }
-        let lower = trimmedNewCategoryName.lowercased()
-        if GoalCategory.allCases.contains(where: { $0.displayName.lowercased() == lower }) { return true }
-        return customCategories.contains { $0.name.lowercased() == lower }
-    }
-
-    /// Tipo da categoria escolhida (ou da que está sendo criada). Check-in troca meta + passo por dose.
+    /// Tipo da categoria escolhida. Check-in troca meta + passo por dose.
     private var selectedKind: CategoryKind {
-        if isCreatingNewCategory { return newCategoryKind }
         switch selectedCategory {
         case .builtin(let category): return category.kind
         case .custom(let id):        return customCategories.first { $0.id == id }?.kind ?? .standard
@@ -139,11 +122,6 @@ struct AddTrackingGoalView: View {
         if !isCheckIn {
             guard let step = Int(incrementText), step > 0, step <= goal else { return false }
         }
-        // Se o usuário optou por criar nova categoria, o nome é obrigatório e único.
-        if isCreatingNewCategory {
-            if trimmedNewCategoryName.isEmpty { return false }
-            if isCategoryNameConflict { return false }
-        }
         return true
     }
 
@@ -162,8 +140,8 @@ struct AddTrackingGoalView: View {
     @ViewBuilder
     private var form: some View {
         Form {
-            // Seleção de categoria, fixa ou personalizada.
-            Section(String(localized: "settings.addgoal.section.category", bundle: .gymNutshellCore)) {
+            // Seleção de categoria, fixa ou personalizada. Categoria nova é criada pelo + das Metas.
+            Section {
                 Picker(String(localized: "settings.addgoal.section.category", bundle: .gymNutshellCore), selection: $selectedCategory) {
                     ForEach(GoalCategory.allCases, id: \.self) { category in
                         Text(category.displayName)
@@ -175,42 +153,12 @@ struct AddTrackingGoalView: View {
                     }
                 }
                 .pickerStyle(.menu)
-
-                Button {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        isCreatingNewCategory.toggle()
-                        if !isCreatingNewCategory {
-                            newCategoryName = ""
-                            newCategoryKind = .standard
-                            newCategorySymbol = CustomGoalCategory.defaultSymbolName
-                        }
-                    }
-                } label: {
-                    HStack(spacing: 6) {
-                        Image(systemName: isCreatingNewCategory ? "minus.circle.fill" : "plus.circle.fill")
-                        Text(String(localized: "settings.addgoal.category.new.button", bundle: .gymNutshellCore))
-                    }
-                    .foregroundStyle(accentColor)
-                }
-            }
-
-            // Nova categoria, aparece acima da seção Ícone quando ativada.
-            if isCreatingNewCategory {
-                Section {
-                    TextField(String(localized: "settings.addgoal.category.new.name.placeholder", bundle: .gymNutshellCore),
-                              text: $newCategoryName)
-                    CategoryKindPicker(selection: $newCategoryKind)
-                    CategorySymbolPicker(selection: $newCategorySymbol)
-                } header: {
-                    Text(String(localized: "settings.addgoal.category.new.section", bundle: .gymNutshellCore))
-                } footer: {
-                    if isCategoryNameConflict {
-                        Text(String(localized: "settings.addgoal.warning.category.duplicate", bundle: .gymNutshellCore))
-                            .foregroundStyle(.red)
-                    } else {
-                        Text(newCategoryKind.settingsFooter)
-                    }
-                }
+            } header: {
+                Text(String(localized: "settings.addgoal.section.category", bundle: .gymNutshellCore))
+            } footer: {
+                // Como as metas dessa categoria são marcadas (padrão, ON/OFF de descanso ou check-in).
+                Text(String(format: String(localized: "settings.addgoal.category.kind.footer", bundle: .gymNutshellCore),
+                            selectedKind.displayName, selectedKind.settingsFooter))
             }
 
             Section {
@@ -331,21 +279,9 @@ struct AddTrackingGoalView: View {
     }
 
     private func save() {
-        // Resolve a categoria efetiva, cria a nova se o usuário preencheu o formulário.
-        var resolvedSelection = selectedCategory
-        if isCreatingNewCategory, !trimmedNewCategoryName.isEmpty {
-            let newCategory = CustomGoalCategory(
-                name: trimmedNewCategoryName,
-                kind: newCategoryKind,
-                symbolName: newCategorySymbol
-            )
-            CustomGoalCategoriesStore.upsert(newCategory)
-            resolvedSelection = .custom(newCategory.id)
-        }
-
         var builtin: GoalCategory? = nil
         var customId: String? = nil
-        switch resolvedSelection {
+        switch selectedCategory {
         case .builtin(let category): builtin = category
         case .custom(let id):        customId = id
         case .none:                  break

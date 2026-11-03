@@ -13,9 +13,9 @@ import GymNutshellCore
 
 /// Páginas dos Ajustes, na ordem da lista. Cada uma tem o título, o ícone de vidro e a seção.
 enum SettingsPage: Hashable, CaseIterable, Identifiable {
-    case goals, fitnessGoal, profile
-    case theme, colors, widgets, controls
+    case goals, fitnessGoal, theme, profile
     case health, notifications, measurement, backup
+    case colors, widgets, controls
     case about, watch, ring, tier
 
     var id: Self { self }
@@ -152,11 +152,8 @@ struct SettingsView: View {
                     .accessibilityAddTraits(.isHeader)
             }
 
-            // Seção Seus dados, metas, objetivo fitness e perfil do usuário.
-            section("settings.section.edit", pages: [.goals, .fitnessGoal, .profile], wide: wide)
-
-            // Seção Aparência, tema, cores de destaque, widgets e estilo dos controles.
-            section("settings.section.preferences", pages: [.theme, .colors, .widgets, .controls], wide: wide)
+            // Seção Perfil: metas, objetivo fitness, emoji e seus dados.
+            section("settings.section.edit", pages: [.goals, .fitnessGoal, .theme, .profile], wide: wide)
 
             // Seção Sistema, integrações de plataforma, notificações, medidas e backup.
             Section(header: sectionHeader("settings.section.system")) {
@@ -182,6 +179,9 @@ struct SettingsView: View {
                 }
                 .foregroundStyle(.primary)
             }
+
+            // Seção Aparência, cores de destaque, widgets e estilo dos controles.
+            section("settings.section.preferences", pages: [.colors, .widgets, .controls], wide: wide)
 
             // Seção Sobre, conquista, anel de progresso e info de versão.
             section("settings.section.about", pages: [.about, .watch, .ring, .tier], wide: wide)
