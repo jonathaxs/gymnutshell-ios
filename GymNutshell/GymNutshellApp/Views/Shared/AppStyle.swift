@@ -178,7 +178,7 @@ struct AppTabHeader: View {
         if showsDayInfo {
             Button { showDayInfo = true } label: { text }
                 .buttonStyle(.plain)
-                .downwardPopover(isPresented: $showDayInfo) {
+                .adaptivePopover(isPresented: $showDayInfo) {
                     DayInfoPopover()
                 }
                 .accessibilityAddTraits(.isHeader)

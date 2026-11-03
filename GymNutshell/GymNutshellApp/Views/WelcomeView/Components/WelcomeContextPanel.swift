@@ -99,7 +99,7 @@ struct WelcomeContextPanel: View {
             }
             .appSecondaryButton(isStart ? sexColor : .secondary)
             // Restaurar backup abre um balão logo abaixo, como no iPhone.
-            .downwardPopover(isPresented: $showRestoreOptions) {
+            .adaptivePopover(isPresented: $showRestoreOptions) {
                 WelcomeRestorePopover(accentColor: sexColor) { source in
                     showRestoreOptions = false
                     restoreRequest = source

@@ -4,8 +4,8 @@
 //  Propósito: Grade de categorias da tela Hoje (modo "Grade", no retrato e no layout largo). Cada categoria vira um botão redondo de
 //             vidro (iOS 26+) com ícone e mini anel de progresso, nome e contagem embaixo; tocar abre
 //             um balão (popover) abaixo do botão com os controles das metas daquela categoria.
-//             4 por linha; a última linha incompleta fica centralizada. No iOS 18 o balão é
-//             apresentado pelo UIKit, que respeita a seta pra cima (o SwiftUI ignorava e abria acima).
+//             4 por linha; a última linha incompleta fica centralizada. O balão abre pro lado com mais
+//             espaço; no iOS 18 é apresentado pelo UIKit, que respeita a seta (o SwiftUI ignorava).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-08.
 // ⌘
@@ -159,8 +159,8 @@ struct TodayCategoryGrid: View {
         }
         .buttonStyle(.plain)
         .pressScale(1.05, response: 0.25, dampingFraction: 0.6)
-        // Balão abaixo do botão (seta no topo).
-        .downwardPopover(isPresented: isOpen) {
+        // Balão abaixo do botão (ou acima, se embaixo não couber).
+        .adaptivePopover(isPresented: isOpen) {
             popoverContent(tile)
         }
         .accessibilityElement(children: .ignore)
@@ -230,31 +230,64 @@ private struct TodayCategoryPopover: View {
     }
 }
 
-// MARK: - Balão abaixo do botão
+// MARK: - Balão que abre pro lado com mais espaço
 
-/// Também usado no Visualizar das telas de Emoji (Welcome e Ajustes).
+/// Também usado no Visualizar das telas de Emoji (Welcome e Ajustes) e nos balões da Welcome e da Hoje.
 extension View {
 
-    /// iOS 26+: popover do SwiftUI, que respeita a seta no topo. iOS 18: o SwiftUI ignora o
-    /// arrowEdge e abria o balão pra cima, então o UIKit apresenta com a seta só pra cima.
-    @ViewBuilder
-    func downwardPopover<Content: View>(isPresented: Binding<Bool>,
+    /// Balão preso à view: abre pra baixo (seta no topo) e, quando falta espaço embaixo e sobra em cima
+    /// (ex: última linha de uma lista rolada até o fim), abre pra cima. iOS 26+: popover do SwiftUI.
+    /// iOS 18: o SwiftUI ignorava o arrowEdge, então o UIKit apresenta com a seta escolhida.
+    func adaptivePopover<Content: View>(isPresented: Binding<Bool>,
                                         @ViewBuilder content: @escaping () -> Content) -> some View {
+        modifier(AdaptivePopoverModifier(isPresented: isPresented, popoverContent: content))
+    }
+}
+
+/// Espaço mínimo embaixo pra o balão abrir pra baixo sem ficar espremido.
+private let popoverComfortableHeight: CGFloat = 360
+
+/// Abre pra cima só quando embaixo tem pouco espaço e em cima tem mais.
+private func popoverOpensUp(frame: CGRect, in window: UIWindow) -> Bool {
+    let insets = window.safeAreaInsets
+    let below = window.bounds.height - insets.bottom - frame.maxY
+    let above = frame.minY - insets.top
+    return below < popoverComfortableHeight && above > below
+}
+
+private struct AdaptivePopoverModifier<PopoverContent: View>: ViewModifier {
+
+    @Binding var isPresented: Bool
+    let popoverContent: () -> PopoverContent
+
+    @State private var opensUp = false
+
+    func body(content: Content) -> some View {
         if #available(iOS 26.0, *) {
-            self.popover(isPresented: isPresented, attachmentAnchor: .point(.bottom), arrowEdge: .top) {
-                content()
-                    // Balão de verdade no iPhone, em vez de virar sheet.
-                    .presentationCompactAdaptation(.popover)
-            }
+            content
+                // Acompanha a posição na tela (rolagem incluída) e decide o lado antes de abrir.
+                .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { frame in
+                    guard let window = UIApplication.shared.connectedScenes
+                        .compactMap({ ($0 as? UIWindowScene)?.keyWindow }).first else { return }
+                    let up = popoverOpensUp(frame: frame, in: window)
+                    if up != opensUp { opensUp = up }
+                }
+                .popover(isPresented: $isPresented,
+                         attachmentAnchor: .point(opensUp ? .top : .bottom),
+                         arrowEdge: opensUp ? .bottom : .top) {
+                    popoverContent()
+                        // Balão de verdade no iPhone, em vez de virar sheet.
+                        .presentationCompactAdaptation(.popover)
+                }
         } else {
-            self.background(DownwardPopoverPresenter(isPresented: isPresented, content: content))
+            content.background(AdaptivePopoverPresenter(isPresented: $isPresented, content: popoverContent))
         }
     }
 }
 
-/// Apresenta o conteúdo num popover do UIKit preso à base da view, sempre abrindo pra baixo.
+/// Apresenta o conteúdo num popover do UIKit preso à view, abrindo pro lado com mais espaço.
 /// O tamanho acompanha o tamanho ideal do conteúdo (preferredContentSize).
-private struct DownwardPopoverPresenter<Content: View>: UIViewControllerRepresentable {
+private struct AdaptivePopoverPresenter<Content: View>: UIViewControllerRepresentable {
 
     @Binding var isPresented: Bool
     let content: () -> Content
@@ -276,7 +309,7 @@ private struct DownwardPopoverPresenter<Content: View>: UIViewControllerRepresen
             if let hosting {
                 // Balão já aberto: atualiza as metas (valores mudam a cada toque).
                 hosting.rootView = AnyView(content())
-            } else if controller.presentedViewController == nil, controller.view.window != nil {
+            } else if controller.presentedViewController == nil, let window = controller.view.window {
                 let host = UIHostingController(rootView: AnyView(content()))
                 host.sizingOptions = .preferredContentSize
                 host.view.backgroundColor = .systemGroupedBackground
@@ -284,8 +317,9 @@ private struct DownwardPopoverPresenter<Content: View>: UIViewControllerRepresen
                 if let popover = host.popoverPresentationController {
                     popover.sourceView = controller.view
                     let bounds = controller.view.bounds
-                    popover.sourceRect = CGRect(x: bounds.midX, y: bounds.maxY, width: 0, height: 0)
-                    popover.permittedArrowDirections = .up
+                    let up = popoverOpensUp(frame: controller.view.convert(bounds, to: window), in: window)
+                    popover.sourceRect = CGRect(x: bounds.midX, y: up ? bounds.minY : bounds.maxY, width: 0, height: 0)
+                    popover.permittedArrowDirections = up ? .down : .up
                     popover.delegate = context.coordinator
                 }
                 context.coordinator.hosting = host

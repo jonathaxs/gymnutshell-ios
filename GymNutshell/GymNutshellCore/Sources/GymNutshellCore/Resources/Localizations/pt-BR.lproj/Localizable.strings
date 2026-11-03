@@ -203,7 +203,7 @@
 "category.kind.restDay" = "Com descanso";
 "category.kind.checkIn" = "Check-in";
 "category.kind.standard.footer" = "As metas são registradas aos poucos, com o slider ou os botões − / +.";
-"category.kind.restDay.footer" = "Igual ao padrão, com um botão ON/OFF pra marcar dia de descanso.";
+"category.kind.restDay.footer" = "Com um botão ON/OFF para marcar dia de descanso.";
 "category.kind.checkIn.footer" = "Cada meta é marcada uma vez por dia: Pendente ou Feito.";
 "settings.addgoal.category.kind.footer" = "Esta categoria é do tipo “%1$@”. %2$@";
 "settings.goals.addToCategory" = "Adicionar meta";
@@ -500,8 +500,8 @@
 "daily.achievement.champion.level1" = "Bronze";
 "daily.achievement.champion.level2" = "Prata";
 "daily.achievement.champion.level3" = "Ouro";
-"daily.achievement.champion.level4" = "Diamante";
-"daily.achievement.champion.level5" = "Troféu";
+"daily.achievement.champion.level4" = "Troféu";
+"daily.achievement.champion.level5" = "Diamante";
 
 /* AppTheme, Number */
 "app.theme.number" = "Números";
@@ -537,9 +537,9 @@
 /* AppTheme, Astronaut (Espaço) */
 "app.theme.astronaut" = "Espaço";
 "daily.achievement.astronaut.level1" = "Astronauta";
-"daily.achievement.astronaut.level2" = "Foguete";
-"daily.achievement.astronaut.level3" = "Disco Voador";
-"daily.achievement.astronaut.level4" = "Alienígena";
+"daily.achievement.astronaut.level2" = "Alienígena";
+"daily.achievement.astronaut.level3" = "Foguete";
+"daily.achievement.astronaut.level4" = "Disco Voador";
 "daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */

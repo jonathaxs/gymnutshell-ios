@@ -92,5 +92,20 @@ extension DailyRecord {
         try? context.save()
         defaults.set(true, forKey: fiveLevelsMigrationKey)
     }
+
+    /// Chave da reclassificação depois da troca de emojis entre níveis (Espaço e Medalha, 2026-11).
+    public static let themeEmojiSwapMigrationKey = "migration.achievement.themeEmojiSwap.2026-11"
+
+    /// Roda uma vez: os dias salvos guardam o emoji, e um emoji que mudou de nível (ex: 🚀 do 2 pro 3)
+    /// faria o histórico ler o nível errado. Recalcula pela % salva com os emojis novos.
+    @MainActor
+    public static func migrateThemeEmojiSwapIfNeeded(in context: ModelContext,
+                                                     defaults: UserDefaults = .standard) {
+        guard !defaults.bool(forKey: themeEmojiSwapMigrationKey) else { return }
+        let records = (try? context.fetch(FetchDescriptor<DailyRecord>())) ?? []
+        records.forEach { $0.normalizeAchievement() }
+        try? context.save()
+        defaults.set(true, forKey: themeEmojiSwapMigrationKey)
+    }
 }
 

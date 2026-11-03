@@ -169,7 +169,7 @@
 "category.kind.restDay" = "Dinlenme günlü";
 "category.kind.checkIn" = "Check-in";
 "category.kind.standard.footer" = "Hedefleri kaydırıcı veya − / + düğmeleriyle azar azar kaydedin.";
-"category.kind.restDay.footer" = "Standart gibi, dinlenme günü için AÇIK/KAPALI düğmesiyle.";
+"category.kind.restDay.footer" = "Dinlenme günü için AÇIK/KAPALI düğmesiyle.";
 "category.kind.checkIn.footer" = "Her hedef günde bir kez işaretlenir: Bekliyor veya Yapıldı.";
 "settings.addgoal.category.kind.footer" = "Bu kategorinin türü “%1$@”. %2$@";
 "settings.goals.addToCategory" = "Hedef ekle";
@@ -459,8 +459,8 @@
 "daily.achievement.champion.level1" = "Bronz";
 "daily.achievement.champion.level2" = "Gümüş";
 "daily.achievement.champion.level3" = "Altın";
-"daily.achievement.champion.level4" = "Elmas";
-"daily.achievement.champion.level5" = "Kupa";
+"daily.achievement.champion.level4" = "Kupa";
+"daily.achievement.champion.level5" = "Elmas";
 
 /* AppTheme, Number */
 "app.theme.number" = "Sayılar";
@@ -489,9 +489,9 @@
 /* AppTheme, Astronaut (Space) */
 "app.theme.astronaut" = "Uzay";
 "daily.achievement.astronaut.level1" = "Astronot";
-"daily.achievement.astronaut.level2" = "Roket";
-"daily.achievement.astronaut.level3" = "Uçan Daire";
-"daily.achievement.astronaut.level4" = "Uzaylı";
+"daily.achievement.astronaut.level2" = "Uzaylı";
+"daily.achievement.astronaut.level3" = "Roket";
+"daily.achievement.astronaut.level4" = "Uçan Daire";
 "daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */

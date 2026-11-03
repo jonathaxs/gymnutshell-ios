@@ -217,9 +217,9 @@ public enum AppTheme: String, CaseIterable, Sendable {
         case .astronaut:
             switch tier {
             case .level1: return "🧑‍🚀"
-            case .level2: return "🚀"
-            case .level3: return "🛸"
-            case .level4: return "👽"
+            case .level2: return "👽"
+            case .level3: return "🚀"
+            case .level4: return "🛸"
             case .level5: return "🚪"
             }
         case .celestial:
@@ -235,8 +235,8 @@ public enum AppTheme: String, CaseIterable, Sendable {
             case .level1: return "🥉"
             case .level2: return "🥈"
             case .level3: return "🥇"
-            case .level4: return "💎"
-            case .level5: return "🏆"
+            case .level4: return "🏆"
+            case .level5: return "💎"
             }
         case .number:
             switch tier {

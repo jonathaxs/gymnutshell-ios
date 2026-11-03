@@ -190,7 +190,7 @@
 "category.kind.restDay" = "Con descanso";
 "category.kind.checkIn" = "Check-in";
 "category.kind.standard.footer" = "Registra las metas poco a poco con el control deslizante o los botones − / +.";
-"category.kind.restDay.footer" = "Como Estándar, con un botón ON/OFF para marcar el día de descanso.";
+"category.kind.restDay.footer" = "Con un botón ON/OFF para marcar el día de descanso.";
 "category.kind.checkIn.footer" = "Cada meta se marca una vez al día: Pendiente o Hecho.";
 "settings.addgoal.category.kind.footer" = "Esta categoría es del tipo «%1$@». %2$@";
 "settings.goals.addToCategory" = "Añadir meta";
@@ -482,8 +482,8 @@
 "daily.achievement.champion.level1" = "Bronce";
 "daily.achievement.champion.level2" = "Plata";
 "daily.achievement.champion.level3" = "Oro";
-"daily.achievement.champion.level4" = "Diamante";
-"daily.achievement.champion.level5" = "Trofeo";
+"daily.achievement.champion.level4" = "Trofeo";
+"daily.achievement.champion.level5" = "Diamante";
 
 /* AppTheme, Number */
 "app.theme.number" = "Números";
@@ -518,9 +518,9 @@
 /* AppTheme, Astronaut (Space) */
 "app.theme.astronaut" = "Espacio";
 "daily.achievement.astronaut.level1" = "Astronauta";
-"daily.achievement.astronaut.level2" = "Cohete";
-"daily.achievement.astronaut.level3" = "Platillo volador";
-"daily.achievement.astronaut.level4" = "Alienígena";
+"daily.achievement.astronaut.level2" = "Alienígena";
+"daily.achievement.astronaut.level3" = "Cohete";
+"daily.achievement.astronaut.level4" = "Platillo volador";
 "daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */

@@ -167,7 +167,7 @@
 "category.kind.restDay" = "With day off";
 "category.kind.checkIn" = "Check-in";
 "category.kind.standard.footer" = "Log goals bit by bit with the slider or the − / + buttons.";
-"category.kind.restDay.footer" = "Like Standard, plus an ON/OFF button to mark a day off.";
+"category.kind.restDay.footer" = "With an ON/OFF button to mark a day off.";
 "category.kind.checkIn.footer" = "Each goal is checked once a day: Pending or Done.";
 "settings.addgoal.category.kind.footer" = "This category's type is “%1$@”. %2$@";
 "settings.goals.addToCategory" = "Add goal";
@@ -456,8 +456,8 @@
 "daily.achievement.champion.level1" = "Bronze";
 "daily.achievement.champion.level2" = "Silver";
 "daily.achievement.champion.level3" = "Gold";
-"daily.achievement.champion.level4" = "Diamond";
-"daily.achievement.champion.level5" = "Trophy";
+"daily.achievement.champion.level4" = "Trophy";
+"daily.achievement.champion.level5" = "Diamond";
 
 /* AppTheme, Number */
 "app.theme.number" = "Numbers";
@@ -486,9 +486,9 @@
 /* AppTheme, Astronaut (Space) */
 "app.theme.astronaut" = "Space";
 "daily.achievement.astronaut.level1" = "Astronaut";
-"daily.achievement.astronaut.level2" = "Rocket";
-"daily.achievement.astronaut.level3" = "Flying Saucer";
-"daily.achievement.astronaut.level4" = "Alien";
+"daily.achievement.astronaut.level2" = "Alien";
+"daily.achievement.astronaut.level3" = "Rocket";
+"daily.achievement.astronaut.level4" = "Flying Saucer";
 "daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */

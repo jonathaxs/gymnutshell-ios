@@ -317,7 +317,7 @@ struct WelcomeView: View {
             }
             .appSecondaryButton(continueButtonColor)
             // Restaurar backup abre um balão logo abaixo, como o Detalhes dos emojis.
-            .downwardPopover(isPresented: $showRestoreOptions) {
+            .adaptivePopover(isPresented: $showRestoreOptions) {
                 WelcomeRestorePopover(accentColor: continueButtonColor) { source in
                     showRestoreOptions = false
                     restoreRequest = source

@@ -169,7 +169,7 @@
 "category.kind.restDay" = "含休息日";
 "category.kind.checkIn" = "打卡";
 "category.kind.standard.footer" = "用滑块或 − / + 按钮逐步记录。";
-"category.kind.restDay.footer" = "与标准相同，另有标记休息日的开/关按钮。";
+"category.kind.restDay.footer" = "带有标记休息日的开/关按钮。";
 "category.kind.checkIn.footer" = "每个目标每天打卡一次：待完成 或 已完成。";
 "settings.addgoal.category.kind.footer" = "此类别为“%1$@”类型。%2$@";
 "settings.goals.addToCategory" = "添加目标";
@@ -457,8 +457,8 @@
 "daily.achievement.champion.level1" = "青铜";
 "daily.achievement.champion.level2" = "白银";
 "daily.achievement.champion.level3" = "黄金";
-"daily.achievement.champion.level4" = "钻石";
-"daily.achievement.champion.level5" = "冠军奖杯";
+"daily.achievement.champion.level4" = "冠军奖杯";
+"daily.achievement.champion.level5" = "钻石";
 
 /* AppTheme, 数字 */
 "app.theme.number" = "数字";
@@ -487,9 +487,9 @@
 /* AppTheme, 探索 */
 "app.theme.astronaut" = "太空";
 "daily.achievement.astronaut.level1" = "宇航员";
-"daily.achievement.astronaut.level2" = "火箭";
-"daily.achievement.astronaut.level3" = "飞碟";
-"daily.achievement.astronaut.level4" = "外星人";
+"daily.achievement.astronaut.level2" = "外星人";
+"daily.achievement.astronaut.level3" = "火箭";
+"daily.achievement.astronaut.level4" = "飞碟";
 "daily.achievement.astronaut.level5" = "塔迪斯";
 
 /* AppTheme, 天体 */

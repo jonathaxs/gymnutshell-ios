@@ -169,7 +169,7 @@
 "category.kind.restDay" = "休息日あり";
 "category.kind.checkIn" = "チェックイン";
 "category.kind.standard.footer" = "スライダーまたは − / + ボタンで少しずつ記録します。";
-"category.kind.restDay.footer" = "標準と同じで、休息日を記録する ON/OFF ボタン付き。";
+"category.kind.restDay.footer" = "休息日を記録する ON/OFF ボタン付き。";
 "category.kind.checkIn.footer" = "各目標は1日1回チェック：未完了 または 完了。";
 "settings.addgoal.category.kind.footer" = "このカテゴリは「%1$@」タイプです。%2$@";
 "settings.goals.addToCategory" = "目標を追加";
@@ -459,8 +459,8 @@
 "daily.achievement.champion.level1" = "ブロンズ";
 "daily.achievement.champion.level2" = "シルバー";
 "daily.achievement.champion.level3" = "ゴールド";
-"daily.achievement.champion.level4" = "ダイヤモンド";
-"daily.achievement.champion.level5" = "トロフィー";
+"daily.achievement.champion.level4" = "トロフィー";
+"daily.achievement.champion.level5" = "ダイヤモンド";
 
 /* AppTheme, Number */
 "app.theme.number" = "数字";
@@ -489,9 +489,9 @@
 /* AppTheme, Astronaut (Space) */
 "app.theme.astronaut" = "宇宙";
 "daily.achievement.astronaut.level1" = "宇宙飛行士";
-"daily.achievement.astronaut.level2" = "ロケット";
-"daily.achievement.astronaut.level3" = "空飛ぶ円盤";
-"daily.achievement.astronaut.level4" = "エイリアン";
+"daily.achievement.astronaut.level2" = "エイリアン";
+"daily.achievement.astronaut.level3" = "ロケット";
+"daily.achievement.astronaut.level4" = "空飛ぶ円盤";
 "daily.achievement.astronaut.level5" = "ターディス";
 
 /* AppTheme, Celestial */

@@ -168,7 +168,7 @@
 "category.kind.restDay" = "Mit Ruhetag";
 "category.kind.checkIn" = "Check-in";
 "category.kind.standard.footer" = "Ziele schrittweise mit dem Schieberegler oder den Tasten − / + erfassen.";
-"category.kind.restDay.footer" = "Wie Standard, mit einem AN/AUS-Schalter für Ruhetage.";
+"category.kind.restDay.footer" = "Mit einem AN/AUS-Schalter für Ruhetage.";
 "category.kind.checkIn.footer" = "Jedes Ziel wird einmal täglich abgehakt: Offen oder Erledigt.";
 "settings.addgoal.category.kind.footer" = "Diese Kategorie ist vom Typ „%1$@“. %2$@";
 "settings.goals.addToCategory" = "Ziel hinzufügen";
@@ -459,8 +459,8 @@
 "daily.achievement.champion.level1" = "Bronze";
 "daily.achievement.champion.level2" = "Silber";
 "daily.achievement.champion.level3" = "Gold";
-"daily.achievement.champion.level4" = "Diamant";
-"daily.achievement.champion.level5" = "Pokal";
+"daily.achievement.champion.level4" = "Pokal";
+"daily.achievement.champion.level5" = "Diamant";
 
 /* AppTheme, Number */
 "app.theme.number" = "Zahlen";
@@ -495,9 +495,9 @@
 /* AppTheme, Astronaut (Space) */
 "app.theme.astronaut" = "Weltraum";
 "daily.achievement.astronaut.level1" = "Astronaut";
-"daily.achievement.astronaut.level2" = "Rakete";
-"daily.achievement.astronaut.level3" = "Fliegende Untertasse";
-"daily.achievement.astronaut.level4" = "Alien";
+"daily.achievement.astronaut.level2" = "Alien";
+"daily.achievement.astronaut.level3" = "Rakete";
+"daily.achievement.astronaut.level4" = "Fliegende Untertasse";
 "daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */

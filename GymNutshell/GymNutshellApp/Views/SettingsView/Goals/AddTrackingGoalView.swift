@@ -156,9 +156,11 @@ struct AddTrackingGoalView: View {
             } header: {
                 Text(String(localized: "settings.addgoal.section.category", bundle: .gymNutshellCore))
             } footer: {
-                // Como as metas dessa categoria são marcadas (padrão, ON/OFF de descanso ou check-in).
-                Text(String(format: String(localized: "settings.addgoal.category.kind.footer", bundle: .gymNutshellCore),
-                            selectedKind.displayName, selectedKind.settingsFooter))
+                // Como as metas dessa categoria são marcadas: ON/OFF de descanso ou check-in. Padrão não precisa.
+                if selectedKind != .standard {
+                    Text(String(format: String(localized: "settings.addgoal.category.kind.footer", bundle: .gymNutshellCore),
+                                selectedKind.displayName, selectedKind.settingsFooter))
+                }
             }
 
             Section {

@@ -188,7 +188,7 @@
 "category.kind.restDay" = "Avec repos";
 "category.kind.checkIn" = "Check-in";
 "category.kind.standard.footer" = "Enregistrez les objectifs petit à petit avec le curseur ou les boutons − / +.";
-"category.kind.restDay.footer" = "Comme Standard, avec un bouton ON/OFF pour marquer un jour de repos.";
+"category.kind.restDay.footer" = "Avec un bouton ON/OFF pour marquer un jour de repos.";
 "category.kind.checkIn.footer" = "Chaque objectif se coche une fois par jour : En attente ou Fait.";
 "settings.addgoal.category.kind.footer" = "Cette catégorie est du type « %1$@ ». %2$@";
 "settings.goals.addToCategory" = "Ajouter un objectif";
@@ -482,8 +482,8 @@
 "daily.achievement.champion.level1" = "Bronze";
 "daily.achievement.champion.level2" = "Argent";
 "daily.achievement.champion.level3" = "Or";
-"daily.achievement.champion.level4" = "Diamant";
-"daily.achievement.champion.level5" = "Trophée";
+"daily.achievement.champion.level4" = "Trophée";
+"daily.achievement.champion.level5" = "Diamant";
 
 /* AppTheme, Number */
 "app.theme.number" = "Nombres";
@@ -518,9 +518,9 @@
 /* AppTheme, Astronaut (Space) */
 "app.theme.astronaut" = "Espace";
 "daily.achievement.astronaut.level1" = "Astronaute";
-"daily.achievement.astronaut.level2" = "Fusée";
-"daily.achievement.astronaut.level3" = "Soucoupe Volante";
-"daily.achievement.astronaut.level4" = "Extraterrestre";
+"daily.achievement.astronaut.level2" = "Extraterrestre";
+"daily.achievement.astronaut.level3" = "Fusée";
+"daily.achievement.astronaut.level4" = "Soucoupe Volante";
 "daily.achievement.astronaut.level5" = "TARDIS";
 
 /* AppTheme, Celestial */

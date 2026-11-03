@@ -55,7 +55,7 @@ struct WelcomeReadyStep: View {
                         allowedHint: String(localized: "a11y.welcome.ready.notifications.setup.hint",
                                             bundle: .gymNutshellCore)
                     )
-                    .downwardPopover(isPresented: $showNotificationsSetup) {
+                    .adaptivePopover(isPresented: $showNotificationsSetup) {
                         WelcomeNotificationsPopover(includeCreatine: includeCreatine, accentColor: accentColor)
                     }
 

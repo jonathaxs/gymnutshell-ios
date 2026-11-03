@@ -78,7 +78,7 @@ struct ThemeSettingsView: View {
                             .controlSize(.regular)
                             .tint(.gray)
                             // Balão com os níveis logo abaixo do botão (o mesmo da grade da Hoje).
-                            .downwardPopover(isPresented: Binding(get: { infoTheme == theme },
+                            .adaptivePopover(isPresented: Binding(get: { infoTheme == theme },
                                                                   set: { if !$0 { infoTheme = nil } })) {
                                 ThemeLevelsPopover(theme: theme, sex: sex, accentColor: accentColor)
                             }

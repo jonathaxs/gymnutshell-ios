@@ -169,7 +169,7 @@
 "category.kind.restDay" = "휴식일 포함";
 "category.kind.checkIn" = "체크인";
 "category.kind.standard.footer" = "슬라이더나 − / + 버튼으로 조금씩 기록합니다.";
-"category.kind.restDay.footer" = "기본과 같고, 휴식일을 표시하는 ON/OFF 버튼이 있습니다.";
+"category.kind.restDay.footer" = "휴식일을 표시하는 ON/OFF 버튼이 있습니다.";
 "category.kind.checkIn.footer" = "각 목표는 하루 한 번 체크합니다: 대기 또는 완료.";
 "settings.addgoal.category.kind.footer" = "이 카테고리는 %1$@ 유형이에요. %2$@";
 "settings.goals.addToCategory" = "목표 추가";
@@ -459,8 +459,8 @@
 "daily.achievement.champion.level1" = "브론즈";
 "daily.achievement.champion.level2" = "실버";
 "daily.achievement.champion.level3" = "골드";
-"daily.achievement.champion.level4" = "다이아몬드";
-"daily.achievement.champion.level5" = "트로피";
+"daily.achievement.champion.level4" = "트로피";
+"daily.achievement.champion.level5" = "다이아몬드";
 
 /* AppTheme, Number */
 "app.theme.number" = "숫자";
@@ -489,9 +489,9 @@
 /* AppTheme, Astronaut (Space) */
 "app.theme.astronaut" = "우주";
 "daily.achievement.astronaut.level1" = "우주비행사";
-"daily.achievement.astronaut.level2" = "로켓";
-"daily.achievement.astronaut.level3" = "비행접시";
-"daily.achievement.astronaut.level4" = "외계인";
+"daily.achievement.astronaut.level2" = "외계인";
+"daily.achievement.astronaut.level3" = "로켓";
+"daily.achievement.astronaut.level4" = "비행접시";
 "daily.achievement.astronaut.level5" = "타디스";
 
 /* AppTheme, Celestial */

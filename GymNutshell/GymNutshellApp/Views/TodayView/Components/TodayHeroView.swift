@@ -97,7 +97,7 @@ struct TodayHeroView: View {
                                           onTap: { showRingInfo = true },
                                           size: ringSize,
                                           celebratesAfterOnboarding: true)
-                        .downwardPopover(isPresented: $showRingInfo) {
+                        .adaptivePopover(isPresented: $showRingInfo) {
                             RingInfoPopover()
                         }
 
@@ -145,7 +145,7 @@ struct TodayHeroView: View {
         .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.6), value: tierEmoji)
         .contentShape(Rectangle())
         .onTapGesture { showTierInfo = true }
-        .downwardPopover(isPresented: $showTierInfo) {
+        .adaptivePopover(isPresented: $showTierInfo) {
             TierInfoPopover(theme: selectedTheme, sex: sex, accentColor: accentColor,
                             onChangeTheme: openThemeFromTierInfo)
         }
