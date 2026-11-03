@@ -858,6 +858,9 @@
 "welcome.ready.requested" = "Solicitado";
 "welcome.ready.denied" = "Denegado";
 "welcome.ready.footer" = "Puedes cambiar todo esto cuando quieras en Ajustes.";
+"welcome.ready.notifications.setup.title" = "¿Qué te recordamos?";
+"welcome.ready.notifications.setup.footer" = "Puedes cambiar todo esto luego en Ajustes › Notificaciones.";
+"a11y.welcome.ready.notifications.setup.hint" = "Toca para elegir los recordatorios.";
 "settings.preference.controlStyle" = "Controles";
 "settings.controlStyle.footer" = "Define cómo registras el avance de las metas en la pantalla Hoy.";
 
@@ -888,7 +891,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "Hora de tomar %@.";
-"notifications.supplement.group.title" = "💊 Hora de los suplementos";
+"notifications.supplement.group.title" = "⏰ Hora del check-in";
 "notifications.supplement.action.done" = "Tomado";
 "notifications.supplement.preset.morning" = "Mañana";
 "notifications.supplement.preset.lunch" = "Almuerzo";
@@ -900,5 +903,5 @@
 "settings.notifications.times.add" = "Añadir hora";
 "settings.notifications.times.empty" = "Sin horas";
 "settings.notifications.times.footer" = "Un aviso al día en cada hora. Los avisos del día se detienen cuando marcas Hecho en Hoy o tocas Tomado en la notificación.";
-"settings.notifications.group.title" = "Agrupar suplementos a la misma hora";
-"settings.notifications.group.footer" = "Junta en un solo aviso los suplementos de la misma hora. Desactivado, cada suplemento tiene su aviso.";
+"settings.notifications.group.title" = "Agrupar metas de check-in a la misma hora";
+"settings.notifications.group.footer" = "Junta en un solo aviso las metas de check-in de la misma hora. Desactivado, cada meta tiene su aviso.";

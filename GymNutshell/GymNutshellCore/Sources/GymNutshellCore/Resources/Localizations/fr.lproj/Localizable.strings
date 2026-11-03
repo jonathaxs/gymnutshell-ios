@@ -857,6 +857,9 @@
 "welcome.ready.requested" = "Demandé";
 "welcome.ready.denied" = "Refusé";
 "welcome.ready.footer" = "Tu peux modifier tout cela à tout moment dans Réglages.";
+"welcome.ready.notifications.setup.title" = "Que faut-il vous rappeler ?";
+"welcome.ready.notifications.setup.footer" = "Vous pourrez tout changer plus tard dans Réglages › Notifications.";
+"a11y.welcome.ready.notifications.setup.hint" = "Touchez pour choisir vos rappels.";
 "settings.preference.controlStyle" = "Commandes";
 "settings.controlStyle.footer" = "Définit comment tu indiques la progression de tes objectifs sur l'écran Aujourd'hui.";
 
@@ -887,7 +890,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "C'est l'heure de prendre %@.";
-"notifications.supplement.group.title" = "💊 L'heure des compléments";
+"notifications.supplement.group.title" = "⏰ L'heure du check-in";
 "notifications.supplement.action.done" = "Pris";
 "notifications.supplement.preset.morning" = "Matin";
 "notifications.supplement.preset.lunch" = "Déjeuner";
@@ -899,5 +902,5 @@
 "settings.notifications.times.add" = "Ajouter une heure";
 "settings.notifications.times.empty" = "Aucune heure";
 "settings.notifications.times.footer" = "Un rappel par jour à chaque heure. Les rappels du jour s'arrêtent quand vous marquez Fait sur Aujourd'hui ou touchez Pris dans la notification.";
-"settings.notifications.group.title" = "Regrouper les compléments à la même heure";
-"settings.notifications.group.footer" = "Réunit en un seul rappel les compléments prévus à la même heure. Désactivé, chaque complément a son rappel.";
+"settings.notifications.group.title" = "Regrouper les objectifs check-in à la même heure";
+"settings.notifications.group.footer" = "Réunit en un seul rappel les objectifs check-in prévus à la même heure. Désactivé, chaque objectif a son rappel.";

@@ -835,6 +835,9 @@
 "welcome.ready.requested" = "Angefragt";
 "welcome.ready.denied" = "Abgelehnt";
 "welcome.ready.footer" = "Du kannst das alles jederzeit in den Einstellungen ändern.";
+"welcome.ready.notifications.setup.title" = "Woran sollen wir dich erinnern?";
+"welcome.ready.notifications.setup.footer" = "Du kannst das alles später unter Einstellungen › Mitteilungen ändern.";
+"a11y.welcome.ready.notifications.setup.hint" = "Tippe, um deine Erinnerungen auszuwählen.";
 "settings.preference.controlStyle" = "Steuerung";
 "settings.controlStyle.footer" = "Bestimmt, wie du den Fortschritt deiner Ziele auf der Heute-Ansicht erfasst.";
 
@@ -865,7 +868,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "Zeit für %@.";
-"notifications.supplement.group.title" = "💊 Zeit für Supplements";
+"notifications.supplement.group.title" = "⏰ Zeit für den Check-in";
 "notifications.supplement.action.done" = "Genommen";
 "notifications.supplement.preset.morning" = "Morgens";
 "notifications.supplement.preset.lunch" = "Mittags";
@@ -877,5 +880,5 @@
 "settings.notifications.times.add" = "Uhrzeit hinzufügen";
 "settings.notifications.times.empty" = "Keine Uhrzeit";
 "settings.notifications.times.footer" = "Eine Erinnerung pro Tag zu jeder Uhrzeit. Die Erinnerungen des Tages enden, wenn du auf Heute Erledigt markierst oder in der Mitteilung auf Genommen tippst.";
-"settings.notifications.group.title" = "Supplements zur gleichen Zeit bündeln";
-"settings.notifications.group.footer" = "Fasst Supplements mit derselben Uhrzeit in einer Erinnerung zusammen. Aus: jedes Supplement hat seine eigene.";
+"settings.notifications.group.title" = "Check-in-Ziele zur gleichen Zeit bündeln";
+"settings.notifications.group.footer" = "Fasst Check-in-Ziele mit derselben Uhrzeit in einer Erinnerung zusammen. Aus: jedes Ziel hat seine eigene.";

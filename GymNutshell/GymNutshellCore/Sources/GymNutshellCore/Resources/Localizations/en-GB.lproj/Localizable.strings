@@ -825,6 +825,9 @@
 "welcome.ready.requested" = "Requested";
 "welcome.ready.denied" = "Denied";
 "welcome.ready.footer" = "You can change all of this anytime in Settings.";
+"welcome.ready.notifications.setup.title" = "What should we remind you of?";
+"welcome.ready.notifications.setup.footer" = "You can change all of this later in Settings › Notifications.";
+"a11y.welcome.ready.notifications.setup.hint" = "Tap to choose your reminders.";
 "settings.preference.controlStyle" = "Controls";
 "settings.controlStyle.footer" = "Sets how you log goal progress on the Today screen.";
 
@@ -855,7 +858,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "Time to take %@.";
-"notifications.supplement.group.title" = "💊 Supplement time";
+"notifications.supplement.group.title" = "⏰ Check-in time";
 "notifications.supplement.action.done" = "Taken";
 "notifications.supplement.preset.morning" = "Morning";
 "notifications.supplement.preset.lunch" = "Lunch";
@@ -867,5 +870,5 @@
 "settings.notifications.times.add" = "Add time";
 "settings.notifications.times.empty" = "No times set";
 "settings.notifications.times.footer" = "One reminder a day at each time. The day's reminders stop when you mark Done on Today or tap Taken on the notification.";
-"settings.notifications.group.title" = "Group supplements at the same time";
-"settings.notifications.group.footer" = "Combines supplements set for the same time into one reminder. When off, each supplement gets its own.";
+"settings.notifications.group.title" = "Group check-in goals at the same time";
+"settings.notifications.group.footer" = "Combines check-in goals set for the same time into one reminder. When off, each goal gets its own.";

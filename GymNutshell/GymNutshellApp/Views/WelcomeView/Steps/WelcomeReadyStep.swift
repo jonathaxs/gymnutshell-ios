@@ -17,10 +17,13 @@ struct WelcomeReadyStep: View {
 
     let accentColor: Color
     var isWide: Bool = false
-
+    /// Creatina incluída nas metas: o balão de notificações mostra o lembrete dela.
+    var includeCreatine: Bool = false
 
     @State private var notificationsState: PermissionCardState = .idle
     @State private var healthState: PermissionCardState = .idle
+    /// Balão com os lembretes de água e Creatina, aberto ao permitir as notificações.
+    @State private var showNotificationsSetup = false
 
     // Chaves que a tela de Ajustes > Apple Saúde já usa.
     @AppStorage("healthkit.syncSleepEnabled") private var syncSleep: Bool = false
@@ -47,8 +50,14 @@ struct WelcomeReadyStep: View {
                         desc: String(localized: "welcome.ready.notifications.desc", bundle: .gymNutshellCore),
                         state: notificationsState,
                         accentColor: accentColor,
-                        action: requestNotifications
+                        action: requestNotifications,
+                        allowedAction: { showNotificationsSetup = true },
+                        allowedHint: String(localized: "a11y.welcome.ready.notifications.setup.hint",
+                                            bundle: .gymNutshellCore)
                     )
+                    .downwardPopover(isPresented: $showNotificationsSetup) {
+                        WelcomeNotificationsPopover(includeCreatine: includeCreatine, accentColor: accentColor)
+                    }
 
                     // Aparelhos sem Apple Saúde (alguns iPads) não mostram a linha.
                     if HealthKitManager.isAvailable {
@@ -93,6 +102,10 @@ struct WelcomeReadyStep: View {
                 notificationsState = granted ? .allowed : .denied
                 if granted { NotificationManager.shared.applyDefaultEnabledKinds() }
             }
+            // Permitiu: abre o balão dos lembretes depois que o alerta do sistema some.
+            guard granted else { return }
+            try? await Task.sleep(for: .milliseconds(400))
+            await MainActor.run { showNotificationsSetup = true }
         }
     }
 

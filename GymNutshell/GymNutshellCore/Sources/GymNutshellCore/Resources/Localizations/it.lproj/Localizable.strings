@@ -853,6 +853,9 @@
 "welcome.ready.requested" = "Richiesto";
 "welcome.ready.denied" = "Rifiutato";
 "welcome.ready.footer" = "Puoi modificare tutto questo in qualsiasi momento nelle Impostazioni.";
+"welcome.ready.notifications.setup.title" = "Cosa ti ricordiamo?";
+"welcome.ready.notifications.setup.footer" = "Puoi cambiare tutto più tardi in Impostazioni › Notifiche.";
+"a11y.welcome.ready.notifications.setup.hint" = "Tocca per scegliere i promemoria.";
 "settings.preference.controlStyle" = "Controlli";
 "settings.controlStyle.footer" = "Definisce la modalità di registrazione dei progressi nella schermata Oggi.";
 
@@ -883,7 +886,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "È ora di prendere %@.";
-"notifications.supplement.group.title" = "💊 Ora degli integratori";
+"notifications.supplement.group.title" = "⏰ Ora del check-in";
 "notifications.supplement.action.done" = "Preso";
 "notifications.supplement.preset.morning" = "Mattina";
 "notifications.supplement.preset.lunch" = "Pranzo";
@@ -895,5 +898,5 @@
 "settings.notifications.times.add" = "Aggiungi orario";
 "settings.notifications.times.empty" = "Nessun orario";
 "settings.notifications.times.footer" = "Un promemoria al giorno per ogni orario. I promemoria del giorno si fermano quando segni Fatto in Oggi o tocchi Preso nella notifica.";
-"settings.notifications.group.title" = "Raggruppa integratori allo stesso orario";
-"settings.notifications.group.footer" = "Unisce in un solo promemoria gli integratori dello stesso orario. Disattivato, ogni integratore ha il suo.";
+"settings.notifications.group.title" = "Raggruppa obiettivi check-in allo stesso orario";
+"settings.notifications.group.footer" = "Unisce in un solo promemoria gli obiettivi check-in dello stesso orario. Disattivato, ogni obiettivo ha il suo.";

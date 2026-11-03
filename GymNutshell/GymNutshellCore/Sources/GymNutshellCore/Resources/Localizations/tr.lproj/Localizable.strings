@@ -835,6 +835,9 @@
 "welcome.ready.requested" = "İstendi";
 "welcome.ready.denied" = "Reddedildi";
 "welcome.ready.footer" = "Tüm bunları istediğin zaman Ayarlar'dan değiştirebilirsin.";
+"welcome.ready.notifications.setup.title" = "Neyi hatırlatalım?";
+"welcome.ready.notifications.setup.footer" = "Bunların hepsini daha sonra Ayarlar › Bildirimler'den değiştirebilirsin.";
+"a11y.welcome.ready.notifications.setup.hint" = "Hatırlatıcıları seçmek için dokun.";
 "settings.preference.controlStyle" = "Denetimler";
 "settings.controlStyle.footer" = "Bugün ekranında hedef ilerlemesini nasıl kaydedeceğini belirler.";
 
@@ -866,7 +869,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@ alma zamanı.";
-"notifications.supplement.group.title" = "💊 Takviye zamanı";
+"notifications.supplement.group.title" = "⏰ Check-in zamanı";
 "notifications.supplement.action.done" = "Aldım";
 "notifications.supplement.preset.morning" = "Sabah";
 "notifications.supplement.preset.lunch" = "Öğle";
@@ -878,5 +881,5 @@
 "settings.notifications.times.add" = "Saat ekle";
 "settings.notifications.times.empty" = "Saat yok";
 "settings.notifications.times.footer" = "Her saatte günde bir hatırlatma. Bugün'de Yapıldı olarak işaretlediğinde veya bildirimde Aldım'a dokunduğunda günün hatırlatmaları durur.";
-"settings.notifications.group.title" = "Aynı saatteki takviyeleri grupla";
-"settings.notifications.group.footer" = "Aynı saatteki takviyeleri tek hatırlatmada birleştirir. Kapalıyken her takviyenin kendi hatırlatması olur.";
+"settings.notifications.group.title" = "Aynı saatteki check-in hedeflerini grupla";
+"settings.notifications.group.footer" = "Aynı saatteki check-in hedeflerini tek hatırlatmada birleştirir. Kapalıyken her hedefin kendi hatırlatması olur.";

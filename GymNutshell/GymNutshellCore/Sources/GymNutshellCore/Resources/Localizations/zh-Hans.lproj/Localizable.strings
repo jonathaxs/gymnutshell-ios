@@ -834,6 +834,9 @@
 "welcome.ready.requested" = "已请求";
 "welcome.ready.denied" = "已拒绝";
 "welcome.ready.footer" = "你之后可随时在“设置”中修改这些选项。";
+"welcome.ready.notifications.setup.title" = "要提醒你什么？";
+"welcome.ready.notifications.setup.footer" = "之后可以在 设置 › 通知 中随时更改。";
+"a11y.welcome.ready.notifications.setup.hint" = "轻点以选择提醒。";
 "settings.preference.controlStyle" = "记录方式";
 "settings.controlStyle.footer" = "设定在“今天”页面中记录目标进度的方式。";
 
@@ -865,7 +868,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "该吃%@了。";
-"notifications.supplement.group.title" = "💊 补剂时间";
+"notifications.supplement.group.title" = "⏰ 打卡时间";
 "notifications.supplement.action.done" = "已服用";
 "notifications.supplement.preset.morning" = "早上";
 "notifications.supplement.preset.lunch" = "午饭";
@@ -877,5 +880,5 @@
 "settings.notifications.times.add" = "添加时间";
 "settings.notifications.times.empty" = "未设置时间";
 "settings.notifications.times.footer" = "每个时间每天提醒一次。在“今天”中标记为完成，或在通知中轻点“已服用”后，当天的提醒会停止。";
-"settings.notifications.group.title" = "合并同一时间的补剂";
-"settings.notifications.group.footer" = "将同一时间的补剂合并为一条提醒。关闭时，每种补剂单独提醒。";
+"settings.notifications.group.title" = "合并同一时间的打卡目标";
+"settings.notifications.group.footer" = "将同一时间的打卡目标合并为一条提醒。关闭时，每个目标单独提醒。";

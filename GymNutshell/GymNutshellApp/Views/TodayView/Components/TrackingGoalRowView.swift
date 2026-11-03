@@ -51,6 +51,10 @@ struct TrackingGoalRowView: View {
 
     @Namespace private var checkInNamespace
 
+    /// Posição da pílula do check-in, guardada aqui pra animar mesmo dentro do balão da grade
+    /// (lá a animação da Hoje não chega). nil = segue o valor gravado.
+    @State private var thumbDone: Bool? = nil
+
     // MARK: - Valores derivados
 
     private var safeGoal: Int { max(goal, 0) }
@@ -209,6 +213,12 @@ struct TrackingGoalRowView: View {
 
     private var isDone: Bool { CategoryKind.isCheckInDone(current: value, goal: safeGoal) }
 
+    /// Onde a pílula está agora (a troca local chega antes do valor gravado).
+    private var shownDone: Bool { thumbDone ?? isDone }
+
+    /// Deslize curto e firme da pílula.
+    private static let checkInAnimation = Animation.spring(response: 0.22, dampingFraction: 0.86)
+
     private var checkInStateText: String {
         String(localized: isDone ? "today.checkin.done" : "today.checkin.pending", bundle: .gymNutshellCore)
     }
@@ -224,10 +234,15 @@ struct TrackingGoalRowView: View {
         .background(Capsule().fill(Color(.tertiarySystemFill)))
         .accessibilityElement(children: .contain)
         .accessibilityLabel(title)
+        // Mudou por fora (ex: "Tomei" na notificação): a pílula acompanha.
+        .onChange(of: isDone) { _, newValue in
+            guard thumbDone != newValue else { return }
+            withAnimation(Self.checkInAnimation) { thumbDone = newValue }
+        }
     }
 
     private func checkInSegment(done: Bool) -> some View {
-        let selected = isDone == done
+        let selected = shownDone == done
         return Button {
             setCheckIn(done)
         } label: {
@@ -262,13 +277,14 @@ struct TrackingGoalRowView: View {
     }
 
     private func setCheckIn(_ done: Bool) {
-        guard done != isDone else { return }
+        guard done != shownDone else { return }
         if done {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         } else {
             UISelectionFeedbackGenerator().selectionChanged()
         }
-        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+        withAnimation(Self.checkInAnimation) {
+            thumbDone = done
             value = CategoryKind.checkInValue(done: done, goal: safeGoal)
         }
     }

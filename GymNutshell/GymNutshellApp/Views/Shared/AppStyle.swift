@@ -341,6 +341,9 @@ struct PermissionCard: View {
     let state: PermissionCardState
     var accentColor: Color = .accentColor
     let action: () -> Void
+    /// Já permitido: tocar no "Permitido" reabre os ajustes dessa permissão (ex: o balão de lembretes).
+    var allowedAction: (() -> Void)? = nil
+    var allowedHint: String? = nil
 
     var body: some View {
         HStack(spacing: 14) {
@@ -362,9 +365,21 @@ struct PermissionCard: View {
                 }
                 .appProminentButton(accentColor, size: .regular)
             case .allowed:
-                Label(String(localized: "welcome.ready.allowed", bundle: .gymNutshellCore), systemImage: "checkmark.circle.fill")
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.green)
+                if let allowedAction {
+                    Button(action: allowedAction) {
+                        HStack(spacing: 4) {
+                            allowedLabel
+                            Image(systemName: "chevron.down")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(.secondary)
+                                .accessibilityHidden(true)
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityHint(allowedHint ?? "")
+                } else {
+                    allowedLabel
+                }
             case .requested:
                 Label(String(localized: "welcome.ready.requested", bundle: .gymNutshellCore), systemImage: "checkmark.circle")
                     .font(.subheadline.weight(.medium))
@@ -377,6 +392,12 @@ struct PermissionCard: View {
         }
         .padding(16)
         .appCard()
+    }
+
+    private var allowedLabel: some View {
+        Label(String(localized: "welcome.ready.allowed", bundle: .gymNutshellCore), systemImage: "checkmark.circle.fill")
+            .font(.subheadline.weight(.medium))
+            .foregroundStyle(.green)
     }
 }
 

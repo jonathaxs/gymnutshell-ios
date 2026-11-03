@@ -251,7 +251,7 @@ struct WelcomeView: View {
                 case .controlStyle:
                     WelcomeControlStyleStep(selection: $controlStyle, accentColor: sexColor, isWide: isWide)
                 case .ready:
-                    WelcomeReadyStep(accentColor: sexColor, isWide: isWide)
+                    WelcomeReadyStep(accentColor: sexColor, isWide: isWide, includeCreatine: includeCreatine)
                 case .theme:
                     WelcomeThemeStep(selectedTheme: $onboardingTheme, sex: sex, accentColor: sexColor, isWide: isWide)
                 }

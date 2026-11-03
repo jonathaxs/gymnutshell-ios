@@ -835,6 +835,9 @@
 "welcome.ready.requested" = "リクエスト済み";
 "welcome.ready.denied" = "拒否";
 "welcome.ready.footer" = "これらの設定は「設定」でいつでも変更できます。";
+"welcome.ready.notifications.setup.title" = "何をお知らせしますか？";
+"welcome.ready.notifications.setup.footer" = "あとで 設定 › 通知 からいつでも変更できます。";
+"a11y.welcome.ready.notifications.setup.hint" = "タップしてリマインダーを選びます。";
 "settings.preference.controlStyle" = "操作方法";
 "settings.controlStyle.footer" = "「今日」画面で目標の進捗を記録する方法を設定します。";
 
@@ -866,7 +869,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@を飲む時間です。";
-"notifications.supplement.group.title" = "💊 サプリの時間";
+"notifications.supplement.group.title" = "⏰ チェックインの時間";
 "notifications.supplement.action.done" = "飲んだ";
 "notifications.supplement.preset.morning" = "朝";
 "notifications.supplement.preset.lunch" = "昼";
@@ -878,5 +881,5 @@
 "settings.notifications.times.add" = "時刻を追加";
 "settings.notifications.times.empty" = "時刻なし";
 "settings.notifications.times.footer" = "各時刻に1日1回通知します。「今日」で完了にするか、通知の「飲んだ」をタップすると、その日の通知は止まります。";
-"settings.notifications.group.title" = "同じ時刻のサプリをまとめる";
-"settings.notifications.group.footer" = "同じ時刻のサプリを1つの通知にまとめます。オフの場合はサプリごとに通知します。";
+"settings.notifications.group.title" = "同じ時刻のチェックイン目標をまとめる";
+"settings.notifications.group.footer" = "同じ時刻のチェックイン目標を1つの通知にまとめます。オフの場合は目標ごとに通知します。";

@@ -835,6 +835,9 @@
 "welcome.ready.requested" = "요청됨";
 "welcome.ready.denied" = "거부됨";
 "welcome.ready.footer" = "이 설정은 언제든 설정에서 변경할 수 있어요.";
+"welcome.ready.notifications.setup.title" = "무엇을 알려 드릴까요?";
+"welcome.ready.notifications.setup.footer" = "나중에 설정 › 알림에서 언제든 바꿀 수 있어요.";
+"a11y.welcome.ready.notifications.setup.hint" = "탭하여 알림을 선택하세요.";
 "settings.preference.controlStyle" = "입력 방식";
 "settings.controlStyle.footer" = "오늘 화면에서 목표 진행 상황을 기록하는 방식이에요.";
 
@@ -866,7 +869,7 @@
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@ 먹을 시간이에요.";
-"notifications.supplement.group.title" = "💊 보충제 시간";
+"notifications.supplement.group.title" = "⏰ 체크인 시간";
 "notifications.supplement.action.done" = "먹었어요";
 "notifications.supplement.preset.morning" = "아침";
 "notifications.supplement.preset.lunch" = "점심";
@@ -878,5 +881,5 @@
 "settings.notifications.times.add" = "시간 추가";
 "settings.notifications.times.empty" = "시간 없음";
 "settings.notifications.times.footer" = "각 시간마다 하루에 한 번 알려요. 오늘에서 완료로 표시하거나 알림에서 먹었어요를 누르면 그날 알림이 멈춰요.";
-"settings.notifications.group.title" = "같은 시간 보충제 묶기";
-"settings.notifications.group.footer" = "같은 시간의 보충제를 알림 하나로 묶어요. 끄면 보충제마다 따로 알려요.";
+"settings.notifications.group.title" = "같은 시간 체크인 목표 묶기";
+"settings.notifications.group.footer" = "같은 시간의 체크인 목표를 알림 하나로 묶어요. 끄면 목표마다 따로 알려요.";
