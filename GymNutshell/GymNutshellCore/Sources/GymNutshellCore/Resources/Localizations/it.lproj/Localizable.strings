@@ -27,9 +27,9 @@
 "daily.achievement.dog.level2" = "Cane Fitness";
 "daily.achievement.dog.level3" = "Cagnolone";
 "daily.achievement.dog.level3.fem" = "Cagnolona";
-"daily.achievement.dog.level4" = "Lupo";
-"daily.achievement.dog.level4.fem" = "Lupa";
-"daily.achievement.dog.level5" = "Cane Caramello";
+"daily.achievement.dog.level5" = "Lupo";
+"daily.achievement.dog.level5.fem" = "Lupa";
+"daily.achievement.dog.level4" = "Cane Caramello";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "Orsetto";

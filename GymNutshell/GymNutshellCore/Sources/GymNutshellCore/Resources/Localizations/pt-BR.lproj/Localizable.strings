@@ -27,15 +27,15 @@
 "daily.achievement.dog.level1" = "Cachorrinho";
 "daily.achievement.dog.level2" = "Cachorro Fitness";
 "daily.achievement.dog.level3" = "Cachorrão";
-"daily.achievement.dog.level4" = "Lobo";
+"daily.achievement.dog.level5" = "Lobo";
 
 /* AppTheme.swift, Dog theme tier names, feminino */
 "daily.achievement.dog.level1.fem" = "Cachorrinha";
 "daily.achievement.dog.level2.fem" = "Cachorra Fitness";
 "daily.achievement.dog.level3.fem" = "Cachorrona";
-"daily.achievement.dog.level4.fem" = "Loba";
-"daily.achievement.dog.level5" = "Cachorro Caramelo";
-"daily.achievement.dog.level5.fem" = "Cachorra Caramelo";
+"daily.achievement.dog.level5.fem" = "Loba";
+"daily.achievement.dog.level4" = "Cachorro Caramelo";
+"daily.achievement.dog.level4.fem" = "Cachorra Caramelo";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "Ursinho";
@@ -90,13 +90,13 @@
 "daily.achievement.horse.level1" = "Cavalinho";
 "daily.achievement.horse.level2" = "Unicórnio";
 "daily.achievement.horse.level3" = "Cavalo Fitness";
-"daily.achievement.horse.level4" = "Cavaludo";
+"daily.achievement.horse.level4" = "Cavalão";
 
 /* AppTheme.swift, Horse theme tier names, feminino */
 "daily.achievement.horse.level1.fem" = "Éguinha pocotó";
 "daily.achievement.horse.level2.fem" = "Unicórnia";
 "daily.achievement.horse.level3.fem" = "Cavala Fitness";
-"daily.achievement.horse.level4.fem" = "Cavaluda";
+"daily.achievement.horse.level4.fem" = "Cavalona";
 "daily.achievement.horse.level5" = "Puro-sangue";
 
 /* AppTheme.swift, Primata theme tier names (enum case ainda é `.monkey` por compatibilidade) */
@@ -475,7 +475,7 @@
 "daily.achievement.gym.level4" = "Musculoso";
 "daily.achievement.gym.level4.fem" = "Musculosa";
 "daily.achievement.gym.level5" = "Monstro";
-"daily.achievement.gym.level5.fem" = "Monstra";
+"daily.achievement.gym.level5.fem" = "Monstruosa";
 
 /* AppTheme, Fire */
 "app.theme.fire" = "Fogo";
@@ -889,7 +889,7 @@
 "today.edit.goals" = "Editar metas";
 "today.edit.controls" = "Editar controles";
 "today.edit.theme" = "Editar emoji";
-"today.edit.colors" = "Editar cores de destaque";
+"today.edit.colors" = "Editar cor de destaque";
 "today.edit.quick" = "Edição rápida";
 
 "welcome.step.units.title" = "Suas medidas";

@@ -22,8 +22,8 @@
 "daily.achievement.dog.level1" = "Minik Köpek";
 "daily.achievement.dog.level2" = "Fit Köpek";
 "daily.achievement.dog.level3" = "Snoop Dog";
-"daily.achievement.dog.level4" = "Kurt";
-"daily.achievement.dog.level5" = "Karamel Köpek";
+"daily.achievement.dog.level5" = "Kurt";
+"daily.achievement.dog.level4" = "Karamel Köpek";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "Ayı Yavrusu";
@@ -848,7 +848,7 @@
 "today.edit.goals" = "Hedefleri düzenle";
 "today.edit.controls" = "Denetimleri düzenle";
 "today.edit.theme" = "Emojiyi düzenle";
-"today.edit.colors" = "Vurgu renklerini düzenle";
+"today.edit.colors" = "Vurgu rengini düzenle";
 "today.edit.quick" = "Hızlı düzenleme";
 
 "welcome.step.units.title" = "Ölçü birimlerin";

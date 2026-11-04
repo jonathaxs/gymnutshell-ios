@@ -22,9 +22,9 @@
 "daily.achievement.dog.level1" = "Hündchen";
 "daily.achievement.dog.level2" = "Fitness-Hund";
 "daily.achievement.dog.level3" = "Snoop Dog";
-"daily.achievement.dog.level4" = "Wolf";
-"daily.achievement.dog.level4.fem" = "Wölfin";
-"daily.achievement.dog.level5" = "Karamell-Hund";
+"daily.achievement.dog.level5" = "Wolf";
+"daily.achievement.dog.level5.fem" = "Wölfin";
+"daily.achievement.dog.level4" = "Karamell-Hund";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "Bärchen";
@@ -848,7 +848,7 @@
 "today.edit.goals" = "Ziele bearbeiten";
 "today.edit.controls" = "Steuerung bearbeiten";
 "today.edit.theme" = "Emoji bearbeiten";
-"today.edit.colors" = "Akzentfarben bearbeiten";
+"today.edit.colors" = "Akzentfarbe bearbeiten";
 "today.edit.quick" = "Schnell bearbeiten";
 
 "welcome.step.units.title" = "Deine Einheiten";

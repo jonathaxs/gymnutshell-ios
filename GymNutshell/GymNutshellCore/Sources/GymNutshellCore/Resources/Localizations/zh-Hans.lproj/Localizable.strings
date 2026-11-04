@@ -22,8 +22,8 @@
 "daily.achievement.dog.level1" = "小奶狗";
 "daily.achievement.dog.level2" = "健身汪";
 "daily.achievement.dog.level3" = "酷狗大佬";
-"daily.achievement.dog.level4" = "狼王";
-"daily.achievement.dog.level5" = "大黄狗";
+"daily.achievement.dog.level5" = "狼王";
+"daily.achievement.dog.level4" = "大黄狗";
 
 /* AppTheme.swift, 巨熊主题等级名称 */
 "daily.achievement.bear.level1" = "小熊仔";

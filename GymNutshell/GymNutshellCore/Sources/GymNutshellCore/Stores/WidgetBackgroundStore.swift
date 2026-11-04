@@ -24,13 +24,13 @@ public enum WidgetBackgroundStore {
     public static let storageKey = "widget.background.v1"
     public static let modeKey = "widget.background.mode"
 
-    /// Lê o modo de fundo selecionado pelo usuário. Default é `.accent` ,
-    /// novos usuários veem os widgets já com a cor de destaque do app.
+    /// Lê o modo de fundo selecionado pelo usuário. Default é `.system`:
+    /// novos usuários veem os widgets com o fundo padrão do iOS.
     public static func loadMode() -> WidgetBackgroundMode {
         guard let defaults = UserDefaults(suiteName: appGroupID),
               let raw = defaults.string(forKey: modeKey),
               let mode = WidgetBackgroundMode(rawValue: raw) else {
-            return .accent
+            return .system
         }
         return mode
     }

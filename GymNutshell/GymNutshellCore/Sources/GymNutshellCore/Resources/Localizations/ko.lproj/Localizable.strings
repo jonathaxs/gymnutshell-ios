@@ -22,8 +22,8 @@
 "daily.achievement.dog.level1" = "아기 강아지";
 "daily.achievement.dog.level2" = "헬스 댕댕이";
 "daily.achievement.dog.level3" = "스눕독";
-"daily.achievement.dog.level4" = "늑대";
-"daily.achievement.dog.level5" = "시골 누렁이";
+"daily.achievement.dog.level5" = "늑대";
+"daily.achievement.dog.level4" = "시골 누렁이";
 
 /* AppTheme.swift, Bear theme tier names */
 "daily.achievement.bear.level1" = "아기 곰";
