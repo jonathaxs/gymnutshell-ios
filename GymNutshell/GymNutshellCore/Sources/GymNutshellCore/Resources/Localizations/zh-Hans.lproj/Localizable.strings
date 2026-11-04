@@ -171,7 +171,7 @@
 "category.kind.standard.footer" = "用滑块或 − / + 按钮逐步记录。";
 "category.kind.restDay.footer" = "带有标记休息日的开/关按钮。";
 "category.kind.checkIn.footer" = "每个目标每天打卡一次：待完成 或 已完成。";
-"settings.addgoal.category.kind.footer" = "此类别为“%1$@”类型。%2$@";
+"settings.addgoal.category.kind.footer" = "此分类属于“%1$@”类型。%2$@";
 "settings.goals.addToCategory" = "添加目标";
 "settings.addgoal.section.dose" = "剂量";
 "settings.addgoal.dose.footer" = "标记为已完成后，当天目标即以此用量完成。";
@@ -266,7 +266,7 @@
 "appleWatch.sheet.step3" = "轻点 Nutshell 旁边的“安装”";
 "appleWatch.sheet.note" = "如果 App 已安装，它会显示在顶部的“已在 Apple Watch 上安装”部分。";
 "settings.preference.language" = "语言";
-"settings.preference.measurementSystem" = "度量衡单位";
+"settings.preference.measurementSystem" = "度量单位";
 "settings.preference.measurementSystem.metric" = "公制 (ml)";
 "settings.preference.measurementSystem.us" = "英制 (fl oz)";
 "settings.measurementSystem.footer" = "App 中水量的显示和记录方式。";
@@ -520,7 +520,7 @@
 "settings.about.progressRing" = "进度环";
 
 /* TierInfoView.swift */
-"tier.info.intro"             = "你的成就将在每天午夜结束时记录。";
+"tier.info.intro"             = "你的成就将在每天结束时（午夜）记录。";
 "tier.info.section.levels"    = "等级";
 "tier.info.change.theme"      = "更换表情";
 "tier.info.range.suffix"      = " 进度";
@@ -748,7 +748,7 @@
 
 /* 目标设置，纯图标按钮 */
 "a11y.button.add.goal.label"     = "添加";
-"a11y.button.add.goal.hint" = "轻点以创建目标或类别。";
+"a11y.button.add.goal.hint" = "轻点以创建目标或分类。";
 "a11y.button.remove.goal.label"  = "移除目标";
 "a11y.button.restore.goal.label" = "恢复目标";
 
@@ -873,7 +873,7 @@
 "notifications.supplement.group.title" = "打卡时间";
 "notifications.supplement.action.done" = "已服用";
 "notifications.supplement.preset.morning" = "早上";
-"notifications.supplement.preset.lunch" = "午饭";
+"notifications.supplement.preset.lunch" = "中午";
 "notifications.supplement.preset.afternoon" = "傍晚";
 "notifications.supplement.preset.night" = "晚上";
 "notifications.supplement.preset.bedtime" = "睡前";

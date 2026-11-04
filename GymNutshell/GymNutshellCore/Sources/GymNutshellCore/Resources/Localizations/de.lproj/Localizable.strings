@@ -120,7 +120,7 @@
 /* ProgressOverView.swift */
 "statistics.title" = "Aufzeichnungen";
 "statistics.section.tiers" = "Stufenübersicht";
-"statistics.section.activity" = "Training-Aktivität";
+"statistics.section.activity" = "Trainingsaktivität";
 "statistics.section.goals" = "Ziele";
 "statistics.activity.workout" = "Krafttrainingstage";
 "statistics.activity.cardio" = "Cardio-Tage";
@@ -174,7 +174,7 @@
 "settings.goals.addToCategory" = "Ziel hinzufügen";
 "settings.addgoal.section.dose" = "Dosis";
 "settings.addgoal.dose.footer" = "Mit „Erledigt“ ist das Tagesziel mit dieser Menge erreicht.";
-"settings.goals.custom.badge" = "Eigen";
+"settings.goals.custom.badge" = "Individuell";
 "settings.goals.categories.title" = "Kategorien";
 
 /* BackupSettingsView.swift */
@@ -244,7 +244,7 @@
 "settings.theme.title" = "Emoji";
 "settings.section.preferences" = "Erscheinungsbild";
 "settings.section.system" = "System";
-"settings.section.about" = "Über";
+"settings.section.about" = "Info";
 
 /* GymNutshellApp.swift, DataStoreErrorView */
 "app.error.dataStore.title" = "Etwas ist schiefgelaufen";
@@ -336,7 +336,7 @@
 "today.metric.fiber" = "Ballaststoffe";
 
 /* TodayHeroView.swift, next level phrase */
-"today.max.level" = "Höchstes Level heute erreicht!";
+"today.max.level" = "Höchste Stufe heute erreicht!";
 
 /* DailyTierView.swift */
 /* Tier button label combines the "Today's achievement" header phrase with the
@@ -672,7 +672,7 @@
 "a11y.goalrow.value.format"    = "%1$d von %2$d %3$@ erreicht";
 "a11y.goalrow.value.restday"   = "im Ruhetagsmodus, Ziel erreicht";
 "a11y.goalrow.a11y.label"      = "Ziel %@";
-"a11y.slider.label.format"     = "%@ Schieberegler";
+"a11y.slider.label.format"     = "Schieberegler %@";
 
 /* Generic "open details" hint reused across ring/tier */
 "a11y.hint.more.info"          = "Tippen für weitere Informationen.";
@@ -880,9 +880,9 @@
 "settings.notifications.times.header" = "Erinnerungen";
 "settings.notifications.times.row" = "Uhrzeit";
 "settings.notifications.times.add" = "Uhrzeit hinzufügen";
-"settings.notifications.times.empty" = "Keine Uhrzeit";
-"settings.notifications.times.footer" = "Eine Erinnerung pro Tag zu jeder Uhrzeit. Die Erinnerungen des Tages enden, wenn du auf Heute Erledigt markierst oder in der Mitteilung auf Genommen tippst.";
+"settings.notifications.times.empty" = "Keine Zeiten festgelegt";
+"settings.notifications.times.footer" = "Eine Erinnerung pro Tag zu jeder Uhrzeit. Die Erinnerungen des Tages enden, wenn du in der Heute-Ansicht „Erledigt“ markierst oder in der Mitteilung auf „Genommen“ tippst.";
 "settings.notifications.group.title" = "Check-in-Ziele zur gleichen Zeit bündeln";
-"settings.notifications.group.footer" = "Fasst Check-in-Ziele mit derselben Uhrzeit in einer Erinnerung zusammen. Aus: jedes Ziel hat seine eigene.";
+"settings.notifications.group.footer" = "Fasst Check-in-Ziele mit derselben Uhrzeit in einer Erinnerung zusammen. Wenn deaktiviert, erhält jedes Ziel eine eigene Erinnerung.";
 "settings.notifications.emoji.title" = "Emojis in Mitteilungen";
 "settings.notifications.emoji.footer" = "Zeigt das Emoji jedes Ziels und des Tageserfolgs im Text der Mitteilungen.";

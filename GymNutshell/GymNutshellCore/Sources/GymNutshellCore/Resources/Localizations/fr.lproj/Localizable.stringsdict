@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>zero</key>
-			<string>%d jours</string>
+			<string>%d jour</string>
 			<key>one</key>
 			<string>%d jour</string>
 			<key>other</key>
@@ -31,7 +31,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>zero</key>
-			<string>%d actifs</string>
+			<string>%d actif</string>
 			<key>one</key>
 			<string>%d actif</string>
 			<key>other</key>
@@ -49,7 +49,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>zero</key>
-			<string>%2$d objectifs atteints</string>
+			<string>%2$d objectif atteint</string>
 			<key>one</key>
 			<string>%2$d objectif atteint</string>
 			<key>other</key>
@@ -67,7 +67,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>zero</key>
-			<string>%2$d terminés</string>
+			<string>%2$d terminé</string>
 			<key>one</key>
 			<string>%2$d terminé</string>
 			<key>other</key>
@@ -85,7 +85,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>zero</key>
-			<string>%2$d jours</string>
+			<string>%2$d jour</string>
 			<key>one</key>
 			<string>%2$d jour</string>
 			<key>other</key>
@@ -103,7 +103,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>zero</key>
-			<string>%2$d jours</string>
+			<string>%2$d jour</string>
 			<key>one</key>
 			<string>%2$d jour</string>
 			<key>other</key>
@@ -121,7 +121,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>zero</key>
-			<string>%2$d jours avec succès sur 7.</string>
+			<string>%2$d jour avec succès sur 7.</string>
 			<key>one</key>
 			<string>%2$d jour avec succès sur 7.</string>
 			<key>other</key>

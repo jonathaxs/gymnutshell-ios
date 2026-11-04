@@ -137,7 +137,7 @@
 "settings.about.title" = "About the App";
 "settings.about.version" = "Version";
 "settings.about.feedback" = "Send Feedback";
-"settings.about.description" = "Gym Nutshell is your gym daily goals in a nutshell.\n\nSet goals, track them, and watch consistency turn into results.";
+"settings.about.description" = "Gym Nutshell is your daily gym goals in a nutshell.\n\nSet goals, track them, and watch consistency turn into results.";
 
 /* AddTrackingGoalView.swift */
 "settings.addgoal.title.new" = "New goal";
@@ -164,7 +164,7 @@
 "settings.addgoal.category.new.name.placeholder" = "example: Stretching";
 "settings.category.kind" = "Type";
 "category.kind.standard" = "Standard";
-"category.kind.restDay" = "With day off";
+"category.kind.restDay" = "Rest day";
 "category.kind.checkIn" = "Check-in";
 "category.kind.standard.footer" = "Log goals bit by bit with the slider or the − / + buttons.";
 "category.kind.restDay.footer" = "With an ON/OFF button to mark a day off.";
@@ -296,7 +296,7 @@
 "settings.goal.water" = "Water";
 "settings.goal.protein" = "Protein";
 "settings.goal.carbs" = "Carbohydrates";
-"settings.goal.fats" = "Good Fat";
+"settings.goal.fats" = "Good Fats";
 "settings.goal.fiber" = "Fibre";
 "settings.goal.sleep" = "Sleep";
 
@@ -313,14 +313,14 @@
 "goal.category.essencial" = "Essential";
 "goal.category.nutricao" = "Nutrition";
 "goal.category.treino" = "Training";
-"goal.category.suplemento" = "Supplement";
+"goal.category.suplemento" = "Supplements";
 
 /* TodayView.swift */
 "today.goals.workout" = "Weight Training";
 "today.goals.cardio" = "Cardio";
 "today.goals.creatine" = "Creatine";
 "today.category.other" = "Other";
-"today.restday.label" = "Day off";
+"today.restday.label" = "Rest day";
 "today.checkin.pending" = "Pending";
 "today.checkin.done" = "Done";
 "a11y.checkin.hint.markDone" = "Tap to mark as done.";
@@ -329,10 +329,10 @@
 "today.restday.off" = "OFF";
 "today.metric.sleep" = "Sleep";
 "today.metric.water" = "Water";
-"today.metric.protein" = "Proteins";
+"today.metric.protein" = "Protein";
 "today.metric.carbs" = "Carbs";
-"today.metric.fats" = "Good Fat";
-"today.metric.fiber" = "Fibres";
+"today.metric.fats" = "Good Fats";
+"today.metric.fiber" = "Fibre";
 
 /* TodayHeroView.swift, next level phrase */
 "today.max.level" = "Maximum level reached today!";
@@ -360,7 +360,7 @@
 
 /* WelcomeFitnessGoalStep.swift */
 "welcome.step.goal.title" = "Your goal";
-"welcome.step.goal.info.editable" = "You can change later it in app settings.";
+"welcome.step.goal.info.editable" = "You can change it later in app settings.";
 
 /* WelcomeThemeStep.swift */
 "welcome.step.theme.title" = "Emoji";
@@ -844,7 +844,7 @@
 "welcome.step.units.title" = "Your units";
 "welcome.step.units.subtitle" = "How do you prefer to measure water?";
 "welcome.step.units.note" = "You can change this later in Settings.";
-"welcome.units.metric.desc" = "Milliliters, like 250 ml per glass.";
+"welcome.units.metric.desc" = "Millilitres, like 250 ml per glass.";
 "welcome.units.imperial.desc" = "Fluid ounces, like %d fl oz per glass.";
 
 "today.goals.viewMode.list" = "List";

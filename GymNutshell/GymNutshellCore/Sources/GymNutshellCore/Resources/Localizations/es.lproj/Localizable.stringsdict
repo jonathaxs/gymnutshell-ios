@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%2$d completada</string>
+			<string>%2$d meta completada</string>
 			<key>other</key>
-			<string>%2$d completadas</string>
+			<string>%2$d metas completadas</string>
 		</dict>
 	</dict>
 	<key>a11y.stats.tier.row.format</key>
@@ -111,7 +111,7 @@
 			<key>one</key>
 			<string>%2$d día con logro de 7.</string>
 			<key>other</key>
-			<string>%2$d días con logros de 7.</string>
+			<string>%2$d días con logro de 7.</string>
 		</dict>
 	</dict>
 </dict>

@@ -138,7 +138,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Registres";
+"statistics.title" = "Historique";
 "statistics.section.tiers" = "Succès par niveau";
 "statistics.section.activity" = "Activité d'entraînement";
 "statistics.section.goals" = "Objectifs";
@@ -187,13 +187,13 @@
 "category.kind.standard" = "Standard";
 "category.kind.restDay" = "Avec repos";
 "category.kind.checkIn" = "Check-in";
-"category.kind.standard.footer" = "Enregistrez les objectifs petit à petit avec le curseur ou les boutons − / +.";
+"category.kind.standard.footer" = "Enregistre les objectifs petit à petit avec le curseur ou les boutons − / +.";
 "category.kind.restDay.footer" = "Avec un bouton ON/OFF pour marquer un jour de repos.";
 "category.kind.checkIn.footer" = "Chaque objectif se coche une fois par jour : En attente ou Fait.";
 "settings.addgoal.category.kind.footer" = "Cette catégorie est du type « %1$@ ». %2$@";
 "settings.goals.addToCategory" = "Ajouter un objectif";
 "settings.addgoal.section.dose" = "Dose";
-"settings.addgoal.dose.footer" = "En marquant Fait, l'objectif du jour est atteint avec cette quantité.";
+"settings.addgoal.dose.footer" = "En choisissant « Fait », l'objectif du jour est atteint avec cette quantité.";
 "settings.goals.custom.badge" = "Personnalisé";
 "settings.goals.categories.title" = "Catégories";
 
@@ -419,7 +419,7 @@
 "healthkit.activity.swimming" = "Natation";
 "healthkit.activity.elliptical" = "Elliptique";
 "healthkit.activity.rowing" = "Rameur";
-"healthkit.activity.stairClimbing" = "Monte-escalier";
+"healthkit.activity.stairClimbing" = "Montée d'escaliers";
 "healthkit.activity.hiking" = "Randonnée";
 "healthkit.activity.jumpRope" = "Corde à sauter";
 "healthkit.activity.dance" = "Danse";
@@ -560,7 +560,7 @@
 "ring.info.intro"             = "L'anneau indique le pourcentage moyen de tes objectifs atteints. Chaque segment coloré vaut 20 %.";
 "ring.info.section.colors"    = "Segments de l'anneau";
 "ring.info.color.red"         = "Démarrage";
-"ring.info.color.orange"      = "En route";
+"ring.info.color.orange"      = "En bonne voie";
 "ring.info.color.green"       = "Très bien";
 "ring.info.color.cyan"        = "Presque atteint";
 "ring.info.color.purple"      = "Dernière ligne droite";
@@ -614,7 +614,7 @@
 
 "notifications.kind.achievement.title"      = "Succès du jour";
 "notifications.kind.achievement.description" = "Notifie, à minuit, le succès débloqué dans la journée.";
-"notifications.kind.achievement.body"       = "Tu as terminé la journée en %@ !";
+"notifications.kind.achievement.body"       = "Tu as terminé la journée en tant que %@ !";
 
 "notifications.kind.appleHealth.title"      = "Apple Santé";
 "notifications.kind.appleHealth.description" = "Confirme les données synchronisées avec Apple Santé.";
@@ -774,7 +774,7 @@
 
 /* Tracking goals settings, image-only buttons */
 "a11y.button.add.goal.label"     = "Ajouter";
-"a11y.button.add.goal.hint" = "Touchez pour créer un objectif ou une catégorie.";
+"a11y.button.add.goal.hint" = "Touche pour créer un objectif ou une catégorie.";
 "a11y.button.remove.goal.label"  = "Supprimer l'objectif";
 "a11y.button.restore.goal.label" = "Restaurer l'objectif";
 
@@ -843,7 +843,7 @@
 "a11y.welcome.goal.increase.format" = "Augmenter %@";
 
 "welcome.step.control.title" = "Commandes";
-"welcome.step.control.subtitle" = "Comment préfères-tu valider tes objectifs au quotidien ?";
+"welcome.step.control.subtitle" = "Comment préfères-tu renseigner tes objectifs au quotidien ?";
 "welcome.control.slider" = "Glisser";
 "welcome.control.slider.desc" = "Fais glisser le curseur jusqu'à la valeur souhaitée.";
 "welcome.control.stepper" = "Boutons";
@@ -859,9 +859,9 @@
 "welcome.ready.requested" = "Demandé";
 "welcome.ready.denied" = "Refusé";
 "welcome.ready.footer" = "Tu peux modifier tout cela à tout moment dans Réglages.";
-"welcome.ready.notifications.setup.title" = "Que faut-il vous rappeler ?";
-"welcome.ready.notifications.setup.footer" = "Vous pourrez tout changer plus tard dans Réglages › Notifications.";
-"a11y.welcome.ready.notifications.setup.hint" = "Touchez pour choisir vos rappels.";
+"welcome.ready.notifications.setup.title" = "Quels rappels veux-tu activer ?";
+"welcome.ready.notifications.setup.footer" = "Tu pourras tout modifier plus tard dans Réglages › Notifications.";
+"a11y.welcome.ready.notifications.setup.hint" = "Touche pour choisir tes rappels.";
 "settings.preference.controlStyle" = "Commandes";
 "settings.controlStyle.footer" = "Définit comment tu indiques la progression de tes objectifs sur l'écran Aujourd'hui.";
 
@@ -903,7 +903,7 @@
 "settings.notifications.times.row" = "Heure";
 "settings.notifications.times.add" = "Ajouter une heure";
 "settings.notifications.times.empty" = "Aucune heure";
-"settings.notifications.times.footer" = "Un rappel par jour à chaque heure. Les rappels du jour s'arrêtent quand vous marquez Fait sur Aujourd'hui ou touchez Pris dans la notification.";
+"settings.notifications.times.footer" = "Un rappel par jour à chaque heure. Les rappels du jour s'arrêtent quand tu marques Fait sur Aujourd'hui ou touches Pris dans la notification.";
 "settings.notifications.group.title" = "Regrouper les objectifs check-in à la même heure";
 "settings.notifications.group.footer" = "Réunit en un seul rappel les objectifs check-in prévus à la même heure. Désactivé, chaque objectif a son rappel.";
 "settings.notifications.emoji.title" = "Emojis dans les notifications";

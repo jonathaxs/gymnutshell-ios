@@ -135,7 +135,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Registri";
+"statistics.title" = "Storico";
 "statistics.section.tiers" = "Traguardi per livello";
 "statistics.section.activity" = "Attività in palestra";
 "statistics.section.goals" = "Obiettivi";
@@ -331,7 +331,7 @@
 "goal.category.essencial" = "Essenziale";
 "goal.category.nutricao" = "Nutrizione";
 "goal.category.treino" = "Allenamento";
-"goal.category.suplemento" = "Integratore";
+"goal.category.suplemento" = "Integratori";
 
 /* TodayView.swift */
 "today.goals.workout" = "Allenamento pesi";
@@ -538,7 +538,7 @@
 "color.pink"   = "Rosa";
 
 /* ColorSettingsView.swift */
-"settings.color.title"    = "Colore in risalto";
+"settings.color.title"    = "Colore di risalto";
 "settings.color.subtitle" = "Colore principale usato in tutta l'app";
 "settings.color.preview" = "Anteprima";
 
@@ -599,7 +599,7 @@
 "settings.notifications.sound.label"       = "Suono di notifica";
 "settings.notifications.sound.footer"      = "L'opzione Di default riproduce il tono scelto in Impostazioni iOS → Notifiche → Gym Nutshell → Suoni (Tri-tono, Nota, Accordo, ecc.). Silenzioso disattiva l'audio solo per quest'app.";
 "settings.notifications.sound.openSystem"  = "Scegli il tono nelle Impostazioni iOS";
-"notifications.sound.default"              = "Di default";
+"notifications.sound.default"              = "Predefinito";
 "notifications.sound.silent"               = "Silenzioso";
 
 /* NotificationKind, title / description on list + body of notification + footer */
@@ -629,7 +629,7 @@
 
 "notifications.kind.water.title"            = "Acqua";
 "notifications.kind.water.description"      = "Promemoria per bere un bicchiere d'acqua fino al raggiungimento dell'obiettivo giornaliero.";
-"notifications.kind.water.body"             = "Tempo per un bicchiere d'acqua? Continua ad avvicinarti al tuo obiettivo.";
+"notifications.kind.water.body"             = "È ora di bere un bicchiere d'acqua? Continua ad avvicinarti al tuo obiettivo.";
 "notifications.kind.water.footer"           = "Ogni X minuti l'app ti ricorda di bere acqua. I promemoria si interrompono una volta raggiunto l'obiettivo giornaliero.";
 
 "notifications.kind.protein.title"          = "Proteine";
@@ -866,7 +866,7 @@
 "today.edit.goals" = "Modifica obiettivi";
 "today.edit.controls" = "Modifica controlli";
 "today.edit.theme" = "Modifica emoji";
-"today.edit.colors" = "Modifica colori in risalto";
+"today.edit.colors" = "Modifica colore di risalto";
 "today.edit.quick" = "Modifica rapida";
 
 "welcome.step.units.title" = "Le tue unità";

@@ -29,7 +29,7 @@
 "daily.achievement.bear.level1" = "子グマ";
 "daily.achievement.bear.level2" = "ヒグマ";
 "daily.achievement.bear.level3" = "ホッキョクグマ";
-"daily.achievement.bear.level4" = "強豪バイソン";
+"daily.achievement.bear.level4" = "屈強なバイソン";
 "daily.achievement.bear.level5" = "マンモス";
 
 /* AppTheme.swift, Dino theme tier names */
@@ -171,7 +171,7 @@
 "category.kind.standard.footer" = "スライダーまたは − / + ボタンで少しずつ記録します。";
 "category.kind.restDay.footer" = "休息日を記録する ON/OFF ボタン付き。";
 "category.kind.checkIn.footer" = "各目標は1日1回チェック：未完了 または 完了。";
-"settings.addgoal.category.kind.footer" = "このカテゴリは「%1$@」タイプです。%2$@";
+"settings.addgoal.category.kind.footer" = "このカテゴリーは「%1$@」タイプです。%2$@";
 "settings.goals.addToCategory" = "目標を追加";
 "settings.addgoal.section.dose" = "用量";
 "settings.addgoal.dose.footer" = "完了にすると、この量でその日の目標が達成されます。";
@@ -434,7 +434,7 @@
 "daily.achievement.gym.level1" = "ヒヨコ";
 "daily.achievement.gym.level1.fem" = "ヒヨコ";
 "daily.achievement.gym.level2" = "筋トレ見習い";
-"daily.achievement.gym.level3" = "ジム通い";
+"daily.achievement.gym.level3" = "ジムの常連";
 "daily.achievement.gym.level4" = "マッチョ";
 "daily.achievement.gym.level5" = "ビースト";
 
@@ -567,7 +567,7 @@
 /* NotificationIntervalEditView */
 "settings.notifications.interval.header"   = "通知の間隔";
 "settings.notifications.interval.stepper"  = "間隔";
-"settings.notifications.interval.value"    = "%d min";
+"settings.notifications.interval.value"    = "%d分";
 
 /* NotificationIntervalEditView, sound picker */
 "settings.notifications.sound.header"      = "サウンド";
@@ -589,9 +589,9 @@
 
 "notifications.kind.appleHealth.title"      = "ヘルスケア";
 "notifications.kind.appleHealth.description" = "ヘルスケアと同期された記録を確認します。";
-"notifications.kind.appleHealth.body.cardio" = "%d minの有酸素運動（%@）を記録しました。";
-"notifications.kind.appleHealth.body.workout" = "%d minの筋トレ（%@）を記録しました。";
-"notifications.kind.appleHealth.body.sleep" = "ヘルスケアに睡眠 %d h を記録しました。";
+"notifications.kind.appleHealth.body.cardio" = "%d分の有酸素運動（%@）を記録しました。";
+"notifications.kind.appleHealth.body.workout" = "%d分の筋トレ（%@）を記録しました。";
+"notifications.kind.appleHealth.body.sleep" = "ヘルスケアに睡眠 %d時間を記録しました。";
 
 "notifications.kind.backup.title"           = "iCloudバックアップ";
 "notifications.kind.backup.description"     = "自動バックアップの完了を確認します。";
@@ -749,7 +749,7 @@
 
 /* Tracking goals settings, image-only buttons */
 "a11y.button.add.goal.label"     = "追加";
-"a11y.button.add.goal.hint" = "タップして目標またはカテゴリを作成します。";
+"a11y.button.add.goal.hint" = "タップして目標またはカテゴリーを作成します。";
 "a11y.button.remove.goal.label"  = "目標を削除";
 "a11y.button.restore.goal.label" = "目標を復元";
 
@@ -867,7 +867,7 @@
 "date.weekdayDay.format" = "%2$d日 %1$@";
 
 // Balão da data na Hoje
-"today.day.remaining" = "今日の終わりまで%@";
+"today.day.remaining" = "今日の終了まであと%@";
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@を飲む時間です。";
@@ -881,7 +881,7 @@
 "settings.notifications.times.header" = "リマインダー";
 "settings.notifications.times.row" = "時刻";
 "settings.notifications.times.add" = "時刻を追加";
-"settings.notifications.times.empty" = "時刻なし";
+"settings.notifications.times.empty" = "未設定";
 "settings.notifications.times.footer" = "各時刻に1日1回通知します。「今日」で完了にするか、通知の「飲んだ」をタップすると、その日の通知は止まります。";
 "settings.notifications.group.title" = "同じ時刻のチェックイン目標をまとめる";
 "settings.notifications.group.footer" = "同じ時刻のチェックイン目標を1つの通知にまとめます。オフの場合は目標ごとに通知します。";

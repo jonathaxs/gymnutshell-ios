@@ -109,7 +109,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%2$d day with achievement out of 7.</string>
+			<string>%2$d day with an achievement out of 7.</string>
 			<key>other</key>
 			<string>%2$d days with achievements out of 7.</string>
 		</dict>

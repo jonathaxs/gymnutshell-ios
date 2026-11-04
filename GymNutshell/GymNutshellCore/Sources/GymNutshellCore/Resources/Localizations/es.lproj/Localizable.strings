@@ -327,7 +327,7 @@
 
 /* FitnessGoalPickerView.swift */
 "welcome.goal.bulking.description" = "Aumenta la masa muscular con superávit calórico";
-"welcome.goal.maintenance.description" = "Mantén tu peso y composición actual";
+"welcome.goal.maintenance.description" = "Mantén tu peso y composición actuales";
 "welcome.goal.cutting.description" = "Reduce grasa corporal preservando el músculo";
 
 /* MARK: - Views/TodayView */
@@ -633,13 +633,13 @@
 
 "notifications.kind.water.title"            = "Agua";
 "notifications.kind.water.description"      = "Recordatorios para beber un vaso de agua hasta alcanzar tu meta diaria.";
-"notifications.kind.water.body"             = "¿Momento de un vaso de agua? Sigue avanzando hacia tu meta diaria.";
+"notifications.kind.water.body"             = "¿Hora de un vaso de agua? Sigue avanzando hacia tu meta diaria.";
 "notifications.kind.water.footer"           = "Cada X minutos la app te recuerda beber agua. Los recordatorios se detienen al alcanzar tu meta diaria.";
 
 
 "notifications.kind.protein.title"          = "Proteína";
 "notifications.kind.protein.description"    = "Recordatorios para cumplir tu meta diaria de proteína.";
-"notifications.kind.protein.body"           = "Momento de añadir algo de proteína para alcanzar la meta de hoy.";
+"notifications.kind.protein.body"           = "Es hora de añadir algo de proteína para alcanzar la meta de hoy.";
 "notifications.kind.protein.footer"         = "Los recordatorios periódicos se detienen al alcanzar tu meta de proteína.";
 
 "notifications.kind.carbs.title"            = "Carbohidratos";
@@ -674,7 +674,7 @@
 
 /* Custom goals */
 "notifications.custom.description"          = "Recordatorios para cumplir la meta de hoy.";
-"notifications.custom.body"                 = "Momento de registrar %@, sigue avanzando hacia la meta de hoy.";
+"notifications.custom.body"                 = "Hora de registrar %@, sigue avanzando hacia la meta de hoy.";
 "notifications.custom.footer"               = "Los recordatorios periódicos se detienen al alcanzar la meta de hoy para este registro personalizado.";
 "notifications.history.delete" = "Eliminar";
 
@@ -747,7 +747,7 @@
 "a11y.stats.card.usergoal.hint" = "Toca para cambiar de objetivo.";
 "a11y.stats.card.tiers.hint"    = "Toca para ver cómo funcionan los niveles.";
 "a11y.stats.card.activity.hint" = "Toca para abrir el registro de actividad.";
-"a11y.stats.card.goals.hint"    = "Toca para gestionar las metas rastreadas.";
+"a11y.stats.card.goals.hint"    = "Toca para gestionar tus metas de seguimiento.";
 
 /* ProfileRecentActivityView, day buttons */
 "a11y.recent.day.with.tier.format" = "%1$@, %2$@";
@@ -903,9 +903,9 @@
 "settings.notifications.times.header" = "Recordatorios";
 "settings.notifications.times.row" = "Hora";
 "settings.notifications.times.add" = "Añadir hora";
-"settings.notifications.times.empty" = "Sin horas";
-"settings.notifications.times.footer" = "Un aviso al día en cada hora. Los avisos del día se detienen cuando marcas Hecho en Hoy o tocas Tomado en la notificación.";
+"settings.notifications.times.empty" = "Sin horarios";
+"settings.notifications.times.footer" = "Un recordatorio al día para cada hora. Los recordatorios del día se detienen cuando marcas Hecho en Hoy o tocas Tomado en la notificación.";
 "settings.notifications.group.title" = "Agrupar metas de check-in a la misma hora";
-"settings.notifications.group.footer" = "Junta en un solo aviso las metas de check-in de la misma hora. Desactivado, cada meta tiene su aviso.";
+"settings.notifications.group.footer" = "Agrupa en un solo recordatorio las metas de check-in de la misma hora. Si se desactiva, cada meta tendrá su propio recordatorio.";
 "settings.notifications.emoji.title" = "Emojis en las notificaciones";
 "settings.notifications.emoji.footer" = "Muestra el emoji de cada meta y del logro diario en el texto de las notificaciones.";

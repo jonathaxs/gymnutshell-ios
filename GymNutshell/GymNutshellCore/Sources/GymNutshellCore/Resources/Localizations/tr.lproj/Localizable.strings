@@ -148,7 +148,7 @@
 "settings.addgoal.section.name" = "Ad";
 "settings.addgoal.name.placeholder" = "örnek: Meditasyon";
 "settings.addgoal.section.unit" = "Birim";
-"settings.addgoal.unit.placeholder" = "örnek: min";
+"settings.addgoal.unit.placeholder" = "örnek: dk";
 "settings.addgoal.section.goal" = "Hedef";
 "settings.addgoal.goal.placeholder" = "örnek: 10";
 "settings.addgoal.section.increment" = "Adım";
@@ -243,7 +243,7 @@
 "settings.header.title" = "Uygulama Ayarları";
 "settings.section.edit" = "Profil";
 "settings.theme.title" = "Emoji";
-"settings.section.preferences" = "Görünüş";
+"settings.section.preferences" = "Görünüm";
 "settings.section.system" = "Sistem";
 "settings.section.about" = "Hakkında";
 
@@ -260,10 +260,10 @@
 "settings.preference.appleHealth.footer" = "Uykuyu Kaydet, o gün için bir kayıt yoksa uyku saatlerini Apple Sağlık'a kaydeder.\n\nAntrenman Algılama, tamamlanan bir antrenmanı tespit eder ve Güç Antrenmanı veya Kardiyo'ya otomatik olarak kaydeder.";
 "settings.preference.appleWatch" = "Apple Watch";
 "appleWatch.sheet.title" = "Apple Watch'a Yükle";
-"appleWatch.sheet.intro" = "Gym Nutshell'ı Apple Watch'una yüklemek için aşağıdaki adımları izle:";
+"appleWatch.sheet.intro" = "Gym Nutshell'i Apple Watch'una yüklemek için aşağıdaki adımları izle:";
 "appleWatch.sheet.step1" = "iPhone'undaki Watch uygulamasını aç";
 "appleWatch.sheet.step2" = "\"Kullanılabilir Uygulamalar\" bölümüne kaydır";
-"appleWatch.sheet.step3" = "Nutshell'ın yanındaki Yükle'ye dokun";
+"appleWatch.sheet.step3" = "Nutshell'in yanındaki Yükle'ye dokun";
 "appleWatch.sheet.note" = "Uygulama zaten yüklüyse yukarıdaki \"Apple Watch'ta Yüklü\" bölümünde görünür.";
 "settings.preference.language" = "Dil";
 "settings.preference.measurementSystem" = "Ölçü Birimleri";
@@ -359,7 +359,7 @@
 /* MARK: - Views/WelcomeView */
 
 /* WelcomeAboutStep.swift */
-"welcome.step.about.title" = "Senin hakkında";
+"welcome.step.about.title" = "Seni Tanıyalım";
 
 /* WelcomeFitnessGoalStep.swift */
 "welcome.step.goal.title" = "Hedefin";
@@ -388,7 +388,7 @@
 "welcome.start.restore" = "Yedeği geri yükle";
 
 /* WelcomeView.swift */
-"welcome.button.continue" = "Sürdür";
+"welcome.button.continue" = "Devam Et";
 "welcome.button.start" = "Haydi başlayalım!";
 "welcome.button.back" = "Geri";
 
@@ -567,7 +567,7 @@
 /* NotificationIntervalEditView */
 "settings.notifications.interval.header"   = "Bildirimler arasındaki süre";
 "settings.notifications.interval.stepper"  = "Her";
-"settings.notifications.interval.value"    = "%d min";
+"settings.notifications.interval.value"    = "%d dk";
 
 /* NotificationIntervalEditView, sound picker */
 "settings.notifications.sound.header"      = "Ses";
@@ -589,9 +589,9 @@
 
 "notifications.kind.appleHealth.title"      = "Apple Sağlık";
 "notifications.kind.appleHealth.description" = "Apple Sağlık ile senkronize edilen kayıtları doğrular.";
-"notifications.kind.appleHealth.body.cardio" = "%d min Kardiyo kaydedildi (%@).";
-"notifications.kind.appleHealth.body.workout" = "%d min Güç Antrenmanı kaydedildi (%@).";
-"notifications.kind.appleHealth.body.sleep" = "Apple Sağlık'a %d h uyku kaydedildi.";
+"notifications.kind.appleHealth.body.cardio" = "%d dk Kardiyo kaydedildi (%@).";
+"notifications.kind.appleHealth.body.workout" = "%d dk Güç Antrenmanı kaydedildi (%@).";
+"notifications.kind.appleHealth.body.sleep" = "Apple Sağlık'a %d saat uyku kaydedildi.";
 
 "notifications.kind.backup.title"           = "iCloud yedekleme";
 "notifications.kind.backup.description"     = "Her otomatik yedeklemeyi onaylar.";
