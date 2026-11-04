@@ -580,12 +580,12 @@
 /* NotificationKind, title / description on list + body of notification + footer */
 "notifications.kind.progress.title"         = "進捗";
 "notifications.kind.progress.description"   = "次の成果までに必要な残り進捗。";
-"notifications.kind.progress.body"          = "その調子！毎日の目標達成が次の成果につながります。";
+"notifications.kind.progress.body"          = "目標を達成するたびに、次の成果に近づきます。";
 "notifications.kind.progress.footer"        = "今日のレベルアップに必要な進捗を定期的にお知らせします。";
 
 "notifications.kind.achievement.title"      = "毎日の成果";
 "notifications.kind.achievement.description" = "深夜0時に、その日にアンロックされた成果を通知します。";
-"notifications.kind.achievement.body"       = "今日は「%@」を達成しました！";
+"notifications.kind.achievement.body"       = "今日は「%@」を達成しました。";
 
 "notifications.kind.appleHealth.title"      = "ヘルスケア";
 "notifications.kind.appleHealth.description" = "ヘルスケアと同期された記録を確認します。";
@@ -629,12 +629,12 @@
 
 "notifications.kind.workout.title"          = "筋トレ";
 "notifications.kind.workout.description"    = "今日の筋トレを完了するためのリマインダー。";
-"notifications.kind.workout.body"           = "筋トレの時間です。今日も頑張りましょう！";
+"notifications.kind.workout.body"           = "筋トレの時間です。";
 "notifications.kind.workout.footer"         = "定期リマインダーは、筋トレ目標を達成すると停止します。";
 
 "notifications.kind.cardio.title"           = "有酸素運動";
 "notifications.kind.cardio.description"     = "今日の有酸素運動を完了するためのリマインダー。";
-"notifications.kind.cardio.body"            = "有酸素運動の時間です！少し体を動かしてリフレッシュしましょう。";
+"notifications.kind.cardio.body"            = "有酸素運動の時間です。少し体を動かしましょう。";
 "notifications.kind.cardio.footer"          = "定期リマインダーは、有酸素目標を達成すると停止します。";
 
 "notifications.kind.creatine.title"         = "クレアチン";

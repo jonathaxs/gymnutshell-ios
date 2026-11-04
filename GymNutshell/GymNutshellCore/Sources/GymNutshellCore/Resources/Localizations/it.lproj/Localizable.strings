@@ -605,12 +605,12 @@
 /* NotificationKind, title / description on list + body of notification + footer */
 "notifications.kind.progress.title"         = "Progresso";
 "notifications.kind.progress.description"   = "Quanto manca al tuo prossimo traguardo giornaliero.";
-"notifications.kind.progress.body"          = "Continua così! Ogni obiettivo conta per il tuo prossimo traguardo.";
+"notifications.kind.progress.body"          = "Ogni obiettivo conta per il tuo prossimo traguardo.";
 "notifications.kind.progress.footer"        = "Promemoria periodici che mostrano quanto manca per salire di livello oggi.";
 
 "notifications.kind.achievement.title"      = "Traguardo del giorno";
 "notifications.kind.achievement.description" = "Notifica, a mezzanotte, il traguardo sbloccato per la giornata.";
-"notifications.kind.achievement.body"       = "Hai concluso la giornata come %@!";
+"notifications.kind.achievement.body"       = "Hai concluso la giornata come %@.";
 
 "notifications.kind.appleHealth.title"      = "Apple Salute";
 "notifications.kind.appleHealth.description" = "Conferma le voci sincronizzate con Apple Salute.";
@@ -654,12 +654,12 @@
 
 "notifications.kind.workout.title"          = "Pesi";
 "notifications.kind.workout.description"    = "Promemoria per completare l'allenamento con i pesi di oggi.";
-"notifications.kind.workout.body"           = "Il tuo allenamento con i pesi ti aspetta. Andiamo in palestra!";
+"notifications.kind.workout.body"           = "È ora del tuo allenamento con i pesi.";
 "notifications.kind.workout.footer"         = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo di allenamento.";
 
 "notifications.kind.cardio.title"           = "Cardio";
 "notifications.kind.cardio.description"     = "Promemoria per completare il cardio di oggi.";
-"notifications.kind.cardio.body"            = "È ora di fare cardio! Anche un po' di movimento fa la differenza.";
+"notifications.kind.cardio.body"            = "È ora di fare cardio. Anche un po' di movimento fa la differenza.";
 "notifications.kind.cardio.footer"          = "I promemoria periodici si interrompono una volta raggiunto l'obiettivo di cardio.";
 
 "notifications.kind.creatine.title"         = "Creatina";

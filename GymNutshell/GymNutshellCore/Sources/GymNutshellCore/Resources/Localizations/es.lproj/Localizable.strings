@@ -609,12 +609,12 @@
 /* NotificationKind, title / description on list + body of notification + footer */
 "notifications.kind.progress.title"         = "Progreso";
 "notifications.kind.progress.description"   = "Cuánto falta para tu próximo logro diario.";
-"notifications.kind.progress.body"          = "¡Sigue así! Cada meta cuenta para tu próximo logro.";
+"notifications.kind.progress.body"          = "Cada meta cuenta para tu próximo logro.";
 "notifications.kind.progress.footer"        = "Recordatorios periódicos que muestran cuánto falta para subir de nivel hoy.";
 
 "notifications.kind.achievement.title"      = "Logro diario";
 "notifications.kind.achievement.description" = "Notifica, a medianoche, el logro desbloqueado en el día.";
-"notifications.kind.achievement.body"       = "¡Terminaste el día como %@!";
+"notifications.kind.achievement.body"       = "Terminaste el día como %@.";
 
 "notifications.kind.appleHealth.title"      = "Salud de Apple";
 "notifications.kind.appleHealth.description" = "Confirma las entradas sincronizadas con Salud de Apple.";
@@ -659,12 +659,12 @@
 
 "notifications.kind.workout.title"          = "Musculación";
 "notifications.kind.workout.description"    = "Recordatorios para completar el entrenamiento de musculación de hoy.";
-"notifications.kind.workout.body"           = "Tu entrenamiento de musculación te espera. ¡Vamos!";
+"notifications.kind.workout.body"           = "Hora de tu entrenamiento de musculación.";
 "notifications.kind.workout.footer"         = "Los recordatorios periódicos se detienen al alcanzar tu meta de musculación.";
 
 "notifications.kind.cardio.title"           = "Cardio";
 "notifications.kind.cardio.description"     = "Recordatorios para completar el cardio de hoy.";
-"notifications.kind.cardio.body"            = "¡Hora del cardio! Un poco de movimiento marca la diferencia.";
+"notifications.kind.cardio.body"            = "Hora del cardio. Un poco de movimiento marca la diferencia.";
 "notifications.kind.cardio.footer"          = "Los recordatorios periódicos se detienen al alcanzar tu meta de cardio.";
 
 "notifications.kind.creatine.title"         = "Creatina";

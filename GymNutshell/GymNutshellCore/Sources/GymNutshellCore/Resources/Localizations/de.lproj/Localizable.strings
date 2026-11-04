@@ -586,12 +586,12 @@
 /* NotificationKind, title / description on list + body of notification + footer */
 "notifications.kind.progress.title"         = "Fortschritt";
 "notifications.kind.progress.description"   = "Wie viel bis zu deinem nächsten Tageserfolg fehlt.";
-"notifications.kind.progress.body"          = "Weiter so! Jedes Ziel zählt für deinen nächsten Erfolg.";
+"notifications.kind.progress.body"          = "Jedes Ziel zählt für deinen nächsten Erfolg.";
 "notifications.kind.progress.footer"        = "Regelmäßige Erinnerungen, die zeigen, wie viel noch für die nächste Stufe fehlt.";
 
 "notifications.kind.achievement.title"      = "Tageserfolg";
 "notifications.kind.achievement.description" = "Informiert um Mitternacht über den erreichten Erfolg des Tages.";
-"notifications.kind.achievement.body"       = "Du hast den Tag als %@ abgeschlossen!";
+"notifications.kind.achievement.body"       = "Du hast den Tag als %@ abgeschlossen.";
 
 "notifications.kind.appleHealth.title"      = "Apple Health";
 "notifications.kind.appleHealth.description" = "Bestätigt mit Apple Health synchronisierte Einträge.";
@@ -636,12 +636,12 @@
 
 "notifications.kind.workout.title"          = "Krafttraining";
 "notifications.kind.workout.description"    = "Erinnerungen, um das heutige Krafttraining zu absolvieren.";
-"notifications.kind.workout.body"           = "Dein Krafttraining wartet. Los geht's!";
+"notifications.kind.workout.body"           = "Zeit für dein Krafttraining.";
 "notifications.kind.workout.footer"         = "Regelmäßige Erinnerungen stoppen, sobald du dein Krafttrainingsziel erreicht hast.";
 
 "notifications.kind.cardio.title"           = "Cardio";
 "notifications.kind.cardio.description"     = "Erinnerungen, um dein heutiges Cardio-Training zu absolvieren.";
-"notifications.kind.cardio.body"            = "Zeit für Cardio! Jede Bewegung macht einen Unterschied.";
+"notifications.kind.cardio.body"            = "Zeit für Cardio. Jede Bewegung macht einen Unterschied.";
 "notifications.kind.cardio.footer"          = "Regelmäßige Erinnerungen stoppen, sobald du dein Cardio-Ziel erreicht hast.";
 
 "notifications.kind.creatine.title"         = "Kreatin";

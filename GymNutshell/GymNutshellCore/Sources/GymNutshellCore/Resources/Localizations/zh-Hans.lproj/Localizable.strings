@@ -578,12 +578,12 @@
 /* NotificationKind, 列表上的标题 / 描述 + 通知正文 + 页脚 */
 "notifications.kind.progress.title"         = "进度";
 "notifications.kind.progress.description"   = "距离达成下一个每日成就还差多少。";
-"notifications.kind.progress.body"          = "加油！每个完成的目标都让你离下一个成就更近一步。";
+"notifications.kind.progress.body"          = "每完成一个目标，都离下一个成就更近一步。";
 "notifications.kind.progress.footer"        = "定期发送提醒，显示今天升级还需多少进度。";
 
 "notifications.kind.achievement.title"      = "每日成就";
 "notifications.kind.achievement.description" = "在午夜通知当天解锁的成就。";
-"notifications.kind.achievement.body"       = "你今天达成了“%@”！";
+"notifications.kind.achievement.body"       = "你今天达成了“%@”。";
 
 "notifications.kind.appleHealth.title"      = "Apple 健康";
 "notifications.kind.appleHealth.description" = "确认已与 Apple 健康同步的记录。";
@@ -628,12 +628,12 @@
 
 "notifications.kind.workout.title"          = "力量训练";
 "notifications.kind.workout.description"    = "提醒完成今天的力量训练。";
-"notifications.kind.workout.body"           = "力量训练正在等着你，动起来吧！";
+"notifications.kind.workout.body"           = "力量训练时间到了。";
 "notifications.kind.workout.footer"         = "达成力量训练目标后将停止定期提醒。";
 
 "notifications.kind.cardio.title"           = "有氧运动";
 "notifications.kind.cardio.description"     = "提醒完成今天的有氧运动。";
-"notifications.kind.cardio.body"            = "有氧时间到！活动一下，活力满满。";
+"notifications.kind.cardio.body"            = "有氧时间到了。活动一下会有帮助。";
 "notifications.kind.cardio.footer"          = "达成有氧目标后将停止定期提醒。";
 
 "notifications.kind.creatine.title"         = "肌酸";

@@ -628,12 +628,12 @@
 /* NotificationKind, título / descrição na lista + corpo da notificação + footer */
 "notifications.kind.progress.title"         = "Progresso";
 "notifications.kind.progress.description"   = "Quanto falta pra sua próxima conquista do dia.";
-"notifications.kind.progress.body"          = "Continue assim! Cada meta conta pra sua próxima conquista.";
+"notifications.kind.progress.body"          = "Cada meta conta para a sua próxima conquista.";
 "notifications.kind.progress.footer"        = "Lembretes periódicos mostrando o quanto falta pra você subir de nível hoje.";
 
 "notifications.kind.achievement.title"      = "Conquista do dia";
 "notifications.kind.achievement.description" = "Notifica, à meia-noite, a conquista desbloqueada no dia.";
-"notifications.kind.achievement.body"       = "Você fechou o dia como %@!";
+"notifications.kind.achievement.body"       = "Você fechou o dia como %@.";
 
 "notifications.kind.appleHealth.title"      = "Apple Saúde";
 "notifications.kind.appleHealth.description" = "Confirma registros sincronizados com o Apple Saúde.";
@@ -652,7 +652,7 @@
 
 "notifications.kind.water.title"            = "Água";
 "notifications.kind.water.description"      = "Lembra de tomar um copo d'água até você bater a meta do dia.";
-"notifications.kind.water.body"             = "Bora tomar um copo de água? Continue rumo à sua meta do dia.";
+"notifications.kind.water.body"             = "Que tal um copo de água? Continue rumo à sua meta do dia.";
 "notifications.kind.water.footer"           = "A cada X minutos o app te lembra de beber água. Os lembretes param assim que você atinge sua meta diária.";
 
 "notifications.kind.protein.title"          = "Proteínas";
@@ -677,12 +677,12 @@
 
 "notifications.kind.workout.title"          = "Musculação";
 "notifications.kind.workout.description"    = "Lembretes para completar o treino de musculação do dia.";
-"notifications.kind.workout.body"           = "Seu treino de musculação te espera. Bora pra academia!";
+"notifications.kind.workout.body"           = "Hora do treino de musculação.";
 "notifications.kind.workout.footer"         = "Lembretes periódicos param quando você atinge a meta de musculação.";
 
 "notifications.kind.cardio.title"           = "Cardio";
 "notifications.kind.cardio.description"     = "Lembretes para completar o cardio do dia.";
-"notifications.kind.cardio.body"            = "Hora do cardio! Um pouco de movimento faz diferença.";
+"notifications.kind.cardio.body"            = "Hora do cardio. Um pouco de movimento faz diferença.";
 "notifications.kind.cardio.footer"          = "Lembretes periódicos param quando você atinge a meta de cardio.";
 
 "notifications.kind.creatine.title"         = "Creatina";

@@ -609,12 +609,12 @@
 /* NotificationKind, title / description on list + body of notification + footer */
 "notifications.kind.progress.title"         = "Progression";
 "notifications.kind.progress.description"   = "Ce qu'il te reste pour ton prochain succès du jour.";
-"notifications.kind.progress.body"          = "Continue comme ça ! Chaque objectif compte pour ton prochain succès.";
+"notifications.kind.progress.body"          = "Chaque objectif compte pour ton prochain succès.";
 "notifications.kind.progress.footer"        = "Des rappels réguliers t'indiquant ce qu'il te reste pour passer au niveau supérieur aujourd'hui.";
 
 "notifications.kind.achievement.title"      = "Succès du jour";
 "notifications.kind.achievement.description" = "Notifie, à minuit, le succès débloqué dans la journée.";
-"notifications.kind.achievement.body"       = "Tu as terminé la journée en tant que %@ !";
+"notifications.kind.achievement.body"       = "Tu as terminé la journée en tant que %@.";
 
 "notifications.kind.appleHealth.title"      = "Apple Santé";
 "notifications.kind.appleHealth.description" = "Confirme les données synchronisées avec Apple Santé.";
@@ -658,12 +658,12 @@
 
 "notifications.kind.workout.title"          = "Musculation";
 "notifications.kind.workout.description"    = "Rappels pour effectuer ta séance de musculation du jour.";
-"notifications.kind.workout.body"           = "Ton entraînement de muscu t'attend. C'est parti !";
+"notifications.kind.workout.body"           = "C'est l'heure de ton entraînement de muscu.";
 "notifications.kind.workout.footer"         = "Les rappels réguliers s'arrêtent une fois ton objectif de musculation atteint.";
 
 "notifications.kind.cardio.title"           = "Cardio";
 "notifications.kind.cardio.description"     = "Rappels pour faire ta séance de cardio du jour.";
-"notifications.kind.cardio.body"            = "C'est l'heure du cardio ! Bouger un peu fait toute la différence.";
+"notifications.kind.cardio.body"            = "C'est l'heure du cardio. Bouger un peu fait la différence.";
 "notifications.kind.cardio.footer"          = "Les rappels réguliers s'arrêtent une fois ton objectif de cardio atteint.";
 
 "notifications.kind.creatine.title"         = "Créatine";

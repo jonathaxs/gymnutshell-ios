@@ -577,12 +577,12 @@
 /* NotificationKind, title / description on list + body of notification + footer */
 "notifications.kind.progress.title"         = "Progress";
 "notifications.kind.progress.description"   = "How much is left to your next daily achievement.";
-"notifications.kind.progress.body"          = "Keep going! Every goal counts toward your next achievement.";
+"notifications.kind.progress.body"          = "Every goal counts toward your next achievement.";
 "notifications.kind.progress.footer"        = "Periodic reminders showing how much is left to level up today.";
 
 "notifications.kind.achievement.title"      = "Daily achievement";
 "notifications.kind.achievement.description" = "Notifies, at midnight, the achievement unlocked for the day.";
-"notifications.kind.achievement.body"       = "You finished the day as %@!";
+"notifications.kind.achievement.body"       = "You finished the day as %@.";
 
 "notifications.kind.appleHealth.title"      = "Apple Health";
 "notifications.kind.appleHealth.description" = "Confirms entries synced with Apple Health.";
@@ -626,12 +626,12 @@
 
 "notifications.kind.workout.title"          = "Strength";
 "notifications.kind.workout.description"    = "Reminders to complete today's strength training.";
-"notifications.kind.workout.body"           = "Your strength workout is waiting. Let's go!";
+"notifications.kind.workout.body"           = "Time for your strength workout.";
 "notifications.kind.workout.footer"         = "Periodic reminders stop once you hit your strength goal.";
 
 "notifications.kind.cardio.title"           = "Cardio";
 "notifications.kind.cardio.description"     = "Reminders to complete today's cardio.";
-"notifications.kind.cardio.body"            = "Cardio time! A bit of movement makes a difference.";
+"notifications.kind.cardio.body"            = "Cardio time. A bit of movement makes a difference.";
 "notifications.kind.cardio.footer"          = "Periodic reminders stop once you hit your cardio goal.";
 
 "notifications.kind.creatine.title"         = "Creatine";

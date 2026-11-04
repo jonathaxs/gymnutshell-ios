@@ -580,12 +580,12 @@
 /* NotificationKind, title / description on list + body of notification + footer */
 "notifications.kind.progress.title"         = "İlerleme";
 "notifications.kind.progress.description"   = "Bir sonraki günlük başarına ne kadar kaldığı.";
-"notifications.kind.progress.body"          = "Böyle devam et! Her hedef, bir sonraki başarın için önemli.";
+"notifications.kind.progress.body"          = "Her hedef, bir sonraki başarın için önemli.";
 "notifications.kind.progress.footer"        = "Bugün seviye atlamak için ne kadar kaldığını gösteren periyodik hatırlatıcılar.";
 
 "notifications.kind.achievement.title"      = "Günlük başarı";
 "notifications.kind.achievement.description" = "Gece yarısı, gün boyunca açılan başarıyı bildirir.";
-"notifications.kind.achievement.body"       = "Günü %@ olarak tamamladın!";
+"notifications.kind.achievement.body"       = "Günü %@ olarak tamamladın.";
 
 "notifications.kind.appleHealth.title"      = "Apple Sağlık";
 "notifications.kind.appleHealth.description" = "Apple Sağlık ile senkronize edilen kayıtları doğrular.";
@@ -629,12 +629,12 @@
 
 "notifications.kind.workout.title"          = "Güç Antrenmanı";
 "notifications.kind.workout.description"    = "Bugünkü güç antrenmanını tamamlaman için hatırlatıcılar.";
-"notifications.kind.workout.body"           = "Güç antrenmanın seni bekliyor. Haydi salona!";
+"notifications.kind.workout.body"           = "Güç antrenmanı zamanı.";
 "notifications.kind.workout.footer"         = "Güç antrenmanı hedefine ulaştığında periyodik hatırlatıcılar durur.";
 
 "notifications.kind.cardio.title"           = "Kardiyo";
 "notifications.kind.cardio.description"     = "Bugünkü kardiyoyu tamamlaman için hatırlatıcılar.";
-"notifications.kind.cardio.body"            = "Kardiyo zamanı! Biraz hareket büyük fark yaratır.";
+"notifications.kind.cardio.body"            = "Kardiyo zamanı. Biraz hareket fark yaratır.";
 "notifications.kind.cardio.footer"          = "Kardiyo hedefine ulaştığında periyodik hatırlatıcılar durur.";
 
 "notifications.kind.creatine.title"         = "Kreatin";
