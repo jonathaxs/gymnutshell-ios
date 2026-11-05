@@ -936,3 +936,6 @@
 "settings.appearance.mode.system" = "Dispositivo";
 "settings.appearance.mode.light" = "Chiaro";
 "settings.appearance.mode.dark" = "Scuro";
+
+/* Pontos do dia na lista e na edição (2026-11-05) */
+"a11y.points.plus.format" = "più %d punti";

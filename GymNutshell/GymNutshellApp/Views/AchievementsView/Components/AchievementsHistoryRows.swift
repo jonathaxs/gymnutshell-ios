@@ -1,8 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/AchievementsView/Components/AchievementsHistoryRows.swift
 //
-//  Propósito: Linhas da lista de histórico em Conquistas: registros diários (com botão de editar
-//             quando dentro da janela) e bônus de sequência.
+//  Propósito: Linhas da lista de histórico em Conquistas: registros diários (com os pontos do dia e
+//             botão de editar quando dentro da janela) e bônus de sequência.
 // ⌘
 
 import SwiftUI
@@ -21,6 +21,9 @@ struct HistoryDailyRow: View {
     let canEdit: Bool
     let onTap: () -> Void
     let onEdit: () -> Void
+
+    /// Pontos do dia: o número do nível (1 a 5).
+    private var points: Int { DailyAchievement.from(emoji: record.achievementEmoji).points }
 
     var body: some View {
         HStack(spacing: 16) {
@@ -42,6 +45,8 @@ struct HistoryDailyRow: View {
                 }
 
                 Spacer()
+
+                PointsCapsule(points: points, color: accentColor)
             }
             .contentShape(Rectangle())
             .tapButton(perform: onTap)
@@ -50,7 +55,9 @@ struct HistoryDailyRow: View {
                                                      bundle: .gymNutshellCore),
                                        tierName,
                                        A11y.spokenDate(for: record.date),
-                                       record.percent))
+                                       record.percent)
+                                + ", " + String(format: String(localized: "a11y.points.plus.format",
+                                                               bundle: .gymNutshellCore), points))
             .accessibilityHint(String(localized: "a11y.record.row.hint", bundle: .gymNutshellCore))
 
             // Botão de edição, visível só pra registros dentro da janela editável.
@@ -79,7 +86,6 @@ struct HistoryBonusRow: View {
     let onTap: () -> Void
 
     var body: some View {
-        let points = String(format: String(localized: "points.plus.format", bundle: .gymNutshellCore), bonus.points)
         HStack(spacing: 16) {
             EmojiBadge(emoji: bonus.kind.emoji, color: accentColor)
 
@@ -98,12 +104,7 @@ struct HistoryBonusRow: View {
 
             Spacer()
 
-            Text(points)
-                .font(.caption.weight(.semibold).monospacedDigit())
-                .foregroundStyle(accentColor)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .background(accentColor.opacity(0.12), in: Capsule())
+            PointsCapsule(points: bonus.points, color: accentColor)
         }
         .padding(.vertical, 8)
         .contentShape(Rectangle())
@@ -128,6 +129,23 @@ private struct EmojiBadge: View {
             .font(.title)
             .frame(width: 52, height: 52)
             .background(color.opacity(0.12), in: Circle())
+            .accessibilityHidden(true)
+    }
+}
+
+/// Cápsula "+N pts" na cor de destaque, usada nos dias e nos bônus.
+private struct PointsCapsule: View {
+    let points: Int
+    let color: Color
+
+    var body: some View {
+        Text(String(format: String(localized: "points.plus.format", bundle: .gymNutshellCore), points))
+            .font(.caption.weight(.semibold).monospacedDigit())
+            .foregroundStyle(color)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+            .background(color.opacity(0.12), in: Capsule())
+            .fixedSize()
             .accessibilityHidden(true)
     }
 }

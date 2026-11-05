@@ -919,3 +919,6 @@
 "settings.appearance.mode.system" = "Cihaz";
 "settings.appearance.mode.light" = "Açık";
 "settings.appearance.mode.dark" = "Koyu";
+
+/* Pontos do dia na lista e na edição (2026-11-05) */
+"a11y.points.plus.format" = "artı %d puan";

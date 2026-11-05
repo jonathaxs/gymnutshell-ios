@@ -918,3 +918,6 @@
 "settings.appearance.mode.system" = "设备";
 "settings.appearance.mode.light" = "浅色";
 "settings.appearance.mode.dark" = "深色";
+
+/* Pontos do dia na lista e na edição (2026-11-05) */
+"a11y.points.plus.format" = "获得 %d 积分";

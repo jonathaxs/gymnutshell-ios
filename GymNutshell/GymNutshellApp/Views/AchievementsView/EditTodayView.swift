@@ -242,6 +242,12 @@ struct EditTodayView: View {
                             Text("\(tierName) · \(dailyPercentage)%")
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
+                            // "Nível 3 · +3 pts", recalculado conforme as metas mudam.
+                            Text(String(localized: "ring.info.level.label", bundle: .gymNutshellCore) + "\(levelNumber)"
+                                 + " · " + String(format: String(localized: "points.plus.format", bundle: .gymNutshellCore),
+                                                  dailyAchievement.points))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
                         }
                         Spacer()
                     }
