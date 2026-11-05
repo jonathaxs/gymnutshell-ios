@@ -27,7 +27,8 @@ struct MonthlyCalendarView: View {
     /// AchievementsView popula isso; outros call sites podem deixar vazio.
     var tierNameByDay: [Date: String] = [:]
 
-    private let calendar = Calendar.current
+    // Semana de segunda a domingo: a linha do calendário é a semana do bônus de sequência.
+    private let calendar = StreakBonusCalculator.weekCalendar
 
     // Cor de destaque, segue a escolha do usuário em Settings > Cores.
     @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue

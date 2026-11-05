@@ -16,7 +16,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
     case profile, fitnessGoal, goals, theme
     case health, notifications, measurement, backup
     case colors, widgets, controls
-    case about, watch, ring, tier
+    case about, watch, ring, tier, bonus
 
     var id: Self { self }
 
@@ -26,7 +26,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         case .fitnessGoal:   return "settings.fitness.goal.edit"
         case .profile:       return "settings.section.physicaldata"
         case .theme:         return "settings.theme.title"
-        case .colors:        return "settings.color.title"
+        case .colors:        return "settings.appearance.title"
         case .widgets:       return "settings.edit.widgets"
         case .controls:      return "settings.preference.controlStyle"
         case .health:        return "settings.preference.appleHealth"
@@ -37,6 +37,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         case .watch:         return "settings.preference.appleWatch"
         case .ring:          return "settings.about.progressRing"
         case .tier:          return "settings.about.achievement"
+        case .bonus:         return "settings.about.streakBonus"
         }
     }
 
@@ -46,7 +47,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         case .fitnessGoal:   return "flame"
         case .profile:       return "person.circle"
         case .theme:         return "face.smiling"
-        case .colors:        return "paintpalette"
+        case .colors:        return "circle.lefthalf.filled"
         case .widgets:       return "square.on.square"
         case .controls:      return "slider.horizontal.3"
         case .health:        return "heart.fill"
@@ -57,6 +58,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         case .watch:         return "applewatch"
         case .ring:          return "circle.dotted"
         case .tier:          return "trophy.fill"
+        case .bonus:         return "calendar.badge.checkmark"
         }
     }
 
@@ -71,7 +73,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         case .controls, .backup, .about: return .gray
         case .notifications:          return .red
         case .measurement:            return .teal
-        case .watch:                  return .green
+        case .watch, .bonus:          return .green
         case .tier:                   return .yellow
         }
     }
@@ -180,11 +182,11 @@ struct SettingsView: View {
                 .foregroundStyle(.primary)
             }
 
-            // Seção Aparência, cores de destaque, widgets e estilo dos controles.
-            section("settings.section.preferences", pages: [.colors, .widgets, .controls], wide: wide)
+            // Seção Visual: aparência (modo claro/escuro e cor de destaque), widgets e estilo dos controles.
+            section("settings.section.visual", pages: [.colors, .widgets, .controls], wide: wide)
 
-            // Seção Sobre, conquista, anel de progresso e info de versão.
-            section("settings.section.about", pages: [.about, .watch, .ring, .tier], wide: wide)
+            // Seção Sobre, conquista, anel de progresso, bônus de sequência e info de versão.
+            section("settings.section.about", pages: [.about, .watch, .ring, .tier, .bonus], wide: wide)
         }
     }
 
@@ -246,6 +248,7 @@ struct SettingsView: View {
         case .watch:         AppleWatchInstructionsView()
         case .ring:          ProgressRingInfoView()
         case .tier:          TierInfoView(theme: selectedTheme, sex: sex)
+        case .bonus:         StreakBonusInfoView()
         }
     }
 }

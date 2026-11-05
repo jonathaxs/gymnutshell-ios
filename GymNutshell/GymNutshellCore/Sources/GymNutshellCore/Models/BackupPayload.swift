@@ -119,6 +119,8 @@ public struct BackupPayload: Codable, Sendable {
         public let groupSupplements: Bool?
         /// Emoji no texto das notificações, novo na 2.0.
         public let notificationEmoji: Bool?
+        /// Aparência: "system" | "light" | "dark", novo na 2.0.
+        public let appearanceMode: String?
 
         public init(
             widgetBackground: String?,
@@ -132,7 +134,8 @@ public struct BackupPayload: Codable, Sendable {
             goalIncrements: [String: Int]?,
             notificationTimes: [String: [String]]? = nil,
             groupSupplements: Bool? = nil,
-            notificationEmoji: Bool? = nil
+            notificationEmoji: Bool? = nil,
+            appearanceMode: String? = nil
         ) {
             self.widgetBackground = widgetBackground
             self.widgetBackgroundMode = widgetBackgroundMode
@@ -146,6 +149,7 @@ public struct BackupPayload: Codable, Sendable {
             self.notificationTimes = notificationTimes
             self.groupSupplements = groupSupplements
             self.notificationEmoji = notificationEmoji
+            self.appearanceMode = appearanceMode
         }
     }
 

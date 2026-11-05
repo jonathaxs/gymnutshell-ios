@@ -107,5 +107,19 @@ extension DailyRecord {
         try? context.save()
         defaults.set(true, forKey: themeEmojiSwapMigrationKey)
     }
+
+    /// Chave da troca de pontos (0/25/50/75/100 → 1 a 5 pelo nível), novembro de 2026.
+    public static let simplePointsMigrationKey = "migration.achievement.simplePoints.2026-11"
+
+    /// Roda uma vez: regrava os pontos dos dias salvos na escala nova.
+    @MainActor
+    public static func migrateSimplePointsIfNeeded(in context: ModelContext,
+                                                   defaults: UserDefaults = .standard) {
+        guard !defaults.bool(forKey: simplePointsMigrationKey) else { return }
+        let records = (try? context.fetch(FetchDescriptor<DailyRecord>())) ?? []
+        records.forEach { $0.normalizeAchievement() }
+        try? context.save()
+        defaults.set(true, forKey: simplePointsMigrationKey)
+    }
 }
 

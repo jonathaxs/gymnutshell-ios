@@ -2,7 +2,7 @@
 //  GymNutshell/GymNutshellApp/Views/AchievementsView/AchievementsView.swift
 //
 //  Propósito: Página Conquistas: calendário com o emoji de cada dia (padrão) ou a lista de todos os
-//             DailyRecords, e edição dos registros dos últimos 30 dias.
+//             DailyRecords e bônus de sequência, e edição dos registros dos últimos 30 dias.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2025-11-14.
 // ⌘
@@ -33,6 +33,7 @@ struct AchievementsView: View {
     /// - view: detalhes somente leitura pra qualquer dia
     /// - edit: sheet editável pra entradas recentes
     @State private var activeSheet: ActiveSheet?
+    @State private var showBonusInfoSheet = false
 
     private enum ActiveSheet: Identifiable {
         case view(DailyRecord)
@@ -87,6 +88,45 @@ struct AchievementsView: View {
         }
     }
 
+    // MARK: - Bônus de sequência
+
+    /// Bônus calculados a partir dos dias salvos (mais recente primeiro).
+    private var bonuses: [EarnedStreakBonus] { StreakBonusCalculator.bonuses(from: records) }
+
+    /// Item da lista: um dia salvo ou um bônus, pra entrar num ForEach só, em ordem de data.
+    private enum HistoryItem: Identifiable {
+        case daily(DailyRecord)
+        case bonus(EarnedStreakBonus)
+
+        var id: String {
+            switch self {
+            case .daily(let r): return "daily-\(r.id)"
+            case .bonus(let b): return "bonus-\(b.id)"
+            }
+        }
+    }
+
+    /// Dias e bônus visíveis. O bônus vem logo acima do dia que fechou o período.
+    private var visibleItems: [HistoryItem] {
+        let calendar = Calendar.current
+        let visibleBonuses: [EarnedStreakBonus]
+        switch filterMode {
+        case .all: visibleBonuses = bonuses
+        case .day: visibleBonuses = bonuses.filter { calendar.isDate($0.anchorDate, inSameDayAs: selectedDate) }
+        }
+        var items: [HistoryItem] = []
+        var pending = visibleBonuses[...]
+        for record in visibleRecords {
+            while let next = pending.first, calendar.startOfDay(for: next.anchorDate) >= calendar.startOfDay(for: record.date) {
+                items.append(.bonus(next))
+                pending = pending.dropFirst()
+            }
+            items.append(.daily(record))
+        }
+        items.append(contentsOf: pending.map { .bonus($0) })
+        return items
+    }
+
     // MARK: - Mapeamento de emojis do calendário
 
     // Cria um mapeamento de cada dia registrado -> emoji pra mostrar no calendário.
@@ -96,32 +136,46 @@ struct AchievementsView: View {
 
         // Usa o emoji do tema atual pra cada registro diário (não o achievementEmoji salvo)
         // pra que o calendário sempre reflita o tema ativo, mesmo pra registros antigos.
-        return Dictionary(
-            uniqueKeysWithValues: records.map {
+        // No dia que fecha um bônus aparece o emoji do bônus (o mensal vence o semanal).
+        var result = Dictionary(
+            records.map {
                 let tier = DailyAchievement.from(emoji: $0.achievementEmoji)
                 return (calendar.startOfDay(for: $0.date), selectedTheme.emoji(for: tier))
-            }
+            },
+            uniquingKeysWith: { first, _ in first }
         )
+        for bonus in bonuses.reversed().sorted(by: { !$0.kind.isMonthly && $1.kind.isMonthly }) {
+            result[calendar.startOfDay(for: bonus.anchorDate)] = bonus.kind.emoji
+        }
+        return result
     }
 
     /// Mesmo conjunto de dias que `emojiByDay`, mas com o nome a ser falado no
     /// VoiceOver (nome do tier do tema atual).
     private var tierNameByDay: [Date: String] {
         let calendar = Calendar.current
-        return Dictionary(
-            uniqueKeysWithValues: records.map {
+        var result = Dictionary(
+            records.map {
                 let tier = DailyAchievement.from(emoji: $0.achievementEmoji)
                 return (calendar.startOfDay(for: $0.date), selectedTheme.name(for: tier, sex: sex))
-            }
+            },
+            uniquingKeysWith: { first, _ in first }
         )
+        for bonus in bonuses.reversed().sorted(by: { !$0.kind.isMonthly && $1.kind.isMonthly }) {
+            result[calendar.startOfDay(for: bonus.anchorDate)] = bonus.kind.title
+        }
+        return result
     }
 
     // MARK: - Ações
 
-    // Apaga o registro diário selecionado do banco de dados.
+    // Apaga o registro diário selecionado do banco de dados. Bônus não se apagam: saem dos dias.
     private func deleteItem(offsets: IndexSet) {
+        let items = visibleItems
         for index in offsets {
-            modelContext.delete(visibleRecords[index])
+            if case .daily(let record) = items[index] {
+                modelContext.delete(record)
+            }
         }
     }
 
@@ -201,7 +255,7 @@ struct AchievementsView: View {
                                 Divider()
 
                                 List {
-                                    if visibleRecords.isEmpty {
+                                    if visibleItems.isEmpty {
                                         Section {
                                             AchievementsEmptyState(accentColor: accentColor)
                                                 .listRowBackground(Color.clear)
@@ -226,7 +280,7 @@ struct AchievementsView: View {
                             List {
                                 calendarSection
 
-                                if visibleRecords.isEmpty {
+                                if visibleItems.isEmpty {
                                     Section {
                                         AchievementsEmptyState(accentColor: accentColor)
                                             .listRowBackground(Color.clear)
@@ -299,6 +353,11 @@ struct AchievementsView: View {
                 EditTodayView(record: record)
             }
         }
+        .sheet(isPresented: $showBonusInfoSheet) {
+            NavigationStack {
+                StreakBonusInfoView(isSheet: true)
+            }
+        }
     }
 
     /// List do iPhone em retrato (calendário + dia escolhido, ou todos os dias).
@@ -306,7 +365,7 @@ struct AchievementsView: View {
         List {
             calendarSection
 
-            if visibleRecords.isEmpty {
+            if visibleItems.isEmpty {
                 Section {
                     AchievementsEmptyState(accentColor: accentColor)
                         .listRowBackground(Color.clear)
@@ -344,16 +403,22 @@ struct AchievementsView: View {
 
     @ViewBuilder
     private var historySection: some View {
-        ForEach(visibleRecords) { record in
-            let achievement = dailyAchievement(for: record)
-            HistoryDailyRow(
-                record: record,
-                tierName: selectedTheme.name(for: achievement, sex: sex),
-                tierEmoji: selectedTheme.emoji(for: achievement),
-                canEdit: canEdit(record),
-                onTap: { activeSheet = .view(record) },
-                onEdit: { activeSheet = .edit(record) }
-            )
+        ForEach(visibleItems) { item in
+            switch item {
+            case .daily(let record):
+                let achievement = dailyAchievement(for: record)
+                HistoryDailyRow(
+                    record: record,
+                    tierName: selectedTheme.name(for: achievement, sex: sex),
+                    tierEmoji: selectedTheme.emoji(for: achievement),
+                    canEdit: canEdit(record),
+                    onTap: { activeSheet = .view(record) },
+                    onEdit: { activeSheet = .edit(record) }
+                )
+            case .bonus(let bonus):
+                HistoryBonusRow(bonus: bonus, onTap: { showBonusInfoSheet = true })
+                    .deleteDisabled(true)
+            }
         }
         .onDelete { offsets in
             deleteItem(offsets: offsets)

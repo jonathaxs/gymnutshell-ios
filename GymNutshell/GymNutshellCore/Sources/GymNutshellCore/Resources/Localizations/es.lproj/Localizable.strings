@@ -909,3 +909,35 @@
 "settings.notifications.group.footer" = "Agrupa en un solo recordatorio las metas de check-in de la misma hora. Si se desactiva, cada meta tendrá su propio recordatorio.";
 "settings.notifications.emoji.title" = "Emojis en las notificaciones";
 "settings.notifications.emoji.footer" = "Muestra el emoji de cada meta y del logro diario en el texto de las notificaciones.";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "Semana fuerte";
+"streak.bonus.weekly.level5.title" = "Semana perfecta";
+"streak.bonus.monthly.level4.title" = "Mes fuerte";
+"streak.bonus.monthly.level5.title" = "Mes perfecto";
+"streak.bonus.weekly.level4.description" = "De lunes a domingo, todos los días en nivel 4 o 5.";
+"streak.bonus.weekly.level5.description" = "De lunes a domingo, todos los días en nivel 5.";
+"streak.bonus.monthly.level4.description" = "Todo el mes, todos los días en nivel 4 o 5.";
+"streak.bonus.monthly.level5.description" = "Todo el mes, todos los días en nivel 5.";
+"streak.bonus.generic.title" = "Bono de racha";
+"streak.bonus.info.intro" = "Cada día guardado suma puntos según su nivel de logro. Completar una semana o un mes entero en nivel 4 o 5 otorga un bono de racha.";
+"streak.bonus.info.section.daily" = "Puntos por día";
+"streak.bonus.info.footer" = "Las semanas van de lunes a domingo. Un día sin registro rompe la racha. Si todo el período fue de nivel 5, solo cuenta el bono mayor.";
+"points.plus.format" = "+%d pts";
+"settings.about.streakBonus" = "Bono de racha";
+"notifications.kind.streakBonus.title" = "Bono de racha";
+"notifications.kind.streakBonus.description" = "Te avisa cuando completas una racha semanal o mensual.";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d puntos.";
+"statistics.section.bonuses" = "Puntos y bonos";
+"statistics.points.total" = "Puntos";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "Toca para ver cómo funcionan los puntos y los bonos.";
+"a11y.stats.bonus.row.format" = "%1$@, %2$d veces";
+"a11y.record.row.bonus.format" = "%1$@, %2$@, más %3$d puntos";
+"a11y.record.bonus.hint" = "Toca para más información.";
+"settings.section.visual" = "Pantalla";
+"settings.appearance.title" = "Apariencia";
+"settings.appearance.mode.header" = "Modo";
+"settings.appearance.mode.system" = "Dispositivo";
+"settings.appearance.mode.light" = "Claro";
+"settings.appearance.mode.dark" = "Oscuro";

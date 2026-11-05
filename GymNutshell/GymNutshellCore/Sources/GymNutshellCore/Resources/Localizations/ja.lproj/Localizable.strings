@@ -887,3 +887,35 @@
 "settings.notifications.group.footer" = "同じ時刻のチェックイン目標を1つの通知にまとめます。オフの場合は目標ごとに通知します。";
 "settings.notifications.emoji.title" = "通知に絵文字を表示";
 "settings.notifications.emoji.footer" = "各目標と毎日の成果の絵文字を通知の文に表示します。";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "充実した1週間";
+"streak.bonus.weekly.level5.title" = "完璧な1週間";
+"streak.bonus.monthly.level4.title" = "充実した1か月";
+"streak.bonus.monthly.level5.title" = "完璧な1か月";
+"streak.bonus.weekly.level4.description" = "月曜日から日曜日まで、毎日レベル4または5。";
+"streak.bonus.weekly.level5.description" = "月曜日から日曜日まで、毎日レベル5。";
+"streak.bonus.monthly.level4.description" = "1か月間、毎日レベル4または5。";
+"streak.bonus.monthly.level5.description" = "1か月間、毎日レベル5。";
+"streak.bonus.generic.title" = "連続ボーナス";
+"streak.bonus.info.intro" = "記録した日ごとに成果レベルに応じたポイントを獲得できます。1週間または1か月全体をレベル4または5で達成すると、連続ボーナスを獲得できます。";
+"streak.bonus.info.section.daily" = "1日あたりのポイント";
+"streak.bonus.info.footer" = "週は月曜日から日曜日までです。記録のない日があると連続が途切れます。期間全体がレベル5だった場合は、より高いボーナスのみが対象になります。";
+"points.plus.format" = "+%d pt";
+"settings.about.streakBonus" = "連続ボーナス";
+"notifications.kind.streakBonus.title" = "連続ボーナス";
+"notifications.kind.streakBonus.description" = "週または月の連続を達成したときにお知らせします。";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$dポイント。";
+"statistics.section.bonuses" = "ポイントとボーナス";
+"statistics.points.total" = "ポイント";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "タップしてポイントとボーナスの仕組みを表示。";
+"a11y.stats.bonus.row.format" = "%1$@、%2$d回";
+"a11y.record.row.bonus.format" = "%1$@、%2$@、+%3$dポイント";
+"a11y.record.bonus.hint" = "タップして詳細を表示。";
+"settings.section.visual" = "画面表示";
+"settings.appearance.title" = "外観";
+"settings.appearance.mode.header" = "モード";
+"settings.appearance.mode.system" = "デバイス";
+"settings.appearance.mode.light" = "ライト";
+"settings.appearance.mode.dark" = "ダーク";

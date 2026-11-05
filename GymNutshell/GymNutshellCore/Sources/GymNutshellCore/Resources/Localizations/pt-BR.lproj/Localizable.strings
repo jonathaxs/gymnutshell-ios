@@ -927,3 +927,35 @@
 "settings.notifications.group.footer" = "Junta num aviso só as metas de check-in marcadas no mesmo horário. Desligado, cada meta tem o seu aviso.";
 "settings.notifications.emoji.title" = "Emojis nas notificações";
 "settings.notifications.emoji.footer" = "Mostra o emoji de cada meta e da conquista do dia no texto das notificações.";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "Semana forte";
+"streak.bonus.weekly.level5.title" = "Semana perfeita";
+"streak.bonus.monthly.level4.title" = "Mês forte";
+"streak.bonus.monthly.level5.title" = "Mês perfeito";
+"streak.bonus.weekly.level4.description" = "De segunda a domingo, todos os dias no nível 4 ou 5.";
+"streak.bonus.weekly.level5.description" = "De segunda a domingo, todos os dias no nível 5.";
+"streak.bonus.monthly.level4.description" = "O mês inteiro, todos os dias no nível 4 ou 5.";
+"streak.bonus.monthly.level5.description" = "O mês inteiro, todos os dias no nível 5.";
+"streak.bonus.generic.title" = "Bônus de sequência";
+"streak.bonus.info.intro" = "Cada dia salvo vale pontos pelo nível da conquista. Fechar uma semana ou um mês inteiro no nível 4 ou 5 rende um bônus de sequência.";
+"streak.bonus.info.section.daily" = "Pontos por dia";
+"streak.bonus.info.footer" = "A semana vai de segunda a domingo. Um dia sem registro quebra a sequência. Se o período inteiro foi nível 5, vale só o bônus maior.";
+"points.plus.format" = "+%d pts";
+"settings.about.streakBonus" = "Bônus de sequência";
+"notifications.kind.streakBonus.title" = "Bônus de sequência";
+"notifications.kind.streakBonus.description" = "Avisa quando você fecha uma semana ou um mês em sequência.";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d pontos.";
+"statistics.section.bonuses" = "Pontos e bônus";
+"statistics.points.total" = "Pontos";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "Toque para ver como funcionam os pontos e os bônus.";
+"a11y.stats.bonus.row.format" = "%1$@, %2$d vezes";
+"a11y.record.row.bonus.format" = "%1$@, %2$@, mais %3$d pontos";
+"a11y.record.bonus.hint" = "Toque para mais informações.";
+"settings.section.visual" = "Visual";
+"settings.appearance.title" = "Aparência";
+"settings.appearance.mode.header" = "Modo";
+"settings.appearance.mode.system" = "Dispositivo";
+"settings.appearance.mode.light" = "Claro";
+"settings.appearance.mode.dark" = "Escuro";

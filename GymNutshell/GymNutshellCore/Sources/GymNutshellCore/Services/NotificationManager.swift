@@ -99,7 +99,7 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
         guard let kindIdRaw = userInfo["kindId"] as? String,
               let routeRaw = userInfo["route"] as? String,
               let route = NotificationRoute(rawValue: routeRaw) else { return }
-        // Evento puros (achievement, appleHealth, backup) são gravados no ponto de
+        // Evento puros (achievement, streakBonus, appleHealth, backup) são gravados no ponto de
         // disparo, não precisam de segunda gravação aqui.
         if let kind = NotificationKind(rawValue: kindIdRaw), !kind.isIntervalBased { return }
         loggedNotificationIdentifiers.insert(request.identifier)
@@ -116,7 +116,7 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
 
     private func route(for kind: NotificationKind) -> NotificationRoute {
         switch kind {
-        case .achievement: return .achievementsToday
+        case .achievement, .streakBonus: return .achievementsToday
         case .backup:                    return .backup
         default:                         return .today
         }
@@ -161,6 +161,7 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
     public func applyDefaultEnabledKinds() {
         NotificationPreferences.setEnabled(true, for: .progress)
         NotificationPreferences.setEnabled(true, for: .achievement)
+        NotificationPreferences.setEnabled(true, for: .streakBonus)
         NotificationPreferences.setEnabled(false, for: .appleHealth)
         NotificationPreferences.setEnabled(false, for: .backup)
         NotificationPreferences.setEnabled(true, for: .water)
@@ -359,6 +360,30 @@ public final class NotificationManager: NSObject, UNUserNotificationCenterDelega
     }
 
     // MARK: - Eventos
+
+    /// Aviso de bônus de sequência ganho (semana ou mês).
+    public func fireStreakBonus(_ bonus: EarnedStreakBonus) {
+        guard NotificationPreferences.isEnabled(.streakBonus) else { return }
+        let title = String(localized: "notifications.kind.streakBonus.title", bundle: .gymNutshellCore)
+        let body = NotificationPreferences.withEmoji(bonus.kind.emoji, String(
+            format: String(localized: "notifications.kind.streakBonus.body", bundle: .gymNutshellCore),
+            bonus.kind.title, bonus.points
+        ))
+        scheduleImmediate(
+            identifier: "notif.streakBonus.\(bonus.id)",
+            title: title,
+            body: body,
+            route: .achievementsToday,
+            achievementDate: bonus.anchorDate,
+            sound: NotificationPreferences.sound(for: .streakBonus).systemSound
+        )
+        Task { @MainActor in
+            NotificationHistoryStore.shared.append(
+                kind: .streakBonus, title: title, body: body,
+                route: .achievementsToday, achievementDate: bonus.anchorDate
+            )
+        }
+    }
 
     public func fireAchievementUnlocked(tierName: String, emoji: String, date: Date = Date()) {
         guard NotificationPreferences.isEnabled(.achievement) else { return }

@@ -886,3 +886,35 @@
 "settings.notifications.group.footer" = "将同一时间的打卡目标合并为一条提醒。关闭时，每个目标单独提醒。";
 "settings.notifications.emoji.title" = "通知中显示表情";
 "settings.notifications.emoji.footer" = "在通知文字中显示每个目标和每日成就的表情。";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "强劲一周";
+"streak.bonus.weekly.level5.title" = "完美一周";
+"streak.bonus.monthly.level4.title" = "强劲一月";
+"streak.bonus.monthly.level5.title" = "完美一月";
+"streak.bonus.weekly.level4.description" = "周一至周日，每天达到等级 4 或 5。";
+"streak.bonus.weekly.level5.description" = "周一至周日，每天达到等级 5。";
+"streak.bonus.monthly.level4.description" = "整月每天达到等级 4 或 5。";
+"streak.bonus.monthly.level5.description" = "整月每天达到等级 5。";
+"streak.bonus.generic.title" = "连续奖励";
+"streak.bonus.info.intro" = "每个保存的日期都会根据成就等级获得积分。整周或整月达到等级 4 或 5 即可获得连续奖励。";
+"streak.bonus.info.section.daily" = "每日积分";
+"streak.bonus.info.footer" = "按周一至周日计算为一周。某天无记录将中断连续。如果整个周期均为等级 5，则仅计入更高的一档奖励。";
+"points.plus.format" = "+%d 分";
+"settings.about.streakBonus" = "连续奖励";
+"notifications.kind.streakBonus.title" = "连续奖励";
+"notifications.kind.streakBonus.description" = "完成一周或一月的连续记录时提醒你。";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d 积分。";
+"statistics.section.bonuses" = "积分与奖励";
+"statistics.points.total" = "积分";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "轻点了解积分与奖励规则。";
+"a11y.stats.bonus.row.format" = "%1$@，%2$d 次";
+"a11y.record.row.bonus.format" = "%1$@，%2$@，额外 %3$d 积分";
+"a11y.record.bonus.hint" = "轻点查看更多信息。";
+"settings.section.visual" = "显示";
+"settings.appearance.title" = "外观";
+"settings.appearance.mode.header" = "模式";
+"settings.appearance.mode.system" = "设备";
+"settings.appearance.mode.light" = "浅色";
+"settings.appearance.mode.dark" = "深色";

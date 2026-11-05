@@ -887,3 +887,35 @@
 "settings.notifications.group.footer" = "Aynı saatteki check-in hedeflerini tek hatırlatmada birleştirir. Kapalıyken her hedefin kendi hatırlatması olur.";
 "settings.notifications.emoji.title" = "Bildirimlerde emoji";
 "settings.notifications.emoji.footer" = "Her hedefin ve günlük başarının emojisini bildirim metninde gösterir.";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "Güçlü hafta";
+"streak.bonus.weekly.level5.title" = "Mükemmel hafta";
+"streak.bonus.monthly.level4.title" = "Güçlü ay";
+"streak.bonus.monthly.level5.title" = "Mükemmel ay";
+"streak.bonus.weekly.level4.description" = "Pazartesiden pazara, her gün seviye 4 veya 5.";
+"streak.bonus.weekly.level5.description" = "Pazartesiden pazara, her gün seviye 5.";
+"streak.bonus.monthly.level4.description" = "Tüm ay boyunca, her gün seviye 4 veya 5.";
+"streak.bonus.monthly.level5.description" = "Tüm ay boyunca, her gün seviye 5.";
+"streak.bonus.generic.title" = "Seri bonusu";
+"streak.bonus.info.intro" = "Kaydedilen her gün, başarı seviyesine göre puan kazandırır. Bir haftayı veya ayı tamamen seviye 4 veya 5'te tamamlamak seri bonusu kazandırır.";
+"streak.bonus.info.section.daily" = "Günlük puan";
+"streak.bonus.info.footer" = "Haftalar pazartesiden pazara sürer. Kayıt olmayan bir gün seriyi bozar. Tüm dönem seviye 5 ise yalnızca daha büyük olan bonus sayılır.";
+"points.plus.format" = "+%d pts";
+"settings.about.streakBonus" = "Seri bonusu";
+"notifications.kind.streakBonus.title" = "Seri bonusu";
+"notifications.kind.streakBonus.description" = "Haftalık veya aylık bir seriyi tamamladığında sana haber verir.";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d puan.";
+"statistics.section.bonuses" = "Puanlar ve bonuslar";
+"statistics.points.total" = "Puan";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "Puan ve bonusların nasıl çalıştığını görmek için dokun.";
+"a11y.stats.bonus.row.format" = "%1$@, %2$d kez";
+"a11y.record.row.bonus.format" = "%1$@, %2$@, artı %3$d puan";
+"a11y.record.bonus.hint" = "Daha fazla bilgi için dokun.";
+"settings.section.visual" = "Ekran";
+"settings.appearance.title" = "Görünüm";
+"settings.appearance.mode.header" = "Mod";
+"settings.appearance.mode.system" = "Cihaz";
+"settings.appearance.mode.light" = "Açık";
+"settings.appearance.mode.dark" = "Koyu";

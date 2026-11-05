@@ -1,8 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/SettingsView/Preferences/ColorSettingsView.swift
 //
-//  Propósito: Permite ao usuário escolher a cor de destaque do app independentemente do sexo.
-//             O padrão é definido no onboarding com base no sexo, mas pode ser alterado livremente aqui.
+//  Propósito: Página Aparência: modo do app (dispositivo, claro ou escuro) e cor de destaque.
+//             A cor padrão é definida no onboarding com base no sexo, mas pode ser alterada livremente aqui.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-04-15.
 // ⌘
@@ -13,6 +13,7 @@ import GymNutshellCore
 struct ColorSettingsView: View {
 
     @AppStorage(AppAccentColor.storageKey) private var selectedColorRaw: String = AppAccentColor.blue.rawValue
+    @AppStorage(AppearanceMode.storageKey) private var appearanceMode: AppearanceMode = .system
 
     private var selectedColor: AppAccentColor {
         AppAccentColor(rawValue: selectedColorRaw) ?? .blue
@@ -25,6 +26,14 @@ struct ColorSettingsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
+
+                // Modo: segue o dispositivo (padrão), sempre claro ou sempre escuro.
+                VStack(alignment: .leading, spacing: 8) {
+                    AppSectionLabel(text: String(localized: "settings.appearance.mode.header", bundle: .gymNutshellCore))
+                    modePicker
+                        .padding(12)
+                        .appCard()
+                }
 
                 VStack(alignment: .leading, spacing: 8) {
                     AppSectionLabel(text: String(localized: "settings.color.subtitle", bundle: .gymNutshellCore))
@@ -49,8 +58,43 @@ struct ColorSettingsView: View {
             .frame(maxWidth: .infinity)
         }
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
-        .navigationTitle(String(localized: "settings.color.title", bundle: .gymNutshellCore))
+        .navigationTitle(String(localized: "settings.appearance.title", bundle: .gymNutshellCore))
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var modePicker: some View {
+        HStack(spacing: 10) {
+            ForEach(AppearanceMode.allCases) { mode in
+                let isSelected = appearanceMode == mode
+                let accent = selectedColor.color
+                Button {
+                    UISelectionFeedbackGenerator().selectionChanged()
+                    appearanceMode = mode
+                } label: {
+                    VStack(spacing: 8) {
+                        Image(systemName: mode.systemImage)
+                            .font(.title2)
+                            .foregroundStyle(isSelected ? accent : .secondary)
+                            .frame(height: 30)
+                        Text(mode.title)
+                            .font(.footnote.weight(.semibold))
+                            .foregroundStyle(.primary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .background(isSelected ? accent.opacity(0.12) : Color(.tertiarySystemGroupedBackground),
+                                in: RoundedRectangle(cornerRadius: 14))
+                    .overlay(RoundedRectangle(cornerRadius: 14)
+                        .strokeBorder(isSelected ? accent : Color.clear, lineWidth: 2))
+                    .contentShape(RoundedRectangle(cornerRadius: 14))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(mode.title)
+                .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+            }
+        }
     }
 
     private var grid: some View {

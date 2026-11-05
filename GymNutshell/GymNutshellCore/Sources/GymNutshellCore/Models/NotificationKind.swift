@@ -44,6 +44,7 @@ public enum NotificationKind: String, CaseIterable, Identifiable, Sendable {
     // MARK: Sistema
     case progress
     case achievement
+    case streakBonus
     case appleHealth
     case backup
 
@@ -61,13 +62,13 @@ public enum NotificationKind: String, CaseIterable, Identifiable, Sendable {
     public var id: String { rawValue }
 
     /// True se a notificação permite o usuário editar o intervalo em minutos.
-    /// Todas as Metas + Progresso são editáveis; Conquista, Apple Saúde e Backup são eventos.
+    /// Todas as Metas + Progresso são editáveis; Conquista, Bônus, Apple Saúde e Backup são eventos.
     public var isEditable: Bool {
         switch self {
         case .progress, .sleep, .water, .protein, .carbs, .goodFat, .fiber,
              .workout, .cardio, .creatine:
             return true
-        case .achievement, .appleHealth, .backup:
+        case .achievement, .streakBonus, .appleHealth, .backup:
             return false
         }
     }
@@ -114,6 +115,7 @@ public enum NotificationKind: String, CaseIterable, Identifiable, Sendable {
         switch self {
         case .progress:    return "circle.dotted"
         case .achievement: return "trophy.fill"
+        case .streakBonus: return "calendar.badge.checkmark"
         case .appleHealth: return "heart.fill"
         case .backup:      return "externaldrive"
         default:           return nil

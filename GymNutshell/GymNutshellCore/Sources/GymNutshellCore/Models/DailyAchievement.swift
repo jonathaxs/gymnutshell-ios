@@ -117,18 +117,6 @@ extension DailyAchievement {
         }
     }
 
-    public var points: Int {
-        switch self {
-        case .level1:
-            return 0
-        case .level2:
-            return 25
-        case .level3:
-            return 50
-        case .level4:
-            return 75
-        case .level5:
-            return 100
-        }
-    }
+    /// Pontos do dia: o próprio número do nível (1 a 5). Os bônus de sequência somam à parte.
+    public var points: Int { number }
 }

@@ -876,3 +876,35 @@
 "settings.notifications.group.footer" = "Combines check-in goals set for the same time into one reminder. When off, each goal gets its own.";
 "settings.notifications.emoji.title" = "Emojis in notifications";
 "settings.notifications.emoji.footer" = "Shows each goal's emoji and the daily achievement emoji in notification text.";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "Strong week";
+"streak.bonus.weekly.level5.title" = "Perfect week";
+"streak.bonus.monthly.level4.title" = "Strong month";
+"streak.bonus.monthly.level5.title" = "Perfect month";
+"streak.bonus.weekly.level4.description" = "Monday to Sunday, every day at level 4 or 5.";
+"streak.bonus.weekly.level5.description" = "Monday to Sunday, every day at level 5.";
+"streak.bonus.monthly.level4.description" = "The whole month, every day at level 4 or 5.";
+"streak.bonus.monthly.level5.description" = "The whole month, every day at level 5.";
+"streak.bonus.generic.title" = "Streak bonus";
+"streak.bonus.info.intro" = "Every saved day earns points for its achievement level. Finishing a whole week or month at level 4 or 5 earns a streak bonus.";
+"streak.bonus.info.section.daily" = "Points per day";
+"streak.bonus.info.footer" = "Weeks run Monday to Sunday. A day without a record breaks the streak. If the whole period was level 5, only the bigger bonus counts.";
+"points.plus.format" = "+%d pts";
+"settings.about.streakBonus" = "Streak bonus";
+"notifications.kind.streakBonus.title" = "Streak bonus";
+"notifications.kind.streakBonus.description" = "Lets you know when you finish a week or month streak.";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d points.";
+"statistics.section.bonuses" = "Points and bonuses";
+"statistics.points.total" = "Points";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "Tap to see how points and bonuses work.";
+"a11y.stats.bonus.row.format" = "%1$@, %2$d times";
+"a11y.record.row.bonus.format" = "%1$@, %2$@, plus %3$d points";
+"a11y.record.bonus.hint" = "Tap for more information.";
+"settings.section.visual" = "Display";
+"settings.appearance.title" = "Appearance";
+"settings.appearance.mode.header" = "Mode";
+"settings.appearance.mode.system" = "Device";
+"settings.appearance.mode.light" = "Light";
+"settings.appearance.mode.dark" = "Dark";

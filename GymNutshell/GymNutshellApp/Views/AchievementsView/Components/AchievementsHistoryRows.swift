@@ -1,8 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/AchievementsView/Components/AchievementsHistoryRows.swift
 //
-//  Propósito: Linha da lista de histórico em Conquistas para registros
-//             diários (com botão de editar quando dentro da janela).
+//  Propósito: Linhas da lista de histórico em Conquistas: registros diários (com botão de editar
+//             quando dentro da janela) e bônus de sequência.
 // ⌘
 
 import SwiftUI
@@ -67,6 +67,52 @@ struct HistoryDailyRow: View {
             }
         }
         .padding(.vertical, 8)
+    }
+}
+
+/// Linha de um bônus de sequência: emoji, nome, descrição, data e os pontos ganhos.
+struct HistoryBonusRow: View {
+    @AppStorage(AppAccentColor.storageKey) private var storedColorRaw: String = AppAccentColor.blue.rawValue
+    private var accentColor: Color { (AppAccentColor(rawValue: storedColorRaw) ?? .blue).color }
+
+    let bonus: EarnedStreakBonus
+    let onTap: () -> Void
+
+    var body: some View {
+        let points = String(format: String(localized: "points.plus.format", bundle: .gymNutshellCore), bonus.points)
+        HStack(spacing: 16) {
+            EmojiBadge(emoji: bonus.kind.emoji, color: accentColor)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(bonus.kind.title)
+                    .font(.headline)
+
+                Text(bonus.kind.detail)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
+                Text(bonus.anchorDate, style: .date)
+                    .foregroundStyle(.secondary)
+                    .font(.caption)
+            }
+
+            Spacer()
+
+            Text(points)
+                .font(.caption.weight(.semibold).monospacedDigit())
+                .foregroundStyle(accentColor)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(accentColor.opacity(0.12), in: Capsule())
+        }
+        .padding(.vertical, 8)
+        .contentShape(Rectangle())
+        .tapButton(perform: onTap)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(String(format: String(localized: "a11y.record.row.bonus.format",
+                                                 bundle: .gymNutshellCore),
+                                   bonus.kind.title, A11y.spokenDate(for: bonus.anchorDate), bonus.points))
+        .accessibilityHint(String(localized: "a11y.record.bonus.hint", bundle: .gymNutshellCore))
     }
 }
 

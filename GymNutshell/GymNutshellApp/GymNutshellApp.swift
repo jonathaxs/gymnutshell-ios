@@ -25,6 +25,7 @@ struct GymNutshellApp: App {
     // Controla se o onboarding foi completado.
     // A WelcomeView é exibida até o usuário terminar o fluxo.
     @AppStorage(UserProfile.didCompleteOnboardingKey) private var didCompleteOnboarding: Bool = false
+    @AppStorage(AppearanceMode.storageKey) private var appearanceMode: AppearanceMode = .system
 
     // Se o container do SwiftData falhou na inicialização (disco cheio, DB corrompido, etc.).
     // Quando true, o app exibe uma tela de erro em vez de travar.
@@ -100,6 +101,8 @@ struct GymNutshellApp: App {
             DailyRecord.migrateToFiveLevelsIfNeeded(in: sharedModelContainer.mainContext)
             // Emojis do Espaço e da Medalha trocaram de nível: reclassifica os dias salvos (uma vez só).
             DailyRecord.migrateThemeEmojiSwapIfNeeded(in: sharedModelContainer.mainContext)
+            // Pontos simples (1 a 5 pelo nível) no lugar de 0/25/50/75/100 (uma vez só).
+            DailyRecord.migrateSimplePointsIfNeeded(in: sharedModelContainer.mainContext)
         }
     }
 
@@ -118,6 +121,8 @@ struct GymNutshellApp: App {
                     .transition(.opacity)
                 }
             }
+            // Modo de aparência escolhido em Ajustes > Aparência (nil segue o dispositivo).
+            .preferredColorScheme(appearanceMode.colorScheme)
             // "Vamos lá": a Welcome some e a Today entra com um leve zoom.
             .animation(.easeInOut(duration: 0.6), value: didCompleteOnboarding)
             .onReceive(NotificationCenter.default.publisher(for: .gymNutshellIntakeDidChange)) { _ in
@@ -161,6 +166,8 @@ struct GymNutshellApp: App {
         WatchConnectivityManager.shared.updateStatsSummary(
             WatchStatsSummary(records: records)
         )
+        // Mesma hora em que os dias mudam: avisa bônus de sequência novo (uma vez cada).
+        StreakBonusNotifier.notifyNew(records: records)
     }
 }
 

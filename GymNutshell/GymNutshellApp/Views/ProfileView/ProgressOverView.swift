@@ -39,6 +39,7 @@ struct ProgressOverView: View {
     @State private var removedItems: Set<String> = []
     @State private var customTrackingGoals: [CustomTrackingGoal] = []
     @State private var showTierSheet = false
+    @State private var showBonusSheet = false
 
     // MARK: - Distribuição por nível
 
@@ -48,6 +49,10 @@ struct ProgressOverView: View {
     private var level3Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level3 }.count }
     private var level4Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level4 }.count }
     private var level5Days: Int { records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level5 }.count }
+
+    // MARK: - Pontos e bônus
+
+    private var bonuses: [EarnedStreakBonus] { StreakBonusCalculator.bonuses(from: records) }
 
     // MARK: - Atividade
 
@@ -106,6 +111,11 @@ struct ProgressOverView: View {
                 TierInfoView(theme: selectedTheme, sex: sex, isSheet: true)
             }
         }
+        .sheet(isPresented: $showBonusSheet) {
+            NavigationStack {
+                StreakBonusInfoView(isSheet: true)
+            }
+        }
     }
 
     // MARK: - Layout Narrow (iPhone portrait)
@@ -115,6 +125,7 @@ struct ProgressOverView: View {
         VStack(spacing: 24) {
             recentSection
             tiersSection
+            bonusSection
             activitySection
             goalsSection
         }
@@ -135,6 +146,7 @@ struct ProgressOverView: View {
             HStack(alignment: .top, spacing: 16) {
                 VStack(spacing: 24) {
                     tiersSection
+                    bonusSection
                 }
                 .frame(maxWidth: .infinity)
 
@@ -171,6 +183,27 @@ struct ProgressOverView: View {
         .onTapGesture { showTierSheet = true }
         .accessibilityAddTraits(.isButton)
         .accessibilityHint(String(localized: "a11y.stats.card.tiers.hint", bundle: .gymNutshellCore))
+    }
+
+    // Pontos totais (dias + bônus) e quantas vezes cada bônus de sequência saiu.
+    private var bonusSection: some View {
+        let earned = bonuses
+        let daily = records.reduce(0) { $0 + DailyAchievement.from(emoji: $1.achievementEmoji).points }
+        let total = daily + earned.reduce(0) { $0 + $1.points }
+        return ProgressSection(title: String(localized: "statistics.section.bonuses", bundle: .gymNutshellCore)) {
+            AppGroupedCard(dividerInset: 74) {
+                PointsTotalRow(total: total, accentColor: accentColor)
+                ForEach(StreakBonusKind.allCases) { kind in
+                    BonusCountRow(kind: kind,
+                                  count: earned.filter { $0.kind == kind }.count,
+                                  accentColor: accentColor)
+                }
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture { showBonusSheet = true }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(String(localized: "a11y.stats.bonuses.hint", bundle: .gymNutshellCore))
     }
 
     private var activitySection: some View {

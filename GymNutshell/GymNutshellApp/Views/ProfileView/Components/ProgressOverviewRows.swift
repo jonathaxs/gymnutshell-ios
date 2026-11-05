@@ -126,3 +126,66 @@ struct ProgressNavRow: View {
         .accessibilityAddTraits(.isButton)
     }
 }
+
+// MARK: - Pontos e bônus
+
+/// Linha do total de pontos (dias + bônus de sequência).
+struct PointsTotalRow: View {
+    let total: Int
+    let accentColor: Color
+
+    var body: some View {
+        let label = String(localized: "statistics.points.total", bundle: .gymNutshellCore)
+        HStack(spacing: 14) {
+            Image(systemName: "star.fill")
+                .font(.title3)
+                .foregroundStyle(accentColor)
+                .frame(width: 44, height: 44)
+                .background(accentColor.opacity(0.12), in: Circle())
+                .accessibilityHidden(true)
+            Text(label).font(.subheadline.weight(.semibold))
+            Spacer()
+            Text("\(total)")
+                .font(.title3.weight(.bold).monospacedDigit())
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(label)
+        .accessibilityValue("\(total)")
+    }
+}
+
+/// Linha de um tipo de bônus: emoji, nome, pontos e quantas vezes saiu.
+struct BonusCountRow: View {
+    let kind: StreakBonusKind
+    let count: Int
+    let accentColor: Color
+
+    var body: some View {
+        let points = String(format: String(localized: "points.plus.format", bundle: .gymNutshellCore), kind.points)
+        HStack(spacing: 14) {
+            Text(kind.emoji)
+                .font(.title2)
+                .frame(width: 44, height: 44)
+                .background(accentColor.opacity(0.12), in: Circle())
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(kind.title).font(.subheadline.weight(.semibold))
+                Text(points)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+            Text(String(format: String(localized: "statistics.bonus.times", bundle: .gymNutshellCore), count))
+                .font(.subheadline.monospacedDigit())
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .opacity(count == 0 ? 0.55 : 1)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(String(format: String(localized: "a11y.stats.bonus.row.format",
+                                                 bundle: .gymNutshellCore), kind.title, count))
+    }
+}

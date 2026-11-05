@@ -161,7 +161,8 @@ public enum BackupManager {
                 : nil,
             notificationEmoji:    defaults.object(forKey: NotificationPreferences.showEmojiKey) != nil
                 ? defaults.bool(forKey: NotificationPreferences.showEmojiKey)
-                : nil
+                : nil,
+            appearanceMode:       defaults.string(forKey: AppearanceMode.storageKey)
         )
     }
 
@@ -194,6 +195,9 @@ public enum BackupManager {
         }
         if let v = prefs.groupSupplements { defaults.set(v, forKey: NotificationPreferences.groupSupplementsKey) }
         if let v = prefs.notificationEmoji { defaults.set(v, forKey: NotificationPreferences.showEmojiKey) }
+        if let v = prefs.appearanceMode, AppearanceMode(rawValue: v) != nil {
+            defaults.set(v, forKey: AppearanceMode.storageKey)
+        }
     }
 
     // MARK: - Decodificar
@@ -280,6 +284,8 @@ public enum BackupManager {
             record.normalizeAchievement()
             context.insert(record)
         }
+        // Bônus que já vêm no backup não viram aviso.
+        StreakBonusNotifier.resetSeed()
     }
 
     // MARK: - Nome de arquivo sugerido

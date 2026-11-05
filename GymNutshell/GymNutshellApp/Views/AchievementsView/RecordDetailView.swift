@@ -50,7 +50,10 @@ struct RecordDetailView: View {
                         Text("\(tierName) · \(record.percent)%")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
-                        Text(String(localized: "ring.info.level.label", bundle: .gymNutshellCore) + "\(tierLevel(for: achievement))")
+                        // "Nível 3 · +3 pontos"
+                        Text(String(localized: "ring.info.level.label", bundle: .gymNutshellCore) + "\(tierLevel(for: achievement))"
+                             + " · " + String(format: String(localized: "points.plus.format", bundle: .gymNutshellCore),
+                                              achievement.points))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }

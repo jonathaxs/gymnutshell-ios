@@ -46,7 +46,7 @@ extension WatchStatsSummary {
         let today = calendar.startOfDay(for: Date())
 
         totalDays   = records.count
-        totalPoints = records.reduce(0) { $0 + $1.points }
+        totalPoints = StreakBonusCalculator.totalPoints(records: records)
 
         level1Days = records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level1 }.count
         level2Days = records.filter { DailyAchievement.from(emoji: $0.achievementEmoji) == .level2 }.count

@@ -408,3 +408,66 @@ private let noite = ReminderTime(hour: 22, minute: 30)
     #expect(ReminderTime(hour: 22, minute: 30).storageString == "22:30")
     #expect(ReminderTime(storageString: "25:00") == nil)
 }
+
+// MARK: - Bônus de sequência e pontos
+
+private func bonusDay(_ y: Int, _ m: Int, _ d: Int) -> Date {
+    StreakBonusCalculator.weekCalendar.date(from: DateComponents(year: y, month: m, day: d))!
+}
+
+/// Dias seguidos a partir de `start` com os níveis dados.
+private func bonusLevels(from start: Date, _ numbers: [Int]) -> [Date: DailyAchievement] {
+    var result: [Date: DailyAchievement] = [:]
+    for (i, n) in numbers.enumerated() {
+        let date = StreakBonusCalculator.weekCalendar.date(byAdding: .day, value: i, to: start)!
+        result[date] = DailyAchievement.allCases[n - 1]
+    }
+    return result
+}
+
+@Test func pontosDoDiaSaoONumeroDoNivel() {
+    #expect(DailyAchievement.allCases.map(\.points) == [1, 2, 3, 4, 5])
+}
+
+@Test func semanaNivel4ou5DaOitoPontos() {
+    // 2026-11-02 é segunda; a semana fecha no domingo 08.
+    let bonuses = StreakBonusCalculator.bonuses(levels: bonusLevels(from: bonusDay(2026, 11, 2), [4, 5, 4, 5, 5, 4, 5]))
+    #expect(bonuses.map(\.kind) == [.weeklyLevel4])
+    #expect(bonuses.first?.anchorDate == bonusDay(2026, 11, 8))
+    #expect(bonuses.first?.points == 8)
+}
+
+@Test func semanaSoNivel5DaSoOBonusMaior() {
+    let bonuses = StreakBonusCalculator.bonuses(levels: bonusLevels(from: bonusDay(2026, 11, 2), Array(repeating: 5, count: 7)))
+    #expect(bonuses.map(\.kind) == [.weeklyLevel5])
+    #expect(bonuses.first?.points == 12)
+}
+
+@Test func semanaComNivel3OuDiaFaltandoNaoDaBonus() {
+    #expect(StreakBonusCalculator.bonuses(levels: bonusLevels(from: bonusDay(2026, 11, 2), [5, 5, 3, 5, 5, 5, 5])).isEmpty)
+    var falta = bonusLevels(from: bonusDay(2026, 11, 2), Array(repeating: 5, count: 7))
+    falta[bonusDay(2026, 11, 4)] = nil
+    #expect(StreakBonusCalculator.bonuses(levels: falta).isEmpty)
+    // Domingo a sábado não é semana de bônus (a semana vai de segunda a domingo).
+    #expect(StreakBonusCalculator.bonuses(levels: bonusLevels(from: bonusDay(2026, 11, 1), Array(repeating: 5, count: 7))).isEmpty)
+}
+
+@Test func mesInteiroDaBonusMensalAlemDosSemanais() {
+    // Fevereiro de 2027: 28 dias, de segunda 1 a domingo 28, todos nível 5.
+    let bonuses = StreakBonusCalculator.bonuses(levels: bonusLevels(from: bonusDay(2027, 2, 1), Array(repeating: 5, count: 28)))
+    #expect(bonuses.filter { $0.kind == .monthlyLevel5 }.count == 1)
+    #expect(bonuses.filter { $0.kind == .weeklyLevel5 }.count == 4)
+    #expect(bonuses.first?.kind == .monthlyLevel5)
+    #expect(bonuses.reduce(0) { $0 + $1.points } == 33 + 4 * 12)
+
+    var misto = bonusLevels(from: bonusDay(2027, 2, 1), Array(repeating: 5, count: 28))
+    misto[bonusDay(2027, 2, 10)] = .level4
+    let mistoBonuses = StreakBonusCalculator.bonuses(levels: misto)
+    #expect(mistoBonuses.filter { $0.kind == .monthlyLevel4 }.count == 1)
+    #expect(mistoBonuses.filter { $0.kind == .weeklyLevel4 }.count == 1)
+}
+
+@Test func idDoBonusEhEstavel() {
+    let bonus = EarnedStreakBonus(kind: .weeklyLevel5, anchorDate: bonusDay(2026, 11, 8))
+    #expect(bonus.id == "weekly.level5.2026-11-08")
+}

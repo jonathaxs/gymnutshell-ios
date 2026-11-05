@@ -886,3 +886,35 @@
 "settings.notifications.group.footer" = "Fasst Check-in-Ziele mit derselben Uhrzeit in einer Erinnerung zusammen. Wenn deaktiviert, erhält jedes Ziel eine eigene Erinnerung.";
 "settings.notifications.emoji.title" = "Emojis in Mitteilungen";
 "settings.notifications.emoji.footer" = "Zeigt das Emoji jedes Ziels und des Tageserfolgs im Text der Mitteilungen.";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "Starke Woche";
+"streak.bonus.weekly.level5.title" = "Perfekte Woche";
+"streak.bonus.monthly.level4.title" = "Starker Monat";
+"streak.bonus.monthly.level5.title" = "Perfekter Monat";
+"streak.bonus.weekly.level4.description" = "Montag bis Sonntag, jeden Tag auf Stufe 4 oder 5.";
+"streak.bonus.weekly.level5.description" = "Montag bis Sonntag, jeden Tag auf Stufe 5.";
+"streak.bonus.monthly.level4.description" = "Den ganzen Monat, jeden Tag auf Stufe 4 oder 5.";
+"streak.bonus.monthly.level5.description" = "Den ganzen Monat, jeden Tag auf Stufe 5.";
+"streak.bonus.generic.title" = "Serienbonus";
+"streak.bonus.info.intro" = "Jeder gespeicherte Tag bringt Punkte für seine Erfolgsstufe. Eine ganze Woche oder einen ganzen Monat auf Stufe 4 oder 5 abzuschließen, bringt einen Serienbonus.";
+"streak.bonus.info.section.daily" = "Punkte pro Tag";
+"streak.bonus.info.footer" = "Wochen laufen von Montag bis Sonntag. Ein Tag ohne Eintrag unterbricht die Serie. Wenn der gesamte Zeitraum auf Stufe 5 war, zählt nur der höhere Bonus.";
+"points.plus.format" = "+%d Pkt.";
+"settings.about.streakBonus" = "Serienbonus";
+"notifications.kind.streakBonus.title" = "Serienbonus";
+"notifications.kind.streakBonus.description" = "Informiert dich, wenn du eine Wochen- oder Monatsserie abschließt.";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d Punkte.";
+"statistics.section.bonuses" = "Punkte und Boni";
+"statistics.points.total" = "Punkte";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "Tippen, um zu sehen, wie Punkte und Boni funktionieren.";
+"a11y.stats.bonus.row.format" = "%1$@, %2$d-mal";
+"a11y.record.row.bonus.format" = "%1$@, %2$@, plus %3$d Punkte";
+"a11y.record.bonus.hint" = "Tippen für weitere Informationen.";
+"settings.section.visual" = "Darstellung";
+"settings.appearance.title" = "Erscheinungsbild";
+"settings.appearance.mode.header" = "Modus";
+"settings.appearance.mode.system" = "Gerät";
+"settings.appearance.mode.light" = "Hell";
+"settings.appearance.mode.dark" = "Dunkel";
