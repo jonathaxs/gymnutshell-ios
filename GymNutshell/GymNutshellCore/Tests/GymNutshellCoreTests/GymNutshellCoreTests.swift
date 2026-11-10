@@ -471,3 +471,23 @@ private func bonusLevels(from start: Date, _ numbers: [Int]) -> [Date: DailyAchi
     let bonus = EarnedStreakBonus(kind: .weeklyLevel5, anchorDate: bonusDay(2026, 11, 8))
     #expect(bonus.id == "weekly.level5.2026-11-08")
 }
+
+// MARK: - CSV de treino do ML
+
+@Test func csvDeTreinoOrdenaEFormata() {
+    var cal = Calendar(identifier: .gregorian)
+    cal.timeZone = TimeZone(identifier: "UTC")!
+    let sabado = cal.date(from: DateComponents(year: 2026, month: 11, day: 7))!
+    let domingo = cal.date(from: DateComponents(year: 2026, month: 11, day: 8))!
+    func dia(_ date: Date, _ percent: Int) -> TrainingDay {
+        TrainingDay(date: date, water: 2000, protein: 120, carbs: 200, goodFat: 50, fiber: 30, sleep: 7,
+                    didWorkout: true, didCardio: false, workoutRestDay: false, cardioRestDay: true,
+                    percent: percent, points: 10)
+    }
+    let csv = TrainingCSV.make(days: [dia(domingo, 40), dia(sabado, 90)], calendar: cal)
+    let linhas = csv.split(separator: "\n").map(String.init)
+    #expect(linhas.count == 3)
+    #expect(linhas[0] == TrainingCSV.header)
+    #expect(linhas[1] == "2026-11-07,7,2000,120,200,50,30,7,1,0,0,1,90,10")
+    #expect(linhas[2] == "2026-11-08,1,2000,120,200,50,30,7,1,0,0,1,40,10")
+}
