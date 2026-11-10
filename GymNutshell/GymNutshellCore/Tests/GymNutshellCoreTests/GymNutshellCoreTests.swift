@@ -491,3 +491,87 @@ private func bonusLevels(from start: Date, _ numbers: [Int]) -> [Date: DailyAchi
     #expect(linhas[1] == "2026-11-07,7,2000,120,200,50,30,7,1,0,0,1,90,10")
     #expect(linhas[2] == "2026-11-08,1,2000,120,200,50,30,7,1,0,0,1,40,10")
 }
+
+// MARK: - Modelo de dia de risco (ML)
+
+private func calendarioUTC() -> Calendar {
+    var cal = Calendar(identifier: .gregorian)
+    cal.timeZone = TimeZone(identifier: "UTC")!
+    return cal
+}
+
+/// Histórico sintético: `count` dias seguidos a partir de 2026-01-05 (segunda), percent por regra.
+private func historico(_ count: Int, _ cal: Calendar, percent: (Int, Date) -> Int) -> [TrainingDay] {
+    let inicio = cal.date(from: DateComponents(year: 2026, month: 1, day: 5))!
+    return (0..<count).map { i in
+        let d = cal.date(byAdding: .day, value: i, to: inicio)!
+        return TrainingDay(date: d, water: 2000, protein: 100, carbs: 200, goodFat: 50, fiber: 30, sleep: 7,
+                           didWorkout: true, didCardio: false, workoutRestDay: false, cardioRestDay: false,
+                           percent: percent(i, d), points: 0)
+    }
+}
+
+@Test func sigmoidNoZeroEMeio() {
+    #expect(LogisticRegression.sigmoid(0) == 0.5)
+}
+
+@Test func regressaoLogisticaSeparaCasoSimples() {
+    let x: [[Double]] = [[-2], [-1], [1], [2]]
+    let y: [Double] = [0, 0, 1, 1]
+    let m = LogisticRegression.train(x: x, y: y, epochs: 500, l2: 0)
+    #expect(m.weights[0] > 0)
+    #expect(m.probability([2]) > 0.8)
+    #expect(m.probability([-2]) < 0.2)
+}
+
+@Test func normalizacaoUsaMediaEDesvio() {
+    let s = Standardizer(fitting: [[1, 5], [3, 5]])
+    #expect(s.means == [2, 5])
+    #expect(s.stds == [1, 1])  // segunda coluna é constante: desvio vira 1
+    #expect(s.transform([3, 5]) == [1, 0])
+}
+
+@Test func featuresOlhamSoOPassado() {
+    let cal = calendarioUTC()
+    let dias = historico(10, cal) { i, _ in i == 8 ? 30 : 90 }
+    let idx = RiskFeatures.index(dias, calendar: cal)
+    // Dia 9 (quarta 14/01): ontem foi o dia fraco (30%), sequência zerada.
+    let v = RiskFeatures.vector(for: dias[9].date, history: idx, weakThreshold: 60, calendar: cal)
+    #expect(v.count == RiskFeatures.names.count)
+    #expect(v[3] == 1)               // quarta
+    #expect(v[7] == 0.3)             // ontem_percent
+    #expect(v[8] == 0)               // ontem tem registro
+    #expect(v[11] == 0)              // sequência
+    // Dia 8 olhando pra trás: 7 dias bons seguidos antes dele (o dia 0 fica fora da janela de 7).
+    let v8 = RiskFeatures.vector(for: dias[8].date, history: idx, weakThreshold: 60, calendar: cal)
+    #expect(v8[11] == 8.0 / 14)
+    #expect(v8[10] == 1)
+}
+
+@Test func riscoPrecisaDeDiasMinimos() {
+    let cal = calendarioUTC()
+    #expect(RiskModel.evaluate(days: historico(20, cal) { _, _ in 90 }, calendar: cal) == nil)
+}
+
+@Test func riscoComPadraoDeSabadoEmpataComARegra() {
+    // Sábado sempre fraco: a regra do dia da semana já acerta tudo, o modelo não pode "ganhar".
+    let cal = calendarioUTC()
+    let dias = historico(70, cal) { _, d in cal.component(.weekday, from: d) == 7 ? 20 : 90 }
+    let r = RiskModel.evaluate(days: dias, calendar: cal)!
+    #expect(r.trainCount == 56)
+    #expect(r.validationCount == 14)
+    #expect(r.weekdayAccuracy == 1)
+    #expect(r.modelAccuracy == 1)
+    #expect(!r.beatsBaseline)
+    let sabado = cal.date(byAdding: .day, value: 75, to: dias[0].date)!  // 2026-03-21, sábado
+    #expect(RiskModel.riskProbability(for: sabado, days: dias, report: r, calendar: cal) > 0.5)
+}
+
+@Test func riscoComPadraoDeOntemGanhaDaRegra() {
+    // Ciclo de 5 dias (3 bons, 2 fracos): não bate com a semana, mas "ontem" e a sequência explicam.
+    let cal = calendarioUTC()
+    let dias = historico(100, cal) { i, _ in i % 5 >= 3 ? 30 : 90 }
+    let r = RiskModel.evaluate(days: dias, calendar: cal)!
+    #expect(r.modelAccuracy > r.weekdayAccuracy)
+    #expect(r.beatsBaseline)
+}
