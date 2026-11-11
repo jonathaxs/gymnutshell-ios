@@ -100,6 +100,8 @@
 "achievements.filter.list" = "목록";
 "achievements.filter.calendar" = "캘린더";
 "achievements.filter.title" = "보기";
+"achievements.weekday.title" = "요일별 평균";
+"achievements.weekday.footer" = "기록된 모든 날을 기준으로 계산한 요일별 평균 달성률이에요.";
 "achievements.empty.title" = "아직 달성한 업적이 없어요";
 "achievements.empty.description" = "하루가 끝나면 이곳에 오늘의 업적이 잠금 해제돼요.";
 

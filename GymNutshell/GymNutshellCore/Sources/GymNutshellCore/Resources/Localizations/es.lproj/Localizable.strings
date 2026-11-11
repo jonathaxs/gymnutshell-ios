@@ -123,6 +123,8 @@
 "achievements.filter.list" = "Lista";
 "achievements.filter.calendar" = "Calendario";
 "achievements.filter.title" = "Vista";
+"achievements.weekday.title" = "Media por día de la semana";
+"achievements.weekday.footer" = "Promedio de tu porcentaje en cada día de la semana, con todos los días registrados.";
 "achievements.empty.title" = "Aún no hay logros";
 "achievements.empty.description" = "Al final del día, desbloquearás tu logro aquí.";
 

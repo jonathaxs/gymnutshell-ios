@@ -212,6 +212,24 @@ struct AchievementsView: View {
         }
     }
 
+    // MARK: - Gráfico por dia da semana (só na lista, com 7+ dias)
+
+    @ViewBuilder
+    private var weekdayChartSection: some View {
+        if filterMode == .all && records.count >= 7 {
+            Section {
+                WeekdayAverageChart(
+                    averages: WeekdayStats.averages(days: records.map(TrainingDay.init(record:)),
+                                                    calendar: StreakBonusCalculator.weekCalendar),
+                    accentColor: accentColor
+                )
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+            }
+        }
+    }
+
     // MARK: - Seção de calendário (extraída pra reuso no layout wide/narrow)
 
     @ViewBuilder
@@ -278,6 +296,7 @@ struct AchievementsView: View {
                         } else {
                             // Lista completa: painel único sem coluna de calendário.
                             List {
+                                weekdayChartSection
                                 calendarSection
 
                                 if visibleItems.isEmpty {
@@ -363,6 +382,7 @@ struct AchievementsView: View {
     /// List do iPhone em retrato (calendário + dia escolhido, ou todos os dias).
     private var narrowList: some View {
         List {
+            weekdayChartSection
             calendarSection
 
             if visibleItems.isEmpty {

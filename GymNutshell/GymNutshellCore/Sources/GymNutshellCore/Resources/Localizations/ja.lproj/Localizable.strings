@@ -100,6 +100,8 @@
 "achievements.filter.list" = "リスト";
 "achievements.filter.calendar" = "カレンダー";
 "achievements.filter.title" = "表示";
+"achievements.weekday.title" = "曜日別の平均";
+"achievements.weekday.footer" = "記録されたすべての日から算出した、曜日ごとの平均達成率です。";
 "achievements.empty.title" = "まだ成果がありません";
 "achievements.empty.description" = "1日の終わりに、ここで成果がアンロックされます。";
 

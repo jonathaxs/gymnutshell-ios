@@ -136,6 +136,8 @@
 "achievements.filter.list" = "Lista";
 "achievements.filter.calendar" = "Calendário";
 "achievements.filter.title" = "Visualização";
+"achievements.weekday.title" = "Média por dia da semana";
+"achievements.weekday.footer" = "Média do seu percentual em cada dia da semana, com todos os dias registrados.";
 "achievements.empty.title" = "Nenhuma conquista ainda.";
 "achievements.empty.description" = "No fim do dia irá desbloquear sua conquista aqui.";
 

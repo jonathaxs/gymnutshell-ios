@@ -575,3 +575,35 @@ private func historico(_ count: Int, _ cal: Calendar, percent: (Int, Date) -> In
     #expect(r.modelAccuracy > r.weekdayAccuracy)
     #expect(r.beatsBaseline)
 }
+
+// MARK: - Média por dia da semana
+
+@Test func mediaPorDiaDaSemanaCalculaCorretamente() {
+    var cal = calendarioUTC()
+    cal.firstWeekday = 1
+    // 14 dias (2 semanas completas): em cada dia da semana w, a 1ª semana tem 10*w e a 2ª tem 10*w + 10.
+    let dias = historico(14, cal) { i, d in
+        let w = cal.component(.weekday, from: d)
+        return i < 7 ? w * 10 : w * 10 + 10
+    }
+    let medias = WeekdayStats.averages(days: dias, calendar: cal)
+    #expect(medias.count == 7)
+    #expect(medias.map(\.weekday) == [1, 2, 3, 4, 5, 6, 7])
+    for item in medias {
+        #expect(item.count == 2)
+        #expect(item.average == Double(item.weekday * 10 + 5))
+    }
+}
+
+@Test func mediaPorDiaDaSemanaSegueFirstWeekdayEOmiteSemRegistro() {
+    var cal = calendarioUTC()
+    cal.firstWeekday = 2 // começa na segunda-feira (2)
+    let semana = historico(7, cal) { i, _ in (i + 1) * 10 }
+    // Só domingo (índice 6, weekday 1), segunda (índice 0, weekday 2) e quarta (índice 2, weekday 4).
+    let dias = [semana[6], semana[0], semana[2]]
+    let medias = WeekdayStats.averages(days: dias, calendar: cal)
+    #expect(medias.map(\.weekday) == [2, 4, 1])
+    #expect(medias.map(\.average) == [10, 30, 70])
+    #expect(medias.map(\.count) == [1, 1, 1])
+}
+

@@ -101,6 +101,8 @@
 "achievements.filter.list" = "Liste";
 "achievements.filter.calendar" = "Kalender";
 "achievements.filter.title" = "Ansicht";
+"achievements.weekday.title" = "Durchschnitt nach Wochentag";
+"achievements.weekday.footer" = "Dein durchschnittlicher Prozentsatz an jedem Wochentag über alle erfassten Tage.";
 "achievements.empty.title" = "Noch keine Erfolge";
 "achievements.empty.description" = "Am Ende des Tages schaltest du hier deinen Erfolg frei.";
 

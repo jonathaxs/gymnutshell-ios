@@ -121,6 +121,8 @@
 "achievements.filter.list" = "Liste";
 "achievements.filter.calendar" = "Calendrier";
 "achievements.filter.title" = "Affichage";
+"achievements.weekday.title" = "Moyenne par jour de la semaine";
+"achievements.weekday.footer" = "Moyenne de ton pourcentage pour chaque jour de la semaine, sur tous les jours enregistrés.";
 "achievements.empty.title" = "Aucun succès pour l'instant";
 "achievements.empty.description" = "En fin de journée, ton succès apparaîtra ici.";
 

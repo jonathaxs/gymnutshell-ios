@@ -100,6 +100,8 @@
 "achievements.filter.list" = "列表";
 "achievements.filter.calendar" = "日历";
 "achievements.filter.title" = "视图";
+"achievements.weekday.title" = "按星期统计的平均完成率";
+"achievements.weekday.footer" = "基于所有已记录天数计算的每周各天平均得分。";
 "achievements.empty.title" = "暂无成就";
 "achievements.empty.description" = "每天结束时，你解锁的成就将显示在这里。";
 

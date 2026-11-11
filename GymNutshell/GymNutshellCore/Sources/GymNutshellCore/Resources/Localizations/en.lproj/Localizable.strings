@@ -100,6 +100,8 @@
 "achievements.filter.list" = "List";
 "achievements.filter.calendar" = "Calendar";
 "achievements.filter.title" = "View";
+"achievements.weekday.title" = "Average by weekday";
+"achievements.weekday.footer" = "Your average score on each day of the week, across all logged days.";
 "achievements.empty.title" = "No achievements yet";
 "achievements.empty.description" = "At the end of the day, you will unlock your achievement here.";
 

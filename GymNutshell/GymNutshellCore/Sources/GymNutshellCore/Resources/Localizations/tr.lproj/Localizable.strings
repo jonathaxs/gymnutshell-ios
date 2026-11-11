@@ -100,6 +100,8 @@
 "achievements.filter.list" = "Liste";
 "achievements.filter.calendar" = "Takvim";
 "achievements.filter.title" = "Görünüm";
+"achievements.weekday.title" = "Haftanın gününe göre ortalama";
+"achievements.weekday.footer" = "Kaydedilen tüm günler genelinde haftanın her günü için ortalama yüzdelik puanın.";
 "achievements.empty.title" = "Henüz başarı yok";
 "achievements.empty.description" = "Günün sonunda başarın burada açılacak.";
 

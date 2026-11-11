@@ -118,6 +118,8 @@
 "achievements.filter.list" = "Elenco";
 "achievements.filter.calendar" = "Calendario";
 "achievements.filter.title" = "Vista";
+"achievements.weekday.title" = "Media per giorno della settimana";
+"achievements.weekday.footer" = "La media della tua percentuale in ogni giorno della settimana, su tutti i giorni registrati.";
 "achievements.empty.title" = "Ancora nessun traguardo";
 "achievements.empty.description" = "A fine giornata sbloccherai qui il tuo traguardo.";
 
