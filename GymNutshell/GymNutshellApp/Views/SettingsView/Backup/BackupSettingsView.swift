@@ -327,6 +327,11 @@ struct BackupSettingsView: View {
             } label: {
                 Label("Exportar CSV de treino (ML)", systemImage: "tablecells")
             }
+            NavigationLink {
+                RiskModelDebugView()
+            } label: {
+                Label("Modelo × regra (ML)", systemImage: "chart.bar.xaxis")
+            }
         } header: {
             Text("Debug")
         } footer: {
