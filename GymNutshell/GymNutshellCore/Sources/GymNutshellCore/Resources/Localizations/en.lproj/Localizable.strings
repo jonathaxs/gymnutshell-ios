@@ -859,6 +859,23 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Day ends in %@";
+"today.insight.attention" = "Today needs extra focus";
+"today.insight.steady" = "Looks like a good day";
+"today.insight.weekday" = "Your average on this weekday: %d%%";
+"today.insight.title" = "Today's forecast";
+"today.insight.title.history" = "Your history";
+"today.insight.model.risk" = "Chance of a weak day today (up to %d%%): %@.";
+"today.insight.model.factors" = "What weighed most: %@.";
+"today.insight.model.footer" = "Calculated on your device from %d logged days. On the most recent days, the forecast was right %@ of the time.";
+"today.insight.weekday.detail" = "On this weekday, your average is %d%%. Your average across all days is %d%%.";
+"today.insight.weekday.footer" = "Calculated on your device from %d logged days. The forecast appears when your data shows a clearer pattern.";
+"today.insight.factor.weekday" = "the day of the week";
+"today.insight.factor.yesterday" = "yesterday";
+"today.insight.factor.lastWeek" = "the last 7 days";
+"today.insight.factor.streak" = "your streak";
+"today.insight.factor.sleep" = "last night's sleep";
+"today.insight.factor.workout" = "yesterday's workout";
+"today.insight.factor.cardio" = "yesterday's cardio";
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "Time to take %@.";

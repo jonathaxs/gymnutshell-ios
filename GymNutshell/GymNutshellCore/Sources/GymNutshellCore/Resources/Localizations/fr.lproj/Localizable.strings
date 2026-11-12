@@ -891,6 +891,23 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Fin de la journée dans %@";
+"today.insight.attention" = "Aujourd'hui demande plus d'attention";
+"today.insight.steady" = "Tout indique une bonne journée";
+"today.insight.weekday" = "Ta moyenne ce jour de la semaine : %d %%";
+"today.insight.title" = "Prévision du jour";
+"today.insight.title.history" = "Ton historique";
+"today.insight.model.risk" = "Probabilité d'une journée faible (jusqu'à %d %%) : %@.";
+"today.insight.model.factors" = "Ce qui a le plus compté : %@.";
+"today.insight.model.footer" = "Calculé sur ton appareil à partir de %d jours enregistrés. Sur les jours les plus récents, la prévision a vu juste dans %@ des cas.";
+"today.insight.weekday.detail" = "Ce jour de la semaine, ta moyenne est de %d %%. Sur tous les jours, elle est de %d %%.";
+"today.insight.weekday.footer" = "Calculé sur ton appareil à partir de %d jours enregistrés. La prévision apparaît quand tes données montrent une tendance plus nette.";
+"today.insight.factor.weekday" = "le jour de la semaine";
+"today.insight.factor.yesterday" = "la journée d'hier";
+"today.insight.factor.lastWeek" = "les 7 derniers jours";
+"today.insight.factor.streak" = "ta série";
+"today.insight.factor.sleep" = "le sommeil d'hier";
+"today.insight.factor.workout" = "l'entraînement d'hier";
+"today.insight.factor.cardio" = "le cardio d'hier";
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "C'est l'heure de prendre %@.";

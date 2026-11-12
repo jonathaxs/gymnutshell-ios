@@ -1,7 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodayInfoPopovers.swift
 //
-//  Propósito: Conteúdo dos balões informativos da tela Hoje: conquista (emoji), anel de progresso e data.
+//  Propósito: Conteúdo dos balões informativos da tela Hoje: conquista (emoji), anel de progresso e data
+//             (com a explicação da frase do dia).
 //             As páginas completas continuam em Ajustes > Sobre (TierInfoView e ProgressRingInfoView).
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-28.
@@ -151,8 +152,11 @@ struct RingInfoPopover: View {
 
 // MARK: - Data
 
-/// Data completa e quanto falta pro fim do dia. Atualiza a cada minuto enquanto aberto.
+/// Data completa, quanto falta pro fim do dia e, com histórico suficiente, a explicação da frase do dia.
+/// Atualiza a cada minuto enquanto aberto.
 struct DayInfoPopover: View {
+
+    var insight: DayInsight? = nil
 
     var body: some View {
         TimelineView(.everyMinute) { context in
@@ -168,8 +172,73 @@ struct DayInfoPopover: View {
                     .accessibilityLabel(String(format: String(localized: "today.day.remaining",
                                                               bundle: .gymNutshellCore),
                                                Self.remaining(until: now, style: .full)))
+
+                if let insight {
+                    Divider()
+                    insightSection(insight)
+                }
             }
         }
+    }
+
+    // MARK: Frase do dia
+
+    private func insightSection(_ insight: DayInsight) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(Self.insightTitle(insight))
+                .font(.subheadline.weight(.semibold))
+                .accessibilityAddTraits(.isHeader)
+
+            switch insight.kind {
+            case .model(let risk, let accuracy, let factors):
+                insightText(String(format: String(localized: "today.insight.model.risk", bundle: .gymNutshellCore),
+                                   RiskModel.defaultWeakThreshold, Self.percent(risk)))
+                if !factors.isEmpty {
+                    insightText(String(format: String(localized: "today.insight.model.factors",
+                                                      bundle: .gymNutshellCore),
+                                       factors.map(Self.factorName).formatted(.list(type: .and))))
+                }
+                footnote(String(format: String(localized: "today.insight.model.footer", bundle: .gymNutshellCore),
+                                insight.dayCount, Self.percent(accuracy)))
+
+            case .weekday(let average, let overall):
+                insightText(String(format: String(localized: "today.insight.weekday.detail", bundle: .gymNutshellCore),
+                                   average, overall))
+                footnote(String(format: String(localized: "today.insight.weekday.footer", bundle: .gymNutshellCore),
+                                insight.dayCount))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func insightText(_ text: String) -> some View {
+        Text(text)
+            .font(.subheadline)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    private func footnote(_ text: String) -> some View {
+        Text(text)
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    /// "Previsão do dia" com o modelo; "Seu histórico" quando é só a média do dia da semana.
+    private static func insightTitle(_ insight: DayInsight) -> String {
+        if case .model = insight.kind {
+            return String(localized: "today.insight.title", bundle: .gymNutshellCore)
+        }
+        return String(localized: "today.insight.title.history", bundle: .gymNutshellCore)
+    }
+
+    private static func percent(_ value: Double) -> String {
+        value.formatted(.percent.precision(.fractionLength(0)))
+    }
+
+    private static func factorName(_ factor: DayInsightFactor) -> String {
+        String(localized: String.LocalizationValue("today.insight.factor." + factor.rawValue),
+               bundle: .gymNutshellCore)
     }
 
     /// "Terça-feira, 28 de outubro de 2026", com a primeira letra maiúscula.

@@ -910,6 +910,23 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Fim do dia em %@";
+"today.insight.attention" = "Hoje pede atenção extra";
+"today.insight.steady" = "Tudo indica um bom dia";
+"today.insight.weekday" = "Sua média neste dia da semana: %d%%";
+"today.insight.title" = "Previsão do dia";
+"today.insight.title.history" = "Seu histórico";
+"today.insight.model.risk" = "Chance de hoje ser um dia fraco (até %d%%): %@.";
+"today.insight.model.factors" = "O que mais pesou: %@.";
+"today.insight.model.footer" = "Calculado no seu aparelho a partir de %d dias de registro. Nos dias mais recentes, a previsão acertou %@.";
+"today.insight.weekday.detail" = "Neste dia da semana, sua média é %d%%. A média de todos os dias é %d%%.";
+"today.insight.weekday.footer" = "Calculado no seu aparelho a partir de %d dias de registro. A previsão aparece quando seus dados mostram um padrão mais claro.";
+"today.insight.factor.weekday" = "o dia da semana";
+"today.insight.factor.yesterday" = "o dia de ontem";
+"today.insight.factor.lastWeek" = "os últimos 7 dias";
+"today.insight.factor.streak" = "sua sequência";
+"today.insight.factor.sleep" = "o sono de ontem";
+"today.insight.factor.workout" = "o treino de ontem";
+"today.insight.factor.cardio" = "o cardio de ontem";
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "Hora de tomar %@.";

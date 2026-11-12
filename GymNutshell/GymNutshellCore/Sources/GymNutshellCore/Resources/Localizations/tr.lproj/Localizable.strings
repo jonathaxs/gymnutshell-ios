@@ -870,6 +870,23 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "Günün bitmesine %@ kaldı";
+"today.insight.attention" = "Bugün biraz daha dikkat istiyor";
+"today.insight.steady" = "İyi bir gün gibi görünüyor";
+"today.insight.weekday" = "Haftanın bu günündeki ortalaman: %%%d";
+"today.insight.title" = "Günün tahmini";
+"today.insight.title.history" = "Geçmişin";
+"today.insight.model.risk" = "Bugünün zayıf bir gün olma ihtimali (en fazla %%%d): %@.";
+"today.insight.model.factors" = "En çok etkileyen: %@.";
+"today.insight.model.footer" = "Cihazında %d kayıtlı günden hesaplandı. Son günlerde tahmin %@ oranında doğru çıktı.";
+"today.insight.weekday.detail" = "Haftanın bu gününde ortalaman %%%d. Tüm günlerin ortalaması %%%d.";
+"today.insight.weekday.footer" = "Cihazında %d kayıtlı günden hesaplandı. Verilerin daha net bir düzen gösterdiğinde tahmin görünür.";
+"today.insight.factor.weekday" = "haftanın günü";
+"today.insight.factor.yesterday" = "dünkü gün";
+"today.insight.factor.lastWeek" = "son 7 gün";
+"today.insight.factor.streak" = "serin";
+"today.insight.factor.sleep" = "dünkü uyku";
+"today.insight.factor.workout" = "dünkü antrenman";
+"today.insight.factor.cardio" = "dünkü kardiyo";
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@ alma zamanı.";

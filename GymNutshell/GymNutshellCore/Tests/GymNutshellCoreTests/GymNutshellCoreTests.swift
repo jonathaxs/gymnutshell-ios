@@ -607,3 +607,61 @@ private func historico(_ count: Int, _ cal: Calendar, percent: (Int, Date) -> In
     #expect(medias.map(\.count) == [1, 1, 1])
 }
 
+
+// MARK: - Frase do dia (Hoje)
+
+@Test func fraseDoDiaPrecisaDeDiasMinimos() {
+    let cal = calendarioUTC()
+    let dias = historico(20, cal) { _, _ in 90 }
+    let amanha = cal.date(byAdding: .day, value: 20, to: dias[0].date)!
+    #expect(DayInsightBuilder.make(for: amanha, days: dias, calendar: cal) == nil)
+}
+
+@Test func fraseDoDiaIgnoraOProprioDia() {
+    // 21 dias contando hoje = só 20 no passado, ainda não chega no mínimo.
+    let cal = calendarioUTC()
+    let dias = historico(21, cal) { _, _ in 90 }
+    #expect(DayInsightBuilder.make(for: dias[20].date, days: dias, calendar: cal) == nil)
+}
+
+@Test func fraseDoDiaUsaDiaDaSemanaQuandoModeloNaoGanha() {
+    // Sábado sempre fraco: o modelo empata com a regra, então a frase usa a média do sábado.
+    let cal = calendarioUTC()
+    let dias = historico(70, cal) { _, d in cal.component(.weekday, from: d) == 7 ? 20 : 90 }
+    let sabado = cal.date(byAdding: .day, value: 75, to: dias[0].date)!  // 2026-03-21
+    let insight = DayInsightBuilder.make(for: sabado, days: dias, calendar: cal)!
+    #expect(insight.kind == .weekday(average: 20, overall: 80))
+    #expect(insight.weekday == 7)
+    #expect(insight.dayCount == 70)
+    #expect(insight.needsAttention)
+}
+
+@Test func fraseDoDiaUsaModeloQuandoEleGanha() {
+    // Ciclo de 5 dias: depois de 3 dias bons vem dia fraco. Dia 100 = posição 0 do ciclo (bom),
+    // dia 103 = posição 3 (fraco, logo depois de 3 bons).
+    let cal = calendarioUTC()
+    let dias = historico(100, cal) { i, _ in i % 5 >= 3 ? 30 : 90 }
+    let inicio = dias[0].date
+    let bom = DayInsightBuilder.make(for: cal.date(byAdding: .day, value: 100, to: inicio)!, days: dias, calendar: cal)!
+    guard case .model(let riscoBom, let acerto, _) = bom.kind else { Issue.record("esperava modelo"); return }
+    #expect(riscoBom < 0.5)
+    #expect(acerto > 0.5)
+    #expect(!bom.needsAttention)
+
+    // Histórico até o dia 102 (3 bons seguidos no fim), prevendo o 103.
+    let ate103 = historico(103, cal) { i, _ in i % 5 >= 3 && i < 100 ? 30 : 90 }
+    let fraco = DayInsightBuilder.make(for: cal.date(byAdding: .day, value: 103, to: inicio)!, days: ate103, calendar: cal)!
+    guard case .model(let riscoFraco, _, let fatores) = fraco.kind else { Issue.record("esperava modelo"); return }
+    #expect(riscoFraco >= 0.5)
+    #expect(fraco.needsAttention)
+    #expect(!fatores.isEmpty && fatores.count <= 2)
+}
+
+@Test func fatoresSomamODiaDaSemanaComoUmSo() {
+    // Pesos só no one-hot do dia da semana e no sono: o dia da semana vem primeiro por somar mais.
+    var w = [Double](repeating: 0, count: 15)
+    w[0] = 1; w[1] = 1; w[12] = 1.5
+    let z = [Double](repeating: 1, count: 15)
+    #expect(DayInsightBuilder.topFactors(weights: w, z: z, towardsWeak: true) == [.weekday, .sleep])
+    #expect(DayInsightBuilder.topFactors(weights: w, z: z, towardsWeak: false).isEmpty)
+}

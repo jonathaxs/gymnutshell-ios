@@ -147,11 +147,10 @@ extension View {
 struct AppTabHeader: View {
 
     let title: String
-    /// true na Hoje: tocar na data abre o balão com a data completa e quanto falta pro fim do dia.
+    /// true na Hoje: mostra a frase do dia abaixo da data e o toque abre o balão (ver TodayDateTitle).
     var showsDayInfo: Bool = false
 
     @Environment(\.usesVerticalBar) private var usesVerticalBar
-    @State private var showDayInfo = false
 
     var body: some View {
         titleView
@@ -176,13 +175,8 @@ struct AppTabHeader: View {
             .minimumScaleFactor(0.6)
 
         if showsDayInfo {
-            Button { showDayInfo = true } label: { text }
-                .buttonStyle(.plain)
-                .adaptivePopover(isPresented: $showDayInfo) {
-                    DayInfoPopover()
-                }
-                .accessibilityAddTraits(.isHeader)
-                .accessibilityHint(A11y.moreInfoHint())
+            // Data + frase do dia; o toque abre o balão com a explicação.
+            TodayDateTitle(title: title)
         } else {
             text
                 .accessibilityAddTraits(.isHeader)

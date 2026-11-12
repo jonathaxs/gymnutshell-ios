@@ -870,6 +870,23 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "하루가 끝나기까지 %@";
+"today.insight.attention" = "오늘은 조금 더 신경 써야 해요";
+"today.insight.steady" = "좋은 하루가 될 것 같아요";
+"today.insight.weekday" = "이 요일의 평균: %d%%";
+"today.insight.title" = "오늘의 예측";
+"today.insight.title.history" = "나의 기록";
+"today.insight.model.risk" = "오늘이 부진한 날(%d%% 이하)일 확률: %@.";
+"today.insight.model.factors" = "가장 크게 작용한 것: %@.";
+"today.insight.model.footer" = "기록된 %d일을 바탕으로 이 기기에서 계산했어요. 최근 며칠 동안 예측 적중률은 %@였어요.";
+"today.insight.weekday.detail" = "이 요일의 평균은 %d%%예요. 전체 평균은 %d%%예요.";
+"today.insight.weekday.footer" = "기록된 %d일을 바탕으로 이 기기에서 계산했어요. 데이터에 더 뚜렷한 패턴이 보이면 예측이 나타나요.";
+"today.insight.factor.weekday" = "요일";
+"today.insight.factor.yesterday" = "어제 하루";
+"today.insight.factor.lastWeek" = "최근 7일";
+"today.insight.factor.streak" = "연속 기록";
+"today.insight.factor.sleep" = "어젯밤 수면";
+"today.insight.factor.workout" = "어제 운동";
+"today.insight.factor.cardio" = "어제 유산소";
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@ 먹을 시간이에요.";

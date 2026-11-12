@@ -869,6 +869,23 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "距离今天结束还有%@";
+"today.insight.attention" = "今天需要多加留意";
+"today.insight.steady" = "看起来会是不错的一天";
+"today.insight.weekday" = "这个星期几的平均：%d%%";
+"today.insight.title" = "今日预测";
+"today.insight.title.history" = "你的记录";
+"today.insight.model.risk" = "今天成为低迷日（%d%% 及以下）的概率：%@。";
+"today.insight.model.factors" = "影响最大的是：%@。";
+"today.insight.model.footer" = "基于 %d 天的记录在你的设备上计算。在最近几天里，预测的准确率为 %@。";
+"today.insight.weekday.detail" = "在这个星期几，你的平均值是 %d%%。所有日子的平均值是 %d%%。";
+"today.insight.weekday.footer" = "基于 %d 天的记录在你的设备上计算。当你的数据呈现更清晰的规律时，就会显示预测。";
+"today.insight.factor.weekday" = "星期几";
+"today.insight.factor.yesterday" = "昨天的情况";
+"today.insight.factor.lastWeek" = "最近 7 天";
+"today.insight.factor.streak" = "连续天数";
+"today.insight.factor.sleep" = "昨晚的睡眠";
+"today.insight.factor.workout" = "昨天的训练";
+"today.insight.factor.cardio" = "昨天的有氧";
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "该吃%@了。";

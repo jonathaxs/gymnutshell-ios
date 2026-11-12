@@ -870,6 +870,23 @@
 
 // Balão da data na Hoje
 "today.day.remaining" = "今日の終了まであと%@";
+"today.insight.attention" = "今日は少し気をつけたい日";
+"today.insight.steady" = "いい一日になりそう";
+"today.insight.weekday" = "この曜日の平均：%d%%";
+"today.insight.title" = "今日の予測";
+"today.insight.title.history" = "これまでの記録";
+"today.insight.model.risk" = "今日が低調な日（%d%%以下）になる確率：%@。";
+"today.insight.model.factors" = "特に影響したもの：%@。";
+"today.insight.model.footer" = "%d日分の記録をもとにこの端末で計算しました。直近の日では、予測の的中率は%@でした。";
+"today.insight.weekday.detail" = "この曜日の平均は%d%%です。全体の平均は%d%%です。";
+"today.insight.weekday.footer" = "%d日分の記録をもとにこの端末で計算しました。データにはっきりした傾向が出ると、予測が表示されます。";
+"today.insight.factor.weekday" = "曜日";
+"today.insight.factor.yesterday" = "昨日の結果";
+"today.insight.factor.lastWeek" = "直近7日間";
+"today.insight.factor.streak" = "連続記録";
+"today.insight.factor.sleep" = "昨夜の睡眠";
+"today.insight.factor.workout" = "昨日のトレーニング";
+"today.insight.factor.cardio" = "昨日の有酸素運動";
 
 // Lembretes por horário dos suplementos
 "notifications.supplement.body" = "%@を飲む時間です。";
