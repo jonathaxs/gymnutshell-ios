@@ -939,6 +939,14 @@
 "streak.bonus.info.footer" = "Le settimane vanno da lunedì a domenica. Un giorno senza registrazioni interrompe la serie. Se l'intero periodo è stato al livello 5, vale solo il bonus maggiore.";
 "points.plus.format" = "+%d pt";
 "settings.about.streakBonus" = "Bonus serie";
+"settings.about.dayInsight" = "Frase del giorno";
+"dayInsight.info.intro" = "La frase sotto la data mostra come tende ad andare la tua giornata. Toccala per vedere i dettagli.";
+"dayInsight.info.section.how" = "Come funziona";
+"dayInsight.info.history" = "Analizza la tua cronologia: il giorno della settimana, ieri, gli ultimi 7 giorni, la tua serie, il sonno e l'allenamento.";
+"dayInsight.info.chance" = "Calcola la probabilità che oggi sia una giornata debole, con fino al %d%% dei tuoi obiettivi.";
+"dayInsight.info.check" = "Mostra la previsione solo quando è più precisa della tua media in quel giorno della settimana. Altrimenti mostra quella media.";
+"dayInsight.info.days" = "Inizia dopo %d giorni registrati.";
+"dayInsight.info.footer" = "Tutto viene calcolato sul tuo dispositivo con un semplice modello di machine learning. I tuoi dati non lasciano il dispositivo.";
 "notifications.kind.streakBonus.title" = "Bonus serie";
 "notifications.kind.streakBonus.description" = "Ti avvisa quando completi una serie settimanale o mensile.";
 "notifications.kind.streakBonus.body" = "%1$@! +%2$d punti.";

@@ -922,6 +922,14 @@
 "streak.bonus.info.footer" = "Haftalar pazartesiden pazara sürer. Kayıt olmayan bir gün seriyi bozar. Tüm dönem seviye 5 ise yalnızca daha büyük olan bonus sayılır.";
 "points.plus.format" = "+%d pts";
 "settings.about.streakBonus" = "Seri bonusu";
+"settings.about.dayInsight" = "Günün cümlesi";
+"dayInsight.info.intro" = "Tarihin altındaki cümle, gününün nasıl geçeceğini gösterir. Ayrıntıları görmek için dokun.";
+"dayInsight.info.section.how" = "Nasıl çalışır";
+"dayInsight.info.history" = "Geçmişini inceler: haftanın günü, dün, son 7 gün, serin, uyku ve antrenman.";
+"dayInsight.info.chance" = "Bugünün zayıf bir gün olma olasılığını hesaplar (hedeflerde en fazla %%%d).";
+"dayInsight.info.check" = "Tahmini yalnızca haftanın bu günündeki ortalamandan daha isabetli olduğunda gösterir. Aksi halde bu ortalamayı gösterir.";
+"dayInsight.info.days" = "%d kayıtlı günden sonra başlar.";
+"dayInsight.info.footer" = "Her şey basit bir makine öğrenmesi modeliyle cihazında hesaplanır. Verilerin cihazından çıkmaz.";
 "notifications.kind.streakBonus.title" = "Seri bonusu";
 "notifications.kind.streakBonus.description" = "Haftalık veya aylık bir seriyi tamamladığında sana haber verir.";
 "notifications.kind.streakBonus.body" = "%1$@! +%2$d puan.";

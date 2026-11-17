@@ -962,6 +962,14 @@
 "streak.bonus.info.footer" = "A semana vai de segunda a domingo. Um dia sem registro quebra a sequência. Se o período inteiro foi nível 5, vale só o bônus maior.";
 "points.plus.format" = "+%d pts";
 "settings.about.streakBonus" = "Bônus de sequência";
+"settings.about.dayInsight" = "Frase do dia";
+"dayInsight.info.intro" = "A frase abaixo da data mostra como o seu dia tende a ser. Toque nela para ver os detalhes.";
+"dayInsight.info.section.how" = "Como funciona";
+"dayInsight.info.history" = "Analisa o seu histórico: o dia da semana, ontem, os últimos 7 dias, a sua sequência, o sono e o treino.";
+"dayInsight.info.chance" = "Calcula a chance de hoje ser um dia fraco, com até %d%% das metas.";
+"dayInsight.info.check" = "Só mostra a previsão quando ela acerta mais do que a sua média do dia da semana. Se não, mostra essa média.";
+"dayInsight.info.days" = "Começa depois de %d dias de registro.";
+"dayInsight.info.footer" = "Tudo é calculado no seu aparelho, com um modelo simples de machine learning. Seus dados não saem do aparelho.";
 "notifications.kind.streakBonus.title" = "Bônus de sequência";
 "notifications.kind.streakBonus.description" = "Avisa quando você fecha uma semana ou um mês em sequência.";
 "notifications.kind.streakBonus.body" = "%1$@! +%2$d pontos.";

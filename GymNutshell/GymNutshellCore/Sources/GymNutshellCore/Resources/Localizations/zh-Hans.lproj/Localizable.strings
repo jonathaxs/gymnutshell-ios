@@ -921,6 +921,14 @@
 "streak.bonus.info.footer" = "按周一至周日计算为一周。某天无记录将中断连续。如果整个周期均为等级 5，则仅计入更高的一档奖励。";
 "points.plus.format" = "+%d 分";
 "settings.about.streakBonus" = "连续奖励";
+"settings.about.dayInsight" = "今日一句";
+"dayInsight.info.intro" = "日期下方的这句话显示你今天可能的状态。轻点即可查看详情。";
+"dayInsight.info.section.how" = "工作原理";
+"dayInsight.info.history" = "分析你的记录：星期几、昨天、最近 7 天、连续记录、睡眠和训练。";
+"dayInsight.info.chance" = "计算今天成为低迷日（目标完成度不超过 %d%%）的概率。";
+"dayInsight.info.check" = "只有当预测比你这个星期几的平均值更准确时才会显示。否则显示该平均值。";
+"dayInsight.info.days" = "记录满 %d 天后开始。";
+"dayInsight.info.footer" = "所有计算都通过一个简单的机器学习模型在你的设备上完成。你的数据不会离开设备。";
 "notifications.kind.streakBonus.title" = "连续奖励";
 "notifications.kind.streakBonus.description" = "完成一周或一月的连续记录时提醒你。";
 "notifications.kind.streakBonus.body" = "%1$@! +%2$d 积分。";

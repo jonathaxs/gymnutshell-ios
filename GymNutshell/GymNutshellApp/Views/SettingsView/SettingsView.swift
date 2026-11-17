@@ -16,7 +16,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
     case profile, fitnessGoal, goals, theme
     case health, notifications, measurement, backup
     case colors, widgets, controls
-    case about, watch, ring, tier, bonus
+    case about, watch, ring, tier, bonus, dayInsight
 
     var id: Self { self }
 
@@ -38,6 +38,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         case .ring:          return "settings.about.progressRing"
         case .tier:          return "settings.about.achievement"
         case .bonus:         return "settings.about.streakBonus"
+        case .dayInsight:    return "settings.about.dayInsight"
         }
     }
 
@@ -59,6 +60,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         case .ring:          return "circle.dotted"
         case .tier:          return "trophy.fill"
         case .bonus:         return "calendar.badge.checkmark"
+        case .dayInsight:    return "text.quote"
         }
     }
 
@@ -74,6 +76,7 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         case .notifications:          return .red
         case .measurement:            return .teal
         case .watch, .bonus:          return .green
+        case .dayInsight:             return .cyan
         case .tier:                   return .yellow
         }
     }
@@ -186,7 +189,7 @@ struct SettingsView: View {
             section("settings.section.visual", pages: [.colors, .widgets, .controls], wide: wide)
 
             // Seção Sobre, conquista, anel de progresso, bônus de sequência e info de versão.
-            section("settings.section.about", pages: [.about, .watch, .ring, .tier, .bonus], wide: wide)
+            section("settings.section.about", pages: [.about, .watch, .ring, .tier, .bonus, .dayInsight], wide: wide)
         }
     }
 
@@ -249,6 +252,7 @@ struct SettingsView: View {
         case .ring:          ProgressRingInfoView()
         case .tier:          TierInfoView(theme: selectedTheme, sex: sex)
         case .bonus:         StreakBonusInfoView()
+        case .dayInsight:    DayInsightInfoView()
         }
     }
 }

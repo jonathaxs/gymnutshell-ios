@@ -922,6 +922,14 @@
 "streak.bonus.info.footer" = "週は月曜日から日曜日までです。記録のない日があると連続が途切れます。期間全体がレベル5だった場合は、より高いボーナスのみが対象になります。";
 "points.plus.format" = "+%d pt";
 "settings.about.streakBonus" = "連続ボーナス";
+"settings.about.dayInsight" = "今日のひとこと";
+"dayInsight.info.intro" = "日付の下のひとことは、今日がどんな日になりそうかを示します。タップすると詳細が見られます。";
+"dayInsight.info.section.how" = "しくみ";
+"dayInsight.info.history" = "記録を分析します：曜日、前日、直近7日間、連続記録、睡眠、トレーニング。";
+"dayInsight.info.chance" = "今日が低調な日（目標の達成率%d%%以下）になる確率を計算します。";
+"dayInsight.info.check" = "予測がこの曜日の平均より正確なときだけ表示します。そうでなければ、その平均を表示します。";
+"dayInsight.info.days" = "記録が%d日分たまると始まります。";
+"dayInsight.info.footer" = "すべてこの端末上で、シンプルな機械学習モデルを使って計算します。データが端末の外に出ることはありません。";
 "notifications.kind.streakBonus.title" = "連続ボーナス";
 "notifications.kind.streakBonus.description" = "週または月の連続を達成したときにお知らせします。";
 "notifications.kind.streakBonus.body" = "%1$@! +%2$dポイント。";

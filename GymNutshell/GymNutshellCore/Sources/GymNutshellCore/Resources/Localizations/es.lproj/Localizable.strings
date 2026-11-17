@@ -944,6 +944,14 @@
 "streak.bonus.info.footer" = "Las semanas van de lunes a domingo. Un día sin registro rompe la racha. Si todo el período fue de nivel 5, solo cuenta el bono mayor.";
 "points.plus.format" = "+%d pts";
 "settings.about.streakBonus" = "Bono de racha";
+"settings.about.dayInsight" = "Frase del día";
+"dayInsight.info.intro" = "La frase debajo de la fecha muestra cómo suele ir tu día. Tócala para ver los detalles.";
+"dayInsight.info.section.how" = "Cómo funciona";
+"dayInsight.info.history" = "Analiza tu historial: el día de la semana, ayer, los últimos 7 días, tu racha, el sueño y el entrenamiento.";
+"dayInsight.info.chance" = "Calcula la probabilidad de que hoy sea un día flojo, con hasta el %d%% de tus metas.";
+"dayInsight.info.check" = "Solo muestra la previsión cuando acierta más que tu media de ese día de la semana. Si no, muestra esa media.";
+"dayInsight.info.days" = "Empieza después de %d días registrados.";
+"dayInsight.info.footer" = "Todo se calcula en tu dispositivo con un modelo sencillo de machine learning. Tus datos no salen del dispositivo.";
 "notifications.kind.streakBonus.title" = "Bono de racha";
 "notifications.kind.streakBonus.description" = "Te avisa cuando completas una racha semanal o mensual.";
 "notifications.kind.streakBonus.body" = "%1$@! +%2$d puntos.";

@@ -911,6 +911,14 @@
 "streak.bonus.info.footer" = "Weeks run Monday to Sunday. A day without a record breaks the streak. If the whole period was level 5, only the bigger bonus counts.";
 "points.plus.format" = "+%d pts";
 "settings.about.streakBonus" = "Streak bonus";
+"settings.about.dayInsight" = "Daily insight";
+"dayInsight.info.intro" = "The line under the date shows how your day is likely to go. Tap it to see the details.";
+"dayInsight.info.section.how" = "How it works";
+"dayInsight.info.history" = "Looks at your history: the weekday, yesterday, the last 7 days, your streak, sleep and workouts.";
+"dayInsight.info.chance" = "Estimates the chance of today being a weak day, with up to %d%% of your goals.";
+"dayInsight.info.check" = "Only shows the forecast when it's more accurate than your weekday average. Otherwise, it shows that average.";
+"dayInsight.info.days" = "Starts after %d logged days.";
+"dayInsight.info.footer" = "Everything is calculated on your device with a simple machine learning model. Your data never leaves your device.";
 "notifications.kind.streakBonus.title" = "Streak bonus";
 "notifications.kind.streakBonus.description" = "Lets you know when you finish a week or month streak.";
 "notifications.kind.streakBonus.body" = "%1$@! +%2$d points.";
