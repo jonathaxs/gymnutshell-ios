@@ -253,6 +253,7 @@
 "app.error.dataStore.title" = "Bir sorun oluştu";
 "app.error.dataStore.message" = "Gym Nutshell verilerini yükleyemedi.\nUygulamayı kapatmaya zorla ve tekrar açarak yeniden dene.";
 "settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "Ayrıntılar";
 "settings.section.physicaldata" = "Verilerin";
 "settings.fitness.goal.edit" = "Fitness Hedefi";
 "settings.goals.edit" = "Günlük Hedefler";
@@ -532,11 +533,11 @@
 /* ProgressRingInfoView.swift */
 "ring.info.intro"             = "Halka, hedeflerinin ortalama yüzde kaçını tamamladığını gösterir. Her renkli dilim %20 değerindedir.";
 "ring.info.section.colors"    = "Halka dilimleri";
-"ring.info.color.red"         = "Yeni başlıyor";
-"ring.info.color.orange"      = "Yolda";
-"ring.info.color.green"       = "Harika gidiyor";
-"ring.info.color.cyan"        = "Neredeyse bitti";
-"ring.info.color.purple"      = "Son düzlük";
+"ring.info.color.red"         = "Seviye 1";
+"ring.info.color.orange"      = "Seviye 2";
+"ring.info.color.green"       = "Seviye 3";
+"ring.info.color.cyan"        = "Seviye 4";
+"ring.info.color.purple"      = "Seviye 5";
 "ring.info.color.blue"        = "Hedef tamamlandı";
 "ring.info.level.label"       = "Seviye ";
 "info.next.prefix"            = "Kalan: ";

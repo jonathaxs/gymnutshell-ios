@@ -1,7 +1,8 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/SettingsView/Profile/AboutView.swift
 //
-//  Propósito: Exibe a versão do app e as informações de contato do desenvolvedor.
+//  Propósito: Exibe a versão do app, a seção Detalhes (conquista, bônus, anel e frase do dia) e o
+//             contato do desenvolvedor.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-03-12.
 // ⌘
@@ -24,6 +25,13 @@ struct AboutView: View {
     /// Escala do ícone no "pulinho" de cada toque.
     @State private var iconScale: CGFloat = 1
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    // Tema e sexo, passados pra página da conquista do dia.
+    @AppStorage(AppTheme.storageKey) private var selectedTheme: AppTheme = .gym
+    @AppStorage(UserProfile.sexKey) private var sex: String = "male"
+
+    /// Páginas da seção Detalhes, na ordem da lista.
+    private static let detailPages: [SettingsPage] = [.tier, .bonus, .ring, .dayInsight]
 
     private static let feedbackURL = URL(string: "mailto:jonathaxs@icloud.com")!
     private static let iconTapGoal = 5
@@ -65,6 +73,23 @@ struct AboutView: View {
                     .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 24, trailing: 16))
             }
 
+            // Seção Detalhes: como funcionam a conquista do dia, o bônus, o anel e a frase do dia.
+            Section(header: Text(String(localized: "settings.about.section.details", bundle: .gymNutshellCore))
+                .foregroundStyle(accentColor)) {
+                ForEach(Self.detailPages) { page in
+                    NavigationLink {
+                        detailDestination(for: page)
+                    } label: {
+                        Label {
+                            Text(String(localized: String.LocalizationValue(page.titleKey), bundle: .gymNutshellCore))
+                        } icon: {
+                            GlassIcon(systemName: page.symbol, color: page.color)
+                        }
+                        .foregroundStyle(.primary)
+                    }
+                }
+            }
+
             // Botão de feedback por e-mail, sem fundo nem separador, centralizado.
             Section {
                 HStack {
@@ -88,6 +113,19 @@ struct AboutView: View {
         // Limita a largura da lista no iPad e paisagem.
         .navigationTitle(String(localized: "settings.about.title", bundle: .gymNutshellCore))
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    // MARK: - Detalhes
+
+    @ViewBuilder
+    private func detailDestination(for page: SettingsPage) -> some View {
+        switch page {
+        case .tier:       TierInfoView(theme: selectedTheme, sex: sex)
+        case .bonus:      StreakBonusInfoView()
+        case .ring:       ProgressRingInfoView()
+        case .dayInsight: DayInsightInfoView()
+        default:          EmptyView()
+        }
     }
 
     // MARK: - Ícone do app

@@ -253,6 +253,7 @@
 "app.error.dataStore.title" = "出错了";
 "app.error.dataStore.message" = "Gym Nutshell 无法载入你的数据。\n请强制关闭 App 并重新打开重试。";
 "settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "详细信息";
 "settings.section.physicaldata" = "你的数据";
 "settings.fitness.goal.edit" = "健身目标";
 "settings.goals.edit" = "每日目标";
@@ -530,11 +531,11 @@
 /* ProgressRingInfoView.swift */
 "ring.info.intro"             = "进度环显示你已完成目标的平均百分比。每个彩色弧段代表 20%。";
 "ring.info.section.colors"    = "环段说明";
-"ring.info.color.red"         = "刚刚开始";
-"ring.info.color.orange"      = "渐入佳境";
-"ring.info.color.green"       = "状态良好";
-"ring.info.color.cyan"        = "胜利在望";
-"ring.info.color.purple"      = "最后冲刺";
+"ring.info.color.red"         = "等级 1";
+"ring.info.color.orange"      = "等级 2";
+"ring.info.color.green"       = "等级 3";
+"ring.info.color.cyan"        = "等级 4";
+"ring.info.color.purple"      = "等级 5";
 "ring.info.color.blue"        = "目标达成";
 "ring.info.level.label"       = "等级 ";
 "info.next.prefix"            = "还差 ";

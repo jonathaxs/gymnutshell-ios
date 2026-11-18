@@ -272,6 +272,7 @@
 "app.error.dataStore.title" = "Une erreur est survenue";
 "app.error.dataStore.message" = "Gym Nutshell n'a pas pu charger tes données.\nFerme l'application et rouvre-la pour réessayer.";
 "settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "Détails";
 "settings.section.physicaldata" = "Tes données";
 "settings.fitness.goal.edit" = "Objectif fitness";
 "settings.goals.edit" = "Objectifs quotidiens";
@@ -561,11 +562,11 @@
 /* ProgressRingInfoView.swift */
 "ring.info.intro"             = "L'anneau indique le pourcentage moyen de tes objectifs atteints. Chaque segment coloré vaut 20 %.";
 "ring.info.section.colors"    = "Segments de l'anneau";
-"ring.info.color.red"         = "Démarrage";
-"ring.info.color.orange"      = "En bonne voie";
-"ring.info.color.green"       = "Très bien";
-"ring.info.color.cyan"        = "Presque atteint";
-"ring.info.color.purple"      = "Dernière ligne droite";
+"ring.info.color.red"         = "Niveau 1";
+"ring.info.color.orange"      = "Niveau 2";
+"ring.info.color.green"       = "Niveau 3";
+"ring.info.color.cyan"        = "Niveau 4";
+"ring.info.color.purple"      = "Niveau 5";
 "ring.info.color.blue"        = "Objectif atteint";
 "ring.info.level.label"       = "Niveau ";
 "info.next.prefix"            = "Plus que ";

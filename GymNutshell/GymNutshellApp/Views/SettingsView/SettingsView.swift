@@ -12,6 +12,7 @@ import SwiftUI
 import GymNutshellCore
 
 /// Páginas dos Ajustes, na ordem da lista. Cada uma tem o título, o ícone de vidro e a seção.
+/// `ring`, `tier`, `bonus` e `dayInsight` aparecem na seção Detalhes da página do Gym Nutshell (AboutView).
 enum SettingsPage: Hashable, CaseIterable, Identifiable {
     case profile, fitnessGoal, goals, theme
     case health, notifications, measurement, backup
@@ -188,8 +189,9 @@ struct SettingsView: View {
             // Seção Visual: aparência (modo claro/escuro e cor de destaque), widgets e estilo dos controles.
             section("settings.section.visual", pages: [.colors, .widgets, .controls], wide: wide)
 
-            // Seção Sobre, conquista, anel de progresso, bônus de sequência e info de versão.
-            section("settings.section.about", pages: [.about, .watch, .ring, .tier, .bonus, .dayInsight], wide: wide)
+            // Seção Sobre: a página do Gym Nutshell (que abre os detalhes da conquista, do bônus, do anel e
+            // da frase do dia) e o Apple Watch.
+            section("settings.section.about", pages: [.about, .watch], wide: wide)
         }
     }
 

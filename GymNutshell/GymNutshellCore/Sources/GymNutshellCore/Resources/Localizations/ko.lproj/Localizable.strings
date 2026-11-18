@@ -253,6 +253,7 @@
 "app.error.dataStore.title" = "문제가 발생했어요";
 "app.error.dataStore.message" = "Gym Nutshell에서 데이터를 불러오지 못했어요.\n앱을 완전히 종료한 후 다시 열어주세요.";
 "settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "세부 정보";
 "settings.section.physicaldata" = "내 데이터";
 "settings.fitness.goal.edit" = "운동 목표";
 "settings.goals.edit" = "일일 목표";
@@ -532,11 +533,11 @@
 /* ProgressRingInfoView.swift */
 "ring.info.intro"             = "진행 링은 달성한 목표의 평균 백분율을 보여줘요. 각 색상 구간은 20%를 나타냅니다.";
 "ring.info.section.colors"    = "링 구간";
-"ring.info.color.red"         = "시작 단계";
-"ring.info.color.orange"      = "진행 중";
-"ring.info.color.green"       = "순항 중";
-"ring.info.color.cyan"        = "거의 다 왔어요";
-"ring.info.color.purple"      = "마지막 스퍼트";
+"ring.info.color.red"         = "레벨 1";
+"ring.info.color.orange"      = "레벨 2";
+"ring.info.color.green"       = "레벨 3";
+"ring.info.color.cyan"        = "레벨 4";
+"ring.info.color.purple"      = "레벨 5";
 "ring.info.color.blue"        = "목표 달성";
 "ring.info.level.label"       = "레벨 ";
 "info.next.prefix"            = "남은 진행률: ";

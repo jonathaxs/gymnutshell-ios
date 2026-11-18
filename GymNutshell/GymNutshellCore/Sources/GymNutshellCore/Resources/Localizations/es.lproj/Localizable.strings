@@ -274,6 +274,7 @@
 "app.error.dataStore.title" = "Algo salió mal";
 "app.error.dataStore.message" = "Gym Nutshell no pudo cargar tus datos.\nFuerza el cierre de la app y vuelve a abrirla para intentarlo de nuevo.";
 "settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "Detalles";
 "settings.section.physicaldata" = "Tus datos";
 "settings.fitness.goal.edit" = "Objetivo fitness";
 "settings.goals.edit" = "Metas diarias";
@@ -561,11 +562,11 @@
 /* ProgressRingInfoView.swift */
 "ring.info.intro"             = "El anillo muestra el porcentaje promedio de metas completadas. Cada segmento de color equivale al 20%.";
 "ring.info.section.colors"    = "Segmentos del anillo";
-"ring.info.color.red"         = "Empezando";
-"ring.info.color.orange"      = "En camino";
-"ring.info.color.green"       = "Muy bien";
-"ring.info.color.cyan"        = "Casi listo";
-"ring.info.color.purple"      = "Recta final";
+"ring.info.color.red"         = "Nivel 1";
+"ring.info.color.orange"      = "Nivel 2";
+"ring.info.color.green"       = "Nivel 3";
+"ring.info.color.cyan"        = "Nivel 4";
+"ring.info.color.purple"      = "Nivel 5";
 "ring.info.color.blue"        = "Meta completada";
 "ring.info.level.label"       = "Nivel ";
 "info.next.prefix"            = "Faltan ";

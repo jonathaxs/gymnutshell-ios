@@ -253,6 +253,7 @@
 "app.error.dataStore.title" = "問題が発生しました";
 "app.error.dataStore.message" = "Gym Nutshellでデータを読み込めませんでした。\nアプリを強制終了して再度開いてください。";
 "settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "詳細";
 "settings.section.physicaldata" = "ユーザーデータ";
 "settings.fitness.goal.edit" = "フィットネス目標";
 "settings.goals.edit" = "毎日の目標";
@@ -532,11 +533,11 @@
 /* ProgressRingInfoView.swift */
 "ring.info.intro"             = "リングは達成した目標の平均パーセンテージを示します。各カラーセグメントは20%に相当します。";
 "ring.info.section.colors"    = "リングセグメント";
-"ring.info.color.red"         = "スタート直後";
-"ring.info.color.orange"      = "順調なペース";
-"ring.info.color.green"       = "好調";
-"ring.info.color.cyan"        = "あと少し";
-"ring.info.color.purple"      = "ラストスパート";
+"ring.info.color.red"         = "レベル 1";
+"ring.info.color.orange"      = "レベル 2";
+"ring.info.color.green"       = "レベル 3";
+"ring.info.color.cyan"        = "レベル 4";
+"ring.info.color.purple"      = "レベル 5";
 "ring.info.color.blue"        = "目標達成";
 "ring.info.level.label"       = "レベル ";
 "info.next.prefix"            = "あと ";
