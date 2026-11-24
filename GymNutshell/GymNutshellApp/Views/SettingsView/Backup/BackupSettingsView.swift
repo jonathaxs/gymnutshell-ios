@@ -32,26 +32,6 @@ struct BackupDocument: FileDocument {
     }
 }
 
-#if DEBUG
-// MARK: - Wrapper do CSV de debug (dados de treino do ML)
-
-struct TrainingCSVDocument: FileDocument {
-    static var readableContentTypes: [UTType] { [.commaSeparatedText] }
-
-    var text: String
-
-    init(text: String) { self.text = text }
-
-    init(configuration: ReadConfiguration) throws {
-        text = String(decoding: configuration.file.regularFileContents ?? Data(), as: UTF8.self)
-    }
-
-    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        FileWrapper(regularFileWithContents: Data(text.utf8))
-    }
-}
-#endif
-
 // MARK: - Tela de backup
 
 /// Tela de settings pra gerenciar backups no iCloud e locais.
@@ -68,12 +48,6 @@ struct BackupSettingsView: View {
     @State private var exportFilename: String = ""
     @State private var isExporting: Bool = false
     @State private var isImporting: Bool = false
-
-    #if DEBUG
-    // Exportação CSV só no build de debug, pra estudar os dados do ML.
-    @State private var csvDocument: TrainingCSVDocument? = nil
-    @State private var isExportingCSV: Bool = false
-    #endif
 
     // Alert de confirmação de importação.
     @State private var isPresentingImportAlert: Bool = false
@@ -105,10 +79,6 @@ struct BackupSettingsView: View {
 
             // Seção local, exportação/importação manual via arquivos JSON.
             localSection
-
-            #if DEBUG
-            debugSection
-            #endif
         }
         .navigationTitle(String(localized: "settings.backup.nav.title", bundle: .gymNutshellCore))
         .navigationBarTitleDisplayMode(.inline)
@@ -128,15 +98,6 @@ struct BackupSettingsView: View {
             contentType: .json,
             defaultFilename: exportFilename
         ) { _ in }
-
-        #if DEBUG
-        .fileExporter(
-            isPresented: $isExportingCSV,
-            document: csvDocument ?? TrainingCSVDocument(text: ""),
-            contentType: .commaSeparatedText,
-            defaultFilename: "gymnutshell-treino-ml.csv"
-        ) { _ in }
-        #endif
 
         // File importer, deixa o usuário escolher um arquivo de backup .json.
         .fileImporter(
@@ -314,31 +275,6 @@ struct BackupSettingsView: View {
             Text(String(localized: "settings.backup.section.footer", bundle: .gymNutshellCore))
         }
     }
-
-    #if DEBUG
-    // MARK: - Seção de debug (ML)
-
-    // Exporta uma linha por dia registrado, base pra treinar e validar o modelo de "dia de risco".
-    private var debugSection: some View {
-        Section {
-            Button {
-                csvDocument = TrainingCSVDocument(text: TrainingCSV.make(days: records.map(TrainingDay.init(record:))))
-                isExportingCSV = true
-            } label: {
-                Label("Exportar CSV de treino (ML)", systemImage: "tablecells")
-            }
-            NavigationLink {
-                RiskModelDebugView()
-            } label: {
-                Label("Modelo × regra (ML)", systemImage: "chart.bar.xaxis")
-            }
-        } header: {
-            Text("Debug")
-        } footer: {
-            Text("\(records.count) dias registrados")
-        }
-    }
-    #endif
 
     // MARK: - Ações do iCloud
 

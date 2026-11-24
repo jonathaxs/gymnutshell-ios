@@ -3,6 +3,7 @@
 //
 //  Propósito: Data grande da Hoje com a frase do dia logo abaixo (previsão do modelo ou média do dia
 //             da semana). Tocar na data ou na frase abre o balão com a data completa e a explicação.
+//             Easter egg: 10 toques na explicação, dentro do balão, abrem a tela "Modelo × regra".
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-11-12.
 // ⌘
@@ -18,6 +19,7 @@ struct TodayDateTitle: View {
     @Query(sort: \DailyRecord.date, order: .forward) private var records: [DailyRecord]
     @State private var insight: DayInsight?
     @State private var showDayInfo = false
+    @State private var showRiskDebug = false
 
     /// Muda quando vira o dia ou quando algum dia passado é criado/editado; aí treina de novo.
     private var refreshKey: String {
@@ -47,7 +49,14 @@ struct TodayDateTitle: View {
         }
         .buttonStyle(.plain)
         .adaptivePopover(isPresented: $showDayInfo) {
-            DayInfoPopover(insight: insight)
+            DayInfoPopover(insight: insight) {
+                // Fecha o balão primeiro; a sheet abre depois que ele some.
+                showDayInfo = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { showRiskDebug = true }
+            }
+        }
+        .sheet(isPresented: $showRiskDebug) {
+            NavigationStack { RiskModelDebugView() }
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isHeader)

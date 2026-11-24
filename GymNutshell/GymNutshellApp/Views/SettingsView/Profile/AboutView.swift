@@ -34,7 +34,7 @@ struct AboutView: View {
     private static let detailPages: [SettingsPage] = [.tier, .bonus, .ring, .dayInsight]
 
     private static let feedbackURL = URL(string: "mailto:jonathaxs@icloud.com")!
-    private static let iconTapGoal = 5
+    private static let iconTapGoal = 10
     private static let iconTapWindow: TimeInterval = 2
 
     // MARK: - Body
@@ -144,7 +144,7 @@ struct AboutView: View {
 
     // MARK: - Easter egg
 
-    /// 5 toques seguidos no ícone (no máximo ~2 s entre eles) reabrem a Welcome View.
+    /// 10 toques seguidos no ícone (no máximo ~2 s entre eles) reabrem a Welcome View.
     /// Volta a flag do onboarding pra false e o app troca na hora pra WelcomeView.
     private func registerIconTap() {
         bounceIcon()

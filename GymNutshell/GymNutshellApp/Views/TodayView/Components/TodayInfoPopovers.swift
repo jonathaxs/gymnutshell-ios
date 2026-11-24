@@ -3,7 +3,7 @@
 //
 //  Propósito: Conteúdo dos balões informativos da tela Hoje: conquista (emoji), anel de progresso e data
 //             (com a explicação da frase do dia).
-//             As páginas completas continuam em Ajustes > Sobre (TierInfoView e ProgressRingInfoView).
+//             As páginas completas ficam em Ajustes > Sobre > Gym Nutshell > Detalhes.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-10-28.
 // ⌘
@@ -157,6 +157,13 @@ struct RingInfoPopover: View {
 struct DayInfoPopover: View {
 
     var insight: DayInsight? = nil
+    /// Easter egg: 10 toques na explicação da frase abrem a tela "Modelo × regra".
+    var onSecretUnlock: (() -> Void)? = nil
+
+    @State private var secretTapCount = 0
+    @State private var lastSecretTap: Date? = nil
+    private static let secretTapGoal = 10
+    private static let secretTapWindow: TimeInterval = 2
 
     var body: some View {
         TimelineView(.everyMinute) { context in
@@ -176,8 +183,30 @@ struct DayInfoPopover: View {
                 if let insight {
                     Divider()
                     insightSection(insight)
+                        .contentShape(Rectangle())
+                        .onTapGesture { registerSecretTap() }
                 }
             }
+        }
+    }
+
+    // MARK: Easter egg
+
+    /// Conta toques seguidos (no máximo ~2 s entre eles), sem nenhum aviso até chegar a 10.
+    private func registerSecretTap() {
+        guard let onSecretUnlock else { return }
+        let now = Date()
+        if let last = lastSecretTap, now.timeIntervalSince(last) > Self.secretTapWindow {
+            secretTapCount = 0
+        }
+        lastSecretTap = now
+        secretTapCount += 1
+
+        if secretTapCount >= Self.secretTapGoal {
+            secretTapCount = 0
+            lastSecretTap = nil
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            onSecretUnlock()
         }
     }
 

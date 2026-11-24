@@ -3,19 +3,45 @@
 //
 //  Propósito: Tela de debug do "dia de risco". Treina o modelo com os dias registrados no
 //             aparelho e mostra a acurácia na validação comparada com as regras simples,
-//             os pesos aprendidos e a chance de hoje. Só existe em build de debug.
+//             os pesos aprendidos e a chance de hoje. Easter egg: abre com 10 toques na explicação
+//             da frase do dia, no balão da data da Hoje. Também exporta o CSV de treino.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-11-10.
 // ⌘
 
-#if DEBUG
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 import GymNutshellCore
+
+// MARK: - Wrapper do CSV (dados de treino do ML)
+
+struct TrainingCSVDocument: FileDocument {
+    static var readableContentTypes: [UTType] { [.commaSeparatedText] }
+
+    var text: String
+
+    init(text: String) { self.text = text }
+
+    init(configuration: ReadConfiguration) throws {
+        text = String(decoding: configuration.file.regularFileContents ?? Data(), as: UTF8.self)
+    }
+
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        FileWrapper(regularFileWithContents: Data(text.utf8))
+    }
+}
+
+// MARK: - Tela
 
 struct RiskModelDebugView: View {
 
     @Query(sort: \DailyRecord.date, order: .forward) private var records: [DailyRecord]
+    @Environment(\.dismiss) private var dismiss
+
+    // Exporta uma linha por dia registrado, base pra estudar o modelo fora do app.
+    @State private var csvDocument: TrainingCSVDocument? = nil
+    @State private var isExportingCSV = false
 
     private var days: [TrainingDay] { records.map(TrainingDay.init(record:)) }
 
@@ -36,6 +62,26 @@ struct RiskModelDebugView: View {
             }
         }
         .navigationTitle("Modelo × regra")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Fechar") { dismiss() }
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    csvDocument = TrainingCSVDocument(text: TrainingCSV.make(days: days))
+                    isExportingCSV = true
+                } label: {
+                    Label("Exportar CSV", systemImage: "square.and.arrow.up")
+                }
+            }
+        }
+        .fileExporter(
+            isPresented: $isExportingCSV,
+            document: csvDocument ?? TrainingCSVDocument(text: ""),
+            contentType: .commaSeparatedText,
+            defaultFilename: "gymnutshell-treino-ml.csv"
+        ) { _ in }
     }
 
     // MARK: - Seções
@@ -91,4 +137,3 @@ struct RiskModelDebugView: View {
         value.formatted(.percent.precision(.fractionLength(0)))
     }
 }
-#endif
