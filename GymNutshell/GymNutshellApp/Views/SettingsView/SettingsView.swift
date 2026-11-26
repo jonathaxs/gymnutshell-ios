@@ -65,6 +65,15 @@ enum SettingsPage: Hashable, CaseIterable, Identifiable {
         }
     }
 
+    /// Páginas feitas com List. As outras usam ScrollView, com largura máxima e padding próprios.
+    /// No layout largo dos Ajustes só a List precisa de margens explícitas (ver SettingsView.body).
+    var usesList: Bool {
+        switch self {
+        case .profile, .fitnessGoal, .colors, .widgets, .controls: return false
+        default:                                                   return true
+        }
+    }
+
     var color: Color {
         switch self {
         case .goals:                  return .red
@@ -108,18 +117,39 @@ struct SettingsView: View {
         width >= 700 || (horizontalSizeClass == .regular && width >= 560)
     }
 
+    /// Largura máxima das páginas com ScrollView (frame de 600 com o padding padrão dos dois lados).
+    private static let pageMaxWidth: CGFloat = 600
+
+    /// Margem lateral das páginas com List no layout largo: a mesma das páginas com ScrollView, ou seja, no
+    /// mínimo a padrão e, com espaço sobrando, cartões na mesma largura máxima, centralizados.
+    private static func listPageMargin(paneWidth: CGFloat) -> CGFloat {
+        max(AppStyle.horizontalPadding, (paneWidth - pageMaxWidth) / 2 + AppStyle.horizontalPadding)
+    }
+
     var body: some View {
         GeometryReader { geo in
             if isWide(geo.size.width) {
                 // Lista à esquerda e a página escolhida à direita. As páginas que empilham outras (ex.: Metas →
                 // detalhe) empilham no stack raiz, em tela cheia.
+                let listWidth: CGFloat = geo.size.width < 744 ? 300 : 340
+                let listMargin = Self.listPageMargin(paneWidth: geo.size.width - listWidth - 1)
                 HStack(spacing: 0) {
                     settingsList(wide: true)
-                        .frame(width: geo.size.width < 744 ? 300 : 340)
+                        .frame(width: listWidth)
+                        // Encostada na divisória, a List fica sem margem desse lado: margem explícita nos dois.
+                        .contentMargins(.leading, AppStyle.horizontalPadding + geo.safeAreaInsets.leading,
+                                        for: .scrollContent)
+                        .contentMargins(.trailing, AppStyle.horizontalPadding, for: .scrollContent)
                     Divider()
                         .ignoresSafeArea()
                     destination(for: widePage)
                         .id(widePage)
+                        // Páginas com List: mesmas margens e largura máxima das com ScrollView, centralizadas.
+                        // A margem da List conta da borda da tela, por isso soma a área segura da direita
+                        // (a barra lateral do iPhone Duo aberto). nil deixa a margem automática das outras.
+                        .contentMargins(.leading, widePage.usesList ? listMargin : nil, for: .scrollContent)
+                        .contentMargins(.trailing, widePage.usesList ? listMargin + geo.safeAreaInsets.trailing : nil,
+                                        for: .scrollContent)
                         .frame(maxWidth: .infinity)
                 }
             } else {
