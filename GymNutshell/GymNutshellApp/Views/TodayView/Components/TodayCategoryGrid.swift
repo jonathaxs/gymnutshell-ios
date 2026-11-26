@@ -235,32 +235,64 @@ private struct TodayCategoryPopover: View {
 /// Também usado no Visualizar das telas de Emoji (Welcome e Ajustes) e nos balões da Welcome e da Hoje.
 extension View {
 
-    /// Balão preso à view: abre pra baixo (seta no topo) e, quando falta espaço embaixo e sobra em cima
-    /// (ex: última linha de uma lista rolada até o fim), abre pra cima. iOS 26+: popover do SwiftUI.
-    /// iOS 18: o SwiftUI ignorava o arrowEdge, então o UIKit apresenta com a seta escolhida.
+    /// Balão preso à view: abre pra baixo (seta no topo); sem espaço embaixo, abre pra cima (ex: última linha de
+    /// uma lista rolada até o fim); sem espaço em cima nem embaixo, abre pra direita (ex: anel da Hoje no iPhone
+    /// Duo aberto ou no iPad deitado). `neededHeight` é a altura que o conteúdo precisa pra não ficar espremido.
+    /// iOS 26+: popover do SwiftUI. iOS 18: o SwiftUI ignorava o arrowEdge, então o UIKit apresenta com a seta escolhida.
     func adaptivePopover<Content: View>(isPresented: Binding<Bool>,
+                                        neededHeight: CGFloat = popoverComfortableHeight,
                                         @ViewBuilder content: @escaping () -> Content) -> some View {
-        modifier(AdaptivePopoverModifier(isPresented: isPresented, popoverContent: content))
+        modifier(AdaptivePopoverModifier(isPresented: isPresented, neededHeight: neededHeight,
+                                         popoverContent: content))
     }
 }
 
 /// Espaço mínimo embaixo pra o balão abrir pra baixo sem ficar espremido.
-private let popoverComfortableHeight: CGFloat = 360
+let popoverComfortableHeight: CGFloat = 360
 
-/// Abre pra cima só quando embaixo tem pouco espaço e em cima tem mais.
-private func popoverOpensUp(frame: CGRect, in window: UIWindow) -> Bool {
+/// Espaço mínimo à direita pra abrir de lado: os balões têm 320 de largura, mais a seta e a margem.
+private let popoverComfortableWidth: CGFloat = 350
+
+/// Lado em que o balão abre.
+private enum PopoverSide: Equatable { case below, above, trailing }
+
+/// Embaixo se couber; senão em cima se couber; senão à direita se tiver largura; senão o lado com mais espaço.
+private func popoverSide(frame: CGRect, in window: UIWindow, neededHeight: CGFloat) -> PopoverSide {
     let insets = window.safeAreaInsets
     let below = window.bounds.height - insets.bottom - frame.maxY
     let above = frame.minY - insets.top
-    return below < popoverComfortableHeight && above > below
+    let trailing = window.bounds.width - insets.right - frame.maxX
+    if below >= neededHeight { return .below }
+    if above >= neededHeight { return .above }
+    if trailing >= popoverComfortableWidth { return .trailing }
+    return above > below ? .above : .below
 }
 
 private struct AdaptivePopoverModifier<PopoverContent: View>: ViewModifier {
 
     @Binding var isPresented: Bool
+    let neededHeight: CGFloat
     let popoverContent: () -> PopoverContent
 
-    @State private var opensUp = false
+    @State private var side: PopoverSide = .below
+
+    /// Ponto do botão onde a seta encosta.
+    private var anchor: UnitPoint {
+        switch side {
+        case .below:    .bottom
+        case .above:    .top
+        case .trailing: .trailing
+        }
+    }
+
+    /// Borda do balão onde fica a seta.
+    private var arrowEdge: Edge {
+        switch side {
+        case .below:    .top
+        case .above:    .bottom
+        case .trailing: .leading
+        }
+    }
 
     func body(content: Content) -> some View {
         if #available(iOS 26.0, *) {
@@ -269,18 +301,19 @@ private struct AdaptivePopoverModifier<PopoverContent: View>: ViewModifier {
                 .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { frame in
                     guard let window = UIApplication.shared.connectedScenes
                         .compactMap({ ($0 as? UIWindowScene)?.keyWindow }).first else { return }
-                    let up = popoverOpensUp(frame: frame, in: window)
-                    if up != opensUp { opensUp = up }
+                    let newSide = popoverSide(frame: frame, in: window, neededHeight: neededHeight)
+                    if newSide != side { side = newSide }
                 }
                 .popover(isPresented: $isPresented,
-                         attachmentAnchor: .point(opensUp ? .top : .bottom),
-                         arrowEdge: opensUp ? .bottom : .top) {
+                         attachmentAnchor: .point(anchor),
+                         arrowEdge: arrowEdge) {
                     popoverContent()
                         // Balão de verdade no iPhone, em vez de virar sheet.
                         .presentationCompactAdaptation(.popover)
                 }
         } else {
-            content.background(AdaptivePopoverPresenter(isPresented: $isPresented, content: popoverContent))
+            content.background(AdaptivePopoverPresenter(isPresented: $isPresented, neededHeight: neededHeight,
+                                                        content: popoverContent))
         }
     }
 }
@@ -290,6 +323,7 @@ private struct AdaptivePopoverModifier<PopoverContent: View>: ViewModifier {
 private struct AdaptivePopoverPresenter<Content: View>: UIViewControllerRepresentable {
 
     @Binding var isPresented: Bool
+    let neededHeight: CGFloat
     let content: () -> Content
 
     func makeCoordinator() -> Coordinator { Coordinator(isPresented: $isPresented) }
@@ -317,9 +351,18 @@ private struct AdaptivePopoverPresenter<Content: View>: UIViewControllerRepresen
                 if let popover = host.popoverPresentationController {
                     popover.sourceView = controller.view
                     let bounds = controller.view.bounds
-                    let up = popoverOpensUp(frame: controller.view.convert(bounds, to: window), in: window)
-                    popover.sourceRect = CGRect(x: bounds.midX, y: up ? bounds.minY : bounds.maxY, width: 0, height: 0)
-                    popover.permittedArrowDirections = up ? .down : .up
+                    switch popoverSide(frame: controller.view.convert(bounds, to: window), in: window,
+                                       neededHeight: neededHeight) {
+                    case .below:
+                        popover.sourceRect = CGRect(x: bounds.midX, y: bounds.maxY, width: 0, height: 0)
+                        popover.permittedArrowDirections = .up
+                    case .above:
+                        popover.sourceRect = CGRect(x: bounds.midX, y: bounds.minY, width: 0, height: 0)
+                        popover.permittedArrowDirections = .down
+                    case .trailing:
+                        popover.sourceRect = CGRect(x: bounds.maxX, y: bounds.midY, width: 0, height: 0)
+                        popover.permittedArrowDirections = .left
+                    }
                     popover.delegate = context.coordinator
                 }
                 context.coordinator.hosting = host

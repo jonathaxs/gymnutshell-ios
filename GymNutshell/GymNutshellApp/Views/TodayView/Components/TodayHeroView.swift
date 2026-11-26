@@ -49,6 +49,9 @@ struct TodayHeroView: View {
 
     private var ringSize: CGFloat { verticalLayout ? 170 : 150 }
 
+    /// Altura que os balões do anel e da conquista precisam pra abrir pra baixo sem ficar espremidos.
+    private static let infoPopoverHeight: CGFloat = 480
+
     // Próximo nível: quanto falta (em %) e qual tier. nil no nível máximo (81%+).
     private var nextLevel: (percent: Int, tier: DailyAchievement)? {
         guard let next = DailyAchievement.from(percent: dailyPercentage).next else { return nil }
@@ -97,7 +100,8 @@ struct TodayHeroView: View {
                                           onTap: { showRingInfo = true },
                                           size: ringSize,
                                           celebratesAfterOnboarding: true)
-                        .adaptivePopover(isPresented: $showRingInfo) {
+                        // Balão alto (5 níveis + meta): sem altura em cima nem embaixo, abre pra direita.
+                        .adaptivePopover(isPresented: $showRingInfo, neededHeight: Self.infoPopoverHeight) {
                             RingInfoPopover()
                         }
 
@@ -145,7 +149,7 @@ struct TodayHeroView: View {
         .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.6), value: tierEmoji)
         .contentShape(Rectangle())
         .onTapGesture { showTierInfo = true }
-        .adaptivePopover(isPresented: $showTierInfo) {
+        .adaptivePopover(isPresented: $showTierInfo, neededHeight: Self.infoPopoverHeight) {
             TierInfoPopover(theme: selectedTheme, sex: sex, accentColor: accentColor,
                             onChangeTheme: openThemeFromTierInfo)
         }
