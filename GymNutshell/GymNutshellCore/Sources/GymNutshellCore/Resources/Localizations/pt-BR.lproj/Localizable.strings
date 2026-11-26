@@ -155,7 +155,7 @@
 /* MARK: - Views/ProfileView */
 
 /* ProgressOverView.swift */
-"statistics.title" = "Registros";
+"statistics.title" = "Histórico";
 "statistics.section.tiers" = "Conquistas por Níveis";
 "statistics.section.activity" = "Atividade nos Treinos";
 "statistics.section.goals" = "Metas";
@@ -478,7 +478,7 @@
 "daily.achievement.gym.level4" = "Musculoso";
 "daily.achievement.gym.level4.fem" = "Musculosa";
 "daily.achievement.gym.level5" = "Monstro";
-"daily.achievement.gym.level5.fem" = "Monstruosa";
+"daily.achievement.gym.level5.fem" = "Monstra";
 
 /* AppTheme, Fire */
 "app.theme.fire" = "Fogo";

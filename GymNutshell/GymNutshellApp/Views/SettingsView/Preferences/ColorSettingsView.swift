@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/SettingsView/Preferences/ColorSettingsView.swift
 //
-//  Propósito: Página Aparência: modo do app (dispositivo, claro ou escuro) e cor de destaque.
+//  Propósito: Página Aparência: modo do app (dispositivo, claro ou escuro) e cor de destaque com prévia.
 //             A cor padrão é definida no onboarding com base no sexo, mas pode ser alterada livremente aqui.
 //
 //  Created by Jonathas Motta (@jonathaxs) on 2026-04-15.
@@ -35,21 +35,30 @@ struct ColorSettingsView: View {
                         .appCard()
                 }
 
+                // Cores de destaque com a prévia no mesmo cartão, logo abaixo da grade.
                 VStack(alignment: .leading, spacing: 8) {
                     AppSectionLabel(text: String(localized: "settings.color.subtitle", bundle: .gymNutshellCore))
-                    grid
-                        .padding(.vertical, 18)
-                        .padding(.horizontal, 8)
-                        .appCard()
-                }
+                    VStack(alignment: .leading, spacing: 0) {
+                        grid
+                            .padding(.vertical, 18)
+                            .padding(.horizontal, 8)
 
-                // Prévia ao vivo, abaixo das cores: muda assim que o usuário toca numa opção.
-                VStack(alignment: .leading, spacing: 8) {
-                    AppSectionLabel(text: String(localized: "settings.color.preview", bundle: .gymNutshellCore))
-                    ColorPreviewCard(color: selectedColor.color)
-                        .animation(.easeInOut(duration: 0.25), value: selectedColorRaw)
+                        Divider()
+                            .padding(.horizontal, 18)
+
+                        // Prévia ao vivo: muda assim que o usuário toca numa cor.
+                        VStack(alignment: .leading, spacing: 14) {
+                            Text(String(localized: "settings.color.preview", bundle: .gymNutshellCore))
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(.secondary)
+                            ColorPreviewCard(color: selectedColor.color)
+                                .animation(.easeInOut(duration: 0.25), value: selectedColorRaw)
+                        }
+                        .padding(18)
                         // Prévia puramente visual, oculta do VoiceOver.
                         .accessibilityHidden(true)
+                    }
+                    .appCard()
                 }
             }
             .padding(.horizontal, AppStyle.horizontalPadding)
@@ -179,8 +188,6 @@ private struct ColorPreviewCard: View {
                 .allowsHitTesting(false)
             }
         }
-        .padding(18)
-        .appCard()
     }
 
     private func categoryButton(_ symbol: String) -> some View {

@@ -15,7 +15,7 @@ struct WeekdayAverageChart: View {
 
     let averages: [WeekdayAverage]
     let accentColor: Color
-    // Semana de segunda a domingo, igual ao calendário de Registros.
+    // Semana de segunda a domingo, igual ao Histórico.
     var calendar: Calendar = StreakBonusCalculator.weekCalendar
 
     // Rótulo curto do eixo X (ex.: "dom", "seg"), sem ponto final.

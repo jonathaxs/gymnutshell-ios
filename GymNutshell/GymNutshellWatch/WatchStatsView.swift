@@ -47,7 +47,7 @@ struct WatchStatsView: View {
     @ViewBuilder
     private func statsContent(_ s: WatchStatsSummary) -> some View {
         List {
-            // Últimos 7 dias no topo, como na página Registros do iPhone
+            // Últimos 7 dias no topo, como na página Histórico do iPhone
             Section(
                 header: Text(String(localized: "watch.stats.recent", bundle: .gymNutshellCore))
                     .font(.system(size: 11, weight: .semibold))

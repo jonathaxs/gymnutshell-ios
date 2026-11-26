@@ -1051,7 +1051,7 @@ struct TodayView: View {
             checkIfNewDay()
             applyPendingSupplementCheckIns()
         }
-        // Registros (sheet do MainView) também edita metas e objetivo; ao fechar, recarrega.
+        // Histórico (sheet do MainView) também edita metas e objetivo; ao fechar, recarrega.
         .onChange(of: router.sheet) { _, newSheet in
             if newSheet == nil { reloadGoalStores() }
         }

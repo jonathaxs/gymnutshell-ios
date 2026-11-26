@@ -1,7 +1,7 @@
 // ⌘
 //  GymNutshell/GymNutshellApp/Views/TodayView/Components/TodaySideRail.swift
 //
-//  Propósito: Botões de navegação da Hoje: a troca lista/grade, Registros, Conquistas e Ajustes. No iPhone
+//  Propósito: Botões de navegação da Hoje: a troca lista/grade, Histórico, Conquistas e Ajustes. No iPhone
 //             Duo viram itens da barra vertical do sistema (AppTabHeader); no iPad deitado a TodayView mostra
 //             a coluna própria de vidro daqui (TodaySideRail), no mesmo estilo. Sem coluna, os mesmos botões
 //             ficam numa linha (TodayPageButtons): abaixo do anel no iPhone, acima da data no iPad em pé.
@@ -18,7 +18,7 @@ enum TodayRailItem: CaseIterable, Identifiable {
     case viewMode, records, achievements, settings
     var id: Self { self }
 
-    /// Ícone da página Registros (prancheta).
+    /// Ícone da página Histórico (prancheta).
     static let recordsSymbol = "list.clipboard"
 }
 

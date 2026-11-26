@@ -142,7 +142,7 @@ extension View {
 
 /// Cabeçalho da Hoje: só o título grande (a data). Os botões de navegação ficam na linha de botões (TodayPageButtons).
 /// As outras páginas usam a barra de navegação nativa.
-/// Com a barra vertical do sistema (iPhone Duo), Ajustes, Registros, Conquistas e a troca lista/grade viram
+/// Com a barra vertical do sistema (iPhone Duo), Ajustes, Histórico, Conquistas e a troca lista/grade viram
 /// itens da toolbar, nessa ordem, e o sistema os põe na coluna lateral abaixo da barra de status.
 struct AppTabHeader: View {
 
