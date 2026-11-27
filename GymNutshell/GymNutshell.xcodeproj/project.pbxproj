@@ -567,6 +567,13 @@
 				ja,
 				ko,
 				tr,
+				"pt-PT",
+				pl,
+				nl,
+				sv,
+				da,
+				ro,
+				nb,
 			);
 			mainGroup = 694790FA2FA58B3B00E26A2B;
 			minimizedProjectReferenceProxies = 1;

@@ -1,0 +1,942 @@
+/* ⌘
+  GymNutshell/GymNutshellCore/Resources/Localizations/da.lproj/Localizable.strings
+
+  Propósito: Chaves de localização em dinamarquês e strings da interface do usuário para o aplicativo.
+
+  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
+
+ ⌘ */
+
+/* MARK: - Models */
+
+/* DailyAchievement.swift, Cat theme (default) */
+"daily.achievement.level1" = "Killing";
+"daily.achievement.level2" = "Fitnesskat";
+"daily.achievement.level3" = "Stor kat";
+"daily.achievement.level4" = "Tiger";
+"daily.achievement.level4.fem" = "Tigerinde";
+"daily.achievement.level5" = "Løve";
+"daily.achievement.level5.fem" = "Løvinde";
+
+/* AppTheme.swift, Dog theme tier names */
+"daily.achievement.dog.level1" = "Hvalp";
+"daily.achievement.dog.level2" = "Fitnesshund";
+"daily.achievement.dog.level3" = "Sej hund";
+"daily.achievement.dog.level5" = "Ulv";
+"daily.achievement.dog.level4" = "Karamelhund";
+
+/* AppTheme.swift, Bear theme tier names */
+"daily.achievement.bear.level1" = "Bjørneunge";
+"daily.achievement.bear.level2" = "Brun bjørn";
+"daily.achievement.bear.level3" = "Isbjørn";
+"daily.achievement.bear.level4" = "Mægtig bison";
+"daily.achievement.bear.level5" = "Mammut";
+
+/* AppTheme.swift, Dino theme tier names */
+"daily.achievement.dino.level1" = "Babyskildpadde";
+"daily.achievement.dino.level2" = "Krokodille";
+"daily.achievement.dino.level3" = "T-Rex";
+"daily.achievement.dino.level4" = "Stor dino";
+"daily.achievement.dino.level5" = "Legendarisk fossil";
+
+/* AppTheme.swift, Bird theme tier names */
+"daily.achievement.bird.level1" = "Pipfugl";
+"daily.achievement.bird.level2" = "Blåmejse";
+"daily.achievement.bird.level3" = "Ørn";
+"daily.achievement.bird.level4" = "Klog ugle";
+"daily.achievement.bird.level5" = "Føniks";
+
+/* AppTheme.swift, Ocean theme tier names */
+"daily.achievement.ocean.level1" = "Lille fisk";
+"daily.achievement.ocean.level2" = "Delfin";
+"daily.achievement.ocean.level3" = "Vandmand";
+"daily.achievement.ocean.level4" = "Blåhval";
+"daily.achievement.ocean.level5" = "Kraken";
+
+/* AppTheme.swift, Dragon theme tier names */
+"daily.achievement.dragon.level1" = "Lille æg";
+"daily.achievement.dragon.level2" = "Firben";
+"daily.achievement.dragon.level3" = "Drage";
+"daily.achievement.dragon.level4" = "Urdrage";
+"daily.achievement.dragon.level5" = "Dragekonge";
+"daily.achievement.dragon.level5.fem" = "Dragedronning";
+
+/* AppTheme.swift, Horse theme tier names */
+"daily.achievement.horse.level1" = "Føl";
+"daily.achievement.horse.level2" = "Enhjørning";
+"daily.achievement.horse.level3" = "Jockey";
+"daily.achievement.horse.level4" = "Karruselmester";
+"daily.achievement.horse.level5" = "Fuldblod";
+
+/* AppTheme.swift, Primate theme tier names (enum case is still `.monkey` for compatibility) */
+"daily.achievement.monkey.level1" = "Lille primat";
+"daily.achievement.monkey.level2" = "Fit primat";
+"daily.achievement.monkey.level3" = "Kong Primat";
+"daily.achievement.monkey.level4" = "Mesterprimat";
+"daily.achievement.monkey.level5" = "Junglelegende";
+
+/* AppTheme.swift, Theme display names */
+"app.theme.cat" = "Kat";
+"app.theme.dog" = "Hund";
+"app.theme.bear" = "Bjørn";
+"app.theme.dino" = "Dino";
+"app.theme.bird" = "Fugl";
+"app.theme.ocean" = "Fisk";
+"app.theme.dragon" = "Drage";
+"app.theme.horse" = "Hest";
+"app.theme.monkey" = "Primat";
+
+/* UserProfile.swift */
+"fitness.goal.bulking" = "Muskelopbygning";
+"fitness.goal.maintenance" = "Vedligeholdelse";
+"fitness.goal.cutting" = "Vægttab";
+
+/* MARK: - Views */
+
+/* MARK: - Views/AchievementsView */
+
+/* AchievementsView.swift */
+"achievements.header.title" = "Præstationer";
+"achievements.filter.list" = "Liste";
+"achievements.filter.calendar" = "Kalender";
+"achievements.filter.title" = "Visning";
+"achievements.weekday.title" = "Gennemsnit pr. ugedag";
+"achievements.weekday.footer" = "Dit gennemsnit på hver ugedag på tværs af alle registrerede dage.";
+"achievements.empty.title" = "Ingen præstationer endnu";
+"achievements.empty.description" = "Sidst på dagen låser du op for din præstation her.";
+
+"achievements.daily.row.description" = "Fuldførte %d%% af dagens mål.";
+
+/* EditTodayView.swift */
+"edit.record.cancel" = "Annuller";
+"edit.record.save" = "Gem";
+
+/* RecordDetailView.swift */
+"record.detail.title" = "Detaljer om præstation";
+"record.detail.back" = "Tilbage";
+"record.detail.edit" = "Rediger";
+
+/* MARK: - Views/ProfileView */
+
+/* ProgressOverView.swift */
+"statistics.title" = "Historik";
+"statistics.section.tiers" = "Fordeling pr. niveau";
+"statistics.section.activity" = "Træningsaktivitet";
+"statistics.section.goals" = "Mål";
+"statistics.activity.workout" = "Styrkedage";
+"statistics.activity.cardio" = "Cardiodage";
+"statistics.goals.active.label" = "Aktive mål";
+"statistics.fitness.goal" = "Fokus";
+"watch.stats.syncing" = "Åbn Gym Nutshell på iPhone for at se statistik.";
+"watch.stats.recent" = "Seneste";
+
+/* ProgressOverView.swift, stats rows and physical data */
+"profile.recent.section" = "Seneste 7 dage";
+
+/* MARK: - Views/SettingsView */
+
+/* AboutView.swift */
+"settings.about.title" = "Om appen";
+"settings.about.version" = "Version";
+"settings.about.feedback" = "Send feedback";
+"settings.about.description" = "Gym Nutshell er dine daglige træningsmål i en nøddeskal.\n\nSæt mål, følg dem, og se gode vaner blive til resultater.";
+
+/* AddTrackingGoalView.swift */
+"settings.addgoal.title.new" = "Nyt mål";
+"settings.addgoal.section.icon" = "Emoji";
+"settings.addgoal.emoji.placeholder" = "f.eks.: 🧘";
+"settings.addgoal.section.name" = "Navn";
+"settings.addgoal.name.placeholder" = "f.eks.: Meditation";
+"settings.addgoal.section.unit" = "Enhed";
+"settings.addgoal.unit.placeholder" = "f.eks.: min";
+"settings.addgoal.section.goal" = "Mål";
+"settings.addgoal.goal.placeholder" = "f.eks.: 10";
+"settings.addgoal.section.increment" = "Trin";
+"settings.addgoal.increment.placeholder" = "f.eks.: 2";
+"settings.addgoal.cancel" = "Annuller";
+"settings.addgoal.save" = "Gem";
+"settings.addgoal.warning.catalog" = "Der findes allerede et mål med det navn.";
+"settings.addgoal.warning.emoji" = "Den emoji bruges allerede af et andet mål.";
+"settings.addgoal.warning.emoji.keyboard" = "Dette felt accepterer kun emojis. Gå til Indstillinger → Generelt → Tastatur → Tastaturer, og slå tastaturet 'Emoji' til.";
+"settings.addgoal.warning.category.duplicate" = "Der findes allerede en kategori med det navn.";
+"settings.addgoal.warning.step" = "Trinnet kan ikke være større end målet.";
+"settings.addgoal.section.category" = "Kategori";
+"settings.addgoal.category.new.button" = "Ny kategori";
+"settings.addgoal.category.new.section" = "Tilpasset kategori";
+"settings.addgoal.category.new.name.placeholder" = "f.eks.: Udstrækning";
+"settings.category.kind" = "Type";
+"category.kind.standard" = "Standard";
+"category.kind.restDay" = "Med hviledag";
+"category.kind.checkIn" = "Tjek ind";
+"category.kind.standard.footer" = "Registrer mål lidt ad gangen med skyderen eller knapperne − / +.";
+"category.kind.restDay.footer" = "Med en ON/OFF-knap til at markere en hviledag.";
+"category.kind.checkIn.footer" = "Hvert mål markeres én gang om dagen: Afventer eller Færdig.";
+"settings.addgoal.category.kind.footer" = "Denne kategori er af typen “%1$@”. %2$@";
+"settings.goals.addToCategory" = "Tilføj mål";
+"settings.addgoal.section.dose" = "Dosis";
+"settings.addgoal.dose.footer" = "Når du markerer Færdig, fuldføres dagens mål med denne mængde.";
+"settings.goals.custom.badge" = "Tilpasset";
+"settings.goals.categories.title" = "Kategorier";
+
+/* BackupSettingsView.swift */
+"settings.backup.nav.title" = "Sikkerhedskopi";
+"settings.backup.section.data" = "Lokal";
+"settings.backup.section.footer" = "Lokal eksport og import fungerer via en .json-fil.";
+"settings.backup.export" = "Eksporter sikkerhedskopi";
+"settings.backup.import" = "Importer sikkerhedskopi";
+"settings.backup.import.alert.title" = "Overskriv data?";
+"settings.backup.import.alert.message" = "Dette erstatter din nuværende profil, dine mål og din historik med data fra sikkerhedskopien. Dette kan ikke fortrydes.";
+"settings.backup.import.alert.confirm" = "Overskriv";
+"settings.backup.import.alert.cancel" = "Annuller";
+"settings.backup.error.title" = "Fejl";
+"settings.backup.success.title" = "Færdig";
+"settings.backup.success.message" = "Dine data er blevet gendannet fra sikkerhedskopien.";
+
+/* iCloud backup */
+"settings.backup.icloud.save" = "Gem i iCloud";
+"settings.backup.icloud.restore" = "Gendan fra iCloud";
+"settings.backup.icloud.restoring" = "Gendanner sikkerhedskopi fra iCloud…";
+"settings.backup.icloud.save.success" = "Din sikkerhedskopi er blevet gemt i iCloud.";
+"settings.backup.icloud.unavailable" = "iCloud er ikke tilgængelig";
+"settings.backup.icloud.noBackup" = "Ingen sikkerhedskopi gemt i iCloud endnu.";
+"settings.backup.icloud.lastBackup" = "Seneste sikkerhedskopi:";
+"settings.backup.icloud.footer.unavailable" = "Log ind på iCloud i Indstillinger for at slå sikkerhedskopiering i skyen til.";
+"settings.backup.icloud.error.unavailable" = "iCloud Drive er ikke tilgængelig. Tjek, at du er logget ind på iCloud, og at iCloud Drive er slået til.";
+"settings.backup.icloud.error.downloadTimeout" = "Kunne ikke hente sikkerhedskopien fra iCloud. Tjek din forbindelse, og prøv igen.";
+"settings.backup.icloud.auto.toggle" = "Daglig automatisk sikkerhedskopi";
+"settings.backup.icloud.auto.footer" = "\nSikkerhedskopien gemmes automatisk, når en ny præstation opdateres.\nPræstationer opdateres, når du åbner appen efter midnat.";
+
+/* CheckinGoalsSettingsView.swift */
+"settings.goals.remove" = "Slet mål";
+"settings.goals.default.a11y" = "Standardmål";
+
+/* FitnessGoalChangeView.swift */
+"settings.goalchange.title" = "Fokus";
+"settings.goalchange.section.pick" = "Vælg dit fokus";
+"settings.goalchange.section.preview" = "Dine mål";
+"settings.goalchange.save.recalc" = "Gem og genberegn";
+"settings.goalchange.save.keep" = "Gem uden at genberegne";
+
+/* ProfileSettingsView.swift */
+"settings.profile.section.optional" = "Valgfrit";
+"settings.profile.name" = "Navn";
+"settings.profile.name.placeholder" = "Dit navn";
+"settings.profile.favoriteExercise" = "Favoritøvelse";
+
+/* Favorite exercises (easter egg) */
+"favoriteExercise.unknown"    = "Ved ikke";
+"favoriteExercise.back"       = "Ryg";
+"favoriteExercise.arms"       = "Arme";
+"favoriteExercise.chest"      = "Bryst";
+"favoriteExercise.legs"       = "Ben";
+"favoriteExercise.hamstrings" = "Baglår";
+"favoriteExercise.glutes"     = "Baller";
+"favoriteExercise.shoulders"  = "Skuldre";
+"favoriteExercise.biceps"     = "Biceps";
+"favoriteExercise.triceps"    = "Triceps";
+"favoriteExercise.abs"        = "Mave";
+"favoriteExercise.traps"      = "Nakke";
+"favoriteExercise.forearms"   = "Underarme";
+"favoriteExercise.calves"     = "Lægge";
+
+/* SettingsView.swift */
+"settings.header.title" = "Appindstillinger";
+"settings.section.edit" = "Profil";
+"settings.theme.title" = "Emoji";
+"settings.section.preferences" = "Udseende";
+"settings.section.system" = "System";
+"settings.section.about" = "Om";
+
+/* GymNutshellApp.swift, DataStoreErrorView */
+"app.error.dataStore.title" = "Noget gik galt";
+"app.error.dataStore.message" = "Gym Nutshell kunne ikke indlæse dine data.\nTving appen til at lukke, og åbn den igen for at prøve på ny.";
+"settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "Detaljer";
+"settings.section.physicaldata" = "Dine data";
+"settings.fitness.goal.edit" = "Træningsfokus";
+"settings.goals.edit" = "Daglige mål";
+"settings.preference.appleHealth" = "Apple Sundhed";
+"settings.preference.appleHealth.syncSleep" = "Registrer søvn";
+"settings.preference.appleHealth.autoWorkoutCheckin" = "Træningsregistrering";
+"settings.preference.appleHealth.footer" = "Registrer søvn gemmer dine søvntimer i Apple Sundhed, hvis der ikke allerede findes en registrering for dagen.\n\nTræningsregistrering finder en afsluttet træning og registrerer den automatisk under Styrketræning eller Cardio.";
+"settings.preference.appleWatch" = "Apple Watch";
+"appleWatch.sheet.title" = "Installer på Apple Watch";
+"appleWatch.sheet.intro" = "Følg trinene nedenfor for at installere Gym Nutshell på dit Apple Watch:";
+"appleWatch.sheet.step1" = "Åbn appen Watch på din iPhone";
+"appleWatch.sheet.step2" = "Rul ned til sektionen \"Tilgængelige apps\"";
+"appleWatch.sheet.step3" = "Tryk på Installer ud for Nutshell";
+"appleWatch.sheet.note" = "Hvis appen allerede er installeret, vises den i sektionen \"Installeret på Apple Watch\" ovenfor.";
+"settings.preference.language" = "Sprog";
+"settings.preference.measurementSystem" = "Måleenheder";
+"settings.preference.measurementSystem.metric" = "Metrisk (ml)";
+"settings.preference.measurementSystem.us" = "Imperial (fl oz)";
+"settings.measurementSystem.footer" = "Hvordan vand vises og indtastes i appen.";
+"settings.edit.widgets" = "Widgets";
+"widgetBackground.title" = "Widgets";
+"widgetBackground.mode.label" = "Baggrund";
+"widgetBackground.mode.system" = "System";
+"widgetBackground.mode.accent" = "Temafarve";
+"widgetBackground.mode.custom" = "Tilpasset";
+"widgetBackground.footer.system" = "Widgets bruger standardbaggrunden i iOS med sort eller hvid tekst, der passer til systemtemaet.";
+"widgetBackground.footer.accent" = "Widgets bruger appens temafarve som baggrund.";
+"widgetBackground.footer.custom" = "Vælg en farve nedenfor. Widgets bruger den som baggrund.";
+"widgetBackground.picker" = "Farve";
+"widgetBackground.preview" = "Eksempel";
+
+/* TrackingGoalDetailView.swift */
+"settings.goaldetail.stepper" = "Juster værdi";
+"settings.goaldetail.footer" = "Ændring af dette påvirker ikke tidligere registreringer.";
+"settings.goaldetail.save" = "Gem";
+"settings.goaldetail.increment.stepper" = "Juster trin";
+"settings.goaldetail.increment.footer" = "Trinnet bestemmer, hvor meget skyderen rykker frem mod målværdien.";
+
+/* TrackingGoalsSettingsView.swift */
+"settings.goals.title" = "Mål";
+"settings.tracking.goals.section.custom" = "Tilpassede mål";
+"settings.tracking.goals.done" = "Færdig";
+"settings.tracking.goals.editMode" = "Rediger";
+"settings.goals.category.order.section" = "Rækkefølge på kategorier";
+"settings.goal.water" = "Vand";
+"settings.goal.protein" = "Protein";
+"settings.goal.carbs" = "Kulhydrater";
+"settings.goal.fats" = "Sundt fedt";
+"settings.goal.fiber" = "Kostfibre";
+"settings.goal.sleep" = "Søvn";
+
+/* MARK: - Views/Shared */
+
+/* FitnessGoalPickerView.swift */
+"welcome.goal.bulking.description" = "Øg muskelmassen med kalorieoverskud";
+"welcome.goal.maintenance.description" = "Bevar nuværende vægt og kropssammensætning";
+"welcome.goal.cutting.description" = "Reducer kropsfedt, mens du bevarer muskelmasse";
+
+/* MARK: - Views/TodayView */
+
+/* GoalCategory.swift */
+"goal.category.essencial" = "Vigtigt";
+"goal.category.nutricao" = "Ernæring";
+"goal.category.treino" = "Træning";
+"goal.category.suplemento" = "Tilskud";
+
+/* TodayView.swift */
+"today.goals.workout" = "Styrketræning";
+"today.goals.cardio" = "Cardio";
+"today.goals.creatine" = "Kreatin";
+"today.category.other" = "Andet";
+"today.restday.label" = "Hviledag";
+"today.checkin.pending" = "Afventer";
+"today.checkin.done" = "Færdig";
+"a11y.checkin.hint.markDone" = "Tryk for at markere som færdig.";
+"a11y.checkin.hint.markPending" = "Tryk for at markere som afventer.";
+"today.restday.on" = "ON";
+"today.restday.off" = "OFF";
+"today.metric.sleep" = "Søvn";
+"today.metric.water" = "Vand";
+"today.metric.protein" = "Protein";
+"today.metric.carbs" = "Kulhydrater";
+"today.metric.fats" = "Sundt fedt";
+"today.metric.fiber" = "Kostfibre";
+
+/* TodayHeroView.swift, next level phrase */
+"today.max.level" = "Maks. niveau nået i dag!";
+
+/* DailyTierView.swift */
+/* Tier button label combines the "Today's achievement" header phrase with the
+   tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
+   duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
+"today.tier.a11y.label" = "Dagens præstation, %2$@";
+
+/* TodayProgressRingView.swift */
+"today.ring.a11y.label" = "Dagens fremskridtsring";
+"today.ring.a11y.hint" = "Tryk for flere oplysninger.";
+"today.ring.a11y.value" = "%d procent fuldført";
+
+/* TodayView.swift, date hero button */
+"today.hero.caption.start" = "Registrer et mål for at komme i gang";
+"today.hero.caption.nextLevel" = "%d%% tilbage til næste niveau";
+"today.hero.caption.max" = "Dagens toppræstation!";
+
+/* MARK: - Views/WelcomeView */
+
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "Om dig";
+
+/* WelcomeFitnessGoalStep.swift */
+"welcome.step.goal.title" = "Dit fokus";
+"welcome.step.goal.info.editable" = "Du kan ændre det senere i appens indstillinger.";
+
+/* WelcomeThemeStep.swift */
+"welcome.step.theme.title" = "Emoji";
+"welcome.step.theme.subtitle" = "Vælg de emojis, der skal inspirere dine fremskridt.";
+"welcome.step.theme.footer" = "Du kan ændre emojis senere.";
+
+/* WelcomePhysicalDataStep.swift */
+"welcome.field.sex" = "Køn";
+"welcome.field.sex.male" = "Mand";
+"welcome.field.sex.female" = "Kvinde";
+
+/* WelcomeSummaryStep.swift */
+"welcome.step.summary.title" = "Dine mål";
+"welcome.summary.subtitle.customize" = "Du kan når som helst redigere disse værdier eller tilføje nye mål.";
+"welcome.option.add" = "Tilføj";
+"welcome.restore.importJSON" = "Importer JSON-sikkerhedskopi";
+"welcome.theme.preview" = "Detaljer";
+
+/* WelcomeStartStep.swift */
+"welcome.step.start.title" = "Hej!";
+"welcome.start.new" = "Start";
+"welcome.start.restore" = "Gendan sikkerhedskopi";
+
+/* WelcomeView.swift */
+"welcome.button.continue" = "Fortsæt";
+"welcome.button.start" = "Lad os komme i gang!";
+"welcome.button.back" = "Tilbage";
+
+/* MARK: - ContentView.swift */
+
+/* HealthKit activity display names (auto check-in descriptions) */
+"healthkit.activity.running" = "Løb";
+"healthkit.activity.walking" = "Gang";
+"healthkit.activity.cycling" = "Cykling";
+"healthkit.activity.swimming" = "Svømning";
+"healthkit.activity.elliptical" = "Crosstrainer";
+"healthkit.activity.rowing" = "Roning";
+"healthkit.activity.stairClimbing" = "Trappetræning";
+"healthkit.activity.hiking" = "Vandring";
+"healthkit.activity.jumpRope" = "Sjipning";
+"healthkit.activity.dance" = "Dans";
+"healthkit.activity.strengthTraining" = "Styrketræning";
+"healthkit.activity.functionalTraining" = "Funktionel træning";
+"healthkit.activity.crossTraining" = "Crosstræning";
+"healthkit.activity.hiit" = "HIIT";
+"healthkit.activity.boxing" = "Boksning";
+"healthkit.activity.martialArts" = "Kampsport";
+"healthkit.activity.coreTraining" = "Coretræning";
+"healthkit.activity.climbing" = "Klatring";
+"healthkit.activity.other" = "Motion";
+
+/* AppTheme, Categories */
+"app.theme.category.sport" = "Sport";
+"app.theme.category.animals" = "Dyr";
+"app.theme.category.elements" = "Elementer og natur";
+"app.theme.category.competition" = "Fremskridt";
+"app.theme.category.warrior" = "Helt";
+"app.theme.category.warrior.fem" = "Heltinde";
+"app.theme.category.space" = "Kosmos";
+
+/* AppTheme, Gym */
+"app.theme.gym" = "Fitness";
+"app.theme.running" = "Løb";
+"daily.achievement.running.level1" = "Gående";
+"daily.achievement.running.level2" = "I godt tempo";
+"daily.achievement.running.level3" = "Løber";
+"daily.achievement.running.level4" = "Sprinter";
+"daily.achievement.running.level5" = "Maratonløber";
+"daily.achievement.gym.level1" = "Hane";
+"daily.achievement.gym.level1.fem" = "Kylling";
+"daily.achievement.gym.level2" = "Stærk spire";
+"daily.achievement.gym.level3" = "Fitnessfreak";
+"daily.achievement.gym.level4" = "Muskelbundt";
+"daily.achievement.gym.level5" = "Bæst";
+
+/* AppTheme, Fire */
+"app.theme.fire" = "Ild";
+"daily.achievement.fire.level1" = "Stearinlys";
+"daily.achievement.fire.level2" = "Flamme";
+"daily.achievement.fire.level3" = "Vulkan";
+"daily.achievement.fire.level4" = "Solkraft";
+"daily.achievement.fire.level5" = "Supernova";
+
+/* AppTheme, Plant */
+"app.theme.plant" = "Skov";
+"daily.achievement.plant.level1" = "Lille spire";
+"daily.achievement.plant.level2" = "Urt";
+"daily.achievement.plant.level3" = "Stort træ";
+"daily.achievement.plant.level4" = "Juletræ";
+"daily.achievement.plant.level5" = "Skov";
+
+/* AppTheme, Champion */
+"app.theme.champion" = "Medalje";
+"daily.achievement.champion.level1" = "Bronze";
+"daily.achievement.champion.level2" = "Sølv";
+"daily.achievement.champion.level3" = "Guld";
+"daily.achievement.champion.level4" = "Trofæ";
+"daily.achievement.champion.level5" = "Diamant";
+
+/* AppTheme, Number */
+"app.theme.number" = "Tal";
+"daily.achievement.number.level1" = "En";
+"daily.achievement.number.level2" = "To";
+"daily.achievement.number.level3" = "Tre";
+"daily.achievement.number.level4" = "Fire";
+"daily.achievement.number.level5" = "Fem";
+
+/* AppTheme, Doctor */
+"app.theme.doctor" = "Læge";
+"daily.achievement.doctor.level1" = "Lærling";
+"daily.achievement.doctor.level2" = "Begynder";
+"daily.achievement.doctor.level3" = "Uddannet";
+"daily.achievement.doctor.level4" = "Doctor Who";
+"daily.achievement.doctor.level5" = "Overlæge";
+
+/* AppTheme, Ninja (Fighter) */
+"app.theme.ninja" = "Kæmper";
+"daily.achievement.ninja.level1" = "Elev";
+"daily.achievement.ninja.level2" = "Sværdkæmper";
+"daily.achievement.ninja.level3" = "Ninja";
+"daily.achievement.ninja.level4" = "Super";
+"daily.achievement.ninja.level5" = "Legendarisk";
+
+/* AppTheme, Astronaut (Space) */
+"app.theme.astronaut" = "Verdensrummet";
+"daily.achievement.astronaut.level1" = "Astronaut";
+"daily.achievement.astronaut.level2" = "Rumvæsen";
+"daily.achievement.astronaut.level3" = "Raket";
+"daily.achievement.astronaut.level4" = "Flyvende tallerken";
+"daily.achievement.astronaut.level5" = "TARDIS";
+
+/* AppTheme, Celestial */
+"app.theme.celestial" = "Himmellegemer";
+"daily.achievement.celestial.level1" = "Komet";
+"daily.achievement.celestial.level2" = "Måne";
+"daily.achievement.celestial.level3" = "Jorden";
+"daily.achievement.celestial.level4" = "Saturn";
+"daily.achievement.celestial.level5" = "Galakse";
+
+/* AppAccentColor.swift, Color names */
+"color.red"    = "Rød";
+"color.blue"   = "Blå";
+"color.purple" = "Violet";
+"color.green"  = "Grøn";
+"color.yellow" = "Gul";
+"color.orange" = "Orange";
+"color.cyan"   = "Cyan";
+"color.pink"   = "Lyserød";
+
+/* ColorSettingsView.swift */
+"settings.color.title"    = "Temafarve";
+"settings.color.subtitle" = "Temafarve, der bruges i hele appen";
+"settings.color.preview" = "Eksempel";
+
+/* TierInfoView.swift / ProgressRingInfoView.swift, links in Settings > About */
+"settings.about.achievement"  = "Præstation";
+"settings.about.progressRing" = "Fremskridtsring";
+
+/* TierInfoView.swift */
+"tier.info.intro"             = "Din præstation registreres sidst på dagen ved midnat.";
+"tier.info.section.levels"    = "Niveauer";
+"tier.info.change.theme"      = "Skift emoji";
+"tier.info.range.suffix"      = " af fremskridt";
+
+/* ProgressRingInfoView.swift */
+"ring.info.intro"             = "Ringen viser i gennemsnit, hvor mange procent af dine mål du har fuldført. Hvert farvet segment tæller 20%.";
+"ring.info.section.colors"    = "Ringsegmenter";
+"ring.info.color.red"         = "Niveau 1";
+"ring.info.color.orange"      = "Niveau 2";
+"ring.info.color.green"       = "Niveau 3";
+"ring.info.color.cyan"        = "Niveau 4";
+"ring.info.color.purple"      = "Niveau 5";
+"ring.info.color.blue"        = "Mål fuldført";
+"ring.info.level.label"       = "Niveau ";
+"info.next.prefix"            = "Mangler ";
+"info.next.middle"            = " for at nå: ";
+
+/* Common */
+"common.cancel" = "Annuller";
+"common.done" = "Færdig";
+
+/* Notification history */
+"notifications.history.title" = "Notifikationer";
+"common.close" = "Luk";
+"common.edit" = "Rediger";
+"common.done" = "Færdig";
+"notifications.history.today" = "I dag";
+"notifications.history.yesterday" = "I går";
+"notifications.history.empty.title" = "Ingen notifikationer endnu";
+"notifications.history.empty.description" = "Notifikationshistorikken for de seneste 3 dage vises her.";
+
+/* NotificationsSettingsView */
+"settings.preference.notifications"       = "Notifikationer";
+"settings.notifications.section.system"   = "System";
+"settings.notifications.section.goals"    = "Mål";
+"settings.notifications.authorize.button" = "Slå notifikationer til";
+"settings.notifications.authorize.footer" = "Tryk på Tillad, og godkend i iOS-dialogen for at modtage påmindelser. Hvis du allerede har afvist, kan du slå dem til i Indstillinger i iOS.";
+"settings.notifications.denied.title"     = "Notifikationer er slået fra";
+"settings.notifications.denied.message"   = "Du har tidligere afvist notifikationer. Slå dem til i Indstillinger i iOS for at modtage påmindelser fra Gym Nutshell.";
+"settings.notifications.denied.open"      = "Åbn Indstillinger";
+
+/* NotificationIntervalEditView */
+"settings.notifications.interval.header"   = "Interval mellem notifikationer";
+"settings.notifications.interval.stepper"  = "Hver";
+"settings.notifications.interval.value"    = "%d min";
+
+/* NotificationIntervalEditView, sound picker */
+"settings.notifications.sound.header"      = "Lyd";
+"settings.notifications.sound.label"       = "Notifikationslyd";
+"settings.notifications.sound.footer"      = "Indstillingen Standard afspiller den tone, du har valgt i Indstillinger → Notifikationer → Gym Nutshell → Lyde (Treklang, Tone, Akkord osv.). Lydløs slår kun lyden fra i denne app.";
+"settings.notifications.sound.openSystem"  = "Vælg tone i Indstillinger i iOS";
+"notifications.sound.default"              = "Standard";
+"notifications.sound.silent"               = "Lydløs";
+
+/* NotificationKind, title / description on list + body of notification + footer */
+"notifications.kind.progress.title"         = "Fremskridt";
+"notifications.kind.progress.description"   = "Hvor meget der mangler til din næste daglige præstation.";
+"notifications.kind.progress.body"          = "Hvert mål tæller mod din næste præstation.";
+"notifications.kind.progress.footer"        = "Regelmæssige påmindelser, der viser, hvor meget du mangler for at stige i niveau i dag.";
+
+"notifications.kind.achievement.title"      = "Daglig præstation";
+"notifications.kind.achievement.description" = "Giver besked ved midnat om dagens opnåede præstation.";
+"notifications.kind.achievement.body"       = "Du sluttede dagen som %@.";
+
+"notifications.kind.appleHealth.title"      = "Apple Sundhed";
+"notifications.kind.appleHealth.description" = "Bekræfter registreringer synkroniseret med Apple Sundhed.";
+"notifications.kind.appleHealth.body.cardio" = "Registrerede %d min Cardio (%@).";
+"notifications.kind.appleHealth.body.workout" = "Registrerede %d min Styrketræning (%@).";
+"notifications.kind.appleHealth.body.sleep" = "Registrerede %d t søvn i Apple Sundhed.";
+
+"notifications.kind.backup.title"           = "iCloud-sikkerhedskopi";
+"notifications.kind.backup.description"     = "Bekræfter hver automatisk sikkerhedskopi.";
+"notifications.kind.backup.body"            = "Sikkerhedskopi i iCloud blev fuldført.";
+
+"notifications.kind.sleep.title"            = "Søvn";
+"notifications.kind.sleep.description"      = "Foreslår en lur, når du ikke har nået dit søvnmål (kun mellem kl. 10 og 19).";
+"notifications.kind.sleep.body"             = "Hvad med en lur for at nå dit søvnmål i dag?";
+"notifications.kind.sleep.footer"           = "Hvert X. minut foreslår appen et hvil, indtil du når dagens mål. Der sendes ingen påmindelser før kl. 10 eller efter kl. 19.";
+
+"notifications.kind.water.title"            = "Vand";
+"notifications.kind.water.description"      = "Påmindelser om at drikke et glas vand, indtil du når dagens mål.";
+"notifications.kind.water.body"             = "Tid til et glas vand? Fortsæt mod dagens mål.";
+"notifications.kind.water.footer"           = "Hvert X. minut minder appen dig om at drikke vand. Påmindelserne stopper, når du når dagens mål.";
+
+"notifications.kind.protein.title"          = "Protein";
+"notifications.kind.protein.description"    = "Påmindelser om at nå dit daglige proteinmål.";
+"notifications.kind.protein.body"           = "Tid til lidt ekstra protein for at nå dagens mål.";
+"notifications.kind.protein.footer"         = "Regelmæssige påmindelser stopper, når du når dit proteinmål.";
+
+"notifications.kind.carbs.title"            = "Kulhydrater";
+"notifications.kind.carbs.description"      = "Påmindelser om at nå dit daglige mål for kulhydrater.";
+"notifications.kind.carbs.body"             = "Hvad med en god kilde til kulhydrater for at holde energien oppe?";
+"notifications.kind.carbs.footer"           = "Regelmæssige påmindelser stopper, når du når dit mål for kulhydrater.";
+
+"notifications.kind.goodFat.title"          = "Sundt fedt";
+"notifications.kind.goodFat.description"    = "Påmindelser om at nå dit daglige mål for sundt fedt.";
+"notifications.kind.goodFat.body"           = "Husk det sunde fedt i dag (olivenolie, nødder, avocado).";
+"notifications.kind.goodFat.footer"         = "Regelmæssige påmindelser stopper, når du når dit mål for sundt fedt.";
+
+"notifications.kind.fiber.title"            = "Kostfibre";
+"notifications.kind.fiber.description"      = "Påmindelser om at nå dit daglige mål for kostfibre.";
+"notifications.kind.fiber.body"             = "Tilføj en portion kostfibre til dit næste måltid.";
+"notifications.kind.fiber.footer"           = "Regelmæssige påmindelser stopper, når du når dit mål for kostfibre.";
+
+"notifications.kind.workout.title"          = "Styrketræning";
+"notifications.kind.workout.description"    = "Påmindelser om at gennemføre dagens styrketræning.";
+"notifications.kind.workout.body"           = "Tid til dagens styrketræning.";
+"notifications.kind.workout.footer"         = "Regelmæssige påmindelser stopper, når du når dit mål for styrketræning.";
+
+"notifications.kind.cardio.title"           = "Cardio";
+"notifications.kind.cardio.description"     = "Påmindelser om at gennemføre dagens cardio.";
+"notifications.kind.cardio.body"            = "Tid til cardio. Lidt bevægelse gør en stor forskel.";
+"notifications.kind.cardio.footer"          = "Regelmæssige påmindelser stopper, når du når dit cardiomål.";
+
+"notifications.kind.creatine.title"         = "Kreatin";
+"notifications.kind.creatine.description"   = "Påmindelser om din daglige dosis kreatin.";
+"notifications.kind.creatine.body"          = "Har du taget din kreatin i dag?";
+"notifications.kind.creatine.footer"        = "Regelmæssige påmindelser stopper, når du registrerer dagens dosis.";
+
+/* Custom goals */
+"notifications.custom.description"          = "Påmindelser om at nå dagens mål.";
+"notifications.custom.body"                 = "Tid til at registrere %@ – fortsæt mod dagens mål.";
+"notifications.custom.footer"               = "Regelmæssige påmindelser stopper, når du når dagens mål for dette tilpassede mål.";
+"notifications.history.delete" = "Slet";
+
+/* MARK: - Accessibility (VoiceOver), shared helpers in A11yHelpers.swift */
+
+/* Progress band, color-coded zones spoken instead of just relying on the visual hue */
+"a11y.band.red"    = "rød zone, langt fra målet";
+"a11y.band.orange" = "orange zone, godt i gang";
+"a11y.band.green"  = "grøn zone, godt gået";
+"a11y.band.cyan"   = "cyan zone, næsten i mål";
+"a11y.band.blue"   = "blå zone, mål nået";
+
+/* Generic progress phrasing, band dropped from progress value after user testing */
+"a11y.percent.format"          = "%d procent";
+"a11y.progress.value.format"   = "%d procent fuldført";
+
+/* Tracking goal row, header value drops percent + band to stay concise */
+"a11y.goalrow.value.format"    = "%1$d af %2$d %3$@ fuldført";
+"a11y.goalrow.value.restday"   = "på hviledag, mål fuldført";
+"a11y.goalrow.a11y.label"      = "Mål: %@";
+"a11y.slider.label.format"     = "Skyder til %@";
+
+/* Generic "open details" hint reused across ring/tier */
+"a11y.hint.more.info"          = "Tryk for flere oplysninger.";
+
+/* Collapsible category header (TodayView) */
+"a11y.category.label.format"   = "Kategori: %@";
+"a11y.category.hint"           = "Tryk for at skjule eller udvide.";
+
+/* Day cell (MonthlyCalendarView + widget Calendar) */
+"a11y.daycell.today.format"        = "i dag, %1$@, %2$d procent, %3$@";
+"a11y.daycell.past.format"         = "%1$@, %2$d procent, %3$@";
+"a11y.daycell.future.format"       = "%@, fremtid";
+"a11y.daycell.empty.format"        = "%@, ingen registreringer";
+"a11y.daycell.today.empty.format"  = "i dag, %@, ingen registreringer endnu";
+"a11y.daycell.selected.suffix"     = ", valgt";
+
+/* Increment / decrement buttons (Watch, edit sheets) */
+"a11y.hint.increment" = "Tryk for at øge.";
+"a11y.hint.decrement" = "Tryk for at mindske.";
+
+/* Rest day toggle, label reflects on/off, hint describes the action */
+"a11y.hint.restday.activate"   = "Tryk for at slå hviledag til.";
+"a11y.hint.restday.deactivate" = "Tryk for at slå hviledag fra.";
+
+/* Info sheets, row combine helpers */
+"a11y.ringinfo.color.row.format"  = "%1$@, interval %2$@";
+"a11y.tierinfo.row.format"        = "%1$@, %2$@, niveau %3$d";
+
+/* MARK: - Accessibility (Phase 2, Achievements + ProgressOver) */
+
+/* Calendar cell with a tier name spoken */
+"a11y.calendar.day.tier.format"        = "%1$@, opnået: %2$@";
+"a11y.calendar.day.today.tier.format"  = "i dag, %1$@, opnået: %2$@";
+
+/* Month navigation chevrons */
+"a11y.month.previous" = "Forrige måned";
+"a11y.month.next"     = "Næste måned";
+
+/* AchievementsView history rows */
+"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d procent";
+"a11y.record.row.hint"          = "Tryk for at se detaljer.";
+"a11y.record.edit.label"        = "Rediger registrering";
+"a11y.record.edit.hint" = "Tryk for at redigere.";
+
+/* RecordDetail / EditToday header card */
+"a11y.record.header.format"     = "%1$@, %2$@, %3$d procent, niveau %4$d";
+
+/* ProgressOverView, whole-card tap hints */
+"a11y.stats.card.usergoal.hint" = "Tryk for at skifte fokus.";
+"a11y.stats.card.tiers.hint"    = "Tryk for at se, hvordan niveauer fungerer.";
+"a11y.stats.card.activity.hint" = "Tryk for at åbne aktivitetsoversigten.";
+"a11y.stats.card.goals.hint"    = "Tryk for at administrere dine mål.";
+
+/* ProfileRecentActivityView, day buttons */
+"a11y.recent.day.with.tier.format" = "%1$@, %2$@";
+"a11y.recent.day.empty.format"     = "%@, ingen registrering";
+"a11y.recent.day.today.format"     = "i dag, %1$@, %2$@";
+"a11y.recent.day.today.empty.format" = "i dag, %@, ingen registrering endnu";
+"a11y.recent.day.hint" = "Tryk for at åbne denne dag.";
+
+/* MARK: - Accessibility (Phase 3, Settings) */
+
+/* Generic selection state */
+"a11y.selected"     = "valgt";
+"a11y.not.selected" = "ikke valgt";
+
+/* Theme picker (ThemeSettingsView) */
+"a11y.theme.hint"             = "Tryk for at vælge disse emojis.";
+"a11y.theme.info.label.format" = "Flere oplysninger om %@";
+"a11y.theme.info.hint" = "Tryk for flere oplysninger.";
+
+/* Color picker (ColorSettingsView) */
+"a11y.color.hint" = "Tryk for at vælge denne farve.";
+
+/* Fitness goal picker (UserGoalPickerView) */
+"a11y.usergoal.hint" = "Tryk for at vælge dette fokus.";
+
+/* Tracking goals settings, image-only buttons */
+"a11y.button.add.goal.label"     = "Tilføj";
+"a11y.button.add.goal.hint" = "Tryk for at oprette et mål eller en kategori.";
+"a11y.button.remove.goal.label"  = "Fjern mål";
+"a11y.button.restore.goal.label" = "Gendan mål";
+
+/* Categories settings, pencil button */
+"a11y.button.edit.category.label" = "Rediger kategori";
+"a11y.button.edit.category.hint" = "Tryk for at redigere denne kategori.";
+
+/* Notification rows, pencil button */
+"a11y.button.edit.notification.label" = "Rediger notifikation";
+"a11y.button.edit.notification.hint" = "Tryk for at redigere notifikationsindstillinger.";
+
+/* SettingsView toolbar bell */
+"a11y.notification.history.bell" = "Notifikationshistorik";
+"a11y.notification.history.bell.hint" = "Tryk for at åbne notifikationer.";
+
+/* Notification history row */
+"a11y.history.row.format" = "%1$@, %2$@, %3$@";
+"a11y.history.row.hint" = "Tryk for at åbne.";
+
+/* App icon (About) */
+"a11y.app.icon" = "Appikon";
+
+/* Collapsible section header (settings goals + notifications) */
+"a11y.section.collapsible.hint" = "Tryk for at skjule eller udvide.";
+
+/* MARK: - Accessibility (Phase 4, Welcome / onboarding) */
+
+"a11y.welcome.progress.format"          = "Trin %1$d af %2$d";
+"a11y.welcome.optional.add.label.format"    = "Tilføj %@";
+"a11y.welcome.optional.remove.label.format" = "Fjern %@";
+"a11y.welcome.optional.add.hint" = "Tryk for at tilføje dette mål.";
+"a11y.welcome.optional.remove.hint" = "Tryk for at fjerne dette mål.";
+
+/* MARK: - Accessibility (Phase 5, Watch app) */
+
+/* Watch hero ring (ContentView), same wording as the iPhone ring */
+"a11y.watch.hero.label"  = "Dagligt fremskridt";
+"a11y.watch.page.stats"         = "Statistikside";
+"a11y.watch.page.today"         = "I dag-side";
+"a11y.watch.page.notifications" = "Notifikationsside";
+
+/* Watch goal card header */
+"a11y.watch.card.expanded"   = "udvidet";
+"a11y.watch.card.collapsed"  = "skjult";
+"a11y.watch.card.hint.expand" = "Tryk for at udvide.";
+"a11y.watch.card.hint.collapse" = "Tryk for at skjule.";
+
+/* Watch ± buttons */
+"a11y.watch.increase.label.format" = "Øg %@";
+"a11y.watch.decrease.label.format" = "Mindsk %@";
+
+/* Watch notification row */
+"a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
+
+/* MARK: - Accessibility (Phase 6, Widgets) */
+
+/* Widget summary (small/medium/lockscreen, watch circular/rectangular) */
+"a11y.widget.summary.format"       = "Dagligt fremskridt, %1$@, %2$d procent fuldført";
+"a11y.widget.summary.points.format" = "Dagligt fremskridt, %1$@, %2$d procent fuldført";
+
+/* iPhone large widgets */
+"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d procent";
+"a11y.widget.calendar.month.format" = "%@";
+
+"a11y.welcome.goal.decrease.format" = "Mindsk %@";
+"a11y.welcome.goal.increase.format" = "Øg %@";
+
+"welcome.step.control.title" = "Betjening";
+"welcome.step.control.subtitle" = "Hvordan foretrækker du at registrere dine mål i hverdagen?";
+"welcome.control.slider" = "Skyd";
+"welcome.control.slider.desc" = "Træk skyderen til den ønskede værdi.";
+"welcome.control.stepper" = "Knapper";
+"welcome.control.stepper.desc" = "Tryk for at lægge et trin til eller trække et fra ad gangen.";
+"welcome.step.ready.title" = "Alt er klart!";
+"welcome.step.ready.subtitle" = "Slå det til, du har lyst til.";
+"welcome.ready.notifications.title" = "Notifikationer";
+"welcome.ready.notifications.desc" = "Påmindelser om vand og præstationer.";
+"welcome.ready.health.title" = "Apple Sundhed";
+"welcome.ready.health.desc" = "Registrerer din søvn og finder dine træninger automatisk.";
+"welcome.ready.allow" = "Tillad";
+"welcome.ready.allowed" = "Tilladt";
+"welcome.ready.requested" = "Anmodet";
+"welcome.ready.denied" = "Afvist";
+"welcome.ready.footer" = "Du kan når som helst ændre alt dette i Indstillinger.";
+"welcome.ready.notifications.setup.title" = "Hvad skal vi minde dig om?";
+"welcome.ready.notifications.setup.footer" = "Du kan ændre alt dette senere i Indstillinger › Notifikationer.";
+"a11y.welcome.ready.notifications.setup.hint" = "Tryk for at vælge dine påmindelser.";
+"settings.preference.controlStyle" = "Betjening";
+"settings.controlStyle.footer" = "Bestemmer, hvordan du registrerer fremskridt på skærmen I dag.";
+
+"settings.category.icon.section" = "Ikon";
+
+"today.edit.goals" = "Rediger mål";
+"today.edit.controls" = "Rediger betjening";
+"today.edit.theme" = "Rediger emoji";
+"today.edit.colors" = "Rediger temafarve";
+"today.edit.quick" = "Hurtig redigering";
+
+"welcome.step.units.title" = "Dine enheder";
+"welcome.step.units.subtitle" = "Hvordan foretrækker du at måle vand?";
+"welcome.step.units.note" = "Du kan ændre dette senere i Indstillinger.";
+"welcome.units.metric.desc" = "Milliliter, f.eks. 250 ml pr. glas.";
+"welcome.units.imperial.desc" = "Fluid ounces, f.eks. %d fl oz pr. glas.";
+
+"today.goals.viewMode.list" = "Liste";
+"today.goals.viewMode.grid" = "Gitter";
+"today.goals.viewMode.switch.a11y" = "Skift til %@-visning";
+"today.category.tile.a11y.hint" = "Tryk for at åbne målene i kategorien.";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%1$@ %2$d.";
+
+// Balão da data na Hoje
+"today.day.remaining" = "Dagen slutter om %@";
+"today.insight.attention" = "I dag kræver ekstra fokus";
+"today.insight.steady" = "Det tegner til en god dag";
+"today.insight.weekday" = "Dit gennemsnit på denne ugedag: %d%%";
+"today.insight.title" = "Dagens prognose";
+"today.insight.title.history" = "Din historik";
+"today.insight.model.risk" = "Risiko for en svag dag i dag (op til %d%%): %@.";
+"today.insight.model.factors" = "Det, der vejede tungest: %@.";
+"today.insight.model.footer" = "Beregnet på din enhed ud fra %d registrerede dage. På de seneste dage ramte prognosen rigtigt %@ af tiden.";
+"today.insight.weekday.detail" = "På denne ugedag er dit gennemsnit %d%%. Dit gennemsnit på tværs af alle dage er %d%%.";
+"today.insight.weekday.footer" = "Beregnet på din enhed ud fra %d registrerede dage. Prognosen vises, når dine data viser et tydeligere mønster.";
+"today.insight.factor.weekday" = "ugedagen";
+"today.insight.factor.yesterday" = "dagen i går";
+"today.insight.factor.lastWeek" = "de seneste 7 dage";
+"today.insight.factor.streak" = "din stime";
+"today.insight.factor.sleep" = "nattens søvn";
+"today.insight.factor.workout" = "styrketræningen i går";
+"today.insight.factor.cardio" = "cardioen i går";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "Tid til at tage %@.";
+"notifications.supplement.group.title" = "Tid til tjek ind";
+"notifications.supplement.action.done" = "Taget";
+"notifications.supplement.preset.morning" = "Morgen";
+"notifications.supplement.preset.lunch" = "Frokost";
+"notifications.supplement.preset.afternoon" = "Sen eftermiddag";
+"notifications.supplement.preset.night" = "Aften";
+"notifications.supplement.preset.bedtime" = "Sengetid";
+"settings.notifications.times.header" = "Påmindelser";
+"settings.notifications.times.row" = "Tidspunkt";
+"settings.notifications.times.add" = "Tilføj tidspunkt";
+"settings.notifications.times.empty" = "Ingen tidspunkter valgt";
+"settings.notifications.times.footer" = "Én påmindelse om dagen på hvert tidspunkt. Dagens påmindelser stopper, når du markerer Færdig på I dag eller trykker på Taget på notifikationen.";
+"settings.notifications.group.title" = "Grupper tjek ind-mål på samme tidspunkt";
+"settings.notifications.group.footer" = "Samler tjek ind-mål med samme tidspunkt i én påmindelse. Når den er slået fra, får hvert mål sin egen.";
+"settings.notifications.emoji.title" = "Emojis i notifikationer";
+"settings.notifications.emoji.footer" = "Viser hvert måls emoji samt emojien for dagens præstation i notifikationsteksten.";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "Stærk uge";
+"streak.bonus.weekly.level5.title" = "Perfekt uge";
+"streak.bonus.monthly.level4.title" = "Stærk måned";
+"streak.bonus.monthly.level5.title" = "Perfekt måned";
+"streak.bonus.weekly.level4.description" = "Mandag til søndag, hver dag på niveau 4 eller 5.";
+"streak.bonus.weekly.level5.description" = "Mandag til søndag, hver dag på niveau 5.";
+"streak.bonus.monthly.level4.description" = "Hele måneden, hver dag på niveau 4 eller 5.";
+"streak.bonus.monthly.level5.description" = "Hele måneden, hver dag på niveau 5.";
+"streak.bonus.generic.title" = "Stimebonus";
+"streak.bonus.info.intro" = "Hver gemt dag giver point efter præstationsniveau. Hvis du afslutter en hel uge eller måned på niveau 4 eller 5, får du en stimebonus.";
+"streak.bonus.info.section.daily" = "Point pr. dag";
+"streak.bonus.info.footer" = "Ugen går fra mandag til søndag. En dag uden registrering bryder stimen. Hvis hele perioden var på niveau 5, tæller kun den største bonus.";
+"points.plus.format" = "+%d p";
+"settings.about.streakBonus" = "Stimebonus";
+"settings.about.dayInsight" = "Dagens indsigt";
+"dayInsight.info.intro" = "Linjen under datoen viser, hvordan din dag sandsynligvis bliver. Tryk på den for at se detaljerne.";
+"dayInsight.info.section.how" = "Sådan fungerer det";
+"dayInsight.info.history" = "Ser på din historik: ugedagen, dagen i går, de seneste 7 dage, din stime, søvn og træning.";
+"dayInsight.info.chance" = "Vurderer risikoen for, at i dag bliver en svag dag med op til %d%% af dine mål.";
+"dayInsight.info.check" = "Viser kun prognosen, når den er mere præcis end dit gennemsnit for ugedagen. Ellers vises gennemsnittet.";
+"dayInsight.info.days" = "Starter efter %d registrerede dage.";
+"dayInsight.info.footer" = "Alt beregnes på din enhed med en enkel maskinlæringsmodel. Dine data forlader aldrig din enhed.";
+"notifications.kind.streakBonus.title" = "Stimebonus";
+"notifications.kind.streakBonus.description" = "Giver dig besked, når du fuldfører en uge- eller månedsstime.";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d point.";
+"statistics.section.bonuses" = "Point og bonusser";
+"statistics.points.total" = "Point";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "Tryk for at se, hvordan point og bonusser fungerer.";
+"a11y.stats.bonus.row.format" = "%1$@, %2$d gange";
+"a11y.record.row.bonus.format" = "%1$@, %2$@, plus %3$d point";
+"a11y.record.bonus.hint" = "Tryk for flere oplysninger.";
+"settings.section.visual" = "Visning";
+"settings.appearance.title" = "Udseende";
+"settings.appearance.mode.header" = "Tilstand";
+"settings.appearance.mode.system" = "Enhed";
+"settings.appearance.mode.light" = "Lyst";
+"settings.appearance.mode.dark" = "Mørkt";
+
+/* Pontos do dia na lista e na edição (2026-11-05) */
+"a11y.points.plus.format" = "plus %d point";

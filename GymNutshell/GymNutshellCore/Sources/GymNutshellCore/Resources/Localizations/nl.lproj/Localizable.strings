@@ -1,0 +1,945 @@
+/* ⌘
+  GymNutshell/GymNutshellCore/Resources/Localizations/nl.lproj/Localizable.strings
+
+  Propósito: Chaves de localização em holandês e strings da interface do usuário para o aplicativo.
+
+  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
+
+ ⌘ */
+
+/* MARK: - Models */
+
+/* DailyAchievement.swift, Cat theme (default) */
+"daily.achievement.level1" = "Katje";
+"daily.achievement.level2" = "Fitnesskat";
+"daily.achievement.level3" = "Superkat";
+"daily.achievement.level4" = "Tijger";
+"daily.achievement.level4.fem" = "Tijgerin";
+"daily.achievement.level5" = "Leeuw";
+"daily.achievement.level5.fem" = "Leeuwin";
+
+/* AppTheme.swift, Dog theme tier names */
+"daily.achievement.dog.level1" = "Hondje";
+"daily.achievement.dog.level2" = "Fitnesshond";
+"daily.achievement.dog.level3" = "Stoere Hond";
+"daily.achievement.dog.level5" = "Wolf";
+"daily.achievement.dog.level5.fem" = "Wolvin";
+"daily.achievement.dog.level4" = "Gouden Hond";
+
+/* AppTheme.swift, Bear theme tier names */
+"daily.achievement.bear.level1" = "Beertje";
+"daily.achievement.bear.level2" = "Bruine Beer";
+"daily.achievement.bear.level3" = "IJsbeer";
+"daily.achievement.bear.level4" = "Sterke Bizon";
+"daily.achievement.bear.level5" = "Mammoet";
+
+/* AppTheme.swift, Dino theme tier names */
+"daily.achievement.dino.level1" = "Schildpadje";
+"daily.achievement.dino.level2" = "Krokodil";
+"daily.achievement.dino.level3" = "T-Rex";
+"daily.achievement.dino.level4" = "Reuzendino";
+"daily.achievement.dino.level5" = "Oerfossiel";
+
+/* AppTheme.swift, Bird theme tier names */
+"daily.achievement.bird.level1" = "Kuikentje";
+"daily.achievement.bird.level2" = "Zangvogel";
+"daily.achievement.bird.level3" = "Adelaar";
+"daily.achievement.bird.level4" = "Wijze Uil";
+"daily.achievement.bird.level5" = "Feniks";
+
+/* AppTheme.swift, Ocean theme tier names */
+"daily.achievement.ocean.level1" = "Visje";
+"daily.achievement.ocean.level2" = "Dolfijn";
+"daily.achievement.ocean.level3" = "Kwal";
+"daily.achievement.ocean.level4" = "Blauwe Vinvis";
+"daily.achievement.ocean.level5" = "Kraken";
+
+/* AppTheme.swift, Dragon theme tier names */
+"daily.achievement.dragon.level1" = "Eitje";
+"daily.achievement.dragon.level2" = "Hagedis";
+"daily.achievement.dragon.level3" = "Draak";
+"daily.achievement.dragon.level4" = "Oerdraak";
+"daily.achievement.dragon.level5" = "Drakenkoning";
+"daily.achievement.dragon.level5.fem" = "Drakenkoningin";
+
+/* AppTheme.swift, Horse theme tier names */
+"daily.achievement.horse.level1" = "Veulen";
+"daily.achievement.horse.level2" = "Eenhoorn";
+"daily.achievement.horse.level3" = "Renpaard";
+"daily.achievement.horse.level4" = "Paradepaard";
+"daily.achievement.horse.level5" = "Volbloed";
+
+/* AppTheme.swift, Primate theme tier names (enum case is still `.monkey` for compatibility) */
+"daily.achievement.monkey.level1" = "Kleine Primaat";
+"daily.achievement.monkey.level2" = "Fitte Primaat";
+"daily.achievement.monkey.level3" = "Sterke Primaat";
+"daily.achievement.monkey.level4" = "Meesterprimaat";
+"daily.achievement.monkey.level5" = "Junglelegende";
+
+/* AppTheme.swift, Theme display names */
+"app.theme.cat" = "Kat";
+"app.theme.dog" = "Hond";
+"app.theme.bear" = "Beer";
+"app.theme.dino" = "Dino";
+"app.theme.bird" = "Vogel";
+"app.theme.ocean" = "Vis";
+"app.theme.dragon" = "Draak";
+"app.theme.horse" = "Paard";
+"app.theme.monkey" = "Primaat";
+
+/* UserProfile.swift */
+"fitness.goal.bulking" = "Spieropbouw";
+"fitness.goal.maintenance" = "Onderhoud";
+"fitness.goal.cutting" = "Afvallen";
+
+/* MARK: - Views */
+
+/* MARK: - Views/AchievementsView */
+
+/* AchievementsView.swift */
+"achievements.header.title" = "Prestaties";
+"achievements.filter.list" = "Lijst";
+"achievements.filter.calendar" = "Kalender";
+"achievements.filter.title" = "Weergave";
+"achievements.weekday.title" = "Gemiddelde per weekdag";
+"achievements.weekday.footer" = "Je gemiddelde score op elke dag van de week, over alle bijgehouden dagen.";
+"achievements.empty.title" = "Nog geen prestaties";
+"achievements.empty.description" = "Aan het einde van de dag ontgrendel je hier je prestatie.";
+
+"achievements.daily.row.description" = "%d%% van de dagdoelen voltooid.";
+
+/* EditTodayView.swift */
+"edit.record.cancel" = "Annuleer";
+"edit.record.save" = "Bewaar";
+
+/* RecordDetailView.swift */
+"record.detail.title" = "Prestatiedetails";
+"record.detail.back" = "Terug";
+"record.detail.edit" = "Wijzig";
+
+/* MARK: - Views/ProfileView */
+
+/* ProgressOverView.swift */
+"statistics.title" = "Geschiedenis";
+"statistics.section.tiers" = "Prestaties per niveau";
+"statistics.section.activity" = "Trainingsactiviteit";
+"statistics.section.goals" = "Doelen";
+"statistics.activity.workout" = "Krachtdagen";
+"statistics.activity.cardio" = "Cardiodagen";
+"statistics.goals.active.label" = "Actieve doelen";
+"statistics.fitness.goal" = "Doel";
+"watch.stats.syncing" = "Open Gym Nutshell op je iPhone om statistieken te bekijken.";
+"watch.stats.recent" = "Recent";
+
+/* ProgressOverView.swift, stats rows and physical data */
+"profile.recent.section" = "Afgelopen 7 dagen";
+
+/* MARK: - Views/SettingsView */
+
+/* AboutView.swift */
+"settings.about.title" = "Over de app";
+"settings.about.version" = "Versie";
+"settings.about.feedback" = "Stuur feedback";
+"settings.about.description" = "Gym Nutshell is je dagelijkse sportschooldoel in een notendop.\n\nStel doelen in, houd ze bij en zie hoe regelmaat resultaat wordt.";
+
+/* AddTrackingGoalView.swift */
+"settings.addgoal.title.new" = "Nieuw doel";
+"settings.addgoal.section.icon" = "Emoji";
+"settings.addgoal.emoji.placeholder" = "bijv.: 🧘";
+"settings.addgoal.section.name" = "Naam";
+"settings.addgoal.name.placeholder" = "bijv.: Meditatie";
+"settings.addgoal.section.unit" = "Eenheid";
+"settings.addgoal.unit.placeholder" = "bijv.: min";
+"settings.addgoal.section.goal" = "Doelwaarde";
+"settings.addgoal.goal.placeholder" = "bijv.: 10";
+"settings.addgoal.section.increment" = "Stap";
+"settings.addgoal.increment.placeholder" = "bijv.: 2";
+"settings.addgoal.cancel" = "Annuleer";
+"settings.addgoal.save" = "Bewaar";
+"settings.addgoal.warning.catalog" = "Er bestaat al een doel met deze naam.";
+"settings.addgoal.warning.emoji" = "Deze emoji wordt al gebruikt voor een ander doel.";
+"settings.addgoal.warning.emoji.keyboard" = "Dit veld accepteert alleen emoji's. Ga naar Instellingen → Algemeen → Toetsenbord → Toetsenborden en schakel het toetsenbord 'Emoji' in.";
+"settings.addgoal.warning.category.duplicate" = "Er bestaat al een categorie met deze naam.";
+"settings.addgoal.warning.step" = "De stap kan niet groter zijn dan de doelwaarde.";
+"settings.addgoal.section.category" = "Categorie";
+"settings.addgoal.category.new.button" = "Nieuwe categorie";
+"settings.addgoal.category.new.section" = "Aangepaste categorie";
+"settings.addgoal.category.new.name.placeholder" = "bijv.: Stretchen";
+"settings.category.kind" = "Type";
+"category.kind.standard" = "Standaard";
+"category.kind.restDay" = "Met rustdag";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "Werk doelen stap voor stap bij met de schuifregelaar of de knoppen − / +.";
+"category.kind.restDay.footer" = "Met een AAN/UIT-knop om een rustdag te markeren.";
+"category.kind.checkIn.footer" = "Elk doel wordt één keer per dag afgevinkt: Open of Klaar.";
+"settings.addgoal.category.kind.footer" = "Het type van deze categorie is “%1$@”. %2$@";
+"settings.goals.addToCategory" = "Voeg doel toe";
+"settings.addgoal.section.dose" = "Dosis";
+"settings.addgoal.dose.footer" = "Als je Klaar markeert, wordt het dagdoel met deze hoeveelheid voltooid.";
+"settings.goals.custom.badge" = "Aangepast";
+"settings.goals.categories.title" = "Categorieën";
+
+/* BackupSettingsView.swift */
+"settings.backup.nav.title" = "Reservekopie";
+"settings.backup.section.data" = "Lokaal";
+"settings.backup.section.footer" = "Lokaal exporteren en importeren werkt via een .json-bestand.";
+"settings.backup.export" = "Exporteer reservekopie";
+"settings.backup.import" = "Importeer reservekopie";
+"settings.backup.import.alert.title" = "Gegevens overschrijven?";
+"settings.backup.import.alert.message" = "Hiermee worden je huidige profiel, doelen en geschiedenis vervangen door de reservekopie. Dit kan niet ongedaan worden gemaakt.";
+"settings.backup.import.alert.confirm" = "Overschrijf";
+"settings.backup.import.alert.cancel" = "Annuleer";
+"settings.backup.error.title" = "Fout";
+"settings.backup.success.title" = "Gereed";
+"settings.backup.success.message" = "Je gegevens zijn hersteld vanuit de reservekopie.";
+
+/* iCloud backup */
+"settings.backup.icloud.save" = "Bewaar op iCloud";
+"settings.backup.icloud.restore" = "Herstel vanaf iCloud";
+"settings.backup.icloud.restoring" = "Reservekopie herstellen vanaf iCloud…";
+"settings.backup.icloud.save.success" = "Je reservekopie is bewaard op iCloud.";
+"settings.backup.icloud.unavailable" = "iCloud niet beschikbaar";
+"settings.backup.icloud.noBackup" = "Nog geen reservekopie op iCloud bewaard.";
+"settings.backup.icloud.lastBackup" = "Laatste reservekopie:";
+"settings.backup.icloud.footer.unavailable" = "Log in bij iCloud in Instellingen om reservekopieën in de cloud in te schakelen.";
+"settings.backup.icloud.error.unavailable" = "iCloud Drive is niet beschikbaar. Controleer of je bent ingelogd bij iCloud en of iCloud Drive is ingeschakeld.";
+"settings.backup.icloud.error.downloadTimeout" = "Kon de reservekopie niet downloaden van iCloud. Controleer je verbinding en probeer het opnieuw.";
+"settings.backup.icloud.auto.toggle" = "Dagelijkse automatische reservekopie";
+"settings.backup.icloud.auto.footer" = "\nDe reservekopie wordt automatisch bewaard zodra een nieuwe prestatie wordt bijgewerkt.\nPrestaties worden bijgewerkt wanneer je de app na middernacht opent.";
+
+/* CheckinGoalsSettingsView.swift */
+"settings.goals.remove" = "Verwijder doel";
+"settings.goals.default.a11y" = "Standaarddoel";
+
+/* FitnessGoalChangeView.swift */
+"settings.goalchange.title" = "Doel";
+"settings.goalchange.section.pick" = "Kies je doel";
+"settings.goalchange.section.preview" = "Je doelen";
+"settings.goalchange.save.recalc" = "Bewaar en herbereken";
+"settings.goalchange.save.keep" = "Bewaar zonder herberekenen";
+
+/* ProfileSettingsView.swift */
+"settings.profile.section.optional" = "Optioneel";
+"settings.profile.name" = "Naam";
+"settings.profile.name.placeholder" = "Je naam";
+"settings.profile.favoriteExercise" = "Favoriete spiergroep";
+
+/* Favorite exercises (easter egg) */
+"favoriteExercise.unknown"    = "Weet ik niet";
+"favoriteExercise.back"       = "Rug";
+"favoriteExercise.arms"       = "Armen";
+"favoriteExercise.chest"      = "Borst";
+"favoriteExercise.legs"       = "Benen";
+"favoriteExercise.hamstrings" = "Hamstrings";
+"favoriteExercise.glutes"     = "Billen";
+"favoriteExercise.shoulders"  = "Schouders";
+"favoriteExercise.biceps"     = "Biceps";
+"favoriteExercise.triceps"    = "Triceps";
+"favoriteExercise.abs"        = "Buikspieren";
+"favoriteExercise.traps"      = "Trapezius";
+"favoriteExercise.forearms"   = "Onderarmen";
+"favoriteExercise.calves"     = "Kuiten";
+
+/* SettingsView.swift */
+"settings.header.title" = "App-instellingen";
+"settings.section.edit" = "Profiel";
+"settings.theme.title" = "Emoji";
+"settings.section.preferences" = "Weergave";
+"settings.section.system" = "Systeem";
+"settings.section.about" = "Info";
+
+/* GymNutshellApp.swift, DataStoreErrorView */
+"app.error.dataStore.title" = "Er ging iets mis";
+"app.error.dataStore.message" = "Gym Nutshell kon je gegevens niet laden.\nSluit de app geforceerd en open hem opnieuw.";
+"settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "Details";
+"settings.section.physicaldata" = "Je gegevens";
+"settings.fitness.goal.edit" = "Fitnessdoel";
+"settings.goals.edit" = "Dagelijkse doelen";
+"settings.preference.appleHealth" = "Apple Gezondheid";
+"settings.preference.appleHealth.syncSleep" = "Registreer slaap";
+"settings.preference.appleHealth.autoWorkoutCheckin" = "Trainingsdetectie";
+"settings.preference.appleHealth.footer" = "Registreer slaap slaat je slaapuren op in Apple Gezondheid als daar die dag nog geen gegevens staan.\n\nTrainingsdetectie herkent een voltooide work-out en registreert die automatisch bij Krachttraining of Cardio.";
+"settings.preference.appleWatch" = "Apple Watch";
+"appleWatch.sheet.title" = "Installeer op Apple Watch";
+"appleWatch.sheet.intro" = "Volg de onderstaande stappen om Gym Nutshell op je Apple Watch te installeren:";
+"appleWatch.sheet.step1" = "Open de Watch-app op je iPhone";
+"appleWatch.sheet.step2" = "Scrol naar het gedeelte \"Beschikbare apps\"";
+"appleWatch.sheet.step3" = "Tik op Installeer naast Nutshell";
+"appleWatch.sheet.note" = "Als de app al is geïnstalleerd, staat deze hierboven onder \"Geïnstalleerd op Apple Watch\".";
+"settings.preference.language" = "Taal";
+"settings.preference.measurementSystem" = "Eenheden";
+"settings.preference.measurementSystem.metric" = "Metrisch (ml)";
+"settings.preference.measurementSystem.us" = "Imperiaal (fl oz)";
+"settings.measurementSystem.footer" = "Hoe water in de app wordt getoond en ingevoerd.";
+"settings.edit.widgets" = "Widgets";
+"widgetBackground.title" = "Widgets";
+"widgetBackground.mode.label" = "Achtergrond";
+"widgetBackground.mode.system" = "Systeem";
+"widgetBackground.mode.accent" = "Accent";
+"widgetBackground.mode.custom" = "Aangepast";
+"widgetBackground.footer.system" = "Widgets gebruiken de standaardachtergrond van iOS, met zwarte of witte tekst passend bij het systeemthema.";
+"widgetBackground.footer.accent" = "Widgets gebruiken de accentkleur van de app als achtergrond.";
+"widgetBackground.footer.custom" = "Kies hieronder een kleur. Widgets gebruiken die als achtergrond.";
+"widgetBackground.picker" = "Kleur";
+"widgetBackground.preview" = "Voorvertoning";
+
+/* TrackingGoalDetailView.swift */
+"settings.goaldetail.stepper" = "Pas waarde aan";
+"settings.goaldetail.footer" = "Een wijziging hier heeft geen invloed op eerdere dagen.";
+"settings.goaldetail.save" = "Bewaar";
+"settings.goaldetail.increment.stepper" = "Pas stap aan";
+"settings.goaldetail.increment.footer" = "De stap bepaalt hoeveel de schuifregelaar per keer richting de doelwaarde gaat.";
+
+/* TrackingGoalsSettingsView.swift */
+"settings.goals.title" = "Doelen";
+"settings.tracking.goals.section.custom" = "Aangepaste doelen";
+"settings.tracking.goals.done" = "Gereed";
+"settings.tracking.goals.editMode" = "Wijzig";
+"settings.goals.category.order.section" = "Categorievolgorde";
+"settings.goal.water" = "Water";
+"settings.goal.protein" = "Eiwitten";
+"settings.goal.carbs" = "Koolhydraten";
+"settings.goal.fats" = "Goede vetten";
+"settings.goal.fiber" = "Vezels";
+"settings.goal.sleep" = "Slaap";
+
+/* MARK: - Views/Shared */
+
+/* FitnessGoalPickerView.swift */
+"welcome.goal.bulking.description" = "Spiermassa opbouwen met een calorie-overschot";
+"welcome.goal.maintenance.description" = "Huidig gewicht en lichaamssamenstelling behouden";
+"welcome.goal.cutting.description" = "Lichaamsvet verminderen met behoud van spiermassa";
+
+/* MARK: - Views/TodayView */
+
+/* GoalCategory.swift */
+"goal.category.essencial" = "Essentieel";
+"goal.category.nutricao" = "Voeding";
+"goal.category.treino" = "Training";
+"goal.category.suplemento" = "Supplement";
+
+/* TodayView.swift */
+"today.goals.workout" = "Krachttraining";
+"today.goals.cardio" = "Cardio";
+"today.goals.creatine" = "Creatine";
+"today.category.other" = "Overig";
+"today.restday.label" = "Rustdag";
+"today.checkin.pending" = "Open";
+"today.checkin.done" = "Klaar";
+"a11y.checkin.hint.markDone" = "Tik om als klaar te markeren.";
+"a11y.checkin.hint.markPending" = "Tik om als open te markeren.";
+"today.restday.on" = "AAN";
+"today.restday.off" = "UIT";
+"today.metric.sleep" = "Slaap";
+"today.metric.water" = "Water";
+"today.metric.protein" = "Eiwitten";
+"today.metric.carbs" = "Koolhydraten";
+"today.metric.fats" = "Goede vetten";
+"today.metric.fiber" = "Vezels";
+
+/* TodayHeroView.swift, next level phrase */
+"today.max.level" = "Maximumlevel bereikt vandaag!";
+
+/* DailyTierView.swift */
+/* Tier button label combines the "Today's achievement" header phrase with the
+   tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
+   duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
+"today.tier.a11y.label" = "Prestatie van vandaag, %2$@";
+
+/* TodayProgressRingView.swift */
+"today.ring.a11y.label" = "Voortgangsring van vandaag";
+"today.ring.a11y.hint" = "Tik voor meer informatie.";
+"today.ring.a11y.value" = "%d procent voltooid";
+
+/* TodayView.swift, date hero button */
+"today.hero.caption.start" = "Houd een doel bij om te beginnen";
+"today.hero.caption.nextLevel" = "Nog %d%% tot het volgende niveau";
+"today.hero.caption.max" = "Topprestatie van de dag!";
+
+/* MARK: - Views/WelcomeView */
+
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "Over jou";
+
+/* WelcomeFitnessGoalStep.swift */
+"welcome.step.goal.title" = "Je doel";
+"welcome.step.goal.info.editable" = "Je kunt dit later aanpassen in de app-instellingen.";
+
+/* WelcomeThemeStep.swift */
+"welcome.step.theme.title" = "Emoji";
+"welcome.step.theme.subtitle" = "Kies de emoji's die je voortgang inspireren.";
+"welcome.step.theme.footer" = "Je kunt de emoji's later wijzigen.";
+
+/* WelcomePhysicalDataStep.swift */
+"welcome.field.sex" = "Geslacht";
+"welcome.field.sex.male" = "Man";
+"welcome.field.sex.female" = "Vrouw";
+
+/* WelcomeSummaryStep.swift */
+"welcome.step.summary.title" = "Je doelen";
+"welcome.summary.subtitle.customize" = "Je kunt deze waarden altijd aanpassen of nieuwe doelen toevoegen.";
+"welcome.option.add" = "Voeg toe";
+"welcome.restore.importJSON" = "Importeer JSON-reservekopie";
+"welcome.theme.preview" = "Details";
+
+/* WelcomeStartStep.swift */
+"welcome.step.start.title" = "Hallo!";
+"welcome.start.new" = "Begin";
+"welcome.start.restore" = "Herstel reservekopie";
+
+/* WelcomeView.swift */
+"welcome.button.continue" = "Ga door";
+"welcome.button.start" = "Aan de slag!";
+"welcome.button.back" = "Terug";
+
+/* MARK: - ContentView.swift */
+
+/* HealthKit activity display names (auto check-in descriptions) */
+"healthkit.activity.running" = "Hardlopen";
+"healthkit.activity.walking" = "Wandelen";
+"healthkit.activity.cycling" = "Fietsen";
+"healthkit.activity.swimming" = "Zwemmen";
+"healthkit.activity.elliptical" = "Crosstrainer";
+"healthkit.activity.rowing" = "Roeien";
+"healthkit.activity.stairClimbing" = "Traplopen";
+"healthkit.activity.hiking" = "Hiken";
+"healthkit.activity.jumpRope" = "Touwtjespringen";
+"healthkit.activity.dance" = "Dansen";
+"healthkit.activity.strengthTraining" = "Krachttraining";
+"healthkit.activity.functionalTraining" = "Functionele training";
+"healthkit.activity.crossTraining" = "Crosstraining";
+"healthkit.activity.hiit" = "HIIT";
+"healthkit.activity.boxing" = "Boksen";
+"healthkit.activity.martialArts" = "Vechtsport";
+"healthkit.activity.coreTraining" = "Coretraining";
+"healthkit.activity.climbing" = "Klimmen";
+"healthkit.activity.other" = "Work-out";
+
+/* AppTheme, Categories */
+"app.theme.category.sport" = "Sport";
+"app.theme.category.animals" = "Dieren";
+"app.theme.category.elements" = "Elementen & Natuur";
+"app.theme.category.competition" = "Voortgang";
+"app.theme.category.warrior" = "Held";
+"app.theme.category.warrior.fem" = "Heldin";
+"app.theme.category.space" = "Kosmos";
+
+/* AppTheme, Gym */
+"app.theme.gym" = "Sportschool";
+"app.theme.running" = "Hardlopen";
+"daily.achievement.running.level1" = "Wandelaar";
+"daily.achievement.running.level2" = "Op Tempo";
+"daily.achievement.running.level3" = "Hardloper";
+"daily.achievement.running.level3.fem" = "Hardloopster";
+"daily.achievement.running.level4" = "Sprinter";
+"daily.achievement.running.level5" = "Marathonloper";
+"daily.achievement.gym.level1" = "Kuiken";
+"daily.achievement.gym.level1.fem" = "Kuiken";
+"daily.achievement.gym.level2" = "Spierstarter";
+"daily.achievement.gym.level3" = "Gymfanaat";
+"daily.achievement.gym.level4" = "Spierbundel";
+"daily.achievement.gym.level5" = "Beest";
+
+/* AppTheme, Fire */
+"app.theme.fire" = "Vuur";
+"daily.achievement.fire.level1" = "Kaarsje";
+"daily.achievement.fire.level2" = "Vlam";
+"daily.achievement.fire.level3" = "Vulkaan";
+"daily.achievement.fire.level4" = "Zonnestorm";
+"daily.achievement.fire.level5" = "Supernova";
+
+/* AppTheme, Plant */
+"app.theme.plant" = "Bos";
+"daily.achievement.plant.level1" = "Kiemplantje";
+"daily.achievement.plant.level2" = "Kruid";
+"daily.achievement.plant.level3" = "Grote Boom";
+"daily.achievement.plant.level4" = "Kerstboom";
+"daily.achievement.plant.level5" = "Bos";
+
+/* AppTheme, Champion */
+"app.theme.champion" = "Medaille";
+"daily.achievement.champion.level1" = "Brons";
+"daily.achievement.champion.level2" = "Zilver";
+"daily.achievement.champion.level3" = "Goud";
+"daily.achievement.champion.level4" = "Trofee";
+"daily.achievement.champion.level5" = "Diamant";
+
+/* AppTheme, Number */
+"app.theme.number" = "Getallen";
+"daily.achievement.number.level1" = "Een";
+"daily.achievement.number.level2" = "Twee";
+"daily.achievement.number.level3" = "Drie";
+"daily.achievement.number.level4" = "Vier";
+"daily.achievement.number.level5" = "Vijf";
+
+/* AppTheme, Doctor */
+"app.theme.doctor" = "Dokter";
+"daily.achievement.doctor.level1" = "Leerling";
+"daily.achievement.doctor.level2" = "Beginner";
+"daily.achievement.doctor.level3" = "Basisarts";
+"daily.achievement.doctor.level4" = "Doctor Who";
+"daily.achievement.doctor.level5" = "Directeur";
+"daily.achievement.doctor.level5.fem" = "Directrice";
+
+/* AppTheme, Ninja (Fighter) */
+"app.theme.ninja" = "Vechter";
+"daily.achievement.ninja.level1" = "Leerling";
+"daily.achievement.ninja.level2" = "Zwaardvechter";
+"daily.achievement.ninja.level3" = "Ninja";
+"daily.achievement.ninja.level4" = "Super";
+"daily.achievement.ninja.level5" = "Legendarisch";
+
+/* AppTheme, Astronaut (Space) */
+"app.theme.astronaut" = "Ruimte";
+"daily.achievement.astronaut.level1" = "Astronaut";
+"daily.achievement.astronaut.level2" = "Alien";
+"daily.achievement.astronaut.level3" = "Raket";
+"daily.achievement.astronaut.level4" = "Vliegende Schotel";
+"daily.achievement.astronaut.level5" = "TARDIS";
+
+/* AppTheme, Celestial */
+"app.theme.celestial" = "Hemellichamen";
+"daily.achievement.celestial.level1" = "Komeet";
+"daily.achievement.celestial.level2" = "Maan";
+"daily.achievement.celestial.level3" = "Aarde";
+"daily.achievement.celestial.level4" = "Saturnus";
+"daily.achievement.celestial.level5" = "Melkweg";
+
+/* AppAccentColor.swift, Color names */
+"color.red"    = "Rood";
+"color.blue"   = "Blauw";
+"color.purple" = "Violet";
+"color.green"  = "Groen";
+"color.yellow" = "Geel";
+"color.orange" = "Oranje";
+"color.cyan"   = "Cyaan";
+"color.pink"   = "Roze";
+
+/* ColorSettingsView.swift */
+"settings.color.title"    = "Accentkleur";
+"settings.color.subtitle" = "Accentkleur die in de hele app wordt gebruikt";
+"settings.color.preview" = "Voorvertoning";
+
+/* TierInfoView.swift / ProgressRingInfoView.swift, links in Settings > About */
+"settings.about.achievement"  = "Prestatie";
+"settings.about.progressRing" = "Voortgangsring";
+
+/* TierInfoView.swift */
+"tier.info.intro"             = "Je prestatie wordt aan het einde van de dag om middernacht vastgelegd.";
+"tier.info.section.levels"    = "Niveaus";
+"tier.info.change.theme"      = "Wijzig emoji";
+"tier.info.range.suffix"      = " voortgang";
+
+/* ProgressRingInfoView.swift */
+"ring.info.intro"             = "De ring toont het gemiddelde percentage van je voltooide doelen. Elk gekleurd segment is 20% waard.";
+"ring.info.section.colors"    = "Ringsegmenten";
+"ring.info.color.red"         = "Niveau 1";
+"ring.info.color.orange"      = "Niveau 2";
+"ring.info.color.green"       = "Niveau 3";
+"ring.info.color.cyan"        = "Niveau 4";
+"ring.info.color.purple"      = "Niveau 5";
+"ring.info.color.blue"        = "Doel voltooid";
+"ring.info.level.label"       = "Niveau ";
+"info.next.prefix"            = "Nog ";
+"info.next.middle"            = " tot: ";
+
+/* Common */
+"common.cancel" = "Annuleer";
+"common.done" = "Gereed";
+
+/* Notification history */
+"notifications.history.title" = "Meldingen";
+"common.close" = "Sluit";
+"common.edit" = "Wijzig";
+"common.done" = "Gereed";
+"notifications.history.today" = "Vandaag";
+"notifications.history.yesterday" = "Gisteren";
+"notifications.history.empty.title" = "Nog geen meldingen";
+"notifications.history.empty.description" = "Hier verschijnt de meldingengeschiedenis van de afgelopen 3 dagen.";
+
+/* NotificationsSettingsView */
+"settings.preference.notifications"       = "Meldingen";
+"settings.notifications.section.system"   = "Systeem";
+"settings.notifications.section.goals"    = "Doelen";
+"settings.notifications.authorize.button" = "Schakel meldingen in";
+"settings.notifications.authorize.footer" = "Tik op Sta toe en geef toestemming in de iOS-melding om herinneringen te ontvangen. Als je eerder hebt geweigerd, kun je dit inschakelen in Instellingen.";
+"settings.notifications.denied.title"     = "Meldingen uitgeschakeld";
+"settings.notifications.denied.message"   = "Je hebt meldingen eerder geweigerd. Schakel ze in via Instellingen om herinneringen van Gym Nutshell te ontvangen.";
+"settings.notifications.denied.open"      = "Open Instellingen";
+
+/* NotificationIntervalEditView */
+"settings.notifications.interval.header"   = "Interval tussen meldingen";
+"settings.notifications.interval.stepper"  = "Elke";
+"settings.notifications.interval.value"    = "%d min";
+
+/* NotificationIntervalEditView, sound picker */
+"settings.notifications.sound.header"      = "Geluid";
+"settings.notifications.sound.label"       = "Meldingsgeluid";
+"settings.notifications.sound.footer"      = "Standaard speelt de toon af die je hebt gekozen in Instellingen → Meldingen → Gym Nutshell → Geluiden (Driatoon, Noot, Akkoord, enz.). Stil schakelt het geluid alleen voor deze app uit.";
+"settings.notifications.sound.openSystem"  = "Kies de toon in Instellingen";
+"notifications.sound.default"              = "Standaard";
+"notifications.sound.silent"               = "Stil";
+
+/* NotificationKind, title / description on list + body of notification + footer */
+"notifications.kind.progress.title"         = "Voortgang";
+"notifications.kind.progress.description"   = "Hoeveel je nog nodig hebt voor je volgende dagprestatie.";
+"notifications.kind.progress.body"          = "Elk doel telt mee voor je volgende prestatie.";
+"notifications.kind.progress.footer"        = "Periodieke herinneringen die laten zien hoeveel je vandaag nog nodig hebt voor het volgende niveau.";
+
+"notifications.kind.achievement.title"      = "Dagprestatie";
+"notifications.kind.achievement.description" = "Meldt om middernacht welke prestatie je die dag hebt behaald.";
+"notifications.kind.achievement.body"       = "Je sloot de dag af als %@.";
+
+"notifications.kind.appleHealth.title"      = "Apple Gezondheid";
+"notifications.kind.appleHealth.description" = "Bevestigt gegevens die zijn gesynchroniseerd met Apple Gezondheid.";
+"notifications.kind.appleHealth.body.cardio" = "%d min Cardio geregistreerd (%@).";
+"notifications.kind.appleHealth.body.workout" = "%d min Krachttraining geregistreerd (%@).";
+"notifications.kind.appleHealth.body.sleep" = "%d u slaap geregistreerd in Apple Gezondheid.";
+
+"notifications.kind.backup.title"           = "iCloud-reservekopie";
+"notifications.kind.backup.description"     = "Bevestigt elke automatische reservekopie.";
+"notifications.kind.backup.body"            = "iCloud-reservekopie is voltooid.";
+
+"notifications.kind.sleep.title"            = "Slaap";
+"notifications.kind.sleep.description"      = "Stelt een dutje voor als je je slaapdoel nog niet hebt gehaald (alleen tussen 10:00 en 19:00).";
+"notifications.kind.sleep.body"             = "Tijd voor een dutje om je slaapdoel vandaag te halen?";
+"notifications.kind.sleep.footer"           = "Elke X minuten stelt de app voor om even te rusten tot je je dagdoel hebt bereikt. Er worden geen herinneringen gestuurd vóór 10:00 of na 19:00.";
+
+"notifications.kind.water.title"            = "Water";
+"notifications.kind.water.description"      = "Herinneringen om een glas water te drinken tot je je dagdoel haalt.";
+"notifications.kind.water.body"             = "Tijd voor een glas water? Blijf op koers naar je dagdoel.";
+"notifications.kind.water.footer"           = "Elke X minuten herinnert de app je eraan om water te drinken. De herinneringen stoppen zodra je je dagdoel hebt bereikt.";
+
+"notifications.kind.protein.title"          = "Eiwitten";
+"notifications.kind.protein.description"    = "Herinneringen om je dagelijkse eiwitdoel te halen.";
+"notifications.kind.protein.body"           = "Tijd voor wat extra eiwitten om je doel van vandaag te halen.";
+"notifications.kind.protein.footer"         = "Periodieke herinneringen stoppen zodra je je eiwitdoel hebt bereikt.";
+
+"notifications.kind.carbs.title"            = "Koolhydraten";
+"notifications.kind.carbs.description"      = "Herinneringen om je dagelijkse koolhydraatdoel te halen.";
+"notifications.kind.carbs.body"             = "Tijd voor een goede bron van koolhydraten om je energie op peil te houden?";
+"notifications.kind.carbs.footer"           = "Periodieke herinneringen stoppen zodra je je koolhydraatdoel hebt bereikt.";
+
+"notifications.kind.goodFat.title"          = "Goede vetten";
+"notifications.kind.goodFat.description"    = "Herinneringen om je dagelijkse doel voor goede vetten te halen.";
+"notifications.kind.goodFat.body"           = "Vergeet vandaag je goede vetten niet (olijfolie, noten, avocado).";
+"notifications.kind.goodFat.footer"         = "Periodieke herinneringen stoppen zodra je je doel voor goede vetten hebt bereikt.";
+
+"notifications.kind.fiber.title"            = "Vezels";
+"notifications.kind.fiber.description"      = "Herinneringen om je dagelijkse vezeldoel te halen.";
+"notifications.kind.fiber.body"             = "Voeg een portie vezels toe aan je volgende maaltijd.";
+"notifications.kind.fiber.footer"           = "Periodieke herinneringen stoppen zodra je je vezeldoel hebt bereikt.";
+
+"notifications.kind.workout.title"          = "Krachttraining";
+"notifications.kind.workout.description"    = "Herinneringen om je krachttraining van vandaag te voltooien.";
+"notifications.kind.workout.body"           = "Tijd voor je krachttraining.";
+"notifications.kind.workout.footer"         = "Periodieke herinneringen stoppen zodra je je krachtdoel hebt bereikt.";
+
+"notifications.kind.cardio.title"           = "Cardio";
+"notifications.kind.cardio.description"     = "Herinneringen om je cardio van vandaag te voltooien.";
+"notifications.kind.cardio.body"            = "Tijd voor cardio. Een beetje beweging maakt het verschil.";
+"notifications.kind.cardio.footer"          = "Periodieke herinneringen stoppen zodra je je cardiodoel hebt bereikt.";
+
+"notifications.kind.creatine.title"         = "Creatine";
+"notifications.kind.creatine.description"   = "Herinneringen voor je dagelijkse dosis creatine.";
+"notifications.kind.creatine.body"          = "Heb je vandaag je creatine al genomen?";
+"notifications.kind.creatine.footer"        = "Periodieke herinneringen stoppen zodra je de dosis van vandaag registreert.";
+
+/* Custom goals */
+"notifications.custom.description"          = "Herinneringen om het doel van vandaag te halen.";
+"notifications.custom.body"                 = "Tijd om %@ bij te werken, blijf op koers naar je dagdoel.";
+"notifications.custom.footer"               = "Periodieke herinneringen stoppen zodra je het dagdoel voor dit aangepaste doel hebt bereikt.";
+"notifications.history.delete" = "Verwijder";
+
+/* MARK: - Accessibility (VoiceOver), shared helpers in A11yHelpers.swift */
+
+/* Progress band, color-coded zones spoken instead of just relying on the visual hue */
+"a11y.band.red"    = "rode zone, nog ver van doel";
+"a11y.band.orange" = "oranje zone, goed op weg";
+"a11y.band.green"  = "groene zone, gaat uitstekend";
+"a11y.band.cyan"   = "cyaanzone, bijna daar";
+"a11y.band.blue"   = "blauwe zone, doel bereikt";
+
+/* Generic progress phrasing, band dropped from progress value after user testing */
+"a11y.percent.format"          = "%d procent";
+"a11y.progress.value.format"   = "%d procent voltooid";
+
+/* Tracking goal row, header value drops percent + band to stay concise */
+"a11y.goalrow.value.format"    = "%1$d van %2$d %3$@ voltooid";
+"a11y.goalrow.value.restday"   = "in rustdagmodus, doel voltooid";
+"a11y.goalrow.a11y.label"      = "Doel %@";
+"a11y.slider.label.format"     = "Schuifregelaar %@";
+
+/* Generic "open details" hint reused across ring/tier */
+"a11y.hint.more.info"          = "Tik voor meer informatie.";
+
+/* Collapsible category header (TodayView) */
+"a11y.category.label.format"   = "Categorie %@";
+"a11y.category.hint"           = "Tik om in of uit te klappen.";
+
+/* Day cell (MonthlyCalendarView + widget Calendar) */
+"a11y.daycell.today.format"        = "vandaag, %1$@, %2$d procent, %3$@";
+"a11y.daycell.past.format"         = "%1$@, %2$d procent, %3$@";
+"a11y.daycell.future.format"       = "%@, toekomst";
+"a11y.daycell.empty.format"        = "%@, geen gegevens";
+"a11y.daycell.today.empty.format"  = "vandaag, %@, nog geen gegevens";
+"a11y.daycell.selected.suffix"     = ", geselecteerd";
+
+/* Increment / decrement buttons (Watch, edit sheets) */
+"a11y.hint.increment" = "Tik om te verhogen.";
+"a11y.hint.decrement" = "Tik om te verlagen.";
+
+/* Rest day toggle, label reflects on/off, hint describes the action */
+"a11y.hint.restday.activate"   = "Tik om rustdag in te schakelen.";
+"a11y.hint.restday.deactivate" = "Tik om rustdagmodus te verlaten.";
+
+/* Info sheets, row combine helpers */
+"a11y.ringinfo.color.row.format"  = "%1$@, bereik %2$@";
+"a11y.tierinfo.row.format"        = "%1$@, %2$@, niveau %3$d";
+
+/* MARK: - Accessibility (Phase 2, Achievements + ProgressOver) */
+
+/* Calendar cell with a tier name spoken */
+"a11y.calendar.day.tier.format"        = "%1$@, behaald: %2$@";
+"a11y.calendar.day.today.tier.format"  = "vandaag, %1$@, behaald: %2$@";
+
+/* Month navigation chevrons */
+"a11y.month.previous" = "Vorige maand";
+"a11y.month.next"     = "Volgende maand";
+
+/* AchievementsView history rows */
+"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d procent";
+"a11y.record.row.hint"          = "Tik om details te bekijken.";
+"a11y.record.edit.label"        = "Wijzig dag";
+"a11y.record.edit.hint" = "Tik om te wijzigen.";
+
+/* RecordDetail / EditToday header card */
+"a11y.record.header.format"     = "%1$@, %2$@, %3$d procent, niveau %4$d";
+
+/* ProgressOverView, whole-card tap hints */
+"a11y.stats.card.usergoal.hint" = "Tik om je doel te wijzigen.";
+"a11y.stats.card.tiers.hint"    = "Tik om te zien hoe niveaus werken.";
+"a11y.stats.card.activity.hint" = "Tik om het activiteitenoverzicht te openen.";
+"a11y.stats.card.goals.hint"    = "Tik om bijgehouden doelen te beheren.";
+
+/* ProfileRecentActivityView, day buttons */
+"a11y.recent.day.with.tier.format" = "%1$@, %2$@";
+"a11y.recent.day.empty.format"     = "%@, geen gegevens";
+"a11y.recent.day.today.format"     = "vandaag, %1$@, %2$@";
+"a11y.recent.day.today.empty.format" = "vandaag, %@, nog geen gegevens";
+"a11y.recent.day.hint" = "Tik om deze dag te openen.";
+
+/* MARK: - Accessibility (Phase 3, Settings) */
+
+/* Generic selection state */
+"a11y.selected"     = "geselecteerd";
+"a11y.not.selected" = "niet geselecteerd";
+
+/* Theme picker (ThemeSettingsView) */
+"a11y.theme.hint"             = "Tik om deze emoji's te kiezen.";
+"a11y.theme.info.label.format" = "Meer informatie over %@";
+"a11y.theme.info.hint" = "Tik voor meer informatie.";
+
+/* Color picker (ColorSettingsView) */
+"a11y.color.hint" = "Tik om deze kleur te kiezen.";
+
+/* Fitness goal picker (UserGoalPickerView) */
+"a11y.usergoal.hint" = "Tik om dit doel te kiezen.";
+
+/* Tracking goals settings, image-only buttons */
+"a11y.button.add.goal.label"     = "Voeg toe";
+"a11y.button.add.goal.hint" = "Tik om een doel of categorie aan te maken.";
+"a11y.button.remove.goal.label"  = "Verwijder doel";
+"a11y.button.restore.goal.label" = "Herstel doel";
+
+/* Categories settings, pencil button */
+"a11y.button.edit.category.label" = "Wijzig categorie";
+"a11y.button.edit.category.hint" = "Tik om deze categorie te wijzigen.";
+
+/* Notification rows, pencil button */
+"a11y.button.edit.notification.label" = "Wijzig melding";
+"a11y.button.edit.notification.hint" = "Tik om meldingsinstellingen te wijzigen.";
+
+/* SettingsView toolbar bell */
+"a11y.notification.history.bell" = "Meldingengeschiedenis";
+"a11y.notification.history.bell.hint" = "Tik om meldingen te openen.";
+
+/* Notification history row */
+"a11y.history.row.format" = "%1$@, %2$@, %3$@";
+"a11y.history.row.hint" = "Tik om te openen.";
+
+/* App icon (About) */
+"a11y.app.icon" = "Appsymbool";
+
+/* Collapsible section header (settings goals + notifications) */
+"a11y.section.collapsible.hint" = "Tik om in of uit te klappen.";
+
+/* MARK: - Accessibility (Phase 4, Welcome / onboarding) */
+
+"a11y.welcome.progress.format"          = "Stap %1$d van %2$d";
+"a11y.welcome.optional.add.label.format"    = "Voeg %@ toe";
+"a11y.welcome.optional.remove.label.format" = "Verwijder %@";
+"a11y.welcome.optional.add.hint" = "Tik om dit doel toe te voegen.";
+"a11y.welcome.optional.remove.hint" = "Tik om dit doel te verwijderen.";
+
+/* MARK: - Accessibility (Phase 5, Watch app) */
+
+/* Watch hero ring (ContentView), same wording as the iPhone ring */
+"a11y.watch.hero.label"  = "Dagelijkse voortgang";
+"a11y.watch.page.stats"         = "Statistiekenpagina";
+"a11y.watch.page.today"         = "Vandaag-pagina";
+"a11y.watch.page.notifications" = "Meldingenpagina";
+
+/* Watch goal card header */
+"a11y.watch.card.expanded"   = "uitgeklapt";
+"a11y.watch.card.collapsed"  = "ingeklapt";
+"a11y.watch.card.hint.expand" = "Tik om uit te klappen.";
+"a11y.watch.card.hint.collapse" = "Tik om in te klappen.";
+
+/* Watch ± buttons */
+"a11y.watch.increase.label.format" = "Verhoog %@";
+"a11y.watch.decrease.label.format" = "Verlaag %@";
+
+/* Watch notification row */
+"a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
+
+/* MARK: - Accessibility (Phase 6, Widgets) */
+
+/* Widget summary (small/medium/lockscreen, watch circular/rectangular) */
+"a11y.widget.summary.format"       = "Dagelijkse voortgang, %1$@, %2$d procent voltooid";
+"a11y.widget.summary.points.format" = "Dagelijkse voortgang, %1$@, %2$d procent voltooid";
+
+/* iPhone large widgets */
+"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d procent";
+"a11y.widget.calendar.month.format" = "%@";
+
+"a11y.welcome.goal.decrease.format" = "Verlaag %@";
+"a11y.welcome.goal.increase.format" = "Verhoog %@";
+
+"welcome.step.control.title" = "Bediening";
+"welcome.step.control.subtitle" = "Hoe houd je je doelen het liefst elke dag bij?";
+"welcome.control.slider" = "Schuiven";
+"welcome.control.slider.desc" = "Sleep de regelaar naar de gewenste waarde.";
+"welcome.control.stepper" = "Knoppen";
+"welcome.control.stepper.desc" = "Tik om één stap per keer toe te voegen of af te halen.";
+"welcome.step.ready.title" = "Helemaal klaar!";
+"welcome.step.ready.subtitle" = "Zet aan wat je wilt gebruiken.";
+"welcome.ready.notifications.title" = "Meldingen";
+"welcome.ready.notifications.desc" = "Herinneringen voor water en prestaties.";
+"welcome.ready.health.title" = "Apple Gezondheid";
+"welcome.ready.health.desc" = "Registreert je slaap en herkent je work-outs automatisch.";
+"welcome.ready.allow" = "Sta toe";
+"welcome.ready.allowed" = "Toegestaan";
+"welcome.ready.requested" = "Aangevraagd";
+"welcome.ready.denied" = "Geweigerd";
+"welcome.ready.footer" = "Je kunt dit allemaal altijd aanpassen in Instellingen.";
+"welcome.ready.notifications.setup.title" = "Waar mogen we je aan herinneren?";
+"welcome.ready.notifications.setup.footer" = "Je kunt dit later allemaal aanpassen in Instellingen › Meldingen.";
+"a11y.welcome.ready.notifications.setup.hint" = "Tik om je herinneringen te kiezen.";
+"settings.preference.controlStyle" = "Bediening";
+"settings.controlStyle.footer" = "Bepaalt hoe je de voortgang van doelen bijwerkt op het Vandaag-scherm.";
+
+"settings.category.icon.section" = "Symbool";
+
+"today.edit.goals" = "Wijzig doelen";
+"today.edit.controls" = "Wijzig bediening";
+"today.edit.theme" = "Wijzig emoji";
+"today.edit.colors" = "Wijzig accentkleur";
+"today.edit.quick" = "Snel wijzigen";
+
+"welcome.step.units.title" = "Je eenheden";
+"welcome.step.units.subtitle" = "Hoe meet je water het liefst?";
+"welcome.step.units.note" = "Je kunt dit later aanpassen in Instellingen.";
+"welcome.units.metric.desc" = "Milliliter, zoals 250 ml per glas.";
+"welcome.units.imperial.desc" = "Fluid ounces, zoals %d fl oz per glas.";
+
+"today.goals.viewMode.list" = "Lijst";
+"today.goals.viewMode.grid" = "Raster";
+"today.goals.viewMode.switch.a11y" = "Schakel naar %@-weergave";
+"today.category.tile.a11y.hint" = "Tik om de doelen van deze categorie te openen.";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%1$@ %2$d";
+
+// Balão da data na Hoje
+"today.day.remaining" = "Dag eindigt over %@";
+"today.insight.attention" = "Vandaag vraagt extra focus";
+"today.insight.steady" = "Ziet eruit als een goede dag";
+"today.insight.weekday" = "Je gemiddelde op deze weekdag: %d%%";
+"today.insight.title" = "Verwachting voor vandaag";
+"today.insight.title.history" = "Je geschiedenis";
+"today.insight.model.risk" = "Kans op een zwakke dag vandaag (tot %d%%): %@.";
+"today.insight.model.factors" = "Wat het zwaarst meewoog: %@.";
+"today.insight.model.footer" = "Berekend op je apparaat op basis van %d geregistreerde dagen. Op de meest recente dagen zat de verwachting er %@ van de tijd goed bij.";
+"today.insight.weekday.detail" = "Op deze weekdag is je gemiddelde %d%%. Je gemiddelde over alle dagen is %d%%.";
+"today.insight.weekday.footer" = "Berekend op je apparaat op basis van %d geregistreerde dagen. De verwachting verschijnt zodra je gegevens een duidelijker patroon laten zien.";
+"today.insight.factor.weekday" = "de dag van de week";
+"today.insight.factor.yesterday" = "gisteren";
+"today.insight.factor.lastWeek" = "de afgelopen 7 dagen";
+"today.insight.factor.streak" = "je reeks";
+"today.insight.factor.sleep" = "je slaap van afgelopen nacht";
+"today.insight.factor.workout" = "je training van gisteren";
+"today.insight.factor.cardio" = "je cardio van gisteren";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "Tijd om %@ te nemen.";
+"notifications.supplement.group.title" = "Tijd voor check-in";
+"notifications.supplement.action.done" = "Genomen";
+"notifications.supplement.preset.morning" = "Ochtend";
+"notifications.supplement.preset.lunch" = "Lunch";
+"notifications.supplement.preset.afternoon" = "Namiddag";
+"notifications.supplement.preset.night" = "Avond";
+"notifications.supplement.preset.bedtime" = "Voor het slapen";
+"settings.notifications.times.header" = "Herinneringen";
+"settings.notifications.times.row" = "Tijd";
+"settings.notifications.times.add" = "Voeg tijd toe";
+"settings.notifications.times.empty" = "Geen tijden ingesteld";
+"settings.notifications.times.footer" = "Eén herinnering per dag op elk tijdstip. De herinneringen voor die dag stoppen zodra je op Vandaag 'Klaar' markeert of in de melding op 'Genomen' tikt.";
+"settings.notifications.group.title" = "Groepeer check-indoelen op hetzelfde tijdstip";
+"settings.notifications.group.footer" = "Combineert check-indoelen met dezelfde tijd in één herinnering. Indien uitgeschakeld krijgt elk doel een eigen melding.";
+"settings.notifications.emoji.title" = "Emoji's in meldingen";
+"settings.notifications.emoji.footer" = "Toont de emoji van elk doel en van de dagprestatie in de meldingstekst.";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "Sterke week";
+"streak.bonus.weekly.level5.title" = "Perfecte week";
+"streak.bonus.monthly.level4.title" = "Sterke maand";
+"streak.bonus.monthly.level5.title" = "Perfecte maand";
+"streak.bonus.weekly.level4.description" = "Maandag t/m zondag, elke dag op niveau 4 of 5.";
+"streak.bonus.weekly.level5.description" = "Maandag t/m zondag, elke dag op niveau 5.";
+"streak.bonus.monthly.level4.description" = "De hele maand, elke dag op niveau 4 of 5.";
+"streak.bonus.monthly.level5.description" = "De hele maand, elke dag op niveau 5.";
+"streak.bonus.generic.title" = "Reeksbonus";
+"streak.bonus.info.intro" = "Elke opgeslagen dag levert punten op voor het behaalde prestatieniveau. Sluit je een hele week of maand af op niveau 4 of 5, dan verdien je een reeksbonus.";
+"streak.bonus.info.section.daily" = "Punten per dag";
+"streak.bonus.info.footer" = "Weken lopen van maandag t/m zondag. Een dag zonder registratie verbreekt de reeks. Was de hele periode niveau 5, dan telt alleen de hoogste bonus.";
+"points.plus.format" = "+%d ptn";
+"settings.about.streakBonus" = "Reeksbonus";
+"settings.about.dayInsight" = "Inzicht van de dag";
+"dayInsight.info.intro" = "De regel onder de datum laat zien hoe je dag waarschijnlijk verloopt. Tik erop voor de details.";
+"dayInsight.info.section.how" = "Hoe het werkt";
+"dayInsight.info.history" = "Bekijkt je geschiedenis: de weekdag, gisteren, de afgelopen 7 dagen, je reeks, slaap en work-outs.";
+"dayInsight.info.chance" = "Schat de kans dat vandaag een zwakke dag wordt, met tot %d%% van je doelen.";
+"dayInsight.info.check" = "Toont de verwachting alleen als die nauwkeuriger is dan je weekdaggemiddelde. Anders zie je dat gemiddelde.";
+"dayInsight.info.days" = "Start na %d geregistreerde dagen.";
+"dayInsight.info.footer" = "Alles wordt op je apparaat berekend met een eenvoudig machinelearningmodel. Je gegevens verlaten nooit je apparaat.";
+"notifications.kind.streakBonus.title" = "Reeksbonus";
+"notifications.kind.streakBonus.description" = "Laat weten wanneer je een week- of maandreeks voltooit.";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d punten.";
+"statistics.section.bonuses" = "Punten en bonussen";
+"statistics.points.total" = "Punten";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "Tik om te zien hoe punten en bonussen werken.";
+"a11y.stats.bonus.row.format" = "%1$@, %2$d keer";
+"a11y.record.row.bonus.format" = "%1$@, %2$@, plus %3$d punten";
+"a11y.record.bonus.hint" = "Tik voor meer informatie.";
+"settings.section.visual" = "Scherm";
+"settings.appearance.title" = "Weergave";
+"settings.appearance.mode.header" = "Modus";
+"settings.appearance.mode.system" = "Apparaat";
+"settings.appearance.mode.light" = "Licht";
+"settings.appearance.mode.dark" = "Donker";
+
+/* Pontos do dia na lista e na edição (2026-11-05) */
+"a11y.points.plus.format" = "plus %d punten";

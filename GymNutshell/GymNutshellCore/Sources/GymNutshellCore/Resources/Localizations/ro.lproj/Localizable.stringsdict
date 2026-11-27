@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>statistics.tier.days</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d zi</string>
+			<key>few</key>
+			<string>%d zile</string>
+			<key>other</key>
+			<string>%d de zile</string>
+		</dict>
+	</dict>
+	<key>statistics.goals.active</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@goals@</string>
+		<key>goals</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d activ</string>
+			<key>few</key>
+			<string>%d active</string>
+			<key>other</key>
+			<string>%d active</string>
+		</dict>
+	</dict>
+	<key>today.category.a11y.value</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$d din %2$#@goals@</string>
+		<key>goals</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%2$d obiectiv îndeplinit</string>
+			<key>few</key>
+			<string>%2$d obiective îndeplinite</string>
+			<key>other</key>
+			<string>%2$d de obiective îndeplinite</string>
+		</dict>
+	</dict>
+	<key>today.category.tile.a11y.value</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$d din %2$#@goals@</string>
+		<key>goals</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%2$d obiectiv îndeplinit</string>
+			<key>few</key>
+			<string>%2$d obiective îndeplinite</string>
+			<key>other</key>
+			<string>%2$d de obiective îndeplinite</string>
+		</dict>
+	</dict>
+	<key>a11y.stats.tier.row.format</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@, %2$#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%2$d zi</string>
+			<key>few</key>
+			<string>%2$d zile</string>
+			<key>other</key>
+			<string>%2$d de zile</string>
+		</dict>
+	</dict>
+	<key>a11y.stats.activity.row.format</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@, %2$#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%2$d zi</string>
+			<key>few</key>
+			<string>%2$d zile</string>
+			<key>other</key>
+			<string>%2$d de zile</string>
+		</dict>
+	</dict>
+	<key>a11y.watch.recent.summary.format</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@: %2$#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%2$d zi cu realizare din 7.</string>
+			<key>few</key>
+			<string>%2$d zile cu realizări din 7.</string>
+			<key>other</key>
+			<string>%2$d de zile cu realizări din 7.</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

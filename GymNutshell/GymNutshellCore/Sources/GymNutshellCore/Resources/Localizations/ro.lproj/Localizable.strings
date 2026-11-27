@@ -1,0 +1,962 @@
+/* ⌘
+  GymNutshell/GymNutshellCore/Resources/Localizations/ro.lproj/Localizable.strings
+
+  Propósito: Chaves de localização em romeno e strings da interface do usuário para o aplicativo.
+
+  Created by Jonathas Motta (@jonathaxs) on 2025-11-24.
+
+ ⌘ */
+
+/* MARK: - Models */
+
+/* DailyAchievement.swift, Cat theme (default) */
+"daily.achievement.level1" = "Motănel";
+"daily.achievement.level1.fem" = "Pisicuță";
+"daily.achievement.level2" = "Motan Fit";
+"daily.achievement.level2.fem" = "Pisică Fit";
+"daily.achievement.level3" = "Super Motan";
+"daily.achievement.level3.fem" = "Super Pisică";
+"daily.achievement.level4" = "Tigru";
+"daily.achievement.level4.fem" = "Tigroaică";
+"daily.achievement.level5" = "Leu";
+"daily.achievement.level5.fem" = "Leoaică";
+
+/* AppTheme.swift, Dog theme tier names */
+"daily.achievement.dog.level1" = "Cățeluș";
+"daily.achievement.dog.level2" = "Cățel Fit";
+"daily.achievement.dog.level3" = "Snoop Dog";
+"daily.achievement.dog.level5" = "Lup";
+"daily.achievement.dog.level5.fem" = "Lupoaică";
+"daily.achievement.dog.level4" = "Cățel Caramel";
+
+/* AppTheme.swift, Bear theme tier names */
+"daily.achievement.bear.level1" = "Ursuleț";
+"daily.achievement.bear.level2" = "Urs Brun";
+"daily.achievement.bear.level3" = "Urs Polar";
+"daily.achievement.bear.level4" = "Zimbru";
+"daily.achievement.bear.level5" = "Mamut";
+
+/* AppTheme.swift, Dino theme tier names */
+"daily.achievement.dino.level1" = "Țestoasă Mică";
+"daily.achievement.dino.level2" = "Crocodil";
+"daily.achievement.dino.level3" = "T-Rex";
+"daily.achievement.dino.level4" = "Super Dino";
+"daily.achievement.dino.level5" = "Fosilă Legendară";
+
+/* AppTheme.swift, Bird theme tier names */
+"daily.achievement.bird.level1" = "Puișor";
+"daily.achievement.bird.level2" = "Vrăbiuță";
+"daily.achievement.bird.level3" = "Vultur";
+"daily.achievement.bird.level4" = "Bufniță Înțeleaptă";
+"daily.achievement.bird.level5" = "Phoenix";
+
+/* AppTheme.swift, Ocean theme tier names */
+"daily.achievement.ocean.level1" = "Peștișor";
+"daily.achievement.ocean.level2" = "Delfin";
+"daily.achievement.ocean.level3" = "Meduză";
+"daily.achievement.ocean.level4" = "Balenă Albastră";
+"daily.achievement.ocean.level5" = "Kraken";
+
+/* AppTheme.swift, Dragon theme tier names */
+"daily.achievement.dragon.level1" = "Oușor";
+"daily.achievement.dragon.level2" = "Șopârlă";
+"daily.achievement.dragon.level3" = "Dragon";
+"daily.achievement.dragon.level4" = "Dragon Bătrân";
+"daily.achievement.dragon.level5" = "Regele Dragon";
+"daily.achievement.dragon.level5.fem" = "Regina Dragon";
+
+/* AppTheme.swift, Horse theme tier names */
+"daily.achievement.horse.level1" = "Mânz";
+"daily.achievement.horse.level1.fem" = "Mânză";
+"daily.achievement.horse.level2" = "Unicorn";
+"daily.achievement.horse.level3" = "Călăreț";
+"daily.achievement.horse.level3.fem" = "Călăreață";
+"daily.achievement.horse.level4" = "Campion Carusel";
+"daily.achievement.horse.level4.fem" = "Campioană Carusel";
+"daily.achievement.horse.level5" = "Pur-sânge";
+
+/* AppTheme.swift, Primate theme tier names (enum case is still `.monkey` for compatibility) */
+"daily.achievement.monkey.level1" = "Micul Primat";
+"daily.achievement.monkey.level2" = "Primat Fit";
+"daily.achievement.monkey.level3" = "King Primat";
+"daily.achievement.monkey.level4" = "Maestru Primat";
+"daily.achievement.monkey.level5" = "Legenda Junglei";
+
+/* AppTheme.swift, Theme display names */
+"app.theme.cat" = "Pisică";
+"app.theme.dog" = "Cățel";
+"app.theme.bear" = "Urs";
+"app.theme.dino" = "Dino";
+"app.theme.bird" = "Pasăre";
+"app.theme.ocean" = "Pești";
+"app.theme.dragon" = "Dragon";
+"app.theme.horse" = "Cal";
+"app.theme.monkey" = "Primat";
+
+/* UserProfile.swift */
+"fitness.goal.bulking" = "Masă musculară";
+"fitness.goal.maintenance" = "Menținere";
+"fitness.goal.cutting" = "Definire";
+
+/* MARK: - Views */
+
+/* MARK: - Views/AchievementsView */
+
+/* AchievementsView.swift */
+"achievements.header.title" = "Realizări";
+"achievements.filter.list" = "Listă";
+"achievements.filter.calendar" = "Calendar";
+"achievements.filter.title" = "Afișare";
+"achievements.weekday.title" = "Media pe zilele săptămânii";
+"achievements.weekday.footer" = "Scorul tău mediu în fiecare zi a săptămânii, calculat din toate zilele înregistrate.";
+"achievements.empty.title" = "Nicio realizare încă";
+"achievements.empty.description" = "La sfârșitul zilei, îți vei debloca realizarea aici.";
+
+"achievements.daily.row.description" = "Ai îndeplinit %d%% din obiectivele zilnice.";
+
+/* EditTodayView.swift */
+"edit.record.cancel" = "Anulează";
+"edit.record.save" = "Salvează";
+
+/* RecordDetailView.swift */
+"record.detail.title" = "Detalii realizare";
+"record.detail.back" = "Înapoi";
+"record.detail.edit" = "Editează";
+
+/* MARK: - Views/ProfileView */
+
+/* ProgressOverView.swift */
+"statistics.title" = "Istoric";
+"statistics.section.tiers" = "Realizări pe niveluri";
+"statistics.section.activity" = "Activitate la sală";
+"statistics.section.goals" = "Obiective";
+"statistics.activity.workout" = "Zile de forță";
+"statistics.activity.cardio" = "Zile de cardio";
+"statistics.goals.active.label" = "Obiective active";
+"statistics.fitness.goal" = "Scop";
+"watch.stats.syncing" = "Deschide Gym Nutshell pe iPhone pentru a vedea statisticile.";
+"watch.stats.recent" = "Recente";
+
+/* ProgressOverView.swift, stats rows and physical data */
+"profile.recent.section" = "Ultimele 7 zile";
+
+/* MARK: - Views/SettingsView */
+
+/* AboutView.swift */
+"settings.about.title" = "Despre aplicație";
+"settings.about.version" = "Versiune";
+"settings.about.feedback" = "Trimite feedback";
+"settings.about.description" = "Gym Nutshell îți rezumă obiectivele zilnice pentru sală.\n\nSetează obiective, urmărește-le și vezi cum consecvența se transformă în rezultate.";
+
+/* AddTrackingGoalView.swift */
+"settings.addgoal.title.new" = "Obiectiv nou";
+"settings.addgoal.section.icon" = "Emoji";
+"settings.addgoal.emoji.placeholder" = "exemplu: 🧘";
+"settings.addgoal.section.name" = "Nume";
+"settings.addgoal.name.placeholder" = "exemplu: Meditație";
+"settings.addgoal.section.unit" = "Unitate";
+"settings.addgoal.unit.placeholder" = "exemplu: min";
+"settings.addgoal.section.goal" = "Țintă";
+"settings.addgoal.goal.placeholder" = "exemplu: 10";
+"settings.addgoal.section.increment" = "Pas";
+"settings.addgoal.increment.placeholder" = "exemplu: 2";
+"settings.addgoal.cancel" = "Anulează";
+"settings.addgoal.save" = "Salvează";
+"settings.addgoal.warning.catalog" = "Există deja un obiectiv cu acest nume.";
+"settings.addgoal.warning.emoji" = "Acest emoji este deja folosit de alt obiectiv.";
+"settings.addgoal.warning.emoji.keyboard" = "Acest câmp acceptă doar emoji-uri. Mergi în Configurări → General → Tastatură → Tastaturi și activează tastatura 'Emoji'.";
+"settings.addgoal.warning.category.duplicate" = "Există deja o categorie cu acest nume.";
+"settings.addgoal.warning.step" = "Pasul nu poate fi mai mare decât ținta.";
+"settings.addgoal.section.category" = "Categorie";
+"settings.addgoal.category.new.button" = "Categorie nouă";
+"settings.addgoal.category.new.section" = "Categorie personalizată";
+"settings.addgoal.category.new.name.placeholder" = "exemplu: Stretching";
+"settings.category.kind" = "Tip";
+"category.kind.standard" = "Standard";
+"category.kind.restDay" = "Cu zi de odihnă";
+"category.kind.checkIn" = "Check-in";
+"category.kind.standard.footer" = "Înregistrează obiectivele treptat cu glisorul sau cu butoanele − / +.";
+"category.kind.restDay.footer" = "Cu un buton ON/OFF pentru a marca o zi de odihnă.";
+"category.kind.checkIn.footer" = "Fiecare obiectiv este bifat o dată pe zi: În așteptare sau Gata.";
+"settings.addgoal.category.kind.footer" = "Tipul acestei categorii este “%1$@”. %2$@";
+"settings.goals.addToCategory" = "Adaugă obiectiv";
+"settings.addgoal.section.dose" = "Doză";
+"settings.addgoal.dose.footer" = "Când marchezi Gata, obiectivul zilei este îndeplinit cu această valoare.";
+"settings.goals.custom.badge" = "Personalizat";
+"settings.goals.categories.title" = "Categorii";
+
+/* BackupSettingsView.swift */
+"settings.backup.nav.title" = "Backup";
+"settings.backup.section.data" = "Local";
+"settings.backup.section.footer" = "Exportul și importul local funcționează printr-un fișier .json.";
+"settings.backup.export" = "Exportă backup";
+"settings.backup.import" = "Importă backup";
+"settings.backup.import.alert.title" = "Suprascrii datele?";
+"settings.backup.import.alert.message" = "Aceasta îți va înlocui profilul, obiectivele și istoricul actual cu datele din backup. Acțiunea este ireversibilă.";
+"settings.backup.import.alert.confirm" = "Suprascrie";
+"settings.backup.import.alert.cancel" = "Anulează";
+"settings.backup.error.title" = "Eroare";
+"settings.backup.success.title" = "Gata";
+"settings.backup.success.message" = "Datele tale au fost restaurate din backup.";
+
+/* iCloud backup */
+"settings.backup.icloud.save" = "Salvează în iCloud";
+"settings.backup.icloud.restore" = "Restaurează din iCloud";
+"settings.backup.icloud.restoring" = "Se restaurează backupul din iCloud…";
+"settings.backup.icloud.save.success" = "Backupul tău a fost salvat în iCloud.";
+"settings.backup.icloud.unavailable" = "iCloud indisponibil";
+"settings.backup.icloud.noBackup" = "Niciun backup salvat în iCloud încă.";
+"settings.backup.icloud.lastBackup" = "Ultimul backup:";
+"settings.backup.icloud.footer.unavailable" = "Autentifică-te în iCloud din Configurări pentru a activa backupul în cloud.";
+"settings.backup.icloud.error.unavailable" = "iCloud Drive nu este disponibil. Verifică dacă ești autentificat în iCloud și dacă iCloud Drive este activat.";
+"settings.backup.icloud.error.downloadTimeout" = "Backupul nu a putut fi descărcat din iCloud. Verifică conexiunea și încearcă din nou.";
+"settings.backup.icloud.auto.toggle" = "Backup automat zilnic";
+"settings.backup.icloud.auto.footer" = "\nBackupul va fi salvat automat când o nouă realizare este actualizată.\nRealizările se actualizează când deschizi aplicația după miezul nopții.";
+
+/* CheckinGoalsSettingsView.swift */
+"settings.goals.remove" = "Șterge obiectivul";
+"settings.goals.default.a11y" = "Obiectiv implicit";
+
+/* FitnessGoalChangeView.swift */
+"settings.goalchange.title" = "Scop";
+"settings.goalchange.section.pick" = "Alege-ți scopul";
+"settings.goalchange.section.preview" = "Obiectivele tale";
+"settings.goalchange.save.recalc" = "Salvează și recalculează";
+"settings.goalchange.save.keep" = "Salvează fără recalculare";
+
+/* ProfileSettingsView.swift */
+"settings.profile.section.optional" = "Opțional";
+"settings.profile.name" = "Nume";
+"settings.profile.name.placeholder" = "Numele tău";
+"settings.profile.favoriteExercise" = "Exercițiul preferat";
+
+/* Favorite exercises (easter egg) */
+"favoriteExercise.unknown"    = "Nu știu sigur";
+"favoriteExercise.back"       = "Spate";
+"favoriteExercise.arms"       = "Brațe";
+"favoriteExercise.chest"      = "Piept";
+"favoriteExercise.legs"       = "Picioare";
+"favoriteExercise.hamstrings" = "Femurali";
+"favoriteExercise.glutes"     = "Fesieri";
+"favoriteExercise.shoulders"  = "Umeri";
+"favoriteExercise.biceps"     = "Biceps";
+"favoriteExercise.triceps"    = "Triceps";
+"favoriteExercise.abs"        = "Abdomen";
+"favoriteExercise.traps"      = "Trapez";
+"favoriteExercise.forearms"   = "Antebrațe";
+"favoriteExercise.calves"     = "Gambe";
+
+/* SettingsView.swift */
+"settings.header.title" = "Configurări aplicație";
+"settings.section.edit" = "Profil";
+"settings.theme.title" = "Emoji";
+"settings.section.preferences" = "Aspect";
+"settings.section.system" = "Sistem";
+"settings.section.about" = "Despre";
+
+/* GymNutshellApp.swift, DataStoreErrorView */
+"app.error.dataStore.title" = "Ceva nu a mers bine";
+"app.error.dataStore.message" = "Gym Nutshell nu ți-a putut încărca datele.\nÎnchide forțat aplicația și redeschide-o pentru a încerca din nou.";
+"settings.about.link" = "Gym Nutshell";
+"settings.about.section.details" = "Detalii";
+"settings.section.physicaldata" = "Datele tale";
+"settings.fitness.goal.edit" = "Scop fitness";
+"settings.goals.edit" = "Obiective zilnice";
+"settings.preference.appleHealth" = "Apple Sănătate";
+"settings.preference.appleHealth.syncSleep" = "Înregistrare somn";
+"settings.preference.appleHealth.autoWorkoutCheckin" = "Detectare antrenamente";
+"settings.preference.appleHealth.footer" = "Sincronizarea somnului îți înregistrează orele de somn în Apple Sănătate dacă nu există deja înregistrări pentru acea zi.\n\nDetectarea antrenamentelor identifică un antrenament finalizat și îl înregistrează automat la Forță sau Cardio.";
+"settings.preference.appleWatch" = "Apple Watch";
+"appleWatch.sheet.title" = "Instalează pe Apple Watch";
+"appleWatch.sheet.intro" = "Pentru a instala Gym Nutshell pe Apple Watch, urmează pașii de mai jos:";
+"appleWatch.sheet.step1" = "Deschide aplicația Watch pe iPhone";
+"appleWatch.sheet.step2" = "Derulează la secțiunea \"Aplicații disponibile\"";
+"appleWatch.sheet.step3" = "Apasă pe Instalează lângă Nutshell";
+"appleWatch.sheet.note" = "Dacă aplicația este deja instalată, aceasta apare mai sus în secțiunea \"Instalate pe Apple Watch\".";
+"settings.preference.language" = "Limbă";
+"settings.preference.measurementSystem" = "Unități de măsură";
+"settings.preference.measurementSystem.metric" = "Metric (ml)";
+"settings.preference.measurementSystem.us" = "Imperial (fl oz)";
+"settings.measurementSystem.footer" = "Cum este afișată și introdusă apa în aplicație.";
+"settings.edit.widgets" = "Widgeturi";
+"widgetBackground.title" = "Widgeturi";
+"widgetBackground.mode.label" = "Fundal";
+"widgetBackground.mode.system" = "Sistem";
+"widgetBackground.mode.accent" = "Accent";
+"widgetBackground.mode.custom" = "Personalizat";
+"widgetBackground.footer.system" = "Widgeturile vor folosi fundalul implicit din iOS, cu text negru sau alb în funcție de tema sistemului.";
+"widgetBackground.footer.accent" = "Widgeturile vor folosi culoarea de accent a aplicației ca fundal.";
+"widgetBackground.footer.custom" = "Alege o culoare mai jos. Widgeturile o vor folosi ca fundal.";
+"widgetBackground.picker" = "Culoare";
+"widgetBackground.preview" = "Previzualizare";
+
+/* TrackingGoalDetailView.swift */
+"settings.goaldetail.stepper" = "Ajustează valoarea";
+"settings.goaldetail.footer" = "Modificarea nu afectează înregistrările trecute.";
+"settings.goaldetail.save" = "Salvează";
+"settings.goaldetail.increment.stepper" = "Ajustează pasul";
+"settings.goaldetail.increment.footer" = "Pasul reprezintă cât avansează glisorul spre valoarea țintă.";
+
+/* TrackingGoalsSettingsView.swift */
+"settings.goals.title" = "Obiective";
+"settings.tracking.goals.section.custom" = "Obiective personalizate";
+"settings.tracking.goals.done" = "Gata";
+"settings.tracking.goals.editMode" = "Editează";
+"settings.goals.category.order.section" = "Ordinea categoriilor";
+"settings.goal.water" = "Apă";
+"settings.goal.protein" = "Proteine";
+"settings.goal.carbs" = "Carbohidrați";
+"settings.goal.fats" = "Grăsimi bune";
+"settings.goal.fiber" = "Fibre";
+"settings.goal.sleep" = "Somn";
+
+/* MARK: - Views/Shared */
+
+/* FitnessGoalPickerView.swift */
+"welcome.goal.bulking.description" = "Crește masa musculară cu surplus caloric";
+"welcome.goal.maintenance.description" = "Menține greutatea și compoziția actuală";
+"welcome.goal.cutting.description" = "Redu grăsimea corporală păstrând masa musculară";
+
+/* MARK: - Views/TodayView */
+
+/* GoalCategory.swift */
+"goal.category.essencial" = "Esențial";
+"goal.category.nutricao" = "Nutriție";
+"goal.category.treino" = "Antrenament";
+"goal.category.suplemento" = "Suplimente";
+
+/* TodayView.swift */
+"today.goals.workout" = "Antrenament forță";
+"today.goals.cardio" = "Cardio";
+"today.goals.creatine" = "Creatină";
+"today.category.other" = "Altele";
+"today.restday.label" = "Zi de odihnă";
+"today.checkin.pending" = "În așteptare";
+"today.checkin.done" = "Gata";
+"a11y.checkin.hint.markDone" = "Apasă pentru a marca drept gata.";
+"a11y.checkin.hint.markPending" = "Apasă pentru a marca drept în așteptare.";
+"today.restday.on" = "ON";
+"today.restday.off" = "OFF";
+"today.metric.sleep" = "Somn";
+"today.metric.water" = "Apă";
+"today.metric.protein" = "Proteine";
+"today.metric.carbs" = "Carbohidrați";
+"today.metric.fats" = "Grăsimi bune";
+"today.metric.fiber" = "Fibre";
+
+/* TodayHeroView.swift, next level phrase */
+"today.max.level" = "Nivelul maxim a fost atins azi!";
+
+/* DailyTierView.swift */
+/* Tier button label combines the "Today's achievement" header phrase with the
+   tier name. Emoji is decorative and stays hidden, so no "Rooster, Rooster"
+   duplication. %1$@ = emoji (ignored), %2$@ = tier name. */
+"today.tier.a11y.label" = "Realizarea de azi, %2$@";
+
+/* TodayProgressRingView.swift */
+"today.ring.a11y.label" = "Inelul de progres de azi";
+"today.ring.a11y.hint" = "Apasă pentru mai multe informații.";
+"today.ring.a11y.value" = "%d la sută îndeplinit";
+
+/* TodayView.swift, date hero button */
+"today.hero.caption.start" = "Înregistrează un obiectiv pentru a începe";
+"today.hero.caption.nextLevel" = "Încă %d%% până la nivelul următor";
+"today.hero.caption.max" = "Realizarea maximă a zilei!";
+
+/* MARK: - Views/WelcomeView */
+
+/* WelcomeAboutStep.swift */
+"welcome.step.about.title" = "Despre tine";
+
+/* WelcomeFitnessGoalStep.swift */
+"welcome.step.goal.title" = "Scopul tău";
+"welcome.step.goal.info.editable" = "Îl poți schimba mai târziu în configurările aplicației.";
+
+/* WelcomeThemeStep.swift */
+"welcome.step.theme.title" = "Emoji";
+"welcome.step.theme.subtitle" = "Alege emoji-urile care îți vor inspira progresul.";
+"welcome.step.theme.footer" = "Emoji-urile pot fi schimbate mai târziu.";
+
+/* WelcomePhysicalDataStep.swift */
+"welcome.field.sex" = "Sex";
+"welcome.field.sex.male" = "Masculin";
+"welcome.field.sex.female" = "Feminin";
+
+/* WelcomeSummaryStep.swift */
+"welcome.step.summary.title" = "Obiectivele tale";
+"welcome.summary.subtitle.customize" = "Poți edita aceste valori sau adăuga obiective noi oricând.";
+"welcome.option.add" = "Adaugă";
+"welcome.restore.importJSON" = "Importă backup JSON";
+"welcome.theme.preview" = "Detalii";
+
+/* WelcomeStartStep.swift */
+"welcome.step.start.title" = "Salut!";
+"welcome.start.new" = "Începe";
+"welcome.start.restore" = "Restaurează backup";
+
+/* WelcomeView.swift */
+"welcome.button.continue" = "Continuă";
+"welcome.button.start" = "Să începem!";
+"welcome.button.back" = "Înapoi";
+
+/* MARK: - ContentView.swift */
+
+/* HealthKit activity display names (auto check-in descriptions) */
+"healthkit.activity.running" = "Alergare";
+"healthkit.activity.walking" = "Mers pe jos";
+"healthkit.activity.cycling" = "Ciclism";
+"healthkit.activity.swimming" = "Înot";
+"healthkit.activity.elliptical" = "Bicicletă eliptică";
+"healthkit.activity.rowing" = "Canotaj";
+"healthkit.activity.stairClimbing" = "Urcat scări";
+"healthkit.activity.hiking" = "Drumeție";
+"healthkit.activity.jumpRope" = "Sărit coarda";
+"healthkit.activity.dance" = "Dans";
+"healthkit.activity.strengthTraining" = "Antrenament forță";
+"healthkit.activity.functionalTraining" = "Antrenament funcțional";
+"healthkit.activity.crossTraining" = "Cross Training";
+"healthkit.activity.hiit" = "HIIT";
+"healthkit.activity.boxing" = "Box";
+"healthkit.activity.martialArts" = "Arte marțiale";
+"healthkit.activity.coreTraining" = "Core";
+"healthkit.activity.climbing" = "Escaladă";
+"healthkit.activity.other" = "Exercițiu";
+
+/* AppTheme, Categories */
+"app.theme.category.sport" = "Sport";
+"app.theme.category.animals" = "Animale";
+"app.theme.category.elements" = "Elemente și Natură";
+"app.theme.category.competition" = "Progres";
+"app.theme.category.warrior" = "Erou";
+"app.theme.category.warrior.fem" = "Eroină";
+"app.theme.category.space" = "Cosmos";
+
+/* AppTheme, Gym */
+"app.theme.gym" = "Sală";
+"app.theme.running" = "Alergare";
+"daily.achievement.running.level1" = "La Pas";
+"daily.achievement.running.level2" = "În Ritm";
+"daily.achievement.running.level3" = "Alergător";
+"daily.achievement.running.level3.fem" = "Alergătoare";
+"daily.achievement.running.level4" = "Sprinter";
+"daily.achievement.running.level5" = "Maratonist";
+"daily.achievement.gym.level1" = "Cocoșel";
+"daily.achievement.gym.level1.fem" = "Pui de Sală";
+"daily.achievement.gym.level2" = "Voinic";
+"daily.achievement.gym.level2.fem" = "Voinică";
+"daily.achievement.gym.level3" = "Asul Sălii";
+"daily.achievement.gym.level3.fem" = "Vedeta Sălii";
+"daily.achievement.gym.level4" = "Musculos";
+"daily.achievement.gym.level4.fem" = "Musculoasă";
+"daily.achievement.gym.level5" = "Titan";
+"daily.achievement.gym.level5.fem" = "Titană";
+
+/* AppTheme, Fire */
+"app.theme.fire" = "Foc";
+"daily.achievement.fire.level1" = "Lumânare";
+"daily.achievement.fire.level2" = "Flacără";
+"daily.achievement.fire.level3" = "Vulcan";
+"daily.achievement.fire.level3.fem" = "Vulcanică";
+"daily.achievement.fire.level4" = "Solar";
+"daily.achievement.fire.level4.fem" = "Solară";
+"daily.achievement.fire.level5" = "Supernovă";
+
+/* AppTheme, Plant */
+"app.theme.plant" = "Pădure";
+"daily.achievement.plant.level1" = "Lăstar";
+"daily.achievement.plant.level2" = "Plantă";
+"daily.achievement.plant.level3" = "Copac Mare";
+"daily.achievement.plant.level4" = "Brad de Crăciun";
+"daily.achievement.plant.level5" = "Pădure";
+
+/* AppTheme, Champion */
+"app.theme.champion" = "Medalie";
+"daily.achievement.champion.level1" = "Bronz";
+"daily.achievement.champion.level2" = "Argint";
+"daily.achievement.champion.level3" = "Aur";
+"daily.achievement.champion.level4" = "Trofeu";
+"daily.achievement.champion.level5" = "Diamant";
+
+/* AppTheme, Number */
+"app.theme.number" = "Numere";
+"daily.achievement.number.level1" = "Unu";
+"daily.achievement.number.level2" = "Doi";
+"daily.achievement.number.level3" = "Trei";
+"daily.achievement.number.level4" = "Patru";
+"daily.achievement.number.level5" = "Cinci";
+
+/* AppTheme, Doctor */
+"app.theme.doctor" = "Medic";
+"app.theme.doctor.fem" = "Doctoriță";
+"daily.achievement.doctor.level1" = "Ucenic";
+"daily.achievement.doctor.level2" = "Începător";
+"daily.achievement.doctor.level3" = "Absolvent";
+"daily.achievement.doctor.level3.fem" = "Absolventă";
+"daily.achievement.doctor.level4" = "Doctor";
+"daily.achievement.doctor.level4.fem" = "Doctoriță";
+"daily.achievement.doctor.level5" = "Director";
+"daily.achievement.doctor.level5.fem" = "Directoare";
+
+/* AppTheme, Ninja (Fighter) */
+"app.theme.ninja" = "Luptător";
+"app.theme.ninja.fem" = "Luptătoare";
+"daily.achievement.ninja.level1" = "Discipol";
+"daily.achievement.ninja.level2" = "Spadasin";
+"daily.achievement.ninja.level3" = "Ninja";
+"daily.achievement.ninja.level4" = "Super";
+"daily.achievement.ninja.level5" = "Legendar";
+"daily.achievement.ninja.level5.fem" = "Legendară";
+
+/* AppTheme, Astronaut (Space) */
+"app.theme.astronaut" = "Spațiu";
+"daily.achievement.astronaut.level1" = "Astronaut";
+"daily.achievement.astronaut.level2" = "Extraterestru";
+"daily.achievement.astronaut.level3" = "Rachetă";
+"daily.achievement.astronaut.level4" = "OZN";
+"daily.achievement.astronaut.level5" = "TARDIS";
+
+/* AppTheme, Celestial */
+"app.theme.celestial" = "Corpuri Cerești";
+"daily.achievement.celestial.level1" = "Cometă";
+"daily.achievement.celestial.level2" = "Lună";
+"daily.achievement.celestial.level3" = "Pământ";
+"daily.achievement.celestial.level4" = "Saturn";
+"daily.achievement.celestial.level5" = "Galaxie";
+
+/* AppAccentColor.swift, Color names */
+"color.red"    = "Roșu";
+"color.blue"   = "Albastru";
+"color.purple" = "Violet";
+"color.green"  = "Verde";
+"color.yellow" = "Galben";
+"color.orange" = "Portocaliu";
+"color.cyan"   = "Cyan";
+"color.pink"   = "Roz";
+
+/* ColorSettingsView.swift */
+"settings.color.title"    = "Culoare de accent";
+"settings.color.subtitle" = "Culoarea de accent folosită în toată aplicația";
+"settings.color.preview" = "Previzualizare";
+
+/* TierInfoView.swift / ProgressRingInfoView.swift, links in Settings > About */
+"settings.about.achievement"  = "Realizarea zilei";
+"settings.about.progressRing" = "Inel de progres";
+
+/* TierInfoView.swift */
+"tier.info.intro"             = "Realizarea ta este înregistrată la sfârșitul zilei, la miezul nopții.";
+"tier.info.section.levels"    = "Niveluri";
+"tier.info.change.theme"      = "Schimbă emoji-ul";
+"tier.info.range.suffix"      = " de progres";
+
+/* ProgressRingInfoView.swift */
+"ring.info.intro"             = "Inelul arată procentul mediu al obiectivelor pe care le-ai îndeplinit. Fiecare segment colorat valorează 20%.";
+"ring.info.section.colors"    = "Segmentele inelului";
+"ring.info.color.red"         = "Nivelul 1";
+"ring.info.color.orange"      = "Nivelul 2";
+"ring.info.color.green"       = "Nivelul 3";
+"ring.info.color.cyan"        = "Nivelul 4";
+"ring.info.color.purple"      = "Nivelul 5";
+"ring.info.color.blue"        = "Obiectiv îndeplinit";
+"ring.info.level.label"       = "Nivelul ";
+"info.next.prefix"            = "Mai ai ";
+"info.next.middle"            = " până la: ";
+
+/* Common */
+"common.cancel" = "Anulează";
+"common.done" = "Gata";
+
+/* Notification history */
+"notifications.history.title" = "Notificări";
+"common.close" = "Închide";
+"common.edit" = "Editează";
+"common.done" = "Gata";
+"notifications.history.today" = "Azi";
+"notifications.history.yesterday" = "Ieri";
+"notifications.history.empty.title" = "Nicio notificare încă";
+"notifications.history.empty.description" = "Istoricul notificărilor din ultimele 3 zile apare aici.";
+
+/* NotificationsSettingsView */
+"settings.preference.notifications"       = "Notificări";
+"settings.notifications.section.system"   = "Sistem";
+"settings.notifications.section.goals"    = "Obiective";
+"settings.notifications.authorize.button" = "Activează notificările";
+"settings.notifications.authorize.footer" = "Apasă pe Permite și confirmă în fereastra iOS pentru a primi mementouri. Dacă ai refuzat deja, le poți reactiva în Configurări iOS.";
+"settings.notifications.denied.title"     = "Notificări dezactivate";
+"settings.notifications.denied.message"   = "Ai refuzat anterior notificările. Activează-le în Configurări iOS pentru a primi mementouri de la Gym Nutshell.";
+"settings.notifications.denied.open"      = "Deschide Configurări";
+
+/* NotificationIntervalEditView */
+"settings.notifications.interval.header"   = "Interval între notificări";
+"settings.notifications.interval.stepper"  = "La fiecare";
+"settings.notifications.interval.value"    = "%d min";
+
+/* NotificationIntervalEditView, sound picker */
+"settings.notifications.sound.header"      = "Sunet";
+"settings.notifications.sound.label"       = "Sunet notificare";
+"settings.notifications.sound.footer"      = "Opțiunea Implicit redă tonul ales în Configurări iOS → Notificări → Gym Nutshell → Sunete (Tri-tone, Note, Chord etc.). Silențios dezactivează sunetul doar pentru această aplicație.";
+"settings.notifications.sound.openSystem"  = "Alege tonul în Configurări iOS";
+"notifications.sound.default"              = "Implicit";
+"notifications.sound.silent"               = "Silențios";
+
+/* NotificationKind, title / description on list + body of notification + footer */
+"notifications.kind.progress.title"         = "Progres";
+"notifications.kind.progress.description"   = "Cât mai ai până la următoarea realizare a zilei.";
+"notifications.kind.progress.body"          = "Fiecare obiectiv contează pentru următoarea ta realizare.";
+"notifications.kind.progress.footer"        = "Mementouri periodice care îți arată cât mai ai pentru a trece la nivelul următor azi.";
+
+"notifications.kind.achievement.title"      = "Realizarea zilei";
+"notifications.kind.achievement.description" = "Te anunță, la miezul nopții, ce realizare ai deblocat în acea zi.";
+"notifications.kind.achievement.body"       = "Ai încheiat ziua ca %@.";
+
+"notifications.kind.appleHealth.title"      = "Apple Sănătate";
+"notifications.kind.appleHealth.description" = "Confirmă înregistrările sincronizate cu Apple Sănătate.";
+"notifications.kind.appleHealth.body.cardio" = "S-au înregistrat %d min de Cardio (%@).";
+"notifications.kind.appleHealth.body.workout" = "S-au înregistrat %d min de Forță (%@).";
+"notifications.kind.appleHealth.body.sleep" = "S-au înregistrat %d h de somn în Apple Sănătate.";
+
+"notifications.kind.backup.title"           = "Backup iCloud";
+"notifications.kind.backup.description"     = "Confirmă fiecare backup automat.";
+"notifications.kind.backup.body"            = "Backupul în iCloud a fost finalizat cu succes.";
+
+"notifications.kind.sleep.title"            = "Somn";
+"notifications.kind.sleep.description"      = "Îți sugerează un pui de somn când nu ți-ai atins obiectivul de somn (doar între 10:00 și 19:00).";
+"notifications.kind.sleep.body"             = "Ce zici de un pui de somn ca să-ți atingi obiectivul de somn azi?";
+"notifications.kind.sleep.footer"           = "La fiecare X minute aplicația îți sugerează să te odihnești până când îndeplinești obiectivul zilnic. Nu se trimit mementouri înainte de 10:00 sau după 19:00.";
+
+"notifications.kind.water.title"            = "Apă";
+"notifications.kind.water.description"      = "Mementouri să bei un pahar cu apă până îți atingi obiectivul zilnic.";
+"notifications.kind.water.body"             = "Timpul pentru un pahar cu apă? Continuă spre obiectivul zilei.";
+"notifications.kind.water.footer"           = "La fiecare X minute aplicația îți amintește să bei apă. Mementourile se opresc imediat ce îți atingi obiectivul zilnic.";
+
+"notifications.kind.protein.title"          = "Proteine";
+"notifications.kind.protein.description"    = "Mementouri pentru a-ți atinge obiectivul zilnic de proteine.";
+"notifications.kind.protein.body"           = "E timpul să adaugi proteine pentru a-ți atinge obiectivul de azi.";
+"notifications.kind.protein.footer"         = "Mementourile periodice se opresc când îți atingi obiectivul de proteine.";
+
+"notifications.kind.carbs.title"            = "Carbohidrați";
+"notifications.kind.carbs.description"      = "Mementouri pentru a-ți atinge obiectivul zilnic de carbohidrați.";
+"notifications.kind.carbs.body"             = "Ce zici de o sursă bună de carbohidrați ca să-ți menții energia?";
+"notifications.kind.carbs.footer"           = "Mementourile periodice se opresc când îți atingi obiectivul de carbohidrați.";
+
+"notifications.kind.goodFat.title"          = "Grăsimi bune";
+"notifications.kind.goodFat.description"    = "Mementouri pentru a-ți atinge obiectivul zilnic de grăsimi bune.";
+"notifications.kind.goodFat.body"           = "Nu uita de grăsimile bune azi (ulei de măsline, nuci, avocado).";
+"notifications.kind.goodFat.footer"         = "Mementourile periodice se opresc când îți atingi obiectivul de grăsimi bune.";
+
+"notifications.kind.fiber.title"            = "Fibre";
+"notifications.kind.fiber.description"      = "Mementouri pentru a-ți atinge obiectivul zilnic de fibre.";
+"notifications.kind.fiber.body"             = "Adaugă o porție de fibre la următoarea masă.";
+"notifications.kind.fiber.footer"           = "Mementourile periodice se opresc când îți atingi obiectivul de fibre.";
+
+"notifications.kind.workout.title"          = "Forță";
+"notifications.kind.workout.description"    = "Mementouri pentru a finaliza antrenamentul de forță de azi.";
+"notifications.kind.workout.body"           = "E timpul pentru antrenamentul de forță.";
+"notifications.kind.workout.footer"         = "Mementourile periodice se opresc când îți atingi obiectivul de forță.";
+
+"notifications.kind.cardio.title"           = "Cardio";
+"notifications.kind.cardio.description"     = "Mementouri pentru a finaliza antrenamentul cardio de azi.";
+"notifications.kind.cardio.body"            = "Timpul pentru cardio. Puțină mișcare face diferența.";
+"notifications.kind.cardio.footer"          = "Mementourile periodice se opresc când îți atingi obiectivul de cardio.";
+
+"notifications.kind.creatine.title"         = "Creatină";
+"notifications.kind.creatine.description"   = "Mementouri pentru doza zilnică de creatină.";
+"notifications.kind.creatine.body"          = "Ți-ai luat creatina azi?";
+"notifications.kind.creatine.footer"        = "Mementourile periodice se opresc când înregistrezi doza de azi.";
+
+/* Custom goals */
+"notifications.custom.description"          = "Mementouri pentru a îndeplini obiectivul de azi.";
+"notifications.custom.body"                 = "Timpul să înregistrezi %@, continuă spre obiectivul de azi.";
+"notifications.custom.footer"               = "Mementourile periodice se opresc când atingi obiectivul de azi pentru acest indicator personalizat.";
+"notifications.history.delete" = "Șterge";
+
+/* MARK: - Accessibility (VoiceOver), shared helpers in A11yHelpers.swift */
+
+/* Progress band, color-coded zones spoken instead of just relying on the visual hue */
+"a11y.band.red"    = "zona roșie, departe de obiectiv";
+"a11y.band.orange" = "zona portocalie, în curs";
+"a11y.band.green"  = "zona verde, îți merge foarte bine";
+"a11y.band.cyan"   = "zona cyan, aproape gata";
+"a11y.band.blue"   = "zona albastră, obiectiv atins";
+
+/* Generic progress phrasing, band dropped from progress value after user testing */
+"a11y.percent.format"          = "%d la sută";
+"a11y.progress.value.format"   = "%d la sută îndeplinit";
+
+/* Tracking goal row, header value drops percent + band to stay concise */
+"a11y.goalrow.value.format"    = "%1$d din %2$d %3$@ îndeplinit";
+"a11y.goalrow.value.restday"   = "în modul zi de odihnă, obiectiv îndeplinit";
+"a11y.goalrow.a11y.label"      = "Obiectiv %@";
+"a11y.slider.label.format"     = "Glisor %@";
+
+/* Generic "open details" hint reused across ring/tier */
+"a11y.hint.more.info"          = "Apasă pentru mai multe informații.";
+
+/* Collapsible category header (TodayView) */
+"a11y.category.label.format"   = "Categoria %@";
+"a11y.category.hint"           = "Apasă pentru a restrânge sau extinde.";
+
+/* Day cell (MonthlyCalendarView + widget Calendar) */
+"a11y.daycell.today.format"        = "azi, %1$@, %2$d la sută, %3$@";
+"a11y.daycell.past.format"         = "%1$@, %2$d la sută, %3$@";
+"a11y.daycell.future.format"       = "%@, în viitor";
+"a11y.daycell.empty.format"        = "%@, fără înregistrări";
+"a11y.daycell.today.empty.format"  = "azi, %@, nicio înregistrare încă";
+"a11y.daycell.selected.suffix"     = ", selectat";
+
+/* Increment / decrement buttons (Watch, edit sheets) */
+"a11y.hint.increment" = "Apasă pentru a crește.";
+"a11y.hint.decrement" = "Apasă pentru a scădea.";
+
+/* Rest day toggle, label reflects on/off, hint describes the action */
+"a11y.hint.restday.activate"   = "Apasă pentru a activa ziua de odihnă.";
+"a11y.hint.restday.deactivate" = "Apasă pentru a ieși din modul zi de odihnă.";
+
+/* Info sheets, row combine helpers */
+"a11y.ringinfo.color.row.format"  = "%1$@, interval %2$@";
+"a11y.tierinfo.row.format"        = "%1$@, %2$@, nivelul %3$d";
+
+/* MARK: - Accessibility (Phase 2, Achievements + ProgressOver) */
+
+/* Calendar cell with a tier name spoken */
+"a11y.calendar.day.tier.format"        = "%1$@, obținut: %2$@";
+"a11y.calendar.day.today.tier.format"  = "azi, %1$@, obținut: %2$@";
+
+/* Month navigation chevrons */
+"a11y.month.previous" = "Luna anterioară";
+"a11y.month.next"     = "Luna următoare";
+
+/* AchievementsView history rows */
+"a11y.record.row.daily.format"  = "%1$@, %2$@, %3$d la sută";
+"a11y.record.row.hint"          = "Apasă pentru a vedea detaliile.";
+"a11y.record.edit.label"        = "Editează înregistrarea";
+"a11y.record.edit.hint" = "Apasă pentru a edita.";
+
+/* RecordDetail / EditToday header card */
+"a11y.record.header.format"     = "%1$@, %2$@, %3$d la sută, nivelul %4$d";
+
+/* ProgressOverView, whole-card tap hints */
+"a11y.stats.card.usergoal.hint" = "Apasă pentru a schimba scopul.";
+"a11y.stats.card.tiers.hint"    = "Apasă pentru a vedea cum funcționează nivelurile.";
+"a11y.stats.card.activity.hint" = "Apasă pentru a deschide jurnalul de activitate.";
+"a11y.stats.card.goals.hint"    = "Apasă pentru a gestiona obiectivele urmărite.";
+
+/* ProfileRecentActivityView, day buttons */
+"a11y.recent.day.with.tier.format" = "%1$@, %2$@";
+"a11y.recent.day.empty.format"     = "%@, fără înregistrare";
+"a11y.recent.day.today.format"     = "azi, %1$@, %2$@";
+"a11y.recent.day.today.empty.format" = "azi, %@, fără înregistrare încă";
+"a11y.recent.day.hint" = "Apasă pentru a deschide această zi.";
+
+/* MARK: - Accessibility (Phase 3, Settings) */
+
+/* Generic selection state */
+"a11y.selected"     = "selectat";
+"a11y.not.selected" = "neselectat";
+
+/* Theme picker (ThemeSettingsView) */
+"a11y.theme.hint"             = "Apasă pentru a selecta aceste emoji-uri.";
+"a11y.theme.info.label.format" = "Mai multe informații despre %@";
+"a11y.theme.info.hint" = "Apasă pentru mai multe informații.";
+
+/* Color picker (ColorSettingsView) */
+"a11y.color.hint" = "Apasă pentru a selecta această culoare.";
+
+/* Fitness goal picker (UserGoalPickerView) */
+"a11y.usergoal.hint" = "Apasă pentru a selecta acest scop.";
+
+/* Tracking goals settings, image-only buttons */
+"a11y.button.add.goal.label"     = "Adaugă";
+"a11y.button.add.goal.hint" = "Apasă pentru a crea un obiectiv sau o categorie.";
+"a11y.button.remove.goal.label"  = "Elimină obiectivul";
+"a11y.button.restore.goal.label" = "Restaurează obiectivul";
+
+/* Categories settings, pencil button */
+"a11y.button.edit.category.label" = "Editează categoria";
+"a11y.button.edit.category.hint" = "Apasă pentru a edita această categorie.";
+
+/* Notification rows, pencil button */
+"a11y.button.edit.notification.label" = "Editează notificarea";
+"a11y.button.edit.notification.hint" = "Apasă pentru a edita configurările notificării.";
+
+/* SettingsView toolbar bell */
+"a11y.notification.history.bell" = "Istoric notificări";
+"a11y.notification.history.bell.hint" = "Apasă pentru a deschide notificările.";
+
+/* Notification history row */
+"a11y.history.row.format" = "%1$@, %2$@, %3$@";
+"a11y.history.row.hint" = "Apasă pentru a deschide.";
+
+/* App icon (About) */
+"a11y.app.icon" = "Pictograma aplicației";
+
+/* Collapsible section header (settings goals + notifications) */
+"a11y.section.collapsible.hint" = "Apasă pentru a restrânge sau extinde.";
+
+/* MARK: - Accessibility (Phase 4, Welcome / onboarding) */
+
+"a11y.welcome.progress.format"          = "Pasul %1$d din %2$d";
+"a11y.welcome.optional.add.label.format"    = "Adaugă %@";
+"a11y.welcome.optional.remove.label.format" = "Elimină %@";
+"a11y.welcome.optional.add.hint" = "Apasă pentru a adăuga acest obiectiv.";
+"a11y.welcome.optional.remove.hint" = "Apasă pentru a elimina acest obiectiv.";
+
+/* MARK: - Accessibility (Phase 5, Watch app) */
+
+/* Watch hero ring (ContentView), same wording as the iPhone ring */
+"a11y.watch.hero.label"  = "Progres zilnic";
+"a11y.watch.page.stats"         = "Pagina de statistici";
+"a11y.watch.page.today"         = "Pagina de azi";
+"a11y.watch.page.notifications" = "Pagina de notificări";
+
+/* Watch goal card header */
+"a11y.watch.card.expanded"   = "extins";
+"a11y.watch.card.collapsed"  = "restrâns";
+"a11y.watch.card.hint.expand" = "Apasă pentru a extinde.";
+"a11y.watch.card.hint.collapse" = "Apasă pentru a restrânge.";
+
+/* Watch ± buttons */
+"a11y.watch.increase.label.format" = "Crește %@";
+"a11y.watch.decrease.label.format" = "Scade %@";
+
+/* Watch notification row */
+"a11y.watch.notification.row.format" = "%1$@, %2$@, %3$@";
+
+/* MARK: - Accessibility (Phase 6, Widgets) */
+
+/* Widget summary (small/medium/lockscreen, watch circular/rectangular) */
+"a11y.widget.summary.format"       = "Progres zilnic, %1$@, %2$d la sută îndeplinit";
+"a11y.widget.summary.points.format" = "Progres zilnic, %1$@, %2$d la sută îndeplinit";
+
+/* iPhone large widgets */
+"a11y.widget.large.header.format"  = "%1$@, %2$@, %3$d la sută";
+"a11y.widget.calendar.month.format" = "%@";
+
+"a11y.welcome.goal.decrease.format" = "Scade %@";
+"a11y.welcome.goal.increase.format" = "Crește %@";
+
+"welcome.step.control.title" = "Comenzi";
+"welcome.step.control.subtitle" = "Cum preferi să-ți înregistrezi obiectivele în fiecare zi?";
+"welcome.control.slider" = "Glisare";
+"welcome.control.slider.desc" = "Trage glisorul până la valoarea dorită.";
+"welcome.control.stepper" = "Butoane";
+"welcome.control.stepper.desc" = "Apasă pentru a adăuga sau scădea câte un pas.";
+"welcome.step.ready.title" = "Totul e pregătit!";
+"welcome.step.ready.subtitle" = "Activează ce dorești.";
+"welcome.ready.notifications.title" = "Notificări";
+"welcome.ready.notifications.desc" = "Mementouri pentru apă și realizări.";
+"welcome.ready.health.title" = "Apple Sănătate";
+"welcome.ready.health.desc" = "Îți înregistrează somnul și îți detectează automat antrenamentele.";
+"welcome.ready.allow" = "Permite";
+"welcome.ready.allowed" = "Permis";
+"welcome.ready.requested" = "Solicitat";
+"welcome.ready.denied" = "Refuzat";
+"welcome.ready.footer" = "Poți schimba toate acestea oricând în Configurări.";
+"welcome.ready.notifications.setup.title" = "Despre ce să-ți amintim?";
+"welcome.ready.notifications.setup.footer" = "Poți schimba toate acestea mai târziu în Configurări › Notificări.";
+"a11y.welcome.ready.notifications.setup.hint" = "Apasă pentru a-ți alege mementourile.";
+"settings.preference.controlStyle" = "Comenzi";
+"settings.controlStyle.footer" = "Stabilește cum înregistrezi progresul obiectivelor în ecranul Azi.";
+
+"settings.category.icon.section" = "Pictogramă";
+
+"today.edit.goals" = "Editează obiectivele";
+"today.edit.controls" = "Editează comenzile";
+"today.edit.theme" = "Editează emoji-ul";
+"today.edit.colors" = "Editează culoarea de accent";
+"today.edit.quick" = "Editare rapidă";
+
+"welcome.step.units.title" = "Unitățile tale";
+"welcome.step.units.subtitle" = "Cum preferi să măsori apa?";
+"welcome.step.units.note" = "Poți schimba aceasta mai târziu în Configurări.";
+"welcome.units.metric.desc" = "Mililitri, cum ar fi 250 ml pe pahar.";
+"welcome.units.imperial.desc" = "Uncii fluide, cum ar fi %d fl oz pe pahar.";
+
+"today.goals.viewMode.list" = "Listă";
+"today.goals.viewMode.grid" = "Grilă";
+"today.goals.viewMode.switch.a11y" = "Comută la afișarea tip %@";
+"today.category.tile.a11y.hint" = "Apasă pentru a deschide obiectivele categoriei.";
+
+/* Data no topo da Hoje: %1$@ = dia da semana, %2$d = dia do mes */
+"date.weekdayDay.format" = "%1$@ %2$d";
+
+// Balão da data na Hoje
+"today.day.remaining" = "Ziua se încheie în %@";
+"today.insight.attention" = "Azi e nevoie de atenție în plus";
+"today.insight.steady" = "Se anunță o zi bună";
+"today.insight.weekday" = "Media ta în această zi a săptămânii: %d%%";
+"today.insight.title" = "Prognoza zilei";
+"today.insight.title.history" = "Istoricul tău";
+"today.insight.model.risk" = "Șansa unei zile mai slabe azi (până la %d%%): %@.";
+"today.insight.model.factors" = "Ce a cântărit cel mai mult: %@.";
+"today.insight.model.footer" = "Calculat pe dispozitivul tău din %d zile înregistrate. În cele mai recente zile, prognoza a fost corectă în %@ din cazuri.";
+"today.insight.weekday.detail" = "În această zi a săptămânii, media ta este %d%%. Media ta pentru toate zilele este %d%%.";
+"today.insight.weekday.footer" = "Calculat pe dispozitivul tău din %d zile înregistrate. Prognoza apare când datele tale arată un tipar mai clar.";
+"today.insight.factor.weekday" = "ziua săptămânii";
+"today.insight.factor.yesterday" = "ziua de ieri";
+"today.insight.factor.lastWeek" = "ultimele 7 zile";
+"today.insight.factor.streak" = "seria ta";
+"today.insight.factor.sleep" = "somnul de azi-noapte";
+"today.insight.factor.workout" = "antrenamentul de ieri";
+"today.insight.factor.cardio" = "cardio-ul de ieri";
+
+// Lembretes por horário dos suplementos
+"notifications.supplement.body" = "E timpul să iei %@.";
+"notifications.supplement.group.title" = "Ora de check-in";
+"notifications.supplement.action.done" = "Am luat";
+"notifications.supplement.preset.morning" = "Dimineața";
+"notifications.supplement.preset.lunch" = "Prânz";
+"notifications.supplement.preset.afternoon" = "După-amiaza târziu";
+"notifications.supplement.preset.night" = "Seara";
+"notifications.supplement.preset.bedtime" = "La culcare";
+"settings.notifications.times.header" = "Mementouri";
+"settings.notifications.times.row" = "Oră";
+"settings.notifications.times.add" = "Adaugă oră";
+"settings.notifications.times.empty" = "Nicio oră setată";
+"settings.notifications.times.footer" = "Câte un memento pe zi la fiecare oră. Mementourile zilei se opresc când marchezi Gata în Azi sau apeși pe Am luat în notificare.";
+"settings.notifications.group.title" = "Grupează obiectivele de tip check-in la aceeași oră";
+"settings.notifications.group.footer" = "Combină într-un singur memento obiectivele de tip check-in setate la aceeași oră. Când este dezactivat, fiecare obiectiv are propriul memento.";
+"settings.notifications.emoji.title" = "Emoji-uri în notificări";
+"settings.notifications.emoji.footer" = "Afișează emoji-ul fiecărui obiectiv și emoji-ul realizării zilnice în textul notificărilor.";
+
+/* Bônus de sequência, pontos e Aparência (2026-11-04) */
+"streak.bonus.weekly.level4.title" = "Săptămână puternică";
+"streak.bonus.weekly.level5.title" = "Săptămână perfectă";
+"streak.bonus.monthly.level4.title" = "Lună puternică";
+"streak.bonus.monthly.level5.title" = "Lună perfectă";
+"streak.bonus.weekly.level4.description" = "De luni până duminică, în fiecare zi la nivelul 4 sau 5.";
+"streak.bonus.weekly.level5.description" = "De luni până duminică, în fiecare zi la nivelul 5.";
+"streak.bonus.monthly.level4.description" = "Toată luna, în fiecare zi la nivelul 4 sau 5.";
+"streak.bonus.monthly.level5.description" = "Toată luna, în fiecare zi la nivelul 5.";
+"streak.bonus.generic.title" = "Bonus de serie";
+"streak.bonus.info.intro" = "Fiecare zi salvată îți aduce puncte în funcție de nivelul realizării. Dacă închei o săptămână sau o lună întreagă la nivelul 4 sau 5, primești un bonus de serie.";
+"streak.bonus.info.section.daily" = "Puncte pe zi";
+"streak.bonus.info.footer" = "Săptămâna începe luni și se încheie duminică. O zi fără înregistrare întrerupe seria. Dacă toată perioada a fost la nivelul 5, se acordă doar bonusul mai mare.";
+"points.plus.format" = "+%d pct";
+"settings.about.streakBonus" = "Bonus de serie";
+"settings.about.dayInsight" = "Prognoza zilei";
+"dayInsight.info.intro" = "Textul de sub dată îți arată cum tinde să decurgă ziua ta. Apasă pe el pentru a vedea detaliile.";
+"dayInsight.info.section.how" = "Cum funcționează";
+"dayInsight.info.history" = "Îți analizează istoricul: ziua săptămânii, ziua de ieri, ultimele 7 zile, seria ta, somnul și antrenamentele.";
+"dayInsight.info.chance" = "Estimează șansa ca ziua de azi să fie una mai slabă, cu până la %d%% din obiective.";
+"dayInsight.info.check" = "Afișează prognoza doar când este mai precisă decât media ta pentru acea zi a săptămânii. Altfel, afișează acea medie.";
+"dayInsight.info.days" = "Pornește după %d zile înregistrate.";
+"dayInsight.info.footer" = "Totul este calculat pe dispozitivul tău cu un model simplu de machine learning. Datele tale nu părăsesc niciodată dispozitivul.";
+"notifications.kind.streakBonus.title" = "Bonus de serie";
+"notifications.kind.streakBonus.description" = "Te anunță când închei o serie de o săptămână sau o lună.";
+"notifications.kind.streakBonus.body" = "%1$@! +%2$d puncte.";
+"statistics.section.bonuses" = "Puncte și bonusuri";
+"statistics.points.total" = "Puncte";
+"statistics.bonus.times" = "%d×";
+"a11y.stats.bonuses.hint" = "Apasă pentru a vedea cum funcționează punctele și bonusurile.";
+"a11y.stats.bonus.row.format" = "%1$@, de %2$d ori";
+"a11y.record.row.bonus.format" = "%1$@, %2$@, plus %3$d puncte";
+"a11y.record.bonus.hint" = "Apasă pentru mai multe informații.";
+"settings.section.visual" = "Afișaj";
+"settings.appearance.title" = "Aspect";
+"settings.appearance.mode.header" = "Mod";
+"settings.appearance.mode.system" = "Dispozitiv";
+"settings.appearance.mode.light" = "Luminos";
+"settings.appearance.mode.dark" = "Întunecat";
+
+/* Pontos do dia na lista e na edição (2026-11-05) */
+"a11y.points.plus.format" = "plus %d puncte";
